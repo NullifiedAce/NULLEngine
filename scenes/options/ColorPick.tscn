@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dltyb6suddc8s"]
+
+[ext_resource type="Script" path="res://scenes/options/ColorPicker.gd" id="1_rfi4e"]
+
+[node name="OptionColorPick" type="ColorPickerButton"]
+offset_right = 8.0
+offset_bottom = 8.0
+edit_alpha = false
+script = ExtResource("1_rfi4e")
+
+[connection signal="popup_closed" from="." to="." method="_on_popup_closed"]

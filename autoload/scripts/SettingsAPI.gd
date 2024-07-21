@@ -29,6 +29,12 @@ var _settings:Dictionary = {
 	"engine theme": "Purple",
 	"color style": "NULL",
 
+	# health bar
+	"icon colors": false,
+	"custom color": false,
+	"player color": Color8(0, 255, 0, 255),
+	"opponent color": Color8(255, 0, 0, 255),
+
 	# misc
 	"auto pause": true,
 	"volume beep pitching": false,

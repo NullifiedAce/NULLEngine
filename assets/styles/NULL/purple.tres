@@ -1,0 +1,63 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://4futibrds7cj"]
+
+[ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="1_d3il3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptfkk"]
+bg_color = Color(0.184314, 0, 0.34902, 0.607843)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mxr3"]
+bg_color = Color(0.184314, 0, 0.34902, 0.607843)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4yb6"]
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0674539, 8.40543e-05, 0.151661, 0.607843)
+border_width_top = 2
+border_color = Color(0.184314, 0, 0.34902, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p3lvo"]
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1w1g5"]
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.415545, 0.00212642, 0.739119, 0.607843)
+border_width_top = 2
+border_color = Color(0.184314, 0, 0.34902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8fnyr"]
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.138582, 0.000252181, 0.271701, 0.607843)
+border_width_top = 2
+border_color = Color(0.184314, 0, 0.34902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf40v"]
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0945046, 0.000135723, 0.197313, 0.607843)
+border_width_top = 2
+border_color = Color(0.184314, 0, 0.34902, 1)
+
+[resource]
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 8
+Button/fonts/font = ExtResource("1_d3il3")
+Panel/styles/panel = SubResource("StyleBoxFlat_ptfkk")
+TabContainer/colors/font_outline_color = Color(0, 0, 0, 1)
+TabContainer/constants/outline_size = 8
+TabContainer/fonts/font = ExtResource("1_d3il3")
+TabContainer/styles/panel = SubResource("StyleBoxFlat_8mxr3")
+TabContainer/styles/tab_disabled = SubResource("StyleBoxFlat_o4yb6")
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_p3lvo")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_1w1g5")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_8fnyr")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_tf40v")

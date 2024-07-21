@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqsrwpb82r34v"]
+
+[ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="1_002pm"]
+[ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="2_p2wl7"]
+[ext_resource type="Script" path="res://scenes/options/Checkbox.gd" id="3_0xuk5"]
+[ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="3_h7qg7"]
+[ext_resource type="Script" path="res://scenes/options/ColorPicker.gd" id="4_cmkhn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_63d7c"]
+font = ExtResource("3_h7qg7")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="HudEditor" type="Node2D"]
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("1_002pm")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 392.0
+offset_bottom = 712.0
+theme = ExtResource("2_p2wl7")
+
+[node name="Health Bar" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+
+[node name="Icon Colors" type="CheckBox" parent="TabContainer/Health Bar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 158.0
+offset_bottom = 35.0
+tooltip_text = "Uses the main color from the icons"
+theme = ExtResource("2_p2wl7")
+text = "Icon Colors"
+script = ExtResource("3_0xuk5")
+option = "icon colors"
+
+[node name="Custom Color" type="CheckBox" parent="TabContainer/Health Bar"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 11.0
+offset_right = 350.0
+offset_bottom = 35.0
+tooltip_text = "Uses the main color from the icons"
+theme = ExtResource("2_p2wl7")
+text = "Custom Colors"
+script = ExtResource("3_0xuk5")
+option = "custom color"
+
+[node name="Player Color" type="ColorPickerButton" parent="TabContainer/Health Bar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 59.0
+offset_right = 136.0
+offset_bottom = 91.0
+tooltip_text = "If Custom Colors enabled, changes the player's side color of the health bar."
+color = Color(0, 1, 0, 1)
+edit_alpha = false
+script = ExtResource("4_cmkhn")
+option = "player color"
+
+[node name="Label" type="Label" parent="TabContainer/Health Bar/Player Color"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 179.0
+text = "Player Color"
+label_settings = SubResource("LabelSettings_63d7c")
+
+[node name="Opponent Color" type="ColorPickerButton" parent="TabContainer/Health Bar"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 59.0
+offset_right = 328.0
+offset_bottom = 91.0
+tooltip_text = "If Custom Colors enabled, changes the opponent's side color of the health bar."
+color = Color(1, 0, 0, 1)
+edit_alpha = false
+script = ExtResource("4_cmkhn")
+option = "opponent color"
+
+[node name="Label" type="Label" parent="TabContainer/Health Bar/Opponent Color"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 179.0
+text = "Opponent Color"
+label_settings = SubResource("LabelSettings_63d7c")
+
+[node name="Score Text" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
