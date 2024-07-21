@@ -33,17 +33,18 @@ var lerp_score:int = 0
 
 func _ready():
 	Audio.play_music("freakyMenu")
-	
+
 	for i in week_list.weeks.size():
 		var week_sprite:WeekSprite = WeekSprite.new()
 		week_sprite.position.x = 640
 		week_sprite.texture = week_list.weeks[i].week_texture
 		week_sprite.position.y = 480 - week_sprite.texture.get_height()
 		week_group.add_child(week_sprite)
-	
+
 	if SettingsAPI.get_setting("story always yellow"):
 		$ColoredBG.color = Color("#f9cf51")
 	change_week(0)
+	RichPresence.set_text("In the menus", "Story Menu")
 
 func _process(delta):
 	var lerp_val:float = clamp(delta * 60 * 0.3, 0, 1)
@@ -56,50 +57,50 @@ func _process(delta):
 	score_count.text = "WEEK SCORE: " + str(lerp_score)
 	if selected_week:
 		return
-		
+
 	if Input.is_action_just_pressed("switch_mod"):
 		add_child(load("res://scenes/ModsMenu.tscn").instantiate())
-	
+
 	if Input.is_action_just_pressed("ui_up"):
 		change_week(-1)
-		
+
 	if Input.is_action_just_pressed("ui_down"):
 		change_week(1)
-		
+
 	if Input.is_action_just_pressed("ui_left"):
 		change_diff(-1)
-		
+
 	if Input.is_action_just_pressed("ui_right"):
 		change_diff(1)
-		
-		
+
+
 	if Input.is_action_pressed("ui_left"):
 		left_arrow.anim_player.play("push")
 	else:
 		left_arrow.anim_player.play("idle")
-		
+
 	if Input.is_action_pressed("ui_right"):
 		right_arrow.anim_player.play("push")
 	else:
 		right_arrow.anim_player.play("idle")
-		
+
 	if Input.is_action_just_pressed("ui_cancel"):
 		selected_week = true
 		Audio.play_sound("cancelMenu")
 		Global.switch_scene("res://scenes/MainMenu.tscn")
-		
+
 	if Input.is_action_just_pressed("ui_accept"):
 		select_week()
-		
+
 func _input(e):
 	if not e is InputEventMouseButton: return
 	var event:InputEventMouseButton = e
 	if not event.pressed: return
-	
+
 	match event.button_index:
 		MOUSE_BUTTON_WHEEL_UP:
 			change_week(-1)
-			
+
 		MOUSE_BUTTON_WHEEL_DOWN:
 			change_week(1)
 
@@ -107,7 +108,7 @@ func change_week(inc):
 	Audio.play_sound("scrollMenu")
 
 	cur_week = wrap(cur_week + inc, 0, week_list.weeks.size())
-	
+
 	var char_pos = [dad_pos, bf_pos, gf_pos]
 	var chars_to_add = [week_list.weeks[cur_week].opponent, week_list.weeks[cur_week].player, week_list.weeks[cur_week].spectator]
 
@@ -115,16 +116,16 @@ func change_week(inc):
 		var week_sprite:WeekSprite = week_group.get_child(i)
 		week_sprite.target_y = i - cur_week
 		week_sprite.modulate.a = 1.0 if cur_week == i else 0.6
-		
+
 	tracklist.text = "TRACKS\n\n"
 	for i in week_list.weeks[cur_week].songs.size():
 		tracklist.text += week_list.weeks[cur_week].songs[i].display_name.to_upper() + "\n"
-		
+
 	week_name.text = week_list.weeks[cur_week].name.to_upper()
-	
+
 	if !SettingsAPI.get_setting("story always yellow"):
 		get_tree().create_tween().tween_property($ColoredBG, "color", week_list.weeks[cur_week].bg_color, 0.5)
-	
+
 	for i in 3:
 		var old_char = char_sprites[i]
 		if old_char != null and cur_chars[i] != chars_to_add[i]:
@@ -132,11 +133,11 @@ func change_week(inc):
 			old_char.queue_free()
 		if (old_char == null or cur_chars[i] != chars_to_add[i]):
 			make_char(chars_to_add[i], char_pos[i], 0.9 if i == 1 else 0.5, i)
-			
+
 	cur_chars = chars_to_add
-	
+
 	change_diff(0)
-	
+
 func change_diff(inc:int):
 	cur_diff = wrap(cur_diff + inc, 0, week_list.weeks[cur_week].difficulties.size())
 	score = get_week_score()
@@ -144,15 +145,15 @@ func change_diff(inc:int):
 	diff_sprite.texture = diff_tex
 	diff_sprite.position.y = left_arrow.position.y + left_arrow.sprite_frames.get_frame_texture(left_arrow.animation.replace(" push", ""), 0).get_height() / 2 - diff_tex.get_height() / 2
 	diff_sprite.offset.y = -20
-	
+
 	reposition_diff()
-	
+
 func get_week_score():
 	var _score = 0
 	for song in week_list.weeks[cur_week].songs:
 		_score += HighScore.get_score(song.song_path,week_list.weeks[cur_week].difficulties[cur_diff])
 	return _score
-	
+
 func make_char(name:String, pos_node:Node2D, scale:float, index:int):
 	var char_path:String = "res://scenes/story_chars/" + name + ".tscn"
 	var char:Node2D
@@ -174,7 +175,7 @@ func make_char(name:String, pos_node:Node2D, scale:float, index:int):
 	char.scale.x = scale
 	char.scale.y = scale
 	char_group.add_child(char)
-	
+
 	char_sprites[index] = char
 
 func reposition_diff():
@@ -193,7 +194,7 @@ func select_week():
 		var anim_sprite:AnimatedSprite = char.get_child(0)
 		if anim_sprite != null and anim_sprite.anim_player.has_animation("confirm"):
 			anim_sprite.anim_player.play("confirm")
-	
+
 	Global.is_story_mode = true
 	Global.queued_songs = []
 	Global.current_difficulty = week_list.weeks[cur_week].difficulties[cur_diff]
@@ -201,6 +202,6 @@ func select_week():
 	for i in week_list.weeks[cur_week].songs.size(): # The worst way to do it but... im dumb.
 		if i > 0:
 			Global.queued_songs.append(week_list.weeks[cur_week].songs[i].song_path)
-			
+
 	await get_tree().create_timer(1).timeout
 	Global.switch_scene("res://scenes/gameplay/Gameplay.tscn")

@@ -48,7 +48,7 @@ func set_vsync(value:bool):
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ADAPTIVE)
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-	
+
 func _notification(what):
 	match what:
 		NOTIFICATION_APPLICATION_FOCUS_OUT:
@@ -59,7 +59,7 @@ func _notification(what):
 				Transition.process_mode = Node.PROCESS_MODE_DISABLED
 				AudioServer.set_bus_volume_db(0,-INF)
 				get_tree().paused = true
-			
+
 		NOTIFICATION_APPLICATION_FOCUS_IN:
 			if SettingsAPI.get_setting("auto pause"):
 				set_vsync(SettingsAPI.get_setting('vsync'))
@@ -68,7 +68,7 @@ func _notification(what):
 				Transition.process_mode = Node.PROCESS_MODE_ALWAYS
 				VolumeSlider.update_volume()
 				get_tree().paused = false
-				
+
 var transitioning:bool = false
 var last_scene_path:String
 
@@ -76,43 +76,43 @@ func switch_scene(path:String) -> void:
 	last_scene_path = path
 	transitioning = true
 	get_tree().paused = true
-	
+
 	var anim_player:AnimationPlayer = Transition.anim_player
 	anim_player.play("in")
-	
+
 	await get_tree().create_timer(anim_player.get_animation("in").length).timeout
-	
+
 	get_tree().change_scene_to_file(path)
-	
+
 	await get_tree().create_timer(0.05).timeout
-	
+
 	anim_player.play("out")
-	
+
 	await get_tree().create_timer(anim_player.get_animation("out").length).timeout
-	
+
 	transitioning = false
 	get_tree().paused = false
-	
+
 func reset_scene(from_mod_menu:bool = false) -> void:
 	transitioning = true
 	get_tree().paused = true
-	
+
 	var anim_player:AnimationPlayer = Transition.anim_player
 	anim_player.play("in")
-	
+
 	await get_tree().create_timer(anim_player.get_animation("in").length).timeout
-	
+
 	if from_mod_menu:
 		get_tree().change_scene_to_file("res://scenes/ReloadHelper.tscn")
 	else:
 		get_tree().change_scene_to_file(last_scene_path)
-	
+
 	await get_tree().create_timer(0.05).timeout
-	
+
 	anim_player.play("out")
-	
+
 	await get_tree().create_timer(anim_player.get_animation("out").length).timeout
-	
+
 	transitioning = false
 	get_tree().paused = false
 
@@ -123,7 +123,7 @@ func _input(event:InputEvent) -> void:
 			window.mode = Window.MODE_WINDOWED
 		else:
 			window.mode = Window.MODE_FULLSCREEN
-			
+
 func list_files_in_dir(path:String):
 	var files:PackedStringArray = []
 	var dir = DirAccess.open(path)
@@ -137,7 +137,7 @@ func list_files_in_dir(path:String):
 				files.append(file)
 
 		dir.list_dir_end()
-		
+
 	return files
 
 func add_zeros(str:String, num:int) -> String:
@@ -147,17 +147,17 @@ func bytes_to_human(size:float) -> String:
 	var labels:PackedStringArray = ["b", "kb", "mb", "gb", "tb"]
 	var r_size:float = size
 	var label:int = 0
-	
+
 	while r_size > 1024 and label < labels.size() - 1:
 		label += 1
 		r_size /= 1024
-	
+
 	return str(r_size).pad_decimals(2) + labels[label]
-	
+
 func float_to_minute(value:float) -> int:
 	return int(value / 60)
-	
-func float_to_seconds(value:float) -> float: 
+
+func float_to_seconds(value:float) -> float:
 	return fmod(value, 60)
 
 func format_time(value:float) -> String:

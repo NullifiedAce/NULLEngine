@@ -110,7 +110,7 @@ animation = &"selected"
 [node name="Freeplay" type="AnimatedSprite2D" parent="PB/UILayer/Buttons"]
 position = Vector2(640, 360)
 sprite_frames = ExtResource("5_q251e")
-animation = &"selected"
+animation = &"idle"
 
 [node name="Options" type="AnimatedSprite2D" parent="PB/UILayer/Buttons"]
 position = Vector2(640, 504)
@@ -124,16 +124,17 @@ libraries = {
 }
 
 [node name="Version" type="Label" parent="PB/UILayer"]
-offset_left = 9.0
-offset_top = 702.0
-offset_right = 239.0
-offset_bottom = 717.0
+offset_left = 8.0
+offset_top = 680.0
+offset_right = 238.0
+offset_bottom = 710.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("7_fi2y3")
 theme_override_font_sizes/font_size = 16
-text = "Nova Engine Godot v1.2.0"
+text = "Nova Engine Godot v1.2.0
+NULL Engine v"
 autowrap_mode = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]

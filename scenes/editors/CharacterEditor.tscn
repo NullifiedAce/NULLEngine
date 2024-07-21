@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cbld2pm6f27au" path="res://scenes/gameplay/stages/stage.tscn" id="2_72ttl"]
 [ext_resource type="PackedScene" uid="uid://cyj73wfovhpu" path="res://scenes/gameplay/characters/gf.tscn" id="3_b4g0o"]
 [ext_resource type="PackedScene" uid="uid://bv2bmp1oon3uw" path="res://scenes/gameplay/characters/dad.tscn" id="4_6qktl"]
-[ext_resource type="PackedScene" uid="uid://cygc1u17plsxp" path="res://scenes/gameplay/characters/bf.tscn" id="5_t3be4"]
+[ext_resource type="PackedScene" uid="uid://rahjtmlrruke" path="res://scenes/gameplay/characters/bf.tscn" id="5_t3be4"]
 
 [node name="CharacterEditor" type="Node2D"]
 script = ExtResource("1_u2pfu")

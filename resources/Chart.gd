@@ -32,62 +32,62 @@ static func load_from_json(song:String, json):
 	chart.key_count = 4
 	chart.scroll_speed = json.speed
 	chart.notetypes = json.notetypes if "notetypes" in json else []
-	
+
 	if "keyCount" in json:
 		chart.key_count = json.keyCount
-		
+
 	if "keyNumber" in json:
 		chart.key_count = json.keyNumber
-		
+
 	if "mania" in json:
 		match json.mania:
 			1: chart.key_count = 6
 			2: chart.key_count = 7
 			3: chart.key_count = 9
 			_: chart.key_count = 4
-			
+
 	if "stage" in json:
 		chart.stage = json.stage
-		
+
 	chart.opponent = json.player2
 	chart.player = json.player1
-	
+
 	if "opponent" in json:
 		chart.spectator = json.opponent
-		
+
 	if "player" in json:
 		chart.spectator = json.player
-	
+
 	if "gfVersion" in json and json.gfVersion != null:
 		chart.spectator = json.gfVersion
-		
+
 	if "gf" in json and json.gf != null:
 		chart.spectator = json.gf
-		
+
 	if "player3" in json and json.player3 != null:
 		chart.spectator = json.player3
-		
+
 	if "spectator" in json:
 		chart.spectator = json.spectator
-		
+
 	if "uiSkin" in json:
 		chart.ui_skin = json.uiSkin
 
 	# oh god wish me luck converting these
 	# damn base game sections to cool ones!
-	
+
 	for section in json.notes:
 		var cool_section:Section = Section.new()
 		cool_section.bpm = section.bpm if "bpm" in section and section.bpm != null else 0.0
 		cool_section.change_bpm = section.changeBPM if "changeBPM" in section and section.changeBPM != null else false
 		cool_section.is_player = section.mustHitSection if "mustHitSection" in section and section.mustHitSection != null else true
 		cool_section.length_in_steps = section.lengthInSteps if "lengthInSteps" in section and section.lengthInSteps != null else 16
-		
+
 		if "sectionBeats" in section and section.sectionBeats != null:
 			cool_section.length_in_steps = int(section.sectionBeats) * 4
-		
+
 		cool_section.notes = []
-		
+
 		# convermting the noite!
 		for note in section.sectionNotes:
 			var cool_note:SectionNote = SectionNote.new()
@@ -100,7 +100,7 @@ static func load_from_json(song:String, json):
 					# week 7 charts (real)
 					true:
 						cool_note.type = "Alt Animation"
-						
+
 					# psych and other engine charts (some use ints but if they do fuck you)
 					_:
 						if note[3] is String:
@@ -111,11 +111,11 @@ static func load_from_json(song:String, json):
 							cool_note.type = "default"
 			else:
 				cool_note.type = "default"
-				
+
 			cool_note.alt_anim = section.altAnim if "altAnim" in section and section.altAnim != null else false
 			cool_section.notes.append(cool_note)
-		
+
 		# push section  !
 		chart.sections.append(cool_section)
-	
+
 	return chart
