@@ -369,7 +369,7 @@ text = "Change"
 
 [node name="section" type="Window" parent="."]
 title = "Section Data"
-position = Vector2i(1040, 100)
+position = Vector2i(968, 100)
 size = Vector2i(200, 200)
 min_size = Vector2i(65, 65)
 content_scale_size = Vector2i(150, 150)
@@ -511,7 +511,7 @@ suffix = "sections back"
 
 [node name="note" type="Window" parent="."]
 title = "Note Data"
-position = Vector2i(1040, 341)
+position = Vector2i(968, 341)
 size = Vector2i(200, 200)
 min_size = Vector2i(65, 65)
 content_scale_size = Vector2i(150, 150)
@@ -538,6 +538,7 @@ mode_overrides_title = false
 file_mode = 0
 root_subfolder = "res://scenes/gameplay/characters"
 filters = PackedStringArray("*.tscn")
+show_hidden_files = false
 
 [node name="StageDialog" type="FileDialog" parent="."]
 title = "Select a Stage"
@@ -549,6 +550,7 @@ mode_overrides_title = false
 file_mode = 0
 root_subfolder = "res://scenes/gameplay/stages"
 filters = PackedStringArray("*.tscn")
+show_hidden_files = false
 
 [node name="UISkinDialog" type="FileDialog" parent="."]
 title = "Select a UI Skin"
@@ -560,6 +562,7 @@ mode_overrides_title = false
 file_mode = 0
 root_subfolder = "res://scenes/gameplay/ui_skins/"
 filters = PackedStringArray("*.tscn")
+show_hidden_files = false
 
 [node name="SaveDialog" type="FileDialog" parent="."]
 title = "Save Song JSON"
@@ -570,6 +573,7 @@ ok_button_text = "Save"
 mode_overrides_title = false
 root_subfolder = "res://assets/songs/"
 filters = PackedStringArray("*.json")
+show_hidden_files = false
 
 [node name="LoadDialog" type="FileDialog" parent="."]
 title = "Load Song JSON"
@@ -581,6 +585,7 @@ mode_overrides_title = false
 file_mode = 0
 root_subfolder = "res://assets/songs/"
 filters = PackedStringArray("*.json")
+show_hidden_files = false
 
 [node name="AutosaveDialog" type="ConfirmationDialog" parent="."]
 title = "Select Autosaved Song"

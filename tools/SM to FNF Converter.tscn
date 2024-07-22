@@ -190,6 +190,7 @@ theme = SubResource("Theme_fsgyb")
 ok_button_text = "Open"
 file_mode = 0
 filters = PackedStringArray("*.sm")
+show_hidden_files = false
 
 [node name="Save Chart" type="FileDialog" parent="."]
 title = "Save FNF chart json"
@@ -199,6 +200,7 @@ popup_window = true
 theme = SubResource("Theme_fsgyb")
 ok_button_text = "Save"
 filters = PackedStringArray("*.json")
+show_hidden_files = false
 
 [connection signal="pressed" from="Panel2/Select Chart" to="." method="_on_select_chart_pressed"]
 [connection signal="pressed" from="Panel3/Button" to="." method="_on_button_pressed"]

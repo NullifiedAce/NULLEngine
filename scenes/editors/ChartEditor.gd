@@ -42,7 +42,7 @@ var selected_dir:int = 0
 var lane_id:int = 0
 
 var selected_note:Sprite2D
-var selected_data:SectionNote 
+var selected_data:SectionNote
 
 var cur_section:int = -1 # i would of loved to used section_hit.connect but for some reason it doesnt work going backwards!
 var section_start:float = 0.0
@@ -79,10 +79,10 @@ var take_input:bool = true
 func load_song():
 	track_mute.clear()
 	var music_path:String = "res://assets/songs/%s/audio/" % chart_data.name.to_lower()
-	
+
 	if DirAccess.dir_exists_absolute(music_path):
 		var dir = DirAccess.open(music_path)
-		
+
 		for file in dir.get_files():
 			var music:AudioPlayer = AudioPlayer.new()
 			for f in Global.audio_formats:
@@ -91,10 +91,10 @@ func load_song():
 					music.pitch_scale = Conductor.rate
 					tracks.append(music)
 					sound_group.add_child(music)
-					
+
 					var file_label = file.get_file().get_basename()
 					track_mute.add_check_item(file_label)
-	
+
 	if tracks.is_empty():
 		printerr("The tracks list of this song is empty! Did you specify the right folder?")
 		Audio.play_sound("cancelMenu")
@@ -107,31 +107,31 @@ func _init(): # doing it on init because doing it on ready causes a crash on "Ru
 func _ready():
 	load_song()
 	track_length = tracks[0].stream.get_length() * 1000 if (not tracks.is_empty()) else 10;
-	
+
 	Conductor.position = 0
 	Conductor.cur_section = 0
 	Conductor.map_bpm_changes(chart_data)
 	# regen_notes() not calling it on ready because PlayerLane's x is not set yet.
-	
+
 	bloom_mat = ShaderMaterial.new()
 	bloom_mat.shader = load("res://assets/shaders/NoteBloom.gdshader")
-	
+
 	test_song.get_popup().id_pressed.connect(_test_chart)
 	window_toggle.get_popup().id_pressed.connect(_toggle_window)
-	
+
 	var settings_popup = settings.get_popup()
 	settings_popup.id_pressed.connect(_setting_set)
-	
+
 	settings_popup.add_item("Waveform", 1)
 	settings_popup.set_item_disabled(1, true) # Its just to let people know its coming soon.
-	
+
 	settings_popup.add_submenu_item("Muted Tracks", "TrackMute", 2)
 	settings.remove_child(track_mute)
 	settings_popup.add_child(track_mute)
 	#                                               s
 	settings_popup.add_item("Decrease Snap", 3, KEY_R)
 	settings_popup.add_item("Increase Snap", 4, KEY_T)
-	
+
 func _notification(what):
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT or what == NOTIFICATION_WM_CLOSE_REQUEST:
 		if not DirAccess.dir_exists_absolute("user://chart_autosaves"):
@@ -146,7 +146,7 @@ func _exit_tree():
 func get_quant_color(hit_time:float):
 	var measure_time:float = 60 / Conductor.bpm * 1000 * 4
 	var smallest_deviation:float = measure_time / quants[quants.size() - 1]
-	
+
 	for quant in quants.size():
 		var quant_time:float = (measure_time / quants[quant])
 		if fmod(hit_time - section_start + smallest_deviation, quant_time) < smallest_deviation * 2:
@@ -154,16 +154,16 @@ func get_quant_color(hit_time:float):
 
 func regen_notes():
 	hit_notes.clear()
-	
+
 	cur_section = Conductor.cur_section
 	selected_note = null
 	selected_data = null
-	
+
 	while chart_data.sections.size() <= cur_section: # If you go too far, it will add sections to prevent a null error.
 		var new_section = Section.new()
 		new_section.bpm = Conductor.bpm
 		chart_data.sections.append(new_section)
-		
+
 	var cur_bpm = chart_data.bpm;
 	section_start = 0.0;
 	for i in cur_section:
@@ -171,12 +171,12 @@ func regen_notes():
 			cur_bpm = chart_data.sections[i].bpm
 		section_start += 60 / cur_bpm * 4000;
 	Conductor.change_bpm(cur_bpm if not chart_data.sections[cur_section].change_bpm else chart_data.sections[cur_section].bpm); # The for loop doesn't account for the current section.
-		
+
 	while notes_group.get_child_count() > 0:
 		var note = notes_group.get_child(0)
 		note.queue_free()
 		notes_group.remove_child(note)
-	
+
 	for note_data in chart_data.sections[cur_section].notes:
 		var note = Sprite2D.new()
 		notes_group.add_child(note)
@@ -185,9 +185,9 @@ func regen_notes():
 		var use_opp = (note_data.direction % 8 < 4) != chart_data.sections[cur_section].is_player
 		var lane_to_place = opponent_lane if use_opp else player_lane
 		note.rotation_degrees = arrow_rotations[note_data.direction % 4]
-				
+
 		note.modulate = get_quant_color(note_data.time)
-		
+
 		note.position.x = (container.position.x + lane_to_place.position.x) + note_data.direction % 4 * (lane_to_place.size.x / 4) + (lane_to_place.size.x / 64) + hover_size.x * 0.275 * 0.5
 		note.position.y = container.position.y + (note_data.time - section_start) / Conductor.step_crochet * (container.size.y / 16) + hover_size.y * 0.275 * 0.5
 
@@ -198,7 +198,7 @@ func regen_notes():
 			var tail = hold.get_child(0)
 			tail.position.y = hold.points[1].y + tail_tex.get_height() * 0.5
 			tail.visible = true
-			
+
 	section_window.on_regen()
 
 func add_sustain(note:Sprite2D):
@@ -214,7 +214,7 @@ func add_sustain(note:Sprite2D):
 	line.show_behind_parent = true
 	line.use_parent_material = true
 	note.add_child(line)
-	
+
 	var tail = Sprite2D.new()
 	tail.texture = tail_tex
 	tail.position.y = line.points[1].y + tail_tex.get_height() * 0.5
@@ -225,7 +225,7 @@ func check_note():
 	var time_check = roundf(selected_time * 10) * 0.1 # Rounding for a higher chance to grab the note.
 	for i in chart_data.sections[Conductor.cur_section].notes.size():
 		var note_data = chart_data.sections[Conductor.cur_section].notes[i]
-		
+
 		if roundf(note_data.time * 10) * 0.1 == time_check and note_data.direction == selected_dir:
 			var note = notes_group.get_child(i)
 			if Input.is_key_label_pressed(KEY_CTRL):
@@ -238,7 +238,7 @@ func check_note():
 				if selected_note == note:
 					selected_note = null
 					selected_data = null
-					
+
 				note.queue_free()
 				chart_data.sections[Conductor.cur_section].notes.remove_at(i)
 			return true
@@ -246,7 +246,7 @@ func check_note():
 
 func _input(event):
 	if char_dialog.visible or stage_dialog.visible or ui_skin_dialog.visible or save_dialog.visible or load_dialog.visible or not take_input: return
-	
+
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed \
 		and hover_arrow.visible and not check_note():
@@ -254,12 +254,12 @@ func _input(event):
 			new_note.modulate.a = 1
 			notes_group.add_child(new_note)
 			add_sustain(new_note)
-			
+
 			var note_data = SectionNote.new()
 			note_data.time = selected_time
 			note_data.direction = selected_dir
 			chart_data.sections[Conductor.cur_section].notes.append(note_data)
-			
+
 			if selected_note != null:
 				selected_note.material = null
 			selected_note = new_note
@@ -274,18 +274,18 @@ func _unhandled_key_input(event):
 	if char_dialog.visible or stage_dialog.visible or ui_skin_dialog.visible or save_dialog.visible or load_dialog.visible or not take_input or not event.is_pressed():
 		take_input = true
 		return
-	
+
 	if event.is_action_pressed("chart_test") and not ((not tracks.is_empty()) and tracks[0].playing):
 		test_song.show_popup()
-		
+
 	if event.is_action_pressed("space_bar"):
 		play_song()
-	
+
 	var hold_axis = Input.get_axis("chart_hold_down", "chart_hold_up")
 	if hold_axis != 0 and selected_note != null:
 		var hold_inc:float = Conductor.step_crochet * hold_axis * cur_snap
 		selected_data.length = clampf(selected_data.length + hold_inc, 0, 999999)
-		
+
 		var hold:Line2D = selected_note.get_child(0)
 		hold.visible = selected_data.length > 0.0
 		if hold.visible:
@@ -295,11 +295,11 @@ func _unhandled_key_input(event):
 
 func play_song():
 	if tracks.is_empty() or Conductor.position >= track_length: return
-	
+
 	if !tracks[0].playing:
 		for track in tracks:
 			track.play(Conductor.position / 1000)
-			
+
 		hit_notes.clear()
 		for note in chart_data.sections[cur_section].notes:
 			if note.time < Conductor.position:
@@ -310,9 +310,9 @@ func play_song():
 
 func _process(delta):
 	if char_dialog.visible or stage_dialog.visible or ui_skin_dialog.visible or save_dialog.visible or load_dialog.visible or not take_input: return
-	
+
 	strum_line.position.y = container.position.y + (Conductor.position - section_start) / (Conductor.step_crochet) * (container.size.y / 16)
-	
+
 	var mouse_pos = window.get_mouse_position()
 	over_left = opponent_lane.get_global_rect().has_point(mouse_pos)
 	over_right = player_lane.get_global_rect().has_point(mouse_pos)
@@ -322,7 +322,7 @@ func _process(delta):
 		var snapped_step = floorf((mouse_pos.y - container.position.y) / (container.size.y / 16) / cur_snap)
 		selected_time = section_start + (Conductor.step_crochet * (snapped_step * cur_snap))
 		hover_arrow.position.y = container.position.y + (selected_time - section_start) / Conductor.step_crochet * (container.size.y / 16) + hover_size.y * 0.275 * 0.5
-	
+
 		var cur_lane:Panel = opponent_lane if over_left else player_lane
 		var x_pos = cur_lane.position.x + container.position.x
 		lane_id = floor((mouse_pos.x - x_pos) / (cur_lane.size.x / 4))
@@ -334,13 +334,13 @@ func _process(delta):
 		hover_arrow.modulate.a = 0.5
 
 	var mult:float = 4 if Input.is_action_pressed("shift_key") else 1
-	
+
 	var vert_axis = Input.get_axis("ui_up", "ui_down");
 	var hori_axis = Input.get_axis("ui_left", "ui_right");
 
 	if (not tracks.is_empty()) and tracks[0].playing:
 		Conductor.position = tracks[0].time
-		
+
 		for note in chart_data.sections[cur_section].notes:
 			if (not note in hit_notes) and note.time <= Conductor.position:
 				hitsound.play()
@@ -350,10 +350,10 @@ func _process(delta):
 	elif Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right"):
 		Conductor.position += Conductor.crochet * 4 * mult * hori_axis
 	Conductor.position = clampf(Conductor.position, 0, track_length);
-	
+
 	if cur_section != Conductor.cur_section:
 		regen_notes()
-		
+
 	var format_array = [
 		float_to_minute(Conductor.position * 0.001),
 		float_to_seconds(Conductor.position * 0.001),
@@ -364,7 +364,7 @@ func _process(delta):
 		Conductor.cur_section,
 		16 / cur_snap
 	]
-		
+
 	pos_info.text = "%02d:%02d / %02d:%02d\n\nStep: %01d\nBeat: %01d\nSection: %01d\nSnap: 1/%01d" % format_array
 
 # thanks @BeastlyGabi for letting me use these lol.

@@ -36,7 +36,7 @@ var new_chart = {
 	"stage": stage,
 	"speed": scroll_speed,
 	"events": [],
-	"notes": []   
+	"notes": []
 	}
 func export_json(json_data):
 	player1 = $Panel/player1.text
