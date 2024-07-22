@@ -48,10 +48,8 @@ offset_right = 466.0
 offset_bottom = 652.0
 theme = ExtResource("3_cmtlj")
 theme_override_constants/side_margin = 0
-current_tab = 1
 
 [node name="Gameplay" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Downscroll" type="CheckBox" parent="TabContainer/Gameplay"]
@@ -225,6 +223,7 @@ theme_override_font_sizes/font_size = 16
 text = "Scroll Speed Type"
 
 [node name="Appearance" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="FPS Counter" type="CheckBox" parent="TabContainer/Appearance"]
@@ -1186,6 +1185,7 @@ in_editor = true
 [connection signal="item_selected" from="TabContainer/Appearance/Judgement Camera" to="TabContainer/Appearance/Judgement Camera" method="_on_item_selected"]
 [connection signal="item_selected" from="TabContainer/Appearance/Engine Theme" to="TabContainer/Appearance/Engine Theme" method="_on_item_selected"]
 [connection signal="item_selected" from="TabContainer/Appearance/Color Style" to="TabContainer/Appearance/Color Style" method="_on_item_selected"]
+[connection signal="pressed" from="TabContainer/Appearance/HUDEditor" to="." method="_on_hud_editor_pressed"]
 [connection signal="pressed" from="TabContainer/Miscellaneous/Auto Pause" to="TabContainer/Miscellaneous/Auto Pause" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Miscellaneous/Volume Beep Pitching" to="TabContainer/Miscellaneous/Volume Beep Pitching" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Miscellaneous/VSync" to="TabContainer/Miscellaneous/VSync" method="_on_pressed"]

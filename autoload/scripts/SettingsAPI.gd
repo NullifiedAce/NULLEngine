@@ -32,8 +32,8 @@ var _settings:Dictionary = {
 	# health bar
 	"icon colors": false,
 	"custom color": false,
-	"player color": Color8(0, 255, 0, 255),
-	"opponent color": Color8(255, 0, 0, 255),
+	"player color": Color(0, 1, 0, 1),
+	"opponent color": Color(1, 0, 0, 1),
 
 	# misc
 	"auto pause": true,

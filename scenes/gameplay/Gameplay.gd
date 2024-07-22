@@ -361,8 +361,12 @@ func update_health_bar():
 	player_icon.texture = player.health_icon
 	player_icon.hframes = player.health_icon_frames
 
-	OPPONENT_HEALTH_COLOR.bg_color = opponent.health_color
-	PLAYER_HEALTH_COLOR.bg_color = player.health_color
+	if SettingsAPI.get_setting("icon colors"):
+		OPPONENT_HEALTH_COLOR.bg_color = opponent.health_color
+		PLAYER_HEALTH_COLOR.bg_color = player.health_color
+	elif SettingsAPI.get_setting("custom color"):
+		OPPONENT_HEALTH_COLOR.bg_color = SettingsAPI.get_setting("opponent color")
+		PLAYER_HEALTH_COLOR.bg_color = SettingsAPI.get_setting("player color")
 
 func start_cutscene(postfix:String = "-start"):
 	var cutscene_path = "res://scenes/gameplay/cutscenes/" + SONG.name.to_lower() + postfix + ".tscn"

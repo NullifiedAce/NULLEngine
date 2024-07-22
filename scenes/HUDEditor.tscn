@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqsrwpb82r34v"]
+[gd_scene load_steps=10 format=3 uid="uid://bqsrwpb82r34v"]
 
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="1_002pm"]
+[ext_resource type="Script" path="res://scenes/HUDEditor.gd" id="1_028jv"]
 [ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="2_p2wl7"]
 [ext_resource type="Script" path="res://scenes/options/Checkbox.gd" id="3_0xuk5"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="3_h7qg7"]
 [ext_resource type="Script" path="res://scenes/options/ColorPicker.gd" id="4_cmkhn"]
+[ext_resource type="Texture2D" uid="uid://bbes0v2ta5kyg" path="res://assets/images/material_icons/Reload.svg" id="7_3lfyh"]
+[ext_resource type="Script" path="res://scenes/options/ResetValue.gd" id="8_mrd2k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_63d7c"]
 font = ExtResource("3_h7qg7")
@@ -12,6 +15,7 @@ outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [node name="HudEditor" type="Node2D"]
+script = ExtResource("1_028jv")
 
 [node name="BG" type="Sprite2D" parent="."]
 position = Vector2(640, 360)
@@ -71,6 +75,18 @@ offset_right = 179.0
 text = "Player Color"
 label_settings = SubResource("LabelSettings_63d7c")
 
+[node name="reset" type="Button" parent="TabContainer/Health Bar/Player Color"]
+visible = false
+layout_mode = 0
+offset_left = 136.0
+offset_right = 168.0
+offset_bottom = 32.0
+tooltip_text = "Reset to default value."
+icon = ExtResource("7_3lfyh")
+expand_icon = true
+script = ExtResource("8_mrd2k")
+defValue = Color(0, 1, 0, 1)
+
 [node name="Opponent Color" type="ColorPickerButton" parent="TabContainer/Health Bar"]
 layout_mode = 0
 offset_left = 200.0
@@ -90,7 +106,26 @@ offset_right = 179.0
 text = "Opponent Color"
 label_settings = SubResource("LabelSettings_63d7c")
 
+[node name="reset" type="Button" parent="TabContainer/Health Bar/Opponent Color"]
+visible = false
+layout_mode = 0
+offset_left = 136.0
+offset_right = 168.0
+offset_bottom = 32.0
+tooltip_text = "Reset to default value."
+icon = ExtResource("7_3lfyh")
+expand_icon = true
+script = ExtResource("8_mrd2k")
+defValue = Color(1, 0, 0, 1)
+
 [node name="Score Text" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
+
+[connection signal="pressed" from="TabContainer/Health Bar/Icon Colors" to="TabContainer/Health Bar/Icon Colors" method="_on_pressed"]
+[connection signal="pressed" from="TabContainer/Health Bar/Custom Color" to="TabContainer/Health Bar/Custom Color" method="_on_pressed"]
+[connection signal="popup_closed" from="TabContainer/Health Bar/Player Color" to="TabContainer/Health Bar/Player Color" method="_on_popup_closed"]
+[connection signal="pressed" from="TabContainer/Health Bar/Player Color/reset" to="TabContainer/Health Bar/Player Color/reset" method="_on_pressed"]
+[connection signal="popup_closed" from="TabContainer/Health Bar/Opponent Color" to="TabContainer/Health Bar/Opponent Color" method="_on_popup_closed"]
+[connection signal="pressed" from="TabContainer/Health Bar/Opponent Color/reset" to="TabContainer/Health Bar/Opponent Color/reset" method="_on_pressed"]

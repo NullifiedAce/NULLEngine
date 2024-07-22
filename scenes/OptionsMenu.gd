@@ -106,3 +106,6 @@ func _on_gameplay_checkbox_pressed(name:String):
 			var tween:Tween = create_tween()
 			tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 			tween.tween_property(strum_line, "position:y", 587.0 if downscroll_checkbox.button_pressed else 115.0, 0.5)
+
+func _on_hud_editor_pressed() -> void:
+	Global.switch_scene("res://scenes/HUDEditor.tscn")
