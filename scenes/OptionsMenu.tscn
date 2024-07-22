@@ -48,8 +48,10 @@ offset_right = 466.0
 offset_bottom = 652.0
 theme = ExtResource("3_cmtlj")
 theme_override_constants/side_margin = 0
+current_tab = 1
 
 [node name="Gameplay" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Downscroll" type="CheckBox" parent="TabContainer/Gameplay"]
@@ -223,7 +225,6 @@ theme_override_font_sizes/font_size = 16
 text = "Scroll Speed Type"
 
 [node name="Appearance" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="FPS Counter" type="CheckBox" parent="TabContainer/Appearance"]
@@ -292,23 +293,12 @@ text = "Judgement Stacking"
 script = ExtResource("4_gjk4b")
 option = "judgement stacking"
 
-[node name="Hide Score" type="CheckBox" parent="TabContainer/Appearance"]
-layout_mode = 0
-offset_left = 208.0
-offset_top = 8.0
-offset_right = 390.0
-offset_bottom = 39.0
-tooltip_text = "Whether or not the score is displayed during gameplay."
-text = "Hide Score"
-script = ExtResource("4_gjk4b")
-option = "hide score"
-
 [node name="Freeplay Icon Bumping" type="CheckBox" parent="TabContainer/Appearance"]
 layout_mode = 0
-offset_left = 208.0
-offset_top = 32.0
-offset_right = 413.0
-offset_bottom = 63.0
+offset_left = 192.0
+offset_top = 9.0
+offset_right = 397.0
+offset_bottom = 40.0
 tooltip_text = "Whether or not the score is displayed during gameplay."
 text = "Freeplay Icons Bump"
 script = ExtResource("4_gjk4b")
@@ -1180,7 +1170,6 @@ in_editor = true
 [connection signal="pressed" from="TabContainer/Appearance/Subtitles" to="TabContainer/Appearance/Subtitles" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Appearance/Story Always Yellow" to="TabContainer/Appearance/Story Always Yellow" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Appearance/Judgement Stacking" to="TabContainer/Appearance/Judgement Stacking" method="_on_pressed"]
-[connection signal="pressed" from="TabContainer/Appearance/Hide Score" to="TabContainer/Appearance/Hide Score" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Appearance/Freeplay Icon Bumping" to="TabContainer/Appearance/Freeplay Icon Bumping" method="_on_pressed"]
 [connection signal="item_selected" from="TabContainer/Appearance/Judgement Camera" to="TabContainer/Appearance/Judgement Camera" method="_on_item_selected"]
 [connection signal="item_selected" from="TabContainer/Appearance/Engine Theme" to="TabContainer/Appearance/Engine Theme" method="_on_item_selected"]

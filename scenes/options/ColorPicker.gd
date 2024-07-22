@@ -5,7 +5,8 @@ class_name OptionColorPick
 
 func _ready() -> void:
 	print(SettingsAPI.get_setting(option))
-	color = Color.from_string(SettingsAPI.get_setting(option), Color.WHITE)
+	#color = Color.from_string(SettingsAPI.get_setting(option), Color.TRANSPARENT)
+	color = SettingsAPI.get_setting(option)
 
 
 func _on_popup_closed() -> void:
