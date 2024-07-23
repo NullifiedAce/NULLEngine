@@ -64,3 +64,6 @@ TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_p3lvo")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_1w1g5")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_8fnyr")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_tf40v")
+TextEdit/colors/font_outline_color = Color(0, 0, 0, 1)
+TextEdit/constants/outline_size = 8
+TextEdit/fonts/font = ExtResource("1_d3il3")

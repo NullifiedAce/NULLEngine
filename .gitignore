@@ -3,3 +3,4 @@
 
 # other ignores
 export/
+.vscode/settings.json

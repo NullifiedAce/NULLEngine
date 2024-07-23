@@ -34,12 +34,45 @@ var _settings:Dictionary = {
 
 	# health bar
 	"icon colors": false,
+
 	#"custom color": false,
 	#"player color": Color(0, 1, 0, 1),
 	#"opponent color": Color(1, 0, 0, 1),
+
 	"hpbar x": 340,
 	"hpbar y": 636,
 	"hpbar y down": 60,
+
+	"seperator": " - ",
+
+	# score
+	"score shown": true,
+	"score prefix": "Score: ",
+	"score suffix": "",
+
+	# misses
+	"misses shown": false,
+	"misses prefix": "Misses: ",
+	"misses suffix": "",
+
+	# accuracy
+	"accuracy shown": false,
+	"accuracy prefix": "Accuracy: ",
+	"accuracy suffix": "%",
+
+	# ranks
+	"ranks shown": false,
+	"ranks prefix": "[",
+	"ranks suffix": "]",
+	"s+ rank": "S+",
+	"s rank": "S",
+	"a rank": "A",
+	"b rank": "B",
+	"c rank": "C",
+	"d rank": "D",
+	"e rank": "E",
+	"f rank": "F",
+	"null rank": "N/A",
 
 	# misc
 	"auto pause": true,
@@ -131,6 +164,7 @@ func _ready():
 
 	setup_binds()
 	update_settings()
+	Ranking.create_default_ranks()
 
 	print("Initialized settings!")
 

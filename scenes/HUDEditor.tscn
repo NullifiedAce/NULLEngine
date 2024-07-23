@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqsrwpb82r34v"]
+[gd_scene load_steps=16 format=3 uid="uid://bqsrwpb82r34v"]
 
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="1_002pm"]
 [ext_resource type="Script" path="res://scenes/HUDEditor.gd" id="1_028jv"]
@@ -10,9 +10,13 @@
 [ext_resource type="StyleBox" uid="uid://ccmycpgoa47g0" path="res://assets/styles/healthbar/player.tres" id="4_8nyy7"]
 [ext_resource type="Script" path="res://scenes/options/BindButton.gd" id="5_6jcsd"]
 [ext_resource type="Script" path="res://scenes/options/SpinBox.gd" id="10_dvgfv"]
+[ext_resource type="Script" path="res://scenes/options/TextEdit.gd" id="11_y3j1p"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2nblc"]
-content_margin_bottom = 256.0
+content_margin_bottom = 80.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mbs7i"]
+content_margin_bottom = 432.0
 
 [sub_resource type="Animation" id="Animation_q580i"]
 resource_name = "hidden"
@@ -143,6 +147,8 @@ offset_left = 8.0
 offset_top = 59.0
 offset_right = 91.0625
 offset_bottom = 90.0
+tooltip_text = "Sets the health bar's X position.
+Default: 340"
 max_value = 1280.0
 value = 340.0
 suffix = "x"
@@ -164,6 +170,8 @@ offset_left = 200.0
 offset_top = 59.0
 offset_right = 283.063
 offset_bottom = 90.0
+tooltip_text = "Sets the health bar's Y position.
+Default: 636"
 max_value = 720.0
 value = 636.0
 suffix = "y"
@@ -185,6 +193,8 @@ offset_left = 8.0
 offset_top = 115.0
 offset_right = 168.0
 offset_bottom = 153.0
+tooltip_text = "(NOTE: Only used in HUD Editor)
+Use the downscroll Y postion instead of the default one."
 theme = ExtResource("2_p2wl7")
 text = "Use Downscroll
 Y Position?"
@@ -195,6 +205,8 @@ offset_left = 200.0
 offset_top = 123.0
 offset_right = 283.063
 offset_bottom = 154.0
+tooltip_text = "Sets the health bar's Y position when using downscroll.
+Default: 60"
 max_value = 720.0
 value = 60.0
 suffix = "y"
@@ -215,23 +227,316 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
 
+[node name="Label" type="Label" parent="Editor/TabContainer/Score Text"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 27.0
+offset_right = 140.0
+offset_bottom = 42.0
+theme = ExtResource("2_p2wl7")
+text = "Word seperator"
+
+[node name="Seperator" type="TextEdit" parent="Editor/TabContainer/Score Text"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+offset_left = 8.0
+offset_top = 43.0
+offset_right = 120.0
+offset_bottom = 75.0
+tooltip_text = "The small seperator between counters.
+Default:  - "
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Seperator"
+script = ExtResource("11_y3j1p")
+option = "seperator"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Editor/TabContainer/Score Text"]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 11.0
+offset_top = 83.0
 offset_right = 376.0
 offset_bottom = 667.0
+scroll_vertical = 160
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Editor/TabContainer/Score Text/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer"]
+[node name="Score" type="Label" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_2nblc")
-text = "--= Score =--"
+text = "--= Score Counter =--"
 horizontal_alignment = 1
+
+[node name="Score Shown" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 141.0
+offset_bottom = 48.0
+tooltip_text = "If enabled, will show a score counter.
+Default: True"
+text = "Score Shown?"
+script = ExtResource("3_0xuk5")
+option = "score shown"
+
+[node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 176.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for the score counter.
+Default: Score: "
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Prefix"
+script = ExtResource("11_y3j1p")
+option = "score prefix"
+
+[node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 368.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for the score counter."
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Suffix"
+script = ExtResource("11_y3j1p")
+option = "score suffix"
+
+[node name="Misses" type="Label" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2nblc")
+text = "--= Miss Counter =--"
+horizontal_alignment = 1
+
+[node name="Misses Shpwn" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 141.0
+offset_bottom = 48.0
+tooltip_text = "If enabled, will show a score counter.
+Default: False"
+text = "Misses Shown?"
+script = ExtResource("3_0xuk5")
+option = "misses shown"
+
+[node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 176.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for the miss counter.
+Default: Misses: "
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Prefix"
+script = ExtResource("11_y3j1p")
+option = "misses prefix"
+
+[node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 368.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for the miss counter."
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Suffix"
+script = ExtResource("11_y3j1p")
+option = "misses suffix"
+
+[node name="Accuracy" type="Label" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2nblc")
+text = "--= Accuracy Meter =--"
+horizontal_alignment = 1
+
+[node name="Accuracy Shown" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 141.0
+offset_bottom = 48.0
+tooltip_text = "If enabled, will show a score counter.
+Default: False"
+text = "Accuracy Shown?"
+script = ExtResource("3_0xuk5")
+option = "accuracy shown"
+
+[node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 176.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for the accuracy meter.
+Default: Accuracy: "
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Prefix"
+script = ExtResource("11_y3j1p")
+option = "accuracy prefix"
+
+[node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 368.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for the accuracy Meter.
+Default: %"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Suffix"
+script = ExtResource("11_y3j1p")
+option = "accuracy suffix"
+
+[node name="Ranks" type="Label" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mbs7i")
+text = "--= Ranks =--"
+horizontal_alignment = 1
+
+[node name="Rankings Shown" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 141.0
+offset_bottom = 48.0
+tooltip_text = "If enabled, will show a score counter.
+Default: False"
+text = "Ranks Shown?"
+script = ExtResource("3_0xuk5")
+option = "ranks shown"
+
+[node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+offset_top = 56.0
+offset_right = 176.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for ranks.
+Default: ["
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Prefix"
+script = ExtResource("11_y3j1p")
+option = "ranks prefix"
+
+[node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 368.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for ranks.
+Default: ]"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Suffix"
+script = ExtResource("11_y3j1p")
+option = "ranks suffix"
+
+[node name="S+ Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+layout_mode = 0
+offset_top = 95.0
+offset_right = 368.0
+offset_bottom = 127.0
+tooltip_text = "Set a custom ranking for S+. (100% Accuracy)
+Default: S+"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "S+ Rank (100% Accuracy)"
+script = ExtResource("11_y3j1p")
+option = "s+ rank"
+
+[node name="S Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+layout_mode = 0
+offset_top = 134.0
+offset_right = 368.0
+offset_bottom = 166.0
+tooltip_text = "Set a custom ranking for S. (>90% Accuracy)
+Default: S"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "S Rank (>90% Accuracy)"
+script = ExtResource("11_y3j1p")
+option = "s rank"
+
+[node name="A Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+layout_mode = 0
+offset_top = 174.0
+offset_right = 368.0
+offset_bottom = 206.0
+tooltip_text = "Set a custom ranking for A. (>80% Accuracy)
+Default: A"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "A Rank (>80% Accuracy)"
+script = ExtResource("11_y3j1p")
+option = "a rank"
+
+[node name="B Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+layout_mode = 0
+offset_top = 214.0
+offset_right = 368.0
+offset_bottom = 246.0
+tooltip_text = "Set a custom ranking for B. (>70% Accuracy)
+Default: B"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "B Rank (>70% Accuracy)"
+script = ExtResource("11_y3j1p")
+option = "b rank"
+
+[node name="C Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+layout_mode = 0
+offset_top = 254.0
+offset_right = 368.0
+offset_bottom = 286.0
+tooltip_text = "Set a custom ranking for C. (>55% Accuracy)
+Default: C"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "C Rank (>55% Accuracy)"
+script = ExtResource("11_y3j1p")
+option = "c rank"
+
+[node name="D Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+layout_mode = 0
+offset_top = 294.0
+offset_right = 368.0
+offset_bottom = 326.0
+tooltip_text = "Set a custom ranking for D. (>45% Accuracy)
+Default: D"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "D Rank (>45% Accuracy)"
+script = ExtResource("11_y3j1p")
+option = "d rank"
+
+[node name="E Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+layout_mode = 0
+offset_top = 334.0
+offset_right = 368.0
+offset_bottom = 366.0
+tooltip_text = "Set a custom ranking for E. (>40% Accuracy)
+Default: E"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "E Rank (>40% Accuracy)"
+script = ExtResource("11_y3j1p")
+option = "e rank"
+
+[node name="F Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+layout_mode = 0
+offset_top = 374.0
+offset_right = 368.0
+offset_bottom = 406.0
+tooltip_text = "Set a custom ranking for F. (>0.000001% Accuracy)
+Default: F"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "F Rank (>0.000001% Accuracy)"
+script = ExtResource("11_y3j1p")
+option = "f rank"
+
+[node name="Null Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+layout_mode = 0
+offset_top = 415.0
+offset_right = 368.0
+offset_bottom = 447.0
+tooltip_text = "Set a custom ranking for F. (>0.000001% Accuracy)
+Default: N/A"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "N/A Rank (No accuracy present)"
+script = ExtResource("11_y3j1p")
+option = "null rank"
 
 [node name="hide" type="AnimationPlayer" parent="Editor/TabContainer"]
 libraries = {
@@ -241,3 +546,28 @@ libraries = {
 [connection signal="pressed" from="Editor/TabContainer/HUD Editor Options/BG Color Beat" to="Editor/TabContainer/HUD Editor Options/BG Color Beat" method="_on_pressed"]
 [connection signal="pressed" from="Editor/TabContainer/HUD Editor Options/BindButton" to="Editor/TabContainer/HUD Editor Options/BindButton" method="_on_pressed"]
 [connection signal="pressed" from="Editor/TabContainer/Health Bar/Icon Colors" to="Editor/TabContainer/Health Bar/Icon Colors" method="_on_pressed"]
+[connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar X" to="Editor/TabContainer/Health Bar/HPBar X" method="_on_changed"]
+[connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar Y" to="Editor/TabContainer/Health Bar/HPBar Y" method="_on_changed"]
+[connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar Y DownScroll" to="Editor/TabContainer/Health Bar/HPBar Y DownScroll" method="_on_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/Seperator" to="Editor/TabContainer/Score Text/Seperator" method="_on_text_changed"]
+[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Score Shown" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Score Shown" method="_on_pressed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Prefix" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Suffix" method="_on_text_changed"]
+[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Misses Shpwn" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Misses Shpwn" method="_on_pressed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Prefix" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Suffix" method="_on_text_changed"]
+[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Accuracy Shown" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Accuracy Shown" method="_on_pressed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Prefix" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Suffix" method="_on_text_changed"]
+[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Rankings Shown" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Rankings Shown" method="_on_pressed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Prefix" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Suffix" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S+ Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S+ Rank" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S Rank" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/A Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/A Rank" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/B Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/B Rank" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/C Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/C Rank" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/D Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/D Rank" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/E Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/E Rank" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/F Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/F Rank" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Null Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Null Rank" method="_on_text_changed"]

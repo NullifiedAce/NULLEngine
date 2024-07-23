@@ -289,7 +289,11 @@ func _ready() -> void:
 	update_health_bar()
 
 	if SettingsAPI.get_setting("downscroll"):
-		health_bar_bg.position.y = 60
+		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
+		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y down")
+	else:
+		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
+		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y")
 
 	if SettingsAPI.get_setting("judgement camera").to_lower() == "hud":
 		remove_child(combo_group)
