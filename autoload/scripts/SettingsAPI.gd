@@ -30,14 +30,14 @@ var _settings:Dictionary = {
 	"color style": "NULL",
 
 	# hud editor
-	"bg color beat": false,
+	"bg color": "ffffff",
 
 	# health bar
 	"icon colors": false,
 
-	#"custom color": false,
-	#"player color": Color(0, 1, 0, 1),
-	#"opponent color": Color(1, 0, 0, 1),
+	"custom color": false,
+	"player color": "00ff00",
+	"opp color": "ff0000",
 
 	"hpbar x": 340,
 	"hpbar y": 636,
@@ -74,6 +74,21 @@ var _settings:Dictionary = {
 	"f rank": "F",
 	"null rank": "N/A",
 
+	# combo
+	"combo shown": false,
+	"combo prefix": "Combo: ",
+	"combo suffix": "x",
+
+	# max combo
+	"max combo shown": false,
+	"max combo prefix": "(",
+	"max combo suffix": ")",
+
+	# ghost taps
+	"ghost taps shown": false,
+	"ghost taps prefix": "Ghost Taps: ",
+	"ghost taps suffix": "",
+
 	# misc
 	"auto pause": true,
 	"volume beep pitching": false,
@@ -101,8 +116,6 @@ var _settings:Dictionary = {
 	"volume_up": ["EQUAL", "KP ADD"],
 	"volume_down": ["MINUS", "KP SUBTRACT"],
 	"volume_mute": ["0", "INSERT"],
-
-	"hud_hide": ["F1"],
 
 	# engine
 	"current mod": "Friday Night Funkin'",

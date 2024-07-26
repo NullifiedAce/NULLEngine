@@ -31,7 +31,7 @@ var score:int = 0
 var misses:int = 0
 var combo:int = 0
 
-var accuracy_pressed_notes:int = 0.0
+var accuracy_pressed_notes:int = 0
 var accuracy_total_hit:float = 0.0
 
 var cam_bumping:bool = true
@@ -203,6 +203,7 @@ func _ready() -> void:
 	Audio.stop_music()
 
 	Ranking.judgements = Ranking.default_judgements.duplicate(true)
+	Ranking.create_default_ranks()
 	Ranking.ranks = Ranking.default_ranks.duplicate(true)
 
 	if Global.SONG == null:
@@ -368,9 +369,9 @@ func update_health_bar():
 	if SettingsAPI.get_setting("icon colors"):
 		OPPONENT_HEALTH_COLOR.bg_color = opponent.health_color
 		PLAYER_HEALTH_COLOR.bg_color = player.health_color
-	elif SettingsAPI.get_setting("custom color"):
-		OPPONENT_HEALTH_COLOR.bg_color = SettingsAPI.get_setting("opponent color")
-		PLAYER_HEALTH_COLOR.bg_color = SettingsAPI.get_setting("player color")
+	#elif SettingsAPI.get_setting("custom color"):
+		#OPPONENT_HEALTH_COLOR.bg_color = SettingsAPI.get_setting("opponent color")
+		#PLAYER_HEALTH_COLOR.bg_color = SettingsAPI.get_setting("player color")
 
 func start_cutscene(postfix:String = "-start"):
 	var cutscene_path = "res://scenes/gameplay/cutscenes/" + SONG.name.to_lower() + postfix + ".tscn"
@@ -508,8 +509,8 @@ func step_hit(step:int):
 	script_group.call_func("on_step_hit", [step])
 	script_group.call_func("on_step_hit_post", [step])
 
-func do_event(name:String,parameters:Array[String]):
-	var ev:Event = load("res://scenes/events/" + name + ".tscn").instantiate()
+func do_event(event_name:String,parameters:Array[String]):
+	var ev:Event = load("res://scenes/events/" + event_name + ".tscn").instantiate()
 	ev.parameters = parameters
 	add_child(ev)
 
@@ -798,14 +799,24 @@ func position_icons():
 	script_group.call_func("on_position_icons", [])
 
 func update_score_text():
-	if not SettingsAPI.get_setting("hide score"):
-		score_text.text = "Score: %s - Misses: %s - Accuracy: %.2f%s [%s]" % [score, misses,
-				accuracy * 100.0, '%', Ranking.rank_from_accuracy(accuracy * 100.0).name]
-	else:
-		score_text.text = "Accuracy: %.2f%s - Misses: %s [%s]" % [accuracy * 100.0, '%',
-				misses, Ranking.rank_from_accuracy(accuracy * 100.0).name]
+	#if not SettingsAPI.get_setting("hide score"):
+		#score_text.text = "Score: %s - Misses: %s - Accuracy: %.2f%s [%s]" % [score, misses,
+				#accuracy * 100.0, '%', Ranking.rank_from_accuracy(accuracy * 100.0).name]
+	#else:
+		#score_text.text = "Accuracy: %.2f%s - Misses: %s [%s]" % [accuracy * 100.0, '%',
+				#misses, Ranking.rank_from_accuracy(accuracy * 100.0).name]
+
+	score_text.text = set_score_text()
 
 	script_group.call_func("on_update_score_text", [])
+
+func set_score_text():
+	var text_string: String
+
+	if SettingsAPI.get_setting("score shown"):
+		text_string += SettingsAPI.get_setting("score prefix") + str(score) + SettingsAPI.get_setting("score suffix")
+
+	return text_string
 
 func game_over():
 	Global.death_character = player.death_character
@@ -869,7 +880,7 @@ func _process(delta:float) -> void:
 	stage.callv("_process_post", [delta])
 	script_group.call_func("_process_post", [delta])
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	while (not event_data_array.is_empty()) and Conductor.position >= event_data_array[0].time:
 		print('running %s at %.3f ms with %s.' % [event_data_array[0].name,
 				event_data_array[0].time,

@@ -65,6 +65,8 @@ func _process(delta):
 					"Options":
 						Global.switch_scene("res://scenes/OptionsMenu.tscn")
 
+					"Credits":
+						Global.switch_scene("res://scenes/CreditsMenu.tscn")
 					_: print("bro how the fuck did you select "+button+"???")
 			)
 		)

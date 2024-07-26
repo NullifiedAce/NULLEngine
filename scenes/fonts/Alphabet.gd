@@ -25,7 +25,7 @@ var height:float = 0.0
 		bold = v
 		changing = true
 		update_text()
-		
+
 @export_multiline var text:String = "":
 	set(v):
 		text = v
@@ -62,37 +62,37 @@ func _process(delta):
 			position.x = force_x
 		else:
 			position.x = lerp(position.x, (target_y * 20) + 90 + x_add, lerp_val)
-		
+
 func update_text():
 	cool = []
 	piss = []
-	
+
 	var letters_node:Node2D = $Letters
 	if !letters_node: return
-	
+
 	for child in letters_node.get_children():
 		child.queue_free()
-		
+
 	var x_pos:float = 0.0
 	var y_pos:float = 0.0
 	var template:AnimatedSprite2D = $BoldTemplate if bold else $DefaultTemplate
 	var split = text.split("\n")
-	
+
 	var line_num:int = 0
 	for line in split:
 		piss.append([])
-		
+
 		for i in range(line.length()):
 			if line[i] == " ":
 				x_pos += 25
 				continue
-				
+
 			if (bold && !bold_letters.has(line[i].to_lower())) || (!bold && !regular_letters.has(line[i])): continue
-				
+
 			var letter:AnimatedSprite2D = template.duplicate()
 			letter.position.x = x_pos
 			letter.position.y = y_pos
-			
+
 			var anim:String = line[i].to_upper() if bold else line[i].to_lower()
 			if bold:
 				match anim:
@@ -185,41 +185,41 @@ func update_text():
 					# Symbol Offsets
 					":", ";", "*":
 						letter.position.y += 10
-						
+
 					# number offsets
 					"0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
 						letter.position.y += 10
-					
+
 			letter.play(anim)
 			letter.visible = true
 			letters_node.add_child(letter)
 			var bruh = letter.sprite_frames.get_frame_texture(letter.animation, 0)
 			x_pos += bruh.get_width()
 			piss[piss.size()-1].append(bruh.get_width())
-		
+
 		cool.append(x_pos)
 		y_pos += 60
 		x_pos = 0
-		
+
 		line_num += 1
-		
+
 	var rect_size:float = 0.0
 	for size in cool:
 		if size > rect_size:
 			rect_size = size
-			
+
 	width = rect_size
 	height = y_pos + 10
-	custom_minimum_size = Vector2(rect_size, y_pos + 10)	
+	custom_minimum_size = Vector2(rect_size, y_pos + 10)
 	size.x = rect_size
 	size.y = y_pos + 10
 	changing = false
-	
+
 	on_update_text()
-	
+
 func on_update_text():
 	pass
-		
+
 func screen_center(axes:String = "XY"):
 	match axes.to_upper():
 		"X":

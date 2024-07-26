@@ -16,7 +16,6 @@ var transitioning:bool = false
 
 @onready var text_template:Alphabet = $TextTemplate
 @onready var text_group:Node2D = $TextGroup
-@onready var ng_spr:Sprite2D = $NgSpr
 
 @onready var flash:ColorRect = $Flash
 
@@ -45,6 +44,9 @@ func _process(delta):
 			transitioning = true
 			title_enter.play("ENTER PRESSED")
 
+			$TitleGroup/entrance.speed_scale = 0.5
+			$TitleGroup/entrance.play('exit')
+
 			Audio.play_sound("menus/confirmMenu")
 
 			var timer:SceneTreeTimer = get_tree().create_timer(2.0)
@@ -69,19 +71,17 @@ func beat_hit(beat:int):
 
 	match beat:
 		1:
-			create_cool_text(['swordcube', 'voiddev', 'leather128'])
+			create_cool_text(['nullsonic'])
 		3:
-			add_more_text('present')
+			add_more_text('presents')
 		4:
 			delete_cool_text()
 		5:
 			create_cool_text(['You should', 'check out'])
 		7:
-			add_more_text('newgrounds')
-			ng_spr.visible = true
+			add_more_text('the original port')
 		8:
 			delete_cool_text()
-			ng_spr.visible = false
 		9:
 			create_cool_text([cur_wacky[0]])
 		11:
@@ -89,11 +89,11 @@ func beat_hit(beat:int):
 		12:
 			delete_cool_text()
 		13:
-			add_more_text('Friday')
+			add_more_text('Friday Night')
 		14:
-			add_more_text('Night')
-		15:
 			add_more_text('Funkin')
+		15:
+			add_more_text('NULL Engine')
 		_:
 			if beat >= 16:
 				skip_intro()
@@ -103,9 +103,10 @@ func skip_intro():
 
 	delete_cool_text()
 	title_group.visible = true
-	ng_spr.visible = false
 
 	do_flash()
+
+	get_tree().create_timer(2.0).timeout.connect(func(): $TitleGroup/entrance.play('entrance'))
 
 func do_flash(duration:float = 4.0):
 	if flashing: return

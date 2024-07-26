@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cd8qnbjwrowm3"]
+[gd_scene load_steps=14 format=3 uid="uid://cd8qnbjwrowm3"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/Gameplay.gd" id="1_8k5hd"]
 [ext_resource type="Script" path="res://classes/ScriptGroup.gd" id="2_5pmok"]
@@ -12,6 +12,7 @@
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="7_jpakc"]
 [ext_resource type="StyleBox" uid="uid://ccmycpgoa47g0" path="res://assets/styles/healthbar/player.tres" id="7_xkyo6"]
 [ext_resource type="Script" path="res://scripts/HealthIcon.gd" id="9_42oq6"]
+[ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="13_c6vus"]
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_8k5hd")
@@ -116,6 +117,25 @@ autowrap_mode = 3
 
 [node name="CountdownSprite" type="Sprite2D" parent="HUD"]
 position = Vector2(640, 360)
+
+[node name="JudgementCounter" type="Label" parent="HUD"]
+visible = false
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -64.0
+offset_right = 106.0
+offset_bottom = 64.0
+grow_vertical = 2
+theme = ExtResource("13_c6vus")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 20
+text = "Sick: 0
+Good: 0
+Bad: 0
+Shit: 0"
+vertical_alignment = 3
 
 [node name="CountdownSounds" type="Node" parent="."]
 

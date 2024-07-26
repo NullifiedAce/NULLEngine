@@ -48,10 +48,8 @@ offset_right = 466.0
 offset_bottom = 652.0
 theme = ExtResource("3_cmtlj")
 theme_override_constants/side_margin = 0
-current_tab = 1
 
 [node name="Gameplay" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Downscroll" type="CheckBox" parent="TabContainer/Gameplay"]
@@ -225,6 +223,7 @@ theme_override_font_sizes/font_size = 16
 text = "Scroll Speed Type"
 
 [node name="Appearance" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="FPS Counter" type="CheckBox" parent="TabContainer/Appearance"]

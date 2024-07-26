@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bqsrwpb82r34v"]
+[gd_scene load_steps=18 format=3 uid="uid://bqsrwpb82r34v"]
 
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="1_002pm"]
 [ext_resource type="Script" path="res://scenes/HUDEditor.gd" id="1_028jv"]
@@ -8,8 +8,10 @@
 [ext_resource type="StyleBox" uid="uid://c4lt0ydus4t75" path="res://assets/styles/healthbar/opponent.tres" id="3_uow7h"]
 [ext_resource type="Script" path="res://scenes/options/HUDPreview.gd" id="3_xc1l4"]
 [ext_resource type="StyleBox" uid="uid://ccmycpgoa47g0" path="res://assets/styles/healthbar/player.tres" id="4_8nyy7"]
-[ext_resource type="Script" path="res://scenes/options/BindButton.gd" id="5_6jcsd"]
+[ext_resource type="Texture2D" uid="uid://bgk48t11fpyuf" path="res://assets/images/gameplay/icons/icon-face.png" id="6_qitva"]
+[ext_resource type="Script" path="res://scripts/HealthIcon.gd" id="7_0mpxd"]
 [ext_resource type="Script" path="res://scenes/options/SpinBox.gd" id="10_dvgfv"]
+[ext_resource type="Script" path="res://scenes/options/ColorPicker.gd" id="10_uokwq"]
 [ext_resource type="Script" path="res://scenes/options/TextEdit.gd" id="11_y3j1p"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2nblc"]
@@ -69,6 +71,21 @@ value = 1.0
 fill_mode = 1
 show_percentage = false
 
+[node name="PlayerIcon" type="Sprite2D" parent="HUD/HealthBar/ProgressBar"]
+position = Vector2(270, -69.5)
+texture = ExtResource("6_qitva")
+centered = false
+flip_h = true
+hframes = 2
+script = ExtResource("7_0mpxd")
+
+[node name="CPUIcon" type="Sprite2D" parent="HUD/HealthBar/ProgressBar"]
+position = Vector2(166, -69.5)
+texture = ExtResource("6_qitva")
+centered = false
+hframes = 2
+script = ExtResource("7_0mpxd")
+
 [node name="ScoreText" type="Label" parent="HUD/HealthBar"]
 layout_mode = 0
 offset_left = -331.0
@@ -98,31 +115,35 @@ metadata/_edit_lock_ = true
 visible = false
 layout_mode = 2
 
-[node name="BG Color Beat" type="CheckBox" parent="Editor/TabContainer/HUD Editor Options"]
+[node name="BG Color" type="ColorPickerButton" parent="Editor/TabContainer/HUD Editor Options"]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 11.0
-offset_right = 261.0
-offset_bottom = 35.0
-text = "Change BG color on beat?"
-script = ExtResource("3_0xuk5")
-option = "bg color beat"
+offset_top = 27.0
+offset_right = 136.0
+offset_bottom = 59.0
+tooltip_text = "Set a custom color for the editor's BG.
+Default: ffffff"
+theme = ExtResource("2_p2wl7")
+color = Color(1, 1, 1, 1)
+script = ExtResource("10_uokwq")
+option = "bg color"
 
-[node name="BindButton" type="Button" parent="Editor/TabContainer/HUD Editor Options"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 59.0
-offset_right = 56.0
-offset_bottom = 86.0
-script = ExtResource("5_6jcsd")
-bind = "hud_hide"
-
-[node name="Title" type="Label" parent="Editor/TabContainer/HUD Editor Options/BindButton"]
+[node name="Title" type="Label" parent="Editor/TabContainer/HUD Editor Options/BG Color"]
 layout_mode = 0
 offset_top = -16.0
-offset_right = 141.0
+offset_right = 40.0
+offset_bottom = -1.0
 theme = ExtResource("2_p2wl7")
-text = "Hide Editor Key"
+text = "Custom BG Color"
+
+[node name="Label" type="Label" parent="Editor/TabContainer/HUD Editor Options"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 655.0
+offset_right = 376.0
+offset_bottom = 670.0
+theme = ExtResource("2_p2wl7")
+text = "Press \"F1\" to hide the editor."
 
 [node name="Health Bar" type="TabBar" parent="Editor/TabContainer"]
 visible = false
@@ -141,14 +162,68 @@ text = "Icon Colors"
 script = ExtResource("3_0xuk5")
 option = "icon colors"
 
-[node name="HPBar X" type="SpinBox" parent="Editor/TabContainer/Health Bar"]
+[node name="Custom Colors" type="CheckBox" parent="Editor/TabContainer/Health Bar"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 11.0
+offset_right = 350.0
+offset_bottom = 35.0
+tooltip_text = "Use custom colors for the Health Bar."
+theme = ExtResource("2_p2wl7")
+text = "Custom Colors"
+script = ExtResource("3_0xuk5")
+option = "custom color"
+
+[node name="Player Color" type="ColorPickerButton" parent="Editor/TabContainer/Health Bar"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 59.0
+offset_right = 136.0
+offset_bottom = 91.0
+tooltip_text = "Custom Color for the player side of the health bar.
+Default: 00ff00"
+theme = ExtResource("2_p2wl7")
+color = Color(0, 1, 0, 1)
+edit_alpha = false
+script = ExtResource("10_uokwq")
+option = "player color"
+
+[node name="Label" type="Label" parent="Editor/TabContainer/Health Bar/Player Color"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 113.0
+offset_bottom = -1.0
+text = "Player Color"
+
+[node name="Opp Color" type="ColorPickerButton" parent="Editor/TabContainer/Health Bar"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 59.0
+offset_right = 328.0
+offset_bottom = 91.0
+tooltip_text = "Custom Color for the opponent side of the health bar.
+Default: ff0000"
+color = Color(1, 0, 0, 1)
+edit_alpha = false
+script = ExtResource("10_uokwq")
+option = "opp color"
+
+[node name="Label" type="Label" parent="Editor/TabContainer/Health Bar/Opp Color"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 113.0
+offset_bottom = -1.0
+text = "Opponent Color"
+
+[node name="HPBar X" type="SpinBox" parent="Editor/TabContainer/Health Bar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 115.0
 offset_right = 91.0625
-offset_bottom = 90.0
+offset_bottom = 146.0
 tooltip_text = "Sets the health bar's X position.
 Default: 340"
+theme = ExtResource("2_p2wl7")
 max_value = 1280.0
 value = 340.0
 suffix = "x"
@@ -167,11 +242,12 @@ metadata/_edit_lock_ = true
 [node name="HPBar Y" type="SpinBox" parent="Editor/TabContainer/Health Bar"]
 layout_mode = 0
 offset_left = 200.0
-offset_top = 59.0
+offset_top = 115.0
 offset_right = 283.063
-offset_bottom = 90.0
+offset_bottom = 146.0
 tooltip_text = "Sets the health bar's Y position.
 Default: 636"
+theme = ExtResource("2_p2wl7")
 max_value = 720.0
 value = 636.0
 suffix = "y"
@@ -190,9 +266,9 @@ metadata/_edit_lock_ = true
 [node name="UseDownScrollPos" type="CheckBox" parent="Editor/TabContainer/Health Bar"]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 115.0
+offset_top = 171.0
 offset_right = 168.0
-offset_bottom = 153.0
+offset_bottom = 209.0
 tooltip_text = "(NOTE: Only used in HUD Editor)
 Use the downscroll Y postion instead of the default one."
 theme = ExtResource("2_p2wl7")
@@ -202,9 +278,9 @@ Y Position?"
 [node name="HPBar Y DownScroll" type="SpinBox" parent="Editor/TabContainer/Health Bar"]
 layout_mode = 0
 offset_left = 200.0
-offset_top = 123.0
+offset_top = 179.0
 offset_right = 283.063
-offset_bottom = 154.0
+offset_bottom = 210.0
 tooltip_text = "Sets the health bar's Y position when using downscroll.
 Default: 60"
 max_value = 720.0
@@ -256,7 +332,6 @@ offset_left = 8.0
 offset_top = 83.0
 offset_right = 376.0
 offset_bottom = 667.0
-scroll_vertical = 160
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Editor/TabContainer/Score Text/ScrollContainer"]
 layout_mode = 2
@@ -316,7 +391,7 @@ layout_mode = 0
 offset_top = 24.0
 offset_right = 141.0
 offset_bottom = 48.0
-tooltip_text = "If enabled, will show a score counter.
+tooltip_text = "If enabled, will show a miss counter.
 Default: False"
 text = "Misses Shown?"
 script = ExtResource("3_0xuk5")
@@ -358,7 +433,7 @@ layout_mode = 0
 offset_top = 24.0
 offset_right = 141.0
 offset_bottom = 48.0
-tooltip_text = "If enabled, will show a score counter.
+tooltip_text = "If enabled, will show a accuracy meter.
 Default: False"
 text = "Accuracy Shown?"
 script = ExtResource("3_0xuk5")
@@ -401,13 +476,14 @@ layout_mode = 0
 offset_top = 24.0
 offset_right = 141.0
 offset_bottom = 48.0
-tooltip_text = "If enabled, will show a score counter.
+tooltip_text = "If enabled, will show a ranks after the accuracy meter.
 Default: False"
 text = "Ranks Shown?"
 script = ExtResource("3_0xuk5")
 option = "ranks shown"
 
 [node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+layout_mode = 0
 offset_top = 56.0
 offset_right = 176.0
 offset_bottom = 88.0
@@ -419,6 +495,7 @@ script = ExtResource("11_y3j1p")
 option = "ranks prefix"
 
 [node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
+layout_mode = 0
 offset_left = 192.0
 offset_top = 56.0
 offset_right = 368.0
@@ -538,14 +615,145 @@ placeholder_text = "N/A Rank (No accuracy present)"
 script = ExtResource("11_y3j1p")
 option = "null rank"
 
+[node name="Combo" type="Label" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2nblc")
+text = "--= Combo Counter =--"
+horizontal_alignment = 1
+
+[node name="Combo Shown" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 141.0
+offset_bottom = 48.0
+tooltip_text = "If enabled, will show a combo counter.
+Default: False"
+text = "Combo Shown?"
+script = ExtResource("3_0xuk5")
+option = "combo shown"
+
+[node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 176.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for the combo counter.
+Default: Combo: "
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Prefix"
+script = ExtResource("11_y3j1p")
+option = "combo prefix"
+
+[node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 368.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for the combo counter.
+Default: x"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Suffix"
+script = ExtResource("11_y3j1p")
+option = "combo suffix"
+
+[node name="MaxCombo" type="Label" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2nblc")
+text = "--= Max Combo Counter =--"
+horizontal_alignment = 1
+
+[node name="Max Combo Shown" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 141.0
+offset_bottom = 48.0
+tooltip_text = "If enabled, will show a max combo counter.
+Default: False"
+text = "Max Combo Shown?"
+script = ExtResource("3_0xuk5")
+option = "max combo shown"
+
+[node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 176.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for the max combo counter.
+Default: ("
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Prefix"
+script = ExtResource("11_y3j1p")
+option = "max combo prefix"
+
+[node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 368.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for the max combo counter.
+Default: )"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Suffix"
+script = ExtResource("11_y3j1p")
+option = "max combo suffix"
+
+[node name="Ghost Taps" type="Label" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2nblc")
+text = "--= Ghost Taps Counter =--"
+horizontal_alignment = 1
+
+[node name="Ghost Taps Shown" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 141.0
+offset_bottom = 48.0
+tooltip_text = "If enabled, will show a ghost taps counter.
+Default: False"
+text = "Max Combo Shown?"
+script = ExtResource("3_0xuk5")
+option = "ghost taps shown"
+
+[node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 176.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for the ghost taps counter.
+Default: Ghost Taps: "
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Prefix"
+script = ExtResource("11_y3j1p")
+option = "ghost taps prefix"
+
+[node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 56.0
+offset_right = 368.0
+offset_bottom = 88.0
+tooltip_text = "Set a custom prefix for the ghost taps counter.
+Default:"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Suffix"
+script = ExtResource("11_y3j1p")
+option = "ghost taps suffix"
+
 [node name="hide" type="AnimationPlayer" parent="Editor/TabContainer"]
 libraries = {
 "": SubResource("AnimationLibrary_ldd0u")
 }
 
-[connection signal="pressed" from="Editor/TabContainer/HUD Editor Options/BG Color Beat" to="Editor/TabContainer/HUD Editor Options/BG Color Beat" method="_on_pressed"]
-[connection signal="pressed" from="Editor/TabContainer/HUD Editor Options/BindButton" to="Editor/TabContainer/HUD Editor Options/BindButton" method="_on_pressed"]
+[connection signal="popup_closed" from="Editor/TabContainer/HUD Editor Options/BG Color" to="Editor/TabContainer/HUD Editor Options/BG Color" method="_on_popup_closed"]
 [connection signal="pressed" from="Editor/TabContainer/Health Bar/Icon Colors" to="Editor/TabContainer/Health Bar/Icon Colors" method="_on_pressed"]
+[connection signal="pressed" from="Editor/TabContainer/Health Bar/Custom Colors" to="Editor/TabContainer/Health Bar/Custom Colors" method="_on_pressed"]
+[connection signal="popup_closed" from="Editor/TabContainer/Health Bar/Player Color" to="Editor/TabContainer/Health Bar/Player Color" method="_on_popup_closed"]
+[connection signal="popup_closed" from="Editor/TabContainer/Health Bar/Opp Color" to="Editor/TabContainer/Health Bar/Opp Color" method="_on_popup_closed"]
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar X" to="Editor/TabContainer/Health Bar/HPBar X" method="_on_changed"]
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar Y" to="Editor/TabContainer/Health Bar/HPBar Y" method="_on_changed"]
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar Y DownScroll" to="Editor/TabContainer/Health Bar/HPBar Y DownScroll" method="_on_changed"]
@@ -571,3 +779,12 @@ libraries = {
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/E Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/E Rank" method="_on_text_changed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/F Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/F Rank" method="_on_text_changed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Null Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Null Rank" method="_on_text_changed"]
+[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Combo Shown" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Combo Shown" method="_on_pressed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Prefix" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Suffix" method="_on_text_changed"]
+[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Max Combo Shown" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Max Combo Shown" method="_on_pressed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Prefix" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Suffix" method="_on_text_changed"]
+[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Ghost Taps Shown" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Ghost Taps Shown" method="_on_pressed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Prefix" method="_on_text_changed"]
+[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Suffix" method="_on_text_changed"]

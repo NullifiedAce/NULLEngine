@@ -17,7 +17,7 @@ run/main_scene="res://Init.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="NULLSonic/NULLEngine"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/images/default_mod_icon.png"
 
 [autoload]
 

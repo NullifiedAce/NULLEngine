@@ -27,6 +27,7 @@ func rank_from_accuracy(accuracy:float):
 	return null_rank
 
 func create_default_ranks():
+	default_ranks.clear()
 	default_ranks.append(AccuracyRank.create(SettingsAPI.get_setting("s+ rank"), 100.0))
 	default_ranks.append(AccuracyRank.create(SettingsAPI.get_setting("s rank"), 90.0))
 	default_ranks.append(AccuracyRank.create(SettingsAPI.get_setting("a rank"), 80.0))
