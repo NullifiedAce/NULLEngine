@@ -76,16 +76,16 @@ custom_minimum_size = Vector2(0, 512)
 layout_mode = 2
 
 [node name="engine" parent="ScrollContainer/VBoxContainer/Page2" instance=ExtResource("4_oe0jq")]
-custom_minimum_size = Vector2(849, 70)
+custom_minimum_size = Vector2(860, 70)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -424.5
-offset_right = 424.5
+offset_left = -430.0
+offset_right = 430.0
 grow_horizontal = 2
 size_flags_horizontal = 4
-text = "NOVE ENGINE CREDITS"
+text = "NOVA ENGINE CREDITS"
 
 [node name="Credits" type="Label" parent="ScrollContainer/VBoxContainer/Page2"]
 layout_mode = 1

@@ -247,10 +247,10 @@ tracks/4/path = NodePath("../../BG:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.625),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.219608, 0.254902, 0.733333, 1)]
+"values": [Color(0.219608, 0.254902, 0.733333, 1), Color(0.219608, 0.254902, 0.733333, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_mht0r"]
@@ -312,10 +312,10 @@ tracks/4/path = NodePath("../../BG:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.625),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 0.247059, 0.67451, 1)]
+"values": [Color(1, 0.247059, 0.67451, 1), Color(1, 0.247059, 0.67451, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j2p0c"]
