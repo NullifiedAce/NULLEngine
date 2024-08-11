@@ -30,6 +30,8 @@ var max_health:float = 2.0
 var score:int = 0
 var misses:int = 0
 var combo:int = 0
+var max_combo:int = 0
+var ghost_taps:int = 0
 
 var accuracy_pressed_notes:int = 0
 var accuracy_total_hit:float = 0.0
@@ -616,6 +618,8 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 
 			break
 	else:
+		ghost_taps += 1
+		update_score_text()
 		if not SettingsAPI.get_setting("ghost tapping"):
 			fake_miss(data)
 			if SettingsAPI.get_setting("miss sounds"):
@@ -650,6 +654,9 @@ func pop_up_score(judgement:Judgement) -> void:
 	accuracy_total_hit += judgement.accuracy_gain
 	score += judgement.score
 	combo += 1
+
+	if max_combo < combo:
+		max_combo = combo
 
 	if not SettingsAPI.get_setting('judgement stacking'):
 		for child in combo_group.get_children():
@@ -799,24 +806,29 @@ func position_icons():
 	script_group.call_func("on_position_icons", [])
 
 func update_score_text():
-	#if not SettingsAPI.get_setting("hide score"):
-		#score_text.text = "Score: %s - Misses: %s - Accuracy: %.2f%s [%s]" % [score, misses,
-				#accuracy * 100.0, '%', Ranking.rank_from_accuracy(accuracy * 100.0).name]
-	#else:
-		#score_text.text = "Accuracy: %.2f%s - Misses: %s [%s]" % [accuracy * 100.0, '%',
-				#misses, Ranking.rank_from_accuracy(accuracy * 100.0).name]
+	var thing: Dictionary = {
+		"score": score,
+		"misses": misses,
+		"accuracy": snapped(accuracy * 100.0, 0.01),
+		"ranks": Ranking.rank_from_accuracy(accuracy * 100.0).name,
+		"combo": combo,
+		"max combo": max_combo,
+		"ghost taps": ghost_taps
+	}
 
-	score_text.text = set_score_text()
+	var array = str_to_var(SettingsAPI.get_setting("score_arrangement"))
+	var text_length = 0
+
+	score_text.text = ""
+
+	for i in array:
+		text_length += 1
+		if text_length == array.size():
+			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(thing[i]) + SettingsAPI.get_setting(i + " suffix")
+		else:
+			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(thing[i]) + SettingsAPI.get_setting(i + " suffix") + SettingsAPI.get_setting("seperator")
 
 	script_group.call_func("on_update_score_text", [])
-
-func set_score_text():
-	var text_string: String
-
-	if SettingsAPI.get_setting("score shown"):
-		text_string += SettingsAPI.get_setting("score prefix") + str(score) + SettingsAPI.get_setting("score suffix")
-
-	return text_string
 
 func game_over():
 	Global.death_character = player.death_character

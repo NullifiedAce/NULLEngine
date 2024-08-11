@@ -45,6 +45,10 @@ window/vsync/vsync_mode=0
 
 enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 
+[engine]
+
+customization/custom_score_text=true
+
 [input]
 
 ui_cancel={

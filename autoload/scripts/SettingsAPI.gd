@@ -45,23 +45,21 @@ var _settings:Dictionary = {
 
 	"seperator": " - ",
 
+	"score_arrangement": "[\"score\", \"misses\", \"accuracy\", \"ranks\"]",
+
 	# score
-	"score shown": true,
 	"score prefix": "Score: ",
 	"score suffix": "",
 
 	# misses
-	"misses shown": false,
 	"misses prefix": "Misses: ",
 	"misses suffix": "",
 
 	# accuracy
-	"accuracy shown": false,
 	"accuracy prefix": "Accuracy: ",
 	"accuracy suffix": "%",
 
 	# ranks
-	"ranks shown": false,
 	"ranks prefix": "[",
 	"ranks suffix": "]",
 	"s+ rank": "S+",
@@ -75,17 +73,14 @@ var _settings:Dictionary = {
 	"null rank": "N/A",
 
 	# combo
-	"combo shown": false,
 	"combo prefix": "Combo: ",
 	"combo suffix": "x",
 
 	# max combo
-	"max combo shown": false,
 	"max combo prefix": "(",
 	"max combo suffix": ")",
 
 	# ghost taps
-	"ghost taps shown": false,
 	"ghost taps prefix": "Ghost Taps: ",
 	"ghost taps suffix": "",
 

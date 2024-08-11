@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bqsrwpb82r34v"]
+[gd_scene load_steps=20 format=3 uid="uid://bqsrwpb82r34v"]
 
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="1_002pm"]
 [ext_resource type="Script" path="res://scenes/HUDEditor.gd" id="1_028jv"]
@@ -13,9 +13,11 @@
 [ext_resource type="Script" path="res://scenes/options/SpinBox.gd" id="10_dvgfv"]
 [ext_resource type="Script" path="res://scenes/options/ColorPicker.gd" id="10_uokwq"]
 [ext_resource type="Script" path="res://scenes/options/TextEdit.gd" id="11_y3j1p"]
+[ext_resource type="Script" path="res://scenes/options/RearrangeScore.gd" id="14_gju6m"]
+[ext_resource type="Script" path="res://scenes/options/HUD Editor/AddButton.gd" id="15_dvv1b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2nblc"]
-content_margin_bottom = 80.0
+content_margin_bottom = 48.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mbs7i"]
 content_margin_bottom = 432.0
@@ -312,6 +314,17 @@ offset_bottom = 42.0
 theme = ExtResource("2_p2wl7")
 text = "Word seperator"
 
+[node name="Rearrange Counters" type="Button" parent="Editor/TabContainer/Score Text"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 43.0
+offset_right = 312.0
+offset_bottom = 75.0
+tooltip_text = "Rerrange counters."
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+text = "Rearrange"
+
 [node name="Seperator" type="TextEdit" parent="Editor/TabContainer/Score Text"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -344,22 +357,11 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_2nblc")
 text = "--= Score Counter =--"
 horizontal_alignment = 1
 
-[node name="Score Shown" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score"]
-layout_mode = 0
-offset_top = 24.0
-offset_right = 141.0
-offset_bottom = 48.0
-tooltip_text = "If enabled, will show a score counter.
-Default: True"
-text = "Score Shown?"
-script = ExtResource("3_0xuk5")
-option = "score shown"
-
 [node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score"]
 layout_mode = 0
-offset_top = 56.0
+offset_top = 24.0
 offset_right = 176.0
-offset_bottom = 88.0
+offset_bottom = 56.0
 tooltip_text = "Set a custom prefix for the score counter.
 Default: Score: "
 theme = ExtResource("2_p2wl7")
@@ -370,9 +372,9 @@ option = "score prefix"
 [node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score"]
 layout_mode = 0
 offset_left = 192.0
-offset_top = 56.0
+offset_top = 24.0
 offset_right = 368.0
-offset_bottom = 88.0
+offset_bottom = 56.0
 tooltip_text = "Set a custom prefix for the score counter."
 theme = ExtResource("2_p2wl7")
 placeholder_text = "Suffix"
@@ -386,22 +388,11 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_2nblc")
 text = "--= Miss Counter =--"
 horizontal_alignment = 1
 
-[node name="Misses Shpwn" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses"]
-layout_mode = 0
-offset_top = 24.0
-offset_right = 141.0
-offset_bottom = 48.0
-tooltip_text = "If enabled, will show a miss counter.
-Default: False"
-text = "Misses Shown?"
-script = ExtResource("3_0xuk5")
-option = "misses shown"
-
 [node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses"]
 layout_mode = 0
-offset_top = 56.0
+offset_top = 21.0
 offset_right = 176.0
-offset_bottom = 88.0
+offset_bottom = 53.0
 tooltip_text = "Set a custom prefix for the miss counter.
 Default: Misses: "
 theme = ExtResource("2_p2wl7")
@@ -412,9 +403,9 @@ option = "misses prefix"
 [node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses"]
 layout_mode = 0
 offset_left = 192.0
-offset_top = 56.0
+offset_top = 21.0
 offset_right = 368.0
-offset_bottom = 88.0
+offset_bottom = 53.0
 tooltip_text = "Set a custom prefix for the miss counter."
 theme = ExtResource("2_p2wl7")
 placeholder_text = "Suffix"
@@ -428,22 +419,11 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_2nblc")
 text = "--= Accuracy Meter =--"
 horizontal_alignment = 1
 
-[node name="Accuracy Shown" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy"]
-layout_mode = 0
-offset_top = 24.0
-offset_right = 141.0
-offset_bottom = 48.0
-tooltip_text = "If enabled, will show a accuracy meter.
-Default: False"
-text = "Accuracy Shown?"
-script = ExtResource("3_0xuk5")
-option = "accuracy shown"
-
 [node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy"]
 layout_mode = 0
-offset_top = 56.0
+offset_top = 26.0
 offset_right = 176.0
-offset_bottom = 88.0
+offset_bottom = 58.0
 tooltip_text = "Set a custom prefix for the accuracy meter.
 Default: Accuracy: "
 theme = ExtResource("2_p2wl7")
@@ -454,9 +434,9 @@ option = "accuracy prefix"
 [node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy"]
 layout_mode = 0
 offset_left = 192.0
-offset_top = 56.0
+offset_top = 26.0
 offset_right = 368.0
-offset_bottom = 88.0
+offset_bottom = 58.0
 tooltip_text = "Set a custom prefix for the accuracy Meter.
 Default: %"
 theme = ExtResource("2_p2wl7")
@@ -471,22 +451,11 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_mbs7i")
 text = "--= Ranks =--"
 horizontal_alignment = 1
 
-[node name="Rankings Shown" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
-layout_mode = 0
-offset_top = 24.0
-offset_right = 141.0
-offset_bottom = 48.0
-tooltip_text = "If enabled, will show a ranks after the accuracy meter.
-Default: False"
-text = "Ranks Shown?"
-script = ExtResource("3_0xuk5")
-option = "ranks shown"
-
 [node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
 layout_mode = 0
-offset_top = 56.0
+offset_top = 23.0
 offset_right = 176.0
-offset_bottom = 88.0
+offset_bottom = 55.0
 tooltip_text = "Set a custom prefix for ranks.
 Default: ["
 theme = ExtResource("2_p2wl7")
@@ -497,9 +466,9 @@ option = "ranks prefix"
 [node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
 layout_mode = 0
 offset_left = 192.0
-offset_top = 56.0
+offset_top = 23.0
 offset_right = 368.0
-offset_bottom = 88.0
+offset_bottom = 55.0
 tooltip_text = "Set a custom prefix for ranks.
 Default: ]"
 theme = ExtResource("2_p2wl7")
@@ -509,9 +478,9 @@ option = "ranks suffix"
 
 [node name="S+ Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
 layout_mode = 0
-offset_top = 95.0
+offset_top = 62.0
 offset_right = 368.0
-offset_bottom = 127.0
+offset_bottom = 94.0
 tooltip_text = "Set a custom ranking for S+. (100% Accuracy)
 Default: S+"
 theme = ExtResource("2_p2wl7")
@@ -521,9 +490,9 @@ option = "s+ rank"
 
 [node name="S Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
 layout_mode = 0
-offset_top = 134.0
+offset_top = 101.0
 offset_right = 368.0
-offset_bottom = 166.0
+offset_bottom = 133.0
 tooltip_text = "Set a custom ranking for S. (>90% Accuracy)
 Default: S"
 theme = ExtResource("2_p2wl7")
@@ -533,9 +502,9 @@ option = "s rank"
 
 [node name="A Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
 layout_mode = 0
-offset_top = 174.0
+offset_top = 141.0
 offset_right = 368.0
-offset_bottom = 206.0
+offset_bottom = 173.0
 tooltip_text = "Set a custom ranking for A. (>80% Accuracy)
 Default: A"
 theme = ExtResource("2_p2wl7")
@@ -545,9 +514,9 @@ option = "a rank"
 
 [node name="B Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
 layout_mode = 0
-offset_top = 214.0
+offset_top = 181.0
 offset_right = 368.0
-offset_bottom = 246.0
+offset_bottom = 213.0
 tooltip_text = "Set a custom ranking for B. (>70% Accuracy)
 Default: B"
 theme = ExtResource("2_p2wl7")
@@ -557,9 +526,9 @@ option = "b rank"
 
 [node name="C Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
 layout_mode = 0
-offset_top = 254.0
+offset_top = 221.0
 offset_right = 368.0
-offset_bottom = 286.0
+offset_bottom = 253.0
 tooltip_text = "Set a custom ranking for C. (>55% Accuracy)
 Default: C"
 theme = ExtResource("2_p2wl7")
@@ -569,9 +538,9 @@ option = "c rank"
 
 [node name="D Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
 layout_mode = 0
-offset_top = 294.0
+offset_top = 261.0
 offset_right = 368.0
-offset_bottom = 326.0
+offset_bottom = 293.0
 tooltip_text = "Set a custom ranking for D. (>45% Accuracy)
 Default: D"
 theme = ExtResource("2_p2wl7")
@@ -581,9 +550,9 @@ option = "d rank"
 
 [node name="E Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
 layout_mode = 0
-offset_top = 334.0
+offset_top = 301.0
 offset_right = 368.0
-offset_bottom = 366.0
+offset_bottom = 333.0
 tooltip_text = "Set a custom ranking for E. (>40% Accuracy)
 Default: E"
 theme = ExtResource("2_p2wl7")
@@ -593,9 +562,9 @@ option = "e rank"
 
 [node name="F Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
 layout_mode = 0
-offset_top = 374.0
+offset_top = 341.0
 offset_right = 368.0
-offset_bottom = 406.0
+offset_bottom = 373.0
 tooltip_text = "Set a custom ranking for F. (>0.000001% Accuracy)
 Default: F"
 theme = ExtResource("2_p2wl7")
@@ -605,9 +574,9 @@ option = "f rank"
 
 [node name="Null Rank" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks"]
 layout_mode = 0
-offset_top = 415.0
+offset_top = 382.0
 offset_right = 368.0
-offset_bottom = 447.0
+offset_bottom = 414.0
 tooltip_text = "Set a custom ranking for F. (>0.000001% Accuracy)
 Default: N/A"
 theme = ExtResource("2_p2wl7")
@@ -622,22 +591,11 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_2nblc")
 text = "--= Combo Counter =--"
 horizontal_alignment = 1
 
-[node name="Combo Shown" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo"]
-layout_mode = 0
-offset_top = 24.0
-offset_right = 141.0
-offset_bottom = 48.0
-tooltip_text = "If enabled, will show a combo counter.
-Default: False"
-text = "Combo Shown?"
-script = ExtResource("3_0xuk5")
-option = "combo shown"
-
 [node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo"]
 layout_mode = 0
-offset_top = 56.0
+offset_top = 21.0
 offset_right = 176.0
-offset_bottom = 88.0
+offset_bottom = 53.0
 tooltip_text = "Set a custom prefix for the combo counter.
 Default: Combo: "
 theme = ExtResource("2_p2wl7")
@@ -648,9 +606,9 @@ option = "combo prefix"
 [node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo"]
 layout_mode = 0
 offset_left = 192.0
-offset_top = 56.0
+offset_top = 21.0
 offset_right = 368.0
-offset_bottom = 88.0
+offset_bottom = 53.0
 tooltip_text = "Set a custom prefix for the combo counter.
 Default: x"
 theme = ExtResource("2_p2wl7")
@@ -665,22 +623,11 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_2nblc")
 text = "--= Max Combo Counter =--"
 horizontal_alignment = 1
 
-[node name="Max Combo Shown" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo"]
-layout_mode = 0
-offset_top = 24.0
-offset_right = 141.0
-offset_bottom = 48.0
-tooltip_text = "If enabled, will show a max combo counter.
-Default: False"
-text = "Max Combo Shown?"
-script = ExtResource("3_0xuk5")
-option = "max combo shown"
-
 [node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo"]
 layout_mode = 0
-offset_top = 56.0
+offset_top = 26.0
 offset_right = 176.0
-offset_bottom = 88.0
+offset_bottom = 58.0
 tooltip_text = "Set a custom prefix for the max combo counter.
 Default: ("
 theme = ExtResource("2_p2wl7")
@@ -691,9 +638,9 @@ option = "max combo prefix"
 [node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo"]
 layout_mode = 0
 offset_left = 192.0
-offset_top = 56.0
+offset_top = 26.0
 offset_right = 368.0
-offset_bottom = 88.0
+offset_bottom = 58.0
 tooltip_text = "Set a custom prefix for the max combo counter.
 Default: )"
 theme = ExtResource("2_p2wl7")
@@ -708,22 +655,11 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_2nblc")
 text = "--= Ghost Taps Counter =--"
 horizontal_alignment = 1
 
-[node name="Ghost Taps Shown" type="CheckBox" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps"]
-layout_mode = 0
-offset_top = 24.0
-offset_right = 141.0
-offset_bottom = 48.0
-tooltip_text = "If enabled, will show a ghost taps counter.
-Default: False"
-text = "Max Combo Shown?"
-script = ExtResource("3_0xuk5")
-option = "ghost taps shown"
-
 [node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps"]
 layout_mode = 0
-offset_top = 56.0
+offset_top = 23.0
 offset_right = 176.0
-offset_bottom = 88.0
+offset_bottom = 55.0
 tooltip_text = "Set a custom prefix for the ghost taps counter.
 Default: Ghost Taps: "
 theme = ExtResource("2_p2wl7")
@@ -734,9 +670,9 @@ option = "ghost taps prefix"
 [node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps"]
 layout_mode = 0
 offset_left = 192.0
-offset_top = 56.0
+offset_top = 23.0
 offset_right = 368.0
-offset_bottom = 88.0
+offset_bottom = 55.0
 tooltip_text = "Set a custom prefix for the ghost taps counter.
 Default:"
 theme = ExtResource("2_p2wl7")
@@ -749,6 +685,203 @@ libraries = {
 "": SubResource("AnimationLibrary_ldd0u")
 }
 
+[node name="Rearrange" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("14_gju6m")
+
+[node name="BG" type="ColorRect" parent="Rearrange"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.411765)
+metadata/_edit_lock_ = true
+
+[node name="Buttons" type="Control" parent="Rearrange"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 192.0
+offset_bottom = 336.0
+grow_horizontal = 2
+
+[node name="Add" type="Label" parent="Rearrange/Buttons"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Add Counters"
+horizontal_alignment = 1
+
+[node name="Stuff" type="HBoxContainer" parent="Rearrange/Buttons"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 32.0
+offset_bottom = 62.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Score" type="Button" parent="Rearrange/Buttons/Stuff"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Score"
+script = ExtResource("15_dvv1b")
+add_item = "score"
+
+[node name="Misses" type="Button" parent="Rearrange/Buttons/Stuff"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Misses"
+script = ExtResource("15_dvv1b")
+add_item = "misses"
+
+[node name="Accuracy" type="Button" parent="Rearrange/Buttons/Stuff"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Accuracy"
+script = ExtResource("15_dvv1b")
+add_item = "accuracy"
+
+[node name="Ranks" type="Button" parent="Rearrange/Buttons/Stuff"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Ranks"
+script = ExtResource("15_dvv1b")
+add_item = "ranks"
+
+[node name="Combo" type="Button" parent="Rearrange/Buttons/Stuff"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Combo"
+script = ExtResource("15_dvv1b")
+add_item = "combo"
+
+[node name="Max Combo" type="Button" parent="Rearrange/Buttons/Stuff"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Max Combo"
+script = ExtResource("15_dvv1b")
+add_item = "max combo"
+
+[node name="Ghost Taps" type="Button" parent="Rearrange/Buttons/Stuff"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Ghost Taps"
+script = ExtResource("15_dvv1b")
+add_item = "ghost taps"
+
+[node name="Delete" type="Label" parent="Rearrange/Buttons"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 80.0
+offset_bottom = 103.0
+grow_horizontal = 2
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Delete Counters"
+horizontal_alignment = 1
+
+[node name="Delete Stuff" type="HBoxContainer" parent="Rearrange/Buttons"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Clear" type="Button" parent="Rearrange/Buttons/Delete Stuff"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "CLEAR"
+
+[node name="Delete" type="Button" parent="Rearrange/Buttons/Delete Stuff"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "DELETE LAST"
+
+[node name="Preview" type="Label" parent="Rearrange"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 24.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Score, Misses, Accuracy, Ranks, Combo, Max Combo, Ghost Taps"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Done" type="Button" parent="Rearrange"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -200.0
+offset_right = 88.0
+offset_bottom = -151.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "DONE"
+
+[node name="Label" type="Label" parent="Rearrange"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/font_size = 48
+text = "Rearrange Counters"
+horizontal_alignment = 1
+
 [connection signal="popup_closed" from="Editor/TabContainer/HUD Editor Options/BG Color" to="Editor/TabContainer/HUD Editor Options/BG Color" method="_on_popup_closed"]
 [connection signal="pressed" from="Editor/TabContainer/Health Bar/Icon Colors" to="Editor/TabContainer/Health Bar/Icon Colors" method="_on_pressed"]
 [connection signal="pressed" from="Editor/TabContainer/Health Bar/Custom Colors" to="Editor/TabContainer/Health Bar/Custom Colors" method="_on_pressed"]
@@ -757,17 +890,14 @@ libraries = {
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar X" to="Editor/TabContainer/Health Bar/HPBar X" method="_on_changed"]
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar Y" to="Editor/TabContainer/Health Bar/HPBar Y" method="_on_changed"]
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar Y DownScroll" to="Editor/TabContainer/Health Bar/HPBar Y DownScroll" method="_on_changed"]
+[connection signal="pressed" from="Editor/TabContainer/Score Text/Rearrange Counters" to="." method="_on_rearrange_counters_pressed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/Seperator" to="Editor/TabContainer/Score Text/Seperator" method="_on_text_changed"]
-[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Score Shown" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Score Shown" method="_on_pressed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Prefix" method="_on_text_changed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Suffix" method="_on_text_changed"]
-[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Misses Shpwn" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Misses Shpwn" method="_on_pressed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Prefix" method="_on_text_changed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Suffix" method="_on_text_changed"]
-[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Accuracy Shown" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Accuracy Shown" method="_on_pressed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Prefix" method="_on_text_changed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Suffix" method="_on_text_changed"]
-[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Rankings Shown" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Rankings Shown" method="_on_pressed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Prefix" method="_on_text_changed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Suffix" method="_on_text_changed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S+ Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S+ Rank" method="_on_text_changed"]
@@ -779,12 +909,19 @@ libraries = {
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/E Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/E Rank" method="_on_text_changed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/F Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/F Rank" method="_on_text_changed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Null Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Null Rank" method="_on_text_changed"]
-[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Combo Shown" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Combo Shown" method="_on_pressed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Prefix" method="_on_text_changed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Suffix" method="_on_text_changed"]
-[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Max Combo Shown" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Max Combo Shown" method="_on_pressed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Prefix" method="_on_text_changed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Suffix" method="_on_text_changed"]
-[connection signal="pressed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Ghost Taps Shown" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Ghost Taps Shown" method="_on_pressed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Prefix" method="_on_text_changed"]
 [connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Suffix" method="_on_text_changed"]
+[connection signal="pressed" from="Rearrange/Buttons/Stuff/Score" to="Rearrange/Buttons/Stuff/Score" method="_on_pressed"]
+[connection signal="pressed" from="Rearrange/Buttons/Stuff/Misses" to="Rearrange/Buttons/Stuff/Misses" method="_on_pressed"]
+[connection signal="pressed" from="Rearrange/Buttons/Stuff/Accuracy" to="Rearrange/Buttons/Stuff/Accuracy" method="_on_pressed"]
+[connection signal="pressed" from="Rearrange/Buttons/Stuff/Ranks" to="Rearrange/Buttons/Stuff/Ranks" method="_on_pressed"]
+[connection signal="pressed" from="Rearrange/Buttons/Stuff/Combo" to="Rearrange/Buttons/Stuff/Combo" method="_on_pressed"]
+[connection signal="pressed" from="Rearrange/Buttons/Stuff/Max Combo" to="Rearrange/Buttons/Stuff/Max Combo" method="_on_pressed"]
+[connection signal="pressed" from="Rearrange/Buttons/Stuff/Ghost Taps" to="Rearrange/Buttons/Stuff/Ghost Taps" method="_on_pressed"]
+[connection signal="pressed" from="Rearrange/Buttons/Delete Stuff/Clear" to="Rearrange" method="_on_clear_pressed"]
+[connection signal="pressed" from="Rearrange/Buttons/Delete Stuff/Delete" to="Rearrange" method="_on_delete_pressed"]
+[connection signal="button_down" from="Rearrange/Done" to="Rearrange" method="_on_done_button_down"]

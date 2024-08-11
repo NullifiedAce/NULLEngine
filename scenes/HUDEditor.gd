@@ -29,3 +29,6 @@ func _process(_delta: float) -> void:
 		else:
 			hide = false
 			$Editor/TabContainer/hide.play_backwards('hidden')
+
+func _on_rearrange_counters_pressed() -> void:
+	$Rearrange.show()

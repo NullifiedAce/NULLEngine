@@ -45,7 +45,7 @@ func _process(delta):
 			title_enter.play("ENTER PRESSED")
 
 			$TitleGroup/entrance.speed_scale = 0.5
-			$TitleGroup/entrance.play('exit')
+			$TitleGroup/entrance.queue('exit')
 
 			Audio.play_sound("menus/confirmMenu")
 

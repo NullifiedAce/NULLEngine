@@ -3,7 +3,7 @@ const _json_path:String = "user://funkin_scores.json"
 var scores:Dictionary = {}
 func _ready():
 	var json:Dictionary = {}
-	
+
 	if not ResourceLoader.exists(_json_path):
 		var f = FileAccess.open(_json_path, FileAccess.WRITE)
 		f.store_string("{}")
@@ -13,7 +13,7 @@ func _ready():
 			json = {}
 		else:
 			json = JSON.parse_string(f.get_as_text())
-		
+
 	scores = json
 	var f = FileAccess.open(_json_path, FileAccess.WRITE)
 	f.store_string(JSON.stringify(json))
