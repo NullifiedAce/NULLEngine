@@ -31,3 +31,9 @@ func _on_auto_size_pressed() -> void:
 func _on_done_pressed() -> void:
 	SettingsAPI.flush()
 	hide()
+
+func _on_load_font_pressed() -> void:
+	$openFont.show()
+
+func _on_open_font_file_selected(path: String) -> void:
+	SettingsAPI.set_setting("font path", path)
