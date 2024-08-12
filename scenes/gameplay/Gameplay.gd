@@ -290,6 +290,7 @@ func _ready() -> void:
 	load_player()
 
 	update_health_bar()
+	setup_label_settings()
 
 	if SettingsAPI.get_setting("downscroll"):
 		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
@@ -297,6 +298,21 @@ func _ready() -> void:
 	else:
 		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
 		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y")
+
+	if SettingsAPI.get_setting("hide hpbar"):
+		health_bar_bg.self_modulate = Color(1, 1, 1, 0)
+		health_bar.self_modulate = Color(1, 1, 1, 0)
+	else:
+		health_bar_bg.self_modulate = Color(1, 1, 1, 1)
+		health_bar.self_modulate = Color(1, 1, 1, 1)
+
+	if SettingsAPI.get_setting("hide icons"):
+		player_icon.hide()
+		cpu_icon.hide()
+	else:
+		player_icon.show()
+		cpu_icon.show()
+
 
 	if SettingsAPI.get_setting("judgement camera").to_lower() == "hud":
 		remove_child(combo_group)
@@ -835,6 +851,27 @@ func update_score_text():
 			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix") + SettingsAPI.get_setting("seperator")
 
 	script_group.call_func("on_update_score_text", [])
+
+func setup_label_settings():
+	var text_settings = LabelSettings.new()
+	var text_bg = StyleBoxFlat.new()
+
+	text_settings.font = load(SettingsAPI.get_setting("font path"))
+	text_settings.font_size = SettingsAPI.get_setting("font size")
+	text_settings.font_color = SettingsAPI.get_setting("font color")
+
+	text_settings.outline_size = SettingsAPI.get_setting("outline size")
+	text_settings.outline_color = SettingsAPI.get_setting("outline color")
+
+	text_bg.bg_color = Color.from_string(SettingsAPI.get_setting("score bg color"), Color.WHITE)
+	text_bg.expand_margin_bottom = SettingsAPI.get_setting("score bg expand")
+	text_bg.expand_margin_left = SettingsAPI.get_setting("score bg expand")
+	text_bg.expand_margin_right = SettingsAPI.get_setting("score bg expand")
+	text_bg.expand_margin_top = SettingsAPI.get_setting("score bg expand")
+
+	score_text.label_settings = text_settings
+	score_text.add_theme_stylebox_override("normal", text_bg)
+
 
 func game_over():
 	Global.death_character = player.death_character

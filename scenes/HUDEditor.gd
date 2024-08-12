@@ -67,3 +67,6 @@ func _process(_delta: float) -> void:
 
 func _on_rearrange_counters_pressed() -> void:
 	$Rearrange.show()
+
+func _on_customize_pressed() -> void:
+	$CustomizeCounter.show()

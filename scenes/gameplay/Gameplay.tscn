@@ -102,11 +102,17 @@ script = ExtResource("9_42oq6")
 react_to_health = true
 
 [node name="ScoreText" type="Label" parent="HUD/HealthBar"]
-layout_mode = 0
-offset_left = -331.0
-offset_top = 47.0
-offset_right = 929.0
-offset_bottom = 66.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -339.0
+offset_top = 23.0
+offset_right = 339.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("7_jpakc")

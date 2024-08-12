@@ -35,7 +35,8 @@ var _settings:Dictionary = {
 
 	# health bar
 	"icon colors": false,
-
+	"hide hpbar": false,
+	"hide icons": false,
 	"custom color": false,
 	"player color": "00ff00",
 	"opp color": "ff0000",
@@ -44,9 +45,20 @@ var _settings:Dictionary = {
 	"hpbar y": 636,
 	"hpbar y down": 60,
 
+	#score text
 	"seperator": " - ",
 
 	"score_arrangement": "[\"score\", \"misses\", \"accuracy\", \"ranks\"]",
+
+	"font path": "res://assets/fonts/vcr.ttf",
+	"font size": 19,
+	"font color": "ffffff",
+
+	"outline size": 10,
+	"outline color": "000000",
+
+	"score bg color": "0000009b",
+	"score bg expand": 2,
 
 	# score
 	"score prefix": "Score: ",

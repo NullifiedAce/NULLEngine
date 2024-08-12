@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_a6t8j"]
 [ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="2_p2wl7"]
 [ext_resource type="Script" path="res://scenes/options/Checkbox.gd" id="3_0xuk5"]
-[ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="3_h7qg7"]
 [ext_resource type="StyleBox" uid="uid://c4lt0ydus4t75" path="res://assets/styles/healthbar/opponent.tres" id="3_uow7h"]
 [ext_resource type="Script" path="res://scenes/options/HUDPreview.gd" id="3_xc1l4"]
 [ext_resource type="StyleBox" uid="uid://ccmycpgoa47g0" path="res://assets/styles/healthbar/player.tres" id="4_8nyy7"]
@@ -15,6 +14,7 @@
 [ext_resource type="Script" path="res://scenes/options/TextEdit.gd" id="11_y3j1p"]
 [ext_resource type="Script" path="res://scenes/options/RearrangeScore.gd" id="14_gju6m"]
 [ext_resource type="Script" path="res://scenes/options/HUD Editor/AddButton.gd" id="15_dvv1b"]
+[ext_resource type="Script" path="res://scenes/options/CustomizeCounter.gd" id="16_rop5y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2nblc"]
 content_margin_bottom = 48.0
@@ -93,10 +93,6 @@ offset_left = -331.0
 offset_top = 47.0
 offset_right = 929.0
 offset_bottom = 66.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("3_h7qg7")
-theme_override_font_sizes/font_size = 19
 text = "Score: 0 - Misses: 0 - Accuracy: 0% [N/A]"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -109,10 +105,12 @@ offset_top = 8.0
 offset_right = 392.0
 offset_bottom = 712.0
 theme = ExtResource("2_p2wl7")
+current_tab = 2
 tab_focus_mode = 0
 metadata/_edit_lock_ = true
 
 [node name="HUD Editor Options" type="TabBar" parent="Editor/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="BG Color" type="ColorPickerButton" parent="Editor/TabContainer/HUD Editor Options"]
@@ -173,6 +171,30 @@ theme = ExtResource("2_p2wl7")
 text = "Custom Colors"
 script = ExtResource("3_0xuk5")
 option = "custom color"
+
+[node name="Hide HPBar" type="CheckBox" parent="Editor/TabContainer/Health Bar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 163.0
+offset_right = 158.0
+offset_bottom = 187.0
+tooltip_text = "Use custom colors for the Health Bar."
+theme = ExtResource("2_p2wl7")
+text = "Hide Health Bar"
+script = ExtResource("3_0xuk5")
+option = "hide hpbar"
+
+[node name="Hide Icons" type="CheckBox" parent="Editor/TabContainer/Health Bar"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 163.0
+offset_right = 369.0
+offset_bottom = 187.0
+tooltip_text = "Use custom colors for the Health Bar."
+theme = ExtResource("2_p2wl7")
+text = "Hide Icons"
+script = ExtResource("3_0xuk5")
+option = "hide icons"
 
 [node name="Player Color" type="ColorPickerButton" parent="Editor/TabContainer/Health Bar"]
 layout_mode = 0
@@ -265,7 +287,6 @@ text = "HP Bar Y Postion"
 metadata/_edit_lock_ = true
 
 [node name="Score Text" type="TabBar" parent="Editor/TabContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
 
@@ -874,13 +895,240 @@ theme_override_font_sizes/font_size = 48
 text = "Rearrange Counters"
 horizontal_alignment = 1
 
+[node name="CustomizeCounter" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("16_rop5y")
+
+[node name="BG" type="ColorRect" parent="CustomizeCounter"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.411765)
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Label" parent="CustomizeCounter"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 43.0
+grow_horizontal = 2
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/font_size = 48
+text = "Customize Counters"
+horizontal_alignment = 1
+
+[node name="Preview" type="Label" parent="CustomizeCounter"]
+offset_left = 592.0
+offset_top = 64.0
+offset_right = 691.0
+offset_bottom = 87.0
+text = "Preview Text"
+horizontal_alignment = 1
+
+[node name="TitleFont" type="Label" parent="CustomizeCounter"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 8.0
+offset_top = 160.0
+offset_right = 8.0
+offset_bottom = 203.0
+grow_horizontal = 2
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "-= Font Options =-"
+horizontal_alignment = 1
+
+[node name="Font" type="HBoxContainer" parent="CustomizeCounter"]
+offset_top = 208.0
+offset_right = 1280.0
+offset_bottom = 248.0
+alignment = 1
+
+[node name="Load Font" type="Button" parent="CustomizeCounter/Font"]
+layout_mode = 2
+tooltip_text = "Load a font file from the resources folder.
+Default: VCR.ttf"
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+text = "Load Font"
+
+[node name="VSeparator" type="VSeparator" parent="CustomizeCounter/Font"]
+layout_mode = 2
+
+[node name="SizeTitle" type="Label" parent="CustomizeCounter/Font"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+text = "Font Size:"
+
+[node name="Font Size" type="SpinBox" parent="CustomizeCounter/Font"]
+layout_mode = 2
+tooltip_text = "Set a custom font size.
+Default: 19"
+theme = ExtResource("2_p2wl7")
+alignment = 1
+script = ExtResource("10_dvgfv")
+option = "font size"
+
+[node name="VSeparator2" type="VSeparator" parent="CustomizeCounter/Font"]
+layout_mode = 2
+
+[node name="ColorTitle" type="Label" parent="CustomizeCounter/Font"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+text = "Font Color:"
+
+[node name="Font Color" type="ColorPickerButton" parent="CustomizeCounter/Font"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+tooltip_text = "Set a custom font color.
+Default: ffffff"
+focus_mode = 0
+script = ExtResource("10_uokwq")
+option = "font color"
+
+[node name="TitleOutline" type="Label" parent="CustomizeCounter"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 288.0
+offset_bottom = 331.0
+grow_horizontal = 2
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "-= Outline Options =-"
+horizontal_alignment = 1
+
+[node name="Outline" type="HBoxContainer" parent="CustomizeCounter"]
+offset_top = 344.0
+offset_right = 1280.0
+offset_bottom = 384.0
+alignment = 1
+
+[node name="Auto Size" type="Button" parent="CustomizeCounter/Outline"]
+layout_mode = 2
+tooltip_text = "When pressed, puts the outline size at half the value of the font size."
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+text = "Auto Size Outline"
+
+[node name="VSeparator" type="VSeparator" parent="CustomizeCounter/Outline"]
+layout_mode = 2
+
+[node name="SizeTitle" type="Label" parent="CustomizeCounter/Outline"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+text = "Outline Size:"
+
+[node name="Outline Size" type="SpinBox" parent="CustomizeCounter/Outline"]
+layout_mode = 2
+tooltip_text = "Set a custom outline size.
+Default: 10"
+theme = ExtResource("2_p2wl7")
+alignment = 1
+script = ExtResource("10_dvgfv")
+option = "outline size"
+
+[node name="VSeparator2" type="VSeparator" parent="CustomizeCounter/Outline"]
+layout_mode = 2
+
+[node name="ColorTitle" type="Label" parent="CustomizeCounter/Outline"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+text = "Outline Color:"
+
+[node name="Outline Color" type="ColorPickerButton" parent="CustomizeCounter/Outline"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+tooltip_text = "Set a custom outline color.
+Default: 000000"
+focus_mode = 0
+script = ExtResource("10_uokwq")
+option = "outline color"
+
+[node name="TitleBG" type="Label" parent="CustomizeCounter"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 416.0
+offset_bottom = 459.0
+grow_horizontal = 2
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "-= Background Options =-"
+horizontal_alignment = 1
+
+[node name="Background" type="HBoxContainer" parent="CustomizeCounter"]
+offset_top = 472.0
+offset_right = 1280.0
+offset_bottom = 512.0
+alignment = 1
+
+[node name="ColorTitle" type="Label" parent="CustomizeCounter/Background"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+text = "Background Color:"
+
+[node name="BGColor" type="ColorPickerButton" parent="CustomizeCounter/Background"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+tooltip_text = "Set a background color for the counters.
+Default: 0000009b"
+script = ExtResource("10_uokwq")
+option = "score bg color"
+
+[node name="Expand" type="Label" parent="CustomizeCounter/Background"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+text = "Expand BG:"
+
+[node name="Expand BG" type="SpinBox" parent="CustomizeCounter/Background"]
+layout_mode = 2
+tooltip_text = "Set a value for the background to expand.
+Default: 2"
+theme = ExtResource("2_p2wl7")
+alignment = 1
+script = ExtResource("10_dvgfv")
+option = "score bg expand"
+
+[node name="Done" type="Button" parent="CustomizeCounter"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -64.0
+offset_right = 88.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "DONE"
+
+[node name="openFont" type="FileDialog" parent="CustomizeCounter"]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(400, 450)
+ok_button_text = "Open"
+file_mode = 0
+filters = PackedStringArray("*.ttf", "*.otf")
+
 [connection signal="popup_closed" from="Editor/TabContainer/HUD Editor Options/BG Color" to="Editor/TabContainer/HUD Editor Options/BG Color" method="_on_popup_closed"]
 [connection signal="pressed" from="Editor/TabContainer/Health Bar/Icon Colors" to="Editor/TabContainer/Health Bar/Icon Colors" method="_on_pressed"]
 [connection signal="pressed" from="Editor/TabContainer/Health Bar/Custom Colors" to="Editor/TabContainer/Health Bar/Custom Colors" method="_on_pressed"]
+[connection signal="pressed" from="Editor/TabContainer/Health Bar/Hide HPBar" to="Editor/TabContainer/Health Bar/Hide HPBar" method="_on_pressed"]
+[connection signal="pressed" from="Editor/TabContainer/Health Bar/Hide Icons" to="Editor/TabContainer/Health Bar/Hide Icons" method="_on_pressed"]
 [connection signal="popup_closed" from="Editor/TabContainer/Health Bar/Player Color" to="Editor/TabContainer/Health Bar/Player Color" method="_on_popup_closed"]
 [connection signal="popup_closed" from="Editor/TabContainer/Health Bar/Opp Color" to="Editor/TabContainer/Health Bar/Opp Color" method="_on_popup_closed"]
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar X" to="Editor/TabContainer/Health Bar/HPBar X" method="_on_changed"]
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar Y" to="Editor/TabContainer/Health Bar/HPBar Y" method="_on_changed"]
+[connection signal="pressed" from="Editor/TabContainer/Score Text/Customize" to="." method="_on_customize_pressed"]
 [connection signal="pressed" from="Editor/TabContainer/Score Text/Rearrange Counters" to="." method="_on_rearrange_counters_pressed"]
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Seperator" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Seperator" method="_on_focus_exited"]
 [connection signal="text_set" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Seperator" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Seperator" method="_on_text_set"]
@@ -917,3 +1165,9 @@ horizontal_alignment = 1
 [connection signal="pressed" from="Rearrange/Buttons/Delete Stuff/Clear" to="Rearrange" method="_on_clear_pressed"]
 [connection signal="pressed" from="Rearrange/Buttons/Delete Stuff/Delete" to="Rearrange" method="_on_delete_pressed"]
 [connection signal="button_down" from="Rearrange/Done" to="Rearrange" method="_on_done_button_down"]
+[connection signal="value_changed" from="CustomizeCounter/Font/Font Size" to="CustomizeCounter/Font/Font Size" method="_on_changed"]
+[connection signal="popup_closed" from="CustomizeCounter/Font/Font Color" to="CustomizeCounter/Font/Font Color" method="_on_popup_closed"]
+[connection signal="value_changed" from="CustomizeCounter/Outline/Outline Size" to="CustomizeCounter/Outline/Outline Size" method="_on_changed"]
+[connection signal="popup_closed" from="CustomizeCounter/Outline/Outline Color" to="CustomizeCounter/Outline/Outline Color" method="_on_popup_closed"]
+[connection signal="value_changed" from="CustomizeCounter/Background/Expand BG" to="CustomizeCounter/Background/Expand BG" method="_on_changed"]
+[connection signal="pressed" from="CustomizeCounter/Done" to="CustomizeCounter" method="_on_done_pressed"]
