@@ -6,7 +6,7 @@ class_name OptionText
 func _ready() -> void:
 	text = SettingsAPI.get_setting(option)
 
-func _on_text_changed() -> void:
+func _on_focus_exited() -> void:
 	SettingsAPI.set_setting(option, text)
 	SettingsAPI.flush()
 

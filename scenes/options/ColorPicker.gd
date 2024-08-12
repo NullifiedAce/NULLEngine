@@ -12,4 +12,5 @@ func _ready() -> void:
 func _on_popup_closed() -> void:
 	SettingsAPI.set_setting(option, color.to_html())
 	SettingsAPI.flush()
+
 	SettingsAPI.update_settings()

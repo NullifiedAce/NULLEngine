@@ -303,6 +303,17 @@ text = "Freeplay Icons Bump"
 script = ExtResource("4_gjk4b")
 option = "freeplay icon bumping"
 
+[node name="Flashing Lights" type="CheckBox" parent="TabContainer/Appearance"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 33.0
+offset_right = 397.0
+offset_bottom = 64.0
+tooltip_text = "Enable flashing lights."
+text = "Flashing Lights"
+script = ExtResource("4_gjk4b")
+option = "flashing lights"
+
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Appearance"]
 modulate = Color(0.486275, 0.368627, 0.560784, 1)
 layout_mode = 0
@@ -338,99 +349,21 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 16
 text = "Judgement Camera"
 
-[node name="Engine Theme" type="OptionButton" parent="TabContainer/Appearance"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 256.0
-offset_right = 388.0
-offset_bottom = 279.0
-tooltip_text = "Change the color theme of the Engine's backgrounds."
-item_count = 14
-selected = 0
-fit_to_longest_item = false
-popup/item_0/text = "Black"
-popup/item_0/id = 0
-popup/item_1/text = "Blue"
-popup/item_1/id = 1
-popup/item_2/text = "Brown"
-popup/item_2/id = 2
-popup/item_3/text = "Cyan"
-popup/item_3/id = 3
-popup/item_4/text = "Gray"
-popup/item_4/id = 4
-popup/item_5/text = "Green"
-popup/item_5/id = 5
-popup/item_6/text = "Lime"
-popup/item_6/id = 6
-popup/item_7/text = "Magenta"
-popup/item_7/id = 7
-popup/item_8/text = "Orange"
-popup/item_8/id = 8
-popup/item_9/text = "Pink"
-popup/item_9/id = 9
-popup/item_10/text = "Purple"
-popup/item_10/id = 10
-popup/item_11/text = "Red"
-popup/item_11/id = 11
-popup/item_12/text = "White"
-popup/item_12/id = 12
-popup/item_13/text = "Yellow"
-popup/item_13/id = 13
-script = ExtResource("6_wrrnp")
-option = "engine theme"
-
-[node name="Title" type="Label" parent="TabContainer/Appearance/Engine Theme"]
-layout_mode = 0
-offset_top = -26.0
-offset_right = 135.0
-mouse_filter = 1
-theme_override_font_sizes/font_size = 16
-text = "Engine Theme"
-
-[node name="Color Style" type="OptionButton" parent="TabContainer/Appearance"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 312.0
-offset_right = 388.0
-offset_bottom = 335.0
-tooltip_text = "Change the color style of the theme.
-True Color = Replicates from HTML Color Names
-FlxColor = Replicates from HaxeFlixel's FlxColor values
-NULL = Custom made color style"
-item_count = 3
-selected = 0
-popup/item_0/text = "True Color"
-popup/item_0/id = 0
-popup/item_1/text = "FlxColor"
-popup/item_1/id = 1
-popup/item_2/text = "NULL"
-popup/item_2/id = 2
-script = ExtResource("6_wrrnp")
-option = "color style"
-
-[node name="Title" type="Label" parent="TabContainer/Appearance/Color Style"]
-layout_mode = 0
-offset_top = -26.0
-offset_right = 135.0
-mouse_filter = 1
-theme_override_font_sizes/font_size = 16
-text = "Engine Theme Color Style"
-
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/Appearance"]
 modulate = Color(0.486275, 0.368627, 0.560784, 1)
 layout_mode = 2
 offset_left = 13.0
-offset_top = 352.0
+offset_top = 233.0
 offset_right = 390.0
-offset_bottom = 356.0
+offset_bottom = 237.0
 scale = Vector2(1, 2)
 
 [node name="HUDEditor" type="Button" parent="TabContainer/Appearance"]
 layout_mode = 0
 offset_left = 13.0
-offset_top = 368.0
+offset_top = 249.0
 offset_right = 388.0
-offset_bottom = 399.0
+offset_bottom = 280.0
 tooltip_text = "Opens a new menu to edit the HUD (Head-Up Display)."
 theme = ExtResource("7_xa45n")
 text = "HUD Editor
@@ -1170,9 +1103,8 @@ in_editor = true
 [connection signal="pressed" from="TabContainer/Appearance/Story Always Yellow" to="TabContainer/Appearance/Story Always Yellow" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Appearance/Judgement Stacking" to="TabContainer/Appearance/Judgement Stacking" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Appearance/Freeplay Icon Bumping" to="TabContainer/Appearance/Freeplay Icon Bumping" method="_on_pressed"]
+[connection signal="pressed" from="TabContainer/Appearance/Flashing Lights" to="TabContainer/Appearance/Flashing Lights" method="_on_pressed"]
 [connection signal="item_selected" from="TabContainer/Appearance/Judgement Camera" to="TabContainer/Appearance/Judgement Camera" method="_on_item_selected"]
-[connection signal="item_selected" from="TabContainer/Appearance/Engine Theme" to="TabContainer/Appearance/Engine Theme" method="_on_item_selected"]
-[connection signal="item_selected" from="TabContainer/Appearance/Color Style" to="TabContainer/Appearance/Color Style" method="_on_item_selected"]
 [connection signal="pressed" from="TabContainer/Appearance/HUDEditor" to="." method="_on_hud_editor_pressed"]
 [connection signal="pressed" from="TabContainer/Miscellaneous/Auto Pause" to="TabContainer/Miscellaneous/Auto Pause" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Miscellaneous/Volume Beep Pitching" to="TabContainer/Miscellaneous/Volume Beep Pitching" method="_on_pressed"]

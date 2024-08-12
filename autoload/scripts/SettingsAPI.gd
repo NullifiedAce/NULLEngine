@@ -24,6 +24,7 @@ var _settings:Dictionary = {
 	"judgement stacking": true,
 	"hide score": false,
 	"freeplay icon bumping": true,
+	"flashing lights": true,
 
 	# hud
 	"engine theme": "Purple",
@@ -90,6 +91,7 @@ var _settings:Dictionary = {
 	"vsync": false,
 	"multi threaded rendering": false,
 	"fps": 240,
+	"first launch": true,
 
 	# controls (gameplay)
 	"note_left": ["A", "LEFT"],

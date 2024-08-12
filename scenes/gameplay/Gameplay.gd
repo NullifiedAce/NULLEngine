@@ -806,7 +806,7 @@ func position_icons():
 	script_group.call_func("on_position_icons", [])
 
 func update_score_text():
-	var thing: Dictionary = {
+	var score_values: Dictionary = {
 		"score": score,
 		"misses": misses,
 		"accuracy": snapped(accuracy * 100.0, 0.01),
@@ -824,9 +824,9 @@ func update_score_text():
 	for i in array:
 		text_length += 1
 		if text_length == array.size():
-			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(thing[i]) + SettingsAPI.get_setting(i + " suffix")
+			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix")
 		else:
-			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(thing[i]) + SettingsAPI.get_setting(i + " suffix") + SettingsAPI.get_setting("seperator")
+			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix") + SettingsAPI.get_setting("seperator")
 
 	script_group.call_func("on_update_score_text", [])
 

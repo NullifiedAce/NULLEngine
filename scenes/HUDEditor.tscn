@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://bqsrwpb82r34v"]
 
-[ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="1_002pm"]
 [ext_resource type="Script" path="res://scenes/HUDEditor.gd" id="1_028jv"]
+[ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_a6t8j"]
 [ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="2_p2wl7"]
 [ext_resource type="Script" path="res://scenes/options/Checkbox.gd" id="3_0xuk5"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="3_h7qg7"]
@@ -46,9 +46,8 @@ _data = {
 [node name="HUD Editor" type="Node2D"]
 script = ExtResource("1_028jv")
 
-[node name="BG" type="Sprite2D" parent="."]
-position = Vector2(640, 360)
-texture = ExtResource("1_002pm")
+[node name="BG" parent="." instance=ExtResource("2_a6t8j")]
+metadata/_edit_lock_ = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_xc1l4")
@@ -110,7 +109,7 @@ offset_top = 8.0
 offset_right = 392.0
 offset_bottom = 712.0
 theme = ExtResource("2_p2wl7")
-current_tab = 2
+current_tab = 1
 metadata/_edit_lock_ = true
 
 [node name="HUD Editor Options" type="TabBar" parent="Editor/TabContainer"]
@@ -148,7 +147,6 @@ theme = ExtResource("2_p2wl7")
 text = "Press \"F1\" to hide the editor."
 
 [node name="Health Bar" type="TabBar" parent="Editor/TabContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
 
@@ -302,6 +300,7 @@ text = "HP Bar Y Postion
 metadata/_edit_lock_ = true
 
 [node name="Score Text" type="TabBar" parent="Editor/TabContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
 
@@ -313,17 +312,6 @@ offset_right = 140.0
 offset_bottom = 42.0
 theme = ExtResource("2_p2wl7")
 text = "Word seperator"
-
-[node name="Rearrange Counters" type="Button" parent="Editor/TabContainer/Score Text"]
-layout_mode = 0
-offset_left = 200.0
-offset_top = 43.0
-offset_right = 312.0
-offset_bottom = 75.0
-tooltip_text = "Rerrange counters."
-focus_mode = 0
-theme = ExtResource("2_p2wl7")
-text = "Rearrange"
 
 [node name="Seperator" type="TextEdit" parent="Editor/TabContainer/Score Text"]
 custom_minimum_size = Vector2(0, 32)
@@ -338,6 +326,17 @@ theme = ExtResource("2_p2wl7")
 placeholder_text = "Seperator"
 script = ExtResource("11_y3j1p")
 option = "seperator"
+
+[node name="Rearrange Counters" type="Button" parent="Editor/TabContainer/Score Text"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 43.0
+offset_right = 312.0
+offset_bottom = 75.0
+tooltip_text = "Rerrange counters."
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+text = "Rearrange"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Editor/TabContainer/Score Text"]
 layout_mode = 0
@@ -729,6 +728,9 @@ alignment = 1
 
 [node name="Score" type="Button" parent="Rearrange/Buttons/Stuff"]
 layout_mode = 2
+tooltip_text = "Adds a score counter.
+When you hit a note you gain score.
+When you miss a note you lose score."
 focus_mode = 0
 theme = ExtResource("2_p2wl7")
 theme_override_constants/outline_size = 12
@@ -739,6 +741,9 @@ add_item = "score"
 
 [node name="Misses" type="Button" parent="Rearrange/Buttons/Stuff"]
 layout_mode = 2
+tooltip_text = "Adds a miss counter.
+When you miss a note the miss counter
+goes up by 1."
 focus_mode = 0
 theme = ExtResource("2_p2wl7")
 theme_override_constants/outline_size = 12
@@ -749,6 +754,9 @@ add_item = "misses"
 
 [node name="Accuracy" type="Button" parent="Rearrange/Buttons/Stuff"]
 layout_mode = 2
+tooltip_text = "Adds a accuracy counter.
+Shows your accuracy of the note hit
+timing."
 focus_mode = 0
 theme = ExtResource("2_p2wl7")
 theme_override_constants/outline_size = 12
@@ -759,6 +767,9 @@ add_item = "accuracy"
 
 [node name="Ranks" type="Button" parent="Rearrange/Buttons/Stuff"]
 layout_mode = 2
+tooltip_text = "Adds a ranks.
+Shows a rank based on your performance.
+See the engine Wiki for reference on how you're ranked."
 focus_mode = 0
 theme = ExtResource("2_p2wl7")
 theme_override_constants/outline_size = 12
@@ -769,6 +780,10 @@ add_item = "ranks"
 
 [node name="Combo" type="Button" parent="Rearrange/Buttons/Stuff"]
 layout_mode = 2
+tooltip_text = "Adds a combo counter.
+When hitting a note the combo goes up by 1.
+Missing will reset the combo back to 0.
+Combo shows you how many notes you've hit without missing a note."
 focus_mode = 0
 theme = ExtResource("2_p2wl7")
 theme_override_constants/outline_size = 12
@@ -779,6 +794,9 @@ add_item = "combo"
 
 [node name="Max Combo" type="Button" parent="Rearrange/Buttons/Stuff"]
 layout_mode = 2
+tooltip_text = "Adds a max combo counter.
+Shows you the highest combo you've
+done during a song."
 focus_mode = 0
 theme = ExtResource("2_p2wl7")
 theme_override_constants/outline_size = 12
@@ -789,6 +807,9 @@ add_item = "max combo"
 
 [node name="Ghost Taps" type="Button" parent="Rearrange/Buttons/Stuff"]
 layout_mode = 2
+tooltip_text = "Adds a ghost tap counter.
+When you press  when no notes are
+there to press your ghost taps go up by 1."
 focus_mode = 0
 theme = ExtResource("2_p2wl7")
 theme_override_constants/outline_size = 12
@@ -823,6 +844,7 @@ alignment = 1
 
 [node name="Clear" type="Button" parent="Rearrange/Buttons/Delete Stuff"]
 layout_mode = 2
+tooltip_text = "Clears the whole counter array."
 focus_mode = 0
 theme = ExtResource("2_p2wl7")
 theme_override_constants/outline_size = 12
@@ -831,6 +853,7 @@ text = "CLEAR"
 
 [node name="Delete" type="Button" parent="Rearrange/Buttons/Delete Stuff"]
 layout_mode = 2
+tooltip_text = "Delete the last counter added."
 focus_mode = 0
 theme = ExtResource("2_p2wl7")
 theme_override_constants/outline_size = 12
@@ -890,31 +913,32 @@ horizontal_alignment = 1
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar X" to="Editor/TabContainer/Health Bar/HPBar X" method="_on_changed"]
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar Y" to="Editor/TabContainer/Health Bar/HPBar Y" method="_on_changed"]
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar Y DownScroll" to="Editor/TabContainer/Health Bar/HPBar Y DownScroll" method="_on_changed"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/Seperator" to="Editor/TabContainer/Score Text/Seperator" method="_on_focus_exited"]
+[connection signal="text_set" from="Editor/TabContainer/Score Text/Seperator" to="Editor/TabContainer/Score Text/Seperator" method="_on_text_set"]
 [connection signal="pressed" from="Editor/TabContainer/Score Text/Rearrange Counters" to="." method="_on_rearrange_counters_pressed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/Seperator" to="Editor/TabContainer/Score Text/Seperator" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Prefix" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Suffix" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Prefix" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Suffix" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Prefix" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Suffix" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Prefix" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Suffix" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S+ Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S+ Rank" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S Rank" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/A Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/A Rank" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/B Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/B Rank" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/C Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/C Rank" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/D Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/D Rank" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/E Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/E Rank" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/F Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/F Rank" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Null Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Null Rank" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Prefix" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Suffix" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Prefix" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Suffix" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Prefix" method="_on_text_changed"]
-[connection signal="text_changed" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Suffix" method="_on_text_changed"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Prefix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Suffix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Prefix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Suffix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Prefix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Accuracy/Suffix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Prefix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Suffix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S+ Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S+ Rank" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/S Rank" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/A Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/A Rank" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/B Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/B Rank" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/C Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/C Rank" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/D Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/D Rank" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/E Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/E Rank" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/F Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/F Rank" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Null Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Null Rank" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Prefix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Suffix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Prefix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Suffix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Prefix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Suffix" method="_on_focus_exited"]
 [connection signal="pressed" from="Rearrange/Buttons/Stuff/Score" to="Rearrange/Buttons/Stuff/Score" method="_on_pressed"]
 [connection signal="pressed" from="Rearrange/Buttons/Stuff/Misses" to="Rearrange/Buttons/Stuff/Misses" method="_on_pressed"]
 [connection signal="pressed" from="Rearrange/Buttons/Stuff/Accuracy" to="Rearrange/Buttons/Stuff/Accuracy" method="_on_pressed"]

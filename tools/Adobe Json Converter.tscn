@@ -114,7 +114,6 @@ size = Vector2i(500, 500)
 ok_button_text = "Open"
 file_mode = 0
 filters = PackedStringArray("*.png ; Spritesheets", "*.jpg ; Spritesheets", "*.jpeg ; Spritesheets", "*.xml ; XML Spritesheet Data")
-show_hidden_files = true
 
 [connection signal="pressed" from="Main Panel/Choose Sprites" to="Main Panel/Choose Sprites" method="popup_shit"]
 [connection signal="text_changed" from="Main Panel/FPS" to="Main Panel" method="set_fps"]
