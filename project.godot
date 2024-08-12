@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="NULL Engine"
-config/version="0.1.0"
+config/version="1.0.0"
 config/tags=PackedStringArray("rhythm", "2d", "funkin")
 run/main_scene="res://Init.tscn"
 config/use_custom_user_dir=true

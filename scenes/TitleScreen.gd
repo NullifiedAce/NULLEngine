@@ -68,6 +68,7 @@ func _process(delta):
 			timer.timeout.connect(func():
 				SettingsAPI.update_settings()
 				if ProjectSettings.get_setting("engine/customization/check_for_updates") and Global.game_version != Global.new_version:
+					print(Global.new_version)
 					Global.switch_scene("res://scenes/Outdated.tscn")
 				else:
 					Global.switch_scene("res://scenes/MainMenu.tscn")
