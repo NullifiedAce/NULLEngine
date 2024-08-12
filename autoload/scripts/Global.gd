@@ -37,6 +37,9 @@ var current_difficulty:String = "hard"
 var is_story_mode:bool = false
 var queued_songs:PackedStringArray = []
 
+var game_version = ProjectSettings.get_setting("application/config/version")
+var new_version: String
+
 func _ready() -> void:
 	last_scene_path = get_tree().current_scene.scene_file_path
 	ModManager.switch_mod(SettingsAPI.get_setting("current mod"))

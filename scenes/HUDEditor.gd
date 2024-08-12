@@ -10,6 +10,8 @@ var PLAYER_HEALTH_COLOR:StyleBoxFlat = preload("res://assets/styles/healthbar/pl
 
 func _ready() -> void:
 	super._ready()
+	if !ProjectSettings.get_setting("engine/customization/custom_score_text"):
+		$'Editor/TabContainer/Score Text'.queue_free()
 	Audio.play_music("freakyMenu")
 	Conductor.change_bpm(Audio.music.stream.bpm)
 
@@ -21,8 +23,6 @@ func _ready() -> void:
 	RichPresence.set_text("In the menus", "HUD Editor")
 
 func _process(_delta: float) -> void:
-	#FPS.visible = false
-
 	var score_values: Dictionary = {
 		"score": 0,
 		"misses": 0,

@@ -109,11 +109,10 @@ offset_top = 8.0
 offset_right = 392.0
 offset_bottom = 712.0
 theme = ExtResource("2_p2wl7")
-current_tab = 1
+tab_focus_mode = 0
 metadata/_edit_lock_ = true
 
 [node name="HUD Editor Options" type="TabBar" parent="Editor/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="BG Color" type="ColorPickerButton" parent="Editor/TabContainer/HUD Editor Options"]
@@ -147,6 +146,7 @@ theme = ExtResource("2_p2wl7")
 text = "Press \"F1\" to hide the editor."
 
 [node name="Health Bar" type="TabBar" parent="Editor/TabContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
 
@@ -246,9 +246,10 @@ offset_top = 115.0
 offset_right = 283.063
 offset_bottom = 146.0
 tooltip_text = "Sets the health bar's Y position.
+NOTE: When using dowscroll this value gets multiplied by 0.1!
 Default: 636"
 theme = ExtResource("2_p2wl7")
-max_value = 720.0
+max_value = 999999.0
 value = 636.0
 suffix = "y"
 script = ExtResource("10_dvgfv")
@@ -263,69 +264,21 @@ theme = ExtResource("2_p2wl7")
 text = "HP Bar Y Postion"
 metadata/_edit_lock_ = true
 
-[node name="UseDownScrollPos" type="CheckBox" parent="Editor/TabContainer/Health Bar"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 171.0
-offset_right = 168.0
-offset_bottom = 209.0
-tooltip_text = "(NOTE: Only used in HUD Editor)
-Use the downscroll Y postion instead of the default one."
-theme = ExtResource("2_p2wl7")
-text = "Use Downscroll
-Y Position?"
-
-[node name="HPBar Y DownScroll" type="SpinBox" parent="Editor/TabContainer/Health Bar"]
-layout_mode = 0
-offset_left = 200.0
-offset_top = 179.0
-offset_right = 283.063
-offset_bottom = 210.0
-tooltip_text = "Sets the health bar's Y position when using downscroll.
-Default: 60"
-max_value = 720.0
-value = 60.0
-suffix = "y"
-script = ExtResource("10_dvgfv")
-option = "hpbar y down"
-
-[node name="Title" type="Label" parent="Editor/TabContainer/Health Bar/HPBar Y DownScroll"]
-layout_mode = 0
-offset_top = -32.0
-offset_right = 150.0
-offset_bottom = 1.0
-theme = ExtResource("2_p2wl7")
-text = "HP Bar Y Postion
-(Downscroll)"
-metadata/_edit_lock_ = true
-
 [node name="Score Text" type="TabBar" parent="Editor/TabContainer"]
 visible = false
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
 
-[node name="Label" type="Label" parent="Editor/TabContainer/Score Text"]
+[node name="Customize" type="Button" parent="Editor/TabContainer/Score Text"]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 27.0
-offset_right = 140.0
-offset_bottom = 42.0
-theme = ExtResource("2_p2wl7")
-text = "Word seperator"
-
-[node name="Seperator" type="TextEdit" parent="Editor/TabContainer/Score Text"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
 offset_left = 8.0
 offset_top = 43.0
 offset_right = 120.0
 offset_bottom = 75.0
-tooltip_text = "The small seperator between counters.
-Default:  - "
+tooltip_text = "Rerrange counters."
+focus_mode = 0
 theme = ExtResource("2_p2wl7")
-placeholder_text = "Seperator"
-script = ExtResource("11_y3j1p")
-option = "seperator"
+text = "Customize"
 
 [node name="Rearrange Counters" type="Button" parent="Editor/TabContainer/Score Text"]
 layout_mode = 0
@@ -348,6 +301,22 @@ offset_bottom = 667.0
 [node name="VBoxContainer" type="VBoxContainer" parent="Editor/TabContainer/Score Text/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+text = "--= Counter Seperator =--"
+horizontal_alignment = 1
+
+[node name="Seperator" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+tooltip_text = "The small seperator between counters.
+Default:  - "
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Seperator"
+script = ExtResource("11_y3j1p")
+option = "seperator"
 
 [node name="Score" type="Label" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -912,10 +881,9 @@ horizontal_alignment = 1
 [connection signal="popup_closed" from="Editor/TabContainer/Health Bar/Opp Color" to="Editor/TabContainer/Health Bar/Opp Color" method="_on_popup_closed"]
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar X" to="Editor/TabContainer/Health Bar/HPBar X" method="_on_changed"]
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar Y" to="Editor/TabContainer/Health Bar/HPBar Y" method="_on_changed"]
-[connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar Y DownScroll" to="Editor/TabContainer/Health Bar/HPBar Y DownScroll" method="_on_changed"]
-[connection signal="focus_exited" from="Editor/TabContainer/Score Text/Seperator" to="Editor/TabContainer/Score Text/Seperator" method="_on_focus_exited"]
-[connection signal="text_set" from="Editor/TabContainer/Score Text/Seperator" to="Editor/TabContainer/Score Text/Seperator" method="_on_text_set"]
 [connection signal="pressed" from="Editor/TabContainer/Score Text/Rearrange Counters" to="." method="_on_rearrange_counters_pressed"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Seperator" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Seperator" method="_on_focus_exited"]
+[connection signal="text_set" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Seperator" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Seperator" method="_on_text_set"]
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Prefix" method="_on_focus_exited"]
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Score/Suffix" method="_on_focus_exited"]
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Misses/Prefix" method="_on_focus_exited"]

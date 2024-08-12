@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://u4mrxnjg7g02"]
+
+[ext_resource type="Script" path="res://scenes/Outdated.gd" id="1_4ld70"]
+[ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_qmdor"]
+[ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="3_ptqga"]
+[ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="4_ueipp"]
+[ext_resource type="FontFile" uid="uid://cf2wd6a4pa5kb" path="res://assets/fonts/funkin.ttf" id="5_ch0dd"]
+[ext_resource type="Script" path="res://scenes/options/LinkButton.gd" id="6_bxp14"]
+
+[node name="Outdated State" type="Node2D"]
+script = ExtResource("1_4ld70")
+
+[node name="BG Sprite" parent="." instance=ExtResource("2_qmdor")]
+self_modulate = Color(0.215686, 0.215686, 0.215686, 1)
+color = Color(0.215686, 0.215686, 0.215686, 1)
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Title" parent="Control" instance=ExtResource("3_ptqga")]
+custom_minimum_size = Vector2(238, 70)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -119.0
+offset_top = 16.0
+offset_right = 119.0
+offset_bottom = 86.0
+grow_horizontal = 2
+text = "UH oH!"
+
+[node name="text" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 256.0
+offset_bottom = 448.0
+grow_horizontal = 2
+theme = ExtResource("4_ueipp")
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("5_ch0dd")
+theme_override_font_sizes/font_size = 32
+text = "Looks like your engine is outdated!
+The version your running on is currently Version <insert version>, whilst
+the most up-to-date version is Version <insert up-to-date version>.
+
+Please go to any of these sites to get the latest build!"
+horizontal_alignment = 1
+
+[node name="esc" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 640.0
+offset_bottom = 665.0
+grow_horizontal = 2
+theme = ExtResource("4_ueipp")
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("5_ch0dd")
+theme_override_font_sizes/font_size = 32
+text = "Press \"Escape\" to ignore."
+horizontal_alignment = 1
+
+[node name="GitHub" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 464.0
+offset_right = 776.0
+offset_bottom = 504.0
+focus_mode = 0
+text = "Open GitHub Page"
+script = ExtResource("6_bxp14")
+link = "https://github.com/NULLSonic/NULLEngine/releases"
+
+[node name="GameJolt" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 512.0
+offset_right = 776.0
+offset_bottom = 552.0
+focus_mode = 0
+text = "Open Gamejolt Page"
+script = ExtResource("6_bxp14")
+link = "https://gamejolt.com/games/nullengine/917430"
+
+[node name="Gamebanana" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 560.0
+offset_right = 776.0
+offset_bottom = 600.0
+focus_mode = 0
+text = "Open Gamebanana Page"
+script = ExtResource("6_bxp14")
+link = "https://gamebanana.com/wips/87058"
+
+[connection signal="pressed" from="Control/GitHub" to="Control/GitHub" method="_on_pressed"]
+[connection signal="pressed" from="Control/GameJolt" to="Control/GameJolt" method="_on_pressed"]
+[connection signal="pressed" from="Control/Gamebanana" to="Control/Gamebanana" method="_on_pressed"]

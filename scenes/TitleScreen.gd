@@ -6,6 +6,9 @@ var flashing:bool = false
 var skipped_intro:bool = false
 var transitioning:bool = false
 
+var http_request: HTTPRequest
+var version_url: String = "https://raw.githubusercontent.com/NULLSonic/NULLEngine/main/version.txt"
+
 @onready var gf:AnimationPlayer = $TitleGroup/gf/AnimationPlayer
 @onready var logo:AnimatedSprite = $TitleGroup/logo
 @onready var title_enter:AnimatedSprite = $TitleGroup/titleEnter
@@ -23,6 +26,18 @@ func _ready() -> void:
 	super._ready()
 	Audio.play_music("freakyMenu")
 	Conductor.change_bpm(Audio.music.stream.bpm)
+
+	# Initialize the HTTPRequest node
+	http_request = HTTPRequest.new()
+	add_child(http_request)
+
+	# Connect the request_completed signal to the _on_request_completed function
+	http_request.request_completed.connect(_on_request_completed)
+
+	# Start the HTTP request to fetch the content from the URL
+	var error = http_request.request(version_url)
+	if error != OK:
+		print("Failed to start the request: ", error)
 
 	gf.play("danceLeft")
 	logo.play("logo bumpin")
@@ -52,7 +67,10 @@ func _process(delta):
 			var timer:SceneTreeTimer = get_tree().create_timer(2.0)
 			timer.timeout.connect(func():
 				SettingsAPI.update_settings()
-				Global.switch_scene("res://scenes/MainMenu.tscn")
+				if ProjectSettings.get_setting("engine/customization/check_for_updates") and Global.game_version != Global.new_version:
+					Global.switch_scene("res://scenes/Outdated.tscn")
+				else:
+					Global.switch_scene("res://scenes/MainMenu.tscn")
 			)
 
 	var axis:int = int(Input.get_axis('ui_left', 'ui_right'))
@@ -141,3 +159,12 @@ func _get_wacky() -> PackedStringArray:
 	var wacky_lines:PackedStringArray = wacky_text.split("\n", false)
 
 	return wacky_lines[randi_range(0, wacky_lines.size()-1)].split("--")
+
+func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
+	# Convert the body (PackedByteArray) to a String and print it
+	var content = body.get_string_from_utf8()
+	Global.new_version = content
+
+	# Optionally, handle different response codes (e.g., 200 for success)
+	if response_code != 200:
+		print("Request failed with response code: ", response_code)

@@ -293,7 +293,7 @@ func _ready() -> void:
 
 	if SettingsAPI.get_setting("downscroll"):
 		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
-		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y down")
+		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y") * 0.1
 	else:
 		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
 		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y")
@@ -784,6 +784,12 @@ func opponent_note_hit(note:Note):
 		if sing_anim.ends_with("DOWN-alt"):
 			opponent.special_anim = true
 			opponent.anim_timer = 3
+
+	#var data:int = note.direction
+	#var receptor:Receptor = cpu_strums.get_child(data)
+	#receptor.play_anim("confirm")
+	#await get_tree().create_timer(0.1).timeout
+	#receptor.play_anim("static")
 
 func get_sing_anim(note:Note):
 	var strums = player_strums if note.must_press else cpu_strums

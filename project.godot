@@ -48,6 +48,7 @@ enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 [engine]
 
 customization/custom_score_text=true
+customization/check_for_updates=true
 
 [input]
 
