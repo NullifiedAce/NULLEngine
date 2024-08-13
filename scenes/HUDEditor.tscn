@@ -572,6 +572,38 @@ placeholder_text = "N/A Rank (No accuracy present)"
 script = ExtResource("11_y3j1p")
 option = "null rank"
 
+[node name="Health" type="Label" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_p2wl7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2nblc")
+text = "--= Health Counter =--"
+horizontal_alignment = 1
+
+[node name="Prefix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Health"]
+layout_mode = 0
+offset_top = 23.0
+offset_right = 176.0
+offset_bottom = 55.0
+tooltip_text = "Set a custom prefix for the ghost taps counter.
+Default: Ghost Taps: "
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Prefix"
+script = ExtResource("11_y3j1p")
+option = "health prefix"
+
+[node name="Suffix" type="TextEdit" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Health"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 23.0
+offset_right = 368.0
+offset_bottom = 55.0
+tooltip_text = "Set a custom prefix for the ghost taps counter.
+Default:"
+theme = ExtResource("2_p2wl7")
+placeholder_text = "Suffix"
+script = ExtResource("11_y3j1p")
+option = "health suffix"
+
 [node name="Combo" type="Label" parent="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
@@ -766,6 +798,17 @@ theme_override_font_sizes/font_size = 24
 text = "Ranks"
 script = ExtResource("15_dvv1b")
 add_item = "ranks"
+
+[node name="Health" type="Button" parent="Rearrange/Buttons/Stuff"]
+layout_mode = 2
+tooltip_text = "Adds a health counter."
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Health"
+script = ExtResource("15_dvv1b")
+add_item = "health"
 
 [node name="Combo" type="Button" parent="Rearrange/Buttons/Stuff"]
 layout_mode = 2
@@ -1117,7 +1160,6 @@ size = Vector2i(400, 450)
 ok_button_text = "Open"
 file_mode = 0
 filters = PackedStringArray("*.ttf", "*.otf")
-show_hidden_files = false
 
 [connection signal="popup_closed" from="Editor/TabContainer/HUD Editor Options/BG Color" to="Editor/TabContainer/HUD Editor Options/BG Color" method="_on_popup_closed"]
 [connection signal="pressed" from="Editor/TabContainer/Health Bar/Icon Colors" to="Editor/TabContainer/Health Bar/Icon Colors" method="_on_pressed"]
@@ -1149,6 +1191,8 @@ show_hidden_files = false
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/E Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/E Rank" method="_on_focus_exited"]
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/F Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/F Rank" method="_on_focus_exited"]
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Null Rank" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ranks/Null Rank" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Health/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Health/Prefix" method="_on_focus_exited"]
+[connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Health/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Health/Suffix" method="_on_focus_exited"]
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Prefix" method="_on_focus_exited"]
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Combo/Suffix" method="_on_focus_exited"]
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Prefix" method="_on_focus_exited"]
@@ -1159,6 +1203,7 @@ show_hidden_files = false
 [connection signal="pressed" from="Rearrange/Buttons/Stuff/Misses" to="Rearrange/Buttons/Stuff/Misses" method="_on_pressed"]
 [connection signal="pressed" from="Rearrange/Buttons/Stuff/Accuracy" to="Rearrange/Buttons/Stuff/Accuracy" method="_on_pressed"]
 [connection signal="pressed" from="Rearrange/Buttons/Stuff/Ranks" to="Rearrange/Buttons/Stuff/Ranks" method="_on_pressed"]
+[connection signal="pressed" from="Rearrange/Buttons/Stuff/Health" to="Rearrange/Buttons/Stuff/Health" method="_on_pressed"]
 [connection signal="pressed" from="Rearrange/Buttons/Stuff/Combo" to="Rearrange/Buttons/Stuff/Combo" method="_on_pressed"]
 [connection signal="pressed" from="Rearrange/Buttons/Stuff/Max Combo" to="Rearrange/Buttons/Stuff/Max Combo" method="_on_pressed"]
 [connection signal="pressed" from="Rearrange/Buttons/Stuff/Ghost Taps" to="Rearrange/Buttons/Stuff/Ghost Taps" method="_on_pressed"]
@@ -1170,6 +1215,7 @@ show_hidden_files = false
 [connection signal="popup_closed" from="CustomizeCounter/Font/Font Color" to="CustomizeCounter/Font/Font Color" method="_on_popup_closed"]
 [connection signal="value_changed" from="CustomizeCounter/Outline/Outline Size" to="CustomizeCounter/Outline/Outline Size" method="_on_changed"]
 [connection signal="popup_closed" from="CustomizeCounter/Outline/Outline Color" to="CustomizeCounter/Outline/Outline Color" method="_on_popup_closed"]
+[connection signal="popup_closed" from="CustomizeCounter/Background/BGColor" to="CustomizeCounter/Background/BGColor" method="_on_popup_closed"]
 [connection signal="value_changed" from="CustomizeCounter/Background/Expand BG" to="CustomizeCounter/Background/Expand BG" method="_on_changed"]
 [connection signal="pressed" from="CustomizeCounter/Done" to="CustomizeCounter" method="_on_done_pressed"]
 [connection signal="file_selected" from="CustomizeCounter/openFont" to="CustomizeCounter" method="_on_open_font_file_selected"]

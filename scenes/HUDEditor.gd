@@ -28,6 +28,7 @@ func _process(_delta: float) -> void:
 		"misses": 0,
 		"accuracy": 100,
 		"ranks": SettingsAPI.get_setting("s+ rank"),
+		"health": 50,
 		"combo": 0,
 		"max combo": 0,
 		"ghost taps": 0

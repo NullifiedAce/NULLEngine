@@ -85,6 +85,10 @@ var _settings:Dictionary = {
 	"f rank": "F",
 	"null rank": "N/A",
 
+	# health
+	"health prefix": "",
+	"health suffix": "%",
+
 	# combo
 	"combo prefix": "Combo: ",
 	"combo suffix": "x",

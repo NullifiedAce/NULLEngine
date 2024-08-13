@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cd8qnbjwrowm3"]
+[gd_scene load_steps=13 format=3 uid="uid://cd8qnbjwrowm3"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/Gameplay.gd" id="1_8k5hd"]
 [ext_resource type="Script" path="res://classes/ScriptGroup.gd" id="2_5pmok"]
@@ -9,7 +9,6 @@
 [ext_resource type="StyleBox" uid="uid://c4lt0ydus4t75" path="res://assets/styles/healthbar/opponent.tres" id="4_san04"]
 [ext_resource type="FontFile" uid="uid://cf2wd6a4pa5kb" path="res://assets/fonts/funkin.ttf" id="5_64arv"]
 [ext_resource type="Texture2D" uid="uid://bgk48t11fpyuf" path="res://assets/images/gameplay/icons/icon-face.png" id="5_hiat0"]
-[ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="7_jpakc"]
 [ext_resource type="StyleBox" uid="uid://ccmycpgoa47g0" path="res://assets/styles/healthbar/player.tres" id="7_xkyo6"]
 [ext_resource type="Script" path="res://scripts/HealthIcon.gd" id="9_42oq6"]
 [ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="13_c6vus"]
@@ -113,10 +112,6 @@ offset_right = 339.0
 offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("7_jpakc")
-theme_override_font_sizes/font_size = 19
 text = "Score: 0 - Misses: 0 - Accuracy: 0% [N/A]"
 horizontal_alignment = 1
 autowrap_mode = 3

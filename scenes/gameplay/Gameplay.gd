@@ -828,11 +828,14 @@ func position_icons():
 	script_group.call_func("on_position_icons", [])
 
 func update_score_text():
+	var hp_percent:float = (health_bar.value / health_bar.max_value) * 100
+
 	var score_values: Dictionary = {
 		"score": score,
 		"misses": misses,
 		"accuracy": snapped(accuracy * 100.0, 0.01),
 		"ranks": Ranking.rank_from_accuracy(accuracy * 100.0).name,
+		"health": hp_percent,
 		"combo": combo,
 		"max combo": max_combo,
 		"ghost taps": ghost_taps
