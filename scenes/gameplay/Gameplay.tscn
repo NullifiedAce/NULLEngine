@@ -79,6 +79,7 @@ offset_bottom = 14.5
 theme_override_styles/background = ExtResource("4_san04")
 theme_override_styles/fill = ExtResource("7_xkyo6")
 max_value = 2.0
+step = 0.0
 value = 1.0
 fill_mode = 1
 show_percentage = false
