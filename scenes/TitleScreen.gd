@@ -165,6 +165,7 @@ func _on_request_completed(result: int, response_code: int, headers: PackedStrin
 	# Convert the body (PackedByteArray) to a String and print it
 	var content = body.get_string_from_utf8()
 	Global.new_version = content
+	Global.new_version = Global.new_version.replace("\n", "")
 
 	# Optionally, handle different response codes (e.g., 200 for success)
 	if response_code != 200:
