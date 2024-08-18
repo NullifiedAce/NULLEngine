@@ -18,22 +18,8 @@ shader = ExtResource("7_ccjci")
 shader_parameter/panel_height = 680.0
 shader_parameter/bg_color = Vector4(0.16, 0.13, 0.19, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ngy7"]
-bg_color = Color(0.141176, 0.0980392, 0.211765, 1)
-border_width_left = 2
-border_width_bottom = 2
-border_color = Color(0.45098, 0.305882, 0.678431, 1)
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrcxt"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxpdd"]
 bg_color = Color(0.10005, 0.069, 0.15, 1)
-border_width_left = 2
-border_width_bottom = 2
-border_color = Color(0.45098, 0.305882, 0.678431, 1)
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eukpm"]
-bg_color = Color(0.211765, 0.14902, 0.321569, 1)
 border_width_left = 2
 border_width_bottom = 2
 border_color = Color(0.45098, 0.305882, 0.678431, 1)
@@ -46,8 +32,22 @@ border_width_bottom = 2
 border_color = Color(0.45098, 0.305882, 0.678431, 1)
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxpdd"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eukpm"]
+bg_color = Color(0.211765, 0.14902, 0.321569, 1)
+border_width_left = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.305882, 0.678431, 1)
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrcxt"]
 bg_color = Color(0.10005, 0.069, 0.15, 1)
+border_width_left = 2
+border_width_bottom = 2
+border_color = Color(0.45098, 0.305882, 0.678431, 1)
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ngy7"]
+bg_color = Color(0.141176, 0.0980392, 0.211765, 1)
 border_width_left = 2
 border_width_bottom = 2
 border_color = Color(0.45098, 0.305882, 0.678431, 1)
@@ -464,10 +464,9 @@ the copied camera target is different
 from the current camera target."
 mouse_default_cursor_shape = 2
 theme = ExtResource("8_87ymt")
-item_count = 4
 selected = 1
+item_count = 4
 popup/item_0/text = "None"
-popup/item_0/id = 0
 popup/item_1/text = "Only Copy/Paste"
 popup/item_1/id = 1
 popup/item_2/text = "Only Copy Last"
@@ -538,7 +537,6 @@ mode_overrides_title = false
 file_mode = 0
 root_subfolder = "res://scenes/gameplay/characters"
 filters = PackedStringArray("*.tscn")
-show_hidden_files = false
 
 [node name="StageDialog" type="FileDialog" parent="."]
 title = "Select a Stage"
@@ -550,7 +548,6 @@ mode_overrides_title = false
 file_mode = 0
 root_subfolder = "res://scenes/gameplay/stages"
 filters = PackedStringArray("*.tscn")
-show_hidden_files = false
 
 [node name="UISkinDialog" type="FileDialog" parent="."]
 title = "Select a UI Skin"
@@ -562,7 +559,6 @@ mode_overrides_title = false
 file_mode = 0
 root_subfolder = "res://scenes/gameplay/ui_skins/"
 filters = PackedStringArray("*.tscn")
-show_hidden_files = false
 
 [node name="SaveDialog" type="FileDialog" parent="."]
 title = "Save Song JSON"
@@ -573,7 +569,6 @@ ok_button_text = "Save"
 mode_overrides_title = false
 root_subfolder = "res://assets/songs/"
 filters = PackedStringArray("*.json")
-show_hidden_files = false
 
 [node name="LoadDialog" type="FileDialog" parent="."]
 title = "Load Song JSON"
@@ -585,7 +580,6 @@ mode_overrides_title = false
 file_mode = 0
 root_subfolder = "res://assets/songs/"
 filters = PackedStringArray("*.json")
-show_hidden_files = false
 
 [node name="AutosaveDialog" type="ConfirmationDialog" parent="."]
 title = "Select Autosaved Song"
@@ -626,7 +620,6 @@ switch_on_hover = true
 item_count = 3
 popup/item_0/text = "Play Song"
 popup/item_0/checkable = 2
-popup/item_0/id = 0
 popup/item_1/text = "Play Here"
 popup/item_1/checkable = 2
 popup/item_1/id = 1
@@ -650,7 +643,6 @@ item_count = 4
 popup/item_0/text = "Song"
 popup/item_0/checkable = 1
 popup/item_0/checked = true
-popup/item_0/id = 0
 popup/item_1/text = "Assets"
 popup/item_1/checkable = 1
 popup/item_1/checked = true
@@ -671,11 +663,11 @@ offset_right = 1080.0
 offset_bottom = 31.0
 tooltip_text = "Change the way you chart."
 theme = ExtResource("8_87ymt")
-theme_override_styles/normal = SubResource("StyleBoxFlat_2ngy7")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yrcxt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_eukpm")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_w644q")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wxpdd")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_w644q")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eukpm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yrcxt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ngy7")
 text = "Settings"
 flat = false
 switch_on_hover = true
@@ -683,7 +675,6 @@ item_count = 1
 popup/item_0/text = "Hitsounds"
 popup/item_0/checkable = 1
 popup/item_0/checked = true
-popup/item_0/id = 0
 
 [node name="TrackMute" type="PopupMenu" parent="Settings"]
 

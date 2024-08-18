@@ -334,7 +334,7 @@ func _ready() -> void:
 
 	update_score_text()
 
-	RichPresence.set_text("Playing a song", str(SONG.name) + " (" + str(Global.current_difficulty).capitalize() + ")")
+	RichPresence.set_text(str(SONG.name) + " (" + str(Global.current_difficulty).capitalize() + ")", "")
 
 	stage.callv("_ready_post", [])
 	script_group.call_func("_ready_post", [])

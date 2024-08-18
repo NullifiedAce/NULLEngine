@@ -6,9 +6,10 @@ var preview_text_settings = LabelSettings.new()
 var preview_text_bg = StyleBoxFlat.new()
 
 func _process(delta: float) -> void:
-	setup_label_settings()
-	preview_text.label_settings = preview_text_settings
-	preview_text.add_theme_stylebox_override("normal", preview_text_bg)
+	if Global.update_options:
+		setup_label_settings()
+		preview_text.label_settings = preview_text_settings
+		preview_text.add_theme_stylebox_override("normal", preview_text_bg)
 
 func setup_label_settings():
 	preview_text_settings.font = load(SettingsAPI.get_setting("font path"))
