@@ -89,6 +89,9 @@ func _process(delta):
 		else:
 			Global.switch_scene("res://scenes/MainMenu.tscn")
 
+	if Input.is_key_label_pressed(KEY_F1):
+		$Hints.hide()
+
 		Global.scene_arguments["options_menu"].exit_scene_path = ""
 
 func _on_tool_button_pressed(name:String):
@@ -109,3 +112,6 @@ func _on_gameplay_checkbox_pressed(name:String):
 
 func _on_hud_editor_pressed() -> void:
 	Global.switch_scene("res://scenes/HUDEditor.tscn")
+
+func _on_open_help_pressed() -> void:
+	$Hints.show()

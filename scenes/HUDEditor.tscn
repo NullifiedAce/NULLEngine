@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bqsrwpb82r34v"]
+[gd_scene load_steps=22 format=3 uid="uid://bqsrwpb82r34v"]
 
 [ext_resource type="Script" path="res://scenes/HUDEditor.gd" id="1_028jv"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_a6t8j"]
@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bgk48t11fpyuf" path="res://assets/images/gameplay/icons/icon-face.png" id="6_qitva"]
 [ext_resource type="Script" path="res://scripts/HealthIcon.gd" id="7_0mpxd"]
 [ext_resource type="Script" path="res://scenes/options/SpinBox.gd" id="10_dvgfv"]
+[ext_resource type="Script" path="res://scenes/options/HUD Editor/SaveHUDPreset.gd" id="10_hm7nf"]
 [ext_resource type="Script" path="res://scenes/options/ColorPicker.gd" id="10_uokwq"]
+[ext_resource type="Script" path="res://scenes/options/HUD Editor/LoadHUDPreset.gd" id="11_6clei"]
 [ext_resource type="Script" path="res://scenes/options/TextEdit.gd" id="11_y3j1p"]
 [ext_resource type="Script" path="res://scenes/options/RearrangeScore.gd" id="14_gju6m"]
 [ext_resource type="Script" path="res://scenes/options/HUD Editor/AddButton.gd" id="15_dvv1b"]
@@ -44,6 +46,7 @@ _data = {
 }
 
 [node name="HUD Editor" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_028jv")
 
 [node name="BG" parent="." instance=ExtResource("2_a6t8j")]
@@ -105,11 +108,13 @@ offset_top = 8.0
 offset_right = 392.0
 offset_bottom = 712.0
 theme = ExtResource("2_p2wl7")
+current_tab = 0
 tab_focus_mode = 0
 metadata/_edit_lock_ = true
 
 [node name="HUD Editor Options" type="TabBar" parent="Editor/TabContainer"]
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="BG Color" type="ColorPickerButton" parent="Editor/TabContainer/HUD Editor Options"]
 layout_mode = 0
@@ -141,10 +146,49 @@ offset_bottom = 670.0
 theme = ExtResource("2_p2wl7")
 text = "Press \"F1\" to hide the editor."
 
+[node name="SaveHUD" type="Button" parent="Editor/TabContainer/HUD Editor Options"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 75.0
+offset_right = 157.0
+offset_bottom = 107.0
+focus_mode = 0
+text = "Save HUD Preset"
+script = ExtResource("10_hm7nf")
+
+[node name="save" type="FileDialog" parent="Editor/TabContainer/HUD Editor Options/SaveHUD"]
+title = "Save HUD Preset"
+initial_position = 2
+size = Vector2i(320, 460)
+ok_button_text = "Save"
+access = 1
+filters = PackedStringArray("*.cfg")
+
+[node name="LoadHUD" type="Button" parent="Editor/TabContainer/HUD Editor Options"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 75.0
+offset_right = 349.0
+offset_bottom = 107.0
+focus_mode = 0
+text = "Load HUD Preset"
+script = ExtResource("11_6clei")
+
+[node name="load" type="FileDialog" parent="Editor/TabContainer/HUD Editor Options/LoadHUD"]
+auto_translate_mode = 1
+title = "Open a File"
+initial_position = 2
+size = Vector2i(320, 460)
+ok_button_text = "Open"
+file_mode = 0
+access = 1
+filters = PackedStringArray("*.cfg")
+
 [node name="Health Bar" type="TabBar" parent="Editor/TabContainer"]
 visible = false
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
+metadata/_tab_index = 1
 
 [node name="Icon Colors" type="CheckBox" parent="Editor/TabContainer/Health Bar"]
 layout_mode = 0
@@ -288,6 +332,7 @@ metadata/_edit_lock_ = true
 visible = false
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
+metadata/_tab_index = 2
 
 [node name="Customize" type="Button" parent="Editor/TabContainer/Score Text"]
 layout_mode = 0
@@ -1162,6 +1207,10 @@ file_mode = 0
 filters = PackedStringArray("*.ttf", "*.otf")
 
 [connection signal="popup_closed" from="Editor/TabContainer/HUD Editor Options/BG Color" to="Editor/TabContainer/HUD Editor Options/BG Color" method="_on_popup_closed"]
+[connection signal="pressed" from="Editor/TabContainer/HUD Editor Options/SaveHUD" to="Editor/TabContainer/HUD Editor Options/SaveHUD" method="_on_pressed"]
+[connection signal="file_selected" from="Editor/TabContainer/HUD Editor Options/SaveHUD/save" to="Editor/TabContainer/HUD Editor Options/SaveHUD" method="_on_save"]
+[connection signal="pressed" from="Editor/TabContainer/HUD Editor Options/LoadHUD" to="Editor/TabContainer/HUD Editor Options/LoadHUD" method="_on_pressed"]
+[connection signal="file_selected" from="Editor/TabContainer/HUD Editor Options/LoadHUD/load" to="Editor/TabContainer/HUD Editor Options/LoadHUD" method="_on_load"]
 [connection signal="pressed" from="Editor/TabContainer/Health Bar/Icon Colors" to="Editor/TabContainer/Health Bar/Icon Colors" method="_on_pressed"]
 [connection signal="pressed" from="Editor/TabContainer/Health Bar/Custom Colors" to="Editor/TabContainer/Health Bar/Custom Colors" method="_on_pressed"]
 [connection signal="pressed" from="Editor/TabContainer/Health Bar/Hide HPBar" to="Editor/TabContainer/Health Bar/Hide HPBar" method="_on_pressed"]

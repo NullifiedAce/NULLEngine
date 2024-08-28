@@ -43,23 +43,23 @@ func _save_song(path:String):
 		"song": chart_data.name,
 		"bpm": chart_data.bpm,
 		"speed": chart_data.scroll_speed,
-		
+
 		"player1": chart_data.player,
 		"player2": chart_data.opponent,
 		"gfVersion": chart_data.spectator,
-		
+
 		"stage": chart_data.stage,
 		"uiSkin": chart_data.ui_skin,
-		
+
 		"notes": []
 	}
-	
+
 	var cur_bpm = chart_data.bpm
-	
+
 	for section in chart_data.sections:
 		if section.change_bpm:
 			cur_bpm = section.bpm
-		
+
 		var da_section:Dictionary = {
 			"altAnim": false,
 			"mustHitSection": section.is_player,
@@ -68,20 +68,20 @@ func _save_song(path:String):
 			"bpm": cur_bpm,
 			"sectionNotes": []
 		}
-		
+
 		for note in section.notes:
 			var da_type = "Alt Animation" if note.alt_anim and note.type == "default" else note.type
 			var section_note = [note.time, note.direction, note.length]
 			if da_type != "default":
 				section_note.append(da_type)
 			da_section["sectionNotes"].append(section_note)
-			
+
 		save_json["notes"].append(da_section)
-		
+
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(JSON.stringify({"song": save_json}, "\t"))
 	file.close()
-		
+
 	enable_switches()
 
 func _open_save():
@@ -91,7 +91,7 @@ func _open_save():
 func _load_song(path:String):
 	var song = path.get_slice("/", path.get_slice_count("/") - 2)
 	var diff = path.get_file().get_basename()
-	
+
 	Global.SONG = Chart.load_chart(song, diff)
 	Global.switch_scene("res://scenes/editors/ChartEditor.tscn")
 
@@ -102,7 +102,7 @@ func _open_load():
 func _select_autosave():
 	var item = autosave_tree.get_selected()
 	if item == null: return
-	
+
 	var file = item.get_text(0)
 	var json = JSON.parse_string(FileAccess.open("user://chart_autosaves/" + file, FileAccess.READ).get_as_text()).song
 	Global.SONG = Chart.load_from_json(file.get_basename(), json)
@@ -126,17 +126,17 @@ func _open_autosave():
 		var item = autosave_tree.create_item(parent)
 		item.set_text(0, file)
 		item.set_icon(0, file_icon)
-	
+
 	autosave_dialog.add_child(autosave_tree)
 	autosave_dialog.popup_centered()
 	disable_switches()
 
 func _song_name_changed(new_text:String):
 	chart_data.name = new_text
-	
+
 func _bpm_changed(new_value:float):
 	chart_data.bpm = new_value
-	
+
 func _speed_changed(new_value:float):
 	chart_data.scroll_speed = new_value
 

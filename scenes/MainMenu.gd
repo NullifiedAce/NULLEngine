@@ -40,7 +40,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		Audio.play_sound("confirmMenu")
 		selected_something = true
-		magenta_anim.play("flash")
+		if SettingsAPI.get_setting("flashing lights"):
+			magenta_anim.play("flash")
 
 		$PB/UILayer/entrance.speed_scale = 0.4
 		$PB/UILayer/entrance.play_backwards('entrance')

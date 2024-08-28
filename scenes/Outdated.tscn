@@ -97,7 +97,7 @@ offset_bottom = 600.0
 focus_mode = 0
 text = "Open Gamebanana Page"
 script = ExtResource("6_bxp14")
-link = "https://gamebanana.com/wips/87058"
+link = "https://gamebanana.com/mods/535154"
 
 [connection signal="pressed" from="Control/GitHub" to="Control/GitHub" method="_on_pressed"]
 [connection signal="pressed" from="Control/GameJolt" to="Control/GameJolt" method="_on_pressed"]

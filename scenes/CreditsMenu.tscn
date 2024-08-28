@@ -58,18 +58,27 @@ grow_horizontal = 2
 size_flags_horizontal = 4
 text = "NULL ENGINE CREDITS"
 
-[node name="Credits" type="Label" parent="ScrollContainer/VBoxContainer/Page1"]
+[node name="Creds" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Page1"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_top = 128.0
-offset_bottom = 157.0
+anchor_bottom = 1.0
+offset_top = 100.0
+offset_bottom = -4.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Page1/Creds"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="null" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page1/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("5_c0fhy")
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 32
-text = "NULL"
-horizontal_alignment = 1
+text = "NULLSonic"
+underline = 1
+uri = "https://www.youtube.com/@NULLErrorSonic"
 
 [node name="Page2" type="Control" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 512)
@@ -87,29 +96,79 @@ grow_horizontal = 2
 size_flags_horizontal = 4
 text = "NOVA ENGINE CREDITS"
 
-[node name="Credits" type="Label" parent="ScrollContainer/VBoxContainer/Page2"]
+[node name="Creds" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Page2"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_top = 128.0
-offset_right = 0.000732422
-offset_bottom = 488.0
+anchor_bottom = 1.0
+offset_top = 100.0
+offset_bottom = -4.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Page2/Creds"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="sword" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page2/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("5_c0fhy")
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 32
-text = "swordcube
-voiddevv
-Leather128
-SrtHero278
-Alexg1247
-ThatOneIdiotXav
-Vortex2Oblivion"
-horizontal_alignment = 1
-vertical_alignment = 3
+text = "swordcube"
+underline = 1
+uri = "https://github.com/swordcube"
+
+[node name="voiddev" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page2/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "voiddev"
+underline = 1
+uri = "https://github.com/voiddevv"
+
+[node name="Leather" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page2/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "Leather128"
+underline = 1
+uri = "https://github.com/Leather128"
+
+[node name="SrtHero" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page2/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "SrtHero278"
+underline = 1
+uri = "https://github.com/SrtHero278"
+
+[node name="Alexg" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page2/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "Alexg1247"
+underline = 1
+uri = "https://github.com/Alexg1247"
+
+[node name="Vortex" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page2/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "Vortext2Oblivion"
+underline = 1
+uri = "https://github.com/Vortex2Oblivion"
+
+[node name="Xav" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page2/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "ThatOneIditoXav"
+underline = 1
+uri = "https://github.com/ThatOneIdiotXav"
 
 [node name="Page3" type="Control" parent="ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 324)
+custom_minimum_size = Vector2(0, 640)
 layout_mode = 2
 
 [node name="engine" parent="ScrollContainer/VBoxContainer/Page3" instance=ExtResource("4_oe0jq")]
@@ -124,20 +183,97 @@ grow_horizontal = 2
 size_flags_horizontal = 4
 text = "ORIGINAL GAME CREDITS"
 
-[node name="Credits" type="Label" parent="ScrollContainer/VBoxContainer/Page3"]
+[node name="Creds" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Page3"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_top = 128.0
-offset_bottom = 316.0
+anchor_bottom = 1.0
+offset_top = 100.0
+offset_bottom = -4.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Page3/Creds"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 27
+
+[node name="ninjamuffin" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page3/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("5_c0fhy")
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 32
-text = "ninjamuffin99
-PhantomArcade3k
-evilsk8r
-kawaisprite
-"
-horizontal_alignment = 1
-vertical_alignment = 3
+text = "ninjamuffin99"
+underline = 1
+uri = "https://twitter.com/ninja_muffin99"
+
+[node name="EliteMasterEric" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page3/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "EliteMasterEric"
+underline = 1
+uri = "https://twitter.com/EliteMasterEric"
+
+[node name="MtH" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page3/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "MtH"
+underline = 1
+uri = "https://twitter.com/emmnyaa"
+
+[node name="Geo" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page3/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "GeoKureli"
+underline = 1
+uri = "https://twitter.com/Geokureli/"
+
+[node name="Phantom" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page3/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "PhantomArcade3K"
+underline = 1
+uri = "https://twitter.com/phantomarcade3k"
+
+[node name="Evilsk8r" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page3/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "Evilsk8r"
+underline = 1
+uri = "https://twitter.com/evilsk8r"
+
+[node name="Moawling" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page3/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "Moawling"
+underline = 1
+uri = "https://twitter.com/moawko"
+
+[node name="IvanAlmighty" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page3/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "IvanAlmighty"
+underline = 1
+uri = "https://twitter.com/IvanA1mighty"
+
+[node name="KawaiSprite" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page3/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "Kawaisprite"
+underline = 1
+uri = "https://twitter.com/kawaisprite"
+
+[node name="Basset" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page3/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "BassetFilms"
+underline = 1
+uri = "https://twitter.com/Bassetfilms"

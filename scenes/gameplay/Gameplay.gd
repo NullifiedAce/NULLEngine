@@ -334,7 +334,7 @@ func _ready() -> void:
 
 	update_score_text()
 
-	RichPresence.set_text("Playing a song", str(SONG.name) + " (" + str(Global.current_difficulty).capitalize() + ")")
+	RichPresence.set_text(str(SONG.name) + " (" + str(Global.current_difficulty).capitalize() + ")", "")
 
 	stage.callv("_ready_post", [])
 	script_group.call_func("_ready_post", [])
@@ -594,7 +594,7 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 	if data > -1:
 		pressed[data] = key_event.is_pressed()
 
-	if data == -1 and OS.is_debug_build() and key_event.is_action_pressed("chart_open"):
+	if data == -1 and ProjectSettings.get_setting("engine/customization/chart_editor_on_release") and key_event.is_action_pressed("chart_open"):
 		Global.switch_scene("res://scenes/editors/ChartEditor.tscn")
 		return
 
@@ -644,7 +644,11 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 		script_group.call_func("on_ghost_tap", [data])
 
 func fake_miss(direction:int = -1):
-	health -= 0.0475 * Global.health_loss_mult
+	var new_health = health - 0.0475 * Global.health_loss_mult
+
+	var hp_tween = get_tree().create_tween()
+	hp_tween.tween_property(self, "health", new_health, 0.1)
+
 	misses += 1
 	score -= 10
 	combo = 0
@@ -773,9 +777,12 @@ func good_note_hit(note:Note):
 	player.play_anim(sing_anim, true)
 	player.hold_timer = 0.0
 
-	health += 0.023 * note.health_gain_mult * judgement.health_gain_mult * (
+	var new_health = health + 0.023 * note.health_gain_mult * judgement.health_gain_mult * (
 			Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
 			else Global.health_loss_mult)
+
+	var hp_tween = get_tree().create_tween()
+	hp_tween.tween_property(self, "health", new_health, 0.1)
 
 	if note.length <= 0:
 		note._player_hit()
@@ -835,7 +842,7 @@ func update_score_text():
 		"misses": misses,
 		"accuracy": snapped(accuracy * 100.0, 0.01),
 		"ranks": Ranking.rank_from_accuracy(accuracy * 100.0).name,
-		"health": hp_percent,
+		"health": round(hp_percent),
 		"combo": combo,
 		"max combo": max_combo,
 		"ghost taps": ghost_taps

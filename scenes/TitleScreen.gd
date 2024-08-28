@@ -55,7 +55,8 @@ func _process(delta):
 		if not skipped_intro:
 			skip_intro()
 		elif not transitioning:
-			do_flash(1.0)
+			if SettingsAPI.get_setting("flashing lights"):
+				do_flash(1.0)
 			transitioning = true
 			title_enter.play("ENTER PRESSED")
 
@@ -84,7 +85,10 @@ func beat_hit(beat:int):
 	logo.frame = 0
 	logo.play("logo bumpin")
 
-	gf.play("danceLeft" if beat % 2 == 0 else "danceRight")
+	if SettingsAPI.get_setting("flashing lights"):
+		gf.play("danceLeft" if beat % 2 == 0 else "danceRight")
+	else:
+		gf.play("danceLeft_noFL" if beat % 2 == 0 else "danceRight_noFL")
 
 	if skipped_intro: return
 
@@ -123,7 +127,8 @@ func skip_intro():
 	delete_cool_text()
 	title_group.visible = true
 
-	do_flash()
+	if SettingsAPI.get_setting("flashing lights"):
+		do_flash()
 
 	get_tree().create_timer(2.0).timeout.connect(func(): $TitleGroup/entrance.play('entrance'))
 
@@ -165,6 +170,7 @@ func _on_request_completed(result: int, response_code: int, headers: PackedStrin
 	# Convert the body (PackedByteArray) to a String and print it
 	var content = body.get_string_from_utf8()
 	Global.new_version = content
+	Global.new_version = Global.new_version.replace("\n", "")
 
 	# Optionally, handle different response codes (e.g., 200 for success)
 	if response_code != 200:

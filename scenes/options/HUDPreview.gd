@@ -4,26 +4,27 @@ extends CanvasLayer
 @onready var hp_bar_y: OptionsSpinBox = $'../Editor/TabContainer/Health Bar/HPBar Y'
 
 func _process(delta: float) -> void:
-	if SettingsAPI.get_setting("downscroll"):
-		$HealthBar.position = Vector2(hp_bar_x.value, hp_bar_y.value * 0.1)
-	else:
-		$HealthBar.position = Vector2(hp_bar_x.value, hp_bar_y.value)
+	if Global.update_options:
+		if SettingsAPI.get_setting("downscroll"):
+			$HealthBar.position = Vector2(hp_bar_x.value, hp_bar_y.value * 0.1)
+		else:
+			$HealthBar.position = Vector2(hp_bar_x.value, hp_bar_y.value)
 
-	if SettingsAPI.get_setting("hide hpbar"):
-		$HealthBar.self_modulate = Color(1, 1, 1, 0)
-		$HealthBar/ProgressBar.self_modulate  = Color(1, 1, 1, 0)
-	else:
-		$HealthBar.self_modulate = Color(1, 1, 1, 1)
-		$HealthBar/ProgressBar.self_modulate  = Color(1, 1, 1, 1)
+		if SettingsAPI.get_setting("hide hpbar"):
+			$HealthBar.self_modulate = Color(1, 1, 1, 0)
+			$HealthBar/ProgressBar.self_modulate  = Color(1, 1, 1, 0)
+		else:
+			$HealthBar.self_modulate = Color(1, 1, 1, 1)
+			$HealthBar/ProgressBar.self_modulate  = Color(1, 1, 1, 1)
 
-	if SettingsAPI.get_setting("hide icons"):
-		$HealthBar/ProgressBar/PlayerIcon.hide()
-		$HealthBar/ProgressBar/CPUIcon.hide()
-	else:
-		$HealthBar/ProgressBar/PlayerIcon.show()
-		$HealthBar/ProgressBar/CPUIcon.show()
+		if SettingsAPI.get_setting("hide icons"):
+			$HealthBar/ProgressBar/PlayerIcon.hide()
+			$HealthBar/ProgressBar/CPUIcon.hide()
+		else:
+			$HealthBar/ProgressBar/PlayerIcon.show()
+			$HealthBar/ProgressBar/CPUIcon.show()
 
-	setup_label_settings()
+		setup_label_settings()
 
 func setup_label_settings():
 	var text_settings = LabelSettings.new()

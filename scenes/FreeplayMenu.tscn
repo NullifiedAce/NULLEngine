@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://duo1h603vpbjc"]
+[gd_scene load_steps=14 format=3 uid="uid://duo1h603vpbjc"]
 
 [ext_resource type="Script" path="res://scenes/FreeplayMenu.gd" id="1_fmw2k"]
 [ext_resource type="Resource" uid="uid://rkmusgpraddm" path="res://assets/freeplaySongList.tres" id="2_c5rpj"]
@@ -11,6 +11,8 @@
 [ext_resource type="Theme" uid="uid://br6hapg0jupnv" path="res://assets/styles/nova_purple_panel.tres" id="9_l28b6"]
 [ext_resource type="Theme" uid="uid://c7bhikvxte264" path="res://assets/styles/nova_purple.tres" id="10_8grtk"]
 [ext_resource type="Script" path="res://scenes/options/Display Slider Optionless.gd" id="11_g1sif"]
+[ext_resource type="Theme" uid="uid://blt3c0a5po0yj" path="res://assets/styles/nova_purple_button.tres" id="12_vvju7"]
+[ext_resource type="Script" path="res://scenes/options/HUD Editor/LoadHUDPreset.gd" id="13_bc0k6"]
 
 [node name="FreeplayMenu" type="Node2D"]
 script = ExtResource("1_fmw2k")
@@ -95,9 +97,7 @@ offset_left = 14.0
 offset_top = 26.0
 offset_right = 527.0
 offset_bottom = 42.0
-tooltip_text = "Adjusts how early/late notes spawn during gameplay.
-Negative means early and positive means late.
-Useful for bluetooth headphones or something."
+tooltip_text = "Adjust the playback rate the song is played at."
 theme = ExtResource("10_8grtk")
 min_value = 0.5
 max_value = 3.0
@@ -194,6 +194,28 @@ offset_bottom = 6.0
 text = "1"
 horizontal_alignment = 2
 
+[node name="LoadHUD" type="Button" parent="GameplayModifiers/Control"]
+offset_left = 12.0
+offset_top = 132.0
+offset_right = 161.0
+offset_bottom = 164.0
+focus_mode = 0
+theme = ExtResource("12_vvju7")
+text = "Load HUD Preset"
+script = ExtResource("13_bc0k6")
+
+[node name="load" type="FileDialog" parent="GameplayModifiers/Control/LoadHUD"]
+auto_translate_mode = 1
+title = "Open a File"
+initial_position = 2
+size = Vector2i(320, 460)
+ok_button_text = "Open"
+file_mode = 0
+access = 1
+filters = PackedStringArray("*.cfg")
+
 [connection signal="value_changed" from="GameplayModifiers/Control/Playback Rate" to="GameplayModifiers/Control/Playback Rate" method="_on_value_changed"]
 [connection signal="value_changed" from="GameplayModifiers/Control/Health Gain Mult" to="GameplayModifiers/Control/Health Gain Mult" method="_on_value_changed"]
 [connection signal="value_changed" from="GameplayModifiers/Control/Health Loss Mult" to="GameplayModifiers/Control/Health Loss Mult" method="_on_value_changed"]
+[connection signal="pressed" from="GameplayModifiers/Control/LoadHUD" to="GameplayModifiers/Control/LoadHUD" method="_on_pressed"]
+[connection signal="file_selected" from="GameplayModifiers/Control/LoadHUD/load" to="GameplayModifiers/Control/LoadHUD" method="_on_load"]

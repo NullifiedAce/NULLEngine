@@ -14,3 +14,5 @@ func _input(event: InputEvent) -> void:
 		Global.switch_scene("res://scenes/MainMenu.tscn")
 	if Input.is_action_pressed("ui_down"):
 		$ScrollContainer.scroll_vertical = $ScrollContainer.scroll_vertical + 8
+	if Input.is_action_pressed("ui_up"):
+		$ScrollContainer.scroll_vertical = $ScrollContainer.scroll_vertical - 8

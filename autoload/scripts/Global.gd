@@ -37,8 +37,15 @@ var current_difficulty:String = "hard"
 var is_story_mode:bool = false
 var queued_songs:PackedStringArray = []
 
-var game_version = ProjectSettings.get_setting("application/config/version") + "\n"
+var game_version = ProjectSettings.get_setting("application/config/version") #+ "\n"
 var new_version: String
+
+const hud_options: Array = ["icon colors", "custom color", "hide hpbar", "hide icons", "player color", "opp color", "hpbar x", "hpbar y",
+	"seperator", "score_arrangement", "font path", "font size", "font color", "outline size", "outline color", "score bg color",
+	"score bg expand", "score prefix", "score suffix", "misses prefix", "misses suffix", "accuracy prefix", "accuracy suffix", "ranks prefix",
+	"ranks suffix", "s+ rank", "s rank", "a rank", "b rank", "c rank", "d rank", "e rank", "f rank", "null rank", "health prefix", "health suffix",
+	"combo prefix", "combo suffix", "max combo prefix", "max combo suffix", "ghost taps prefix", "ghost taps suffix"] # wow this is a lot.
+var update_options = true # used for loading presets
 
 func _ready() -> void:
 	last_scene_path = get_tree().current_scene.scene_file_path

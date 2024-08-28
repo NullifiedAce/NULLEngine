@@ -35,15 +35,14 @@ var _settings:Dictionary = {
 
 	# health bar
 	"icon colors": false,
+	"custom color": false,
 	"hide hpbar": false,
 	"hide icons": false,
-	"custom color": false,
 	"player color": "00ff00",
 	"opp color": "ff0000",
 
 	"hpbar x": 340,
 	"hpbar y": 636,
-	"hpbar y down": 60,
 
 	#score text
 	"seperator": " - ",
