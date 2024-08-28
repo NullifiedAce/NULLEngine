@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cvdlr3wfsrmlc"]
+[gd_scene load_steps=26 format=3 uid="uid://cvdlr3wfsrmlc"]
 
 [ext_resource type="Script" path="res://scenes/OptionsMenu.gd" id="1_wsch7"]
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="2_di4mo"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dw8bh3jsxd3kl" path="res://assets/images/material_icons/volume-mute.png" id="16_ofedk"]
 [ext_resource type="Texture2D" uid="uid://s111e8ow38lw" path="res://assets/images/menus/options/switchModBind.png" id="17_q6en1"]
 [ext_resource type="FontFile" uid="uid://cf2wd6a4pa5kb" path="res://assets/fonts/funkin.ttf" id="17_u2vjg"]
+[ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="23_22kqe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2rif3"]
 bg_color = Color(1, 1, 1, 0)
@@ -1087,6 +1088,63 @@ in_editor = true
 
 [node name="Notes" type="Node2D" parent="."]
 
+[node name="Open Help" type="Button" parent="."]
+offset_left = 1176.0
+offset_top = 680.0
+offset_right = 1270.0
+offset_bottom = 711.0
+focus_mode = 0
+theme = ExtResource("7_xa45n")
+text = "Help"
+
+[node name="Hints" type="ColorRect" parent="."]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.411765)
+
+[node name="switch" type="Label" parent="Hints"]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 38.0
+offset_right = 747.0
+offset_bottom = 82.0
+theme = ExtResource("23_22kqe")
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("17_u2vjg")
+theme_override_font_sizes/font_size = 32
+text = "← Switch categories"
+
+[node name="hover" type="Label" parent="Hints"]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 342.0
+offset_right = 861.0
+offset_bottom = 414.0
+theme = ExtResource("23_22kqe")
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("17_u2vjg")
+theme_override_font_sizes/font_size = 32
+text = "↖ Hover over options with
+your mouse to see a description."
+
+[node name="close" type="Label" parent="Hints"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -33.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("23_22kqe")
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("17_u2vjg")
+theme_override_font_sizes/font_size = 32
+text = "Press \"F1\" to close."
+horizontal_alignment = 1
+
 [connection signal="pressed" from="TabContainer/Gameplay/Downscroll" to="TabContainer/Gameplay/Downscroll" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Gameplay/Downscroll" to="." method="_on_gameplay_checkbox_pressed" binds= ["Downscroll"]]
 [connection signal="pressed" from="TabContainer/Gameplay/Centered Notefield" to="TabContainer/Gameplay/Centered Notefield" method="_on_pressed"]
@@ -1147,3 +1205,4 @@ in_editor = true
 [connection signal="pressed" from="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel2/UI Binds/Volume Mute Bind/Alt Bind" to="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel2/UI Binds/Volume Mute Bind/Alt Bind" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel2/UI Binds/Switch Mod Bind" to="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel2/UI Binds/Switch Mod Bind" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel2/UI Binds/Switch Mod Bind/Alt Bind" to="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel2/UI Binds/Switch Mod Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="Open Help" to="." method="_on_open_help_pressed"]
