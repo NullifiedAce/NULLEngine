@@ -294,7 +294,7 @@ func _ready() -> void:
 
 	if SettingsAPI.get_setting("downscroll"):
 		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
-		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y") * 0.1
+		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y") * SettingsAPI.get_setting("hpbar down multiplier")
 	else:
 		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
 		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y")

@@ -6,7 +6,7 @@ extends CanvasLayer
 func _process(delta: float) -> void:
 	if Global.update_options:
 		if SettingsAPI.get_setting("downscroll"):
-			$HealthBar.position = Vector2(hp_bar_x.value, hp_bar_y.value * 0.1)
+			$HealthBar.position = Vector2(hp_bar_x.value, hp_bar_y.value * SettingsAPI.get_setting("hpbar down multiplier"))
 		else:
 			$HealthBar.position = Vector2(hp_bar_x.value, hp_bar_y.value)
 

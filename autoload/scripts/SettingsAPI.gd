@@ -43,6 +43,7 @@ var _settings:Dictionary = {
 
 	"hpbar x": 340,
 	"hpbar y": 636,
+	"hpbar down multiplier": 0.1,
 
 	#score text
 	"seperator": " - ",

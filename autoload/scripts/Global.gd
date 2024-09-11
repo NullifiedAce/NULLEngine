@@ -44,7 +44,7 @@ const hud_options: Array = ["icon colors", "custom color", "hide hpbar", "hide i
 	"seperator", "score_arrangement", "font path", "font size", "font color", "outline size", "outline color", "score bg color",
 	"score bg expand", "score prefix", "score suffix", "misses prefix", "misses suffix", "accuracy prefix", "accuracy suffix", "ranks prefix",
 	"ranks suffix", "s+ rank", "s rank", "a rank", "b rank", "c rank", "d rank", "e rank", "f rank", "null rank", "health prefix", "health suffix",
-	"combo prefix", "combo suffix", "max combo prefix", "max combo suffix", "ghost taps prefix", "ghost taps suffix"] # wow this is a lot.
+	"combo prefix", "combo suffix", "max combo prefix", "max combo suffix", "ghost taps prefix", "ghost taps suffix", "hpbar down multiplier"] # wow this is a lot.
 var update_options = true # used for loading presets
 
 func _ready() -> void:

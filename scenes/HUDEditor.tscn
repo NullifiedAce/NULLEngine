@@ -108,11 +108,12 @@ offset_top = 8.0
 offset_right = 392.0
 offset_bottom = 712.0
 theme = ExtResource("2_p2wl7")
-current_tab = 0
+current_tab = 1
 tab_focus_mode = 0
 metadata/_edit_lock_ = true
 
 [node name="HUD Editor Options" type="TabBar" parent="Editor/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -185,7 +186,6 @@ access = 1
 filters = PackedStringArray("*.cfg")
 
 [node name="Health Bar" type="TabBar" parent="Editor/TabContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
 metadata/_tab_index = 1
@@ -213,30 +213,6 @@ theme = ExtResource("2_p2wl7")
 text = "Custom Colors"
 script = ExtResource("3_0xuk5")
 option = "custom color"
-
-[node name="Hide HPBar" type="CheckBox" parent="Editor/TabContainer/Health Bar"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 163.0
-offset_right = 158.0
-offset_bottom = 187.0
-tooltip_text = "Use custom colors for the Health Bar."
-theme = ExtResource("2_p2wl7")
-text = "Hide Health Bar"
-script = ExtResource("3_0xuk5")
-option = "hide hpbar"
-
-[node name="Hide Icons" type="CheckBox" parent="Editor/TabContainer/Health Bar"]
-layout_mode = 0
-offset_left = 200.0
-offset_top = 163.0
-offset_right = 369.0
-offset_bottom = 187.0
-tooltip_text = "Use custom colors for the Health Bar."
-theme = ExtResource("2_p2wl7")
-text = "Hide Icons"
-script = ExtResource("3_0xuk5")
-option = "hide icons"
 
 [node name="Player Color" type="ColorPickerButton" parent="Editor/TabContainer/Health Bar"]
 layout_mode = 0
@@ -327,6 +303,56 @@ offset_bottom = -1.0
 theme = ExtResource("2_p2wl7")
 text = "HP Bar Y Postion"
 metadata/_edit_lock_ = true
+
+[node name="hpbar down multiplier" type="SpinBox" parent="Editor/TabContainer/Health Bar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 171.0
+offset_right = 91.063
+offset_bottom = 202.0
+tooltip_text = "Sets the health bar's Y position.
+NOTE: When using dowscroll this value gets multiplied by 0.1!
+Default: 636"
+theme = ExtResource("2_p2wl7")
+max_value = 999999.0
+step = 0.0
+value = 636.0
+suffix = "x"
+script = ExtResource("10_dvgfv")
+option = "hpbar down multiplier"
+
+[node name="Title" type="Label" parent="Editor/TabContainer/Health Bar/hpbar down multiplier"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 150.0
+offset_bottom = -1.0
+theme = ExtResource("2_p2wl7")
+text = "HP Bar Downscroll multiplier"
+metadata/_edit_lock_ = true
+
+[node name="Hide HPBar" type="CheckBox" parent="Editor/TabContainer/Health Bar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 227.0
+offset_right = 177.0
+offset_bottom = 251.0
+tooltip_text = "Use custom colors for the Health Bar."
+theme = ExtResource("2_p2wl7")
+text = "Hide Health Bar"
+script = ExtResource("3_0xuk5")
+option = "hide hpbar"
+
+[node name="Hide Icons" type="CheckBox" parent="Editor/TabContainer/Health Bar"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 227.0
+offset_right = 369.0
+offset_bottom = 251.0
+tooltip_text = "Use custom colors for the Health Bar."
+theme = ExtResource("2_p2wl7")
+text = "Hide Icons"
+script = ExtResource("3_0xuk5")
+option = "hide icons"
 
 [node name="Score Text" type="TabBar" parent="Editor/TabContainer"]
 visible = false
@@ -1213,12 +1239,13 @@ filters = PackedStringArray("*.ttf", "*.otf")
 [connection signal="file_selected" from="Editor/TabContainer/HUD Editor Options/LoadHUD/load" to="Editor/TabContainer/HUD Editor Options/LoadHUD" method="_on_load"]
 [connection signal="pressed" from="Editor/TabContainer/Health Bar/Icon Colors" to="Editor/TabContainer/Health Bar/Icon Colors" method="_on_pressed"]
 [connection signal="pressed" from="Editor/TabContainer/Health Bar/Custom Colors" to="Editor/TabContainer/Health Bar/Custom Colors" method="_on_pressed"]
-[connection signal="pressed" from="Editor/TabContainer/Health Bar/Hide HPBar" to="Editor/TabContainer/Health Bar/Hide HPBar" method="_on_pressed"]
-[connection signal="pressed" from="Editor/TabContainer/Health Bar/Hide Icons" to="Editor/TabContainer/Health Bar/Hide Icons" method="_on_pressed"]
 [connection signal="popup_closed" from="Editor/TabContainer/Health Bar/Player Color" to="Editor/TabContainer/Health Bar/Player Color" method="_on_popup_closed"]
 [connection signal="popup_closed" from="Editor/TabContainer/Health Bar/Opp Color" to="Editor/TabContainer/Health Bar/Opp Color" method="_on_popup_closed"]
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar X" to="Editor/TabContainer/Health Bar/HPBar X" method="_on_changed"]
 [connection signal="value_changed" from="Editor/TabContainer/Health Bar/HPBar Y" to="Editor/TabContainer/Health Bar/HPBar Y" method="_on_changed"]
+[connection signal="value_changed" from="Editor/TabContainer/Health Bar/hpbar down multiplier" to="Editor/TabContainer/Health Bar/hpbar down multiplier" method="_on_changed"]
+[connection signal="pressed" from="Editor/TabContainer/Health Bar/Hide HPBar" to="Editor/TabContainer/Health Bar/Hide HPBar" method="_on_pressed"]
+[connection signal="pressed" from="Editor/TabContainer/Health Bar/Hide Icons" to="Editor/TabContainer/Health Bar/Hide Icons" method="_on_pressed"]
 [connection signal="pressed" from="Editor/TabContainer/Score Text/Customize" to="." method="_on_customize_pressed"]
 [connection signal="pressed" from="Editor/TabContainer/Score Text/Rearrange Counters" to="." method="_on_rearrange_counters_pressed"]
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Seperator" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Seperator" method="_on_focus_exited"]
