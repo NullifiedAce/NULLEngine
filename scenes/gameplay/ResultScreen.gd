@@ -29,13 +29,13 @@ var int_bads: int = 0
 var int_shits: int = 0
 var int_misses: int = 0
 
-var grade: int = 0
+var grade: float = 0
 
 func _ready() -> void:
 	Audio.play_music("results/normal")
 	await get_tree().create_timer(0.25).timeout
 
-	grade = (Ranking.final_sicks + Ranking.final_goods) / Ranking.hittable_notes * 100
+	grade = (Ranking.final_sicks + Ranking.final_goods) / Ranking.hittable_notes
 
 	var tween = get_tree().create_tween()
 	tween.tween_property($BG/BlackBar, "position", Vector2(640, 72), 0.25)
