@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbld2pm6f27au"]
+[gd_scene load_steps=10 format=3 uid="uid://cbld2pm6f27au"]
 
 [ext_resource type="Script" path="res://scripts/Stage.gd" id="1_kglcc"]
-[ext_resource type="Texture2D" uid="uid://bf0pjitkjn6tp" path="res://assets/images/gameplay/stages/stage/stageback.png" id="2_y78mw"]
-[ext_resource type="Texture2D" uid="uid://yjeat30yq2eo" path="res://assets/images/gameplay/stages/stage/stagefront.png" id="3_ac72p"]
-[ext_resource type="Texture2D" uid="uid://b1felplvm5ir" path="res://assets/images/gameplay/stages/stage/stagecurtains.png" id="4_gk1p1"]
+[ext_resource type="Texture2D" uid="uid://dmk4oqb2jaa30" path="res://assets/images/gameplay/stages/week1bgshitos/backDark.png" id="2_lennx"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/week1bgshitos/crowd.res" id="3_febsw"]
+[ext_resource type="Script" path="res://scenes/gameplay/stages/animated_sprite_2d.gd" id="4_s6386"]
+[ext_resource type="Texture2D" uid="uid://d3yi3uiny3sbo" path="res://assets/images/gameplay/stages/week1bgshitos/bg.png" id="5_m47mt"]
+[ext_resource type="Texture2D" uid="uid://ddwarfg4uqwcr" path="res://assets/images/gameplay/stages/week1bgshitos/server.png" id="6_8mne3"]
+[ext_resource type="Texture2D" uid="uid://cnesmy2kofplp" path="res://assets/images/gameplay/stages/week1bgshitos/lightgreen.png" id="7_ewt85"]
+[ext_resource type="Texture2D" uid="uid://dqmuobxdjtr85" path="res://assets/images/gameplay/stages/week1bgshitos/brightLightSmall.png" id="8_j5fhe"]
+[ext_resource type="Texture2D" uid="uid://b5lo5lyvrhx73" path="res://assets/images/gameplay/stages/week1bgshitos/lights.png" id="9_6tmdf"]
 
 [node name="stage" type="Node2D"]
 script = ExtResource("1_kglcc")
@@ -14,25 +19,40 @@ default_cam_zoom = 0.9
 [node name="PL1" type="ParallaxLayer" parent="PB"]
 motion_scale = Vector2(0.9, 0.9)
 
+[node name="Sprite2D2" type="Sprite2D" parent="PB/PL1"]
+position = Vector2(1246, 339)
+texture = ExtResource("2_lennx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PB/PL1"]
+position = Vector2(1017, 518)
+sprite_frames = ExtResource("3_febsw")
+animation = &"Symbol 2 instance 1"
+speed_scale = 0.5
+script = ExtResource("4_s6386")
+
 [node name="Sprite2D" type="Sprite2D" parent="PB/PL1"]
-position = Vector2(-600, -200)
-texture = ExtResource("2_y78mw")
+position = Vector2(-648, -200)
+texture = ExtResource("5_m47mt")
 centered = false
 
-[node name="Sprite2D2" type="Sprite2D" parent="PB/PL1"]
-position = Vector2(-652, 600)
-scale = Vector2(1.1, 1.1)
-texture = ExtResource("3_ac72p")
-centered = false
+[node name="Sprite2D3" type="Sprite2D" parent="PB/PL1"]
+position = Vector2(-124, 527)
+texture = ExtResource("6_8mne3")
+
+[node name="Sprite2D4" type="Sprite2D" parent="PB/PL1"]
+position = Vector2(-140, 348)
+texture = ExtResource("7_ewt85")
+
+[node name="Sprite2D7" type="Sprite2D" parent="PB/PL1"]
+position = Vector2(1221, 154)
+texture = ExtResource("8_j5fhe")
+
+[node name="Sprite2D5" type="Sprite2D" parent="PB/PL1"]
+position = Vector2(513, 0)
+texture = ExtResource("9_6tmdf")
 
 [node name="PL2" type="ParallaxLayer" parent="PB"]
 motion_scale = Vector2(1.3, 1.3)
-
-[node name="Sprite2D" type="Sprite2D" parent="PB/PL2"]
-position = Vector2(-500, -300)
-scale = Vector2(0.9, 0.9)
-texture = ExtResource("4_gk1p1")
-centered = false
 
 [node name="Character Positions" type="Node2D" parent="."]
 
