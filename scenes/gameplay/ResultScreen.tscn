@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://btyj0c16ol6n1"]
+[gd_scene load_steps=20 format=3 uid="uid://btyj0c16ol6n1"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/ResultScreen.gd" id="1_dr2td"]
 [ext_resource type="SpriteFrames" uid="uid://bsluemfefaor" path="res://assets/images/menus/results/bf/good.res" id="2_efy28"]
@@ -9,7 +9,8 @@
 [ext_resource type="SpriteFrames" uid="uid://dovsqn0jwykto" path="res://assets/images/menus/results/gf/good.res" id="4_w8y3w"]
 [ext_resource type="SpriteFrames" uid="uid://yga5nt03qvgo" path="res://assets/images/menus/results/ratingsPopin.res" id="5_o8obd"]
 [ext_resource type="SpriteFrames" uid="uid://dym0v4scq7pkr" path="res://assets/images/menus/results/scorePopin.res" id="6_jkcav"]
-[ext_resource type="SpriteFrames" path="res://assets/images/menus/results/highscoreNew.res" id="7_bsr56"]
+[ext_resource type="SpriteFrames" uid="uid://bv05b8gh1p476" path="res://assets/images/menus/results/highscoreNew.res" id="7_bsr56"]
+[ext_resource type="SpriteFrames" uid="uid://dxkg0jh6wqyxf" path="res://assets/images/menus/results/tallieNumber.res" id="8_ru44q"]
 [ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="11_am746"]
 [ext_resource type="Texture2D" uid="uid://df8ls152ioipv" path="res://assets/images/menus/results/clearPercent/clearPercentText.png" id="11_ds5hc"]
 [ext_resource type="SpriteFrames" uid="uid://dsc0pnekat1dy" path="res://assets/images/menus/results/clearPercent/clearPercentNumberRight.res" id="12_bhlsk"]
@@ -18,6 +19,21 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cdaky"]
 shader = ExtResource("13_bdlr8")
 shader_parameter/white_progress = 0.0
+
+[sub_resource type="Animation" id="Animation_ccg2t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("text/DefaultTemplate:material:shader_parameter/white_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_7xhdv"]
 resource_name = "flash"
@@ -33,21 +49,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 2, 1),
 "update": 0,
 "values": [1.0, 1.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_ccg2t"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("text/DefaultTemplate:material:shader_parameter/white_progress")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_on3e4"]
@@ -67,7 +68,7 @@ metadata/_edit_lock_ = true
 
 [node name="BlackBar" type="Sprite2D" parent="BG"]
 z_index = 1
-position = Vector2(640, 72)
+position = Vector2(640, -80)
 texture = ExtResource("2_ri1ff")
 
 [node name="result" type="AnimatedSprite2D" parent="BG"]
@@ -76,8 +77,6 @@ z_index = 2
 position = Vector2(368, 72)
 sprite_frames = ExtResource("3_umumk")
 animation = &"intro"
-frame = 35
-frame_progress = 1.0
 
 [node name="soundSystem" type="AnimatedSprite2D" parent="BG"]
 visible = false
@@ -95,6 +94,116 @@ sprite_frames = ExtResource("5_o8obd")
 animation = &"intro"
 centered = false
 
+[node name="total" parent="BG/ratings" instance=ExtResource("11_am746")]
+visible = false
+custom_minimum_size = Vector2(34, 70)
+offset_left = 501.0
+offset_top = -8.0
+offset_right = 535.0
+offset_bottom = 62.0
+bold = false
+text = "0"
+alignment = 2
+
+[node name="DefaultTemplate" parent="BG/ratings/total" index="1"]
+sprite_frames = ExtResource("8_ru44q")
+animation = &"9"
+
+[node name="max_combo" parent="BG/ratings" instance=ExtResource("11_am746")]
+visible = false
+custom_minimum_size = Vector2(34, 70)
+offset_left = 501.0
+offset_top = 45.0
+offset_right = 535.0
+offset_bottom = 115.0
+bold = false
+text = "0"
+alignment = 2
+
+[node name="DefaultTemplate" parent="BG/ratings/max_combo" index="1"]
+sprite_frames = ExtResource("8_ru44q")
+animation = &"9"
+
+[node name="sicks" parent="BG/ratings" instance=ExtResource("11_am746")]
+visible = false
+modulate = Color(0.176471, 0.890196, 0.337255, 1)
+custom_minimum_size = Vector2(34, 70)
+offset_left = 357.0
+offset_top = 125.0
+offset_right = 391.0
+offset_bottom = 195.0
+bold = false
+text = "0"
+alignment = 2
+
+[node name="DefaultTemplate" parent="BG/ratings/sicks" index="1"]
+sprite_frames = ExtResource("8_ru44q")
+animation = &"9"
+
+[node name="goods" parent="BG/ratings" instance=ExtResource("11_am746")]
+visible = false
+modulate = Color(0.145098, 0.709804, 0.921569, 1)
+custom_minimum_size = Vector2(34, 70)
+offset_left = 349.0
+offset_top = 173.0
+offset_right = 383.0
+offset_bottom = 243.0
+bold = false
+text = "0"
+alignment = 2
+
+[node name="DefaultTemplate" parent="BG/ratings/goods" index="1"]
+sprite_frames = ExtResource("8_ru44q")
+animation = &"9"
+
+[node name="bads" parent="BG/ratings" instance=ExtResource("11_am746")]
+visible = false
+modulate = Color(0.909804, 0.737255, 0.227451, 1)
+custom_minimum_size = Vector2(34, 70)
+offset_left = 325.0
+offset_top = 229.0
+offset_right = 359.0
+offset_bottom = 299.0
+bold = false
+text = "0"
+alignment = 2
+
+[node name="DefaultTemplate" parent="BG/ratings/bads" index="1"]
+sprite_frames = ExtResource("8_ru44q")
+animation = &"9"
+
+[node name="shits" parent="BG/ratings" instance=ExtResource("11_am746")]
+visible = false
+modulate = Color(0.862745, 0.219608, 0.203922, 1)
+custom_minimum_size = Vector2(34, 70)
+offset_left = 357.0
+offset_top = 285.0
+offset_right = 391.0
+offset_bottom = 355.0
+bold = false
+text = "0"
+alignment = 2
+
+[node name="DefaultTemplate" parent="BG/ratings/shits" index="1"]
+sprite_frames = ExtResource("8_ru44q")
+animation = &"9"
+
+[node name="misses" parent="BG/ratings" instance=ExtResource("11_am746")]
+visible = false
+modulate = Color(0.760592, 0.47805, 0.934949, 1)
+custom_minimum_size = Vector2(34, 70)
+offset_left = 413.0
+offset_top = 341.0
+offset_right = 447.0
+offset_bottom = 411.0
+bold = false
+text = "0"
+alignment = 2
+
+[node name="DefaultTemplate" parent="BG/ratings/misses" index="1"]
+sprite_frames = ExtResource("8_ru44q")
+animation = &"9"
+
 [node name="score" type="AnimatedSprite2D" parent="BG"]
 visible = false
 z_index = 1
@@ -108,9 +217,7 @@ visible = false
 z_index = 1
 position = Vector2(48, 549)
 sprite_frames = ExtResource("7_bsr56")
-animation = &"highscoreAnim"
-frame = 28
-frame_progress = 1.0
+animation = &"loop"
 centered = false
 
 [node name="percent" type="Sprite2D" parent="."]
@@ -125,6 +232,7 @@ offset_right = 37.0
 offset_bottom = 62.0
 bold = false
 text = "000"
+alignment = 2
 
 [node name="DefaultTemplate" parent="percent/text" index="1"]
 material = SubResource("ShaderMaterial_cdaky")
@@ -150,10 +258,15 @@ metadata/_edit_lock_ = true
 visible = false
 position = Vector2(952, 248)
 sprite_frames = ExtResource("2_efy28")
-animation = &"intro"
-frame = 12
-frame_progress = 1.0
+animation = &"loop"
 script = ExtResource("3_c0v5j")
 metadata/_edit_lock_ = true
 
+[editable path="BG/ratings/total"]
+[editable path="BG/ratings/max_combo"]
+[editable path="BG/ratings/sicks"]
+[editable path="BG/ratings/goods"]
+[editable path="BG/ratings/bads"]
+[editable path="BG/ratings/shits"]
+[editable path="BG/ratings/misses"]
 [editable path="percent/text"]

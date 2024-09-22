@@ -6,3 +6,8 @@
 script = ExtResource("1_jqvjk")
 start_offset = 0.0
 end_offset = 15000.0
+total_notes = {
+"easy": 100,
+"hard": 196,
+"normal": 131
+}

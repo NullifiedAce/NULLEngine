@@ -33,6 +33,13 @@ var combo:int = 0
 var max_combo:int = 0
 var ghost_taps:int = 0
 
+var sicks: int = 0
+var goods: int = 0
+var bads: int = 0
+var shits: int = 0
+
+var total_notes: int = 0
+
 var accuracy_pressed_notes:int = 0
 var accuracy_total_hit:float = 0.0
 
@@ -504,6 +511,7 @@ func end_song():
 		Global.queued_songs.remove_at(0)
 		Global.switch_scene("res://scenes/gameplay/Gameplay.tscn")
 	else:
+		Ranking.set_results(score, misses, max_combo, sicks, goods, bads, shits)
 		Global.switch_scene("res://scenes/gameplay/ResultScreen.tscn")
 
 func beat_hit(beat:int):
@@ -771,6 +779,15 @@ func good_note_hit(note:Note):
 		combo = 0
 		accuracy_pressed_notes += 1
 
+	if judgement.name == "sick":
+		sicks += 1
+	elif judgement.name == "good":
+		goods += 1
+	elif judgement.name == "bad":
+		bads += 1
+	elif judgement.name == "shit":
+		shits += 1
+
 	update_score_text()
 
 	note.was_good_hit = true
@@ -989,6 +1006,9 @@ func _physics_process(_delta: float) -> void:
 		new_note.must_press = is_player_note
 		new_note.note_skin = ui_skin
 		new_note.note_type = instance_type
+
+		if is_player_note:
+			total_notes += 1
 
 		if not new_note.alt_anim:
 			new_note.alt_anim = note.alt_anim or (note.type == "Alt Animation")

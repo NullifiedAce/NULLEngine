@@ -9,6 +9,7 @@ custom_minimum_size = Vector2(0, 70)
 offset_bottom = 70.0
 border_color = Color(1, 0, 0, 0)
 script = ExtResource("1_kuwlo")
+alignment = null
 
 [node name="BoldTemplate" type="AnimatedSprite2D" parent="."]
 visible = false

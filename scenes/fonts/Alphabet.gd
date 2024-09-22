@@ -33,7 +33,7 @@ var height:float = 0.0
 		update_text()
 
 # broken rn
-#@export var alignment:AlphabetAlign = AlphabetAlign.LEFT
+@export var alignment:AlphabetAlign = AlphabetAlign.LEFT
 
 var changing:bool = false
 

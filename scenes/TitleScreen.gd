@@ -95,6 +95,7 @@ func beat_hit(beat:int):
 	match beat:
 		1:
 			create_cool_text(['nullsonic'])
+			add_more_text('cilysong')
 		3:
 			add_more_text('presents')
 		4:
