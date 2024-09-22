@@ -22,6 +22,7 @@ var final_bads: int = 0
 var final_shits: int = 0
 
 var total_notes: int = 0
+var hittable_notes: int = 0
 
 func judgement_from_time(time:float):
 	for j in judgements:
@@ -50,7 +51,7 @@ func create_default_ranks():
 
 	null_rank = AccuracyRank.create(SettingsAPI.get_setting("null rank"), 0.0)
 
-func set_results(score: int = 0, misses: int = 0, max_combo: int = 0, sicks: int = 0, goods: int = 0, bads: int = 0, shits: int = 0):
+func set_results(score: int = 0, misses: int = 0, max_combo: int = 0, sicks: int = 0, goods: int = 0, bads: int = 0, shits: int = 0, total: int = 0):
 	final_score = score
 	final_misses = misses
 	final_max_combo = max_combo
@@ -59,5 +60,7 @@ func set_results(score: int = 0, misses: int = 0, max_combo: int = 0, sicks: int
 	final_goods = goods
 	final_bads = bads
 	final_shits = shits
+
+	hittable_notes = total
 
 	total_notes = final_sicks + final_goods + final_bads + final_shits

@@ -511,7 +511,7 @@ func end_song():
 		Global.queued_songs.remove_at(0)
 		Global.switch_scene("res://scenes/gameplay/Gameplay.tscn")
 	else:
-		Ranking.set_results(score, misses, max_combo, sicks, goods, bads, shits)
+		Ranking.set_results(score, misses, max_combo, sicks, goods, bads, shits, total_notes)
 		Global.switch_scene("res://scenes/gameplay/ResultScreen.tscn")
 
 func beat_hit(beat:int):

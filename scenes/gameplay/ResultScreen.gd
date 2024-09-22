@@ -29,9 +29,14 @@ var int_bads: int = 0
 var int_shits: int = 0
 var int_misses: int = 0
 
+var grade: int = 0
+
 func _ready() -> void:
 	Audio.play_music("results/normal")
 	await get_tree().create_timer(0.25).timeout
+
+	grade = (Ranking.final_sicks + Ranking.final_goods) / Ranking.hittable_notes * 100
+
 	var tween = get_tree().create_tween()
 	tween.tween_property($BG/BlackBar, "position", Vector2(640, 72), 0.25)
 	sound_system.show()
@@ -110,7 +115,7 @@ func do_rating_shit():
 
 func do_text_shit():
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "percent", 0, 2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "percent", grade, 2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	await tween.finished
 	tween.kill()
 	$percent/flash.play('flash')
