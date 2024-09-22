@@ -1,15 +1,60 @@
-[gd_scene load_steps=11 format=3 uid="uid://btyj0c16ol6n1"]
+[gd_scene load_steps=19 format=3 uid="uid://btyj0c16ol6n1"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/ResultScreen.gd" id="1_dr2td"]
 [ext_resource type="SpriteFrames" uid="uid://bsluemfefaor" path="res://assets/images/menus/results/bf/good.res" id="2_efy28"]
 [ext_resource type="Texture2D" uid="uid://bo848xuc8dshv" path="res://assets/images/menus/results/topBarBlack.png" id="2_ri1ff"]
 [ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="3_c0v5j"]
-[ext_resource type="SpriteFrames" path="res://assets/images/menus/results/results.res" id="3_umumk"]
-[ext_resource type="SpriteFrames" path="res://assets/images/menus/results/soundSystem.res" id="4_5jfab"]
+[ext_resource type="SpriteFrames" uid="uid://bwepqtwkpc5tk" path="res://assets/images/menus/results/results.res" id="3_umumk"]
+[ext_resource type="SpriteFrames" uid="uid://bkucq73h6upbj" path="res://assets/images/menus/results/soundSystem.res" id="4_5jfab"]
 [ext_resource type="SpriteFrames" uid="uid://dovsqn0jwykto" path="res://assets/images/menus/results/gf/good.res" id="4_w8y3w"]
-[ext_resource type="SpriteFrames" path="res://assets/images/menus/results/ratingsPopin.res" id="5_o8obd"]
-[ext_resource type="SpriteFrames" path="res://assets/images/menus/results/scorePopin.res" id="6_jkcav"]
+[ext_resource type="SpriteFrames" uid="uid://yga5nt03qvgo" path="res://assets/images/menus/results/ratingsPopin.res" id="5_o8obd"]
+[ext_resource type="SpriteFrames" uid="uid://dym0v4scq7pkr" path="res://assets/images/menus/results/scorePopin.res" id="6_jkcav"]
 [ext_resource type="SpriteFrames" path="res://assets/images/menus/results/highscoreNew.res" id="7_bsr56"]
+[ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="11_am746"]
+[ext_resource type="Texture2D" uid="uid://df8ls152ioipv" path="res://assets/images/menus/results/clearPercent/clearPercentText.png" id="11_ds5hc"]
+[ext_resource type="SpriteFrames" uid="uid://dsc0pnekat1dy" path="res://assets/images/menus/results/clearPercent/clearPercentNumberRight.res" id="12_bhlsk"]
+[ext_resource type="Shader" path="res://assets/shaders/white.gdshader" id="13_bdlr8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cdaky"]
+shader = ExtResource("13_bdlr8")
+shader_parameter/white_progress = 0.0
+
+[sub_resource type="Animation" id="Animation_7xhdv"]
+resource_name = "flash"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("text/DefaultTemplate:material:shader_parameter/white_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ccg2t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("text/DefaultTemplate:material:shader_parameter/white_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_on3e4"]
+_data = {
+"RESET": SubResource("Animation_ccg2t"),
+"flash": SubResource("Animation_7xhdv")
+}
 
 [node name="ResultScreen" type="Node2D"]
 script = ExtResource("1_dr2td")
@@ -26,41 +71,40 @@ position = Vector2(640, 72)
 texture = ExtResource("2_ri1ff")
 
 [node name="result" type="AnimatedSprite2D" parent="BG"]
-z_index = 1
+visible = false
+z_index = 2
 position = Vector2(368, 72)
 sprite_frames = ExtResource("3_umumk")
-animation = &"results instance 1"
+animation = &"intro"
 frame = 35
 frame_progress = 1.0
 
 [node name="soundSystem" type="AnimatedSprite2D" parent="BG"]
+visible = false
 z_index = 1
 position = Vector2(-28, -179)
 sprite_frames = ExtResource("4_5jfab")
-animation = &"sound system"
-frame = 64
-frame_progress = 1.0
+animation = &"intro"
 centered = false
 
 [node name="ratings" type="AnimatedSprite2D" parent="BG"]
+visible = false
 z_index = 1
 position = Vector2(-133, 147)
 sprite_frames = ExtResource("5_o8obd")
-animation = &"Categories"
-frame = 15
-frame_progress = 1.0
+animation = &"intro"
 centered = false
 
 [node name="score" type="AnimatedSprite2D" parent="BG"]
+visible = false
 z_index = 1
 position = Vector2(-129, 520)
 sprite_frames = ExtResource("6_jkcav")
-animation = &"tally score"
-frame = 29
-frame_progress = 1.0
+animation = &"intro"
 centered = false
 
 [node name="highscore" type="AnimatedSprite2D" parent="BG"]
+visible = false
 z_index = 1
 position = Vector2(48, 549)
 sprite_frames = ExtResource("7_bsr56")
@@ -69,7 +113,31 @@ frame = 28
 frame_progress = 1.0
 centered = false
 
+[node name="percent" type="Sprite2D" parent="."]
+position = Vector2(1008, 368)
+texture = ExtResource("11_ds5hc")
+
+[node name="text" parent="percent" instance=ExtResource("11_am746")]
+custom_minimum_size = Vector2(261, 70)
+offset_left = -224.0
+offset_top = -8.0
+offset_right = 37.0
+offset_bottom = 62.0
+bold = false
+text = "000"
+
+[node name="DefaultTemplate" parent="percent/text" index="1"]
+material = SubResource("ShaderMaterial_cdaky")
+sprite_frames = ExtResource("12_bhlsk")
+animation = &"9"
+
+[node name="flash" type="AnimationPlayer" parent="percent"]
+libraries = {
+"": SubResource("AnimationLibrary_on3e4")
+}
+
 [node name="gf" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(700, 468)
 sprite_frames = ExtResource("4_w8y3w")
 animation = &"intro"
@@ -79,6 +147,7 @@ script = ExtResource("3_c0v5j")
 metadata/_edit_lock_ = true
 
 [node name="bf" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(952, 248)
 sprite_frames = ExtResource("2_efy28")
 animation = &"intro"
@@ -86,3 +155,5 @@ frame = 12
 frame_progress = 1.0
 script = ExtResource("3_c0v5j")
 metadata/_edit_lock_ = true
+
+[editable path="percent/text"]

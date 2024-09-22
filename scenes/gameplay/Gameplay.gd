@@ -65,6 +65,8 @@ var accuracy:float:
 
 var ui_skin:UISkin
 
+var results_screen = preload("res://scenes/gameplay/ResultScreen.tscn")
+
 @onready var camera:Camera2D = $Camera2D
 @onready var hud:CanvasLayer = $HUD
 
@@ -502,7 +504,7 @@ func end_song():
 		Global.queued_songs.remove_at(0)
 		Global.switch_scene("res://scenes/gameplay/Gameplay.tscn")
 	else:
-		Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
+		Global.switch_scene("res://scenes/gameplay/ResultScreen.tscn")
 
 func beat_hit(beat:int):
 	stage.callv("on_beat_hit", [beat])
