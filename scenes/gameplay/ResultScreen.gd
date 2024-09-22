@@ -18,7 +18,7 @@ extends Node2D
 
 
 # used for tweening
-var percent = 0
+var percent: float = 0
 var old_val = 0
 
 var int_total: int = 0
@@ -35,7 +35,7 @@ func _ready() -> void:
 	Audio.play_music("results/normal")
 	await get_tree().create_timer(0.25).timeout
 
-	grade = (Ranking.final_sicks + Ranking.final_goods) / Ranking.hittable_notes
+	grade = (float(Ranking.final_sicks) + float(Ranking.final_goods)) / float(Ranking.hittable_notes)
 
 	var tween = get_tree().create_tween()
 	tween.tween_property($BG/BlackBar, "position", Vector2(640, 72), 0.25)
@@ -55,6 +55,7 @@ func _ready() -> void:
 	do_text_shit()
 
 func _process(delta: float) -> void:
+	percent = snapped(percent, 1)
 	percent_text.text = str(percent)
 
 	total.text = str(int_total)
@@ -115,7 +116,7 @@ func do_rating_shit():
 
 func do_text_shit():
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "percent", grade, 2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "percent", grade * 100, 2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	await tween.finished
 	tween.kill()
 	$percent/flash.play('flash')
