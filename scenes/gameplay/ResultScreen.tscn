@@ -1,6 +1,88 @@
-[gd_scene load_steps=2 format=3 uid="uid://btyj0c16ol6n1"]
+[gd_scene load_steps=11 format=3 uid="uid://btyj0c16ol6n1"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/ResultScreen.gd" id="1_dr2td"]
+[ext_resource type="SpriteFrames" uid="uid://bsluemfefaor" path="res://assets/images/menus/results/bf/good.res" id="2_efy28"]
+[ext_resource type="Texture2D" uid="uid://bo848xuc8dshv" path="res://assets/images/menus/results/topBarBlack.png" id="2_ri1ff"]
+[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="3_c0v5j"]
+[ext_resource type="SpriteFrames" path="res://assets/images/menus/results/results.res" id="3_umumk"]
+[ext_resource type="SpriteFrames" path="res://assets/images/menus/results/soundSystem.res" id="4_5jfab"]
+[ext_resource type="SpriteFrames" uid="uid://dovsqn0jwykto" path="res://assets/images/menus/results/gf/good.res" id="4_w8y3w"]
+[ext_resource type="SpriteFrames" path="res://assets/images/menus/results/ratingsPopin.res" id="5_o8obd"]
+[ext_resource type="SpriteFrames" path="res://assets/images/menus/results/scorePopin.res" id="6_jkcav"]
+[ext_resource type="SpriteFrames" path="res://assets/images/menus/results/highscoreNew.res" id="7_bsr56"]
 
 [node name="ResultScreen" type="Node2D"]
 script = ExtResource("1_dr2td")
+
+[node name="BG" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.996078, 0.8, 0.360784, 1)
+metadata/_edit_lock_ = true
+
+[node name="BlackBar" type="Sprite2D" parent="BG"]
+z_index = 1
+position = Vector2(640, 72)
+texture = ExtResource("2_ri1ff")
+
+[node name="result" type="AnimatedSprite2D" parent="BG"]
+z_index = 1
+position = Vector2(368, 72)
+sprite_frames = ExtResource("3_umumk")
+animation = &"results instance 1"
+frame = 35
+frame_progress = 1.0
+
+[node name="soundSystem" type="AnimatedSprite2D" parent="BG"]
+z_index = 1
+position = Vector2(-28, -179)
+sprite_frames = ExtResource("4_5jfab")
+animation = &"sound system"
+frame = 64
+frame_progress = 1.0
+centered = false
+
+[node name="ratings" type="AnimatedSprite2D" parent="BG"]
+z_index = 1
+position = Vector2(-133, 147)
+sprite_frames = ExtResource("5_o8obd")
+animation = &"Categories"
+frame = 15
+frame_progress = 1.0
+centered = false
+
+[node name="score" type="AnimatedSprite2D" parent="BG"]
+z_index = 1
+position = Vector2(-129, 520)
+sprite_frames = ExtResource("6_jkcav")
+animation = &"tally score"
+frame = 29
+frame_progress = 1.0
+centered = false
+
+[node name="highscore" type="AnimatedSprite2D" parent="BG"]
+z_index = 1
+position = Vector2(48, 549)
+sprite_frames = ExtResource("7_bsr56")
+animation = &"highscoreAnim"
+frame = 28
+frame_progress = 1.0
+centered = false
+
+[node name="gf" type="AnimatedSprite2D" parent="."]
+position = Vector2(700, 468)
+sprite_frames = ExtResource("4_w8y3w")
+animation = &"intro"
+frame = 7
+frame_progress = 1.0
+script = ExtResource("3_c0v5j")
+metadata/_edit_lock_ = true
+
+[node name="bf" type="AnimatedSprite2D" parent="."]
+position = Vector2(952, 248)
+sprite_frames = ExtResource("2_efy28")
+animation = &"intro"
+frame = 12
+frame_progress = 1.0
+script = ExtResource("3_c0v5j")
+metadata/_edit_lock_ = true

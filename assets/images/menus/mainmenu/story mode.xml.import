@@ -1,0 +1,18 @@
+[remap]
+
+importer="com.what-is-a-git.godot-sparrow-importer"
+type="SpriteFrames"
+uid="uid://cls2b6akt74gs"
+path="res://.godot/imported/story mode.xml-d1a44610887e97677e298060299c9ea9.res"
+
+[deps]
+
+source_file="res://assets/images/menus/mainmenu/story mode.xml"
+dest_files=["res://.godot/imported/story mode.xml-d1a44610887e97677e298060299c9ea9.res"]
+
+[params]
+
+use_offsets=true
+animation_framerate=24
+animations_looped=false
+store_external_spriteframes=false
