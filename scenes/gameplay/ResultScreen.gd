@@ -7,7 +7,7 @@ extends Node2D
 @onready var highscore: AnimatedSprite2D = $BG/highscore
 @onready var gf: AnimatedSprite = $gf
 @onready var bf: AnimatedSprite = $bf
-@onready var percent_text: Alphabet = $percent/text
+@onready var percent_text: Sprite2D = $percent
 @onready var total: Alphabet = $BG/ratings/total
 @onready var max_combo: Alphabet = $BG/ratings/max_combo
 @onready var sicks: Alphabet = $BG/ratings/sicks
@@ -35,7 +35,10 @@ func _ready() -> void:
 	Audio.play_music("results/normal")
 	await get_tree().create_timer(0.25).timeout
 
-	grade = (float(Ranking.final_sicks) + float(Ranking.final_goods)) / float(Ranking.hittable_notes)
+	if float(Ranking.hittable_notes) != 0:
+		grade = (float(Ranking.final_sicks) + float(Ranking.final_goods)) / float(Ranking.hittable_notes)
+	else:
+		grade = 0
 
 	var tween = get_tree().create_tween()
 	tween.tween_property($BG/BlackBar, "position", Vector2(640, 72), 0.25)
@@ -55,8 +58,8 @@ func _ready() -> void:
 	do_text_shit()
 
 func _process(delta: float) -> void:
-	percent = snapped(percent, 1)
-	percent_text.text = str(percent)
+	percent = floor(percent)
+	percent_text.get_child(0).text = str(percent)
 
 	total.text = str(int_total)
 	max_combo.text = str(int_max_combo)
@@ -71,7 +74,8 @@ func _process(delta: float) -> void:
 		old_val = percent
 
 	if Input.is_action_just_pressed("ui_accept"):
-		Global.switch_scene("res://scenes/FreeplayMenu.tscn")
+		Ranking.clear_results()
+		Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
 
 func do_rating_shit():
 	total.show()
@@ -115,6 +119,8 @@ func do_rating_shit():
 	misses_tween.tween_property(self, "int_misses", Ranking.final_misses, 1)
 
 func do_text_shit():
+	percent = (grade * 100) / 2
+	percent_text.show()
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "percent", grade * 100, 2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	await tween.finished

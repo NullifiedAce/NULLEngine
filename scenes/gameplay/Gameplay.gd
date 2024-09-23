@@ -509,9 +509,10 @@ func end_song():
 	if Global.queued_songs.size() > 0:
 		Global.SONG = Chart.load_chart(Global.queued_songs[0], Global.current_difficulty)
 		Global.queued_songs.remove_at(0)
+		Ranking.add_results(score, misses, max_combo, sicks, goods, bads, shits, total_notes)
 		Global.switch_scene("res://scenes/gameplay/Gameplay.tscn")
 	else:
-		Ranking.set_results(score, misses, max_combo, sicks, goods, bads, shits, total_notes)
+		Ranking.add_results(score, misses, max_combo, sicks, goods, bads, shits, total_notes)
 		Global.switch_scene("res://scenes/gameplay/ResultScreen.tscn")
 
 func beat_hit(beat:int):

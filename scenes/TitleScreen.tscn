@@ -505,7 +505,6 @@ script = ExtResource("2_rhavx")
 [node name="TextTemplate" parent="." instance=ExtResource("6_8oxyx")]
 offset_top = 200.0
 offset_bottom = 270.0
-alignment = 0
 
 [node name="TextGroup" type="Node2D" parent="."]
 

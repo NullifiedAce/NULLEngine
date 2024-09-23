@@ -64,3 +64,32 @@ func set_results(score: int = 0, misses: int = 0, max_combo: int = 0, sicks: int
 	hittable_notes = total
 
 	total_notes = final_sicks + final_goods + final_bads + final_shits
+
+func add_results(score: int = 0, misses: int = 0, max_combo: int = 0, sicks: int = 0, goods: int = 0, bads: int = 0, shits: int = 0, total: int = 0):
+	final_score += score
+	final_misses += misses
+	if max_combo >= final_max_combo:
+		final_max_combo = max_combo
+
+	final_sicks += sicks
+	final_goods += goods
+	final_bads += bads
+	final_shits += shits
+
+	hittable_notes += total
+
+	total_notes += final_sicks + final_goods + final_bads + final_shits
+
+func clear_results():
+	final_score = 0
+	final_misses = 0
+	final_max_combo = 0
+
+	final_sicks = 0
+	final_goods = 0
+	final_bads = 0
+	final_shits = 0
+
+	hittable_notes = 0
+
+	total_notes = 0
