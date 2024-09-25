@@ -27,7 +27,7 @@ var health:float = 1.0:
 
 var max_health:float = 2.0
 
-var score:int = 0
+var songScore:int = 0
 var misses:int = 0
 var combo:int = 0
 var max_combo:int = 0
@@ -503,16 +503,16 @@ func end_song():
 	stage.callv("on_end_song", [])
 	var ret:Variant = script_group.call_func("on_end_song", [])
 	if ret == false: return
-	if score > HighScore.get_score(SONG.name,Global.current_difficulty):
-		HighScore.set_score(SONG.name,Global.current_difficulty,score)
+	if songScore > HighScore.get_score(SONG.name,Global.current_difficulty):
+		HighScore.set_score(SONG.name,Global.current_difficulty,songScore)
 
 	if Global.queued_songs.size() > 0:
 		Global.SONG = Chart.load_chart(Global.queued_songs[0], Global.current_difficulty)
 		Global.queued_songs.remove_at(0)
-		Ranking.add_results(score, misses, max_combo, sicks, goods, bads, shits, total_notes)
+		Ranking.add_results(songScore, misses, max_combo, sicks, goods, bads, shits, total_notes)
 		Global.switch_scene("res://scenes/gameplay/Gameplay.tscn")
 	else:
-		Ranking.add_results(score, misses, max_combo, sicks, goods, bads, shits, total_notes)
+		Ranking.add_results(songScore, misses, max_combo, sicks, goods, bads, shits, total_notes)
 		Global.switch_scene("res://scenes/gameplay/ResultScreen.tscn")
 
 func beat_hit(beat:int):
@@ -655,16 +655,13 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 		script_group.call_func("on_ghost_tap", [data])
 
 func fake_miss(direction:int = -1):
-	var new_health = health - 0.0475 * Global.health_loss_mult
-
-	var hp_tween = get_tree().create_tween()
-	hp_tween.tween_property(self, "health", new_health, 0.1)
+	var healthChange = health - Constants.HEALTH_MISS_PENALTY * Global.health_loss_mult
 
 	misses += 1
-	score -= 10
-	combo = 0
 	accuracy_pressed_notes += 1
 	update_score_text()
+
+	applyScore(-10, "miss", healthChange, true)
 
 	if direction < 0: return
 
@@ -683,7 +680,6 @@ func pop_up_score(judgement:Judgement) -> void:
 
 	accuracy_pressed_notes += 1
 	accuracy_total_hit += judgement.accuracy_gain
-	score += judgement.score
 	combo += 1
 
 	if max_combo < combo:
@@ -774,20 +770,39 @@ func good_note_hit(note:Note):
 		receptor.splash.visible = true
 		script_group.call_func("on_spawn_note_splash", [receptor.splash])
 
+	var score = Scoring.scoreNote(note_diff, "PBOT1")
+	var daRating = Scoring.judgeNote(note_diff, "PBOT1")
+
+	var healthChange = 0.0
+	var isComboBreak = false
+	match daRating:
+		"sick":
+			healthChange = health + Constants.HEALTH_SICK_BONUS * note.health_gain_mult * judgement.health_gain_mult * (
+				Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
+				else Global.health_loss_mult)
+			isComboBreak = Constants.JUDGEMENT_SICK_COMBO_BREAK
+		"good":
+			healthChange = health + Constants.HEALTH_GOOD_BONUS * note.health_gain_mult * judgement.health_gain_mult * (
+				Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
+				else Global.health_loss_mult)
+			isComboBreak = Constants.JUDGEMENT_GOOD_COMBO_BREAK
+		"bad":
+			healthChange = health + Constants.HEALTH_GOOD_BONUS * note.health_gain_mult * judgement.health_gain_mult * (
+				Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
+				else Global.health_loss_mult)
+			isComboBreak = Constants.JUDGEMENT_BAD_COMBO_BREAK
+		"shit":
+			healthChange = health + Constants.HEALTH_SHIT_BONUS * note.health_gain_mult * judgement.health_gain_mult * (
+				Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
+				else Global.health_loss_mult)
+			isComboBreak = Constants.JUDGEMENT_SHIT_COMBO_BREAK
+
 	if note.should_hit:
+		applyScore(score, daRating, healthChange, isComboBreak)
 		pop_up_score(judgement)
 	else:
 		combo = 0
 		accuracy_pressed_notes += 1
-
-	if judgement.name == "sick":
-		sicks += 1
-	elif judgement.name == "good":
-		goods += 1
-	elif judgement.name == "bad":
-		bads += 1
-	elif judgement.name == "shit":
-		shits += 1
 
 	update_score_text()
 
@@ -796,13 +811,6 @@ func good_note_hit(note:Note):
 	var sing_anim = get_sing_anim(note)
 	player.play_anim(sing_anim, true)
 	player.hold_timer = 0.0
-
-	var new_health = health + 0.023 * note.health_gain_mult * judgement.health_gain_mult * (
-			Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
-			else Global.health_loss_mult)
-
-	var hp_tween = get_tree().create_tween()
-	hp_tween.tween_property(self, "health", new_health, 0.1)
 
 	if note.length <= 0:
 		note._player_hit()
@@ -834,6 +842,21 @@ func opponent_note_hit(note:Note):
 	#await get_tree().create_timer(0.1).timeout
 	#receptor.play_anim("static")
 
+func applyScore(score:int, daRating:String, healthChange:float, isComboBreak:bool):
+	match daRating:
+		"sick": sicks += 1
+		"good": goods += 1
+		"bad": bads += 1
+		"shit": shits += 1
+
+	var hp_tween = get_tree().create_tween()
+	hp_tween.tween_property(self, "health", healthChange, 0.1)
+
+	if isComboBreak:
+		combo = 0
+
+	songScore += score
+
 func get_sing_anim(note:Note):
 	var strums = player_strums if note.must_press else cpu_strums
 	var sing_anim:String = "sing%s" % strums.get_child(note.direction).direction.to_upper()
@@ -858,7 +881,7 @@ func update_score_text():
 	var hp_percent:float = (health_bar.value / health_bar.max_value) * 100
 
 	var score_values: Dictionary = {
-		"score": score,
+		"score": songScore,
 		"misses": misses,
 		"accuracy": snapped(accuracy * 100.0, 0.01),
 		"ranks": Ranking.rank_from_accuracy(accuracy * 100.0).name,

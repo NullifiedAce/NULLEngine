@@ -119,6 +119,7 @@ position = Vector2(-148, 136)
 sprite_frames = ExtResource("5_o8obd")
 animation = &"intro"
 centered = false
+metadata/_edit_group_ = true
 
 [node name="total" parent="BG/ratings" instance=ExtResource("11_am746")]
 visible = false
@@ -303,7 +304,7 @@ metadata/_edit_lock_ = true
 visible = false
 position = Vector2(952, 248)
 sprite_frames = ExtResource("2_efy28")
-animation = &"loop"
+animation = &"intro"
 script = ExtResource("3_c0v5j")
 metadata/_edit_lock_ = true
 

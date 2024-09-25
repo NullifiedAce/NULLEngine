@@ -18,6 +18,7 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="NULLSonic/NULLEngine"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://assets/images/default_mod_icon.png"
+config/first_launch_menu=false
 
 [autoload]
 
@@ -26,7 +27,9 @@ ModManager="*res://autoload/scripts/ModManager.gd"
 HudPresetHandler="*res://autoload/scripts/HUDPresetHandler.gd"
 Global="*res://autoload/scripts/Global.gd"
 Conductor="*res://autoload/scripts/Conductor.gd"
+Scoring="*res://autoload/scripts/Scoring.gd"
 Ranking="*res://autoload/scripts/Ranking.gd"
+Constants="*res://autoload/scripts/Constants.gd"
 Audio="*res://autoload/scenes/Audio.tscn"
 Transition="*res://autoload/scenes/Transition.tscn"
 VolumeSlider="*res://autoload/scenes/VolumeSlider.tscn"

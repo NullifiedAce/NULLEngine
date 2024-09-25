@@ -17,6 +17,8 @@ extends Node2D
 @onready var misses: Alphabet = $BG/ratings/misses
 
 
+var rank_music: String = "result/bf/good"
+
 # used for tweening
 var percent: float = 0
 var old_val = 0
@@ -32,13 +34,11 @@ var int_misses: int = 0
 var grade: float = 0
 
 func _ready() -> void:
-	Audio.play_music("results/normal")
-	await get_tree().create_timer(0.25).timeout
+	calculate_rank()
 
-	if float(Ranking.hittable_notes) != 0:
-		grade = (float(Ranking.final_sicks) + float(Ranking.final_goods)) / float(Ranking.hittable_notes)
-	else:
-		grade = 0
+	if grade < 1.00:
+		Audio.play_music(rank_music)
+	await get_tree().create_timer(0.25).timeout
 
 	var tween = get_tree().create_tween()
 	tween.tween_property($BG/BlackBar, "position", Vector2(640, 72), 0.25)
@@ -56,6 +56,28 @@ func _ready() -> void:
 	score.play("intro")
 	await get_tree().create_timer(0.1).timeout
 	do_text_shit()
+
+func calculate_rank():
+	if float(Ranking.hittable_notes) != 0:
+		grade = (float(Ranking.final_sicks) + float(Ranking.final_goods)) / float(Ranking.hittable_notes)
+	else:
+		grade = 0.00
+
+	if grade == Constants.RANK_PERFECT_THRESHOLD:
+		rank_music = "results/bf/perfect"
+		print("PERFECT RANK")
+	elif grade >= Constants.RANK_EXCELLENT_THRESHOLD:
+		rank_music = "results/bf/excellent"
+		print("EXCELLENT RANK")
+	elif grade >= Constants.RANK_GREAT_THRESHOLD:
+		rank_music = "results/bf/good"
+		print("GREAT RANK")
+	elif grade >= Constants.RANK_GOOD_THRESHOLD:
+		rank_music = "results/bf/good"
+		print("GOOD RANK")
+	else:
+		rank_music = "results/bf/shit"
+		print("SHIT RANK")
 
 func _process(delta: float) -> void:
 	percent = floor(percent)
@@ -125,7 +147,10 @@ func do_text_shit():
 	tween.tween_property(self, "percent", grade * 100, 2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	await tween.finished
 	tween.kill()
+	await get_tree().create_timer(0.5).timeout
 	$percent/flash.play('flash')
+	if grade == 1.00:
+		Audio.play_music(rank_music)
 	Audio.play_sound("confirmMenu")
 	await get_tree().create_timer(0.5).timeout
 	animate()
