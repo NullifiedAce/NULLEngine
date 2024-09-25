@@ -39,6 +39,7 @@ var changing:bool = false
 
 @export var is_menu_item:bool = false
 @export var target_y:int = 0
+@export var auto_size:bool = true
 @export var x_shit:float = 25
 
 var y_mult:float = 120
@@ -195,7 +196,10 @@ func update_text():
 			letter.visible = true
 			letters_node.add_child(letter)
 			var bruh = letter.sprite_frames.get_frame_texture(letter.animation, 0)
-			x_pos += x_shit
+			if auto_size:
+				x_pos += bruh.get_width()
+			else:
+				x_pos += x_shit
 			piss[piss.size()-1].append(bruh.get_width())
 
 		cool.append(x_pos)

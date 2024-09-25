@@ -123,13 +123,14 @@ metadata/_edit_group_ = true
 
 [node name="total" parent="BG/ratings" instance=ExtResource("11_am746")]
 visible = false
-custom_minimum_size = Vector2(40, 70)
+custom_minimum_size = Vector2(34, 70)
 offset_left = 508.0
 offset_top = 8.0
-offset_right = 548.0
+offset_right = 542.0
 offset_bottom = 78.0
 bold = false
 text = "0"
+auto_size = false
 x_shit = 40.0
 
 [node name="DefaultTemplate" parent="BG/ratings/total" index="1"]
@@ -138,13 +139,14 @@ animation = &"9"
 
 [node name="max_combo" parent="BG/ratings" instance=ExtResource("11_am746")]
 visible = false
-custom_minimum_size = Vector2(40, 70)
+custom_minimum_size = Vector2(34, 70)
 offset_left = 508.0
 offset_top = 56.0
-offset_right = 548.0
+offset_right = 542.0
 offset_bottom = 126.0
 bold = false
 text = "0"
+auto_size = false
 x_shit = 40.0
 
 [node name="DefaultTemplate" parent="BG/ratings/max_combo" index="1"]
@@ -154,13 +156,14 @@ animation = &"9"
 [node name="sicks" parent="BG/ratings" instance=ExtResource("11_am746")]
 visible = false
 modulate = Color(0.533333, 0.890196, 0.619608, 1)
-custom_minimum_size = Vector2(40, 70)
+custom_minimum_size = Vector2(34, 70)
 offset_left = 357.0
 offset_top = 125.0
-offset_right = 397.0
+offset_right = 391.0
 offset_bottom = 195.0
 bold = false
 text = "0"
+auto_size = false
 x_shit = 40.0
 
 [node name="DefaultTemplate" parent="BG/ratings/sicks" index="1"]
@@ -170,13 +173,14 @@ animation = &"9"
 [node name="goods" parent="BG/ratings" instance=ExtResource("11_am746")]
 visible = false
 modulate = Color(0.54902, 0.788235, 0.886275, 1)
-custom_minimum_size = Vector2(40, 70)
+custom_minimum_size = Vector2(34, 70)
 offset_left = 332.0
 offset_top = 192.0
-offset_right = 372.0
+offset_right = 366.0
 offset_bottom = 262.0
 bold = false
 text = "0"
+auto_size = false
 x_shit = 40.0
 
 [node name="DefaultTemplate" parent="BG/ratings/goods" index="1"]
@@ -186,13 +190,14 @@ animation = &"9"
 [node name="bads" parent="BG/ratings" instance=ExtResource("11_am746")]
 visible = false
 modulate = Color(0.898039, 0.811765, 0.556863, 1)
-custom_minimum_size = Vector2(40, 70)
+custom_minimum_size = Vector2(34, 70)
 offset_left = 324.0
 offset_top = 240.0
-offset_right = 364.0
+offset_right = 358.0
 offset_bottom = 310.0
 bold = false
 text = "0"
+auto_size = false
 x_shit = 40.0
 
 [node name="DefaultTemplate" parent="BG/ratings/bads" index="1"]
@@ -202,13 +207,14 @@ animation = &"9"
 [node name="shits" parent="BG/ratings" instance=ExtResource("11_am746")]
 visible = false
 modulate = Color(0.87451, 0.537255, 0.533333, 1)
-custom_minimum_size = Vector2(40, 70)
+custom_minimum_size = Vector2(34, 70)
 offset_left = 356.0
 offset_top = 288.0
-offset_right = 396.0
+offset_right = 390.0
 offset_bottom = 358.0
 bold = false
 text = "0"
+auto_size = false
 x_shit = 40.0
 
 [node name="DefaultTemplate" parent="BG/ratings/shits" index="1"]
@@ -218,13 +224,14 @@ animation = &"9"
 [node name="misses" parent="BG/ratings" instance=ExtResource("11_am746")]
 visible = false
 modulate = Color(0.709804, 0.494118, 0.807843, 1)
-custom_minimum_size = Vector2(40, 70)
+custom_minimum_size = Vector2(34, 70)
 offset_left = 396.0
 offset_top = 344.0
-offset_right = 436.0
+offset_right = 430.0
 offset_bottom = 414.0
 bold = false
 text = "0"
+auto_size = false
 x_shit = 40.0
 
 [node name="DefaultTemplate" parent="BG/ratings/misses" index="1"]
@@ -250,14 +257,15 @@ centered = false
 [node name="score_text" parent="BG" instance=ExtResource("11_am746")]
 visible = false
 z_index = 1
-custom_minimum_size = Vector2(600, 70)
+custom_minimum_size = Vector2(950, 70)
 layout_mode = 0
 offset_left = 120.0
 offset_top = 608.0
-offset_right = 720.0
+offset_right = 1070.0
 offset_bottom = 678.0
 bold = false
 text = "0000000000"
+auto_size = false
 x_shit = 60.0
 
 [node name="DefaultTemplate" parent="BG/score_text" index="1"]
@@ -270,14 +278,15 @@ position = Vector2(1008, 368)
 texture = ExtResource("11_ds5hc")
 
 [node name="text" parent="percent" instance=ExtResource("11_am746")]
-custom_minimum_size = Vector2(240, 70)
+custom_minimum_size = Vector2(261, 70)
 offset_left = -224.0
 offset_top = -8.0
-offset_right = 16.0
+offset_right = 37.0
 offset_bottom = 62.0
 bold = false
 text = "000"
 alignment = 2
+auto_size = false
 x_shit = 80.0
 
 [node name="DefaultTemplate" parent="percent/text" index="1"]

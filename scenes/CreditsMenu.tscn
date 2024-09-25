@@ -71,6 +71,7 @@ grow_vertical = 2
 [node name="Box" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Page1/Creds"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 15
 
 [node name="null" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page1/Creds/Box"]
 layout_mode = 2
@@ -79,6 +80,14 @@ theme = ExtResource("5_c0fhy")
 text = "NULLSonic"
 underline = 1
 uri = "https://www.youtube.com/@NULLErrorSonic"
+
+[node name="cily" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page1/Creds/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_c0fhy")
+text = "Cilysong"
+underline = 1
+uri = "https://www.youtube.com/@Cilysong"
 
 [node name="Page2" type="Control" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 512)

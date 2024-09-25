@@ -18,7 +18,6 @@ offset_bottom = 720.0
 color = Color(0, 0, 0, 1)
 
 [node name="__TemplateItem__" parent="." instance=ExtResource("2_kylok")]
-visible = false
 script = ExtResource("3_3aljb")
 is_template = true
 
@@ -44,6 +43,7 @@ theme_override_fonts/font = ExtResource("5_6nkco")
 theme_override_font_sizes/font_size = 32
 
 [node name="SkipTimeLabel" type="Label" parent="."]
+visible = false
 offset_left = 1.0
 offset_right = 210.0
 offset_bottom = 32.0
