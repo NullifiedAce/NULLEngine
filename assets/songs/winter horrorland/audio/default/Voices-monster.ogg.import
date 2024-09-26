@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://jft1g0urww23"
+path="res://.godot/imported/Voices-monster.ogg-1f76ae9a7bcc3c68e95cef68c3e3285d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/songs/winter horrorland/audio/default/Voices-monster.ogg"
+dest_files=["res://.godot/imported/Voices-monster.ogg-1f76ae9a7bcc3c68e95cef68c3e3285d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

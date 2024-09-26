@@ -1,11 +1,12 @@
 extends Node
 
 var SONG:Chart
+var METADATA:Metadata
 
 const note_directions:Array[String] = [
 	"left", "down", "up", "right",
 ]
-var default_ui_skin:String = "default"
+var default_ui_skin:String = "funkin"
 
 const audio_formats:PackedStringArray = [".ogg", ".mp3", ".wav"]
 

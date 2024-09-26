@@ -2,8 +2,6 @@ extends Resource
 class_name Chart
 
 var name:String = "Test"
-#i don't know if you guys already have this, if so, just delete this
-#@BeastlyGabi
 var raw_name:String = "test"
 
 var bpm:float = 150.0

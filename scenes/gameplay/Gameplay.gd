@@ -11,6 +11,7 @@ var OPPONENT_HEALTH_COLOR:StyleBoxFlat = preload("res://assets/styles/healthbar/
 var PLAYER_HEALTH_COLOR:StyleBoxFlat = preload("res://assets/styles/healthbar/player.tres")
 
 var SONG:Chart = Global.SONG
+var METADATA:Metadata = Global.METADATA
 var meta:SongMetaData = SongMetaData.new()
 var note_data_array:Array[SectionNote] = []
 var event_data_array:Array[SongEvent] = []
@@ -25,7 +26,7 @@ var health:float = 1.0:
 	set(v):
 		health = clampf(v, 0.0, max_health)
 
-var max_health:float = 2.0
+var max_health:float = Constants.HEALTH_MAX
 
 var songScore:int = 0
 var misses:int = 0
@@ -111,7 +112,7 @@ signal paused
 
 var tracks:Array[AudioStreamPlayer] = []
 func load_song():
-	var music_path:String = "res://assets/songs/%s/audio/" % SONG.name.to_lower()
+	var music_path:String = "res://assets/songs/%s/audio/%s/" % [METADATA.songName.to_lower(), "default"]
 
 	if DirAccess.dir_exists_absolute(music_path):
 		var dir = DirAccess.open(music_path)
@@ -219,7 +220,9 @@ func _ready() -> void:
 
 	if Global.SONG == null:
 		Global.SONG = Chart.load_chart("tutorial", "hard")
+		Global.METADATA = Metadata.load_metadata("tutorial", "default")
 		SONG = Global.SONG
+		METADATA = Global.METADATA
 
 	var meta_path:String = "res://assets/songs/" + SONG.name.to_lower() + "/meta"
 	if ResourceLoader.exists(meta_path + ".tres"):
@@ -236,7 +239,7 @@ func _ready() -> void:
 			"constant":
 				scroll_speed = SettingsAPI.get_setting("scroll speed")
 
-	ui_skin = load("res://scenes/gameplay/ui_skins/"+SONG.ui_skin+".tscn").instantiate()
+	ui_skin = load("res://scenes/gameplay/ui_skins/"+METADATA.playData["noteStyle"]+".tscn").instantiate()
 	# music shit
 
 	load_song()
@@ -248,9 +251,9 @@ func _ready() -> void:
 	gen_song()
 	load_events()
 
-	health = max_health * 0.5
+	health = Constants.HEALTH_STARTING
 
-	health_bar.min_value = 0.0
+	health_bar.min_value = Constants.HEALTH_MIN
 	health_bar.max_value = max_health
 	health_bar.value = health
 
@@ -282,11 +285,11 @@ func _ready() -> void:
 	cpu_strums.position = Vector2((Global.game_size.x * 0.5) - (320.0 if not SettingsAPI.get_setting("centered notefield") else 10000.0), strum_y)
 	player_strums.position = Vector2((Global.game_size.x * 0.5) + (320.0 if not SettingsAPI.get_setting("centered notefield") else 0.0), strum_y)
 
-	var stage_path:String = "res://scenes/gameplay/stages/"+SONG.stage+".tscn"
+	var stage_path:String = "res://scenes/gameplay/stages/"+METADATA.playData["stage"]+".tscn"
 	if ResourceLoader.exists(stage_path):
 		stage = load(stage_path).instantiate()
 	else:
-		stage = load("res://scenes/gameplay/stages/stage.tscn").instantiate()
+		stage = load("res://scenes/gameplay/stages/mainStage.tscn").instantiate()
 
 	default_cam_zoom = stage.default_cam_zoom
 	camera.zoom = Vector2(default_cam_zoom, default_cam_zoom)
@@ -349,7 +352,7 @@ func _ready() -> void:
 	script_group.call_func("_ready_post", [])
 
 func load_spectator():
-	var spectator_path:String = "res://scenes/gameplay/characters/"+SONG.spectator+".tscn"
+	var spectator_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["girlfriend"]+".tscn"
 	if ResourceLoader.exists(spectator_path):
 		spectator = load(spectator_path).instantiate()
 	else:
@@ -359,7 +362,7 @@ func load_spectator():
 	add_child(spectator)
 
 func load_opponent():
-	var opponent_path:String = "res://scenes/gameplay/characters/"+SONG.opponent+".tscn"
+	var opponent_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["opponent"]+".tscn"
 	if ResourceLoader.exists(opponent_path):
 		opponent = load(opponent_path).instantiate()
 	else:
@@ -376,7 +379,7 @@ func load_opponent():
 		spectator = null
 
 func load_player():
-	var player_path:String = "res://scenes/gameplay/characters/"+SONG.player+".tscn"
+	var player_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["player"]+".tscn"
 	if ResourceLoader.exists(player_path):
 		player = load(player_path).instantiate()
 	else:
@@ -483,7 +486,7 @@ func start_song():
 
 	for track in tracks:
 		add_child(track)
-		track.play((Conductor.position + meta.start_offset) / 1000.0)
+		track.play((Conductor.position + METADATA.offsets["instrumental"]) / 1000.0)
 
 	starting_song = false
 
@@ -856,6 +859,8 @@ func applyScore(score:int, daRating:String, healthChange:float, isComboBreak:boo
 		combo = 0
 
 	songScore += score
+
+	update_score_text()
 
 func get_sing_anim(note:Note):
 	var strums = player_strums if note.must_press else cpu_strums
