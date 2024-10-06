@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpb2e3tvnc5by"]
+
+[ext_resource type="SpriteFrames" uid="uid://du1ixvfteyw25" path="res://assets/images/menus/results/score-digital-numbers.res" id="1_x5qjb"]
+[ext_resource type="Script" path="res://scenes/result/ScoreNum.gd" id="2_xslln"]
+
+[node name="ScoreNum" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_x5qjb")
+animation = &"DISABLED"
+script = ExtResource("2_xslln")

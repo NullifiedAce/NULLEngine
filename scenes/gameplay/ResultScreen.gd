@@ -8,6 +8,7 @@ extends Node2D
 @onready var gf: AnimatedSprite = $gf
 @onready var bf: AnimatedSprite = $bf
 @onready var percent_text: Sprite2D = $percent
+@onready var result_score: ResultScore = $BG/ResultScore
 @onready var total: Alphabet = $BG/ratings/total
 @onready var max_combo: Alphabet = $BG/ratings/max_combo
 @onready var sicks: Alphabet = $BG/ratings/sicks
@@ -22,6 +23,8 @@ var rank_music: String = "result/bf/good"
 # used for tweening
 var percent: float = 0
 var old_val = 0
+
+var int_score: int = 0
 
 var int_total: int = 0
 var int_max_combo: int = 0
@@ -38,6 +41,10 @@ func _ready() -> void:
 
 	if grade < 1.00:
 		Audio.play_music(rank_music)
+
+	result_score.scoreShit = 523923
+	result_score.set_scoreShit(523923)
+
 	await get_tree().create_timer(0.25).timeout
 
 	var tween = get_tree().create_tween()
@@ -51,11 +58,12 @@ func _ready() -> void:
 	ratings.show()
 	ratings.play("intro")
 	await get_tree().create_timer(0.4).timeout
-	do_rating_shit()
 	score.show()
 	score.play("intro")
 	await get_tree().create_timer(0.1).timeout
 	do_text_shit()
+	do_rating_shit()
+	do_score_shit()
 
 func calculate_rank():
 	if float(Ranking.hittable_notes) != 0:
@@ -154,6 +162,10 @@ func do_text_shit():
 	Audio.play_sound("confirmMenu")
 	await get_tree().create_timer(0.5).timeout
 	animate()
+
+func do_score_shit():
+	result_score.show()
+	result_score.animateNumbers()
 
 func animate():
 	bf.show()

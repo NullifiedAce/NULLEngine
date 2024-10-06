@@ -18,7 +18,6 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="NULLSonic/NULLEngine"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://assets/images/default_mod_icon.png"
-config/first_launch_menu=false
 
 [autoload]
 
@@ -44,6 +43,7 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
+mouse_cursor/custom_image="res://assets/images/cursor/cursor-default.png"
 
 [editor_plugins]
 
@@ -55,6 +55,7 @@ customization/custom_score_text=true
 customization/check_for_updates=false
 customization/chart_editor_on_release=true
 customization/hud_editor=true
+customization/first_launch_menu=true
 
 [input]
 
