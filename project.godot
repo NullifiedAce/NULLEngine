@@ -51,6 +51,7 @@ enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 customization/custom_score_text=true
 customization/check_for_updates=true
 customization/chart_editor_on_release=true
+customization/first_launch_menu=true
 
 [input]
 
