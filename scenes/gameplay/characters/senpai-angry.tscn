@@ -274,6 +274,7 @@ _data = {
 [node name="senpai-angry" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_ydu0a")
+voices_paths = "senpai"
 health_icon = ExtResource("2_4xoi6")
 health_color = Color(1, 0.666667, 0.435294, 1)
 

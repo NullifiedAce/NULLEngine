@@ -112,7 +112,7 @@ signal paused
 
 var tracks:Array[AudioStreamPlayer] = []
 func load_song():
-	var music_path:String = "res://assets/songs/%s/audio/%s/" % [METADATA.songName.to_lower(), "default"]
+	var music_path:String = "res://assets/songs/%s/audio/" % [METADATA.songName.to_lower()]
 
 	if DirAccess.dir_exists_absolute(music_path):
 		var dir = DirAccess.open(music_path)
@@ -242,8 +242,6 @@ func _ready() -> void:
 	ui_skin = load("res://scenes/gameplay/ui_skins/"+METADATA.playData["noteStyle"]+".tscn").instantiate()
 	# music shit
 
-	load_song()
-
 	Conductor.map_bpm_changes(SONG)
 	Conductor.change_bpm(SONG.bpm)
 	Conductor.position = Conductor.crochet * -5
@@ -301,6 +299,8 @@ func _ready() -> void:
 	load_opponent()
 	load_player()
 
+	load_song()
+
 	update_health_bar()
 	setup_label_settings()
 
@@ -345,8 +345,6 @@ func _ready() -> void:
 	start_countdown()
 
 	update_score_text()
-
-	RichPresence.set_text(str(SONG.name) + " (" + str(Global.current_difficulty).capitalize() + ")", "")
 
 	stage.callv("_ready_post", [])
 	script_group.call_func("_ready_post", [])
@@ -513,10 +511,10 @@ func end_song():
 		Global.SONG = Chart.load_chart(Global.queued_songs[0], Global.current_difficulty)
 		Global.queued_songs.remove_at(0)
 		Ranking.add_results(songScore, misses, max_combo, sicks, goods, bads, shits, total_notes)
-		Global.switch_scene("res://scenes/gameplay/Gameplay.tscn")
+		Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
 	else:
 		Ranking.add_results(songScore, misses, max_combo, sicks, goods, bads, shits, total_notes)
-		Global.switch_scene("res://scenes/gameplay/ResultScreen.tscn")
+		Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
 
 func beat_hit(beat:int):
 	stage.callv("on_beat_hit", [beat])
@@ -890,7 +888,7 @@ func update_score_text():
 		"misses": misses,
 		"accuracy": snapped(accuracy * 100.0, 0.01),
 		"ranks": Ranking.rank_from_accuracy(accuracy * 100.0).name,
-		"health": round(hp_percent),
+		"health": snapped(hp_percent, 0.01),
 		"combo": combo,
 		"max combo": max_combo,
 		"ghost taps": ghost_taps
@@ -900,6 +898,8 @@ func update_score_text():
 	var text_length = 0
 
 	score_text.text = ""
+
+	RichPresence.set_text(str(SONG.name) + " (" + str(Global.current_difficulty).capitalize() + ")", "Score: %s" % songScore)
 
 	for i in array:
 		text_length += 1

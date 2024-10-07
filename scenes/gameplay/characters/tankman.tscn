@@ -381,6 +381,7 @@ _data = {
 
 [node name="tankman" type="Node2D"]
 script = ExtResource("1_cermu")
+voices_paths = "tankman"
 health_icon = ExtResource("2_ml8k3")
 health_color = Color(0.121569, 0.121569, 0.121569, 1)
 
