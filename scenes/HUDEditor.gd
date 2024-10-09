@@ -10,8 +10,6 @@ var PLAYER_HEALTH_COLOR:StyleBoxFlat = preload("res://assets/styles/healthbar/pl
 
 func _ready() -> void:
 	super._ready()
-	if !ProjectSettings.get_setting("engine/customization/custom_score_text"):
-		$'Editor/TabContainer/Score Text'.queue_free()
 	Audio.play_music("freakyMenu")
 	Conductor.change_bpm(Audio.music.stream.bpm)
 
@@ -49,10 +47,11 @@ func _process(_delta: float) -> void:
 
 		for i in array:
 			text_length += 1
-			if text_length == array.size():
-				score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix")
+
+			if i == "seperator":
+				score_text.text += SettingsAPI.get_setting(i)
 			else:
-				score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix") + SettingsAPI.get_setting("seperator")
+				score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix")
 
 		if Input.is_key_label_pressed(KEY_ESCAPE) and !pressed:
 			Audio.play_sound("cancelMenu")

@@ -903,10 +903,11 @@ func update_score_text():
 
 	for i in array:
 		text_length += 1
-		if text_length == array.size():
-			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix")
+
+		if i == "seperator":
+			score_text.text += SettingsAPI.get_setting(i)
 		else:
-			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix") + SettingsAPI.get_setting("seperator")
+			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix")
 
 	script_group.call_func("on_update_score_text", [])
 

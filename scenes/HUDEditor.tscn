@@ -818,6 +818,17 @@ offset_bottom = 62.0
 grow_horizontal = 2
 alignment = 1
 
+[node name="Seperator" type="Button" parent="Rearrange/Buttons/Stuff"]
+layout_mode = 2
+tooltip_text = "Adds a seperator."
+focus_mode = 0
+theme = ExtResource("2_p2wl7")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Seperator"
+script = ExtResource("15_dvv1b")
+add_item = "seperator"
+
 [node name="Score" type="Button" parent="Rearrange/Buttons/Stuff"]
 layout_mode = 2
 tooltip_text = "Adds a score counter.
@@ -1061,6 +1072,7 @@ offset_bottom = 248.0
 alignment = 1
 
 [node name="Load Font" type="Button" parent="CustomizeCounter/Font"]
+visible = false
 layout_mode = 2
 tooltip_text = "Load a font file from the resources folder.
 Default: VCR.ttf"
@@ -1069,6 +1081,7 @@ theme = ExtResource("2_p2wl7")
 text = "Load Font"
 
 [node name="VSeparator" type="VSeparator" parent="CustomizeCounter/Font"]
+visible = false
 layout_mode = 2
 
 [node name="SizeTitle" type="Label" parent="CustomizeCounter/Font"]
@@ -1230,7 +1243,7 @@ initial_position = 2
 size = Vector2i(400, 450)
 ok_button_text = "Open"
 file_mode = 0
-filters = PackedStringArray("*.ttf", "*.otf")
+filters = PackedStringArray("*.ttf", "*.otf", "*.import")
 
 [connection signal="popup_closed" from="Editor/TabContainer/HUD Editor Options/BG Color" to="Editor/TabContainer/HUD Editor Options/BG Color" method="_on_popup_closed"]
 [connection signal="pressed" from="Editor/TabContainer/HUD Editor Options/SaveHUD" to="Editor/TabContainer/HUD Editor Options/SaveHUD" method="_on_pressed"]
@@ -1275,6 +1288,7 @@ filters = PackedStringArray("*.ttf", "*.otf")
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/MaxCombo/Suffix" method="_on_focus_exited"]
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Prefix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Prefix" method="_on_focus_exited"]
 [connection signal="focus_exited" from="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Suffix" to="Editor/TabContainer/Score Text/ScrollContainer/VBoxContainer/Ghost Taps/Suffix" method="_on_focus_exited"]
+[connection signal="pressed" from="Rearrange/Buttons/Stuff/Seperator" to="Rearrange/Buttons/Stuff/Seperator" method="_on_pressed"]
 [connection signal="pressed" from="Rearrange/Buttons/Stuff/Score" to="Rearrange/Buttons/Stuff/Score" method="_on_pressed"]
 [connection signal="pressed" from="Rearrange/Buttons/Stuff/Misses" to="Rearrange/Buttons/Stuff/Misses" method="_on_pressed"]
 [connection signal="pressed" from="Rearrange/Buttons/Stuff/Accuracy" to="Rearrange/Buttons/Stuff/Accuracy" method="_on_pressed"]

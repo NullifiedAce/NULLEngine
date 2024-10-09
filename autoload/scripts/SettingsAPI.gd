@@ -48,7 +48,7 @@ var _settings:Dictionary = {
 	#score text
 	"seperator": " - ",
 
-	"score_arrangement": "[\"score\", \"misses\", \"accuracy\", \"ranks\"]",
+	"score_arrangement": "[\"score\", \"seperator\", \"misses\", \"seperator\", \"accuracy\", \"seperator\", \"ranks\"]",
 
 	"font path": "res://assets/fonts/vcr.ttf",
 	"font size": 19,
