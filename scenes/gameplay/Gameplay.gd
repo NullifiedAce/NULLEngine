@@ -77,6 +77,8 @@ var results_screen = preload("res://scenes/gameplay/ResultScreen.tscn")
 
 @onready var camera:Camera2D = $Camera2D
 @onready var hud:CanvasLayer = $HUD
+@onready var characters: Node2D = $characters
+
 
 @onready var strumlines:Node2D = $HUD/StrumLines
 
@@ -357,7 +359,9 @@ func load_spectator():
 		spectator = load("res://scenes/gameplay/characters/bf.tscn").instantiate()
 
 	spectator.position = stage.character_positions["spectator"].position
-	add_child(spectator)
+	spectator.z_index = stage.character_positions["spectator"].z_index
+	spectator.get_child(0).material = stage.character_positions["spectator"].material
+	characters.add_child(spectator)
 
 func load_opponent():
 	var opponent_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["opponent"]+".tscn"
@@ -367,7 +371,10 @@ func load_opponent():
 		opponent = load("res://scenes/gameplay/characters/bf.tscn").instantiate()
 
 	opponent.position = stage.character_positions["opponent"].position
-	add_child(opponent)
+	opponent.z_index = stage.character_positions["opponent"].z_index
+	opponent.get_child(0).material = stage.character_positions["opponent"].material
+	print(stage.character_positions["opponent"].z_index)
+	characters.add_child(opponent)
 
 	if SONG.opponent == SONG.spectator:
 		opponent.position = spectator.position
@@ -385,7 +392,9 @@ func load_player():
 
 	player._is_true_player = true
 	player.position = stage.character_positions["player"].position
-	add_child(player)
+	player.z_index = stage.character_positions["player"].z_index
+	player.get_child(0).material = stage.character_positions["player"].material
+	characters.add_child(player)
 
 func update_health_bar():
 	cpu_icon.texture = opponent.health_icon

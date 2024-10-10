@@ -60,9 +60,6 @@ func _process(delta):
 			transitioning = true
 			title_enter.play("ENTER PRESSED")
 
-			$TitleGroup/entrance.speed_scale = 0.5
-			$TitleGroup/entrance.queue('exit')
-
 			Audio.play_sound("menus/confirmMenu")
 
 			var timer:SceneTreeTimer = get_tree().create_timer(2.0)
@@ -130,8 +127,6 @@ func skip_intro():
 
 	if SettingsAPI.get_setting("flashing lights"):
 		do_flash()
-
-	get_tree().create_timer(2.0).timeout.connect(func(): $TitleGroup/entrance.play('entrance'))
 
 func do_flash(duration:float = 4.0):
 	if flashing: return

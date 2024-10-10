@@ -43,7 +43,10 @@ position = Vector2(640, 360)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 
+[node name="characters" type="Node2D" parent="."]
+
 [node name="HUD" type="CanvasLayer" parent="."]
+layer = 127
 
 [node name="StrumLines" type="Node2D" parent="HUD"]
 

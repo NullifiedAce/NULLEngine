@@ -8,7 +8,7 @@
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
-layer = 5
+layer = 128
 script = ExtResource("1_g8qxe")
 
 [node name="BG" type="ColorRect" parent="."]
