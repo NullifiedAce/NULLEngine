@@ -60,7 +60,7 @@ func _ready() -> void:
 	song_name.modulate.a = 0.0
 	difficulty.modulate.a = 0.0
 
-	song_name.text = Global.SONG.name
+	song_name.text = Global.METADATA.songName
 	difficulty.text = Global.current_difficulty.to_upper()
 
 	await get_tree().create_timer(0.05).timeout

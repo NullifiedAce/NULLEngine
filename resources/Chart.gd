@@ -1,119 +1,45 @@
 extends Resource
 class_name Chart
 
-var name:String = "Test"
-var raw_name:String = "test"
-
-var bpm:float = 150.0
-var sections:Array[Section] = []
-var key_count:int = 4
+var notes:Array[SongNote] = []
+var events:Array[SongEvent] = []
 var scroll_speed:float = 1.0
 
-var opponent:String = "bf"
-var spectator:String = "gf"
-var player:String = "bf"
+static func load_chart(song:String, difficulty:String = "normal", variation:String = "default"):
+	var json = JSON.parse_string(FileAccess.open("res://assets/songs/"+song.to_lower()+"/chart-"+variation+".json", FileAccess.READ).get_as_text())
+	return load_from_json(song, json, difficulty)
 
-var stage:String = "stage"
-var ui_skin:String = "default"
-
-var notetypes:PackedStringArray = []
-
-static func load_chart(song:String, difficulty:String = "normal"):
-	var json = JSON.parse_string(FileAccess.open("res://assets/songs/"+song.to_lower()+"/"+difficulty+".json", FileAccess.READ).get_as_text()).song
-	return load_from_json(song, json)
-
-static func load_from_json(song:String, json):
+static func load_from_json(song:String, json, difficulty:String):
 	var chart = new()
-	chart.name = json.song
-	chart.raw_name = song.to_lower()
-	chart.bpm = json.bpm
-	chart.key_count = 4
-	chart.scroll_speed = json.speed
-	chart.notetypes = json.notetypes if "notetypes" in json else []
 
-	if "keyCount" in json:
-		chart.key_count = json.keyCount
-
-	if "keyNumber" in json:
-		chart.key_count = json.keyNumber
-
-	if "mania" in json:
-		match json.mania:
-			1: chart.key_count = 6
-			2: chart.key_count = 7
-			3: chart.key_count = 9
-			_: chart.key_count = 4
-
-	if "stage" in json:
-		chart.stage = json.stage
-
-	chart.opponent = json.player2
-	chart.player = json.player1
-
-	if "opponent" in json:
-		chart.spectator = json.opponent
-
-	if "player" in json:
-		chart.spectator = json.player
-
-	if "gfVersion" in json and json.gfVersion != null:
-		chart.spectator = json.gfVersion
-
-	if "gf" in json and json.gf != null:
-		chart.spectator = json.gf
-
-	if "player3" in json and json.player3 != null:
-		chart.spectator = json.player3
-
-	if "spectator" in json:
-		chart.spectator = json.spectator
-
-	if "uiSkin" in json:
-		chart.ui_skin = json.uiSkin
+	chart.scroll_speed = json.scrollSpeed[difficulty]
 
 	# oh god wish me luck converting these
-	# damn base game sections to cool ones!
+	# damn base game chart files are so good
 
-	for section in json.notes:
-		var cool_section:Section = Section.new()
-		cool_section.bpm = section.bpm if "bpm" in section and section.bpm != null else 0.0
-		cool_section.change_bpm = section.changeBPM if "changeBPM" in section and section.changeBPM != null else false
-		cool_section.is_player = section.mustHitSection if "mustHitSection" in section and section.mustHitSection != null else true
-		cool_section.length_in_steps = section.lengthInSteps if "lengthInSteps" in section and section.lengthInSteps != null else 16
+	if "events" in json:
+		for event in json.events:
+			var new_event:SongEvent = SongEvent.new()
+			new_event.time = event["t"]
+			new_event.name = event["e"]
+			new_event.parameters = event["v"]
 
-		if "sectionBeats" in section and section.sectionBeats != null:
-			cool_section.length_in_steps = int(section.sectionBeats) * 4
+			chart.events.append(new_event)
 
-		cool_section.notes = []
+	for note in json.notes[difficulty]:
+		var new_note:SongNote = SongNote.new()
+		new_note.time = float(note["t"])
+		new_note.direction = int(note["d"])
+		if note.size() > 2:
+			new_note.length = float(note["l"])
+		else:
+			new_note.length = 0.0
 
-		# convermting the noite!
-		for note in section.sectionNotes:
-			var cool_note:SectionNote = SectionNote.new()
-			cool_note.time = float(note[0])
-			cool_note.direction = int(note[1])
-			cool_note.length = float(note[2])
-			# stunpid note tpye handletation
-			if note.size() > 3:
-				match note[3]:
-					# week 7 charts (real)
-					true:
-						cool_note.type = "Alt Animation"
+		if note.size() > 3:
+			new_note.kind = str(note["k"])
+		else:
+			new_note.kind = "default"
 
-					# psych and other engine charts (some use ints but if they do fuck you)
-					_:
-						if note[3] is String:
-							cool_note.type = note[3]
-						elif note[3] is int:
-							cool_note.type = chart.notetypes[int(note[3])] if chart.notetypes.size() > 0 else "default"
-						else:
-							cool_note.type = "default"
-			else:
-				cool_note.type = "default"
-
-			cool_note.alt_anim = section.altAnim if "altAnim" in section and section.altAnim != null else false
-			cool_section.notes.append(cool_note)
-
-		# push section  !
-		chart.sections.append(cool_section)
+		chart.notes.append(new_note)
 
 	return chart
