@@ -12,7 +12,10 @@ static func load_chart(song:String, difficulty:String = "normal", variation:Stri
 static func load_from_json(song:String, json, difficulty:String):
 	var chart = new()
 
-	chart.scroll_speed = json.scrollSpeed[difficulty]
+	if difficulty in json.scrollSpeed:
+		chart.scroll_speed = json.scrollSpeed[difficulty]
+	else :
+		chart.scroll_speed = json.scrollSpeed["default"]
 
 	# oh god wish me luck converting these
 	# damn base game chart files are so good
@@ -30,12 +33,12 @@ static func load_from_json(song:String, json, difficulty:String):
 		var new_note:SongNote = SongNote.new()
 		new_note.time = float(note["t"])
 		new_note.direction = int(note["d"])
-		if note.size() > 2:
+		if "l" in note:
 			new_note.length = float(note["l"])
 		else:
 			new_note.length = 0.0
 
-		if note.size() > 3:
+		if "k" in note:
 			new_note.kind = str(note["k"])
 		else:
 			new_note.kind = "default"

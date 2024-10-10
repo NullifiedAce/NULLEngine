@@ -119,13 +119,20 @@ func load_song():
 	if DirAccess.dir_exists_absolute(music_path):
 		var dir = DirAccess.open(music_path)
 
-		for file in dir.get_files():
-			var music:AudioStreamPlayer = AudioStreamPlayer.new()
-			for f in Global.audio_formats:
-				if file.ends_with(f + ".import"):
-					music.stream = load(music_path + file.replace(".import",""))
-					music.pitch_scale = Conductor.rate
-					tracks.append(music)
+		load_track(music_path, "Inst")
+		load_track(music_path, "Voices-%s" % opponent.voices_paths)
+		load_track(music_path, "Voices-%s" % player.voices_paths)
+
+func load_track(music_path:String, fileName:String):
+	var track:AudioStreamPlayer = AudioStreamPlayer.new()
+	track.name = fileName
+	track.stream = load(music_path + fileName + ".ogg")
+	track.pitch_scale = Conductor.rate
+
+	if fileName == "Inst":
+		track.finished.connect(end_song)
+
+	tracks.append(track)
 
 func gen_song(delete_before_time:float = -1.0):
 	for note in SONG.notes:
@@ -183,7 +190,7 @@ func _ready() -> void:
 	Ranking.ranks = Ranking.default_ranks.duplicate(true)
 
 	if Global.SONG == null:
-		Global.SONG = Chart.load_chart("tutorial", "hard")
+		Global.SONG = Chart.load_chart("tutorial", "hard", "default")
 		Global.METADATA = Metadata.load_metadata("tutorial", "default")
 		SONG = Global.SONG
 		METADATA = Global.METADATA
@@ -514,7 +521,6 @@ func do_event(event_name:String,parameters:Array[String]):
 	var ev:Event = load("res://scenes/events/" + event_name + ".tscn").instantiate()
 	ev.parameters = parameters
 	add_child(ev)
-
 
 #func section_hit(section:int):
 	#for track in tracks:

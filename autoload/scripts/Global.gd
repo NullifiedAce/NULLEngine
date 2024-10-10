@@ -2,6 +2,8 @@ extends Node
 
 var SONG:Chart
 var METADATA:Metadata
+var variation:String = "default"
+var instrumental:String = "default"
 
 const note_directions:Array[String] = [
 	"left", "down", "up", "right",

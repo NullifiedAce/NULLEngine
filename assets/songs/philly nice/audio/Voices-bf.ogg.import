@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cbmkgypg5jnd5"
+path="res://.godot/imported/Voices-bf.ogg-3613905884e3bc4f52dcaae71755a18e.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/songs/philly nice/audio/Voices-bf.ogg"
+dest_files=["res://.godot/imported/Voices-bf.ogg-3613905884e3bc4f52dcaae71755a18e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
