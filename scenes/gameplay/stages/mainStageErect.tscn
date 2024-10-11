@@ -13,165 +13,156 @@
 [ext_resource type="Texture2D" uid="uid://cg7ejpd2kqrb8" path="res://assets/images/gameplay/stages/stage/erect/lightAbove.png" id="8_47pi4"]
 [ext_resource type="Texture2D" uid="uid://5lb7egg1sxc0" path="res://assets/images/gameplay/stages/stage/erect/lights.png" id="8_ckeox"]
 
-[sub_resource type="Shader" id="Shader_iyga8"]
+[sub_resource type="Shader" id="Shader_khasu"]
 code = "shader_type canvas_item;
 
-uniform float hue : hint_range(-360.0, 360.0) = 0.0;          // Hue from -360 to 360
-uniform float saturation : hint_range(0.0, 100.0) = 100.0;    // Saturation from 0 to 100
-uniform float brightness : hint_range(-100.0, 100.0) = 0.0;   // Brightness from -100 to 100
-uniform float contrast : hint_range(-100.0, 100.0) = 0.0;     // Contrast from -100 to 100
+uniform float hue : hint_range(-360, 360);         // Allow negative hue
+uniform float saturation : hint_range(-100, 100);  // Allow negative saturation
+uniform float brightness : hint_range(-255, 255);  // Allow negative brightness
+uniform float contrast : hint_range(-255, 255);    // Allow negative contrast;
 
-vec3 rgb_to_hsv(vec3 color) {
-	vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
-	vec4 p = mix(vec4(color.bg, K.wz), vec4(color.gb, K.xy), step(color.b, color.g));
-	vec4 q = mix(vec4(p.xyw, color.r), vec4(color.r, p.yzx), step(p.x, color.r));
-
-	float d = q.x - min(q.w, q.y);
-	float e = 1.0e-10;
-	return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+vec3 apply_hue(vec3 color, float hue_angle) {
+	float angle = radians(hue_angle);
+	vec3 k = vec3(0.57735, 0.57735, 0.57735); // Equal weights for each channel
+	float cos_angle = cos(angle);
+	return color * cos_angle + cross(k, color) * sin(angle) + k * dot(k, color) * (1.0 - cos_angle);
 }
 
-vec3 hsv_to_rgb(vec3 hsv) {
-	vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
-	vec3 p = abs(fract(hsv.xxx + K.xyz) * 6.0 - K.www);
-	return hsv.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), hsv.y);
+vec3 apply_hsb_effect(vec3 color) {
+	// Apply brightness adjustment (negative values will darken the image)
+	color = clamp(color + (brightness / 255.0), 0.0, 1.0);
+
+	// Apply hue adjustment (negative values will rotate the hue in the opposite direction)
+	color = apply_hue(color, hue);
+
+	// Apply contrast adjustment (negative values will decrease contrast)
+	color = clamp((color - 0.5) * (1.0 + (contrast / 255.0)) + 0.5, 0.0, 1.0);
+
+	// Apply saturation adjustment (negative values will desaturate the image)
+	vec3 intensity = vec3(dot(color, vec3(0.30980392156, 0.60784313725, 0.08235294117)));
+	color = clamp(mix(intensity, color, (1.0 + (saturation / 100.0))), 0.0, 1.0);
+
+	return color;
 }
 
 void fragment() {
-	vec4 color = texture(TEXTURE, UV);
+	// Get the current fragment color (input color)
+	vec4 input_color = COLOR;
 
-	// Convert to HSV for hue and saturation adjustments
-	vec3 hsv = rgb_to_hsv(color.rgb);
-	hsv.x += hue / 360.0;  // Normalize hue to 0-1 range
-	hsv.y = clamp(hsv.y * (saturation / 100.0), 0.0, 1.0);  // Adjust saturation (0-100 to 0-1)
-	color.rgb = hsv_to_rgb(hsv);
+	// Apply HSB and contrast adjustments with potential negative values
+	vec3 out_color = apply_hsb_effect(input_color.rgb);
 
-	// Brightness adjustment (simplified)
-	color.rgb += brightness / 100.0;  // Add brightness
-
-	// Contrast adjustment
-	// - Contrast from -100 to 100 is mapped to a multiplier where 0 = no change.
-	// - Values below 0 compress the range, and values above 0 expand it.
-	float contrast_factor = (1.0 + contrast / 100.0);
-	color.rgb = (color.rgb - 1.0) * contrast_factor + 1.0;  // Center around 0.5 and scale by contrast factor
-
-	// Output the final color
-	COLOR = color;
+	// Output the modified color
+	COLOR = vec4(out_color * input_color.a, input_color.a);
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_38nbo"]
-shader = SubResource("Shader_iyga8")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kc5q2"]
+shader = SubResource("Shader_khasu")
 shader_parameter/hue = -32.0
-shader_parameter/saturation = 100.0
+shader_parameter/saturation = null
 shader_parameter/brightness = -33.0
 shader_parameter/contrast = -23.0
 
-[sub_resource type="Shader" id="Shader_pnd5q"]
+[sub_resource type="Shader" id="Shader_f53w6"]
 code = "shader_type canvas_item;
 
-uniform float hue : hint_range(-360.0, 360.0) = 0.0;          // Hue from -360 to 360
-uniform float saturation : hint_range(0.0, 100.0) = 100.0;    // Saturation from 0 to 100
-uniform float brightness : hint_range(-100.0, 100.0) = 0.0;   // Brightness from -100 to 100
-uniform float contrast : hint_range(-100.0, 100.0) = 0.0;     // Contrast from -100 to 100
+uniform float hue : hint_range(-360, 360);         // Allow negative hue
+uniform float saturation : hint_range(-100, 100);  // Allow negative saturation
+uniform float brightness : hint_range(-255, 255);  // Allow negative brightness
+uniform float contrast : hint_range(-255, 255);    // Allow negative contrast;
 
-vec3 rgb_to_hsv(vec3 color) {
-	vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
-	vec4 p = mix(vec4(color.bg, K.wz), vec4(color.gb, K.xy), step(color.b, color.g));
-	vec4 q = mix(vec4(p.xyw, color.r), vec4(color.r, p.yzx), step(p.x, color.r));
-
-	float d = q.x - min(q.w, q.y);
-	float e = 1.0e-10;
-	return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+vec3 apply_hue(vec3 color, float hue_angle) {
+	float angle = radians(hue_angle);
+	vec3 k = vec3(0.57735, 0.57735, 0.57735); // Equal weights for each channel
+	float cos_angle = cos(angle);
+	return color * cos_angle + cross(k, color) * sin(angle) + k * dot(k, color) * (1.0 - cos_angle);
 }
 
-vec3 hsv_to_rgb(vec3 hsv) {
-	vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
-	vec3 p = abs(fract(hsv.xxx + K.xyz) * 6.0 - K.www);
-	return hsv.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), hsv.y);
+vec3 apply_hsb_effect(vec3 color) {
+	// Apply brightness adjustment (negative values will darken the image)
+	color = clamp(color + (brightness / 255.0), 0.0, 1.0);
+
+	// Apply hue adjustment (negative values will rotate the hue in the opposite direction)
+	color = apply_hue(color, hue);
+
+	// Apply contrast adjustment (negative values will decrease contrast)
+	color = clamp((color - 0.5) * (1.0 + (contrast / 255.0)) + 0.5, 0.0, 1.0);
+
+	// Apply saturation adjustment (negative values will desaturate the image)
+	vec3 intensity = vec3(dot(color, vec3(0.30980392156, 0.60784313725, 0.08235294117)));
+	color = clamp(mix(intensity, color, (1.0 + (saturation / 100.0))), 0.0, 1.0);
+
+	return color;
 }
 
 void fragment() {
-	vec4 color = texture(TEXTURE, UV);
+	// Get the current fragment color (input color)
+	vec4 input_color = COLOR;
 
-	// Convert to HSV for hue and saturation adjustments
-	vec3 hsv = rgb_to_hsv(color.rgb);
-	hsv.x += hue / 360.0;  // Normalize hue to 0-1 range
-	hsv.y = clamp(hsv.y * (saturation / 100.0), 0.0, 1.0);  // Adjust saturation (0-100 to 0-1)
-	color.rgb = hsv_to_rgb(hsv);
+	// Apply HSB and contrast adjustments with potential negative values
+	vec3 out_color = apply_hsb_effect(input_color.rgb);
 
-	// Brightness adjustment (simplified)
-	color.rgb += brightness / 100.0;  // Add brightness
-
-	// Contrast adjustment
-	// - Contrast from -100 to 100 is mapped to a multiplier where 0 = no change.
-	// - Values below 0 compress the range, and values above 0 expand it.
-	float contrast_factor = (1.0 + contrast / 100.0);
-	color.rgb = (color.rgb - 1.0) * contrast_factor + 1.0;  // Center around 0.5 and scale by contrast factor
-
-	// Output the final color
-	COLOR = color;
+	// Output the modified color
+	COLOR = vec4(out_color * input_color.a, input_color.a);
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l7xsd"]
-shader = SubResource("Shader_pnd5q")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0sp2o"]
+shader = SubResource("Shader_f53w6")
 shader_parameter/hue = -8.99998
-shader_parameter/saturation = 100.0
+shader_parameter/saturation = null
 shader_parameter/brightness = -30.0
-shader_parameter/contrast = -16.0
+shader_parameter/contrast = -3.99999
 
-[sub_resource type="Shader" id="Shader_yt403"]
+[sub_resource type="Shader" id="Shader_txx2t"]
 code = "shader_type canvas_item;
 
-uniform float hue : hint_range(-360.0, 360.0) = 0.0;          // Hue from -360 to 360
-uniform float saturation : hint_range(0.0, 100.0) = 100.0;    // Saturation from 0 to 100
-uniform float brightness : hint_range(-100.0, 100.0) = 0.0;   // Brightness from -100 to 100
-uniform float contrast : hint_range(-100.0, 100.0) = 0.0;     // Contrast from -100 to 100
+uniform float hue : hint_range(-360, 360);         // Allow negative hue
+uniform float saturation : hint_range(-100, 100);  // Allow negative saturation
+uniform float brightness : hint_range(-255, 255);  // Allow negative brightness
+uniform float contrast : hint_range(-255, 255);    // Allow negative contrast;
 
-vec3 rgb_to_hsv(vec3 color) {
-	vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
-	vec4 p = mix(vec4(color.bg, K.wz), vec4(color.gb, K.xy), step(color.b, color.g));
-	vec4 q = mix(vec4(p.xyw, color.r), vec4(color.r, p.yzx), step(p.x, color.r));
-
-	float d = q.x - min(q.w, q.y);
-	float e = 1.0e-10;
-	return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+vec3 apply_hue(vec3 color, float hue_angle) {
+	float angle = radians(hue_angle);
+	vec3 k = vec3(0.57735, 0.57735, 0.57735); // Equal weights for each channel
+	float cos_angle = cos(angle);
+	return color * cos_angle + cross(k, color) * sin(angle) + k * dot(k, color) * (1.0 - cos_angle);
 }
 
-vec3 hsv_to_rgb(vec3 hsv) {
-	vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
-	vec3 p = abs(fract(hsv.xxx + K.xyz) * 6.0 - K.www);
-	return hsv.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), hsv.y);
+vec3 apply_hsb_effect(vec3 color) {
+	// Apply brightness adjustment (negative values will darken the image)
+	color = clamp(color + (brightness / 255.0), 0.0, 1.0);
+
+	// Apply hue adjustment (negative values will rotate the hue in the opposite direction)
+	color = apply_hue(color, hue);
+
+	// Apply contrast adjustment (negative values will decrease contrast)
+	color = clamp((color - 0.5) * (1.0 + (contrast / 255.0)) + 0.5, 0.0, 1.0);
+
+	// Apply saturation adjustment (negative values will desaturate the image)
+	vec3 intensity = vec3(dot(color, vec3(0.30980392156, 0.60784313725, 0.08235294117)));
+	color = clamp(mix(intensity, color, (1.0 + (saturation / 100.0))), 0.0, 1.0);
+
+	return color;
 }
 
 void fragment() {
-	vec4 color = texture(TEXTURE, UV);
+	// Get the current fragment color (input color)
+	vec4 input_color = COLOR;
 
-	// Convert to HSV for hue and saturation adjustments
-	vec3 hsv = rgb_to_hsv(color.rgb);
-	hsv.x += hue / 360.0;  // Normalize hue to 0-1 range
-	hsv.y = clamp(hsv.y * (saturation / 100.0), 0.0, 1.0);  // Adjust saturation (0-100 to 0-1)
-	color.rgb = hsv_to_rgb(hsv);
+	// Apply HSB and contrast adjustments with potential negative values
+	vec3 out_color = apply_hsb_effect(input_color.rgb);
 
-	// Brightness adjustment (simplified)
-	color.rgb += brightness / 100.0;  // Add brightness
-
-	// Contrast adjustment
-	// - Contrast from -100 to 100 is mapped to a multiplier where 0 = no change.
-	// - Values below 0 compress the range, and values above 0 expand it.
-	float contrast_factor = (1.0 + contrast / 100.0);
-	color.rgb = (color.rgb - 1.0) * contrast_factor + 1.0;  // Center around 0.5 and scale by contrast factor
-
-	// Output the final color
-	COLOR = color;
+	// Output the modified color
+	COLOR = vec4(out_color * input_color.a, input_color.a);
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qeucr"]
-shader = SubResource("Shader_yt403")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_10564"]
+shader = SubResource("Shader_txx2t")
 shader_parameter/hue = 12.0
-shader_parameter/saturation = 100.0
+shader_parameter/saturation = null
 shader_parameter/brightness = -23.0
 shader_parameter/contrast = 7.00001
 
@@ -270,15 +261,15 @@ metadata/_edit_lock_ = true
 
 [node name="Opponent" type="Node2D" parent="Character Positions"]
 z_index = 200
-material = SubResource("ShaderMaterial_38nbo")
+material = SubResource("ShaderMaterial_kc5q2")
 position = Vector2(40, 850)
 
 [node name="Spectator" type="Node2D" parent="Character Positions"]
 z_index = 100
-material = SubResource("ShaderMaterial_l7xsd")
+material = SubResource("ShaderMaterial_0sp2o")
 position = Vector2(501.5, 825)
 
 [node name="Player" type="Node2D" parent="Character Positions"]
 z_index = 300
-material = SubResource("ShaderMaterial_qeucr")
+material = SubResource("ShaderMaterial_10564")
 position = Vector2(977.5, 865)

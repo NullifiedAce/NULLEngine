@@ -126,7 +126,11 @@ func load_song():
 func load_track(music_path:String, fileName:String):
 	var track:AudioStreamPlayer = AudioStreamPlayer.new()
 	track.name = fileName
-	track.stream = load(music_path + fileName + ".ogg")
+	if Global.variation == "default":
+		track.stream = load(music_path + fileName + ".ogg")
+	else:
+		track.stream = load(music_path + fileName + "-" + Global.variation + ".ogg")
+		print(music_path + fileName + "-" + Global.variation + ".ogg")
 	track.pitch_scale = Conductor.rate
 
 	if fileName == "Inst":
@@ -177,7 +181,8 @@ func load_event_array(event_array:Array[Variant]) -> Array[SongEvent]:
 	return return_events
 
 func load_events() -> void:
-	pass
+	for event in Global.SONG.events:
+		print(event)
 
 func _ready() -> void:
 	super._ready()
@@ -190,10 +195,11 @@ func _ready() -> void:
 	Ranking.ranks = Ranking.default_ranks.duplicate(true)
 
 	if Global.SONG == null:
-		Global.SONG = Chart.load_chart("tutorial", "hard", "default")
-		Global.METADATA = Metadata.load_metadata("tutorial", "default")
+		Global.SONG = Chart.load_chart("bopeebo", "nightmare", "erect")
+		Global.METADATA = Metadata.load_metadata("bopeebo", "erect")
 		SONG = Global.SONG
 		METADATA = Global.METADATA
+		Global.variation = "erect"
 
 	var meta_path:String = "res://assets/songs/" + METADATA.songName.to_lower() + "/meta"
 	if ResourceLoader.exists(meta_path + ".tres"):
@@ -216,6 +222,8 @@ func _ready() -> void:
 	Conductor.map_bpm_changes(METADATA)
 	Conductor.change_bpm(METADATA.timeChanges[0]["bpm"])
 	Conductor.position = Conductor.crochet * -5
+
+
 
 	gen_song()
 	load_events()
@@ -305,7 +313,7 @@ func _ready() -> void:
 	combo_group.remove_child(rating_template)
 	combo_group.remove_child(combo_template)
 
-	update_camera()
+	update_camera(spectator.camera_pos.global_position.x, spectator.camera_pos.global_position.y, 0, Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 	for i in player_strums.get_child_count():
 		pressed.append(false)
@@ -551,16 +559,15 @@ func character_bop():
 
 	script_group.call_func("on_character_bop", [])
 
-func update_camera(sec:int = 0):
-	#if not range(SONG.sections.size()).has(sec): return
-#
-	#var cur_sec:Section = SONG.sections[sec]
-	#if cur_sec != null and cur_sec.is_player:
-		#camera.position = player.get_camera_pos() + stage.player_cam_offset
-	#else:
-		#camera.position = opponent.get_camera_pos() + stage.opponent_cam_offset
+func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
+	var cam_tween = get_tree().create_tween()
+	if duration == 0:
+		camera.position = Vector2(targetX, targetY)
+	else:
+		cam_tween.tween_property(camera, "position", Vector2(targetX, targetY), duration).set_trans(trans).set_ease(ease)
 
-	camera.position = opponent.get_camera_pos() + stage.opponent_cam_offset
+	await cam_tween.finished
+	cam_tween.kill()
 
 	script_group.call_func("on_update_camera", [])
 

@@ -145,7 +145,7 @@ func _process(delta):
 					if game.starting_song:
 						game.start_song()
 
-					game.score = 0 # fuck you i'm lazy
+					game.songScore = 0 # fuck you i'm lazy
 					Conductor.position = cur_time
 
 					if cur_time > old_pos:
@@ -160,7 +160,7 @@ func _process(delta):
 					else:
 						game.note_data_array = []
 						game.gen_song(cur_time + 500)
-						Conductor.change_bpm(Global.SONG.bpm)
+						Conductor.change_bpm(Global.METADATA.timeChanges[0]["bpm"])
 
 				game.load_events()
 
