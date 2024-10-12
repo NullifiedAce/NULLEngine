@@ -8,6 +8,7 @@ var timeFormat:String = "ms"
 var artist:String = "Kawai Sprite"
 var charter:String = "ninjamuffin99"
 
+var rawSongName:String = "bopeebo"
 var songName:String = "Bopeebo"
 
 var timeChanges: Array = [{ "t": 0, "bpm": 100, "n": 4, "d": 4, "bt": [4, 4, 4, 4] }]
@@ -48,6 +49,7 @@ static func load_from_json(song:String, json):
 	metadata.timeFormat = json.timeFormat
 	metadata.artist = json.artist
 	metadata.charter = json.charter
+	metadata.rawSongName = json.rawSongName
 	metadata.songName = json.songName
 	metadata.timeChanges = json.timeChanges
 	if json.has("offsets"):

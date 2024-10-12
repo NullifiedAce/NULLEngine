@@ -114,7 +114,7 @@ signal paused
 
 var tracks:Array[AudioStreamPlayer] = []
 func load_song():
-	var music_path:String = "res://assets/songs/%s/audio/" % [METADATA.songName.to_lower()]
+	var music_path:String = "res://assets/songs/%s/audio/" % [METADATA.rawSongName.to_lower()]
 
 	if DirAccess.dir_exists_absolute(music_path):
 		var dir = DirAccess.open(music_path)
@@ -195,13 +195,12 @@ func _ready() -> void:
 	Ranking.ranks = Ranking.default_ranks.duplicate(true)
 
 	if Global.SONG == null:
-		Global.SONG = Chart.load_chart("bopeebo", "nightmare", "erect")
-		Global.METADATA = Metadata.load_metadata("bopeebo", "erect")
+		Global.SONG = Chart.load_chart("tutorial", "hard", "default")
+		Global.METADATA = Metadata.load_metadata("tutorial", "default")
 		SONG = Global.SONG
 		METADATA = Global.METADATA
-		Global.variation = "erect"
 
-	var meta_path:String = "res://assets/songs/" + METADATA.songName.to_lower() + "/meta"
+	var meta_path:String = "res://assets/songs/" + METADATA.rawSongName.to_lower() + "/meta"
 	if ResourceLoader.exists(meta_path + ".tres"):
 		meta = load(meta_path + ".tres")
 
@@ -243,7 +242,7 @@ func _ready() -> void:
 	strumlines.add_child(player_strums)
 
 	# load song scripts (put in assets/songs/SONGNAME)
-	var script_path:String = "res://assets/songs/"+METADATA.songName.to_lower()+"/"
+	var script_path:String = "res://assets/songs/"+METADATA.rawSongName.to_lower()+"/"
 	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
 	for item in file_list:
 		if item.ends_with(".tscn") or item.ends_with(".tscn.remap"):
@@ -388,7 +387,7 @@ func update_health_bar():
 		#PLAYER_HEALTH_COLOR.bg_color = SettingsAPI.get_setting("player color")
 
 func start_cutscene(postfix:String = "-start"):
-	var cutscene_path = "res://scenes/gameplay/cutscenes/" + METADATA.songName.to_lower() + postfix + ".tscn"
+	var cutscene_path = "res://scenes/gameplay/cutscenes/" + METADATA.rawSongName.to_lower() + postfix + ".tscn"
 	if ResourceLoader.exists(cutscene_path):
 		in_cutscene = true
 		hud.add_child(load(cutscene_path).instantiate())
@@ -490,8 +489,8 @@ func end_song():
 	stage.callv("on_end_song", [])
 	var ret:Variant = script_group.call_func("on_end_song", [])
 	if ret == false: return
-	if songScore > HighScore.get_score(METADATA.songName,Global.current_difficulty):
-		HighScore.set_score(METADATA.songName,Global.current_difficulty,songScore)
+	if songScore > HighScore.get_score(METADATA.rawSongName,Global.current_difficulty):
+		HighScore.set_score(METADATA.rawSongName,Global.current_difficulty,songScore)
 
 	if Global.queued_songs.size() > 0:
 		Global.SONG = Chart.load_chart(Global.queued_songs[0], Global.current_difficulty)
@@ -885,7 +884,7 @@ func update_score_text():
 
 	score_text.text = ""
 
-	RichPresence.set_text(str(METADATA.songName) + " (" + str(Global.current_difficulty).capitalize() + ")", "Score: %s" % songScore)
+	RichPresence.set_text(str(METADATA.rawSongName) + " (" + str(Global.current_difficulty).capitalize() + ")", "Score: %s" % songScore)
 
 	for i in array:
 		text_length += 1
