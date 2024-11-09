@@ -181,8 +181,7 @@ func load_event_array(event_array:Array[Variant]) -> Array[SongEvent]:
 	return return_events
 
 func load_events() -> void:
-	for event in Global.SONG.events:
-		print(event)
+	pass
 
 func _ready() -> void:
 	super._ready()

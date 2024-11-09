@@ -40,7 +40,6 @@ script = ExtResource("3_rou8q")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
-position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 
 [node name="characters" type="Node2D" parent="."]
