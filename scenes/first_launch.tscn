@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://5gv2so4ckba1"]
+[gd_scene load_steps=16 format=3 uid="uid://5gv2so4ckba1"]
 
 [ext_resource type="Script" path="res://scenes/first_launch.gd" id="1_cjiy5"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_jkndc"]
@@ -6,6 +6,12 @@
 [ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="4_gguo6"]
 [ext_resource type="Texture2D" uid="uid://hjfgofepc31y" path="res://assets/images/gameplay/stages/stage/stage_light.png" id="4_h5el2"]
 [ext_resource type="FontFile" uid="uid://cf2wd6a4pa5kb" path="res://assets/fonts/funkin.ttf" id="5_vc868"]
+[ext_resource type="Texture2D" uid="uid://pcqi0a5njtlr" path="res://assets/images/menus/firstlaunch/arrow.png" id="7_nnl45"]
+[ext_resource type="Texture2D" uid="uid://bajg5ri5ikwq2" path="res://assets/images/material_icons/checkbox/checked.svg" id="8_l67b5"]
+[ext_resource type="Texture2D" uid="uid://cuwsd23w8tsnn" path="res://assets/images/material_icons/checkbox/checked_disabled.svg" id="9_xq1mu"]
+[ext_resource type="Texture2D" uid="uid://u4kysxd17gha" path="res://assets/images/material_icons/checkbox/unchecked.svg" id="10_c4ct6"]
+[ext_resource type="Texture2D" uid="uid://deittp727l7il" path="res://assets/images/material_icons/checkbox/unchecked_disabled.svg" id="11_hl8wv"]
+[ext_resource type="Script" path="res://scenes/options/Checkbox.gd" id="12_uplql"]
 
 [sub_resource type="Gradient" id="Gradient_b5v8e"]
 colors = PackedColorArray(1, 1, 1, 0.0980392, 1, 1, 1, 0)
@@ -17,6 +23,17 @@ height = 720
 fill = 1
 fill_from = Vector2(0.5, 0)
 fill_to = Vector2(0.5, 1)
+
+[sub_resource type="Theme" id="Theme_3lb0i"]
+CheckBox/colors/font_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_outline_color = Color(0, 0, 0, 1)
+CheckBox/constants/outline_size = 8
+CheckBox/font_sizes/font_size = 16
+CheckBox/fonts/font = ExtResource("5_vc868")
+CheckBox/icons/checked = ExtResource("8_l67b5")
+CheckBox/icons/checked_disabled = ExtResource("9_xq1mu")
+CheckBox/icons/unchecked = ExtResource("10_c4ct6")
+CheckBox/icons/unchecked_disabled = ExtResource("11_hl8wv")
 
 [node name="FirstLaunch" type="Node2D"]
 script = ExtResource("1_cjiy5")
@@ -51,38 +68,210 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_h5el2")
 metadata/_edit_lock_ = true
 
-[node name="Text" type="Label" parent="."]
-offset_left = 64.0
-offset_top = 192.0
-offset_right = 1216.0
-offset_bottom = 640.0
-theme = ExtResource("4_gguo6")
-theme_override_constants/outline_size = 16
-theme_override_fonts/font = ExtResource("5_vc868")
-theme_override_font_sizes/font_size = 32
-text = "First Launch
-
-(This menu should only be visible upon first launch. If not, report it to the GitHub repository.)
-
-Thank you for downloading and testing out NULL Engine.
-
-This engine was originally made with HaxeFlixel based of the original FNF Engine but has moved to Godot based of a port/another engine. So huge credits to the original engine developer for porting over this awesome rhythm game!
-
-This game contains some flashing lights, which for some users might not be suitable.
-You can disable flashing lights in the options menu under the \"Apperance\" tab.
-
-With this said:
-
-HAVE FUN!!! :D
-
-PRESS \"ENTER\" TO CLOSE THIS MENU"
-horizontal_alignment = 1
-autowrap_mode = 2
-metadata/_edit_lock_ = true
-
 [node name="Flash" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
+z_index = 2
 offset_right = 1280.0
 offset_bottom = 720.0
+metadata/_edit_lock_ = true
+
+[node name="Pages" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Page1" type="RichTextLabel" parent="Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_gguo6")
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("5_vc868")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center][font_size=56]FIRST LAUNCH[/font_size][/center]
+
+
+[center]Thank you for downloading and testing out NULL Engine![/center]
+
+
+[center] This Engine is still early in development so expect some minor bugs during gameplay. If you happen to find any please report them either on the [color=slategray][url=https://github.com/NULLSonic/NULLEngine/]GitHub[/url][/color] Repository or in my [color=midnightblue][url=https://discord.gg/yhucbDHkCU]Discord Server[/url][/color].
+
+
+(This menu should only appear upon first launch.)[/center]"
+
+[node name="Page2" type="RichTextLabel" parent="Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_gguo6")
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("5_vc868")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center][font_size=56]HISTORY[/font_size]
+
+
+NULL Engine was originally made with Scratch. Yes, the coding websites meant for Kids with the orange cat. Back then it was called \"S4F Engine\" based on my username on Scratch, that being \"Selever4Fun\". It had 2 released before development switched to HaxeFlixel with also its name changed to \"Pan Engine\".
+
+This was based again on my username, being \"AceThePan\". This version of the engine sadly never saw a release and still remains with the archived source code on my GitHub profile. It will stay there for people to check out the thigns I already had done. Late 2023 it was cancelled because I took a break from the FNF Community.
+
+And finally July 2024 the engine was back in development and re-born as \"NULL Engine\". This time built on top of \"Nova Engine\"[/center]"
+
+[node name="Page3" type="RichTextLabel" parent="Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_gguo6")
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("5_vc868")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center][font_size=56]ABOUT & MODDING[/font_size]
+
+
+NOTE: NULL Engine is made with Godot 4 and [color=red]not[/color] HaxeFlixel. NULL Engine isn't up-to-date with the original game. Features and other things that aren't implemented into NE will be ported over at some point in time.
+
+
+NULL Engine is a engine that allows mods to be used and having customizations. Check out the HUD Editor in the Options menu!!
+
+Interested in modding the Engine? Check out the [url=https://github.com/NULLSonic/NULLEngine/wiki][color=slategray]GitHub Wiki[/color][/url] for more![/center]"
+
+[node name="Page4" type="RichTextLabel" parent="Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_gguo6")
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("5_vc868")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center][font_size=56]/!\\ WARNING /!\\[/font_size]
+
+
+This Engine contains [color=red]Flashing Lights[/color], which for some user might not be suitable!
+
+You can disable this here by unchecking the checkbox below or continue on with flashing lights enabled.
+
+
+
+
+With all said and done:
+
+ENJOY :D
+
+
+
+
+Press \"ENTER\" to start the Engine[/center]"
+
+[node name="NextPage" type="TextureButton" parent="."]
+offset_left = 1112.0
+offset_top = 600.0
+offset_right = 1216.0
+offset_bottom = 704.0
+rotation = 3.14159
+pivot_offset = Vector2(51, 51)
+focus_mode = 0
+texture_normal = ExtResource("7_nnl45")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="NextPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 104.0
+offset_top = 104.0
+offset_right = 104.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+theme = ExtResource("4_gguo6")
+text = "Next
+Page"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="PreviousPage" type="TextureButton" parent="."]
+visible = false
+offset_left = 64.0
+offset_top = 600.0
+offset_right = 168.0
+offset_bottom = 704.0
+pivot_offset = Vector2(51, 51)
+focus_mode = 0
+texture_normal = ExtResource("7_nnl45")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="PreviousPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(51, 51)
+theme = ExtResource("4_gguo6")
+text = "Previous
+Page"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="flashing lights" type="CheckBox" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 557.5
+offset_top = 416.5
+offset_right = 722.5
+offset_bottom = 447.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+mouse_filter = 1
+theme = SubResource("Theme_3lb0i")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+button_pressed = true
+text = "FLASHING LIGHTS"
+script = ExtResource("12_uplql")
+option = "flashing lights"
+
+[connection signal="meta_clicked" from="Pages/Page1" to="." method="url_clicked"]
+[connection signal="meta_clicked" from="Pages/Page2" to="." method="url_clicked"]
+[connection signal="meta_clicked" from="Pages/Page3" to="." method="url_clicked"]
+[connection signal="meta_clicked" from="Pages/Page4" to="." method="url_clicked"]
+[connection signal="pressed" from="NextPage" to="." method="_on_next_page_pressed"]
+[connection signal="pressed" from="PreviousPage" to="." method="_on_previous_page_pressed"]
+[connection signal="pressed" from="flashing lights" to="flashing lights" method="_on_pressed"]
 
 [editable path="BG Sprite"]

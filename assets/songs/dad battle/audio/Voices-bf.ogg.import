@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bjd647e00u1g7"
+path="res://.godot/imported/Voices-bf.ogg-b9f29abdd3c8eb58bfb9b9f504f9d2e9.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/songs/dad battle/audio/Voices-bf.ogg"
+dest_files=["res://.godot/imported/Voices-bf.ogg-b9f29abdd3c8eb58bfb9b9f504f9d2e9.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://hlyje55c4bjh"]
+
+[ext_resource type="Script" path="res://scenes/gameplay/events/FocusCamera.gd" id="1_vma0p"]
+
+[node name="FocusCamera" type="Node2D"]
+script = ExtResource("1_vma0p")

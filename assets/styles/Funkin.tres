@@ -1,0 +1,45 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dmxgbq01mwkmu"]
+
+[ext_resource type="FontFile" uid="uid://cf2wd6a4pa5kb" path="res://assets/fonts/funkin.ttf" id="1_hmpwp"]
+[ext_resource type="Texture2D" uid="uid://bajg5ri5ikwq2" path="res://assets/images/material_icons/checkbox/checked.svg" id="2_nwmwt"]
+[ext_resource type="Texture2D" uid="uid://cuwsd23w8tsnn" path="res://assets/images/material_icons/checkbox/checked_disabled.svg" id="3_trbwt"]
+[ext_resource type="Texture2D" uid="uid://u4kysxd17gha" path="res://assets/images/material_icons/checkbox/unchecked.svg" id="4_5e1q5"]
+[ext_resource type="Texture2D" uid="uid://deittp727l7il" path="res://assets/images/material_icons/checkbox/unchecked_disabled.svg" id="5_i0kdi"]
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 8
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_hmpwp")
+CheckBox/colors/font_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_outline_color = Color(0, 0, 0, 1)
+CheckBox/constants/outline_size = 8
+CheckBox/font_sizes/font_size = 16
+CheckBox/fonts/font = ExtResource("1_hmpwp")
+CheckBox/icons/checked = ExtResource("2_nwmwt")
+CheckBox/icons/checked_disabled = ExtResource("3_trbwt")
+CheckBox/icons/unchecked = ExtResource("4_5e1q5")
+CheckBox/icons/unchecked_disabled = ExtResource("5_i0kdi")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/constants/outline_size = 8
+Label/fonts/font = ExtResource("1_hmpwp")
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
+LineEdit/constants/outline_size = 8
+LineEdit/fonts/font = ExtResource("1_hmpwp")
+ProgressBar/colors/font_color = Color(1, 1, 1, 1)
+ProgressBar/constants/outline_size = 8
+ProgressBar/fonts/font = ExtResource("1_hmpwp")
+TabBar/constants/outline_size = 8
+TabBar/font_sizes/font_size = 16
+TabBar/fonts/font = ExtResource("1_hmpwp")
+TabContainer/constants/outline_size = 8
+TabContainer/font_sizes/font_size = 16
+TabContainer/fonts/font = ExtResource("1_hmpwp")
+TextEdit/colors/font_color = Color(1, 1, 1, 1)
+TextEdit/constants/outline_size = 8
+TextEdit/fonts/font = ExtResource("1_hmpwp")
+Tree/colors/font_color = Color(1, 1, 1, 1)
+Tree/constants/outline_size = 8
+Tree/font_sizes/font_size = 16
+Tree/fonts/font = ExtResource("1_hmpwp")
+Tree/fonts/title_button_font = ExtResource("1_hmpwp")

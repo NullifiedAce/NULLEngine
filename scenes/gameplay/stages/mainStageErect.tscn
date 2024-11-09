@@ -1,0 +1,275 @@
+[gd_scene load_steps=19 format=3 uid="uid://cys3l578mwdyu"]
+
+[ext_resource type="Script" path="res://scenes/gameplay/stages/mainStageErect.gd" id="1_8vwlo"]
+[ext_resource type="Texture2D" uid="uid://13co4svlbwp7" path="res://assets/images/gameplay/stages/stage/erect/backDark.png" id="2_c0nuu"]
+[ext_resource type="Texture2D" uid="uid://c0gqg8l826fpo" path="res://assets/images/gameplay/stages/stage/erect/brightLightSmall.png" id="3_g7dt4"]
+[ext_resource type="SpriteFrames" uid="uid://blohjvh5eb7yb" path="res://assets/images/gameplay/stages/stage/erect/crowd.res" id="4_1df25"]
+[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="5_mp3ss"]
+[ext_resource type="Texture2D" uid="uid://bqdjfj37c6vh3" path="res://assets/images/gameplay/stages/stage/erect/bg.png" id="5_sjrhj"]
+[ext_resource type="Texture2D" uid="uid://gvoekae7mfx4" path="res://assets/images/gameplay/stages/stage/erect/lightgreen.png" id="6_bg7vw"]
+[ext_resource type="Texture2D" uid="uid://djq6fg3no24y3" path="res://assets/images/gameplay/stages/stage/erect/server.png" id="6_l8k6e"]
+[ext_resource type="Texture2D" uid="uid://cxhpufjyw50x1" path="res://assets/images/gameplay/stages/stage/erect/lightred.png" id="7_tcvtv"]
+[ext_resource type="Texture2D" uid="uid://ddxd6dxaf0my6" path="res://assets/images/gameplay/stages/stage/erect/orangeLight.png" id="7_u1rit"]
+[ext_resource type="Texture2D" uid="uid://cg7ejpd2kqrb8" path="res://assets/images/gameplay/stages/stage/erect/lightAbove.png" id="8_47pi4"]
+[ext_resource type="Texture2D" uid="uid://5lb7egg1sxc0" path="res://assets/images/gameplay/stages/stage/erect/lights.png" id="8_ckeox"]
+
+[sub_resource type="Shader" id="Shader_khasu"]
+code = "shader_type canvas_item;
+
+uniform float hue : hint_range(-360, 360);         // Allow negative hue
+uniform float saturation : hint_range(-100, 100);  // Allow negative saturation
+uniform float brightness : hint_range(-255, 255);  // Allow negative brightness
+uniform float contrast : hint_range(-255, 255);    // Allow negative contrast;
+
+vec3 apply_hue(vec3 color, float hue_angle) {
+	float angle = radians(hue_angle);
+	vec3 k = vec3(0.57735, 0.57735, 0.57735); // Equal weights for each channel
+	float cos_angle = cos(angle);
+	return color * cos_angle + cross(k, color) * sin(angle) + k * dot(k, color) * (1.0 - cos_angle);
+}
+
+vec3 apply_hsb_effect(vec3 color) {
+	// Apply brightness adjustment (negative values will darken the image)
+	color = clamp(color + (brightness / 255.0), 0.0, 1.0);
+
+	// Apply hue adjustment (negative values will rotate the hue in the opposite direction)
+	color = apply_hue(color, hue);
+
+	// Apply contrast adjustment (negative values will decrease contrast)
+	color = clamp((color - 0.5) * (1.0 + (contrast / 255.0)) + 0.5, 0.0, 1.0);
+
+	// Apply saturation adjustment (negative values will desaturate the image)
+	vec3 intensity = vec3(dot(color, vec3(0.30980392156, 0.60784313725, 0.08235294117)));
+	color = clamp(mix(intensity, color, (1.0 + (saturation / 100.0))), 0.0, 1.0);
+
+	return color;
+}
+
+void fragment() {
+	// Get the current fragment color (input color)
+	vec4 input_color = COLOR;
+
+	// Apply HSB and contrast adjustments with potential negative values
+	vec3 out_color = apply_hsb_effect(input_color.rgb);
+
+	// Output the modified color
+	COLOR = vec4(out_color * input_color.a, input_color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kc5q2"]
+shader = SubResource("Shader_khasu")
+shader_parameter/hue = -32.0
+shader_parameter/saturation = null
+shader_parameter/brightness = -33.0
+shader_parameter/contrast = -23.0
+
+[sub_resource type="Shader" id="Shader_f53w6"]
+code = "shader_type canvas_item;
+
+uniform float hue : hint_range(-360, 360);         // Allow negative hue
+uniform float saturation : hint_range(-100, 100);  // Allow negative saturation
+uniform float brightness : hint_range(-255, 255);  // Allow negative brightness
+uniform float contrast : hint_range(-255, 255);    // Allow negative contrast;
+
+vec3 apply_hue(vec3 color, float hue_angle) {
+	float angle = radians(hue_angle);
+	vec3 k = vec3(0.57735, 0.57735, 0.57735); // Equal weights for each channel
+	float cos_angle = cos(angle);
+	return color * cos_angle + cross(k, color) * sin(angle) + k * dot(k, color) * (1.0 - cos_angle);
+}
+
+vec3 apply_hsb_effect(vec3 color) {
+	// Apply brightness adjustment (negative values will darken the image)
+	color = clamp(color + (brightness / 255.0), 0.0, 1.0);
+
+	// Apply hue adjustment (negative values will rotate the hue in the opposite direction)
+	color = apply_hue(color, hue);
+
+	// Apply contrast adjustment (negative values will decrease contrast)
+	color = clamp((color - 0.5) * (1.0 + (contrast / 255.0)) + 0.5, 0.0, 1.0);
+
+	// Apply saturation adjustment (negative values will desaturate the image)
+	vec3 intensity = vec3(dot(color, vec3(0.30980392156, 0.60784313725, 0.08235294117)));
+	color = clamp(mix(intensity, color, (1.0 + (saturation / 100.0))), 0.0, 1.0);
+
+	return color;
+}
+
+void fragment() {
+	// Get the current fragment color (input color)
+	vec4 input_color = COLOR;
+
+	// Apply HSB and contrast adjustments with potential negative values
+	vec3 out_color = apply_hsb_effect(input_color.rgb);
+
+	// Output the modified color
+	COLOR = vec4(out_color * input_color.a, input_color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0sp2o"]
+shader = SubResource("Shader_f53w6")
+shader_parameter/hue = -8.99998
+shader_parameter/saturation = null
+shader_parameter/brightness = -30.0
+shader_parameter/contrast = -3.99999
+
+[sub_resource type="Shader" id="Shader_txx2t"]
+code = "shader_type canvas_item;
+
+uniform float hue : hint_range(-360, 360);         // Allow negative hue
+uniform float saturation : hint_range(-100, 100);  // Allow negative saturation
+uniform float brightness : hint_range(-255, 255);  // Allow negative brightness
+uniform float contrast : hint_range(-255, 255);    // Allow negative contrast;
+
+vec3 apply_hue(vec3 color, float hue_angle) {
+	float angle = radians(hue_angle);
+	vec3 k = vec3(0.57735, 0.57735, 0.57735); // Equal weights for each channel
+	float cos_angle = cos(angle);
+	return color * cos_angle + cross(k, color) * sin(angle) + k * dot(k, color) * (1.0 - cos_angle);
+}
+
+vec3 apply_hsb_effect(vec3 color) {
+	// Apply brightness adjustment (negative values will darken the image)
+	color = clamp(color + (brightness / 255.0), 0.0, 1.0);
+
+	// Apply hue adjustment (negative values will rotate the hue in the opposite direction)
+	color = apply_hue(color, hue);
+
+	// Apply contrast adjustment (negative values will decrease contrast)
+	color = clamp((color - 0.5) * (1.0 + (contrast / 255.0)) + 0.5, 0.0, 1.0);
+
+	// Apply saturation adjustment (negative values will desaturate the image)
+	vec3 intensity = vec3(dot(color, vec3(0.30980392156, 0.60784313725, 0.08235294117)));
+	color = clamp(mix(intensity, color, (1.0 + (saturation / 100.0))), 0.0, 1.0);
+
+	return color;
+}
+
+void fragment() {
+	// Get the current fragment color (input color)
+	vec4 input_color = COLOR;
+
+	// Apply HSB and contrast adjustments with potential negative values
+	vec3 out_color = apply_hsb_effect(input_color.rgb);
+
+	// Output the modified color
+	COLOR = vec4(out_color * input_color.a, input_color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_10564"]
+shader = SubResource("Shader_txx2t")
+shader_parameter/hue = 12.0
+shader_parameter/saturation = null
+shader_parameter/brightness = -23.0
+shader_parameter/contrast = 7.00001
+
+[node name="mainStageErect" type="Node2D"]
+script = ExtResource("1_8vwlo")
+default_cam_zoom = 0.85
+player_cam_offset = Vector2(0, -20)
+
+[node name="PB" type="ParallaxBackground" parent="."]
+
+[node name="PL1" type="ParallaxLayer" parent="PB"]
+
+[node name="backDark" type="Sprite2D" parent="PB/PL1"]
+position = Vector2(729, -170)
+texture = ExtResource("2_c0nuu")
+centered = false
+
+[node name="bg" type="Sprite2D" parent="PB/PL1"]
+z_index = 20
+position = Vector2(-603, -187)
+texture = ExtResource("5_sjrhj")
+centered = false
+
+[node name="server" type="Sprite2D" parent="PB/PL1"]
+z_index = 30
+position = Vector2(-361, 205)
+texture = ExtResource("6_l8k6e")
+centered = false
+
+[node name="orangeLightt" type="Sprite2D" parent="PB/PL1"]
+z_index = 80
+position = Vector2(189, -195)
+texture = ExtResource("7_u1rit")
+centered = false
+
+[node name="lightgreen" type="PointLight2D" parent="PB/PL1"]
+z_index = 40
+position = Vector2(-82, 336)
+color = Color(0.206266, 0.550781, 0.120785, 1)
+energy = 16.0
+range_z_max = 30
+range_layer_min = -100
+texture = ExtResource("6_bg7vw")
+
+[node name="lightred" type="PointLight2D" parent="PB/PL1"]
+z_index = 40
+position = Vector2(-11.5, 651)
+color = Color(0.976471, 0.227451, 0.247059, 1)
+energy = 16.0
+range_z_max = 30
+range_layer_min = -165
+texture = ExtResource("7_tcvtv")
+
+[node name="lightAbove" type="PointLight2D" parent="PB/PL1"]
+z_index = 4096
+position = Vector2(1234, 256)
+color = Color(1, 0.937255, 0.596078, 1)
+energy = 4.0
+range_layer_min = -100
+range_layer_max = 100
+texture = ExtResource("8_47pi4")
+
+[node name="PL2" type="ParallaxLayer" parent="PB"]
+motion_scale = Vector2(1.2, 1.2)
+
+[node name="brightLightSmall" type="PointLight2D" parent="PB/PL2"]
+z_index = 10
+position = Vector2(1310.5, 216)
+color = Color(0.992157, 0.992157, 0.701961, 1)
+energy = 4.0
+range_z_max = 10
+range_layer_min = -100
+texture = ExtResource("3_g7dt4")
+
+[node name="lights" type="Sprite2D" parent="PB/PL2"]
+z_index = 4000
+position = Vector2(-601, -147)
+texture = ExtResource("8_ckeox")
+centered = false
+
+[node name="PL3" type="ParallaxLayer" parent="PB"]
+motion_scale = Vector2(0.8, 0.8)
+
+[node name="crowd" type="AnimatedSprite2D" parent="PB/PL3"]
+z_index = 5
+position = Vector2(560, 290)
+sprite_frames = ExtResource("4_1df25")
+animation = &"Symbol 2 instance 1"
+frame = 6
+frame_progress = 0.204749
+centered = false
+script = ExtResource("5_mp3ss")
+
+[node name="Character Positions" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Opponent" type="Node2D" parent="Character Positions"]
+z_index = 200
+material = SubResource("ShaderMaterial_kc5q2")
+position = Vector2(40, 850)
+
+[node name="Spectator" type="Node2D" parent="Character Positions"]
+z_index = 100
+material = SubResource("ShaderMaterial_0sp2o")
+position = Vector2(501.5, 825)
+
+[node name="Player" type="Node2D" parent="Character Positions"]
+z_index = 300
+material = SubResource("ShaderMaterial_10564")
+position = Vector2(977.5, 865)

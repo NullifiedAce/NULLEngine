@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="NULL Engine"
-config/version="1.0.1"
+config/version="1.1.0"
 config/tags=PackedStringArray("2d", "funkin", "rhythm")
 run/main_scene="res://Init.tscn"
 config/use_custom_user_dir=true
@@ -26,7 +26,9 @@ ModManager="*res://autoload/scripts/ModManager.gd"
 HudPresetHandler="*res://autoload/scripts/HUDPresetHandler.gd"
 Global="*res://autoload/scripts/Global.gd"
 Conductor="*res://autoload/scripts/Conductor.gd"
+Scoring="*res://autoload/scripts/Scoring.gd"
 Ranking="*res://autoload/scripts/Ranking.gd"
+Constants="*res://autoload/scripts/Constants.gd"
 Audio="*res://autoload/scenes/Audio.tscn"
 Transition="*res://autoload/scenes/Transition.tscn"
 VolumeSlider="*res://autoload/scenes/VolumeSlider.tscn"
@@ -41,6 +43,7 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
+mouse_cursor/custom_image="res://assets/images/cursor/cursor-default.png"
 
 [editor_plugins]
 
@@ -48,8 +51,7 @@ enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 
 [engine]
 
-customization/custom_score_text=true
-customization/check_for_updates=true
+customization/check_for_updates=false
 customization/chart_editor_on_release=true
 customization/first_launch_menu=true
 

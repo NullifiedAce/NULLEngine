@@ -482,6 +482,7 @@ _data = {
 [node name="parents" type="Node2D"]
 script = ExtResource("1_bu1n1")
 sing_duration = 6.1
+voices_paths = "parents"
 health_icon = ExtResource("2_ia3kl")
 health_color = Color(0.713726, 0.415686, 0.843137, 1)
 
