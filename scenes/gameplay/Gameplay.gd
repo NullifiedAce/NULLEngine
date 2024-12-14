@@ -181,7 +181,42 @@ func load_event_array(event_array:Array[Variant]) -> Array[SongEvent]:
 	return return_events
 
 func load_events() -> void:
-	pass
+	var event_path:String = "res://assets/songs/%s/events.json" % SONG.name.to_lower()
+
+	if not ResourceLoader.exists(event_path):
+		return
+
+	var event_data:Dictionary = \
+			JSON.parse_string(FileAccess.open(event_path, FileAccess.READ).get_as_text()).song
+
+	if not event_data.has('events'):
+		event_data['events'] = []
+	if not event_data.has('notes'):
+		event_data['notes'] = []
+
+	for event in event_data.events:
+		for song_event in load_event_array(event):
+			event_data_array.append(song_event)
+
+			if not template_events.has(song_event.name):
+				var song_event_path:String = "res://scenes/gameplay/events/%s.tscn" % song_event.name
+				if ResourceLoader.exists(song_event_path):
+					template_events[song_event.name] = load(song_event_path).instantiate()
+				else:
+					printerr("event not found: %s" % song_event.name)
+
+	for section in event_data.notes:
+		for note in section.sectionNotes:
+			if note[1] is Array or note[1] < 0:
+				for song_event in load_event_array(note):
+					event_data_array.append(song_event)
+
+					if not template_events.has(song_event.name):
+						var song_event_path:String = "res://scenes/gameplay/events/%s.tscn" % song_event.name
+						if ResourceLoader.exists(song_event_path):
+							template_events[song_event.name] = load(song_event_path).instantiate()
+						else:
+							printerr("event not found: %s" % song_event.name)
 
 func _ready() -> void:
 	super._ready()
