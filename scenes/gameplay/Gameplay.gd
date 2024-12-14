@@ -12,7 +12,6 @@ var PLAYER_HEALTH_COLOR:StyleBoxFlat = preload("res://assets/styles/healthbar/pl
 
 var SONG:Chart = Global.SONG
 var METADATA:Metadata = Global.METADATA
-var meta:SongMetaData = SongMetaData.new()
 var note_data_array:Array[SongNote] = []
 var event_data_array:Array[SongEvent] = []
 
@@ -181,42 +180,20 @@ func load_event_array(event_array:Array[Variant]) -> Array[SongEvent]:
 	return return_events
 
 func load_events() -> void:
-	var event_path:String = "res://assets/songs/%s/events.json" % SONG.name.to_lower()
+	var event_data:Array = SONG.events
 
-	if not ResourceLoader.exists(event_path):
-		return
+	if not event_data.size() > 0:
+		event_data = []
 
-	var event_data:Dictionary = \
-			JSON.parse_string(FileAccess.open(event_path, FileAccess.READ).get_as_text()).song
+	for event in event_data:
+		event_data_array.append(event)
 
-	if not event_data.has('events'):
-		event_data['events'] = []
-	if not event_data.has('notes'):
-		event_data['notes'] = []
-
-	for event in event_data.events:
-		for song_event in load_event_array(event):
-			event_data_array.append(song_event)
-
-			if not template_events.has(song_event.name):
-				var song_event_path:String = "res://scenes/gameplay/events/%s.tscn" % song_event.name
-				if ResourceLoader.exists(song_event_path):
-					template_events[song_event.name] = load(song_event_path).instantiate()
-				else:
-					printerr("event not found: %s" % song_event.name)
-
-	for section in event_data.notes:
-		for note in section.sectionNotes:
-			if note[1] is Array or note[1] < 0:
-				for song_event in load_event_array(note):
-					event_data_array.append(song_event)
-
-					if not template_events.has(song_event.name):
-						var song_event_path:String = "res://scenes/gameplay/events/%s.tscn" % song_event.name
-						if ResourceLoader.exists(song_event_path):
-							template_events[song_event.name] = load(song_event_path).instantiate()
-						else:
-							printerr("event not found: %s" % song_event.name)
+		if not template_events.has(event.name):
+			var song_event_path:String = "res://scenes/gameplay/events/%s.tscn" % event.name
+			if ResourceLoader.exists(song_event_path):
+				template_events[event.name] = load(song_event_path).instantiate()
+			else:
+				printerr("event not found: %s" % event.name)
 
 func _ready() -> void:
 	super._ready()
@@ -233,13 +210,6 @@ func _ready() -> void:
 		Global.METADATA = Metadata.load_metadata("tutorial", "default")
 		SONG = Global.SONG
 		METADATA = Global.METADATA
-
-	var meta_path:String = "res://assets/songs/" + METADATA.rawSongName.to_lower() + "/meta"
-	if ResourceLoader.exists(meta_path + ".tres"):
-		meta = load(meta_path + ".tres")
-
-	if ResourceLoader.exists(meta_path + ".res"):
-		meta = load(meta_path + ".res")
 
 	scroll_speed = SONG.scroll_speed
 	if SettingsAPI.get_setting("scroll speed") > 0:
@@ -512,7 +482,7 @@ func start_song():
 
 func resync_tracks() -> void:
 	for track in tracks:
-		track.seek((Conductor.position + meta.start_offset) / 1000.0)
+		track.seek((Conductor.position + METADATA.offsets["instrumental"]) / 1000.0)
 
 func end_song():
 	if not ending_song:
@@ -602,6 +572,7 @@ func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.Tra
 	await cam_tween.finished
 	cam_tween.kill()
 
+	print("Updating camera at %s %s." % [targetX, targetY])
 	script_group.call_func("on_update_camera", [])
 
 func position_hud():

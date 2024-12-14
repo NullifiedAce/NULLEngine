@@ -98,7 +98,7 @@ func _notification(what):
 		get_tree().paused = true
 
 func _process(delta):
-	var length:float = game.note_data_array[game.note_data_array.size()-1].time + game.meta.end_offset if game.note_data_array.size() > 0 else game.tracks[0].stream.get_length() * 1000.0
+	var length:float = game.note_data_array[game.note_data_array.size()-1].time if game.note_data_array.size() > 0 else game.tracks[0].stream.get_length() * 1000.0
 	skip_time_label.text = "%s / %s" % [Global.format_time(cur_time / 1000.0), Global.format_time(length / 1000.0)]
 
 	music_volume = clampf(music_volume + (0.01 * delta), 0.0, final_volume)
