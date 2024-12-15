@@ -3,18 +3,18 @@
   "scrollSpeed": { "easy": 1.3, "normal": 1.8, "hard": 2 },
   "events": [
     { "e": "FocusCamera", "t": 0, "v": { "char": 0 } },
-    { "t": 3840, "e": "FocusCamera", "v": 1 },
-    { "t": 11520, "e": "FocusCamera", "v": 0 },
-    { "t": 19200, "e": "FocusCamera", "v": 1 },
-    { "t": 26880, "e": "FocusCamera", "v": 0 },
-    { "t": 34560, "e": "FocusCamera", "v": 1 },
-    { "t": 42240, "e": "FocusCamera", "v": 0 },
-    { "t": 49920, "e": "FocusCamera", "v": 1 },
-    { "t": 57600, "e": "FocusCamera", "v": 0 },
-    { "t": 65280, "e": "FocusCamera", "v": 1 },
-    { "t": 72960, "e": "FocusCamera", "v": 0 },
-    { "t": 90240, "e": "FocusCamera", "v": 1 },
-    { "t": 92160, "e": "FocusCamera", "v": 0 }
+    { "t": 3840, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 11520, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 19200, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 26880, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 34560, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 42240, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 49920, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 57600, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 65280, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 72960, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 90240, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 92160, "e": "FocusCamera", "v": { "target": 0 } }
   ],
   "notes": {
     "normal": [

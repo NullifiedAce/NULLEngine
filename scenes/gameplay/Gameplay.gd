@@ -528,27 +528,10 @@ func step_hit(step:int):
 	script_group.call_func("on_step_hit", [step])
 	script_group.call_func("on_step_hit_post", [step])
 
-func do_event(event_name:String,parameters:Array[String]):
+func do_event(event_name:String,parameters:Dictionary):
 	var ev:Event = load("res://scenes/events/" + event_name + ".tscn").instantiate()
 	ev.parameters = parameters
 	add_child(ev)
-
-#func section_hit(section:int):
-	#for track in tracks:
-		#if abs((track.get_playback_position() * 1000.0 - meta.start_offset) - (Conductor.position)) >= 20:
-			#resync_tracks()
-#
-	#if note_data_array.size() == 0 and note_group.get_children().size() == 0:
-		#get_tree().create_timer((meta.end_offset/1000) / Conductor.rate).timeout.connect(end_song)
-#
-	#if not range(SONG.sections.size()).has(section): return
-#
-	#script_group.call_func("on_section_hit", [section])
-#
-	#if cam_switching:
-		#update_camera(section)
-#
-	#script_group.call_func("on_section_hit_post", [section])
 
 func character_bop():
 	if opponent != null and opponent.dance_on_beat and not opponent.last_anim.begins_with("sing"):

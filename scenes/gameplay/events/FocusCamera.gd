@@ -1,28 +1,25 @@
 extends Event
 
 func _ready() -> void:
-	if parameters.size() < 6:
-		parameters.resize(6)
+	if not parameters.has("target"):
+		parameters["target"] = -1
+	if not parameters.has("x"):
+		parameters["x"] = 0
+	if not parameters.has("y"):
+		parameters["y"] = 0
+	if not parameters.has("duration"):
+		parameters["duration"] = 4
+	if not parameters.has("transitionType"):
+		parameters["transitionType"] = Tween.TRANS_QUAD
+	if not parameters.has("easeType"):
+		parameters["easeType"] = Tween.EASE_OUT
 
-	if parameters[0] == null:
-		parameters[0] = -1
-	if parameters[1] == null:
-		parameters[1] = 0
-	if parameters[2] == null:
-		parameters[2] = 0
-	if parameters[3] == null:
-		parameters[3] = 4
-	if parameters[4] == null:
-		parameters[4] = Tween.TRANS_QUAD
-	if parameters[5] == null:
-		parameters[5] = Tween.EASE_OUT
+	var targetX = parameters["x"]
+	var targetY = parameters["y"]
 
-	var targetX = parameters[1]
-	var targetY = parameters[2]
-
-	if parameters[0] == -1:
+	if parameters["target"] == -1:
 		print("Focusing camera on static position.")
-	elif parameters[0] == 0:
+	elif parameters["target"] == 0:
 		if !game.player:
 			push_warning("No BF to focus on.")
 			return
@@ -30,7 +27,7 @@ func _ready() -> void:
 		var bfPoint = game.player.camera_pos.global_position
 		targetX += bfPoint.x
 		targetY += bfPoint.y
-	elif parameters[0] == 1:
+	elif parameters["target"] == 1:
 		if !game.opponent:
 			push_warning("No dad to focus on.")
 			return
@@ -38,7 +35,7 @@ func _ready() -> void:
 		var dadPoint = game.opponent.camera_pos.global_position
 		targetX += dadPoint.x
 		targetY += dadPoint.y
-	elif parameters[0] == 2:
+	elif parameters["target"] == 2:
 		if !game.spectator:
 			push_warning("No GF to focus on.")
 			return
@@ -49,6 +46,6 @@ func _ready() -> void:
 	else:
 		push_warning("Unknown camera focus: " + str(parameters))
 
-	var durSeconds = Conductor.step_crochet * parameters[3] / 1000
-	game.update_camera(targetX, targetY, durSeconds, parameters[4], parameters[5])
+	var durSeconds = Conductor.step_crochet * parameters["duration"] / 1000
+	game.update_camera(targetX, targetY, durSeconds, parameters["transitionType"], parameters["easeType"])
 	queue_free()

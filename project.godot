@@ -54,6 +54,7 @@ enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 customization/check_for_updates=false
 customization/chart_editor_on_release=true
 customization/first_launch_menu=true
+customization/hud_editor=true
 
 [input]
 

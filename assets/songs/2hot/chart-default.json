@@ -2,8 +2,8 @@
   "version": "2.0.0",
   "scrollSpeed": { "easy": 2.6, "hard": 2.6, "normal": 2.6 },
   "events": [
-    { "t": 0, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 3956.04395604396, "e": "FocusCamera", "v": { "char": 0 } },
+    { "t": 0, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 3956.04395604396, "e": "FocusCamera", "v": { "target": 0 } },
     {
       "t": 8901.0989010989,
       "e": "ZoomCamera",
@@ -12,19 +12,19 @@
     {
       "t": 8901.0989010989,
       "e": "FocusCamera",
-      "v": { "char": 2, "x": 100, "y": 105 }
+      "v": { "target": 2, "x": 100, "y": 105 }
     },
     {
       "t": 10549.4505494506,
       "e": "ZoomCamera",
       "v": { "ease": "INSTANT", "zoom": 0.77 }
     },
-    { "t": 10549.4505494506, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 15824.1758241758, "e": "FocusCamera", "v": { "char": 0 } },
-    { "t": 21098.9010989011, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 26373.6263736264, "e": "FocusCamera", "v": { "char": 0 } },
-    { "t": 31648.3516483517, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 36923.0769230769, "e": "FocusCamera", "v": { "char": 0 } },
+    { "t": 10549.4505494506, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 15824.1758241758, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 21098.9010989011, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 26373.6263736264, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 31648.3516483517, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 36923.0769230769, "e": "FocusCamera", "v": { "target": 0 } },
     {
       "t": 40549.0989010989,
       "e": "ZoomCamera",
@@ -33,17 +33,17 @@
     {
       "t": 40549.0989010989,
       "e": "FocusCamera",
-      "v": { "char": 2, "x": 100, "y": 105 }
+      "v": { "target": 2, "x": 100, "y": 105 }
     },
     {
       "t": 42197.4505494506,
       "e": "ZoomCamera",
       "v": { "ease": "INSTANT", "zoom": 0.77 }
     },
-    { "t": 42197.8021978022, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 43516.4835164835, "e": "FocusCamera", "v": { "char": 0 } },
-    { "t": 44835.1648351648, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 46153.8461538462, "e": "FocusCamera", "v": { "char": 0 } },
+    { "t": 42197.8021978022, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 43516.4835164835, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 44835.1648351648, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 46153.8461538462, "e": "FocusCamera", "v": { "target": 0 } },
     {
       "t": 51098.0989010989,
       "e": "ZoomCamera",
@@ -52,25 +52,25 @@
     {
       "t": 51098.0989010989,
       "e": "FocusCamera",
-      "v": { "char": 2, "x": 100, "y": 105 }
+      "v": { "target": 2, "x": 100, "y": 105 }
     },
     {
       "t": 52746.4505494506,
       "e": "ZoomCamera",
       "v": { "ease": "INSTANT", "zoom": 0.77 }
     },
-    { "t": 52746.4505494506, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 55384.6153846154, "e": "FocusCamera", "v": { "char": 0 } },
-    { "t": 60659.3406593407, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 63296.7032967033, "e": "FocusCamera", "v": { "char": 0 } },
-    { "t": 65934.0659340659, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 67252.7472527473, "e": "FocusCamera", "v": { "char": 0 } },
-    { "t": 68571.4285714286, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 69890.1098901099, "e": "FocusCamera", "v": { "char": 0 } },
-    { "t": 71208.7912087912, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 72527.4725274725, "e": "FocusCamera", "v": { "char": 0 } },
-    { "t": 73846.1538461538, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 75164.8351648352, "e": "FocusCamera", "v": { "char": 0 } },
+    { "t": 52746.4505494506, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 55384.6153846154, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 60659.3406593407, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 63296.7032967033, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 65934.0659340659, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 67252.7472527473, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 68571.4285714286, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 69890.1098901099, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 71208.7912087912, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 72527.4725274725, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 73846.1538461538, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 75164.8351648352, "e": "FocusCamera", "v": { "target": 0 } },
     {
       "t": 80109.8901098901,
       "e": "ZoomCamera",
@@ -79,15 +79,15 @@
     {
       "t": 80109.8901098901,
       "e": "FocusCamera",
-      "v": { "char": 2, "x": 100, "y": 105 }
+      "v": { "target": 2, "x": 100, "y": 105 }
     },
     {
       "t": 81758.2417582417,
       "e": "ZoomCamera",
       "v": { "ease": "INSTANT", "zoom": 0.77 }
     },
-    { "t": 81758.2417582418, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 84395.6043956044, "e": "FocusCamera", "v": { "char": 0 } },
+    { "t": 81758.2417582418, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 84395.6043956044, "e": "FocusCamera", "v": { "target": 0 } },
     {
       "t": 85384.0989010989,
       "e": "ZoomCamera",
@@ -96,25 +96,25 @@
     {
       "t": 85384.0989010989,
       "e": "FocusCamera",
-      "v": { "char": 2, "x": 100, "y": 105 }
+      "v": { "target": 2, "x": 100, "y": 105 }
     },
     {
       "t": 87032.4505494505,
       "e": "ZoomCamera",
       "v": { "ease": "INSTANT", "zoom": 0.77 }
     },
-    { "t": 87032.4505494506, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 88351.6483516484, "e": "FocusCamera", "v": { "char": 0 } },
-    { "t": 89670.3296703297, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 90989.010989011, "e": "FocusCamera", "v": { "char": 0 } },
-    { "t": 92307.6923076923, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 93626.3736263736, "e": "FocusCamera", "v": { "char": 0 } },
-    { "t": 94945.054945055, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 96263.7362637363, "e": "FocusCamera", "v": { "char": 0 } },
-    { "t": 97582.4175824176, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 101538.461538462, "e": "FocusCamera", "v": { "char": 0 } },
-    { "t": 113406.593406593, "e": "FocusCamera", "v": { "char": 1 } },
-    { "t": 114725.274725275, "e": "FocusCamera", "v": { "char": 0 } },
+    { "t": 87032.4505494506, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 88351.6483516484, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 89670.3296703297, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 90989.010989011, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 92307.6923076923, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 93626.3736263736, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 94945.054945055, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 96263.7362637363, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 97582.4175824176, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 101538.461538462, "e": "FocusCamera", "v": { "target": 0 } },
+    { "t": 113406.593406593, "e": "FocusCamera", "v": { "target": 1 } },
+    { "t": 114725.274725275, "e": "FocusCamera", "v": { "target": 0 } },
     {
       "t": 117032.098901099,
       "e": "ZoomCamera",
@@ -123,7 +123,7 @@
     {
       "t": 117032.098901099,
       "e": "FocusCamera",
-      "v": { "char": 2, "x": 100, "y": 105 }
+      "v": { "target": 2, "x": 100, "y": 105 }
     },
     {
       "t": 118680.450549451,
