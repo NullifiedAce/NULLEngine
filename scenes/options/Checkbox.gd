@@ -7,6 +7,8 @@ func _ready() -> void:
 	button_pressed = SettingsAPI.get_setting(option)
 
 func _on_pressed() -> void:
+	Audio.play_sound("scrollMenu")
+
 	SettingsAPI.set_setting(option, not SettingsAPI.get_setting(option))
 	SettingsAPI.flush()
 

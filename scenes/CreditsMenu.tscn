@@ -77,9 +77,9 @@ theme_override_constants/separation = 15
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("5_c0fhy")
-text = "NULLSonic"
+text = "NULLSh4dow_"
 underline = 1
-uri = "https://www.youtube.com/@NULLErrorSonic"
+uri = "https://www.youtube.com/@NULLSh4dow"
 
 [node name="cily" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page1/Creds/Box"]
 layout_mode = 2

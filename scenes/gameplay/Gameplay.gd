@@ -316,7 +316,7 @@ func _ready() -> void:
 	combo_group.remove_child(rating_template)
 	combo_group.remove_child(combo_template)
 
-	update_camera(spectator.camera_pos.global_position.x, spectator.camera_pos.global_position.y, 0, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	update_camera(spectator.global_position.x, spectator.global_position.y, 0, Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 	for i in player_strums.get_child_count():
 		pressed.append(false)

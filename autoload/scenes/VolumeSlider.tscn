@@ -16,6 +16,7 @@ offset_left = 497.0
 offset_top = 10.0
 offset_right = 783.0
 offset_bottom = 66.0
+mouse_filter = 2
 theme = ExtResource("2_j2bc3")
 
 [node name="VolumeIcon" type="AnimatedSprite2D" parent="VolumePanel"]

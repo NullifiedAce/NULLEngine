@@ -178,7 +178,7 @@ func _process(delta):
 				Audio.play_music("freakyMenu")
 
 				Global.scene_arguments["options_menu"].exit_scene_path = "res://scenes/gameplay/Gameplay.tscn"
-				Global.switch_scene("res://scenes/OptionsMenu.tscn")
+				Global.switch_scene("res://scenes/Options.tscn")
 				queue_free()
 
 			"Exit To Menu":
