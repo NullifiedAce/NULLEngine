@@ -1,5 +1,7 @@
 extends MusicBeatScene
 
+var tools_open: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Audio.play_music("freakyMenu")
@@ -28,6 +30,21 @@ func _process(delta: float) -> void:
 		else:
 			Global.switch_scene("res://scenes/MainMenu.tscn")
 
-
 func _on_hud_editor_pressed() -> void:
 	Global.switch_scene("res://scenes/HUDEditor.tscn")
+
+func _on_tool_button_pressed(name:String):
+	match name:
+		"XML Converter":
+			Global.switch_scene("res://tools/XML Converter.tscn")
+		"TXT Converter":
+			Global.switch_scene("res://tools/TXT Converter.tscn")
+		"Adobe Json Converter":
+			Global.switch_scene("res://tools/Adobe Json Converter.tscn")
+
+func _on_tools_pressed() -> void:
+	tools_open = not tools_open
+	if tools_open:
+		$switch.play('switch')
+	else:
+		$switch.play_backwards('switch')

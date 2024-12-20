@@ -169,7 +169,7 @@ func _process(delta):
 				"difficulty": Global.current_difficulty,
 			}
 
-		Conductor.change_bpm(Global.SONG.bpm)
+		Conductor.change_bpm(Global.METADATA.timeChanges[0]["bpm"])
 
 		var meta_path:String = "res://assets/songs/%s/meta" % song_list.songs[cur_selected].song.to_lower()
 		if ResourceLoader.exists(meta_path + ".tres"):
