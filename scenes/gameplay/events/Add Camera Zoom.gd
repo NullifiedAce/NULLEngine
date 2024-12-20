@@ -1,9 +1,6 @@
 extends Event
 
 func _ready() -> void:
-	if parameters.size() < 2:
-		parameters.resize(2)
-
 	if parameters[0] == null or parameters[0] == '':
 		parameters[0] = 0.015
 	if parameters[1] == null or parameters[1] == '':

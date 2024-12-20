@@ -348,7 +348,7 @@ func load_opponent():
 	if ResourceLoader.exists(opponent_path):
 		opponent = load(opponent_path).instantiate()
 	else:
-		opponent = load("res://scenes/gameplay/characters/bf.tscn").instantiate()
+		opponent = load("res://scenes/gameplay/characters/dad.tscn").instantiate()
 
 	opponent.position = stage.character_positions["opponent"].position
 	opponent.z_index = stage.character_positions["opponent"].z_index

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3oi8jjh2t3un"]
+
+[ext_resource type="Script" path="res://scenes/gameplay/events/PlayAnimation.gd" id="1_75gam"]
+
+[node name="PlayAnimation" type="Node2D"]
+script = ExtResource("1_75gam")
