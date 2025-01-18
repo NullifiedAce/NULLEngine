@@ -266,7 +266,11 @@ func _ready() -> void:
 			script_group.add_script(script)
 
 	var strum_y:float = Global.game_size.y - 100.0 if SettingsAPI.get_setting("downscroll") else 100.0
-	cpu_strums.position = Vector2((Global.game_size.x * 0.5) - (320.0 if not SettingsAPI.get_setting("centered notefield") else 10000.0), strum_y)
+	cpu_strums.position = Vector2((Global.game_size.x * 0.5) - 320.0, strum_y)
+	if SettingsAPI.get_setting("centered notefield"):
+		cpu_strums.get_child(2).position.x += 640
+		cpu_strums.get_child(3).position.x += 640
+		cpu_strums.modulate = Color(1, 1, 1, 0.5)
 	player_strums.position = Vector2((Global.game_size.x * 0.5) + (320.0 if not SettingsAPI.get_setting("centered notefield") else 0.0), strum_y)
 
 	var stage_path:String = "res://scenes/gameplay/stages/"+METADATA.playData["stage"]+".tscn"
