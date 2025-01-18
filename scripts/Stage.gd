@@ -8,6 +8,7 @@ class_name Stage
 @export_group("Camera Offsets")
 @export var player_cam_offset:Vector2 = Vector2(0.0, 0.0)
 @export var opponent_cam_offset:Vector2 = Vector2(0.0, 0.0)
+@export var spectator_cam_offset:Vector2 = Vector2(0.0, 0.0)
 
 @onready var character_positions:Dictionary = {
 	"opponent": $"Character Positions/Opponent",

@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://bga0tfe37uva2"]
+
+[ext_resource type="Script" path="res://addons/SimpleTODO/TODOColumn.gd" id="1_6bfuv"]
+[ext_resource type="PackedScene" uid="uid://cwcwdmxxpf65e" path="res://addons/SimpleTODO/ColumnHeader.tscn" id="2_0fkhl"]
+
+[sub_resource type="StyleBoxFlat" id="3"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="TODOColumn" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("3")
+script = ExtResource("1_6bfuv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Header" parent="VBoxContainer" instance=ExtResource("2_0fkhl")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TopSeparator" type="HSeparator" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Items" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BottomSeparator" type="HSeparator" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Actions" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AddItem" type="Button" parent="VBoxContainer/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Add Item"
+text = "+"
+
+[node name="DeleteColumn" type="Button" parent="VBoxContainer/Actions"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Delete Column"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="pressed" from="VBoxContainer/Actions/AddItem" to="." method="add_item" binds= [true]]
+[connection signal="pressed" from="VBoxContainer/Actions/DeleteColumn" to="." method="delete_column"]
+[connection signal="timeout" from="Timer" to="." method="request_save"]

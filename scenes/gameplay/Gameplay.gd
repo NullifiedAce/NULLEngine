@@ -62,6 +62,7 @@ var cpu_strums:StrumLine
 var player_strums:StrumLine
 
 var default_cam_zoom:float = 1.05
+var cam_zoom:float = 1.05
 
 var skipped_intro:bool = false
 
@@ -272,7 +273,8 @@ func _ready() -> void:
 		stage = load("res://scenes/gameplay/stages/mainStage.tscn").instantiate()
 
 	default_cam_zoom = stage.default_cam_zoom
-	camera.zoom = Vector2(default_cam_zoom, default_cam_zoom)
+	cam_zoom = default_cam_zoom
+	camera.zoom = Vector2(cam_zoom, cam_zoom)
 	camera.position_smoothing_speed *= Conductor.rate
 
 	add_child(stage)
@@ -549,6 +551,7 @@ func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.Tra
 	var cam_tween = get_tree().create_tween()
 	if duration == 0:
 		camera.position = Vector2(targetX, targetY)
+		cam_tween.kill()
 	else:
 		cam_tween.tween_property(camera, "position", Vector2(targetX, targetY), duration).set_trans(trans).set_ease(ease)
 
@@ -557,6 +560,32 @@ func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.Tra
 
 	print("Updating camera at %s %s." % [targetX, targetY])
 	script_group.call_func("on_update_camera", [])
+
+func zoom_camera(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
+	var cam_tween = get_tree().create_tween()
+	if duration == 0:
+		camera.zoom = Vector2(zoom, zoom)
+		cam_tween.kill()
+	else:
+		cam_tween.tween_property(camera, "zoom", Vector2(zoom, zoom), duration).set_trans(trans).set_ease(ease)
+		cam_zoom = zoom
+
+	await cam_tween.finished
+	cam_tween.kill()
+
+	print("Camera zoom happened, Zoom: %s." % zoom)
+	script_group.call_func("on_camera_zoom", [])
+
+func hud_zoom(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
+	var hud_tween = get_tree().create_tween()
+	if duration == 0:
+		hud.scale = Vector2(zoom, zoom)
+		hud_tween.kill()
+	else:
+		hud_tween.tween_property(hud, "scale", Vector2(zoom, zoom), duration).set_trans(trans).set_ease(ease)
+
+	await hud_tween.finished
+	hud_tween.kill()
 
 func position_hud():
 	hud.offset.x = (hud.scale.x - 1.0) * -(Global.game_size.x * 0.5)
@@ -945,7 +974,7 @@ func _process(delta:float) -> void:
 
 	if cam_zooming:
 		var camera_speed:float = clampf((delta * ZOOM_DELTA_MULTIPLIER) * Conductor.rate, 0.0, 1.0)
-		camera.zoom = lerp(camera.zoom, Vector2(default_cam_zoom, default_cam_zoom), camera_speed)
+		camera.zoom = lerp(camera.zoom, Vector2(cam_zoom, cam_zoom), camera_speed)
 		hud.scale = lerp(hud.scale, Vector2.ONE, camera_speed)
 		position_hud()
 

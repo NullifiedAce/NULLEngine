@@ -24,7 +24,7 @@ func _ready() -> void:
 			push_warning("No BF to focus on.")
 			return
 		print("Focusing camera on player.")
-		var bfPoint = game.player.camera_pos.global_position
+		var bfPoint = game.player.camera_pos.global_position + game.stage.player_cam_offset
 		targetX += bfPoint.x
 		targetY += bfPoint.y
 	elif parameters["target"] == 1:
@@ -32,7 +32,7 @@ func _ready() -> void:
 			push_warning("No dad to focus on.")
 			return
 		print("Focusing camera on opponent.")
-		var dadPoint = game.opponent.camera_pos.global_position
+		var dadPoint = game.opponent.camera_pos.global_position + game.stage.opponent_cam_offset
 		targetX += dadPoint.x
 		targetY += dadPoint.y
 	elif parameters["target"] == 2:
@@ -40,7 +40,7 @@ func _ready() -> void:
 			push_warning("No GF to focus on.")
 			return
 		print("Focusing camera on opponent.")
-		var gfPoint = game.spectator.camera_pos.global_position
+		var gfPoint = game.spectator.camera_pos.global_position + game.stage.spectator_cam_offset
 		targetX += gfPoint.x
 		targetY += gfPoint.y
 	else:
