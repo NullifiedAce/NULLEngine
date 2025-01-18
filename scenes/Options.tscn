@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cognicyoqefsb"]
+[gd_scene load_steps=28 format=3 uid="uid://cognicyoqefsb"]
 
 [ext_resource type="Script" path="res://scenes/Options.gd" id="1_y0uqr"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_dd0nd"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://scenes/options/Display Slider.gd" id="15_s5rfm"]
 [ext_resource type="Script" path="res://scenes/options/Dropdown.gd" id="16_rnrfn"]
 [ext_resource type="Script" path="res://scenes/options/FPSCap.gd" id="17_e0j5w"]
+[ext_resource type="PackedScene" uid="uid://dvvpqyw0twvsd" path="res://scenes/options/StrumEditor.tscn" id="18_76ydl"]
 
 [sub_resource type="Gradient" id="Gradient_42bdy"]
 colors = PackedColorArray(1, 0, 1, 0.176471, 1, 0, 1, 0.0980392)
@@ -38,6 +39,81 @@ bg_color = Color(1, 1, 1, 0)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j7u6y"]
 shader = ExtResource("7_4sx8j")
 shader_parameter/swag_color = Color(0.352941, 0.282353, 0.4, 1)
+
+[sub_resource type="Animation" id="Animation_160px"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TabContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScrollContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, 912)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TabContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StrumEditor:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.101961)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BG:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hint:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_5mn81"]
 resource_name = "switch"
@@ -68,36 +144,63 @@ tracks/1/keys = {
 "values": [Vector2(192, 912), Vector2(192, 192)]
 }
 
-[sub_resource type="Animation" id="Animation_160px"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_mt60o"]
+resource_name = "strumEditor"
+length = 0.5
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TabContainer:position")
+tracks/0/path = NodePath("TabContainer:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(64, 32)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ScrollContainer:position")
+tracks/1/path = NodePath("StrumEditor:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(192, 912)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BG:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hint:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b1lar"]
 _data = {
 "RESET": SubResource("Animation_160px"),
+"strumEditor": SubResource("Animation_mt60o"),
 "switch": SubResource("Animation_5mn81")
 }
 
@@ -741,6 +844,15 @@ text = "MIDDLESCROLL"
 script = ExtResource("14_53n2q")
 option = "centered notefield"
 
+[node name="StrumEditor" type="Button" parent="TabContainer/Gameplay/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Open Strum Editor"
+
 [node name="NotesTitle" type="Label" parent="TabContainer/Gameplay/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 20
@@ -843,7 +955,9 @@ layout_mode = 2
 theme_override_constants/separation = 24
 
 [node name="Scroll Speed Type" type="OptionButton" parent="TabContainer/Gameplay/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 tooltip_text = "Changes how your speed is applied.
 Multiplier multiplies the song's scroll speed by the one set here, Constant directly sets the song's scroll speed."
 focus_mode = 0
@@ -1257,6 +1371,10 @@ libraries = {
 "": SubResource("AnimationLibrary_b1lar")
 }
 
+[node name="StrumEditor" parent="." instance=ExtResource("18_76ydl")]
+modulate = Color(1, 1, 1, 0.101961)
+z_index = -1
+
 [connection signal="pressed" from="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel/Note Binds/Left Bind" to="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel/Note Binds/Left Bind" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel/Note Binds/Left Bind/Alt Bind" to="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel/Note Binds/Left Bind/Alt Bind" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel/Note Binds/Down Bind" to="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel/Note Binds/Down Bind" method="_on_pressed"]
@@ -1289,6 +1407,7 @@ libraries = {
 [connection signal="pressed" from="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel2/UI Binds/Switch Mod Bind/Alt Bind" to="TabContainer/Controls/ScrollContainer/VBoxContainer/Panel2/UI Binds/Switch Mod Bind/Alt Bind" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Gameplay/ScrollContainer/VBoxContainer/ScrollOptions/Downscroll" to="TabContainer/Gameplay/ScrollContainer/VBoxContainer/ScrollOptions/Downscroll" method="_on_pressed"]
 [connection signal="pressed" from="TabContainer/Gameplay/ScrollContainer/VBoxContainer/ScrollOptions/Middlescroll" to="TabContainer/Gameplay/ScrollContainer/VBoxContainer/ScrollOptions/Middlescroll" method="_on_pressed"]
+[connection signal="pressed" from="TabContainer/Gameplay/ScrollContainer/VBoxContainer/StrumEditor" to="." method="_on_open_strum_editor"]
 [connection signal="pressed" from="TabContainer/Gameplay/ScrollContainer/VBoxContainer/Ghost Tapping" to="TabContainer/Gameplay/ScrollContainer/VBoxContainer/Ghost Tapping" method="_on_pressed"]
 [connection signal="drag_ended" from="TabContainer/Gameplay/ScrollContainer/VBoxContainer/Note Offset" to="TabContainer/Gameplay/ScrollContainer/VBoxContainer/Note Offset" method="_on_drag_ended"]
 [connection signal="value_changed" from="TabContainer/Gameplay/ScrollContainer/VBoxContainer/Note Offset" to="TabContainer/Gameplay/ScrollContainer/VBoxContainer/Note Offset" method="_on_value_changed"]

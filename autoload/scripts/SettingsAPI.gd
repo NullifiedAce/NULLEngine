@@ -26,6 +26,12 @@ var _settings:Dictionary = {
 	"freeplay icon bumping": true,
 	"flashing lights": true,
 
+	# strum options
+	"oppStrumVis": 1.0,
+	"oppStrumScale": 1.0,
+	"playerStrumVis": 1.0,
+	"playerStrumScale": 1.0,
+
 	# hud
 	"engine theme": "Purple",
 	"color style": "NULL",

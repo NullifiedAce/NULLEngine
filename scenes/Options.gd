@@ -1,9 +1,16 @@
 extends MusicBeatScene
 
 var tools_open: bool = false
+var strum_editor_open:bool = false
+
+@onready var switch: AnimationPlayer = $switch
+@onready var strum_editor: Node2D = $StrumEditor
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if !strum_editor_open:
+		strum_editor.hide()
+
 	Audio.play_music("freakyMenu")
 	Conductor.change_bpm(Audio.music.stream.bpm)
 	Conductor.position = 0.0
@@ -45,6 +52,13 @@ func _on_tool_button_pressed(name:String):
 func _on_tools_pressed() -> void:
 	tools_open = not tools_open
 	if tools_open:
-		$switch.play('switch')
+		switch.play('switch')
 	else:
-		$switch.play_backwards('switch')
+		switch.play_backwards('switch')
+
+func _on_open_strum_editor() -> void:
+	strum_editor_open = true
+	$StrumEditor.show()
+	switch.play('strumEditor')
+	await switch.animation_finished
+	$TabContainer.hide()

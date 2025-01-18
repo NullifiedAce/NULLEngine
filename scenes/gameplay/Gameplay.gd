@@ -270,8 +270,11 @@ func _ready() -> void:
 	if SettingsAPI.get_setting("centered notefield"):
 		cpu_strums.get_child(2).position.x += 640
 		cpu_strums.get_child(3).position.x += 640
-		cpu_strums.modulate = Color(1, 1, 1, 0.5)
+	cpu_strums.modulate = Color(1, 1, 1, SettingsAPI.get_setting("oppStrumVis"))
+	cpu_strums.scale = Vector2(SettingsAPI.get_setting("oppStrumScale"), SettingsAPI.get_setting("oppStrumScale"))
 	player_strums.position = Vector2((Global.game_size.x * 0.5) + (320.0 if not SettingsAPI.get_setting("centered notefield") else 0.0), strum_y)
+	player_strums.modulate = Color(1, 1, 1, SettingsAPI.get_setting("playerStrumVis"))
+	player_strums.scale =Vector2(SettingsAPI.get_setting("playerStrumScale"), SettingsAPI.get_setting("playerStrumScale"))
 
 	var stage_path:String = "res://scenes/gameplay/stages/"+METADATA.playData["stage"]+".tscn"
 	if ResourceLoader.exists(stage_path):

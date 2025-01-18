@@ -1,0 +1,241 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvvpqyw0twvsd"]
+
+[ext_resource type="Script" path="res://scenes/options/StrumEditor.gd" id="1_4yj7y"]
+[ext_resource type="PackedScene" uid="uid://w5olx2s2jovt" path="res://scenes/gameplay/strumlines/4K.tscn" id="1_tt3e8"]
+[ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_ctt8c"]
+[ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="2_xf7ns"]
+[ext_resource type="PackedScene" uid="uid://dxb0g70qegy3v" path="res://scenes/options/Slider.tscn" id="5_bvdn8"]
+
+[node name="StrumEditor" type="Node2D"]
+script = ExtResource("1_4yj7y")
+
+[node name="BG Sprite" parent="." instance=ExtResource("2_ctt8c")]
+self_modulate = Color(0.768627, 0.764706, 0.254902, 1)
+color = Color(0.768627, 0.764706, 0.254902, 1)
+
+[node name="PlayerLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 868.0
+offset_top = 160.0
+offset_right = 1053.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_xf7ns")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Player Strums"
+metadata/_edit_lock_ = true
+
+[node name="OpponentLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 212.0
+offset_top = 160.0
+offset_right = 429.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_xf7ns")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Opponent Strums"
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("1_tt3e8")]
+position = Vector2(960, 100)
+
+[node name="Opponent" parent="." instance=ExtResource("1_tt3e8")]
+position = Vector2(320, 100)
+handle_input = false
+
+[node name="CenterRef" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+theme = ExtResource("2_xf7ns")
+metadata/_edit_lock_ = true
+
+[node name="ExitButton" type="Button" parent="CenterRef"]
+custom_minimum_size = Vector2(64, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -48.0
+offset_right = 32.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Exit"
+
+[node name="Opponent" type="ScrollContainer" parent="CenterRef"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 104.0
+offset_top = -144.0
+offset_right = 544.0
+offset_bottom = 184.0
+grow_vertical = 2
+
+[node name="OppOptions" type="VBoxContainer" parent="CenterRef/Opponent"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterRef/Opponent/OppOptions"]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Strum Visibility"
+
+[node name="OppVisibility" parent="CenterRef/Opponent/OppOptions" instance=ExtResource("5_bvdn8")]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+tooltip_text = "Adjust the visibilty for the opponent strum line.
+0% is completly hidden, 100% is completly shown.
+Default: 100%"
+focus_mode = 0
+max_value = 1.0
+step = 0.01
+value = 1.0
+option = "oppStrumVis"
+
+[node name="Percent" type="Label" parent="CenterRef/Opponent/OppOptions/OppVisibility"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = -10.0
+offset_right = 433.0
+offset_bottom = 9.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "100%"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CenterRef/Opponent/OppOptions"]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Strum Scale"
+
+[node name="OppSize" parent="CenterRef/Opponent/OppOptions" instance=ExtResource("5_bvdn8")]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+tooltip_text = "Adjust the scale for the opponent strum line.
+Default: 100%"
+focus_mode = 0
+min_value = 0.75
+max_value = 1.25
+step = 0.01
+value = 1.0
+option = "oppStrumScale"
+
+[node name="Percent" type="Label" parent="CenterRef/Opponent/OppOptions/OppSize"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = -10.0
+offset_right = 433.0
+offset_bottom = 9.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "100%"
+horizontal_alignment = 1
+
+[node name="Player" type="ScrollContainer" parent="CenterRef"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -164.0
+offset_right = -100.0
+offset_bottom = 164.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="OppOptions" type="VBoxContainer" parent="CenterRef/Player"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterRef/Player/OppOptions"]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Strum Visibility"
+
+[node name="PlayerVisibility" parent="CenterRef/Player/OppOptions" instance=ExtResource("5_bvdn8")]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+tooltip_text = "Adjust the visibilty for the opponent strum line.
+0% is completly hidden, 100% is completly shown.
+Default: 100%"
+focus_mode = 0
+max_value = 1.0
+step = 0.01
+value = 1.0
+option = "playerStrumVis"
+
+[node name="Percent" type="Label" parent="CenterRef/Player/OppOptions/PlayerVisibility"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = -10.0
+offset_right = 433.0
+offset_bottom = 9.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "100%"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CenterRef/Player/OppOptions"]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Strum Scale"
+
+[node name="PlayerSize" parent="CenterRef/Player/OppOptions" instance=ExtResource("5_bvdn8")]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+tooltip_text = "Adjust the scale for the opponent strum line.
+Default: 100%"
+focus_mode = 0
+min_value = 0.75
+max_value = 1.25
+step = 0.01
+value = 1.0
+option = "playerStrumScale"
+
+[node name="Percent" type="Label" parent="CenterRef/Player/OppOptions/PlayerSize"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = -10.0
+offset_right = 433.0
+offset_bottom = 9.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "100%"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="CenterRef/ExitButton" to="." method="_on_exit_button_pressed"]
