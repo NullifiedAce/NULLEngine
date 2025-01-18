@@ -44,9 +44,12 @@ var accuracy_pressed_notes:int = 0
 var accuracy_total_hit:float = 0.0
 
 var cam_bumping:bool = true
-var cam_bumping_interval:int = 4
+var camera_bop_intensitiy:float = Constants.DEFAULT_BOP_INTENSITY -1
+var camera_zoom_rate:int = Constants.DEFAULT_ZOOM_RATE
 var cam_zooming:bool = true
 var cam_switching:bool = true
+
+var hud_zoom_intensitiy = (Constants.DEFAULT_BOP_INTENSITY - 1.0) * 2
 
 var icon_bumping:bool = true
 var icon_bumping_interval:int = 1
@@ -516,9 +519,9 @@ func beat_hit(beat:int):
 		player_icon.scale += Vector2(0.2, 0.2)
 		position_icons()
 
-	if cam_bumping and cam_bumping_interval > 0 and beat % 4 == 0:
-		camera.zoom += Vector2(0.015, 0.015)
-		hud.scale += Vector2(0.03, 0.03)
+	if cam_bumping and beat % camera_zoom_rate == 0:
+		camera.zoom += Vector2(camera_bop_intensitiy, camera_bop_intensitiy)
+		hud.scale += Vector2(hud_zoom_intensitiy, hud_zoom_intensitiy)
 		position_hud()
 
 	character_bop()

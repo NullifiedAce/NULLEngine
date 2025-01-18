@@ -1,5 +1,50 @@
 extends Node
 
+# GAME DEFAULTS
+# ====================
+
+# Default difficulty for charts.
+const DEFAULT_DIFFICULTY:String = "normal"
+
+# Default list of difficulties for charts.
+# Assumes no erect mode, etc.
+const DEFAULT_DIFFICULTY_LIST:Array[String] = ["easy", "normal", "hard"]
+
+# Default difficulties for erect mode.
+const DEFAULT_DIFFICULTY_LIST_ERECT:Array[String] = ["erect", "nightmare"]
+
+# List of all difficulties used by the base game.
+# Includes Erect and Nightmare.
+const DEFAULT_DIFFICULTY_LIST_FULL:Array[String] = ["easy", "normal", "hard", "erect", "nightmare"]
+
+# Default player character for charts.
+const DEFAULT_CHARACTER:String = "bf"
+
+# Default player character for health icons.
+const DEFAULT_HEALTH_ICON:String = "face"
+
+# Default stage for charts.
+const DEFAULT_STAGE:String = "mainStage"
+
+# Default song for if the Gameplay scene messes up.
+const DEFAULT_SONG:String = "tutorial"
+
+# Default variation for charts.
+const DEFAULT_VARIATION:String = "default"
+
+# Standardized variations for charts.
+const DEFAULT_VARIATION_LIST:Array[String] = ["default", "erect", "pico"]
+
+# The default intensitiy multiplier for camera bops.
+# Prolly needs to be tuned bc it's a multiplier now.
+const DEFAULT_BOP_INTENSITY:float = 1.015
+
+# The default rate for camera zooms (in beats per zoom).
+const DEFAULT_ZOOM_RATE:int = 4
+
+# Default BPM for charts. so things don't break if none is specified.
+const DEFAULT_BPM:float = 100
+
 # HEALTH VALUES
 # ====================
 
