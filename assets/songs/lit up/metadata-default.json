@@ -7,7 +7,7 @@
   "playData": {
     "difficulties": ["easy", "normal", "hard"],
     "characters": {
-      "player": "pico-playable",
+      "player": "pico",
       "girlfriend": "nene",
       "opponent": "darnell"
     },

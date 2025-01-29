@@ -1,0 +1,159 @@
+[gd_scene load_steps=16 format=3 uid="uid://463lks3qyju2"]
+
+[ext_resource type="Script" path="res://scripts/Stage.gd" id="1_gmjgf"]
+[ext_resource type="Texture2D" uid="uid://b2b5ybn487gd1" path="res://assets/levels/weekend1/images/phillyStreets/phillySkybox.png" id="2_hscht"]
+[ext_resource type="Texture2D" uid="uid://c0adx2yh2irel" path="res://assets/levels/weekend1/images/phillyStreets/phillySkyline.png" id="2_v3mtb"]
+[ext_resource type="Texture2D" uid="uid://dbtqi4hpeg881" path="res://assets/levels/weekend1/images/phillyStreets/phillyForegroundCity.png" id="4_3nam0"]
+[ext_resource type="Texture2D" uid="uid://c48njungvjjo4" path="res://assets/levels/weekend1/images/phillyStreets/phillyConstruction.png" id="5_swy56"]
+[ext_resource type="Texture2D" uid="uid://bepte8mlj057" path="res://assets/levels/weekend1/images/phillyStreets/phillyHighwayLights.png" id="6_ka2ji"]
+[ext_resource type="Texture2D" uid="uid://yqc5f4ko7y07" path="res://assets/levels/weekend1/images/phillyStreets/phillyHighwayLights_lightmap.png" id="7_6couu"]
+[ext_resource type="Texture2D" uid="uid://dkkpbxabbunka" path="res://assets/levels/weekend1/images/phillyStreets/phillyHighway.png" id="8_50wsj"]
+[ext_resource type="Texture2D" uid="uid://djlft0gcaltxj" path="res://assets/levels/weekend1/images/phillyStreets/phillySmog.png" id="9_a8a8k"]
+[ext_resource type="Texture2D" uid="uid://whdmvlaqwma4" path="res://assets/levels/weekend1/images/phillyStreets/phillyForeground.png" id="9_sai2o"]
+[ext_resource type="SpriteFrames" path="res://assets/levels/weekend1/images/phillyStreets/phillyCars.res" id="10_0xee0"]
+[ext_resource type="Texture2D" uid="uid://d1s2sevwlbrrr" path="res://assets/levels/weekend1/images/SpraycanPile.png" id="10_lm3l6"]
+[ext_resource type="SpriteFrames" path="res://assets/levels/weekend1/images/phillyStreets/phillyTraffic.res" id="11_inqc2"]
+[ext_resource type="Texture2D" uid="uid://dqgictmw3uv0o" path="res://assets/levels/weekend1/images/phillyStreets/phillyTraffic_lightmap.png" id="12_wcebm"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tggxm"]
+blend_mode = 1
+
+[node name="phillyStreets" type="Node2D"]
+script = ExtResource("1_gmjgf")
+default_cam_zoom = 0.77
+player_cam_offset = Vector2(-350, -100)
+opponent_cam_offset = Vector2(500, -100)
+
+[node name="PB" type="ParallaxBackground" parent="."]
+
+[node name="PL1" type="ParallaxLayer" parent="PB"]
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="phillySkybox" type="Sprite2D" parent="PB/PL1"]
+z_index = 10
+position = Vector2(650, -375)
+texture = ExtResource("2_hscht")
+centered = false
+
+[node name="PL2" type="ParallaxLayer" parent="PB"]
+position = Vector2(0, 5)
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="phillySkyline" type="Sprite2D" parent="PB/PL2"]
+z_index = 20
+position = Vector2(-545, -273)
+texture = ExtResource("2_v3mtb")
+centered = false
+
+[node name="PL3" type="ParallaxLayer" parent="PB"]
+motion_scale = Vector2(0.3, 0.3)
+
+[node name="phillyForegroundCity" type="Sprite2D" parent="PB/PL3"]
+z_index = 30
+position = Vector2(625, 94)
+texture = ExtResource("4_3nam0")
+centered = false
+
+[node name="PL4" type="ParallaxLayer" parent="PB"]
+position = Vector2(0, -4)
+motion_scale = Vector2(0.7, 1)
+
+[node name="phillyConstruction" type="Sprite2D" parent="PB/PL4"]
+z_index = 40
+position = Vector2(1800, 364)
+texture = ExtResource("5_swy56")
+centered = false
+
+[node name="PL5" type="ParallaxLayer" parent="PB"]
+position = Vector2(0, -1)
+
+[node name="phillyHighwayLights" type="Sprite2D" parent="PB/PL5"]
+z_index = 50
+position = Vector2(284, 305)
+texture = ExtResource("6_ka2ji")
+centered = false
+
+[node name="lightmap" type="PointLight2D" parent="PB/PL5/phillyHighwayLights"]
+z_index = 50
+energy = 2.5
+range_z_max = 50
+range_layer_min = -100
+texture = ExtResource("7_6couu")
+offset = Vector2(541, 98)
+
+[node name="phillyHighway" type="Sprite2D" parent="PB/PL5"]
+z_index = 60
+position = Vector2(139, 209)
+texture = ExtResource("8_50wsj")
+centered = false
+
+[node name="phillyForeground" type="Sprite2D" parent="PB/PL5"]
+z_index = 100
+position = Vector2(88, 317)
+texture = ExtResource("9_sai2o")
+centered = false
+
+[node name="spraycanPile" type="Sprite2D" parent="PB/PL5"]
+z_index = 690
+position = Vector2(920, 1045)
+texture = ExtResource("10_lm3l6")
+centered = false
+
+[node name="PL6" type="ParallaxLayer" parent="PB"]
+motion_scale = Vector2(0.8, 1)
+
+[node name="phillySmog" type="Sprite2D" parent="PB/PL6"]
+z_index = 70
+position = Vector2(-6, 245)
+texture = ExtResource("9_a8a8k")
+centered = false
+
+[node name="PL7" type="ParallaxLayer" parent="PB"]
+motion_scale = Vector2(0.9, 1)
+
+[node name="phillyCars" type="AnimatedSprite2D" parent="PB/PL7"]
+z_index = 80
+position = Vector2(1748, 818)
+sprite_frames = ExtResource("10_0xee0")
+animation = &"car1"
+centered = false
+
+[node name="phillyCars2" type="AnimatedSprite2D" parent="PB/PL7"]
+z_index = 78
+position = Vector2(1748, 818)
+sprite_frames = ExtResource("10_0xee0")
+animation = &"car1"
+centered = false
+
+[node name="phillyTraffic" type="AnimatedSprite2D" parent="PB/PL7"]
+z_index = 90
+position = Vector2(1840, 608)
+sprite_frames = ExtResource("11_inqc2")
+animation = &"greentored"
+centered = false
+
+[node name="lightmap" type="Sprite2D" parent="PB/PL7/phillyTraffic"]
+material = SubResource("CanvasItemMaterial_tggxm")
+texture = ExtResource("12_wcebm")
+centered = false
+
+[node name="Character Positions" type="Node2D" parent="."]
+
+[node name="Opponent" type="Node2D" parent="Character Positions"]
+z_index = 350
+position = Vector2(920, 1310)
+
+[node name="Spectator" type="Node2D" parent="Character Positions"]
+z_index = 300
+position = Vector2(1453, 1100)
+
+[node name="Player" type="Node2D" parent="Character Positions"]
+z_index = 400
+position = Vector2(2151, 1228)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 1776.0
+offset_right = 456.0
+offset_bottom = 1799.0
+text = "i hate this stage so much. this was hell to port over -NULL"
