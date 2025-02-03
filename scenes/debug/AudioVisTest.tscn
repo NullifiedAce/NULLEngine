@@ -1,0 +1,219 @@
+[gd_scene load_steps=11 format=3 uid="uid://bm5kgxle4i1v5"]
+
+[ext_resource type="Script" path="res://scripts/debug/AudioVisTest.gd" id="1_n8v7f"]
+[ext_resource type="Texture2D" uid="uid://bgk48t11fpyuf" path="res://assets/images/gameplay/icons/icon-face.png" id="3_oya2f"]
+[ext_resource type="Texture2D" uid="uid://dvn5tjknf10im" path="res://assets/images/gameplay/characters/aBot/viz10000.png" id="6_g042k"]
+[ext_resource type="Texture2D" uid="uid://bkwiokh37x3qc" path="res://assets/images/gameplay/characters/aBot/viz40000.png" id="6_pp8ey"]
+[ext_resource type="Texture2D" uid="uid://cbxdfpxot8jj" path="res://assets/images/gameplay/characters/aBot/viz50000.png" id="7_cypov"]
+[ext_resource type="Texture2D" uid="uid://blbrwmhrxtunw" path="res://assets/images/gameplay/characters/aBot/viz20000.png" id="7_s5gj7"]
+[ext_resource type="Texture2D" uid="uid://d0ftkcse2fuko" path="res://assets/images/gameplay/characters/aBot/viz30000.png" id="8_jybgv"]
+[ext_resource type="Texture2D" uid="uid://gdrne85v2ybt" path="res://assets/images/gameplay/characters/aBot/viz60000.png" id="8_vw3y5"]
+[ext_resource type="Texture2D" uid="uid://dpp7i08gget01" path="res://assets/images/gameplay/characters/aBot/viz70000.png" id="9_5uvyg"]
+[ext_resource type="Script" path="res://scenes/gameplay/audio_viz/AudioVizBars.gd" id="10_mah4b"]
+
+[node name="AudioVisTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n8v7f")
+
+[node name="CircleBase" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -56.0
+offset_right = 60.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("3_oya2f")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Right" type="Control" parent="CircleBase"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 17.5
+offset_top = -20.0
+offset_right = 57.5
+offset_bottom = 20.0
+grow_vertical = 2
+scale = Vector2(-1, 1)
+pivot_offset = Vector2(20, 20)
+script = ExtResource("10_mah4b")
+
+[node name="R3" type="TextureProgressBar" parent="CircleBase/Right"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -108.0
+offset_right = 41.0
+offset_bottom = 108.0
+grow_vertical = 2
+scale = Vector2(-0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("8_jybgv")
+
+[node name="R2" type="TextureProgressBar" parent="CircleBase/Right"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -107.5
+offset_right = 33.0
+offset_bottom = 108.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(-0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("7_s5gj7")
+
+[node name="R" type="TextureProgressBar" parent="CircleBase/Right"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -105.5
+offset_right = 36.0
+offset_bottom = 110.5
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(-0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("6_g042k")
+
+[node name="Middle" type="Control" parent="CircleBase"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_mah4b")
+vu_count = 1
+bar_height = 100
+
+[node name="M" type="TextureProgressBar" parent="CircleBase/Middle"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -108.0
+offset_right = 28.5
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("6_pp8ey")
+
+[node name="Left" type="Control" parent="CircleBase"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("10_mah4b")
+
+[node name="L3" type="TextureProgressBar" parent="CircleBase/Left"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -108.0
+offset_right = -14.0
+offset_bottom = 108.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("7_cypov")
+
+[node name="L2" type="TextureProgressBar" parent="CircleBase/Left"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = -107.0
+offset_right = 22.5
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("8_vw3y5")
+
+[node name="L" type="TextureProgressBar" parent="CircleBase/Left"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -105.0
+offset_right = 58.0
+offset_bottom = 111.0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("9_5uvyg")

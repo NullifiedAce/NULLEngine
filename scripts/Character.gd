@@ -38,6 +38,13 @@ var dance_on_beat:bool = true
 
 var initial_size:Vector2 = Vector2.ZERO
 
+var characterOrigin:Vector2
+
+func get_characterOirigin():
+	pass
+
+var cameraFocusPoint: Vector2 = Vector2(0, 0)
+
 func _ready():
 	anim_sprite.speed_scale = Conductor.rate
 	anim_player.speed_scale = Conductor.rate

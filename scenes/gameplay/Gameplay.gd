@@ -139,6 +139,7 @@ func load_track(music_path:String, fileName:String):
 	if fileName == "Inst":
 		track.finished.connect(end_song)
 
+	track.bus = "Music"
 	tracks.append(track)
 
 func gen_song(delete_before_time:float = -1.0):

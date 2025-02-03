@@ -279,7 +279,7 @@ health_icon = ExtResource("2_lvj21")
 health_color = Color(0.45098, 0.368627, 0.690196, 1)
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-376, -616)
+position = Vector2(-304, -680)
 sprite_frames = ExtResource("3_3to3i")
 animation = &"Idle"
 frame = 27
@@ -293,4 +293,4 @@ libraries = {
 }
 
 [node name="CameraPos" type="Node2D" parent="."]
-position = Vector2(-144, -128)
+position = Vector2(-32, -440)

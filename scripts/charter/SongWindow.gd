@@ -105,7 +105,7 @@ func _select_autosave():
 
 	var file = item.get_text(0)
 	var json = JSON.parse_string(FileAccess.open("user://chart_autosaves/" + file, FileAccess.READ).get_as_text()).song
-	Global.SONG = Chart.load_from_json(file.get_basename(), json)
+	Global.SONG = Chart.load_from_json(file.get_basename(), json, "normal")
 	Global.switch_scene("res://scenes/editors/ChartEditor.tscn")
 
 func _open_autosave():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://463lks3qyju2"]
+[gd_scene load_steps=25 format=3 uid="uid://463lks3qyju2"]
 
 [ext_resource type="Script" path="res://scripts/Stage.gd" id="1_gmjgf"]
 [ext_resource type="Texture2D" uid="uid://b2b5ybn487gd1" path="res://assets/levels/weekend1/images/phillyStreets/phillySkybox.png" id="2_hscht"]
@@ -12,8 +12,17 @@
 [ext_resource type="Texture2D" uid="uid://whdmvlaqwma4" path="res://assets/levels/weekend1/images/phillyStreets/phillyForeground.png" id="9_sai2o"]
 [ext_resource type="SpriteFrames" path="res://assets/levels/weekend1/images/phillyStreets/phillyCars.res" id="10_0xee0"]
 [ext_resource type="Texture2D" uid="uid://d1s2sevwlbrrr" path="res://assets/levels/weekend1/images/SpraycanPile.png" id="10_lm3l6"]
+[ext_resource type="Texture2D" uid="uid://bgk48t11fpyuf" path="res://assets/images/gameplay/icons/icon-face.png" id="11_c5ln5"]
 [ext_resource type="SpriteFrames" path="res://assets/levels/weekend1/images/phillyStreets/phillyTraffic.res" id="11_inqc2"]
+[ext_resource type="Script" path="res://scenes/gameplay/audio_viz/AudioVizBars.gd" id="12_05psx"]
 [ext_resource type="Texture2D" uid="uid://dqgictmw3uv0o" path="res://assets/levels/weekend1/images/phillyStreets/phillyTraffic_lightmap.png" id="12_wcebm"]
+[ext_resource type="Texture2D" uid="uid://d0ftkcse2fuko" path="res://assets/images/gameplay/characters/aBot/viz30000.png" id="13_ggmq0"]
+[ext_resource type="Texture2D" uid="uid://blbrwmhrxtunw" path="res://assets/images/gameplay/characters/aBot/viz20000.png" id="14_jfl6q"]
+[ext_resource type="Texture2D" uid="uid://dvn5tjknf10im" path="res://assets/images/gameplay/characters/aBot/viz10000.png" id="15_ovp82"]
+[ext_resource type="Texture2D" uid="uid://bkwiokh37x3qc" path="res://assets/images/gameplay/characters/aBot/viz40000.png" id="16_874st"]
+[ext_resource type="Texture2D" uid="uid://cbxdfpxot8jj" path="res://assets/images/gameplay/characters/aBot/viz50000.png" id="17_s4khf"]
+[ext_resource type="Texture2D" uid="uid://gdrne85v2ybt" path="res://assets/images/gameplay/characters/aBot/viz60000.png" id="18_k1vus"]
+[ext_resource type="Texture2D" uid="uid://dpp7i08gget01" path="res://assets/images/gameplay/characters/aBot/viz70000.png" id="19_6wejw"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tggxm"]
 blend_mode = 1
@@ -24,56 +33,57 @@ default_cam_zoom = 0.77
 player_cam_offset = Vector2(-350, -100)
 opponent_cam_offset = Vector2(500, -100)
 
-[node name="PB" type="ParallaxBackground" parent="."]
+[node name="PB1" type="ParallaxBackground" parent="."]
+layer = -1
 
-[node name="PL1" type="ParallaxLayer" parent="PB"]
+[node name="PL1" type="ParallaxLayer" parent="PB1"]
 motion_scale = Vector2(0.1, 0.1)
 
-[node name="phillySkybox" type="Sprite2D" parent="PB/PL1"]
+[node name="phillySkybox" type="Sprite2D" parent="PB1/PL1"]
 z_index = 10
 position = Vector2(650, -375)
 texture = ExtResource("2_hscht")
 centered = false
 
-[node name="PL2" type="ParallaxLayer" parent="PB"]
+[node name="PL2" type="ParallaxLayer" parent="PB1"]
 position = Vector2(0, 5)
 motion_scale = Vector2(0.2, 0.2)
 
-[node name="phillySkyline" type="Sprite2D" parent="PB/PL2"]
+[node name="phillySkyline" type="Sprite2D" parent="PB1/PL2"]
 z_index = 20
 position = Vector2(-545, -273)
 texture = ExtResource("2_v3mtb")
 centered = false
 
-[node name="PL3" type="ParallaxLayer" parent="PB"]
+[node name="PL3" type="ParallaxLayer" parent="PB1"]
 motion_scale = Vector2(0.3, 0.3)
 
-[node name="phillyForegroundCity" type="Sprite2D" parent="PB/PL3"]
+[node name="phillyForegroundCity" type="Sprite2D" parent="PB1/PL3"]
 z_index = 30
 position = Vector2(625, 94)
 texture = ExtResource("4_3nam0")
 centered = false
 
-[node name="PL4" type="ParallaxLayer" parent="PB"]
+[node name="PL4" type="ParallaxLayer" parent="PB1"]
 position = Vector2(0, -4)
 motion_scale = Vector2(0.7, 1)
 
-[node name="phillyConstruction" type="Sprite2D" parent="PB/PL4"]
+[node name="phillyConstruction" type="Sprite2D" parent="PB1/PL4"]
 z_index = 40
 position = Vector2(1800, 364)
 texture = ExtResource("5_swy56")
 centered = false
 
-[node name="PL5" type="ParallaxLayer" parent="PB"]
+[node name="PL5" type="ParallaxLayer" parent="PB1"]
 position = Vector2(0, -1)
 
-[node name="phillyHighwayLights" type="Sprite2D" parent="PB/PL5"]
+[node name="phillyHighwayLights" type="Sprite2D" parent="PB1/PL5"]
 z_index = 50
 position = Vector2(284, 305)
 texture = ExtResource("6_ka2ji")
 centered = false
 
-[node name="lightmap" type="PointLight2D" parent="PB/PL5/phillyHighwayLights"]
+[node name="lightmap" type="PointLight2D" parent="PB1/PL5/phillyHighwayLights"]
 z_index = 50
 energy = 2.5
 range_z_max = 50
@@ -81,61 +91,271 @@ range_layer_min = -100
 texture = ExtResource("7_6couu")
 offset = Vector2(541, 98)
 
-[node name="phillyHighway" type="Sprite2D" parent="PB/PL5"]
+[node name="phillyHighway" type="Sprite2D" parent="PB1/PL5"]
 z_index = 60
 position = Vector2(139, 209)
 texture = ExtResource("8_50wsj")
 centered = false
 
-[node name="phillyForeground" type="Sprite2D" parent="PB/PL5"]
+[node name="phillyForeground" type="Sprite2D" parent="PB1/PL5"]
 z_index = 100
 position = Vector2(88, 317)
 texture = ExtResource("9_sai2o")
 centered = false
 
-[node name="spraycanPile" type="Sprite2D" parent="PB/PL5"]
+[node name="spraycanPile" type="Sprite2D" parent="PB1/PL5"]
 z_index = 690
 position = Vector2(920, 1045)
 texture = ExtResource("10_lm3l6")
 centered = false
 
-[node name="PL6" type="ParallaxLayer" parent="PB"]
+[node name="PL6" type="ParallaxLayer" parent="PB1"]
 motion_scale = Vector2(0.8, 1)
 
-[node name="phillySmog" type="Sprite2D" parent="PB/PL6"]
+[node name="phillySmog" type="Sprite2D" parent="PB1/PL6"]
 z_index = 70
 position = Vector2(-6, 245)
 texture = ExtResource("9_a8a8k")
 centered = false
 
-[node name="PL7" type="ParallaxLayer" parent="PB"]
+[node name="PL7" type="ParallaxLayer" parent="PB1"]
 motion_scale = Vector2(0.9, 1)
 
-[node name="phillyCars" type="AnimatedSprite2D" parent="PB/PL7"]
+[node name="phillyCars" type="AnimatedSprite2D" parent="PB1/PL7"]
 z_index = 80
 position = Vector2(1748, 818)
 sprite_frames = ExtResource("10_0xee0")
 animation = &"car1"
 centered = false
 
-[node name="phillyCars2" type="AnimatedSprite2D" parent="PB/PL7"]
+[node name="phillyCars2" type="AnimatedSprite2D" parent="PB1/PL7"]
 z_index = 78
 position = Vector2(1748, 818)
 sprite_frames = ExtResource("10_0xee0")
 animation = &"car1"
 centered = false
 
-[node name="phillyTraffic" type="AnimatedSprite2D" parent="PB/PL7"]
+[node name="phillyTraffic" type="AnimatedSprite2D" parent="PB1/PL7"]
 z_index = 90
 position = Vector2(1840, 608)
 sprite_frames = ExtResource("11_inqc2")
 animation = &"greentored"
 centered = false
 
-[node name="lightmap" type="Sprite2D" parent="PB/PL7/phillyTraffic"]
+[node name="lightmap" type="Sprite2D" parent="PB1/PL7/phillyTraffic"]
 material = SubResource("CanvasItemMaterial_tggxm")
 texture = ExtResource("12_wcebm")
 centered = false
+
+[node name="PB2" type="ParallaxBackground" parent="."]
+layer = 1
+
+[node name="PL8" type="ParallaxLayer" parent="PB2"]
+position = Vector2(0, -1)
+
+[node name="spraycanPile" type="Sprite2D" parent="PB2/PL8"]
+z_index = 690
+position = Vector2(920, 1045)
+texture = ExtResource("10_lm3l6")
+centered = false
+
+[node name="CircleBase" type="TextureRect" parent="PB2/PL8"]
+self_modulate = Color(0, 0, 0, 1)
+z_index = 100
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1280.0
+offset_top = 737.0
+offset_right = 1400.0
+offset_bottom = 849.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = ExtResource("11_c5ln5")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Right" type="Control" parent="PB2/PL8/CircleBase"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 17.5
+offset_top = -20.0
+offset_right = 57.5
+offset_bottom = 20.0
+grow_vertical = 2
+scale = Vector2(-1, 1)
+pivot_offset = Vector2(20, 20)
+script = ExtResource("12_05psx")
+
+[node name="R3" type="TextureProgressBar" parent="PB2/PL8/CircleBase/Right"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -108.0
+offset_right = 41.0
+offset_bottom = 108.0
+grow_vertical = 2
+scale = Vector2(-0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("13_ggmq0")
+
+[node name="R2" type="TextureProgressBar" parent="PB2/PL8/CircleBase/Right"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -107.5
+offset_right = 33.0
+offset_bottom = 108.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(-0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("14_jfl6q")
+
+[node name="R" type="TextureProgressBar" parent="PB2/PL8/CircleBase/Right"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -105.5
+offset_right = 36.0
+offset_bottom = 110.5
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(-0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("15_ovp82")
+
+[node name="Middle" type="Control" parent="PB2/PL8/CircleBase"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_05psx")
+vu_count = 1
+bar_height = 100
+
+[node name="M" type="TextureProgressBar" parent="PB2/PL8/CircleBase/Middle"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -108.0
+offset_right = 28.5
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("16_874st")
+
+[node name="Left" type="Control" parent="PB2/PL8/CircleBase"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("12_05psx")
+
+[node name="L3" type="TextureProgressBar" parent="PB2/PL8/CircleBase/Left"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -108.0
+offset_right = -14.0
+offset_bottom = 108.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("17_s4khf")
+
+[node name="L2" type="TextureProgressBar" parent="PB2/PL8/CircleBase/Left"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = -107.0
+offset_right = 22.5
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("18_k1vus")
+
+[node name="L" type="TextureProgressBar" parent="PB2/PL8/CircleBase/Left"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -105.0
+offset_right = 58.0
+offset_bottom = 111.0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("19_6wejw")
 
 [node name="Character Positions" type="Node2D" parent="."]
 
