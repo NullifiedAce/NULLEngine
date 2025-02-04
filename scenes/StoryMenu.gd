@@ -198,7 +198,8 @@ func select_week():
 	Global.is_story_mode = true
 	Global.queued_songs = []
 	Global.current_difficulty = week_list.weeks[cur_week].difficulties[cur_diff]
-	Global.SONG = Chart.load_chart(week_list.weeks[cur_week].songs[0].song_path, Global.current_difficulty)
+	Global.SONG = Chart.load_chart(week_list.weeks[cur_week].songs[0].song_path, Global.current_difficulty, "default")
+	Global.METADATA = Metadata.load_metadata(week_list.weeks[cur_week].songs[0].song_path, "default")
 	for i in week_list.weeks[cur_week].songs.size(): # The worst way to do it but... im dumb.
 		if i > 0:
 			Global.queued_songs.append(week_list.weeks[cur_week].songs[i].song_path)

@@ -131,6 +131,7 @@ func load_track(music_path:String, fileName:String):
 	track.name = fileName
 	if Global.variation == "default":
 		track.stream = load(music_path + fileName + ".ogg")
+		print(track.stream.get_length())
 	else:
 		track.stream = load(music_path + fileName + "-" + Global.variation + ".ogg")
 		print(music_path + fileName + "-" + Global.variation + ".ogg")
@@ -510,10 +511,11 @@ func end_song():
 		HighScore.set_score(METADATA.rawSongName,Global.current_difficulty,songScore)
 
 	if Global.queued_songs.size() > 0:
-		Global.SONG = Chart.load_chart(Global.queued_songs[0], Global.current_difficulty)
+		Global.SONG = Chart.load_chart(Global.queued_songs[0], Global.current_difficulty, Global.variation)
+		Global.METADATA = Metadata.load_metadata(Global.queued_songs[0], Global.variation)
 		Global.queued_songs.remove_at(0)
 		Ranking.add_results(songScore, misses, max_combo, sicks, goods, bads, shits, total_notes)
-		Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
+		Global.switch_scene("res://scenes/gameplay/Gameplay.tscn")
 	else:
 		Ranking.add_results(songScore, misses, max_combo, sicks, goods, bads, shits, total_notes)
 		Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
@@ -912,8 +914,6 @@ func update_score_text():
 
 	score_text.text = ""
 
-	RichPresence.set_text(str(METADATA.rawSongName) + " (" + str(Global.current_difficulty).capitalize() + ")", "Score: %s" % songScore)
-
 	for i in array:
 		text_length += 1
 
@@ -1003,6 +1003,8 @@ func _process(delta:float) -> void:
 
 	if Input.is_action_just_pressed('space_bar') and not (skipped_intro or starting_song):
 		skip_intro()
+
+	RichPresence.set_text(METADATA.songName + " (" + Global.current_difficulty.capitalize() + ")" )
 
 	stage.callv("_process_post", [delta])
 	script_group.call_func("_process_post", [delta])

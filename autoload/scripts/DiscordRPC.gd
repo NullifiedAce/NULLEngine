@@ -10,7 +10,7 @@ func _ready() -> void:
 
 	DiscordRPC.refresh()
 
-func set_text(details: String, state: String):
+func set_text(details: String = "", state: String = ""):
 	DiscordRPC.details = details
 	DiscordRPC.state = state
 	DiscordRPC.refresh()

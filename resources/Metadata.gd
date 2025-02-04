@@ -48,7 +48,8 @@ static func load_from_json(song:String, json):
 	metadata.version = json.version
 	metadata.timeFormat = json.timeFormat
 	metadata.artist = json.artist
-	metadata.charter = json.charter
+	if "charter" in json:
+		metadata.charter = json.charter
 	metadata.rawSongName = json.rawSongName
 	metadata.songName = json.songName
 	metadata.timeChanges = json.timeChanges

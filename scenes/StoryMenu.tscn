@@ -275,3 +275,5 @@ libraries = {
 position = Vector2(973, 494)
 texture = ExtResource("11_hvcc2")
 centered = false
+
+[node name="Music" type="Node" parent="."]
