@@ -26,7 +26,7 @@ config/icon="res://assets/images/default_mod_icon.png"
 
 SettingsAPI="*res://autoload/scripts/SettingsAPI.gd"
 ModManager="*res://autoload/scripts/ModManager.gd"
-TrophyHandler="*res://autoload/scripts/TrophyHandler.gd"
+TrophyHandler="*res://autoload/scenes/TrophyDisplay.tscn"
 HudPresetHandler="*res://autoload/scripts/HUDPresetHandler.gd"
 Global="*res://autoload/scripts/Global.gd"
 Conductor="*res://autoload/scripts/Conductor.gd"

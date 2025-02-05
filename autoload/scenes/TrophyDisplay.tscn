@@ -1,0 +1,463 @@
+[gd_scene load_steps=37 format=3 uid="uid://ceqkxfben3ivj"]
+
+[ext_resource type="Script" path="res://autoload/scripts/TrophyHandler.gd" id="1_ef356"]
+[ext_resource type="Script" path="res://resources/TrophyItem.gd" id="2_5hf7t"]
+[ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="3_axsf8"]
+[ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="4_cruty"]
+[ext_resource type="Texture2D" uid="uid://cwrt4rlavcb58" path="res://assets/images/menus/achievements/trophies.png" id="4_uvjbk"]
+[ext_resource type="Texture2D" uid="uid://5pduqhtq7gk7" path="res://assets/images/menus/achievements/particle.png" id="5_fsck5"]
+[ext_resource type="AudioStream" uid="uid://b0h158k7rnbrk" path="res://assets/sounds/character select/CS_unlock.ogg" id="6_8wvhj"]
+
+[sub_resource type="Resource" id="Resource_fic07"]
+script = ExtResource("2_5hf7t")
+id = "BT"
+title = "Beat the tutorial!"
+description = "Beat Week \"Tutorial\"."
+starts_locked = false
+rarity = 0
+particles = false
+amount = 8.0
+
+[sub_resource type="Resource" id="Resource_3vq8f"]
+script = ExtResource("2_5hf7t")
+id = "BT_0"
+title = "Crushed the tutorial!!"
+description = "Beat Week \"Tutorial\" without missing on difficulty \"Hard.\""
+starts_locked = true
+rarity = 1
+particles = true
+amount = 2.0
+
+[sub_resource type="Resource" id="Resource_3qp3d"]
+script = ExtResource("2_5hf7t")
+id = "B1"
+title = "She's mine!!"
+description = "Beat Week 1"
+starts_locked = false
+rarity = 0
+particles = false
+amount = 8.0
+
+[sub_resource type="Resource" id="Resource_26jv4"]
+script = ExtResource("2_5hf7t")
+id = "B1_0"
+title = "Ex-Ex-Rockstar"
+description = "Beat Week 1 without missing on difficulty \"Hard.\""
+starts_locked = true
+rarity = 1
+particles = true
+amount = 2.0
+
+[sub_resource type="Resource" id="Resource_iapcp"]
+script = ExtResource("2_5hf7t")
+id = "B2"
+title = "Trick or treat!"
+description = "Beat Week 2."
+starts_locked = false
+rarity = 0
+particles = false
+amount = 8.0
+
+[sub_resource type="Resource" id="Resource_1w1nd"]
+script = ExtResource("2_5hf7t")
+id = "B2_0"
+title = "Sorry, spooky month's over!!"
+description = "Beat Week 2 without missing on difficulty \"Hard.\""
+starts_locked = true
+rarity = 1
+particles = true
+amount = 2.0
+
+[sub_resource type="Resource" id="Resource_cl5db"]
+script = ExtResource("2_5hf7t")
+id = "B3"
+title = "Philly Nice!"
+description = "Beat Week 3."
+starts_locked = false
+rarity = 0
+particles = true
+amount = 1.0
+
+[sub_resource type="Resource" id="Resource_iueyw"]
+script = ExtResource("2_5hf7t")
+id = "B3_0"
+title = "Ex-BF!!"
+description = "Beat Week 3 without missing on difficulty \"Hard.\""
+starts_locked = true
+rarity = 1
+particles = true
+amount = 4.0
+
+[sub_resource type="Resource" id="Resource_1tw78"]
+script = ExtResource("2_5hf7t")
+id = "B4"
+title = "Highway Funkin'!"
+description = "Beat Week 4."
+starts_locked = false
+rarity = 0
+particles = true
+amount = 2.0
+
+[sub_resource type="Resource" id="Resource_f8aag"]
+script = ExtResource("2_5hf7t")
+id = "B4_0"
+title = "Mother knows best!!"
+description = "Beat Week 4 without missing on difficulty \"Hard.\""
+starts_locked = true
+rarity = 1
+particles = true
+amount = 4.0
+
+[sub_resource type="Resource" id="Resource_hhlft"]
+script = ExtResource("2_5hf7t")
+id = "B5"
+title = "Family Holiday!"
+description = "Beat Week 5."
+starts_locked = false
+rarity = 0
+particles = false
+amount = 8.0
+
+[sub_resource type="Resource" id="Resource_oofs2"]
+script = ExtResource("2_5hf7t")
+id = "B5_0"
+title = "Sinful christmas!!"
+description = "Beat Week 5 without missing on difficulty \"Hard.\""
+starts_locked = true
+rarity = 1
+particles = true
+amount = 2.0
+
+[sub_resource type="Resource" id="Resource_tyw4n"]
+script = ExtResource("2_5hf7t")
+id = "B6"
+title = "Feelin' Retro!"
+description = "Beat Week 6"
+starts_locked = false
+rarity = 0
+particles = true
+amount = 1.0
+
+[sub_resource type="Resource" id="Resource_b8rv2"]
+script = ExtResource("2_5hf7t")
+id = "B6_0"
+title = "Inescapable Heat!!"
+description = "Beat Week 6 without missing on difficulty \"Hard.\""
+starts_locked = true
+rarity = 1
+particles = true
+amount = 4.0
+
+[sub_resource type="Resource" id="Resource_tecde"]
+script = ExtResource("2_5hf7t")
+id = "B7"
+title = "Trespassing!"
+description = "Beat Week 7."
+starts_locked = false
+rarity = 1
+particles = true
+amount = 2.0
+
+[sub_resource type="Resource" id="Resource_gc468"]
+script = ExtResource("2_5hf7t")
+id = "B7_0"
+title = "All in a days work!!"
+description = "Beat Week 7 without missing on difficulty \"Hard.\""
+starts_locked = true
+rarity = 2
+particles = true
+amount = 2.0
+
+[sub_resource type="Resource" id="Resource_ie7t0"]
+script = ExtResource("2_5hf7t")
+id = "BW1"
+title = "Best Freinds!"
+description = "Beat Weeken 1."
+starts_locked = false
+rarity = 1
+particles = true
+amount = 1.0
+
+[sub_resource type="Resource" id="Resource_eqp8o"]
+script = ExtResource("2_5hf7t")
+id = "BW1_0"
+title = "Knock 'em dead!!"
+description = "Beat Weekend 1 without missing on difficulty \"Hard.\""
+starts_locked = true
+rarity = 2
+particles = true
+amount = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aoofd"]
+bg_color = Color(0, 0, 0, 0.74902)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Shader" id="Shader_0db06"]
+code = "shader_type canvas_item;
+
+uniform float hue : hint_range(-360, 360);         // Allow negative hue
+uniform float saturation : hint_range(-100, 100);  // Allow negative saturation
+uniform float brightness : hint_range(-255, 255);  // Allow negative brightness
+uniform float contrast : hint_range(-255, 255);    // Allow negative contrast;
+
+vec3 apply_hue(vec3 color, float hue_angle) {
+	float angle = radians(hue_angle);
+	vec3 k = vec3(0.57735, 0.57735, 0.57735); // Equal weights for each channel
+	float cos_angle = cos(angle);
+	return color * cos_angle + cross(k, color) * sin(angle) + k * dot(k, color) * (1.0 - cos_angle);
+}
+
+vec3 apply_hsb_effect(vec3 color) {
+	// Apply brightness adjustment (negative values will darken the image)
+	color = clamp(color + (brightness / 255.0), 0.0, 1.0);
+
+	// Apply hue adjustment (negative values will rotate the hue in the opposite direction)
+	color = apply_hue(color, hue);
+
+	// Apply contrast adjustment (negative values will decrease contrast)
+	color = clamp((color - 0.5) * (1.0 + (contrast / 255.0)) + 0.5, 0.0, 1.0);
+
+	// Apply saturation adjustment (negative values will desaturate the image)
+	vec3 intensity = vec3(dot(color, vec3(0.30980392156, 0.60784313725, 0.08235294117)));
+	color = clamp(mix(intensity, color, (1.0 + (saturation / 100.0))), 0.0, 1.0);
+
+	return color;
+}
+
+void fragment() {
+	// Get the current fragment color (input color)
+	vec4 input_color = COLOR;
+
+	// Apply HSB and contrast adjustments with potential negative values
+	vec3 out_color = apply_hsb_effect(input_color.rgb);
+
+	// Output the modified color
+	COLOR = vec4(out_color * input_color.a, input_color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c0hth"]
+shader = SubResource("Shader_0db06")
+shader_parameter/hue = null
+shader_parameter/saturation = null
+shader_parameter/brightness = 1.21125e-05
+shader_parameter/contrast = null
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_q8rcx"]
+diffuse_texture = ExtResource("4_uvjbk")
+texture_filter = 1
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xopot"]
+diffuse_texture = ExtResource("5_fsck5")
+texture_filter = 1
+
+[sub_resource type="Gradient" id="Gradient_rl0jo"]
+colors = PackedColorArray(1, 1, 1, 0.74902, 1, 1, 1, 0)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5mlew"]
+diffuse_texture = ExtResource("5_fsck5")
+texture_filter = 1
+
+[sub_resource type="Gradient" id="Gradient_fa1jx"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_l7yav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.21125e-05]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Unlock:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7nfwh"]
+resource_name = "unlock"
+length = 4.0
+step = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3, 1.3333),
+"transitions": PackedFloat32Array(0.554785, 1, 1),
+"update": 0,
+"values": [1.21125e-05, 255.0, 1.21125e-05]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UnlockSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 3.6941,
+"start_offset": 1.45969,
+"stream": ExtResource("6_8wvhj")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Unlock:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ic0o3"]
+_data = {
+"RESET": SubResource("Animation_l7yav"),
+"unlock": SubResource("Animation_7nfwh")
+}
+
+[node name="TrophyDisplay" type="CanvasLayer"]
+layer = 128
+script = ExtResource("1_ef356")
+trophies_array = Array[ExtResource("2_5hf7t")]([SubResource("Resource_fic07"), SubResource("Resource_3vq8f"), SubResource("Resource_3qp3d"), SubResource("Resource_26jv4"), SubResource("Resource_iapcp"), SubResource("Resource_1w1nd"), SubResource("Resource_cl5db"), SubResource("Resource_iueyw"), SubResource("Resource_1tw78"), SubResource("Resource_f8aag"), SubResource("Resource_hhlft"), SubResource("Resource_oofs2"), SubResource("Resource_tyw4n"), SubResource("Resource_b8rv2"), SubResource("Resource_tecde"), SubResource("Resource_gc468"), SubResource("Resource_ie7t0"), SubResource("Resource_eqp8o")])
+
+[node name="BG" type="Panel" parent="."]
+custom_minimum_size = Vector2(320, 128)
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 208.0
+offset_bottom = 112.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_aoofd")
+
+[node name="title" type="Label" parent="BG"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 40.0
+offset_right = 304.0
+offset_bottom = 55.0
+theme = ExtResource("3_axsf8")
+theme_override_fonts/font = ExtResource("4_cruty")
+text = "Play the game."
+autowrap_mode = 2
+
+[node name="unlocked" type="Label" parent="BG"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 184.0
+offset_bottom = 24.0
+theme = ExtResource("3_axsf8")
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("4_cruty")
+theme_override_font_sizes/font_size = 24
+text = "UNLOCKED TROPHY!!"
+horizontal_alignment = 1
+
+[node name="Trophy" type="Control" parent="BG"]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 88.0
+offset_bottom = 120.0
+
+[node name="Sprite" type="Sprite2D" parent="BG/Trophy"]
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_c0hth")
+scale = Vector2(1.25, 1.25)
+texture = SubResource("CanvasTexture_q8rcx")
+centered = false
+hframes = 2
+vframes = 2
+
+[node name="Particles" type="CPUParticles2D" parent="BG/Trophy"]
+position = Vector2(40, 40)
+emitting = false
+texture = SubResource("CanvasTexture_xopot")
+emission_shape = 2
+emission_sphere_radius = 64.0
+gravity = Vector2(0, 9.8)
+angular_velocity_min = -106.01
+angular_velocity_max = 132.52
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_rl0jo")
+
+[node name="Unlock" type="CPUParticles2D" parent="BG/Trophy"]
+z_index = 5
+position = Vector2(640, 340)
+emitting = false
+amount = 64
+lifetime = 2.0
+one_shot = true
+speed_scale = 0.5
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+texture = SubResource("CanvasTexture_5mlew")
+emission_shape = 3
+emission_rect_extents = Vector2(640, 360)
+direction = Vector2(0, 1)
+gravity = Vector2(0, 98)
+initial_velocity_max = 1000.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+angle_min = -360.0
+angle_max = 360.0
+scale_amount_min = 0.5
+color_ramp = SubResource("Gradient_fa1jx")
+
+[node name="Animation" type="AnimationPlayer" parent="BG/Trophy"]
+libraries = {
+"": SubResource("AnimationLibrary_ic0o3")
+}
+
+[node name="UnlockSound" type="AudioStreamPlayer" parent="BG/Trophy"]

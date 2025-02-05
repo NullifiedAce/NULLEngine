@@ -1,7 +1,7 @@
-@tool
 extends Control
 class_name FunkinTrophy
 
+@export var unlocked: bool = false
 
 @export_group("Trophy")
 ## Which kind of trophy should be displayed.
@@ -10,9 +10,10 @@ class_name FunkinTrophy
 @export var particles_emitting:bool = false
 ## Amount of particles should be displayed. (Will only update once the trophy is reloaded.)
 @export var particles_amount:float = 8
-## If the trophy whether should be locked or not
-@export var locked:bool = false
+## If the trophy whether should be hidden or not
+@export var trophy_hidden:bool = false
 @export_group("Trophy Data")
+@export var trophy_id:String = "FF"
 @export var trophy_title:String = "Play the game."
 @export_multiline var trophy_description:String = "Start the game."
 
@@ -22,23 +23,25 @@ class_name FunkinTrophy
 @onready var animation: AnimationPlayer = $Animation
 
 func _ready() -> void:
-	particles.amount = particles_amount
 	title.text = trophy_title
+	sprite.frame = trophy
+	particles.amount = particles_amount
 
 func _process(delta: float) -> void:
-	sprite.frame = trophy
-
-	if locked:
-		modulate = Color.BLACK
+	if !unlocked:
+		sprite.modulate = Color.BLACK
 		particles.emitting = false
-		title.hide()
+		if trophy_hidden:
+			title.hide()
 	else:
-		modulate = Color.WHITE
-		particles.emitting = particles_emitting
+		sprite.modulate = Color.WHITE
 		title.show()
+		particles.emitting = particles_emitting
+
 
 func start_unlock():
 	animation.play("unlock")
 
 func unlock():
-	locked = false
+	trophy_hidden = false
+	unlocked = true

@@ -196,6 +196,7 @@ func select_week():
 			anim_sprite.anim_player.play("confirm")
 
 	Global.is_story_mode = true
+	Global.current_week = cur_week
 	Global.queued_songs = []
 	Global.current_difficulty = week_list.weeks[cur_week].difficulties[cur_diff]
 	Global.SONG = Chart.load_chart(week_list.weeks[cur_week].songs[0].song_path, Global.current_difficulty, "default")

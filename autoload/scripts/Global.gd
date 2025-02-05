@@ -38,6 +38,7 @@ var retry_sound:AudioStream = preload("res://assets/music/gameOverEnd.ogg")
 var current_difficulty:String = "hard"
 
 var is_story_mode:bool = false
+var current_week:int = 0
 var queued_songs:PackedStringArray = []
 
 var game_version = ProjectSettings.get_setting("application/config/version") #+ "\n"
