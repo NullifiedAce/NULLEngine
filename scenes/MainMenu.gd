@@ -6,6 +6,8 @@ extends MusicBeatScene
 @onready var camera:Camera2D = $Camera2D
 @onready var buttons:Node2D = $PB/UILayer/Buttons
 
+@onready var gf: Character = $PB/UILayer/gf
+
 var cur_selected:int = 0
 var selected_something:bool = false
 
@@ -17,12 +19,14 @@ func _ready():
 	$PB/UILayer/Version.text = "Nova Engine Godot v1.2.0\nNULL Engine v" + str(ProjectSettings.get_setting("application/config/version"))
 	RichPresence.set_text("In the menus", "Main Menu")
 
-	$PB/UILayer/entrance.play('entrance')
+	gf.play_anim("danceLeft")
 
 	change_selection()
 
 func _process(delta):
 	if selected_something: return
+
+	Conductor.position = Audio.music.time
 
 	if Input.is_action_just_pressed("ui_cancel"):
 		Audio.play_sound("cancelMenu")
@@ -43,11 +47,10 @@ func _process(delta):
 		if SettingsAPI.get_setting("flashing lights"):
 			magenta_anim.play("flash")
 
-		$PB/UILayer/entrance.speed_scale = 0.4
-		$PB/UILayer/entrance.play_backwards('entrance')
-
 		button_anim.root_node = buttons.get_child(cur_selected).get_path()
 		button_anim.play("flash")
+
+		gf.play_anim("cheer", true)
 
 		button_anim.animation_finished.connect(func(anim_name:StringName):
 			for i in buttons.get_child_count():
@@ -96,5 +99,32 @@ func change_selection(change:int = 0):
 		var button:AnimatedSprite2D = buttons.get_child(i)
 		button.play("selected" if cur_selected == i else "idle")
 
+		if button.name == "StoryMode":
+			button.position.x = 880 if cur_selected == i else 968
+		if button.name == "Freeplay":
+			button.position.x = 960 if cur_selected == i else 1032
+		if button.name == "Options":
+			button.position.x = 968 if cur_selected == i else 1032
+		if button.name == "Credits":
+			button.position.x = 1016 if cur_selected == i else 1056
+
 	Audio.play_sound("scrollMenu")
 	camera.position.y = buttons.get_child(cur_selected).position.y
+
+func beat_hit(beat:int):
+	gf.play_anim("danceLeft" if beat % 2 == 0 else "danceRight")
+
+func _on_achievement_pressed() -> void:
+	if selected_something: return
+
+	Audio.play_sound("confirmMenu")
+	selected_something = true
+	if SettingsAPI.get_setting("flashing lights"):
+		magenta_anim.play("flash")
+
+	gf.play_anim("cheer", true)
+
+	var timer:SceneTreeTimer = get_tree().create_timer(0.45)
+	timer.timeout.connect(func():
+		Global.switch_scene("res://scenes/AchievementsMenu.tscn")
+	)

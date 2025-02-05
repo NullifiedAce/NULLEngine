@@ -1,2 +1,1 @@
-finish basic HUD editor
-gamebanana wip page
+idk why most of this stuff was still here

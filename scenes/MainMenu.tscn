@@ -1,13 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://q64jd3rbs8je"]
+[gd_scene load_steps=22 format=3 uid="uid://q64jd3rbs8je"]
 
 [ext_resource type="Script" path="res://scenes/MainMenu.gd" id="1_f3mce"]
 [ext_resource type="Texture2D" uid="uid://8cpkvnc78sok" path="res://assets/images/menus/menuBG.png" id="2_25v5u"]
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="3_sklie"]
+[ext_resource type="PackedScene" uid="uid://cyj73wfovhpu" path="res://scenes/gameplay/characters/gf.tscn" id="4_tsg3x"]
 [ext_resource type="SpriteFrames" path="res://assets/images/menus/mainmenu/story mode.res" id="4_vrrvm"]
 [ext_resource type="SpriteFrames" path="res://assets/images/menus/mainmenu/freeplay.res" id="5_q251e"]
 [ext_resource type="SpriteFrames" path="res://assets/images/menus/mainmenu/options.res" id="6_jtmjb"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="7_fi2y3"]
 [ext_resource type="SpriteFrames" uid="uid://bqn0cjor0adm0" path="res://assets/images/menus/mainmenu/credits.res" id="7_n0of5"]
+[ext_resource type="Texture2D" uid="uid://cwrt4rlavcb58" path="res://assets/images/menus/achievements/trophies.png" id="10_etwjy"]
 
 [sub_resource type="Animation" id="Animation_vsdk4"]
 resource_name = "flash"
@@ -68,111 +70,56 @@ _data = {
 "flash": SubResource("Animation_kyg7j")
 }
 
-[sub_resource type="Animation" id="Animation_ekx12"]
-resource_name = "entrance"
-length = 0.55
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StoryMode:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(640, 820), Vector2(640, 150)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Freeplay:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 0.35),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(640, 820), Vector2(640, 290)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Options:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.2, 0.45),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(640, 820), Vector2(640, 430)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Credits:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.3, 0.55),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(640, 820), Vector2(640, 570)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("StoryMode:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Freeplay:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.1, 0.35),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Options:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.2, 0.45),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Credits:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0.3, 0.55),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cdqi"]
+bg_color = Color(0, 0, 0, 0.501961)
+expand_margin_left = 8.0
+expand_margin_top = 5.0
+expand_margin_right = 4.0
+expand_margin_bottom = 10.0
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ojo21"]
-_data = {
-"entrance": SubResource("Animation_ekx12")
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjrmj"]
+bg_color = Color(0.411765, 0.411765, 0.411765, 0.74902)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4y3i"]
+bg_color = Color(0.215686, 0.215686, 0.215686, 0.74902)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nnp8x"]
+bg_color = Color(0, 0, 0, 0.74902)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_sea3w"]
+diffuse_texture = ExtResource("10_etwjy")
+texture_filter = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tk2g"]
+atlas = SubResource("CanvasTexture_sea3w")
+region = Rect2(0, 64, 64, 64)
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_f3mce")
@@ -202,25 +149,36 @@ libraries = {
 [node name="UILayer" type="ParallaxLayer" parent="PB"]
 motion_scale = Vector2(0, 0)
 
+[node name="gf" parent="PB/UILayer" instance=ExtResource("4_tsg3x")]
+position = Vector2(376, 720)
+
+[node name="BG" type="ColorRect" parent="PB/UILayer"]
+offset_left = 648.0
+offset_top = -16.0
+offset_right = 1281.0
+offset_bottom = 886.0
+rotation = -0.261799
+color = Color(0, 0, 0, 0.501961)
+
 [node name="Buttons" type="Node2D" parent="PB/UILayer"]
 
 [node name="StoryMode" type="AnimatedSprite2D" parent="PB/UILayer/Buttons"]
-position = Vector2(640, 150)
+position = Vector2(880, 144)
 sprite_frames = ExtResource("4_vrrvm")
 animation = &"selected"
 
 [node name="Freeplay" type="AnimatedSprite2D" parent="PB/UILayer/Buttons"]
-position = Vector2(640, 290)
+position = Vector2(1032, 288)
 sprite_frames = ExtResource("5_q251e")
 animation = &"idle"
 
 [node name="Options" type="AnimatedSprite2D" parent="PB/UILayer/Buttons"]
-position = Vector2(640, 430)
+position = Vector2(1032, 432)
 sprite_frames = ExtResource("6_jtmjb")
 animation = &"idle"
 
 [node name="Credits" type="AnimatedSprite2D" parent="PB/UILayer/Buttons"]
-position = Vector2(640, 570)
+position = Vector2(1056, 576)
 sprite_frames = ExtResource("7_n0of5")
 animation = &"idle"
 
@@ -236,21 +194,48 @@ offset_top = 680.0
 offset_right = 238.0
 offset_bottom = 710.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
 theme_override_constants/line_spacing = 0
+theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("7_fi2y3")
 theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_2cdqi")
 text = "Nova Engine Godot v1.2.0
 NULL Engine v"
 autowrap_mode = 3
 
-[node name="entrance" type="AnimationPlayer" parent="PB/UILayer"]
-root_node = NodePath("../Buttons")
-libraries = {
-"": SubResource("AnimationLibrary_ojo21")
-}
+[node name="Achievement" type="Button" parent="PB/UILayer"]
+custom_minimum_size = Vector2(128, 128)
+offset_left = 680.0
+offset_top = 584.0
+offset_right = 808.0
+offset_bottom = 712.0
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_vjrmj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j4y3i")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nnp8x")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="TextureRect" parent="PB/UILayer/Achievement"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.75, 1.75)
+pivot_offset = Vector2(32, 32)
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2tk2g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 359)
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
+
+[connection signal="pressed" from="PB/UILayer/Achievement" to="." method="_on_achievement_pressed"]

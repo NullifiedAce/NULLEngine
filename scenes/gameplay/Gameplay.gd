@@ -131,7 +131,6 @@ func load_track(music_path:String, fileName:String):
 	track.name = fileName
 	if Global.variation == "default":
 		track.stream = load(music_path + fileName + ".ogg")
-		print(track.stream.get_length())
 	else:
 		track.stream = load(music_path + fileName + "-" + Global.variation + ".ogg")
 		print(music_path + fileName + "-" + Global.variation + ".ogg")

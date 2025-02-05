@@ -14,9 +14,6 @@ var version_url: String = "https://raw.githubusercontent.com/NULLSonic/NULLEngin
 @onready var title_enter:AnimatedSprite = $TitleGroup/titleEnter
 @onready var title_group:Node2D = $TitleGroup
 
-# yes we do just steal this from the scene but fuck you :3
-@onready var color_swap:ShaderMaterial = logo.material
-
 @onready var text_template:Alphabet = $TextTemplate
 @onready var text_group:Node2D = $TextGroup
 
@@ -71,12 +68,6 @@ func _process(delta):
 				else:
 					Global.switch_scene("res://scenes/MainMenu.tscn")
 			)
-
-	var axis:int = int(Input.get_axis('ui_left', 'ui_right'))
-
-	if axis:
-		color_swap.set_shader_parameter('time', color_swap.get_shader_parameter('time') + \
-				(delta * 0.1) * axis)
 
 func beat_hit(beat:int):
 	logo.frame = 0
