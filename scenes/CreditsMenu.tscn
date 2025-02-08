@@ -77,17 +77,17 @@ theme_override_constants/separation = 15
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("5_c0fhy")
-text = "NULLSh4dow_"
+text = "NULLSonic"
 underline = 1
-uri = "https://www.youtube.com/@NULLSh4dow"
+uri = "https://www.youtube.com/@NULLSonic"
 
 [node name="cily" type="LinkButton" parent="ScrollContainer/VBoxContainer/Page1/Creds/Box"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("5_c0fhy")
-text = "Cilysong"
+text = "cilystuff_!"
 underline = 1
-uri = "https://www.youtube.com/@Cilysong"
+uri = "https://www.youtube.com/@cilystuff"
 
 [node name="Page2" type="Control" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 512)
