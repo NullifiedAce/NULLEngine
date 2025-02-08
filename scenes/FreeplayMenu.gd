@@ -154,6 +154,14 @@ func _process(delta):
 	if Input.is_action_just_pressed("open_gameplay_modifiers"):
 		gameplay_modifiers.visible = !gameplay_modifiers.visible
 
+	if Input.is_action_just_pressed("change_variation"):
+		if Global.variation == "default":
+			Global.variation = "erect"
+			Global.switch_scene("res://scenes/FreeplayMenu_erect.tscn")
+		else:
+			Global.variation = "default"
+			Global.switch_scene("res://scenes/FreeplayMenu.tscn")
+
 	if Input.is_action_just_pressed("space_bar"):
 		Audio.stop_music()
 
@@ -161,8 +169,8 @@ func _process(delta):
 			cur_icon = cur_selected
 
 			Global.current_difficulty = song_list.songs[cur_selected].difficulties[cur_difficulty]
-			Global.SONG = Chart.load_chart(song_list.songs[cur_selected].song, Global.current_difficulty)
-			Global.METADATA = Metadata.load_metadata(song_list.songs[cur_selected].song, "default")
+			Global.SONG = Chart.load_chart(song_list.songs[cur_selected].song, Global.current_difficulty, Global.variation)
+			Global.METADATA = Metadata.load_metadata(song_list.songs[cur_selected].song, Global.variation)
 
 			loaded_chart_info = {
 				"name": song_list.songs[cur_selected].song,
@@ -205,13 +213,14 @@ func _process(delta):
 
 		if loaded_chart_info.difficulty != Global.current_difficulty or \
 			loaded_chart_info.name != song_list.songs[cur_selected].song:
-			Global.SONG = Chart.load_chart(song_list.songs[cur_selected].song, Global.current_difficulty)
-			Global.METADATA = Metadata.load_metadata(song_list.songs[cur_selected].song, "default")
+			Global.SONG = Chart.load_chart(song_list.songs[cur_selected].song, Global.current_difficulty, Global.variation)
+			Global.METADATA = Metadata.load_metadata(song_list.songs[cur_selected].song, Global.variation)
 
 		Global.switch_scene("res://scenes/gameplay/Gameplay.tscn")
 
 	if Input.is_action_just_pressed("ui_cancel"):
 		Audio.play_sound("cancelMenu")
+		Global.variation == "default"
 		Global.switch_scene("res://scenes/MainMenu.tscn")
 
 	if song_tracks.get_child_count() > 0:
