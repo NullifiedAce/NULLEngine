@@ -9,8 +9,20 @@ var trophies:Dictionary = {
 	"B5": false, "B5_0": false,
 	"B6": false, "B6_0": false,
 	"B7": false, "B7_0": false,
-	"BW1": false, "BW1_0": false,
+	"B8": false, "B8_0": false,
 }
+
+var trophy_ids:Array[String] = [
+	"BT", "BT_0",
+	"B1", "B1_0",
+	"B2", "B2_0",
+	"B3", "B3_0",
+	"B4", "B4_0",
+	"B5", "B5_0",
+	"B6", "B6_0",
+	"B7", "B7_0",
+	"B8", "B8_0"
+]
 
 var cfg_file = ConfigFile.new()
 
@@ -67,7 +79,6 @@ func unlock_trophy(trophy_id:String):
 	if !trophies.has(trophy_id): return
 
 	if trophies[trophy_id] == false:
-		print("yay")
 		for i in trophies_array.size():
 			if trophies_array[i].id == trophy_id:
 				title.text = trophies_array[i].title
@@ -82,6 +93,7 @@ func unlock_trophy(trophy_id:String):
 
 		animation.play("unlock")
 		save_trophy(trophy_id, true)
+		trophies[trophy_id] = true
 		await animation.animation_finished
 		var t_2:Tween = create_tween()
 		t_2.tween_property(bg, "modulate", Color.TRANSPARENT, 0.1)

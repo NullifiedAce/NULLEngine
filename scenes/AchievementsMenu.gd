@@ -49,7 +49,10 @@ func change_selection(change:int = 0):
 	else:
 		t.tween_property(trophy_container, "position:x", final_x, 0.25)
 
-	description.text = TrophyHandler.trophies_array[cur_selected].description if !TrophyHandler.trophies_array[cur_selected].starts_locked else "Unlock this trophy to see its description."
+	if TrophyHandler.trophies_array[cur_selected].starts_locked and !TrophyHandler.get_trophy(TrophyHandler.trophy_ids[cur_selected]):
+		description.text = "???"
+	else:
+		description.text = TrophyHandler.trophies_array[cur_selected].description
 
 	Audio.play_sound("scrollMenu")
 	await t.finished

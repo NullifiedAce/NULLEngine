@@ -522,10 +522,16 @@ func end_song():
 				TrophyHandler.unlock_trophy("BT")
 				await TrophyHandler.trophy_unlocked
 				if Global.current_difficulty == "hard" and Ranking.final_misses == 0:
-					print("yay?")
 					TrophyHandler.unlock_trophy("BT_0")
 					await TrophyHandler.trophy_unlocked
+			else:
+				TrophyHandler.unlock_trophy("B" + str(Global.current_week))
+				await TrophyHandler.trophy_unlocked
+				if Global.current_difficulty == "hard" and Ranking.final_misses == 0:
+					TrophyHandler.unlock_trophy("B%s_0" % Global.current_week)
+					await TrophyHandler.trophy_unlocked
 		Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
+
 
 func beat_hit(beat:int):
 	stage.callv("on_beat_hit", [beat])

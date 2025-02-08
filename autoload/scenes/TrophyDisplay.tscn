@@ -170,9 +170,9 @@ amount = 2.0
 
 [sub_resource type="Resource" id="Resource_ie7t0"]
 script = ExtResource("2_5hf7t")
-id = "BW1"
+id = "B8"
 title = "Best Freinds!"
-description = "Beat Weeken 1."
+description = "Beat Weekend 1."
 starts_locked = false
 rarity = 1
 particles = true
@@ -180,7 +180,7 @@ amount = 1.0
 
 [sub_resource type="Resource" id="Resource_eqp8o"]
 script = ExtResource("2_5hf7t")
-id = "BW1_0"
+id = "B8_0"
 title = "Knock 'em dead!!"
 description = "Beat Weekend 1 without missing on difficulty \"Hard.\""
 starts_locked = true
