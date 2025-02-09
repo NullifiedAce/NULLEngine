@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://tsns4x4yv46c"
+path="res://.godot/imported/Voices-dad-erect.ogg-734fbfa18d6705e06283c65739928b0a.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/songs/dad battle/audio/Voices-dad-erect.ogg"
+dest_files=["res://.godot/imported/Voices-dad-erect.ogg-734fbfa18d6705e06283c65739928b0a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

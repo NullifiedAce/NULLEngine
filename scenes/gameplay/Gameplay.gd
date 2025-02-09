@@ -486,7 +486,8 @@ func start_song():
 
 	for track in tracks:
 		add_child(track)
-		track.play((Conductor.position + METADATA.offsets["instrumental"]) / 1000.0)
+		#track.play((Conductor.position + METADATA.offsets["instrumental"]) / 1000.0)
+		track.play()
 
 	starting_song = false
 

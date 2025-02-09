@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ch4gdkufvdmy6"]
+[gd_scene load_steps=22 format=3 uid="uid://ch4gdkufvdmy6"]
 
 [ext_resource type="Script" path="res://scenes/FreeplayMenu.gd" id="1_5pt7i"]
 [ext_resource type="Script" path="res://resources/FreeplaySongList.gd" id="2_tlqqb"]
@@ -26,6 +26,24 @@ icon_frames = 2
 difficulties = Array[String](["erect", "nightmare"])
 bg_color = Color(0.686275, 0.4, 0.807843, 1)
 
+[sub_resource type="Resource" id="Resource_jy1nf"]
+script = ExtResource("3_7sxe0")
+song = "fresh"
+display_name = "Fresh Erect"
+character_icon = ExtResource("4_c3tt0")
+icon_frames = 2
+difficulties = Array[String](["erect", "nightmare"])
+bg_color = Color(0.686275, 0.4, 0.807843, 1)
+
+[sub_resource type="Resource" id="Resource_syvf0"]
+script = ExtResource("3_7sxe0")
+song = "dad battle"
+display_name = "Dadbattle Erect"
+character_icon = ExtResource("4_c3tt0")
+icon_frames = 2
+difficulties = Array[String](["erect", "nightmare"])
+bg_color = Color(0.686275, 0.4, 0.807843, 1)
+
 [sub_resource type="Resource" id="Resource_kj5ru"]
 script = ExtResource("3_7sxe0")
 song = "blammed"
@@ -37,7 +55,7 @@ bg_color = Color(0.717647, 0.847059, 0.333333, 1)
 
 [sub_resource type="Resource" id="Resource_bmspx"]
 script = ExtResource("2_tlqqb")
-songs = Array[ExtResource("3_7sxe0")]([SubResource("Resource_qq4qh"), SubResource("Resource_kj5ru")])
+songs = Array[ExtResource("3_7sxe0")]([SubResource("Resource_qq4qh"), SubResource("Resource_jy1nf"), SubResource("Resource_syvf0"), SubResource("Resource_kj5ru")])
 
 [node name="FreeplayMenu" type="Node2D"]
 script = ExtResource("1_5pt7i")
