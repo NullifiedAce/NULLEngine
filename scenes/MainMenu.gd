@@ -72,7 +72,7 @@ func _process(delta):
 						Global.switch_scene("res://scenes/FreeplayMenu.tscn")
 
 					"Options":
-						Global.switch_scene("res://scenes/Options.tscn")
+						Global.switch_scene("res://scenes/OptionsMenu.tscn")
 
 					"Credits":
 						Global.switch_scene("res://scenes/CreditsMenu.tscn")

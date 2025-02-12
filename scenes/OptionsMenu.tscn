@@ -1,0 +1,1667 @@
+[gd_scene load_steps=29 format=3 uid="uid://cnyxswxrj56qj"]
+
+[ext_resource type="Script" path="res://scenes/OptionsMenu.gd" id="1_khemi"]
+[ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_n4251"]
+[ext_resource type="Theme" uid="uid://c5ev302cjh1mu" path="res://assets/styles/FunkinOptions.tres" id="3_dbjk5"]
+[ext_resource type="Script" path="res://scenes/options/BindButton.gd" id="4_ly35g"]
+[ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="4_o67fm"]
+[ext_resource type="Texture2D" uid="uid://cuef5iw2rb0l7" path="res://assets/images/menus/options/defaultNotes.png" id="5_axs2u"]
+[ext_resource type="Shader" path="res://assets/shaders/BasicColorShader.gdshader" id="6_iyctw"]
+[ext_resource type="Texture2D" uid="uid://88aw03tlr1oh" path="res://assets/images/menus/options/acceptBind.png" id="7_pp740"]
+[ext_resource type="Texture2D" uid="uid://dfs5s3i6cl6am" path="res://assets/images/menus/options/backBind.png" id="8_jhdmc"]
+[ext_resource type="Texture2D" uid="uid://bnah4iv83h5ec" path="res://assets/images/menus/options/pauseBind.png" id="9_wykt2"]
+[ext_resource type="Texture2D" uid="uid://3hermjx3kxw2" path="res://assets/images/material_icons/volume-mid.png" id="10_18atk"]
+[ext_resource type="Texture2D" uid="uid://d0r5affbxqsi5" path="res://assets/images/material_icons/volume-full.png" id="11_0p484"]
+[ext_resource type="Texture2D" uid="uid://dw8bh3jsxd3kl" path="res://assets/images/material_icons/volume-mute.png" id="12_75ltb"]
+[ext_resource type="Texture2D" uid="uid://s111e8ow38lw" path="res://assets/images/menus/options/switchModBind.png" id="13_nxr35"]
+[ext_resource type="Script" path="res://scenes/options/Checkbox.gd" id="14_qu3w5"]
+[ext_resource type="Script" path="res://scenes/options/Display Slider.gd" id="15_0414u"]
+[ext_resource type="PackedScene" uid="uid://dvvpqyw0twvsd" path="res://scenes/options/StrumEditor.tscn" id="15_gliy1"]
+[ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="15_jbcin"]
+[ext_resource type="Script" path="res://scenes/options/Dropdown.gd" id="16_b81jf"]
+[ext_resource type="Script" path="res://scenes/options/FPSCap.gd" id="17_suntx"]
+
+[sub_resource type="Gradient" id="Gradient_650jw"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 0.14902, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dk1n0"]
+gradient = SubResource("Gradient_650jw")
+width = 1280
+height = 720
+fill = 1
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_htki3"]
+shader = ExtResource("6_iyctw")
+shader_parameter/swag_color = Color(0.352941, 0.282353, 0.4, 1)
+
+[sub_resource type="Animation" id="Animation_kf2gg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OptionPlacement:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OptionPlacement:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StrumEditor:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StrumEditor:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ScrollContainer:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, 912)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("OptionPlacement:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_7yg25"]
+resource_name = "ToStrum"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OptionPlacement:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OptionPlacement:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StrumEditor:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StrumEditor:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_a0swf"]
+resource_name = "FromStrum"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OptionPlacement:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OptionPlacement:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StrumEditor:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StrumEditor:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ivycs"]
+resource_name = "SwitchTools"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(192, 912), Vector2(192, 192)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OptionPlacement:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(64, 64), Vector2(64, -656)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h4lpb"]
+_data = {
+"FromStrum": SubResource("Animation_a0swf"),
+"RESET": SubResource("Animation_kf2gg"),
+"SwitchTools": SubResource("Animation_ivycs"),
+"ToStrum": SubResource("Animation_7yg25")
+}
+
+[node name="Options" type="Node2D"]
+script = ExtResource("1_khemi")
+
+[node name="BG" parent="." instance=ExtResource("2_n4251")]
+self_modulate = Color(0.216532, 0.00057858, 0.466526, 1)
+color = Color(0.216532, 0.00057858, 0.466526, 1)
+gradiant = SubResource("GradientTexture2D_dk1n0")
+metadata/_edit_lock_ = true
+
+[node name="OptionPlacement" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1216.0
+offset_bottom = 656.0
+theme = ExtResource("3_dbjk5")
+
+[node name="Title" parent="OptionPlacement" instance=ExtResource("4_o67fm")]
+z_index = 1
+custom_minimum_size = Vector2(475, 70)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -237.5
+offset_top = -56.0
+offset_right = 237.5
+offset_bottom = 14.0
+grow_horizontal = 2
+text = "- Options -"
+
+[node name="OptionsTabs" type="ScrollContainer" parent="OptionPlacement"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -148.0
+offset_right = 256.0
+offset_bottom = 148.0
+grow_vertical = 2
+
+[node name="Tabs" type="VBoxContainer" parent="OptionPlacement/OptionsTabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Controls" type="Button" parent="OptionPlacement/OptionsTabs/Tabs"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "CONTROLS"
+
+[node name="Gameplay" type="Button" parent="OptionPlacement/OptionsTabs/Tabs"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "GAMEPLAY"
+
+[node name="Appearance" type="Button" parent="OptionPlacement/OptionsTabs/Tabs"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "APPEARANCE"
+
+[node name="Window" type="Button" parent="OptionPlacement/OptionsTabs/Tabs"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "WINDOW"
+
+[node name="Miscellaneous" type="Button" parent="OptionPlacement/OptionsTabs/Tabs"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "MISCELLANEOUS
+"
+
+[node name="Mod" type="Button" parent="OptionPlacement/OptionsTabs/Tabs"]
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "MOD OPTIONS"
+
+[node name="BG" type="Panel" parent="OptionPlacement"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = -264.0
+offset_bottom = 264.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Controls" type="Control" parent="OptionPlacement/BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="OptionPlacement/BG/Controls"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -66.0
+offset_top = 8.0
+offset_right = 66.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "- Controls -"
+horizontal_alignment = 1
+
+[node name="Note Binds" type="Label" parent="OptionPlacement/BG/Controls"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 149.0
+offset_bottom = 80.0
+mouse_filter = 1
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Note Binds:"
+horizontal_alignment = 1
+
+[node name="Left Bind" type="Button" parent="OptionPlacement/BG/Controls/Note Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 203.0
+offset_bottom = 63.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "A"
+script = ExtResource("4_ly35g")
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/Note Binds/Left Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "LEFT"
+script = ExtResource("4_ly35g")
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/Note Binds/Left Bind"]
+position = Vector2(-28, 16)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("5_axs2u")
+hframes = 4
+
+[node name="Down Bind" type="Button" parent="OptionPlacement/BG/Controls/Note Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 203.0
+offset_bottom = 103.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "S"
+script = ExtResource("4_ly35g")
+bind = "note_down"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/Note Binds/Down Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "DOWN"
+script = ExtResource("4_ly35g")
+bind = "note_down"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/Note Binds/Down Bind"]
+position = Vector2(-28, 16)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("5_axs2u")
+hframes = 4
+frame = 1
+
+[node name="Up Bind" type="Button" parent="OptionPlacement/BG/Controls/Note Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 112.0
+offset_right = 203.0
+offset_bottom = 143.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "W"
+script = ExtResource("4_ly35g")
+bind = "note_up"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/Note Binds/Up Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "UP"
+script = ExtResource("4_ly35g")
+bind = "note_up"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/Note Binds/Up Bind"]
+position = Vector2(-28, 16)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("5_axs2u")
+hframes = 4
+frame = 2
+
+[node name="Right Bind" type="Button" parent="OptionPlacement/BG/Controls/Note Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 152.0
+offset_right = 203.0
+offset_bottom = 183.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "D"
+script = ExtResource("4_ly35g")
+bind = "note_right"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/Note Binds/Right Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "RIGHT"
+script = ExtResource("4_ly35g")
+bind = "note_right"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/Note Binds/Right Bind"]
+position = Vector2(-28, 16)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("5_axs2u")
+hframes = 4
+frame = 3
+
+[node name="UI Binds" type="Label" parent="OptionPlacement/BG/Controls"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 64.0
+offset_right = 511.0
+offset_bottom = 80.0
+mouse_filter = 1
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "UI Binds:"
+horizontal_alignment = 1
+
+[node name="Left Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 203.0
+offset_bottom = 63.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "A"
+script = ExtResource("4_ly35g")
+bind = "ui_left"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds/Left Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "LEFT"
+script = ExtResource("4_ly35g")
+bind = "ui_left"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/UI Binds/Left Bind"]
+material = SubResource("ShaderMaterial_htki3")
+position = Vector2(-28, 16)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("5_axs2u")
+hframes = 4
+
+[node name="Down Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 203.0
+offset_bottom = 103.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "S"
+script = ExtResource("4_ly35g")
+bind = "ui_down"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds/Down Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "DOWN"
+script = ExtResource("4_ly35g")
+bind = "ui_down"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/UI Binds/Down Bind"]
+material = SubResource("ShaderMaterial_htki3")
+position = Vector2(-28, 16)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("5_axs2u")
+hframes = 4
+frame = 1
+
+[node name="Up Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 112.0
+offset_right = 203.0
+offset_bottom = 143.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "W"
+script = ExtResource("4_ly35g")
+bind = "ui_up"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds/Up Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "UP"
+script = ExtResource("4_ly35g")
+bind = "ui_up"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/UI Binds/Up Bind"]
+material = SubResource("ShaderMaterial_htki3")
+position = Vector2(-28, 16)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("5_axs2u")
+hframes = 4
+frame = 2
+
+[node name="Right Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 152.0
+offset_right = 203.0
+offset_bottom = 183.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "D"
+script = ExtResource("4_ly35g")
+bind = "ui_right"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds/Right Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "RIGHT"
+script = ExtResource("4_ly35g")
+bind = "ui_right"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/UI Binds/Right Bind"]
+material = SubResource("ShaderMaterial_htki3")
+position = Vector2(-28, 16)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("5_axs2u")
+hframes = 4
+frame = 3
+
+[node name="Accept Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 192.0
+offset_right = 203.0
+offset_bottom = 223.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "ENTER"
+script = ExtResource("4_ly35g")
+bind = "ui_accept"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds/Accept Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "SPACE"
+script = ExtResource("4_ly35g")
+bind = "ui_accept"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/UI Binds/Accept Bind"]
+modulate = Color(0.352941, 0.282353, 0.4, 1)
+position = Vector2(-28, 16)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("7_pp740")
+
+[node name="Back Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 232.0
+offset_right = 203.0
+offset_bottom = 263.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "BACKSPACE"
+script = ExtResource("4_ly35g")
+bind = "ui_cancel"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds/Back Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "ESCAPE"
+script = ExtResource("4_ly35g")
+bind = "ui_cancel"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/UI Binds/Back Bind"]
+modulate = Color(0.352941, 0.282353, 0.4, 1)
+position = Vector2(-28, 16)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("8_jhdmc")
+
+[node name="Pause Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 272.0
+offset_right = 203.0
+offset_bottom = 303.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "ENTER"
+script = ExtResource("4_ly35g")
+bind = "ui_pause"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds/Pause Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "NONE"
+script = ExtResource("4_ly35g")
+bind = "ui_pause"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/UI Binds/Pause Bind"]
+modulate = Color(0.352941, 0.282353, 0.4, 1)
+position = Vector2(-28, 16)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("9_wykt2")
+
+[node name="Volume Down Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 312.0
+offset_right = 203.0
+offset_bottom = 343.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "MINUS"
+script = ExtResource("4_ly35g")
+bind = "volume_down"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds/Volume Down Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "KP_SUBTRACT"
+script = ExtResource("4_ly35g")
+bind = "volume_down"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/UI Binds/Volume Down Bind"]
+modulate = Color(0.352941, 0.282353, 0.4, 1)
+position = Vector2(-28, 16)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("10_18atk")
+
+[node name="Volume Up Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 352.0
+offset_right = 203.0
+offset_bottom = 383.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "PLUS"
+script = ExtResource("4_ly35g")
+bind = "volume_up"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds/Volume Up Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "KP_ADD"
+script = ExtResource("4_ly35g")
+bind = "volume_up"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/UI Binds/Volume Up Bind"]
+modulate = Color(0.352941, 0.282353, 0.4, 1)
+position = Vector2(-28, 16)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("11_0p484")
+
+[node name="Volume Mute Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 392.0
+offset_right = 203.0
+offset_bottom = 423.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "0"
+script = ExtResource("4_ly35g")
+bind = "volume_mute"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds/Volume Mute Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "KP_0"
+script = ExtResource("4_ly35g")
+bind = "volume_mute"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/UI Binds/Volume Mute Bind"]
+modulate = Color(0.352941, 0.282353, 0.4, 1)
+position = Vector2(-28, 16)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_75ltb")
+
+[node name="Switch Mod Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 432.0
+offset_right = 203.0
+offset_bottom = 463.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "TAB"
+script = ExtResource("4_ly35g")
+bind = "switch_mod"
+
+[node name="Alt Bind" type="Button" parent="OptionPlacement/BG/Controls/UI Binds/Switch Mod Bind"]
+layout_mode = 0
+offset_left = 164.0
+offset_right = 319.0
+offset_bottom = 31.0
+tooltip_text = "Click on this button to change this bind.
+
+Once this button is clicked, it will wait for a keyboard input and set that key as the bind."
+text = "SHIFT"
+script = ExtResource("4_ly35g")
+bind = "switch_mod"
+bind_type = 1
+
+[node name="Note" type="Sprite2D" parent="OptionPlacement/BG/Controls/UI Binds/Switch Mod Bind"]
+modulate = Color(0.352941, 0.282353, 0.4, 1)
+position = Vector2(-28, 16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("13_nxr35")
+
+[node name="Gameplay" type="Control" parent="OptionPlacement/BG"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="OptionPlacement/BG/Gameplay"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -66.0
+offset_top = 8.0
+offset_right = 66.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "- Gameplay -"
+horizontal_alignment = 1
+
+[node name="ScrollTitle" type="Label" parent="OptionPlacement/BG/Gameplay"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 243.0
+offset_bottom = 86.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "SCROLL OPTIONS:"
+
+[node name="Downscroll" type="CheckBox" parent="OptionPlacement/BG/Gameplay/ScrollTitle"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 130.0
+offset_bottom = 56.0
+tooltip_text = "Makes the notes scroll downwards instead of upwards during gameplay."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Downscroll"
+script = ExtResource("14_qu3w5")
+option = "downscroll"
+
+[node name="Middlescroll" type="CheckBox" parent="OptionPlacement/BG/Gameplay/ScrollTitle"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 32.0
+offset_right = 295.0
+offset_bottom = 56.0
+tooltip_text = "Centers your notes and hides the opponent's notes."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Middlescroll"
+script = ExtResource("14_qu3w5")
+option = "centered notefield"
+
+[node name="StrumEditor" type="Button" parent="OptionPlacement/BG/Gameplay"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 128.0
+offset_right = 216.0
+offset_bottom = 148.0
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Open Strum Editor"
+
+[node name="NotesTitle" type="Label" parent="OptionPlacement/BG/Gameplay"]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 64.0
+offset_right = 535.0
+offset_bottom = 86.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "NOTE OPTIONS:"
+horizontal_alignment = 1
+
+[node name="Ghost Tapping" type="CheckBox" parent="OptionPlacement/BG/Gameplay/NotesTitle"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 158.0
+offset_bottom = 56.0
+tooltip_text = "Allows you to hit notes that aren't on screen yet without getting punished."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Ghost Tapping"
+script = ExtResource("14_qu3w5")
+option = "ghost tapping"
+
+[node name="Note Offset" type="HSlider" parent="OptionPlacement/BG/Gameplay/NotesTitle"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 384.0
+offset_bottom = 96.0
+tooltip_text = "Adjusts how early/late notes spawn during gameplay.
+Negative means early and positive means late.
+Useful for bluetooth headphones or something."
+focus_mode = 0
+min_value = -5000.0
+max_value = 5000.0
+step = 5.0
+script = ExtResource("15_0414u")
+decimals = 0
+suffix = "ms"
+option = "note offset"
+
+[node name="Title" type="Label" parent="OptionPlacement/BG/Gameplay/NotesTitle/Note Offset"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 117.0
+mouse_filter = 1
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Note Offset"
+
+[node name="Display" type="Label" parent="OptionPlacement/BG/Gameplay/NotesTitle/Note Offset"]
+layout_mode = 0
+offset_left = 352.0
+offset_top = -16.0
+offset_right = 384.0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "0ms"
+horizontal_alignment = 2
+
+[node name="Scroll Speed" type="HSlider" parent="OptionPlacement/BG/Gameplay/NotesTitle"]
+layout_mode = 0
+offset_top = 120.0
+offset_right = 384.0
+offset_bottom = 136.0
+tooltip_text = "How fast your notes scroll."
+focus_mode = 0
+max_value = 10.0
+step = 0.1
+value = 2.7
+script = ExtResource("15_0414u")
+decimals = 1
+suffix = null
+option = "scroll speed"
+
+[node name="Title" type="Label" parent="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 127.0
+mouse_filter = 1
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Scroll Speed"
+
+[node name="Display" type="Label" parent="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed"]
+layout_mode = 0
+offset_left = 352.0
+offset_top = -16.0
+offset_right = 384.0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "2.7"
+horizontal_alignment = 2
+
+[node name="Scroll Speed Type" type="OptionButton" parent="OptionPlacement/BG/Gameplay/NotesTitle"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 0
+offset_top = 168.0
+offset_right = 128.0
+offset_bottom = 187.0
+size_flags_horizontal = 0
+tooltip_text = "Changes how your speed is applied.
+Multiplier multiplies the song's scroll speed by the one set here, Constant directly sets the song's scroll speed."
+focus_mode = 0
+selected = 0
+item_count = 2
+popup/item_0/text = "Multiplier"
+popup/item_1/text = "Constant"
+popup/item_1/id = 1
+script = ExtResource("16_b81jf")
+option = "scroll speed type"
+
+[node name="Title" type="Label" parent="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed Type"]
+layout_mode = 0
+offset_top = -24.0
+offset_right = 180.0
+offset_bottom = -8.0
+mouse_filter = 1
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Scroll Speed Type"
+
+[node name="SoundTitles" type="Label" parent="OptionPlacement/BG/Gameplay"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 288.0
+offset_right = 229.0
+offset_bottom = 310.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "SOUND OPTIONS:"
+horizontal_alignment = 1
+
+[node name="Miss Sounds" type="CheckBox" parent="OptionPlacement/BG/Gameplay/SoundTitles"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 137.0
+offset_bottom = 56.0
+tooltip_text = "do i need to explain this?"
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Miss Sounds"
+script = ExtResource("14_qu3w5")
+option = "miss sounds"
+
+[node name="MiscTitle" type="Label" parent="OptionPlacement/BG/Gameplay"]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 288.0
+offset_right = 662.0
+offset_bottom = 310.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "MISCELLANEOUS OPTIONS:"
+
+[node name="Show MS on Note Hit" type="CheckBox" parent="OptionPlacement/BG/Gameplay/MiscTitle"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 221.0
+offset_bottom = 56.0
+tooltip_text = "Shows how early/late you hit a note in milliseconds."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Show MS on Note Hit
+"
+script = ExtResource("14_qu3w5")
+option = "show ms on note hit"
+
+[node name="Skip Intro by Default" type="CheckBox" parent="OptionPlacement/BG/Gameplay/MiscTitle"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 242.0
+offset_bottom = 88.0
+tooltip_text = "Whether or not the game should immediately skip the intro when the song starts."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Skip Intro by Default"
+script = ExtResource("14_qu3w5")
+option = "skip intro by default"
+
+[node name="Appearance" type="Control" parent="OptionPlacement/BG"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="OptionPlacement/BG/Appearance"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.5
+offset_top = 8.0
+offset_right = 84.5
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "- Appearance -"
+horizontal_alignment = 1
+
+[node name="NoteTitle" type="Label" parent="OptionPlacement/BG/Appearance"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 286.0
+offset_bottom = 86.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "NOTE OPTIONS:"
+
+[node name="Note Splashes" type="CheckBox" parent="OptionPlacement/BG/Appearance/NoteTitle"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 158.0
+offset_bottom = 56.0
+tooltip_text = "funny note go firework boom when get sick"
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Note Splashes"
+script = ExtResource("14_qu3w5")
+option = "note splashes"
+
+[node name="Opaque Sustains" type="CheckBox" parent="OptionPlacement/BG/Appearance/NoteTitle"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 32.0
+offset_right = 371.0
+offset_bottom = 56.0
+tooltip_text = "i am not explaining this"
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Opaque Sustains"
+script = ExtResource("14_qu3w5")
+option = "opaque sustains"
+
+[node name="MenuTitle" type="Label" parent="OptionPlacement/BG/Appearance"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 64.0
+offset_right = 663.0
+offset_bottom = 86.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "MENU OPTIONS:"
+
+[node name="Story Always Yellow" type="CheckBox" parent="OptionPlacement/BG/Appearance/MenuTitle"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 305.0
+offset_bottom = 56.0
+tooltip_text = "Disables the color tween of the BG in the story mode menu."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Story Menu BG Always Yellow"
+script = ExtResource("14_qu3w5")
+option = "story always yellow"
+
+[node name="Freeplay Icon Bumping" type="CheckBox" parent="OptionPlacement/BG/Appearance/MenuTitle"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 221.0
+offset_bottom = 80.0
+tooltip_text = "Whether or not the score is displayed during gameplay."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Freeplay Icons Bump"
+script = ExtResource("14_qu3w5")
+option = "freeplay icon bumping"
+
+[node name="Flashing Lights" type="CheckBox" parent="OptionPlacement/BG/Appearance/MenuTitle"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 179.0
+offset_bottom = 104.0
+tooltip_text = "Enable flashing lights."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Flashing Lights"
+script = ExtResource("14_qu3w5")
+option = "flashing lights"
+
+[node name="JudgementTitle" type="Label" parent="OptionPlacement/BG/Appearance"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 192.0
+offset_right = 356.0
+offset_bottom = 214.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "JUDGEMENT OPTIONS:"
+
+[node name="Judgement Stacking" type="CheckBox" parent="OptionPlacement/BG/Appearance/JudgementTitle"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 210.0
+offset_bottom = 56.0
+tooltip_text = "Disables the color tween of the BG in the story mode menu."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Judgement Stacking"
+script = ExtResource("14_qu3w5")
+option = "judgement stacking"
+
+[node name="Judgement Camera" type="OptionButton" parent="OptionPlacement/BG/Appearance/JudgementTitle"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 56.0
+offset_right = 299.0
+offset_bottom = 75.0
+tooltip_text = "Placement of the Judgement.
+World = In the stage, doesn't always stay on screen.
+HUD = Stays on the HUD, does always stay on screen."
+focus_mode = 0
+selected = 0
+item_count = 2
+popup/item_0/text = "World"
+popup/item_1/text = "HUD"
+popup/item_1/id = 1
+script = ExtResource("16_b81jf")
+option = "judgement camera"
+
+[node name="Title" type="Label" parent="OptionPlacement/BG/Appearance/JudgementTitle/Judgement Camera"]
+layout_mode = 0
+offset_top = -24.0
+offset_right = 169.0
+mouse_filter = 1
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Judgement Camera"
+vertical_alignment = 1
+
+[node name="HUDTitle" type="Label" parent="OptionPlacement/BG/Appearance"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 192.0
+offset_right = 649.0
+offset_bottom = 214.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "HUD Options:"
+
+[node name="HUDEditor" type="Button" parent="OptionPlacement/BG/Appearance/HUDTitle"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 110.0
+offset_bottom = 52.0
+tooltip_text = "Opens a new menu to edit the HUD (Head-Up Display)."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "HUD Editor
+"
+
+[node name="Window" type="Control" parent="OptionPlacement/BG"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="OptionPlacement/BG/Window"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -98.5
+offset_top = 8.0
+offset_right = 98.5
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "- Window -"
+horizontal_alignment = 1
+
+[node name="FPS Counter" type="CheckBox" parent="OptionPlacement/BG/Window"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 169.0
+offset_bottom = 88.0
+tooltip_text = "Toggle whether or not the FPS counter is hidden."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "FPS Counter"
+script = ExtResource("14_qu3w5")
+option = "fps counter"
+
+[node name="Auto Pause" type="CheckBox" parent="OptionPlacement/BG/Window"]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 64.0
+offset_right = 670.0
+offset_bottom = 88.0
+tooltip_text = "Allows the game to pause when the window is unfocused."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Auto Pause"
+script = ExtResource("14_qu3w5")
+option = "auto pause"
+
+[node name="VSync" type="CheckBox" parent="OptionPlacement/BG/Window"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 64.0
+offset_right = 297.0
+offset_bottom = 88.0
+tooltip_text = "Syncs the framerate with your refresh rate."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "VSync"
+script = ExtResource("14_qu3w5")
+option = "vsync"
+
+[node name="Multi Threaded Rendering" type="CheckBox" parent="OptionPlacement/BG/Window"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 96.0
+offset_right = 498.0
+offset_bottom = 120.0
+tooltip_text = "This might cause crashes when enabled!"
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Multi Threaded Rendering"
+script = ExtResource("14_qu3w5")
+option = "multi threaded rendering"
+
+[node name="FPS Cap" type="OptionButton" parent="OptionPlacement/BG/Window"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 120.0
+offset_right = 137.0
+offset_bottom = 139.0
+focus_mode = 0
+item_count = 7
+popup/item_0/text = "60"
+popup/item_1/text = "120"
+popup/item_1/id = 1
+popup/item_2/text = "240"
+popup/item_2/id = 2
+popup/item_3/text = "360"
+popup/item_3/id = 3
+popup/item_4/text = "500"
+popup/item_4/id = 4
+popup/item_5/text = "1000"
+popup/item_5/id = 5
+popup/item_6/text = "UNLIMITED"
+popup/item_6/id = 6
+script = ExtResource("17_suntx")
+
+[node name="Title" type="Label" parent="OptionPlacement/BG/Window/FPS Cap"]
+layout_mode = 0
+offset_top = -24.0
+offset_right = 74.0
+mouse_filter = 1
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "FPS Cap"
+
+[node name="Miscellaneous" type="Control" parent="OptionPlacement/BG"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="OptionPlacement/BG/Miscellaneous"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -98.5
+offset_top = 8.0
+offset_right = 98.5
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "- Miscellaneous -"
+horizontal_alignment = 1
+
+[node name="Volume Beep Pitching" type="CheckBox" parent="OptionPlacement/BG/Miscellaneous"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 263.0
+offset_bottom = 88.0
+tooltip_text = "funny beep go yeah :3"
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Volume Beep Pitching"
+script = ExtResource("14_qu3w5")
+option = "volume beep pitching"
+
+[node name="Mod" type="Control" parent="OptionPlacement/BG"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hint" type="Label" parent="OptionPlacement"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -23.0
+offset_right = 640.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("15_jbcin")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "TIP: You can hover over options to see their description!"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="StrumEditor" parent="." instance=ExtResource("15_gliy1")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = 192.0
+offset_top = 912.0
+offset_right = 1088.0
+offset_bottom = 1296.0
+theme = ExtResource("15_jbcin")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+alignment = 1
+
+[node name="XML Converter" type="Button" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 40
+text = "XML Converter"
+
+[node name="TXT Converter" type="Button" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 40
+text = "TXT Converter"
+
+[node name="switch" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h4lpb")
+}
+
+[node name="Tools" type="Button" parent="."]
+offset_left = 8.0
+offset_top = 680.0
+offset_right = 88.0
+offset_bottom = 712.0
+focus_mode = 0
+theme = ExtResource("3_dbjk5")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "TOOLS"
+
+[connection signal="pressed" from="OptionPlacement/OptionsTabs/Tabs/Controls" to="." method="_on_tab_pressed" binds= [0]]
+[connection signal="pressed" from="OptionPlacement/OptionsTabs/Tabs/Gameplay" to="." method="_on_tab_pressed" binds= [1]]
+[connection signal="pressed" from="OptionPlacement/OptionsTabs/Tabs/Appearance" to="." method="_on_tab_pressed" binds= [2]]
+[connection signal="pressed" from="OptionPlacement/OptionsTabs/Tabs/Window" to="." method="_on_tab_pressed" binds= [3]]
+[connection signal="pressed" from="OptionPlacement/OptionsTabs/Tabs/Miscellaneous" to="." method="_on_tab_pressed" binds= [4]]
+[connection signal="pressed" from="OptionPlacement/OptionsTabs/Tabs/Mod" to="." method="_on_tab_pressed" binds= [5]]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/Note Binds/Left Bind" to="OptionPlacement/BG/Controls/Note Binds/Left Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/Note Binds/Left Bind/Alt Bind" to="OptionPlacement/BG/Controls/Note Binds/Left Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/Note Binds/Down Bind" to="OptionPlacement/BG/Controls/Note Binds/Down Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/Note Binds/Down Bind/Alt Bind" to="OptionPlacement/BG/Controls/Note Binds/Down Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/Note Binds/Up Bind" to="OptionPlacement/BG/Controls/Note Binds/Up Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/Note Binds/Up Bind/Alt Bind" to="OptionPlacement/BG/Controls/Note Binds/Up Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/Note Binds/Right Bind" to="OptionPlacement/BG/Controls/Note Binds/Right Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/Note Binds/Right Bind/Alt Bind" to="OptionPlacement/BG/Controls/Note Binds/Right Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Left Bind" to="OptionPlacement/BG/Controls/UI Binds/Left Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Left Bind/Alt Bind" to="OptionPlacement/BG/Controls/UI Binds/Left Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Down Bind" to="OptionPlacement/BG/Controls/UI Binds/Down Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Down Bind/Alt Bind" to="OptionPlacement/BG/Controls/UI Binds/Down Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Up Bind" to="OptionPlacement/BG/Controls/UI Binds/Up Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Up Bind/Alt Bind" to="OptionPlacement/BG/Controls/UI Binds/Up Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Right Bind" to="OptionPlacement/BG/Controls/UI Binds/Right Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Right Bind/Alt Bind" to="OptionPlacement/BG/Controls/UI Binds/Right Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Accept Bind" to="OptionPlacement/BG/Controls/UI Binds/Accept Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Accept Bind/Alt Bind" to="OptionPlacement/BG/Controls/UI Binds/Accept Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Back Bind" to="OptionPlacement/BG/Controls/UI Binds/Back Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Back Bind/Alt Bind" to="OptionPlacement/BG/Controls/UI Binds/Back Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Pause Bind" to="OptionPlacement/BG/Controls/UI Binds/Pause Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Pause Bind/Alt Bind" to="OptionPlacement/BG/Controls/UI Binds/Pause Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Volume Down Bind" to="OptionPlacement/BG/Controls/UI Binds/Volume Down Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Volume Down Bind/Alt Bind" to="OptionPlacement/BG/Controls/UI Binds/Volume Down Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Volume Up Bind" to="OptionPlacement/BG/Controls/UI Binds/Volume Up Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Volume Up Bind/Alt Bind" to="OptionPlacement/BG/Controls/UI Binds/Volume Up Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Volume Mute Bind" to="OptionPlacement/BG/Controls/UI Binds/Volume Mute Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Volume Mute Bind/Alt Bind" to="OptionPlacement/BG/Controls/UI Binds/Volume Mute Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Switch Mod Bind" to="OptionPlacement/BG/Controls/UI Binds/Switch Mod Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Controls/UI Binds/Switch Mod Bind/Alt Bind" to="OptionPlacement/BG/Controls/UI Binds/Switch Mod Bind/Alt Bind" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Gameplay/ScrollTitle/Downscroll" to="OptionPlacement/BG/Gameplay/ScrollTitle/Downscroll" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Gameplay/ScrollTitle/Middlescroll" to="OptionPlacement/BG/Gameplay/ScrollTitle/Middlescroll" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Gameplay/StrumEditor" to="." method="_on_strum_editor_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Gameplay/NotesTitle/Ghost Tapping" to="OptionPlacement/BG/Gameplay/NotesTitle/Ghost Tapping" method="_on_pressed"]
+[connection signal="drag_ended" from="OptionPlacement/BG/Gameplay/NotesTitle/Note Offset" to="OptionPlacement/BG/Gameplay/NotesTitle/Note Offset" method="_on_drag_ended"]
+[connection signal="value_changed" from="OptionPlacement/BG/Gameplay/NotesTitle/Note Offset" to="OptionPlacement/BG/Gameplay/NotesTitle/Note Offset" method="_on_value_changed"]
+[connection signal="drag_ended" from="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed" to="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed" method="_on_drag_ended"]
+[connection signal="value_changed" from="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed" to="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed" method="_on_value_changed"]
+[connection signal="item_selected" from="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed Type" to="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed Type" method="_on_item_selected"]
+[connection signal="pressed" from="OptionPlacement/BG/Gameplay/SoundTitles/Miss Sounds" to="OptionPlacement/BG/Gameplay/SoundTitles/Miss Sounds" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Gameplay/MiscTitle/Show MS on Note Hit" to="OptionPlacement/BG/Gameplay/MiscTitle/Show MS on Note Hit" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Gameplay/MiscTitle/Skip Intro by Default" to="OptionPlacement/BG/Gameplay/MiscTitle/Skip Intro by Default" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Appearance/NoteTitle/Note Splashes" to="OptionPlacement/BG/Appearance/NoteTitle/Note Splashes" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Appearance/NoteTitle/Opaque Sustains" to="OptionPlacement/BG/Appearance/NoteTitle/Opaque Sustains" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Appearance/MenuTitle/Story Always Yellow" to="OptionPlacement/BG/Appearance/MenuTitle/Story Always Yellow" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Appearance/MenuTitle/Freeplay Icon Bumping" to="OptionPlacement/BG/Appearance/MenuTitle/Freeplay Icon Bumping" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Appearance/MenuTitle/Flashing Lights" to="OptionPlacement/BG/Appearance/MenuTitle/Flashing Lights" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Appearance/JudgementTitle/Judgement Stacking" to="OptionPlacement/BG/Appearance/JudgementTitle/Judgement Stacking" method="_on_pressed"]
+[connection signal="item_selected" from="OptionPlacement/BG/Appearance/JudgementTitle/Judgement Camera" to="OptionPlacement/BG/Appearance/JudgementTitle/Judgement Camera" method="_on_item_selected"]
+[connection signal="pressed" from="OptionPlacement/BG/Appearance/HUDTitle/HUDEditor" to="." method="_on_hud_editor_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Window/FPS Counter" to="OptionPlacement/BG/Window/FPS Counter" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Window/Auto Pause" to="OptionPlacement/BG/Window/Auto Pause" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Window/VSync" to="OptionPlacement/BG/Window/VSync" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Window/Multi Threaded Rendering" to="OptionPlacement/BG/Window/Multi Threaded Rendering" method="_on_pressed"]
+[connection signal="item_selected" from="OptionPlacement/BG/Window/FPS Cap" to="OptionPlacement/BG/Window/FPS Cap" method="_on_item_selected"]
+[connection signal="pressed" from="OptionPlacement/BG/Miscellaneous/Volume Beep Pitching" to="OptionPlacement/BG/Miscellaneous/Volume Beep Pitching" method="_on_pressed"]
+[connection signal="pressed" from="Tools" to="." method="_on_tools_pressed"]

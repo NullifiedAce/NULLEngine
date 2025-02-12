@@ -28,7 +28,5 @@ func _process(delta: float) -> void:
 	opp_scale_percent.text = str($CenterRef/Opponent/OppOptions/OppSize.value * 100) + "%"
 
 func _on_exit_button_pressed() -> void:
-	options.switch.play_backwards("strumEditor")
-	$'../TabContainer'.show()
-	await options.switch.animation_finished
-	hide()
+	options.switch.play("FromStrum")
+	options.strum_editor_open = false

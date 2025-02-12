@@ -1,16 +1,14 @@
 extends MusicBeatScene
 
+var cur_tab:int = 0
 var tools_open: bool = false
 var strum_editor_open:bool = false
 
+@onready var bg: Panel = $OptionPlacement/BG
 @onready var switch: AnimationPlayer = $switch
 @onready var strum_editor: Node2D = $StrumEditor
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if !strum_editor_open:
-		strum_editor.hide()
-
 	Audio.play_music("freakyMenu")
 	Conductor.change_bpm(Audio.music.stream.bpm)
 	Conductor.position = 0.0
@@ -23,10 +21,6 @@ func _ready() -> void:
 	RichPresence.set_text("In the menus", "Configuring Options")
 
 func _process(delta: float) -> void:
-	Conductor.position += delta * 1000.0
-
-	var scroll_speed:float = 1.0 if SettingsAPI.get_setting("scroll speed") <= 0 else SettingsAPI.get_setting("scroll speed")
-
 	if Input.is_action_just_pressed("ui_cancel"):
 		Audio.play_sound("cancelMenu")
 
@@ -37,28 +31,28 @@ func _process(delta: float) -> void:
 		else:
 			Global.switch_scene("res://scenes/MainMenu.tscn")
 
+func _on_tab_pressed(extra_arg_0: int) -> void:
+	Audio.play_sound("scrollMenu")
+
+	cur_tab = extra_arg_0
+	update_tabs(cur_tab)
+
+func update_tabs(selection:int):
+	for i in bg.get_children():
+		i.hide()
+		if i == bg.get_child(cur_tab): i.show()
+
 func _on_hud_editor_pressed() -> void:
 	Global.switch_scene("res://scenes/HUDEditor.tscn")
 
-func _on_tool_button_pressed(name:String):
-	match name:
-		"XML Converter":
-			Global.switch_scene("res://tools/XML Converter.tscn")
-		"TXT Converter":
-			Global.switch_scene("res://tools/TXT Converter.tscn")
-		"Adobe Json Converter":
-			Global.switch_scene("res://tools/Adobe Json Converter.tscn")
+func _on_strum_editor_pressed() -> void:
+	strum_editor_open = true
+	switch.play("ToStrum")
 
 func _on_tools_pressed() -> void:
-	tools_open = not tools_open
-	if tools_open:
-		switch.play('switch')
+	if !tools_open:
+		tools_open = true
+		switch.play("SwitchTools")
 	else:
-		switch.play_backwards('switch')
-
-func _on_open_strum_editor() -> void:
-	strum_editor_open = true
-	$StrumEditor.show()
-	switch.play('strumEditor')
-	await switch.animation_finished
-	$TabContainer.hide()
+		tools_open = false
+		switch.play_backwards("SwitchTools")
