@@ -12,59 +12,65 @@
 [node name="philly" type="Node2D"]
 script = ExtResource("1_b2gre")
 
-[node name="PB" type="ParallaxBackground" parent="."]
+[node name="0-1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 0.1)
 
-[node name="PL1" type="ParallaxLayer" parent="PB"]
-motion_scale = Vector2(0.1, 0.1)
-
-[node name="Sky" type="Sprite2D" parent="PB/PL1"]
+[node name="Sky" type="Sprite2D" parent="0-1"]
+z_index = 10
 position = Vector2(-100, 0)
 texture = ExtResource("2_uhmo2")
 centered = false
 
-[node name="PL2" type="ParallaxLayer" parent="PB"]
-position = Vector2(-10, 0)
-motion_scale = Vector2(0.3, 0.3)
+[node name="0-3" type="Parallax2D" parent="."]
 
-[node name="City" type="Sprite2D" parent="PB/PL2"]
-position = Vector2(-8, 0)
+[node name="City" type="Sprite2D" parent="0-3"]
+z_index = 20
+position = Vector2(-18, 0)
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("3_u4djf")
 centered = false
 
-[node name="Win" type="Sprite2D" parent="PB/PL2/City"]
+[node name="Win" type="Sprite2D" parent="0-3/City"]
 visible = false
+z_index = 30
+z_as_relative = false
 position = Vector2(-4.7059, 45.8823)
 texture = ExtResource("4_of4d8")
 centered = false
 
-[node name="PL3" type="ParallaxLayer" parent="PB"]
-position = Vector2(-10, 0)
+[node name="1-1" type="Parallax2D" parent="."]
 
-[node name="Train" type="Sprite2D" parent="PB/PL3"]
-position = Vector2(2010, 360)
+[node name="Train" type="Sprite2D" parent="1-1"]
+z_index = 60
+position = Vector2(2000, 360)
 texture = ExtResource("5_0x7jk")
 centered = false
 
-[node name="BehindTrain" type="Sprite2D" parent="PB/PL3"]
-position = Vector2(-30, 50)
+[node name="BehindTrain" type="Sprite2D" parent="1-1"]
+z_index = 50
+position = Vector2(-40, 50)
 texture = ExtResource("4_utm42")
 centered = false
 
-[node name="Street" type="Sprite2D" parent="PB/PL3/BehindTrain"]
+[node name="Street" type="Sprite2D" parent="1-1/BehindTrain"]
+z_index = 70
+z_as_relative = false
 texture = ExtResource("5_2sb7x")
 centered = false
 
 [node name="Character Positions" type="Node2D" parent="."]
 
 [node name="Opponent" type="Node2D" parent="Character Positions"]
-position = Vector2(317.5, 884)
+z_index = 200
+position = Vector2(468, 885)
 
 [node name="Spectator" type="Node2D" parent="Character Positions"]
-position = Vector2(749.5, 764)
+z_index = 100
+position = Vector2(751.5, 787)
 
 [node name="Player" type="Node2D" parent="Character Positions"]
-position = Vector2(973, 884)
+z_index = 300
+position = Vector2(989.5, 885)
 
 [node name="train_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_bk0u4")

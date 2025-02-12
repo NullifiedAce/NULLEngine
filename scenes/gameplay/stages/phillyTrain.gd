@@ -1,7 +1,7 @@
 extends Stage
 @onready var train_sound = $train_sound
-@onready var train = $PB/PL3/Train
-@onready var win = $PB/PL2/City/Win
+@onready var win: Sprite2D = $'0-3/City/Win'
+@onready var train: Sprite2D = $'1-1/Train'
 func _ready():
 	Conductor.beat_hit.connect(beat_hit)
 var trainCooldown:int = 0

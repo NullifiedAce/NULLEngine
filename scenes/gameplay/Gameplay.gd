@@ -329,7 +329,7 @@ func _ready() -> void:
 	combo_group.remove_child(rating_template)
 	combo_group.remove_child(combo_template)
 
-	update_camera(spectator.global_position.x, spectator.global_position.y, 0, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	update_camera(spectator.camera_pos.global_position.x, spectator.camera_pos.global_position.y, 0, Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 	for i in player_strums.get_child_count():
 		pressed.append(false)
@@ -349,12 +349,13 @@ func load_spectator():
 	if ResourceLoader.exists(spectator_path):
 		spectator = load(spectator_path).instantiate()
 	else:
-		spectator = load("res://scenes/gameplay/characters/bf.tscn").instantiate()
+		spectator = load("res://scenes/gameplay/characters/gf.tscn").instantiate()
 
 	spectator.position = stage.character_positions["spectator"].position
+	spectator.scale = stage.character_positions["spectator"].scale
+	characters.add_child(spectator)
 	spectator.z_index = stage.character_positions["spectator"].z_index
 	spectator.get_child(0).material = stage.character_positions["spectator"].material
-	characters.add_child(spectator)
 
 func load_opponent():
 	var opponent_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["opponent"]+".tscn"
@@ -364,10 +365,10 @@ func load_opponent():
 		opponent = load("res://scenes/gameplay/characters/dad.tscn").instantiate()
 
 	opponent.position = stage.character_positions["opponent"].position
+	opponent.scale = stage.character_positions["opponent"].scale
+	characters.add_child(opponent)
 	opponent.z_index = stage.character_positions["opponent"].z_index
 	opponent.get_child(0).material = stage.character_positions["opponent"].material
-	print(stage.character_positions["opponent"].z_index)
-	characters.add_child(opponent)
 
 	if METADATA.playData["characters"]["opponent"] == METADATA.playData["characters"]["girlfriend"]:
 		opponent.position = spectator.position
@@ -385,9 +386,10 @@ func load_player():
 
 	player._is_true_player = true
 	player.position = stage.character_positions["player"].position
+	player.scale = stage.character_positions["player"].scale
+	characters.add_child(player)
 	player.z_index = stage.character_positions["player"].z_index
 	player.get_child(0).material = stage.character_positions["player"].material
-	characters.add_child(player)
 
 func update_health_bar():
 	cpu_icon.texture = opponent.health_icon
@@ -531,7 +533,7 @@ func end_song():
 				if Global.current_difficulty == "hard" and Ranking.final_misses == 0:
 					TrophyHandler.unlock_trophy("B%s_0" % Global.current_week)
 					await TrophyHandler.trophy_unlocked
-		Global.variation == "default"
+		Global.variation = "default"
 		Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
 
 
@@ -1061,7 +1063,7 @@ func _physics_process(_delta: float) -> void:
 		new_note.length = note.length * 0.85
 		new_note.must_press = true if note.direction < 4 else false
 		new_note.note_skin = ui_skin
-		new_note.note_type = instance_type
+		new_note.note_type = instance_type if METADATA["rawSongName"] != "blazin" else note.kind
 
 		if new_note.must_press:
 			total_notes += 1
@@ -1093,6 +1095,7 @@ func skip_intro() -> void:
 		resync_tracks()
 
 func _exit_tree():
+	Global.variation = "default" # reset for freeplay
 	script_group.call_func("on_destroy", [])
 	script_group.call_func("on_exit_tree", [])
 	script_group.queue_free()

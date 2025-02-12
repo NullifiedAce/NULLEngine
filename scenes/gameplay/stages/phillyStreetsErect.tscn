@@ -1,0 +1,508 @@
+[gd_scene load_steps=34 format=3 uid="uid://ukeunwpoloq5"]
+
+[ext_resource type="Script" path="res://scenes/gameplay/stages/phillyStreetsErect.gd" id="1_3m4xb"]
+[ext_resource type="Texture2D" uid="uid://b2b5ybn487gd1" path="res://assets/levels/weekend1/images/phillyStreets/phillySkybox.png" id="2_i3747"]
+[ext_resource type="Texture2D" uid="uid://dij6k4prrwfy0" path="res://assets/levels/weekend1/images/phillyStreets/erect/phillySkyline.png" id="3_vkluv"]
+[ext_resource type="Texture2D" uid="uid://0luqqjrvvix8" path="res://assets/levels/weekend1/images/phillyStreets/erect/phillyForegroundCity.png" id="4_e6rul"]
+[ext_resource type="Texture2D" uid="uid://cke86vtbhuwrx" path="res://assets/levels/weekend1/images/phillyStreets/erect/phillyConstruction.png" id="5_trhrb"]
+[ext_resource type="Texture2D" uid="uid://cpq7uh0xsc5bq" path="res://assets/levels/weekend1/images/phillyStreets/erect/phillyHighwayLights.png" id="6_14xuw"]
+[ext_resource type="Texture2D" uid="uid://yqc5f4ko7y07" path="res://assets/levels/weekend1/images/phillyStreets/phillyHighwayLights_lightmap.png" id="7_ksa4s"]
+[ext_resource type="Texture2D" uid="uid://drww1uni0wq8m" path="res://assets/levels/weekend1/images/phillyStreets/erect/phillyHighway.png" id="8_s5q18"]
+[ext_resource type="Texture2D" uid="uid://d2ar76jy746hj" path="res://assets/levels/weekend1/images/phillyStreets/erect/greyGradient.png" id="9_cqnok"]
+[ext_resource type="Texture2D" uid="uid://bq58ngamumb4g" path="res://assets/levels/weekend1/images/phillyStreets/erect/phillyForeground.png" id="10_vpmgh"]
+[ext_resource type="Texture2D" uid="uid://d1s2sevwlbrrr" path="res://assets/levels/weekend1/images/SpraycanPile.png" id="10_xjdos"]
+[ext_resource type="Texture2D" uid="uid://djlft0gcaltxj" path="res://assets/levels/weekend1/images/phillyStreets/phillySmog.png" id="11_d1wau"]
+[ext_resource type="SpriteFrames" path="res://assets/levels/weekend1/images/phillyStreets/erect/phillyCars.res" id="13_hvror"]
+[ext_resource type="Texture2D" uid="uid://dqgictmw3uv0o" path="res://assets/levels/weekend1/images/phillyStreets/phillyTraffic_lightmap.png" id="14_2lg8h"]
+[ext_resource type="SpriteFrames" path="res://assets/levels/weekend1/images/phillyStreets/erect/phillyTraffic.res" id="14_6lidt"]
+[ext_resource type="Shader" path="res://assets/shaders/rain.gdshader" id="15_3l5nq"]
+[ext_resource type="SpriteFrames" path="res://assets/levels/weekend1/images/phillyStreets/erect/paper.res" id="16_wr2l8"]
+[ext_resource type="Texture2D" uid="uid://ccmarij0otfu1" path="res://assets/levels/weekend1/images/phillyStreets/erect/mistMid.png" id="17_jidxk"]
+[ext_resource type="Texture2D" uid="uid://dt0bhd2jjbviy" path="res://assets/levels/weekend1/images/phillyStreets/erect/mistBack.png" id="18_4l46d"]
+[ext_resource type="Shader" path="res://assets/shaders/gaussianBlur.gdshader" id="18_30g6m"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tggxm"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kcjof"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e640m"]
+blend_mode = 3
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xfkuo"]
+blend_mode = 1
+
+[sub_resource type="Shader" id="Shader_7v2mw"]
+code = "shader_type canvas_item;
+
+uniform float hue : hint_range(-360, 360);         // Allow negative hue
+uniform float saturation : hint_range(-100, 100);  // Allow negative saturation
+uniform float brightness : hint_range(-255, 255);  // Allow negative brightness
+uniform float contrast : hint_range(-255, 255);    // Allow negative contrast;
+
+vec3 apply_hue(vec3 color, float hue_angle) {
+	float angle = radians(hue_angle);
+	vec3 k = vec3(0.57735, 0.57735, 0.57735); // Equal weights for each channel
+	float cos_angle = cos(angle);
+	return color * cos_angle + cross(k, color) * sin(angle) + k * dot(k, color) * (1.0 - cos_angle);
+}
+
+vec3 apply_hsb_effect(vec3 color) {
+	// Apply brightness adjustment (negative values will darken the image)
+	color = clamp(color + (brightness / 255.0), 0.0, 1.0);
+
+	// Apply hue adjustment (negative values will rotate the hue in the opposite direction)
+	color = apply_hue(color, hue);
+
+	// Apply contrast adjustment (negative values will decrease contrast)
+	color = clamp((color - 0.5) * (1.0 + (contrast / 255.0)) + 0.5, 0.0, 1.0);
+
+	// Apply saturation adjustment (negative values will desaturate the image)
+	vec3 intensity = vec3(dot(color, vec3(0.30980392156, 0.60784313725, 0.08235294117)));
+	color = clamp(mix(intensity, color, (1.0 + (saturation / 100.0))), 0.0, 1.0);
+
+	return color;
+}
+
+void fragment() {
+	// Get the current fragment color (input color)
+	vec4 input_color = COLOR;
+
+	// Apply HSB and contrast adjustments with potential negative values
+	vec3 out_color = apply_hsb_effect(input_color.rgb);
+
+	// Output the modified color
+	COLOR = vec4(out_color * input_color.a, input_color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wa0jb"]
+shader = SubResource("Shader_7v2mw")
+shader_parameter/hue = -4.99998
+shader_parameter/saturation = -40.0
+shader_parameter/brightness = -20.0
+shader_parameter/contrast = -25.0
+
+[sub_resource type="Shader" id="Shader_ttowg"]
+code = "shader_type canvas_item;
+
+uniform float hue : hint_range(-360, 360);         // Allow negative hue
+uniform float saturation : hint_range(-100, 100);  // Allow negative saturation
+uniform float brightness : hint_range(-255, 255);  // Allow negative brightness
+uniform float contrast : hint_range(-255, 255);    // Allow negative contrast;
+
+vec3 apply_hue(vec3 color, float hue_angle) {
+	float angle = radians(hue_angle);
+	vec3 k = vec3(0.57735, 0.57735, 0.57735); // Equal weights for each channel
+	float cos_angle = cos(angle);
+	return color * cos_angle + cross(k, color) * sin(angle) + k * dot(k, color) * (1.0 - cos_angle);
+}
+
+vec3 apply_hsb_effect(vec3 color) {
+	// Apply brightness adjustment (negative values will darken the image)
+	color = clamp(color + (brightness / 255.0), 0.0, 1.0);
+
+	// Apply hue adjustment (negative values will rotate the hue in the opposite direction)
+	color = apply_hue(color, hue);
+
+	// Apply contrast adjustment (negative values will decrease contrast)
+	color = clamp((color - 0.5) * (1.0 + (contrast / 255.0)) + 0.5, 0.0, 1.0);
+
+	// Apply saturation adjustment (negative values will desaturate the image)
+	vec3 intensity = vec3(dot(color, vec3(0.30980392156, 0.60784313725, 0.08235294117)));
+	color = clamp(mix(intensity, color, (1.0 + (saturation / 100.0))), 0.0, 1.0);
+
+	return color;
+}
+
+void fragment() {
+	// Get the current fragment color (input color)
+	vec4 input_color = COLOR;
+
+	// Apply HSB and contrast adjustments with potential negative values
+	vec3 out_color = apply_hsb_effect(input_color.rgb);
+
+	// Output the modified color
+	COLOR = vec4(out_color * input_color.a, input_color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e134j"]
+shader = SubResource("Shader_ttowg")
+shader_parameter/hue = -4.99998
+shader_parameter/saturation = -40.0
+shader_parameter/brightness = -20.0
+shader_parameter/contrast = -25.0
+
+[sub_resource type="Shader" id="Shader_pas2i"]
+code = "shader_type canvas_item;
+
+uniform float hue : hint_range(-360, 360);         // Allow negative hue
+uniform float saturation : hint_range(-100, 100);  // Allow negative saturation
+uniform float brightness : hint_range(-255, 255);  // Allow negative brightness
+uniform float contrast : hint_range(-255, 255);    // Allow negative contrast;
+
+vec3 apply_hue(vec3 color, float hue_angle) {
+	float angle = radians(hue_angle);
+	vec3 k = vec3(0.57735, 0.57735, 0.57735); // Equal weights for each channel
+	float cos_angle = cos(angle);
+	return color * cos_angle + cross(k, color) * sin(angle) + k * dot(k, color) * (1.0 - cos_angle);
+}
+
+vec3 apply_hsb_effect(vec3 color) {
+	// Apply brightness adjustment (negative values will darken the image)
+	color = clamp(color + (brightness / 255.0), 0.0, 1.0);
+
+	// Apply hue adjustment (negative values will rotate the hue in the opposite direction)
+	color = apply_hue(color, hue);
+
+	// Apply contrast adjustment (negative values will decrease contrast)
+	color = clamp((color - 0.5) * (1.0 + (contrast / 255.0)) + 0.5, 0.0, 1.0);
+
+	// Apply saturation adjustment (negative values will desaturate the image)
+	vec3 intensity = vec3(dot(color, vec3(0.30980392156, 0.60784313725, 0.08235294117)));
+	color = clamp(mix(intensity, color, (1.0 + (saturation / 100.0))), 0.0, 1.0);
+
+	return color;
+}
+
+void fragment() {
+	// Get the current fragment color (input color)
+	vec4 input_color = COLOR;
+
+	// Apply HSB and contrast adjustments with potential negative values
+	vec3 out_color = apply_hsb_effect(input_color.rgb);
+
+	// Output the modified color
+	COLOR = vec4(out_color * input_color.a, input_color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ycej"]
+shader = SubResource("Shader_pas2i")
+shader_parameter/hue = -4.99998
+shader_parameter/saturation = -40.0
+shader_parameter/brightness = -20.0
+shader_parameter/contrast = -25.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_10ln4"]
+shader = ExtResource("15_3l5nq")
+shader_parameter/uScale = 0.0
+shader_parameter/uIntensity = 0.0
+shader_parameter/uTime = 0.0
+shader_parameter/uPuddleY = 0.0
+shader_parameter/uPuddleScaleY = 0.0
+shader_parameter/uRainColor = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ilci"]
+shader = ExtResource("18_30g6m")
+shader_parameter/blur_amount = 1.0
+
+[sub_resource type="Curve2D" id="Curve2D_lkjv1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1500, 1049, -81.1732, 17.653, 81.1732, -17.653, 1624, 1024, -111.978, 12.0815, 111.978, -12.0815, 1920, 992, -163.29, -36.8111, 163.29, 36.8111, 2456, 1032, -322.805, -174.617, 322.805, 174.617, 3024, 1232)
+}
+point_count = 5
+
+[node name="phillyStreets" type="Node2D"]
+script = ExtResource("1_3m4xb")
+
+[node name="0-1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(2522, 0)
+autoscroll = Vector2(-22, 0)
+repeat_times = 2
+
+[node name="phillySkybox" type="Sprite2D" parent="0-1"]
+z_index = 10
+position = Vector2(650, -375)
+texture = ExtResource("2_i3747")
+centered = false
+
+[node name="0-2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
+
+[node name="phillySkyline" type="Sprite2D" parent="0-2"]
+z_index = 20
+position = Vector2(-545, -273)
+texture = ExtResource("3_vkluv")
+centered = false
+
+[node name="0-3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 0.3)
+
+[node name="phillyForegroundCity" type="Sprite2D" parent="0-3"]
+z_index = 30
+position = Vector2(600, 69)
+texture = ExtResource("4_e6rul")
+centered = false
+
+[node name="0-7 1-0" type="Parallax2D" parent="."]
+
+[node name="phillyConstruction" type="Sprite2D" parent="0-7 1-0"]
+z_index = 40
+position = Vector2(1795, 360)
+texture = ExtResource("5_trhrb")
+centered = false
+
+[node name="0-8 1-0" type="Parallax2D" parent="."]
+
+[node name="phillySmog" type="Sprite2D" parent="0-8 1-0"]
+z_index = 70
+position = Vector2(-6, 245)
+texture = ExtResource("11_d1wau")
+centered = false
+
+[node name="0-9 1-0" type="Parallax2D" parent="."]
+
+[node name="phillyCars" type="AnimatedSprite2D" parent="0-9 1-0"]
+z_index = 80
+position = Vector2(1266.99, 905.216)
+rotation = -0.198946
+sprite_frames = ExtResource("13_hvror")
+animation = &"car1"
+centered = false
+
+[node name="phillyCars2" type="AnimatedSprite2D" parent="0-9 1-0"]
+z_index = 78
+position = Vector2(2937.06, 972.365)
+rotation = 0.495857
+sprite_frames = ExtResource("13_hvror")
+animation = &"car1"
+centered = false
+flip_h = true
+
+[node name="phillyTraffic" type="AnimatedSprite2D" parent="0-9 1-0"]
+z_index = 90
+position = Vector2(1840, 608)
+sprite_frames = ExtResource("14_6lidt")
+animation = &"greentored"
+centered = false
+
+[node name="lightmap" type="Sprite2D" parent="0-9 1-0/phillyTraffic"]
+material = SubResource("CanvasItemMaterial_tggxm")
+texture = ExtResource("14_2lg8h")
+centered = false
+
+[node name="1-0" type="Parallax2D" parent="."]
+
+[node name="phillyHighwayLights" type="Sprite2D" parent="1-0"]
+z_index = 50
+position = Vector2(284, 305)
+texture = ExtResource("6_14xuw")
+centered = false
+
+[node name="lightmap" type="PointLight2D" parent="1-0/phillyHighwayLights"]
+z_index = 50
+energy = 2.5
+range_z_max = 50
+range_layer_min = -100
+texture = ExtResource("7_ksa4s")
+offset = Vector2(541, 98)
+
+[node name="phillyHighway" type="Sprite2D" parent="1-0"]
+z_index = 60
+position = Vector2(139, 209)
+texture = ExtResource("8_s5q18")
+centered = false
+
+[node name="grey1" type="Sprite2D" parent="1-0"]
+modulate = Color(1, 1, 1, 0.301961)
+z_index = 91
+material = SubResource("CanvasItemMaterial_kcjof")
+position = Vector2(88, 317)
+texture = ExtResource("9_cqnok")
+centered = false
+
+[node name="grey2" type="Sprite2D" parent="1-0"]
+modulate = Color(1, 1, 1, 0.8)
+z_index = 91
+material = SubResource("CanvasItemMaterial_e640m")
+position = Vector2(88, 317)
+texture = ExtResource("9_cqnok")
+centered = false
+
+[node name="phillyForeground" type="Sprite2D" parent="1-0"]
+z_index = 100
+position = Vector2(88, 317)
+texture = ExtResource("10_vpmgh")
+centered = false
+
+[node name="spraycanPile" type="Sprite2D" parent="1-0"]
+z_index = 690
+position = Vector2(920, 1044)
+texture = ExtResource("10_xjdos")
+centered = false
+
+[node name="1-1" type="Parallax2D" parent="."]
+
+[node name="paper" type="AnimatedSprite2D" parent="1-1"]
+z_index = 800
+position = Vector2(350, 608)
+sprite_frames = ExtResource("16_wr2l8")
+animation = &"Paper Blowing instance 1"
+centered = false
+
+[node name="1-2 x172" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.2, 1.2)
+repeat_size = Vector2(2048, 0)
+autoscroll = Vector2(172, 0)
+repeat_times = 2
+
+[node name="mist0" type="Sprite2D" parent="1-2 x172"]
+modulate = Color(0.360784, 0.360784, 0.360784, 0.6)
+z_index = 1000
+material = SubResource("CanvasItemMaterial_xfkuo")
+position = Vector2(-650, 470)
+texture = ExtResource("17_jidxk")
+centered = false
+
+[node name="1-1 x150" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.1, 1.1)
+repeat_size = Vector2(2048, 0)
+autoscroll = Vector2(150, 0)
+repeat_times = 2
+
+[node name="mist1" type="Sprite2D" parent="1-1 x150"]
+modulate = Color(0.360784, 0.360784, 0.360784, 0.6)
+z_index = 1000
+material = SubResource("CanvasItemMaterial_xfkuo")
+position = Vector2(-650, 470)
+texture = ExtResource("17_jidxk")
+centered = false
+
+[node name="1-2 x-80" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.2, 1.2)
+repeat_size = Vector2(2048, 0)
+autoscroll = Vector2(-80, 0)
+repeat_times = 2
+
+[node name="mist2" type="Sprite2D" parent="1-2 x-80"]
+modulate = Color(0.360784, 0.360784, 0.360784, 0.8)
+z_index = 1001
+material = SubResource("CanvasItemMaterial_xfkuo")
+position = Vector2(-650, 470)
+texture = ExtResource("18_4l46d")
+centered = false
+
+[node name="0-95 x-50" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.95, 0.95)
+repeat_size = Vector2(1638.4, 0)
+autoscroll = Vector2(-50, 0)
+repeat_times = 2
+
+[node name="mist3" type="Sprite2D" parent="0-95 x-50"]
+modulate = Color(0.360784, 0.360784, 0.360784, 0.501961)
+z_index = 99
+material = SubResource("CanvasItemMaterial_xfkuo")
+position = Vector2(-650, 263)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("17_jidxk")
+centered = false
+
+[node name="0-7 x40" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.7, 0.7)
+repeat_size = Vector2(1433.6, 0)
+autoscroll = Vector2(40, 0)
+repeat_times = 3
+
+[node name="mist4" type="Sprite2D" parent="0-7 x40"]
+modulate = Color(0.360784, 0.360784, 0.360784, 1)
+z_index = 88
+material = SubResource("CanvasItemMaterial_xfkuo")
+position = Vector2(-650, 288)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("18_4l46d")
+centered = false
+
+[node name="1-1 x20" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.1, 1.1)
+repeat_size = Vector2(2252.8, 0)
+autoscroll = Vector2(20, 0)
+repeat_times = 3
+
+[node name="mist5" type="Sprite2D" parent="1-1 x20"]
+modulate = Color(0.360784, 0.360784, 0.360784, 1)
+z_index = 39
+material = SubResource("CanvasItemMaterial_xfkuo")
+position = Vector2(-650, 100)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("17_jidxk")
+centered = false
+
+[node name="Character Positions" type="Node2D" parent="."]
+
+[node name="Opponent" type="Node2D" parent="Character Positions"]
+z_index = 350
+material = SubResource("ShaderMaterial_wa0jb")
+position = Vector2(920, 1310)
+
+[node name="Spectator" type="Node2D" parent="Character Positions"]
+z_index = 300
+material = SubResource("ShaderMaterial_e134j")
+position = Vector2(1520, 1080)
+
+[node name="Player" type="Node2D" parent="Character Positions"]
+z_index = 400
+material = SubResource("ShaderMaterial_2ycej")
+position = Vector2(2151, 1228)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 1776.0
+offset_right = 456.0
+offset_bottom = 1799.0
+text = "i hate this stage so much. this was hell to port over -NULL
+actually nevermind -NULL
+
+WOOW!!! WASTING MEMORY :DDDD"
+
+[node name="Rain" type="CanvasLayer" parent="."]
+
+[node name="Rain" type="ColorRect" parent="Rain"]
+material = SubResource("ShaderMaterial_10ln4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Blur" type="ColorRect" parent="Rain"]
+material = SubResource("ShaderMaterial_4ilci")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="carPath1" type="Path2D" parent="Markers"]
+z_index = 4096
+curve = SubResource("Curve2D_lkjv1")
+metadata/_edit_lock_ = true
+
+[node name="car1" type="PathFollow2D" parent="Markers/carPath1"]
+position = Vector2(1266.99, 905.216)
+rotation = -0.198946
+h_offset = -200.0
+v_offset = -187.0
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Markers/carPath1/car1"]
+remote_path = NodePath("../../../../0-9 1-0/phillyCars")
+
+[node name="carPath2" type="Path2D" parent="Markers"]
+z_index = 4096
+curve = SubResource("Curve2D_lkjv1")
+metadata/_edit_lock_ = true
+
+[node name="car2" type="PathFollow2D" parent="Markers/carPath2"]
+position = Vector2(2937.06, 972.365)
+rotation = 0.495857
+progress = 1569.57
+h_offset = -200.0
+v_offset = -187.0
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Markers/carPath2/car2"]
+remote_path = NodePath("../../../../0-9 1-0/phillyCars2")

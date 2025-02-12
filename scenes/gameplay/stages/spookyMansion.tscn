@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv81gapin4vog"]
+[gd_scene load_steps=4 format=3 uid="uid://bv81gapin4vog"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/stages/spookyMansion.gd" id="1_pmnw3"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/spooky/halloween_bg.res" id="2_c5lkq"]
 [ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="3_j3ley"]
-[ext_resource type="Texture2D" uid="uid://m5strgod1naq" path="res://icon.svg" id="5_8cg4i"]
 
 [node name="stage" type="Node2D"]
 script = ExtResource("1_pmnw3")
@@ -28,7 +27,3 @@ position = Vector2(698, 852)
 
 [node name="Player" type="Node2D" parent="Character Positions"]
 position = Vector2(973, 884)
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(554, 501)
-texture = ExtResource("5_8cg4i")

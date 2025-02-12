@@ -1,15 +1,15 @@
 extends Stage
 
-@onready var tank_ground:AnimatedSprite2D = $PB/PL6/tank_ground
+@onready var tank_ground: AnimatedSprite2D = $'0-5/tank_ground'
 
 @onready var boppers:Array = [
-	$PB2/PL8/bopper1,
-	$PB2/PL9/bopper2,
-	$PB2/PL10/bopper3,
-	$PB2/PL10/bopper4,
-	$PB2/PL10/bopper5,
-	$PB2/PL11/boppeer6,
-	$PB/PL6/tank_watch_tower,
+	$'0-5/tank_watch_tower',
+	$'1-5/tank2',
+	$'1-5/tank4',
+	$'1-5/tank5',
+	$'3-5 2-5/tank3',
+	$'2-0 0-2/bopper2',
+	$'1-7 1-5/tank0'
 ]
 
 var tank_angle:float = randi_range(-90, 45)
@@ -18,8 +18,8 @@ const TANK_X:float = 400
 
 func _ready():
 	Conductor.beat_hit.connect(beat_hit)
-	$PB/PL5/smoke_right.play("SmokeRight instance 1")
-	$PB/PL5/smoke_left.play("SmokeBlurLeft instance 1")
+	$'0-4/smoke_right'.play("SmokeRight instance 1")
+	$'0-4/smoke_left'.play("SmokeBlurLeft instance 1")
 
 func _process(delta: float) -> void:
 	tank_angle += delta * tank_speed

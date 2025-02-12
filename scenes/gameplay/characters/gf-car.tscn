@@ -123,6 +123,7 @@ health_icon = ExtResource("2_1rsyn")
 health_color = Color(0.647059, 0, 0.301961, 1)
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-368, -648)
 sprite_frames = ExtResource("3_e78wm")
 animation = &"GF Dancing Beat Hair blowing CAR"
 frame = 29
@@ -136,4 +137,4 @@ libraries = {
 }
 
 [node name="CameraPos" type="Node2D" parent="."]
-position = Vector2(341, 259)
+position = Vector2(-16, -488)

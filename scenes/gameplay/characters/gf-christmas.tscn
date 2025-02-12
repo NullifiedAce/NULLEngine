@@ -284,6 +284,7 @@ health_icon = ExtResource("2_xdf4g")
 health_color = Color(0.647059, 0, 0.301961, 1)
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-448, -665)
 sprite_frames = ExtResource("3_lcvc8")
 animation = &"GF Dancing Beat"
 frame = 29
@@ -298,4 +299,4 @@ libraries = {
 }
 
 [node name="CameraPos" type="Node2D" parent="."]
-position = Vector2(341, 259)
+position = Vector2(-107, -406)

@@ -44,6 +44,8 @@ var queued_songs:PackedStringArray = []
 var game_version = ProjectSettings.get_setting("application/config/version") #+ "\n"
 var new_version: String
 
+var rng:RandomNumberGenerator = RandomNumberGenerator.new()
+
 const hud_options: Array = ["icon colors", "custom color", "hide hpbar", "hide icons", "player color", "opp color", "hpbar x", "hpbar y",
 	"seperator", "score_arrangement", "font path", "font size", "font color", "outline size", "outline color", "score bg color",
 	"score bg expand", "score prefix", "score suffix", "misses prefix", "misses suffix", "accuracy prefix", "accuracy suffix", "ranks prefix",

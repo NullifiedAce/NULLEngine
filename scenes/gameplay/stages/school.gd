@@ -1,5 +1,9 @@
 extends Stage
+
 func _ready():
-	$PB/PL6/AnimatedSprite2D.play("BG girls group")
+	$'0-85/trees'.play("trees")
+	$'0-85/petals'.play("PETALS ALL")
+
+	$'0-9/AnimatedSprite2D'.play("BG girls group")
 	if Global.METADATA.songName.to_lower() == "roses":
-		$PB/PL6/AnimatedSprite2D.play("BG fangirls dissuaded")
+		$'0-9/AnimatedSprite2D'.play("BG fangirls dissuaded")

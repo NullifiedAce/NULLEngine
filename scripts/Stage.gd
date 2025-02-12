@@ -40,5 +40,27 @@ func on_beat_hit(beat:int):
 func on_beat_hit_post(beat:int):
 	pass
 
-func on_event(name:String, parameters:Array):
+# note functions
+func on_note_spawn(note:Note):
+	pass
+
+func on_note_hit(note:Note):
+	pass
+
+func on_note_miss(note:Note):
+	pass
+
+func on_cpu_hit(note:Note):
+	pass
+
+func on_cpu_miss(note:Note):
+	pass
+
+func on_player_hit(note:Note):
+	pass
+
+func on_player_miss(note:Note):
+	pass
+
+func on_event(name:String, parameters:Dictionary):
 	pass

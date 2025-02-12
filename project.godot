@@ -51,7 +51,7 @@ mouse_cursor/custom_image="res://assets/images/cursor/cursor-default.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg")
+enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg", "res://addons/swf/plugin.cfg")
 
 [engine]
 
@@ -59,6 +59,15 @@ customization/check_for_updates=false
 customization/chart_editor_on_release=true
 customization/first_launch_menu=true
 customization/hud_editor=true
+
+[importer_defaults]
+
+texture_atlas={
+"atlas_file": "",
+"crop_to_region": false,
+"import_mode": 0,
+"trim_alpha_border_from_region": true
+}
 
 [input]
 

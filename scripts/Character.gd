@@ -87,11 +87,11 @@ func _process(delta):
 			hold_timer = 0.0
 			dance()
 
-func play_anim(anim:String, force:bool = false):
+func play_anim(anim:String, force:bool = false, special:bool = false):
 	if not is_animated: return
 	if "sing" in anim and not can_sing: return
 
-	special_anim = false
+	special_anim = special
 
 	# swap left and right anims
 	if is_player != _is_true_player:
