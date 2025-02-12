@@ -185,6 +185,7 @@ func _process(delta):
 				Audio.play_music("freakyMenu")
 
 				Global.queued_songs = []
+				Global.variation = "default" # reset for freeplay
 				Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
 				queue_free()
 

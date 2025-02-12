@@ -533,7 +533,7 @@ func end_song():
 				if Global.current_difficulty == "hard" and Ranking.final_misses == 0:
 					TrophyHandler.unlock_trophy("B%s_0" % Global.current_week)
 					await TrophyHandler.trophy_unlocked
-		Global.variation = "default"
+		Global.variation = "default" # reset for freeplay
 		Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
 
 
@@ -1095,7 +1095,6 @@ func skip_intro() -> void:
 		resync_tracks()
 
 func _exit_tree():
-	Global.variation = "default" # reset for freeplay
 	script_group.call_func("on_destroy", [])
 	script_group.call_func("on_exit_tree", [])
 	script_group.queue_free()
