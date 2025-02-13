@@ -72,6 +72,9 @@ intensity = 0.5
 rain_scale = 3.6
 rain_color = Color(0.4, 0.501961, 0.8, 1)
 default_cam_zoom = 0.75
+player_cam_offset = Vector2(-350, -100)
+opponent_cam_offset = Vector2(500, 200)
+spectator_cam_offset = Vector2(0, 20)
 
 [node name="sky" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0, 0)
@@ -149,7 +152,7 @@ position = Vector2(1353, 1125)
 
 [node name="Player" type="Node2D" parent="Character Positions"]
 z_index = 2000
-position = Vector2(1497, 1097)
+position = Vector2(-237, 100)
 scale = Vector2(1.75, 1.75)
 
 [node name="Rain" type="CanvasLayer" parent="."]

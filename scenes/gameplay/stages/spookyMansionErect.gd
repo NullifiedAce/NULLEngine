@@ -1,5 +1,4 @@
-extends Node2D
-
+extends Stage
 
 @onready var rain: ColorRect = $'0-8/rain'
 

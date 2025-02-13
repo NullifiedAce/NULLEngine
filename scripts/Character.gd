@@ -58,6 +58,9 @@ func _ready():
 			anim_sprite.sprite_frames.get_frame_texture(anim_sprite.animation, 0).get_width(),
 			anim_sprite.sprite_frames.get_frame_texture(anim_sprite.animation, 0).get_height()
 		)
+
+	camera_pos.position = anim_sprite.position + initial_size / 2 # Set camera position to the middle of the character.
+
 	if is_player != _is_true_player:
 		scale.x *= -1
 

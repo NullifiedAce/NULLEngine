@@ -6,6 +6,9 @@
 
 [node name="stage" type="Node2D"]
 script = ExtResource("1_pmnw3")
+default_cam_zoom = 1.0
+player_cam_offset = Vector2(-100, -100)
+opponent_cam_offset = Vector2(150, -100)
 
 [node name="PB" type="ParallaxBackground" parent="."]
 follow_viewport_enabled = true

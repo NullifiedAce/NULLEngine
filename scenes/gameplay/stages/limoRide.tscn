@@ -10,7 +10,8 @@
 z_index = -1
 script = ExtResource("1_l6mq2")
 default_cam_zoom = 0.9
-player_cam_offset = Vector2(-300, 100)
+player_cam_offset = Vector2(-300, -100)
+opponent_cam_offset = Vector2(150, 0)
 
 [node name="PL1" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.1, 0.1)

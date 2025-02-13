@@ -21,6 +21,8 @@
 [node name="tank" type="Node2D"]
 script = ExtResource("1_hx0hu")
 default_cam_zoom = 0.9
+player_cam_offset = Vector2(-220, -100)
+opponent_cam_offset = Vector2(250, -100)
 
 [node name="0-0" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0, 0)

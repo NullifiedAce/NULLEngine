@@ -169,7 +169,8 @@ shader_parameter/contrast = 7.00001
 [node name="mainStageErect" type="Node2D"]
 script = ExtResource("1_8vwlo")
 default_cam_zoom = 0.85
-player_cam_offset = Vector2(-20, 0)
+player_cam_offset = Vector2(-170, -140)
+opponent_cam_offset = Vector2(270, -100)
 
 [node name="PL1" type="Parallax2D" parent="."]
 

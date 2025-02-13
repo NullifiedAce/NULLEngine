@@ -8,7 +8,8 @@
 [node name="mallEvil" type="Node2D"]
 script = ExtResource("1_02ijf")
 default_cam_zoom = 1.0
-player_cam_offset = Vector2(0, -100)
+player_cam_offset = Vector2(-100, -100)
+opponent_cam_offset = Vector2(150, -100)
 
 [node name="PL1" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.2, 0.2)

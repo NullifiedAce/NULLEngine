@@ -135,7 +135,7 @@ centered = false
 [node name="phillyCars2" type="AnimatedSprite2D" parent="0-9 1-0"]
 z_index = 78
 position = Vector2(2937.06, 972.365)
-rotation = 0.495857
+rotation = 0.495858
 sprite_frames = ExtResource("10_0xee0")
 animation = &"car1"
 centered = false
@@ -210,7 +210,7 @@ metadata/_edit_lock_ = true
 
 [node name="car2" type="PathFollow2D" parent="Markers/carPath2"]
 position = Vector2(2937.06, 972.365)
-rotation = 0.495857
+rotation = 0.495858
 progress = 1569.57
 h_offset = -200.0
 v_offset = -187.0

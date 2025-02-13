@@ -207,6 +207,9 @@ point_count = 5
 
 [node name="phillyStreets" type="Node2D"]
 script = ExtResource("1_3m4xb")
+default_cam_zoom = 0.77
+player_cam_offset = Vector2(-350, -100)
+opponent_cam_offset = Vector2(500, -100)
 
 [node name="0-1" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.1, 0.1)
@@ -267,7 +270,7 @@ centered = false
 [node name="phillyCars2" type="AnimatedSprite2D" parent="0-9 1-0"]
 z_index = 78
 position = Vector2(2937.06, 972.365)
-rotation = 0.495857
+rotation = 0.495858
 sprite_frames = ExtResource("13_hvror")
 animation = &"car1"
 centered = false
@@ -499,7 +502,7 @@ metadata/_edit_lock_ = true
 
 [node name="car2" type="PathFollow2D" parent="Markers/carPath2"]
 position = Vector2(2937.06, 972.365)
-rotation = 0.495857
+rotation = 0.495858
 progress = 1569.57
 h_offset = -200.0
 v_offset = -187.0

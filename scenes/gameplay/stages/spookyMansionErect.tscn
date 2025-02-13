@@ -93,6 +93,9 @@ script = ExtResource("1_3sl0w")
 intensity = 0.4
 rain_scale = 3.6
 rain_color = Color(0.4, 0.501961, 0.8, 1)
+default_cam_zoom = 1.0
+player_cam_offset = Vector2(-100, -100)
+opponent_cam_offset = Vector2(150, -100)
 
 [node name="1-1" type="Parallax2D" parent="."]
 
