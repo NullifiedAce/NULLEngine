@@ -34,6 +34,8 @@ var lerp_score:int = 0
 func _ready():
 	Audio.play_music("freakyMenu")
 
+	Ranking.clear_results()
+
 	for i in week_list.weeks.size():
 		var week_sprite:WeekSprite = WeekSprite.new()
 		week_sprite.position.x = 640

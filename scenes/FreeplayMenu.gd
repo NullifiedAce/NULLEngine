@@ -34,6 +34,7 @@ var loaded_chart_info:Dictionary = {
 }
 
 func _ready():
+	Ranking.clear_results()
 	Input.use_accumulated_input
 	super._ready()
 	Audio.play_music("freakyMenu")

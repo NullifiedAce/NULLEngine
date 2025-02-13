@@ -187,6 +187,7 @@ func _process(delta):
 				Global.queued_songs = []
 				Global.variation = "default" # reset for freeplay
 				Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
+				Ranking.clear_results()
 				queue_free()
 
 	if Input.is_action_just_pressed("ui_up"):
