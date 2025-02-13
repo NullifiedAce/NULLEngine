@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Friday Night Funkin': NULL Engine"
-config/version="1.1.0"
+config/version="1.1.0 PRE-RELEASE"
 config/tags=PackedStringArray("2d", "funkin", "rhythm")
 run/main_scene="res://Init.tscn"
 config/use_custom_user_dir=true
@@ -51,7 +51,7 @@ mouse_cursor/custom_image="res://assets/images/cursor/cursor-default.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg", "res://addons/swf/plugin.cfg")
+enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg")
 
 [engine]
 
