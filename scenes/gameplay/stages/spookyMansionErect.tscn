@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://lh12vqwmj0re"]
+[gd_scene load_steps=12 format=3 uid="uid://lh12vqwmj0re"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/stages/spookyMansionErect.gd" id="1_3sl0w"]
 [ext_resource type="Texture2D" uid="uid://cpf4lxlpv7j0u" path="res://assets/images/gameplay/stages/spooky/erect/bgDark.png" id="4_g4div"]
 [ext_resource type="Texture2D" uid="uid://dr7pqlqj2xk7f" path="res://assets/images/gameplay/stages/spooky/erect/bgLight.png" id="5_cpbuy"]
 [ext_resource type="Texture2D" uid="uid://cene0rctnkldp" path="res://assets/images/gameplay/stages/spooky/erect/stairsDark.png" id="6_3q6g1"]
 [ext_resource type="SpriteFrames" uid="uid://dvap421ic27q0" path="res://assets/images/gameplay/stages/spooky/erect/bgtrees.res" id="6_hdmpo"]
+[ext_resource type="AudioStream" uid="uid://dghug5fvtdvce" path="res://assets/sounds/stages/spooky/thunder1.ogg" id="7_kgem3"]
 [ext_resource type="Texture2D" uid="uid://h3xcn0aq6ttn" path="res://assets/images/gameplay/stages/spooky/erect/stairsLight.png" id="7_xfxyp"]
+[ext_resource type="AudioStream" uid="uid://uc1tgua1hmms" path="res://assets/sounds/stages/spooky/thunder2.ogg" id="8_dj4sa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qua63"]
 
@@ -166,3 +168,11 @@ position = Vector2(821.5, 800)
 [node name="Player" type="Node2D" parent="Character Positions"]
 z_index = 300
 position = Vector2(1250, 835)
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Lightning1" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("7_kgem3")
+
+[node name="Lightning2" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("8_dj4sa")

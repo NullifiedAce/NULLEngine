@@ -916,14 +916,14 @@ func update_score_text():
 	var hp_percent:float = (health_bar.value / health_bar.max_value) * 100
 
 	var score_values: Dictionary = {
-		"score": songScore,
+		"score": format_number(songScore),
 		"misses": misses,
 		"accuracy": snapped(accuracy * 100.0, 0.01),
 		"ranks": Ranking.rank_from_accuracy(accuracy * 100.0).name,
 		"health": snapped(hp_percent, 0.01),
-		"combo": combo,
-		"max combo": max_combo,
-		"ghost taps": ghost_taps
+		"combo": format_number(combo),
+		"max combo": format_number(max_combo),
+		"ghost taps": format_number(ghost_taps)
 	}
 
 	var array = str_to_var(SettingsAPI.get_setting("score_arrangement"))
@@ -940,6 +940,27 @@ func update_score_text():
 			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix")
 
 	script_group.call_func("on_update_score_text", [])
+
+func format_number(number: int) -> String:
+	# Handle negative numbers by adding the "minus" sign in advance, as we discard it
+	# when looping over the number.
+	var formatted_number := "-" if sign(number) == -1 else ""
+	var index := 0
+	var number_string := str(abs(number))
+
+	for digit in number_string:
+		formatted_number += digit
+
+		var counter := number_string.length() - index
+
+		# Don't add a comma at the end of the number, but add a comma every 3 digits
+		# (taking into account the number's length).
+		if counter >= 2 and counter % 3 == 1:
+			formatted_number += ","
+
+		index += 1
+
+	return formatted_number
 
 func setup_label_settings():
 	var text_settings = LabelSettings.new()

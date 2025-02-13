@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ch4gdkufvdmy6"]
+[gd_scene load_steps=25 format=3 uid="uid://ch4gdkufvdmy6"]
 
 [ext_resource type="Script" path="res://scenes/FreeplayMenu.gd" id="1_5pt7i"]
 [ext_resource type="Script" path="res://resources/FreeplaySongList.gd" id="2_tlqqb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="3_a0p0u"]
 [ext_resource type="Texture2D" uid="uid://cb4g78s0nksa0" path="res://assets/images/gameplay/icons/icon-dad.png" id="4_c3tt0"]
 [ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="4_ksq8p"]
+[ext_resource type="Texture2D" uid="uid://8x72hfd6b7g6" path="res://assets/images/gameplay/icons/icon-spooky.png" id="5_1t08r"]
 [ext_resource type="Script" path="res://scripts/FreeplayAlphabet.gd" id="5_16n8m"]
 [ext_resource type="Texture2D" uid="uid://erlcw6602qeq" path="res://assets/images/gameplay/icons/icon-pico.png" id="5_mul57"]
 [ext_resource type="Texture2D" uid="uid://bvafd1dvo4ke4" path="res://assets/images/gameplay/icons/icon-bf.png" id="6_udyrg"]
@@ -44,6 +45,24 @@ icon_frames = 2
 difficulties = Array[String](["erect", "nightmare"])
 bg_color = Color(0.686275, 0.4, 0.807843, 1)
 
+[sub_resource type="Resource" id="Resource_cw27x"]
+script = ExtResource("3_7sxe0")
+song = "spookeez"
+display_name = "Spookeez Erect"
+character_icon = ExtResource("5_1t08r")
+icon_frames = 2
+difficulties = Array[String](["erect", "nightmare"])
+bg_color = Color(0.705882, 0.705882, 0.705882, 1)
+
+[sub_resource type="Resource" id="Resource_v8f8f"]
+script = ExtResource("3_7sxe0")
+song = "south"
+display_name = "South Erect"
+character_icon = ExtResource("5_1t08r")
+icon_frames = 2
+difficulties = Array[String](["erect", "nightmare"])
+bg_color = Color(0.835294, 0.494118, 0, 1)
+
 [sub_resource type="Resource" id="Resource_kj5ru"]
 script = ExtResource("3_7sxe0")
 song = "blammed"
@@ -55,7 +74,7 @@ bg_color = Color(0.717647, 0.847059, 0.333333, 1)
 
 [sub_resource type="Resource" id="Resource_bmspx"]
 script = ExtResource("2_tlqqb")
-songs = Array[ExtResource("3_7sxe0")]([SubResource("Resource_qq4qh"), SubResource("Resource_jy1nf"), SubResource("Resource_syvf0"), SubResource("Resource_kj5ru")])
+songs = Array[ExtResource("3_7sxe0")]([SubResource("Resource_qq4qh"), SubResource("Resource_jy1nf"), SubResource("Resource_syvf0"), SubResource("Resource_cw27x"), SubResource("Resource_v8f8f"), SubResource("Resource_kj5ru")])
 
 [node name="FreeplayMenu" type="Node2D"]
 script = ExtResource("1_5pt7i")
