@@ -638,9 +638,9 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 	if data > -1:
 		pressed[data] = key_event.is_pressed()
 
-	if data == -1 and ProjectSettings.get_setting("engine/customization/chart_editor_on_release") and key_event.is_action_pressed("chart_open"):
-		Global.switch_scene("res://scenes/editors/ChartEditor.tscn")
-		return
+	#if data == -1 and ProjectSettings.get_setting("engine/customization/chart_editor_on_release") and key_event.is_action_pressed("chart_open"):
+		#Global.switch_scene("res://scenes/editors/ChartEditor.tscn")
+		#return
 
 	if data == -1 or not Input.is_action_just_pressed(player_strums.controls[data]):
 		return
