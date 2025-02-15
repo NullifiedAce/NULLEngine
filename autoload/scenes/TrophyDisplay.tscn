@@ -409,6 +409,7 @@ offset_left = 8.0
 offset_top = 40.0
 offset_right = 88.0
 offset_bottom = 120.0
+mouse_filter = 2
 
 [node name="Sprite" type="Sprite2D" parent="BG/Trophy"]
 modulate = Color(0, 0, 0, 1)

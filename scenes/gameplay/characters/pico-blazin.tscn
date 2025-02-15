@@ -617,7 +617,7 @@ health_color = Color(0.717647, 0.847059, 0.333333, 1)
 position = Vector2(-118, -243)
 sprite_frames = ExtResource("3_u0xaw")
 animation = &"fight idle pico"
-frame_progress = 0.474802
+frame_progress = 0.744339
 centered = false
 script = ExtResource("4_0tv7e")
 
