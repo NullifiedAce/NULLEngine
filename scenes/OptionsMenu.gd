@@ -20,6 +20,8 @@ func _ready() -> void:
 	Ranking.ranks = Ranking.default_ranks.duplicate(true)
 	RichPresence.set_text("In the menus", "Configuring Options")
 
+	update_tabs(cur_tab)
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		Audio.play_sound("cancelMenu")

@@ -4,8 +4,12 @@ func _process(delta: float) -> void:
 	game.cpu_strums.modulate = Color.TRANSPARENT
 	game.player_strums.position.x = Global.game_size.x / 2 # Forced middlescroll :P
 
+	game.hud_zoom_intensitiy = 0.0
+
 func on_note_hit(note:Note):
 	game.stage.rain_time_scale += 0.7
+
+	game.camera_shake(10.0, 10.0, true, true)
 
 	match note.note_type:
 		"weekend-1-punchlow":

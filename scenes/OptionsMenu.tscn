@@ -37,6 +37,71 @@ fill_to = Vector2(0.5, 0)
 shader = ExtResource("6_iyctw")
 shader_parameter/swag_color = Color(0.352941, 0.282353, 0.4, 1)
 
+[sub_resource type="Animation" id="Animation_a0swf"]
+resource_name = "FromStrum"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OptionPlacement:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OptionPlacement:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StrumEditor:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StrumEditor:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_kf2gg"]
 length = 0.001
 tracks/0/type = "value"
@@ -124,6 +189,35 @@ tracks/6/keys = {
 "values": [Vector2(64, 64)]
 }
 
+[sub_resource type="Animation" id="Animation_ivycs"]
+resource_name = "SwitchTools"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(192, 912), Vector2(192, 192)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OptionPlacement:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(64, 64), Vector2(64, -656)]
+}
+
 [sub_resource type="Animation" id="Animation_7yg25"]
 resource_name = "ToStrum"
 length = 0.5
@@ -187,100 +281,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_a0swf"]
-resource_name = "FromStrum"
-length = 0.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BG:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("OptionPlacement:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("OptionPlacement:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("StrumEditor:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("StrumEditor:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_ivycs"]
-resource_name = "SwitchTools"
-length = 0.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ScrollContainer:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(192, 912), Vector2(192, 192)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("OptionPlacement:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(64, 64), Vector2(64, -656)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h4lpb"]
@@ -403,6 +403,7 @@ grow_horizontal = 0
 grow_vertical = 2
 
 [node name="Controls" type="Control" parent="OptionPlacement/BG"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1132,12 +1133,61 @@ theme_override_constants/outline_size = 9
 theme_override_font_sizes/font_size = 18
 text = "Scroll Speed Type"
 
+[node name="CameraTitle" type="Label" parent="OptionPlacement/BG/Gameplay"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 192.0
+offset_right = 229.0
+offset_bottom = 214.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "CAMERA OPTIONS:"
+
+[node name="CamMove" type="CheckBox" parent="OptionPlacement/BG/Gameplay/CameraTitle"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 137.0
+offset_bottom = 56.0
+tooltip_text = "If unchecked, the camera will stay static on the spectator's camera point."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Camera Movement"
+script = ExtResource("14_qu3w5")
+option = "camera movement"
+
+[node name="CamZoom" type="CheckBox" parent="OptionPlacement/BG/Gameplay/CameraTitle"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 158.0
+offset_bottom = 88.0
+tooltip_text = "I don't think I have to explain this one."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Zoom Camera"
+script = ExtResource("14_qu3w5")
+option = "zoom camera"
+
+[node name="CamShake" type="CheckBox" parent="OptionPlacement/BG/Gameplay/CameraTitle"]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 158.0
+offset_bottom = 120.0
+tooltip_text = "I don't think I have to explain this one."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Camera Shakes"
+script = ExtResource("14_qu3w5")
+option = "camera shake"
+
 [node name="SoundTitles" type="Label" parent="OptionPlacement/BG/Gameplay"]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 288.0
+offset_top = 352.0
 offset_right = 229.0
-offset_bottom = 310.0
+offset_bottom = 374.0
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 24
 text = "SOUND OPTIONS:"
@@ -1194,7 +1244,6 @@ script = ExtResource("14_qu3w5")
 option = "skip intro by default"
 
 [node name="Appearance" type="Control" parent="OptionPlacement/BG"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1366,15 +1415,42 @@ text = "HUD Options:"
 
 [node name="HUDEditor" type="Button" parent="OptionPlacement/BG/Appearance/HUDTitle"]
 layout_mode = 0
-offset_top = 32.0
+offset_top = 64.0
 offset_right = 110.0
-offset_bottom = 52.0
+offset_bottom = 88.0
 tooltip_text = "Opens a new menu to edit the HUD (Head-Up Display)."
 focus_mode = 0
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/font_size = 18
 text = "HUD Editor
 "
+
+[node name="HudZoom" type="CheckBox" parent="OptionPlacement/BG/Appearance/HUDTitle"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 105.0
+offset_bottom = 56.0
+tooltip_text = "Allows the HUD to be zoomed in or out."
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Zoom HUD"
+script = ExtResource("14_qu3w5")
+option = "zoom hud"
+
+[node name="HudShake" type="CheckBox" parent="OptionPlacement/BG/Appearance/HUDTitle"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 32.0
+offset_right = 265.0
+offset_bottom = 56.0
+tooltip_text = "Do I really need to explain this?"
+focus_mode = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "HUD Shakes"
+script = ExtResource("14_qu3w5")
+option = "hud shake"
 
 [node name="Window" type="Control" parent="OptionPlacement/BG"]
 visible = false
@@ -1647,6 +1723,9 @@ text = "TOOLS"
 [connection signal="drag_ended" from="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed" to="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed" method="_on_drag_ended"]
 [connection signal="value_changed" from="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed" to="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed" method="_on_value_changed"]
 [connection signal="item_selected" from="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed Type" to="OptionPlacement/BG/Gameplay/NotesTitle/Scroll Speed Type" method="_on_item_selected"]
+[connection signal="pressed" from="OptionPlacement/BG/Gameplay/CameraTitle/CamMove" to="OptionPlacement/BG/Gameplay/CameraTitle/CamMove" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Gameplay/CameraTitle/CamZoom" to="OptionPlacement/BG/Gameplay/CameraTitle/CamZoom" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Gameplay/CameraTitle/CamShake" to="OptionPlacement/BG/Gameplay/CameraTitle/CamShake" method="_on_pressed"]
 [connection signal="pressed" from="OptionPlacement/BG/Gameplay/SoundTitles/Miss Sounds" to="OptionPlacement/BG/Gameplay/SoundTitles/Miss Sounds" method="_on_pressed"]
 [connection signal="pressed" from="OptionPlacement/BG/Gameplay/MiscTitle/Show MS on Note Hit" to="OptionPlacement/BG/Gameplay/MiscTitle/Show MS on Note Hit" method="_on_pressed"]
 [connection signal="pressed" from="OptionPlacement/BG/Gameplay/MiscTitle/Skip Intro by Default" to="OptionPlacement/BG/Gameplay/MiscTitle/Skip Intro by Default" method="_on_pressed"]
@@ -1658,6 +1737,8 @@ text = "TOOLS"
 [connection signal="pressed" from="OptionPlacement/BG/Appearance/JudgementTitle/Judgement Stacking" to="OptionPlacement/BG/Appearance/JudgementTitle/Judgement Stacking" method="_on_pressed"]
 [connection signal="item_selected" from="OptionPlacement/BG/Appearance/JudgementTitle/Judgement Camera" to="OptionPlacement/BG/Appearance/JudgementTitle/Judgement Camera" method="_on_item_selected"]
 [connection signal="pressed" from="OptionPlacement/BG/Appearance/HUDTitle/HUDEditor" to="." method="_on_hud_editor_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Appearance/HUDTitle/HudZoom" to="OptionPlacement/BG/Appearance/HUDTitle/HudZoom" method="_on_pressed"]
+[connection signal="pressed" from="OptionPlacement/BG/Appearance/HUDTitle/HudShake" to="OptionPlacement/BG/Appearance/HUDTitle/HudShake" method="_on_pressed"]
 [connection signal="pressed" from="OptionPlacement/BG/Window/FPS Counter" to="OptionPlacement/BG/Window/FPS Counter" method="_on_pressed"]
 [connection signal="pressed" from="OptionPlacement/BG/Window/Auto Pause" to="OptionPlacement/BG/Window/Auto Pause" method="_on_pressed"]
 [connection signal="pressed" from="OptionPlacement/BG/Window/VSync" to="OptionPlacement/BG/Window/VSync" method="_on_pressed"]

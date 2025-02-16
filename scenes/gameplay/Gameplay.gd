@@ -48,8 +48,12 @@ var camera_bop_intensitiy:float = Constants.DEFAULT_BOP_INTENSITY -1
 var camera_zoom_rate:int = Constants.DEFAULT_ZOOM_RATE
 var cam_zooming:bool = true
 var cam_switching:bool = true
+var shake_cam:bool = true
+var cam_shake_strength:float = 0.0
+var cam_shake_fade:float = 0.0
 
 var hud_zoom_intensitiy = (Constants.DEFAULT_BOP_INTENSITY - 1.0) * 2
+var shake_hud:bool = false
 
 var icon_bumping:bool = true
 var icon_bumping_interval:int = 1
@@ -547,8 +551,8 @@ func beat_hit(beat:int):
 		position_icons()
 
 	if cam_bumping and beat % camera_zoom_rate == 0:
-		camera.zoom += Vector2(camera_bop_intensitiy, camera_bop_intensitiy)
-		hud.scale += Vector2(hud_zoom_intensitiy, hud_zoom_intensitiy)
+		if SettingsAPI.get_setting("zoom camera"): camera.zoom += Vector2(camera_bop_intensitiy, camera_bop_intensitiy)
+		if SettingsAPI.get_setting("hud camera"): hud.scale += Vector2(hud_zoom_intensitiy, hud_zoom_intensitiy)
 		position_hud()
 
 	character_bop()
@@ -592,6 +596,8 @@ func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.Tra
 	script_group.call_func("on_update_camera", [])
 
 func zoom_camera(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
+	if !SettingsAPI.get_setting("zoom camera"): return
+
 	var cam_tween = get_tree().create_tween()
 	if duration == 0:
 		camera.zoom = Vector2(zoom, zoom)
@@ -607,6 +613,8 @@ func zoom_camera(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tw
 	script_group.call_func("on_camera_zoom", [])
 
 func hud_zoom(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
+	if !SettingsAPI.get_setting("zoom hud"): return
+
 	var hud_tween = get_tree().create_tween()
 	if duration == 0:
 		hud.scale = Vector2(zoom, zoom)
@@ -616,6 +624,16 @@ func hud_zoom(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween
 
 	await hud_tween.finished
 	hud_tween.kill()
+
+func camera_shake(strength:float, fade:float, shake_camera:bool = true, hud_shake:bool = false):
+	cam_shake_strength = strength
+	cam_shake_fade = fade
+
+	shake_cam = shake_cam if SettingsAPI.get_setting("camera shake") else false
+	shake_hud = hud_shake if SettingsAPI.get_setting("hud shake") else false
+
+func random_offset() -> Vector2:
+	return Vector2(Global.rng.randf_range(-cam_shake_strength,cam_shake_strength), Global.rng.randf_range(-cam_shake_strength,cam_shake_strength))
 
 func position_hud():
 	hud.offset.x = (hud.scale.x - 1.0) * -(Global.game_size.x * 0.5)
@@ -1026,6 +1044,13 @@ func _process(delta:float) -> void:
 		camera.zoom = lerp(camera.zoom, Vector2(cam_zoom, cam_zoom), camera_speed)
 		hud.scale = lerp(hud.scale, Vector2.ONE, camera_speed)
 		position_hud()
+
+	# make a options for this later
+	if cam_shake_strength > 0:
+		cam_shake_strength = lerpf(cam_shake_strength, 0.0, cam_shake_fade * delta)
+
+		if shake_cam: camera.offset = random_offset()
+		if shake_hud: hud.offset = random_offset()
 
 	if not ending_song:
 		Conductor.position += (delta * 1000.0) * Conductor.rate

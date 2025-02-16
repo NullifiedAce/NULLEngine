@@ -101,6 +101,7 @@ song_list = SubResource("Resource_bmspx")
 [node name="bg" type="Sprite2D" parent="."]
 position = Vector2(640, 360)
 texture = ExtResource("3_a0p0u")
+flip_h = true
 
 [node name="__TemplateSong__" parent="." instance=ExtResource("4_ksq8p")]
 visible = false

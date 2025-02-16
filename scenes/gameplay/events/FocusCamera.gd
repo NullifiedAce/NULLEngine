@@ -39,7 +39,7 @@ func _ready() -> void:
 		if !game.spectator:
 			push_warning("No GF to focus on.")
 			return
-		print("Focusing camera on opponent.")
+		print("Focusing camera on spectator.")
 		var gfPoint = game.spectator.camera_pos.global_position + game.stage.spectator_cam_offset
 		targetX += gfPoint.x
 		targetY += gfPoint.y
@@ -47,5 +47,6 @@ func _ready() -> void:
 		push_warning("Unknown camera focus: " + str(parameters))
 
 	var durSeconds = Conductor.step_crochet * parameters["duration"] / 1000
-	game.update_camera(targetX, targetY, durSeconds, parameters["transitionType"], parameters["easeType"])
+	if SettingsAPI.get_setting("camera movement"):
+		game.update_camera(targetX, targetY, durSeconds, parameters["transitionType"], parameters["easeType"])
 	queue_free()

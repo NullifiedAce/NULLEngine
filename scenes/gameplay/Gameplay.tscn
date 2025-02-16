@@ -115,7 +115,7 @@ offset_right = 339.0
 offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Score: 0 - Misses: 0 - Accuracy: 0% [N/A]"
+text = "Score Text (This updates via code)"
 horizontal_alignment = 1
 autowrap_mode = 3
 
