@@ -47,6 +47,9 @@ var cameraFocusPoint: Vector2 = Vector2(0, 0)
 
 func _ready():
 	anim_sprite.speed_scale = Conductor.rate
+	for i in get_children():
+		if i is AnimatedSprite:
+			i.speed_scale = Conductor.rate # Set this if there are more than one AnimatedSprites. Such as the dark variants.
 	anim_player.speed_scale = Conductor.rate
 	anim_sprite.playing = false
 

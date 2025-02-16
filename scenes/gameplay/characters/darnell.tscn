@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Character.gd" id="1_ng5y5"]
 [ext_resource type="Texture2D" uid="uid://bb4v0d5dmjwd0" path="res://assets/images/gameplay/icons/icon-darnell.png" id="2_lvj21"]
-[ext_resource type="SpriteFrames" uid="uid://uacx5frg8ads" path="res://assets/images/gameplay/characters/darnell/darnell.xml" id="3_3to3i"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/darnell/darnell.res" id="3_w2mi7"]
 [ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="4_hr83i"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
@@ -280,10 +280,8 @@ health_color = Color(0.45098, 0.368627, 0.690196, 1)
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-304, -680)
-sprite_frames = ExtResource("3_3to3i")
-animation = &"Idle"
-frame = 27
-frame_progress = 1.0
+sprite_frames = ExtResource("3_w2mi7")
+animation = &"Down Flame Loop"
 centered = false
 script = ExtResource("4_hr83i")
 
