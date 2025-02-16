@@ -195,15 +195,12 @@ func _process(delta):
 			song_tracks.remove_child(m)
 
 		var music_path:String = "res://assets/songs/%s/audio/" % song_list.songs[cur_selected].song.to_lower()
+
 		if DirAccess.dir_exists_absolute(music_path):
-			var dir := DirAccess.open(music_path)
-			for file in dir.get_files():
-				var music:AudioStreamPlayer = AudioStreamPlayer.new()
-				for f in Global.audio_formats:
-					if file.ends_with(f + ".import"):
-						music.stream = load(music_path + file.replace(".import",""))
-						music.pitch_scale = Conductor.rate
-						song_tracks.add_child(music)
+			var dir = DirAccess.open(music_path)
+
+			load_track(music_path, "Inst")
+
 		for music in song_tracks.get_children():
 			music.play()
 	elif Input.is_action_just_pressed("ui_accept"):
@@ -230,6 +227,19 @@ func _process(delta):
 	if cur_icon > -1:
 		var icon:Sprite2D = songs.get_child(cur_icon).get_node('HealthIcon')
 		icon.scale = lerp(icon.scale, Vector2.ONE, delta * 9.0)
+
+func load_track(music_path:String, fileName:String):
+	var track:AudioStreamPlayer = AudioStreamPlayer.new()
+	track.name = fileName
+	if Global.variation == "default":
+		track.stream = load(music_path + fileName + ".ogg")
+	else:
+		track.stream = load(music_path + fileName + "-" + Global.variation + ".ogg")
+		print(music_path + fileName + "-" + Global.variation + ".ogg")
+	track.pitch_scale = Conductor.rate
+
+	track.bus = "Music"
+	song_tracks.add_child(track)
 
 func on_beat_hit(beat:int) -> void:
 	if cur_icon > -1:

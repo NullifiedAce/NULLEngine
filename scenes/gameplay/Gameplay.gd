@@ -552,7 +552,7 @@ func beat_hit(beat:int):
 
 	if cam_bumping and beat % camera_zoom_rate == 0:
 		if SettingsAPI.get_setting("zoom camera"): camera.zoom += Vector2(camera_bop_intensitiy, camera_bop_intensitiy)
-		if SettingsAPI.get_setting("hud camera"): hud.scale += Vector2(hud_zoom_intensitiy, hud_zoom_intensitiy)
+		if SettingsAPI.get_setting("zoom hud"): hud.scale += Vector2(hud_zoom_intensitiy, hud_zoom_intensitiy)
 		position_hud()
 
 	character_bop()
