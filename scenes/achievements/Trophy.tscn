@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://cowjide0hmwm5"]
 
 [ext_resource type="Texture2D" uid="uid://cwrt4rlavcb58" path="res://assets/images/menus/achievements/trophies.png" id="1_6emci"]
-[ext_resource type="Script" path="res://scenes/achievements/Trophy.gd" id="1_nf08f"]
+[ext_resource type="Script" uid="uid://clyvi8xm7oo3v" path="res://scenes/achievements/Trophy.gd" id="1_nf08f"]
 [ext_resource type="Texture2D" uid="uid://5pduqhtq7gk7" path="res://assets/images/menus/achievements/particle.png" id="2_wq8ll"]
 [ext_resource type="AudioStream" uid="uid://b0h158k7rnbrk" path="res://assets/sounds/character select/CS_unlock.ogg" id="4_b5453"]
 [ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="5_pa1s8"]
@@ -53,10 +53,10 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_86n1q"]
 shader = SubResource("Shader_lk7e0")
-shader_parameter/hue = null
-shader_parameter/saturation = null
+shader_parameter/hue = 0.0
+shader_parameter/saturation = 0.0
 shader_parameter/brightness = 1.21125e-05
-shader_parameter/contrast = null
+shader_parameter/contrast = 0.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_61uhc"]
 diffuse_texture = ExtResource("1_6emci")
@@ -180,8 +180,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ic0o3"]
 _data = {
-"RESET": SubResource("Animation_l7yav"),
-"unlock": SubResource("Animation_7nfwh")
+&"RESET": SubResource("Animation_l7yav"),
+&"unlock": SubResource("Animation_7nfwh")
 }
 
 [node name="Trophy" type="Control"]

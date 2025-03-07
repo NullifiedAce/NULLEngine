@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://duhqsh5l5bbtm"]
 
-[ext_resource type="Script" path="res://scenes/TitleScreen.gd" id="1_eg0nr"]
+[ext_resource type="Script" uid="uid://udmhyux244sf" path="res://scenes/TitleScreen.gd" id="1_eg0nr"]
 [ext_resource type="Material" uid="uid://dlwbyy60pp0e2" path="res://assets/shaders/TitleScreenShaderMaterial.tres" id="2_f6nud"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="2_rhavx"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="2_rhavx"]
 [ext_resource type="SpriteFrames" uid="uid://xmmicsrmtycf" path="res://assets/images/titlescreen/gfDanceTitle.res" id="2_u0gnt"]
 [ext_resource type="SpriteFrames" path="res://assets/images/titlescreen/logoBumpin.res" id="4_dmwg3"]
 [ext_resource type="SpriteFrames" uid="uid://6vecp03qpxmj" path="res://assets/images/titlescreen/titleEnter.res" id="5_0ol1a"]
@@ -280,10 +280,10 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j2p0c"]
 _data = {
-"danceLeft": SubResource("Animation_ldyfc"),
-"danceLeft_noFL": SubResource("Animation_n5wdf"),
-"danceRight": SubResource("Animation_mht0r"),
-"danceRight_noFL": SubResource("Animation_sca7u")
+&"danceLeft": SubResource("Animation_ldyfc"),
+&"danceLeft_noFL": SubResource("Animation_n5wdf"),
+&"danceRight": SubResource("Animation_mht0r"),
+&"danceRight_noFL": SubResource("Animation_sca7u")
 }
 
 [node name="TitleScreen" type="Node2D"]

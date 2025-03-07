@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://dpef18mo6fqko"]
 
-[ext_resource type="Script" path="res://scripts/Character.gd" id="1_li7di"]
+[ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_li7di"]
 [ext_resource type="Texture2D" uid="uid://erlcw6602qeq" path="res://assets/images/gameplay/icons/icon-pico.png" id="2_4sg0p"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/pico/normal.res" id="3_ldhoe"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="4_crgry"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_crgry"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "idle"
@@ -468,15 +468,15 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
 _data = {
-"idle": SubResource("Animation_epq6v"),
-"singDOWN": SubResource("Animation_8yhx3"),
-"singDOWNmiss": SubResource("Animation_erg58"),
-"singLEFT": SubResource("Animation_yk1cf"),
-"singLEFTmiss": SubResource("Animation_fhcn2"),
-"singRIGHT": SubResource("Animation_4fmcm"),
-"singRIGHTmiss": SubResource("Animation_j4b27"),
-"singUP": SubResource("Animation_55yur"),
-"singUPmiss": SubResource("Animation_uc8le")
+&"idle": SubResource("Animation_epq6v"),
+&"singDOWN": SubResource("Animation_8yhx3"),
+&"singDOWNmiss": SubResource("Animation_erg58"),
+&"singLEFT": SubResource("Animation_yk1cf"),
+&"singLEFTmiss": SubResource("Animation_fhcn2"),
+&"singRIGHT": SubResource("Animation_4fmcm"),
+&"singRIGHTmiss": SubResource("Animation_j4b27"),
+&"singUP": SubResource("Animation_55yur"),
+&"singUPmiss": SubResource("Animation_uc8le")
 }
 
 [node name="pico" type="Node2D"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://3ui23h4jvu4j"]
 
-[ext_resource type="Script" path="res://scripts/Character.gd" id="1_m7byo"]
+[ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_m7byo"]
 [ext_resource type="Texture2D" uid="uid://bggn4j2x81mod" path="res://assets/images/gameplay/icons/icon-gf.png" id="2_ex7u1"]
 [ext_resource type="SpriteFrames" uid="uid://tmpfiub6j2gs" path="res://assets/images/gameplay/characters/gf/normal.res" id="3_bet23"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="4_268xn"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_268xn"]
 [ext_resource type="SpriteFrames" uid="uid://du1i623l6dbr1" path="res://assets/images/gameplay/characters/gf/dark.res" id="5_g0bf3"]
 
 [sub_resource type="Animation" id="Animation_nd6ht"]
@@ -409,10 +409,10 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
 _data = {
-"cheer": SubResource("Animation_nd6ht"),
-"danceLeft": SubResource("Animation_epq6v"),
-"danceRight": SubResource("Animation_7jg6a"),
-"scared": SubResource("Animation_fyb3s")
+&"cheer": SubResource("Animation_nd6ht"),
+&"danceLeft": SubResource("Animation_epq6v"),
+&"danceRight": SubResource("Animation_7jg6a"),
+&"scared": SubResource("Animation_fyb3s")
 }
 
 [node name="gf" type="Node2D"]

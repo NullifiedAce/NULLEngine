@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bg08f7hj335ld"]
 
 [ext_resource type="SpriteFrames" path="res://assets/images/menus/storymenu/characters/girlfriend.res" id="1_grdtn"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="2_208hb"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="2_208hb"]
 
 [sub_resource type="Animation" id="Animation_tmjrl"]
 resource_name = "idle"
@@ -44,7 +44,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75ytl"]
 _data = {
-"idle": SubResource("Animation_tmjrl")
+&"idle": SubResource("Animation_tmjrl")
 }
 
 [node name="gf" type="Node2D"]

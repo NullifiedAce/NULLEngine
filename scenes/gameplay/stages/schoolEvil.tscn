@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4njerl6jit4y"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/stages/schoolEvil.gd" id="1_rw3jb"]
+[ext_resource type="Script" uid="uid://drcpupdpnrw07" path="res://scenes/gameplay/stages/schoolEvil.gd" id="1_rw3jb"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/school/animatedEvilSchool.res" id="2_at60x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jil70"]

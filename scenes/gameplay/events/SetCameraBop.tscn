@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://fe0jdbe6vmew"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/events/SetCameraBop.gd" id="1_ky7lk"]
+[ext_resource type="Script" uid="uid://1avkadc2uqfh" path="res://scenes/gameplay/events/SetCameraBop.gd" id="1_ky7lk"]
 
 [node name="SetCameraBop" type="Node2D"]
 script = ExtResource("1_ky7lk")

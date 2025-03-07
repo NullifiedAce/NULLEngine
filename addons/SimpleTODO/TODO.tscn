@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://yf8y5e74vv4o"]
 
-[ext_resource type="Script" path="res://addons/SimpleTODO/TODO.gd" id="1_wo5wb"]
+[ext_resource type="Script" uid="uid://de6is7c2ilf2v" path="res://addons/SimpleTODO/TODO.gd" id="1_wo5wb"]
 
 [node name="TODO" type="Control"]
 clip_contents = true

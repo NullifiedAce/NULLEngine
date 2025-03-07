@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dvvpqyw0twvsd"]
 
-[ext_resource type="Script" path="res://scenes/options/StrumEditor.gd" id="1_4yj7y"]
+[ext_resource type="Script" uid="uid://dnobfaihi1vtc" path="res://scenes/options/StrumEditor.gd" id="1_4yj7y"]
 [ext_resource type="PackedScene" uid="uid://w5olx2s2jovt" path="res://scenes/gameplay/strumlines/4K.tscn" id="1_tt3e8"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_ctt8c"]
 [ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="2_xf7ns"]

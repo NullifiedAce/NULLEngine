@@ -1,7 +1,7 @@
 [gd_scene load_steps=37 format=3 uid="uid://ceqkxfben3ivj"]
 
-[ext_resource type="Script" path="res://autoload/scripts/TrophyHandler.gd" id="1_ef356"]
-[ext_resource type="Script" path="res://resources/TrophyItem.gd" id="2_5hf7t"]
+[ext_resource type="Script" uid="uid://d0io7gyqibbdq" path="res://autoload/scripts/TrophyHandler.gd" id="1_ef356"]
+[ext_resource type="Script" uid="uid://dbnyvm7jk3io8" path="res://resources/TrophyItem.gd" id="2_5hf7t"]
 [ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="3_axsf8"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="4_cruty"]
 [ext_resource type="Texture2D" uid="uid://cwrt4rlavcb58" path="res://assets/images/menus/achievements/trophies.png" id="4_uvjbk"]
@@ -241,10 +241,10 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c0hth"]
 shader = SubResource("Shader_0db06")
-shader_parameter/hue = null
-shader_parameter/saturation = null
+shader_parameter/hue = 0.0
+shader_parameter/saturation = 0.0
 shader_parameter/brightness = 1.21125e-05
-shader_parameter/contrast = null
+shader_parameter/contrast = 0.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_q8rcx"]
 diffuse_texture = ExtResource("4_uvjbk")
@@ -361,8 +361,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ic0o3"]
 _data = {
-"RESET": SubResource("Animation_l7yav"),
-"unlock": SubResource("Animation_7nfwh")
+&"RESET": SubResource("Animation_l7yav"),
+&"unlock": SubResource("Animation_7nfwh")
 }
 
 [node name="TrophyDisplay" type="CanvasLayer"]

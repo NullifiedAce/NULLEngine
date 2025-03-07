@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://duwe4xdm2yqc3"]
 
-[ext_resource type="Script" path="res://autoload/scenes/VolumeSlider.gd" id="1_yba7m"]
+[ext_resource type="Script" uid="uid://bs8litgxwixv7" path="res://autoload/scenes/VolumeSlider.gd" id="1_yba7m"]
 [ext_resource type="Theme" uid="uid://c7bhikvxte264" path="res://assets/styles/nova_purple.tres" id="2_b2shr"]
 [ext_resource type="Theme" uid="uid://br6hapg0jupnv" path="res://assets/styles/nova_purple_panel.tres" id="2_j2bc3"]
 [ext_resource type="SpriteFrames" uid="uid://c1ewu5e3bvsr4" path="res://assets/images/material_icons/volume.tres" id="3_3x2vh"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cpvmujqng6bmj"]
 
-[ext_resource type="Script" path="res://scenes/AchievementsMenu.gd" id="1_lj40j"]
+[ext_resource type="Script" uid="uid://w1fcl262csw1" path="res://scenes/AchievementsMenu.gd" id="1_lj40j"]
 [ext_resource type="Texture2D" uid="uid://bf0pjitkjn6tp" path="res://assets/images/gameplay/stages/stage/stageback.png" id="1_tu0ey"]
 [ext_resource type="Texture2D" uid="uid://yjeat30yq2eo" path="res://assets/images/gameplay/stages/stage/stagefront.png" id="2_cnosk"]
 [ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="2_scvb6"]

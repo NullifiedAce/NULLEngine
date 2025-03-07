@@ -235,8 +235,6 @@ func _ready() -> void:
 	Conductor.change_bpm(METADATA.timeChanges[0]["bpm"])
 	Conductor.position = Conductor.crochet * -5
 
-
-
 	gen_song()
 	load_events()
 
@@ -248,7 +246,14 @@ func _ready() -> void:
 
 	cpu_strums = load("res://scenes/gameplay/strumlines/4K.tscn").instantiate()
 	cpu_strums.note_skin = ui_skin
+	cpu_strums.handle_input = false
 	strumlines.add_child(cpu_strums)
+
+	for strum in cpu_strums.get_children():
+		strum.animation_finished.connect(func(): \
+			if strum.animation.ends_with("confirm"): \
+				strum.play_anim("static") \
+		)
 
 	player_strums = load("res://scenes/gameplay/strumlines/4K.tscn").instantiate()
 	player_strums.note_skin = ui_skin
@@ -886,12 +891,6 @@ func opponent_note_hit(note:Note):
 		if sing_anim.ends_with("DOWN-alt"):
 			opponent.special_anim = true
 			opponent.anim_timer = 3
-
-	#var data:int = note.direction
-	#var receptor:Receptor = cpu_strums.get_child(data)
-	#receptor.play_anim("confirm")
-	#await get_tree().create_timer(0.1).timeout
-	#receptor.play_anim("static")
 
 func applyScore(score:int, daRating:String, healthChange:float, isComboBreak:bool):
 	match daRating:

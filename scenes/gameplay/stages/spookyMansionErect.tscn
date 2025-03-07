@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://lh12vqwmj0re"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/stages/spookyMansionErect.gd" id="1_3sl0w"]
+[ext_resource type="Script" uid="uid://shqpb108e6sc" path="res://scenes/gameplay/stages/spookyMansionErect.gd" id="1_3sl0w"]
 [ext_resource type="Texture2D" uid="uid://cpf4lxlpv7j0u" path="res://assets/images/gameplay/stages/spooky/erect/bgDark.png" id="4_g4div"]
 [ext_resource type="Texture2D" uid="uid://dr7pqlqj2xk7f" path="res://assets/images/gameplay/stages/spooky/erect/bgLight.png" id="5_cpbuy"]
 [ext_resource type="Texture2D" uid="uid://cene0rctnkldp" path="res://assets/images/gameplay/stages/spooky/erect/stairsDark.png" id="6_3q6g1"]
@@ -85,10 +85,10 @@ void fragment() {
 shader = SubResource("Shader_ns3go")
 shader_parameter/uScale = 3.6
 shader_parameter/uIntensity = 0.4
-shader_parameter/uTime = null
-shader_parameter/uPuddleY = null
-shader_parameter/uPuddleScaleY = null
-shader_parameter/uRainColor = null
+shader_parameter/uTime = 0.0
+shader_parameter/uPuddleY = 0.0
+shader_parameter/uPuddleScaleY = 0.0
+shader_parameter/uRainColor = Vector3(0, 0, 0)
 
 [node name="stage" type="Node2D"]
 script = ExtResource("1_3sl0w")

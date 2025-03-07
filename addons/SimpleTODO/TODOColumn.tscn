@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bga0tfe37uva2"]
 
-[ext_resource type="Script" path="res://addons/SimpleTODO/TODOColumn.gd" id="1_6bfuv"]
+[ext_resource type="Script" uid="uid://d2dprka61w3yp" path="res://addons/SimpleTODO/TODOColumn.gd" id="1_6bfuv"]
 [ext_resource type="PackedScene" uid="uid://cwcwdmxxpf65e" path="res://addons/SimpleTODO/ColumnHeader.tscn" id="2_0fkhl"]
 
 [sub_resource type="StyleBoxFlat" id="3"]

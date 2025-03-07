@@ -10,7 +10,7 @@ func _ready() -> void:
 	if not parameters.has("duration"):
 		parameters["duration"] = 4
 	if not parameters.has("transitionType"):
-		parameters["transitionType"] = Tween.TRANS_QUAD
+		parameters["transitionType"] = Tween.TRANS_SINE
 	if not parameters.has("easeType"):
 		parameters["easeType"] = Tween.EASE_OUT
 

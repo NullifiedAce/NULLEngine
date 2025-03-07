@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ckfohn216wwek"]
 
-[ext_resource type="Script" path="res://scenes/options/TextEdit.gd" id="1_4j62x"]
+[ext_resource type="Script" uid="uid://b5tp15cppggub" path="res://scenes/options/TextEdit.gd" id="1_4j62x"]
 
 [node name="TextEdit" type="TextEdit"]
 offset_right = 8.0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bdesiystlxdb2"]
 
-[ext_resource type="Script" path="res://addons/SimpleTODO/TODOItem.gd" id="1_ecqce"]
+[ext_resource type="Script" uid="uid://dq86q8lrmiaq5" path="res://addons/SimpleTODO/TODOItem.gd" id="1_ecqce"]
 
 [node name="TODOItem" type="HBoxContainer"]
 offset_right = 315.0

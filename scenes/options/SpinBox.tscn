@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://soyj6f0btagr"]
 
-[ext_resource type="Script" path="res://scenes/options/SpinBox.gd" id="1_emqkl"]
+[ext_resource type="Script" uid="uid://djg4bpom1ft8m" path="res://scenes/options/SpinBox.gd" id="1_emqkl"]
 
 [node name="SpinBox" type="SpinBox"]
 offset_right = 83.0625

@@ -1,11 +1,11 @@
 [gd_scene load_steps=17 format=3 uid="uid://cccq8x62cccmh"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/stages/PhillyBlazin.gd" id="1_wjjk6"]
+[ext_resource type="Script" uid="uid://kjajkn85d5bm" path="res://scenes/gameplay/stages/PhillyBlazin.gd" id="1_wjjk6"]
 [ext_resource type="Texture2D" uid="uid://c5gwlwh4q31k1" path="res://assets/levels/weekend1/images/phillyBlazin/skyBlur.png" id="2_v2nwi"]
 [ext_resource type="SpriteFrames" path="res://assets/levels/weekend1/images/phillyBlazin/lightning.res" id="3_nb515"]
 [ext_resource type="Texture2D" uid="uid://rrh6wuqxk3n0" path="res://assets/levels/weekend1/images/phillyBlazin/streetBlur.png" id="4_buul3"]
-[ext_resource type="Shader" path="res://assets/shaders/rain.gdshader" id="4_we2qc"]
-[ext_resource type="Shader" path="res://assets/shaders/MultiplyShader.gdshader" id="5_ka6ya"]
+[ext_resource type="Shader" uid="uid://dagdovuph785s" path="res://assets/shaders/rain.gdshader" id="4_we2qc"]
+[ext_resource type="Shader" uid="uid://c6lkaqkg2vwp7" path="res://assets/shaders/MultiplyShader.gdshader" id="5_ka6ya"]
 [ext_resource type="AudioStream" uid="uid://86to0x2ppw2" path="res://assets/levels/weekend1/sounds/Lightning1.ogg" id="6_sisba"]
 [ext_resource type="AudioStream" uid="uid://bofmi5ayscev7" path="res://assets/levels/weekend1/sounds/Lightning2.ogg" id="7_0g2un"]
 [ext_resource type="AudioStream" uid="uid://ddnt60n0n1anq" path="res://assets/levels/weekend1/sounds/Lightning3.ogg" id="8_lkg3m"]
@@ -53,18 +53,18 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g68j8"]
 _data = {
-"RESET": SubResource("Animation_0wt5r"),
-"strike": SubResource("Animation_glu58")
+&"RESET": SubResource("Animation_0wt5r"),
+&"strike": SubResource("Animation_glu58")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yx1aw"]
 shader = ExtResource("4_we2qc")
-shader_parameter/uScale = null
-shader_parameter/uIntensity = null
-shader_parameter/uTime = null
-shader_parameter/uPuddleY = null
-shader_parameter/uPuddleScaleY = null
-shader_parameter/uRainColor = null
+shader_parameter/uScale = 0.0
+shader_parameter/uIntensity = 0.0
+shader_parameter/uTime = 0.0
+shader_parameter/uPuddleY = 0.0
+shader_parameter/uPuddleScaleY = 0.0
+shader_parameter/uRainColor = Vector3(0, 0, 0)
 
 [node name="phillyBlazin" type="Node2D"]
 script = ExtResource("1_wjjk6")

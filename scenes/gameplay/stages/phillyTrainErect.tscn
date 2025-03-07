@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dpm88m7ykgy17"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/stages/phillyTrainErect.gd" id="1_echlm"]
+[ext_resource type="Script" uid="uid://b7s70il5joub2" path="res://scenes/gameplay/stages/phillyTrainErect.gd" id="1_echlm"]
 [ext_resource type="Texture2D" uid="uid://b4tkmf8jnndef" path="res://assets/images/gameplay/stages/philly/erect/sky.png" id="2_51iud"]
 [ext_resource type="Texture2D" uid="uid://3pdwcagq4d5e" path="res://assets/images/gameplay/stages/philly/erect/city.png" id="3_ukspo"]
 [ext_resource type="Texture2D" uid="uid://cgu2nlqtpso0c" path="res://assets/images/gameplay/stages/philly/win.png" id="4_0p77i"]
@@ -58,27 +58,27 @@ shader = SubResource("Shader_fvbm6")
 shader_parameter/hue = -26.0
 shader_parameter/saturation = -16.0
 shader_parameter/brightness = -4.99999
-shader_parameter/contrast = null
+shader_parameter/contrast = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b4yj8"]
 shader = SubResource("Shader_fvbm6")
 shader_parameter/hue = -26.0
 shader_parameter/saturation = -16.0
-shader_parameter/brightness = null
+shader_parameter/brightness = 0.0
 shader_parameter/contrast = -4.99999
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o2pnb"]
 shader = SubResource("Shader_fvbm6")
 shader_parameter/hue = -26.0
 shader_parameter/saturation = -16.0
-shader_parameter/brightness = null
+shader_parameter/brightness = 0.0
 shader_parameter/contrast = -4.99999
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_msg4n"]
 shader = SubResource("Shader_fvbm6")
 shader_parameter/hue = -26.0
 shader_parameter/saturation = -16.0
-shader_parameter/brightness = null
+shader_parameter/brightness = 0.0
 shader_parameter/contrast = -4.99999
 
 [node name="phillyTrainErect" type="Node2D"]

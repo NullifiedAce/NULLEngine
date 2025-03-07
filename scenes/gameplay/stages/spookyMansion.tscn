@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bv81gapin4vog"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/stages/spookyMansion.gd" id="1_pmnw3"]
+[ext_resource type="Script" uid="uid://cxoq1tmhc0043" path="res://scenes/gameplay/stages/spookyMansion.gd" id="1_pmnw3"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/spooky/halloween_bg.res" id="2_c5lkq"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="3_j3ley"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="3_j3ley"]
 
 [node name="stage" type="Node2D"]
 script = ExtResource("1_pmnw3")

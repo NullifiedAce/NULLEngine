@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=3 uid="uid://ukeunwpoloq5"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/stages/phillyStreetsErect.gd" id="1_3m4xb"]
+[ext_resource type="Script" uid="uid://05pvcaa8xroq" path="res://scenes/gameplay/stages/phillyStreetsErect.gd" id="1_3m4xb"]
 [ext_resource type="Texture2D" uid="uid://b2b5ybn487gd1" path="res://assets/levels/weekend1/images/phillyStreets/phillySkybox.png" id="2_i3747"]
 [ext_resource type="Texture2D" uid="uid://dij6k4prrwfy0" path="res://assets/levels/weekend1/images/phillyStreets/erect/phillySkyline.png" id="3_vkluv"]
 [ext_resource type="Texture2D" uid="uid://0luqqjrvvix8" path="res://assets/levels/weekend1/images/phillyStreets/erect/phillyForegroundCity.png" id="4_e6rul"]
@@ -15,11 +15,11 @@
 [ext_resource type="SpriteFrames" path="res://assets/levels/weekend1/images/phillyStreets/erect/phillyCars.res" id="13_hvror"]
 [ext_resource type="Texture2D" uid="uid://dqgictmw3uv0o" path="res://assets/levels/weekend1/images/phillyStreets/phillyTraffic_lightmap.png" id="14_2lg8h"]
 [ext_resource type="SpriteFrames" path="res://assets/levels/weekend1/images/phillyStreets/erect/phillyTraffic.res" id="14_6lidt"]
-[ext_resource type="Shader" path="res://assets/shaders/rain.gdshader" id="15_3l5nq"]
+[ext_resource type="Shader" uid="uid://dagdovuph785s" path="res://assets/shaders/rain.gdshader" id="15_3l5nq"]
 [ext_resource type="SpriteFrames" path="res://assets/levels/weekend1/images/phillyStreets/erect/paper.res" id="16_wr2l8"]
 [ext_resource type="Texture2D" uid="uid://ccmarij0otfu1" path="res://assets/levels/weekend1/images/phillyStreets/erect/mistMid.png" id="17_jidxk"]
 [ext_resource type="Texture2D" uid="uid://dt0bhd2jjbviy" path="res://assets/levels/weekend1/images/phillyStreets/erect/mistBack.png" id="18_4l46d"]
-[ext_resource type="Shader" path="res://assets/shaders/gaussianBlur.gdshader" id="18_30g6m"]
+[ext_resource type="Shader" uid="uid://bs5i3wuy2vgx0" path="res://assets/shaders/gaussianBlur.gdshader" id="18_30g6m"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tggxm"]
 blend_mode = 1
@@ -193,7 +193,7 @@ shader_parameter/uIntensity = 0.0
 shader_parameter/uTime = 0.0
 shader_parameter/uPuddleY = 0.0
 shader_parameter/uPuddleScaleY = 0.0
-shader_parameter/uRainColor = null
+shader_parameter/uRainColor = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ilci"]
 shader = ExtResource("18_30g6m")

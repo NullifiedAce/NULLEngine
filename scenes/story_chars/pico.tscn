@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bfclrldyxl53w"]
 
 [ext_resource type="SpriteFrames" path="res://assets/images/menus/storymenu/characters/pico.res" id="1_5pc1c"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="2_l4fg5"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="2_l4fg5"]
 
 [sub_resource type="Animation" id="Animation_buryq"]
 resource_name = "idle"
@@ -44,7 +44,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pmb0v"]
 _data = {
-"idle": SubResource("Animation_buryq")
+&"idle": SubResource("Animation_buryq")
 }
 
 [node name="pico" type="Node2D"]

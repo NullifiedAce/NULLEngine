@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bm5kgxle4i1v5"]
 
-[ext_resource type="Script" path="res://scripts/debug/AudioVisTest.gd" id="1_n8v7f"]
+[ext_resource type="Script" uid="uid://bdsgr0skffsel" path="res://scripts/debug/AudioVisTest.gd" id="1_n8v7f"]
 [ext_resource type="Texture2D" uid="uid://bgk48t11fpyuf" path="res://assets/images/gameplay/icons/icon-face.png" id="3_oya2f"]
 [ext_resource type="Texture2D" uid="uid://dvn5tjknf10im" path="res://assets/images/gameplay/characters/aBot/viz10000.png" id="6_g042k"]
 [ext_resource type="Texture2D" uid="uid://bkwiokh37x3qc" path="res://assets/images/gameplay/characters/aBot/viz40000.png" id="6_pp8ey"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d0ftkcse2fuko" path="res://assets/images/gameplay/characters/aBot/viz30000.png" id="8_jybgv"]
 [ext_resource type="Texture2D" uid="uid://gdrne85v2ybt" path="res://assets/images/gameplay/characters/aBot/viz60000.png" id="8_vw3y5"]
 [ext_resource type="Texture2D" uid="uid://dpp7i08gget01" path="res://assets/images/gameplay/characters/aBot/viz70000.png" id="9_5uvyg"]
-[ext_resource type="Script" path="res://scenes/gameplay/audio_viz/AudioVizBars.gd" id="10_mah4b"]
+[ext_resource type="Script" uid="uid://b77ohh56bw485" path="res://scenes/gameplay/audio_viz/AudioVizBars.gd" id="10_mah4b"]
 
 [node name="AudioVisTest" type="Control"]
 layout_mode = 3

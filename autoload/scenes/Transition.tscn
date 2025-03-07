@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://clxuymo1u5elo"]
 
-[ext_resource type="Script" path="res://autoload/scenes/Transition.gd" id="1_ojhhb"]
+[ext_resource type="Script" uid="uid://0utfihwjnekr" path="res://autoload/scenes/Transition.gd" id="1_ojhhb"]
 
 [sub_resource type="Gradient" id="Gradient_m4426"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
@@ -68,8 +68,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g6a2m"]
 _data = {
-"in": SubResource("Animation_f2xjl"),
-"out": SubResource("Animation_xw8xl")
+&"in": SubResource("Animation_f2xjl"),
+&"out": SubResource("Animation_xw8xl")
 }
 
 [node name="Transition" type="CanvasLayer"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwcwdmxxpf65e"]
 
-[ext_resource type="Script" path="res://addons/SimpleTODO/ColumnHeader.gd" id="1_kya6i"]
+[ext_resource type="Script" uid="uid://1uqwfirtp7k1" path="res://addons/SimpleTODO/ColumnHeader.gd" id="1_kya6i"]
 
 [node name="Header" type="HBoxContainer"]
 script = ExtResource("1_kya6i")

@@ -1,12 +1,12 @@
 [gd_scene load_steps=29 format=3 uid="uid://cnyxswxrj56qj"]
 
-[ext_resource type="Script" path="res://scenes/OptionsMenu.gd" id="1_khemi"]
+[ext_resource type="Script" uid="uid://4qlojmxc10at" path="res://scenes/OptionsMenu.gd" id="1_khemi"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_n4251"]
 [ext_resource type="Theme" uid="uid://c5ev302cjh1mu" path="res://assets/styles/FunkinOptions.tres" id="3_dbjk5"]
-[ext_resource type="Script" path="res://scenes/options/BindButton.gd" id="4_ly35g"]
+[ext_resource type="Script" uid="uid://ole77fh5e64j" path="res://scenes/options/BindButton.gd" id="4_ly35g"]
 [ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="4_o67fm"]
 [ext_resource type="Texture2D" uid="uid://cuef5iw2rb0l7" path="res://assets/images/menus/options/defaultNotes.png" id="5_axs2u"]
-[ext_resource type="Shader" path="res://assets/shaders/BasicColorShader.gdshader" id="6_iyctw"]
+[ext_resource type="Shader" uid="uid://7jkaq411xr28" path="res://assets/shaders/BasicColorShader.gdshader" id="6_iyctw"]
 [ext_resource type="Texture2D" uid="uid://88aw03tlr1oh" path="res://assets/images/menus/options/acceptBind.png" id="7_pp740"]
 [ext_resource type="Texture2D" uid="uid://dfs5s3i6cl6am" path="res://assets/images/menus/options/backBind.png" id="8_jhdmc"]
 [ext_resource type="Texture2D" uid="uid://bnah4iv83h5ec" path="res://assets/images/menus/options/pauseBind.png" id="9_wykt2"]
@@ -14,12 +14,12 @@
 [ext_resource type="Texture2D" uid="uid://d0r5affbxqsi5" path="res://assets/images/material_icons/volume-full.png" id="11_0p484"]
 [ext_resource type="Texture2D" uid="uid://dw8bh3jsxd3kl" path="res://assets/images/material_icons/volume-mute.png" id="12_75ltb"]
 [ext_resource type="Texture2D" uid="uid://s111e8ow38lw" path="res://assets/images/menus/options/switchModBind.png" id="13_nxr35"]
-[ext_resource type="Script" path="res://scenes/options/Checkbox.gd" id="14_qu3w5"]
-[ext_resource type="Script" path="res://scenes/options/Display Slider.gd" id="15_0414u"]
+[ext_resource type="Script" uid="uid://qmlieixwhdtx" path="res://scenes/options/Checkbox.gd" id="14_qu3w5"]
+[ext_resource type="Script" uid="uid://dp5chqamrv4fu" path="res://scenes/options/Display Slider.gd" id="15_0414u"]
 [ext_resource type="PackedScene" uid="uid://dvvpqyw0twvsd" path="res://scenes/options/StrumEditor.tscn" id="15_gliy1"]
 [ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="15_jbcin"]
-[ext_resource type="Script" path="res://scenes/options/Dropdown.gd" id="16_b81jf"]
-[ext_resource type="Script" path="res://scenes/options/FPSCap.gd" id="17_suntx"]
+[ext_resource type="Script" uid="uid://dfqp1seq8vggo" path="res://scenes/options/Dropdown.gd" id="16_b81jf"]
+[ext_resource type="Script" uid="uid://cf7af8lmso68s" path="res://scenes/options/FPSCap.gd" id="17_suntx"]
 
 [sub_resource type="Gradient" id="Gradient_650jw"]
 interpolation_mode = 2
@@ -285,10 +285,10 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h4lpb"]
 _data = {
-"FromStrum": SubResource("Animation_a0swf"),
-"RESET": SubResource("Animation_kf2gg"),
-"SwitchTools": SubResource("Animation_ivycs"),
-"ToStrum": SubResource("Animation_7yg25")
+&"FromStrum": SubResource("Animation_a0swf"),
+&"RESET": SubResource("Animation_kf2gg"),
+&"SwitchTools": SubResource("Animation_ivycs"),
+&"ToStrum": SubResource("Animation_7yg25")
 }
 
 [node name="Options" type="Node2D"]

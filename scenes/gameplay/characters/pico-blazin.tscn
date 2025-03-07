@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://c1sqq7grehd8t"]
 
-[ext_resource type="Script" path="res://scripts/Character.gd" id="1_8cjps"]
+[ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_8cjps"]
 [ext_resource type="Texture2D" uid="uid://erlcw6602qeq" path="res://assets/images/gameplay/icons/icon-pico.png" id="2_o33mh"]
 [ext_resource type="SpriteFrames" uid="uid://v3awyrjvjb00" path="res://assets/levels/weekend1/images/fightPico.res" id="3_u0xaw"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="4_0tv7e"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_0tv7e"]
 
 [sub_resource type="Animation" id="Animation_5o5sm"]
 resource_name = "block"
@@ -591,17 +591,17 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
 _data = {
-"block": SubResource("Animation_5o5sm"),
-"dodge": SubResource("Animation_6av87"),
-"duck": SubResource("Animation_p0hah"),
-"fakeOut": SubResource("Animation_6hnuq"),
-"hit high": SubResource("Animation_43n5e"),
-"hit low": SubResource("Animation_123ns"),
-"idle": SubResource("Animation_epq6v"),
-"punch high": SubResource("Animation_iejcs"),
-"punch low": SubResource("Animation_tpy1j"),
-"taunt": SubResource("Animation_0t7h7"),
-"upperCut": SubResource("Animation_64o20")
+&"block": SubResource("Animation_5o5sm"),
+&"dodge": SubResource("Animation_6av87"),
+&"duck": SubResource("Animation_p0hah"),
+&"fakeOut": SubResource("Animation_6hnuq"),
+&"hit high": SubResource("Animation_43n5e"),
+&"hit low": SubResource("Animation_123ns"),
+&"idle": SubResource("Animation_epq6v"),
+&"punch high": SubResource("Animation_iejcs"),
+&"punch low": SubResource("Animation_tpy1j"),
+&"taunt": SubResource("Animation_0t7h7"),
+&"upperCut": SubResource("Animation_64o20")
 }
 
 [node name="pico" type="Node2D"]
