@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://crhccs5hhdvlf" path="res://scenes/first_launch.gd" id="1_cjiy5"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_jkndc"]
-[ext_resource type="Texture2D" uid="uid://b4n7pkr5oub8j" path="res://assets/images/discordRPC/ne_gd4.png" id="3_xmble"]
+[ext_resource type="Texture2D" uid="uid://ceuewex8spqfl" path="res://assets/images/discordRPC/logo_no_bg.png" id="3_1m2wd"]
 [ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="4_gguo6"]
 [ext_resource type="Texture2D" uid="uid://hjfgofepc31y" path="res://assets/images/gameplay/stages/stage/stage_light.png" id="4_h5el2"]
 [ext_resource type="FontFile" uid="uid://cf2wd6a4pa5kb" path="res://assets/fonts/funkin.ttf" id="5_vc868"]
@@ -50,8 +50,8 @@ texture = SubResource("GradientTexture2D_ddlc0")
 
 [node name="Logo" type="Sprite2D" parent="BG Sprite"]
 position = Vector2(0, -280)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("3_xmble")
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_1m2wd")
 metadata/_edit_lock_ = true
 
 [node name="LampL" type="Sprite2D" parent="BG Sprite"]
