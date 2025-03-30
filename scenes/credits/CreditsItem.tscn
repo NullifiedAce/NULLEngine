@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://158jh5bmr0r8"]
+
+[ext_resource type="Script" uid="uid://bjcgwbdy86c5j" path="res://scenes/credits/CreditsItem.gd" id="1_xp4et"]
+[ext_resource type="Shader" uid="uid://c1lmtjykufl4t" path="res://assets/shaders/CircleShape.gdshader" id="2_oc72p"]
+[ext_resource type="Texture2D" uid="uid://m5strgod1naq" path="res://icon.svg" id="3_gdyw1"]
+[ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="4_0q4ka"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdyw1"]
+shader = ExtResource("2_oc72p")
+
+[node name="CreditsItem" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 64.0
+script = ExtResource("1_xp4et")
+
+[node name="PFP" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_gdyw1")
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("3_gdyw1")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 8.0
+offset_right = 272.0
+offset_bottom = 31.0
+theme = ExtResource("4_0q4ka")
+text = "NAME"
+autowrap_mode = 1
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 32.0
+offset_right = 272.0
+offset_bottom = 56.0
+theme = ExtResource("4_0q4ka")
+text = "Description"
+autowrap_mode = 3

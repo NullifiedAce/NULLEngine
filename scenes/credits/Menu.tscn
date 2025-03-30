@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmdmp83awaosx"]
+
+[ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="1_lk34i"]
+[ext_resource type="Script" uid="uid://dbxwmps7r1syc" path="res://classes/MusicBeatScene.gd" id="1_tugvx"]
+[ext_resource type="SpriteFrames" uid="uid://bqn0cjor0adm0" path="res://assets/images/menus/mainmenu/credits.res" id="2_5eo6d"]
+[ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="3_5j6ft"]
+
+[sub_resource type="Gradient" id="Gradient_5eo6d"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 0.196078, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5j6ft"]
+gradient = SubResource("Gradient_5eo6d")
+width = 1280
+height = 720
+fill = 1
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tugvx"]
+bg_color = Color(0, 0, 0, 0.411765)
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_tugvx")
+metadata/_custom_type_script = "uid://dbxwmps7r1syc"
+
+[node name="BG Sprite" parent="." instance=ExtResource("1_lk34i")]
+self_modulate = Color(0.481789, 0.481789, 0.481789, 1)
+color = Color(0.481789, 0.481789, 0.481789, 1)
+gradiant = SubResource("GradientTexture2D_5j6ft")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BG Sprite"]
+position = Vector2(0, -288)
+scale = Vector2(0.75, 0.75)
+sprite_frames = ExtResource("2_5eo6d")
+animation = &"selected"
+
+[node name="Title" type="Label" parent="."]
+offset_top = 672.0
+offset_right = 1280.0
+offset_bottom = 704.0
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("3_5j6ft")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_tugvx")
+text = "< NULL Engine >"
+horizontal_alignment = 1
+vertical_alignment = 1

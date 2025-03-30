@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7nrk52yt727v"]
+
+[ext_resource type="Script" uid="uid://ba20ywfjh1su1" path="res://autoload/scenes/ScreenshotHandler.gd" id="1_lkgto"]
+
+[node name="ScreenshotHandler" type="CanvasLayer"]
+script = ExtResource("1_lkgto")

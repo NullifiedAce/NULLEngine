@@ -80,10 +80,9 @@ script = ExtResource("1_ojhhb")
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_top = -1440.0
 offset_right = 1280.0
-offset_bottom = -0.000488281
 texture = SubResource("GradientTexture2D_hmev6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
 libraries = {
-"": SubResource("AnimationLibrary_g6a2m")
+&"": SubResource("AnimationLibrary_g6a2m")
 }

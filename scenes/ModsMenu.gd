@@ -11,6 +11,7 @@ var mod_configs:Array[ModConfig] = []
 
 func _ready() -> void:
 	if OS.is_debug_build():
+		print("Mod Menu is not accessible in Debug Mode.")
 		queue_free()
 		return
 

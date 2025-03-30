@@ -308,7 +308,7 @@ script = ExtResource("2_rhavx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TitleGroup/gf"]
 libraries = {
-"": SubResource("AnimationLibrary_j2p0c")
+&"": SubResource("AnimationLibrary_j2p0c")
 }
 
 [node name="logo" type="AnimatedSprite2D" parent="TitleGroup"]
