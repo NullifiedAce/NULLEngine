@@ -23,7 +23,9 @@ config/icon="res://assets/images/default_mod_icon.png"
 
 [autoload]
 
+SaveData="*res://autoload/scripts/SaveData.gd"
 SettingsAPI="*res://autoload/scripts/SettingsAPI.gd"
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 ModManager="*res://autoload/scripts/ModManager.gd"
 TrophyHandler="*res://autoload/scenes/TrophyDisplay.tscn"
 HudPresetHandler="*res://autoload/scripts/HUDPresetHandler.gd"
@@ -39,7 +41,6 @@ VolumeSlider="*res://autoload/scenes/VolumeSlider.tscn"
 FPS="*res://autoload/scenes/FPS.tscn"
 HighScore="*res://autoload/scripts/HighScore.gd"
 RichPresence="*res://autoload/scripts/DiscordRPC.gd"
-DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 
 [display]
 

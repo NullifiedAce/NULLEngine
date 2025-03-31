@@ -1,6 +1,6 @@
 extends Node
 
-const _json_path:String = "user://funkin_settings.json"
+var _json_path:String = SaveData.path + "funkin_settings.json"
 var _settings:Dictionary = {
 	# gameplay
 	"downscroll": false,

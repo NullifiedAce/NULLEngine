@@ -118,7 +118,7 @@ func _on_show_item_pressed(name:String):
 
 func _on_files_dropped(mods:PackedStringArray) -> void:
 	for mod_path in mods:
-		DirAccess.copy_absolute(mod_path, 'user://mods/' + mod_path.get_file())
+		DirAccess.copy_absolute(mod_path, SaveData.path + 'mods/' + mod_path.get_file())
 
 	queue_free()
 	get_parent().add_child(load("res://scenes/ModsMenu.tscn").instantiate())

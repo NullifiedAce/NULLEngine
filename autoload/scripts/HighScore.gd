@@ -1,5 +1,5 @@
 extends Node
-const _json_path:String = "user://funkin_scores.json"
+var _json_path:String = SaveData.path + "funkin_scores.json"
 var scores:Dictionary = {}
 func _ready():
 	var json:Dictionary = {}

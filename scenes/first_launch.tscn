@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://5gv2so4ckba1"]
+[gd_scene load_steps=20 format=3 uid="uid://5gv2so4ckba1"]
 
 [ext_resource type="Script" uid="uid://crhccs5hhdvlf" path="res://scenes/first_launch.gd" id="1_cjiy5"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_jkndc"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://u4kysxd17gha" path="res://assets/images/material_icons/checkbox/unchecked.svg" id="10_c4ct6"]
 [ext_resource type="Texture2D" uid="uid://deittp727l7il" path="res://assets/images/material_icons/checkbox/unchecked_disabled.svg" id="11_hl8wv"]
 [ext_resource type="Script" uid="uid://qmlieixwhdtx" path="res://scenes/options/Checkbox.gd" id="12_uplql"]
+[ext_resource type="Theme" uid="uid://c5ev302cjh1mu" path="res://assets/styles/FunkinOptions.tres" id="13_aubvj"]
 
 [sub_resource type="Gradient" id="Gradient_b5v8e"]
 colors = PackedColorArray(1, 1, 1, 0.0980392, 1, 1, 1, 0)
@@ -34,6 +35,42 @@ CheckBox/icons/checked = ExtResource("8_l67b5")
 CheckBox/icons/checked_disabled = ExtResource("9_xq1mu")
 CheckBox/icons/unchecked = ExtResource("10_c4ct6")
 CheckBox/icons/unchecked_disabled = ExtResource("11_hl8wv")
+
+[sub_resource type="Animation" id="Animation_aubvj"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3ti8k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2q07d"]
+_data = {
+&"RESET": SubResource("Animation_3ti8k"),
+&"fade": SubResource("Animation_aubvj")
+}
 
 [node name="FirstLaunch" type="Node2D"]
 script = ExtResource("1_cjiy5")
@@ -100,10 +137,7 @@ text = "[center][font_size=56]FIRST LAUNCH[/font_size][/center]
 [center]Thank you for downloading and testing out NULL Engine![/center]
 
 
-[center] This Engine is still early in development so expect some minor bugs during gameplay. If you happen to find any please report them either on the [color=slategray][url=https://github.com/NULLSonic/NULLEngine/]GitHub[/url][/color] Repository or in my [color=midnightblue][url=https://discord.gg/yhucbDHkCU]Discord Server[/url][/color].
-
-
-(This menu should only appear upon first launch.)[/center]"
+[center] This Engine is still early in development so expect some minor bugs during gameplay. If you happen to find any please report them either on the [color=slategray][url=https://github.com/NULLSonic/NULLEngine/]GitHub[/url][/color] Repository or in my [color=midnightblue][url=https://discord.gg/yhucbDHkCU]Discord Server[/url][/color]."
 
 [node name="Page2" type="RichTextLabel" parent="Pages"]
 visible = false
@@ -266,6 +300,70 @@ text = "FLASHING LIGHTS"
 script = ExtResource("12_uplql")
 option = "flashing lights"
 
+[node name="SaveData" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.74902)
+
+[node name="Save" type="RichTextLabel" parent="SaveData"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = 192.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_gguo6")
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("5_vc868")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center][font size=56]Save Data[font size]
+
+With NULL Engine V1.1.0 your save data will be saved in it's own folder.
+
+You can choose to load your V1.0.1 data, or not."
+
+[node name="Load" type="Button" parent="SaveData"]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 504.0
+offset_right = 592.0
+offset_bottom = 544.0
+theme = ExtResource("13_aubvj")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Load"
+
+[node name="Cancel" type="Button" parent="SaveData"]
+layout_mode = 0
+offset_left = 672.0
+offset_top = 504.0
+offset_right = 800.0
+offset_bottom = 544.0
+theme = ExtResource("13_aubvj")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Cancel
+"
+
+[node name="LoadData" type="FileDialog" parent="SaveData"]
+title = "Open a Directory"
+initial_position = 2
+ok_button_text = "Select"
+file_mode = 2
+access = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SaveData"]
+libraries = {
+&"": SubResource("AnimationLibrary_2q07d")
+}
+
 [connection signal="meta_clicked" from="Pages/Page1" to="." method="url_clicked"]
 [connection signal="meta_clicked" from="Pages/Page2" to="." method="url_clicked"]
 [connection signal="meta_clicked" from="Pages/Page3" to="." method="url_clicked"]
@@ -273,5 +371,8 @@ option = "flashing lights"
 [connection signal="pressed" from="NextPage" to="." method="_on_next_page_pressed"]
 [connection signal="pressed" from="PreviousPage" to="." method="_on_previous_page_pressed"]
 [connection signal="pressed" from="flashing lights" to="flashing lights" method="_on_pressed"]
+[connection signal="pressed" from="SaveData/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="SaveData/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="dir_selected" from="SaveData/LoadData" to="." method="_on_load_data_dir_selected"]
 
 [editable path="BG Sprite"]

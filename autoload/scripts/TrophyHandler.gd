@@ -37,7 +37,7 @@ var cfg_file = ConfigFile.new()
 signal trophy_unlocked
 
 func _ready() -> void:
-	if !FileAccess.file_exists("user://trophies.cfg"):
+	if !FileAccess.file_exists(SaveData.path + "trophies.cfg"):
 		setup_cfg()
 
 	bg.modulate = Color.TRANSPARENT
@@ -46,10 +46,10 @@ func _ready() -> void:
 func setup_cfg():
 	for i in trophies:
 		cfg_file.set_value("Trophy", i, trophies[i])
-		cfg_file.save("user://trophies.cfg")
+		cfg_file.save(SaveData.path + "trophies.cfg")
 
 func load_cfg():
-	var err = cfg_file.load("user://trophies.cfg")
+	var err = cfg_file.load(SaveData.path + "trophies.cfg")
 
 	if err != OK:
 		return
@@ -60,12 +60,12 @@ func load_cfg():
 		else:
 			print("Trophy \"%s\" does not exist in data file, creating data now." % i)
 			cfg_file.set_value("Trophy", i, trophies[i])
-			cfg_file.save("user://trophies.cfg")
+			cfg_file.save(SaveData.path + "trophies.cfg")
 
 func save_trophy(trophy_id:String, value:bool):
 	if trophies.has(trophy_id): # Make sure the trophy even exists in the dictionary
 		cfg_file.set_value("Trophy", trophy_id, value)
-		cfg_file.save("user://trophies.cfg")
+		cfg_file.save(SaveData.path + "trophies.cfg")
 
 func get_trophy(trophy_id:String):
 	if trophies.has(trophy_id):
