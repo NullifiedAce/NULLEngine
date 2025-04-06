@@ -161,7 +161,7 @@ func _process(delta):
 			Global.switch_scene("res://scenes/FreeplayMenu_erect.tscn")
 		else:
 			Global.variation = "default"
-			Global.switch_scene("res://scenes/FreeplayMenu.tscn")
+			Global.switch_scene("res://scenes/menus/freeplay/Menu.tscn")
 
 	if Input.is_action_just_pressed("space_bar"):
 		Audio.stop_music()
@@ -219,7 +219,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		Audio.play_sound("cancelMenu")
 		Global.variation == "default"
-		Global.switch_scene("res://scenes/MainMenu.tscn")
+		Global.switch_scene("res://scenes/menus/main menu/Menu.tscn")
 
 	if song_tracks.get_child_count() > 0:
 		Conductor.position = song_tracks.get_child(0).get_playback_position() * 1000.0

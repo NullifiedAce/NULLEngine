@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://duhqsh5l5bbtm"]
 
-[ext_resource type="Script" uid="uid://udmhyux244sf" path="res://scenes/TitleScreen.gd" id="1_eg0nr"]
+[ext_resource type="Script" uid="uid://udmhyux244sf" path="res://scenes/menus/title/Menu.gd" id="1_eg0nr"]
 [ext_resource type="Material" uid="uid://dlwbyy60pp0e2" path="res://assets/shaders/TitleScreenShaderMaterial.tres" id="2_f6nud"]
 [ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="2_rhavx"]
 [ext_resource type="SpriteFrames" uid="uid://xmmicsrmtycf" path="res://assets/images/titlescreen/gfDanceTitle.res" id="2_u0gnt"]

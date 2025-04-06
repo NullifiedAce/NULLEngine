@@ -46,7 +46,7 @@ func _process(delta):
 	Conductor.position = Audio.music.time
 
 	if Input.is_action_just_pressed("switch_mod"):
-		add_child(load("res://scenes/ModsMenu.tscn").instantiate())
+		add_child(load("res://scenes/menus/mod menu/Menu.tscn").instantiate())
 
 	if Input.is_action_just_pressed("ui_accept"):
 		if not skipped_intro:
@@ -64,9 +64,9 @@ func _process(delta):
 				SettingsAPI.update_settings()
 				if ProjectSettings.get_setting("engine/customization/check_for_updates") and Global.game_version != Global.new_version:
 					print(Global.new_version)
-					Global.switch_scene("res://scenes/Outdated.tscn")
+					Global.switch_scene("res://scenes/menus/outdated/Menu.tscn")
 				else:
-					Global.switch_scene("res://scenes/MainMenu.tscn")
+					Global.switch_scene("res://scenes/menus/main menu/Menu.tscn")
 			)
 
 func beat_hit(beat:int):

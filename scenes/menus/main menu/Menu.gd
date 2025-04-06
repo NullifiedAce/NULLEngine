@@ -30,7 +30,7 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("ui_cancel"):
 		Audio.play_sound("cancelMenu")
-		Global.switch_scene("res://scenes/TitleScreen.tscn")
+		Global.switch_scene("res://scenes/menus/title/Menu.tscn")
 
 	if Input.is_action_just_pressed("switch_mod"):
 		add_child(load("res://scenes/ModsMenu.tscn").instantiate())
@@ -66,16 +66,17 @@ func _process(delta):
 				var button:StringName = buttons.get_child(cur_selected).name
 				match str(button):
 					"StoryMode":
-						Global.switch_scene("res://scenes/StoryMenu.tscn")
+						Global.switch_scene("res://scenes/menus/story menu/Menu.tscn")
 
 					"Freeplay":
-						Global.switch_scene("res://scenes/FreeplayMenu.tscn")
+						Global.switch_scene("res://scenes/menus/freeplay/Menu.tscn")
 
 					"Options":
-						Global.switch_scene("res://scenes/OptionsMenu.tscn")
+						Global.switch_scene("res://scenes/menus/options/Menu.tscn")
 
 					"Credits":
-						Global.switch_scene("res://scenes/CreditsMenu.tscn")
+						Global.switch_scene("res://scenes/menus/credits/Menu.tscn")
+
 					_: print("bro how the fuck did you select "+button+"???")
 			)
 		)

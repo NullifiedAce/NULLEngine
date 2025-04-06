@@ -14,4 +14,4 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_key_label_pressed(KEY_ESCAPE):
-		Global.switch_scene("res://scenes/MainMenu.tscn")
+		Global.switch_scene("res://scenes/menus/main menu/Menu.tscn")

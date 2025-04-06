@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://dn03drrma3p5y"]
 
-[ext_resource type="Script" uid="uid://c5v4q4vgt3j8" path="res://scenes/StoryMenu.gd" id="1_66cjt"]
+[ext_resource type="Script" uid="uid://c5v4q4vgt3j8" path="res://scenes/menus/story menu/Menu.gd" id="1_66cjt"]
 [ext_resource type="Resource" uid="uid://b2liyp0jv6vgq" path="res://assets/storyWeekList.tres" id="2_7t8os"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="4_rt1a8"]
 [ext_resource type="SpriteFrames" uid="uid://bbjun33w44uoy" path="res://assets/images/menus/storymenu/campaign_menu_UI_assets.res" id="9_cmblc"]

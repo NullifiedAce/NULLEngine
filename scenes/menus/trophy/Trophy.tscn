@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://cowjide0hmwm5"]
 
 [ext_resource type="Texture2D" uid="uid://cwrt4rlavcb58" path="res://assets/images/menus/achievements/trophies.png" id="1_6emci"]
-[ext_resource type="Script" uid="uid://clyvi8xm7oo3v" path="res://scenes/achievements/Trophy.gd" id="1_nf08f"]
+[ext_resource type="Script" uid="uid://clyvi8xm7oo3v" path="res://scenes/trophy/Trophy.gd" id="1_nf08f"]
 [ext_resource type="Texture2D" uid="uid://5pduqhtq7gk7" path="res://assets/images/menus/achievements/particle.png" id="2_wq8ll"]
 [ext_resource type="AudioStream" uid="uid://b0h158k7rnbrk" path="res://assets/sounds/character select/CS_unlock.ogg" id="4_b5453"]
 [ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="5_pa1s8"]

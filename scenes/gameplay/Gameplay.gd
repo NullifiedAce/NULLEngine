@@ -529,21 +529,8 @@ func end_song():
 		Global.switch_scene("res://scenes/gameplay/Gameplay.tscn")
 	else:
 		Ranking.add_results(songScore, misses, max_combo, sicks, goods, bads, shits, total_notes)
-		if Global.is_story_mode:
-			if Global.current_week == 0:
-				TrophyHandler.unlock_trophy("BT")
-				await TrophyHandler.trophy_unlocked
-				if Global.current_difficulty == "hard" and Ranking.final_misses == 0:
-					TrophyHandler.unlock_trophy("BT_0")
-					await TrophyHandler.trophy_unlocked
-			else:
-				TrophyHandler.unlock_trophy("B" + str(Global.current_week))
-				await TrophyHandler.trophy_unlocked
-				if Global.current_difficulty == "hard" and Ranking.final_misses == 0:
-					TrophyHandler.unlock_trophy("B%s_0" % Global.current_week)
-					await TrophyHandler.trophy_unlocked
 		Global.variation = "default" # reset for freeplay
-		Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
+		Global.switch_scene("res://scenes/menus/freeplay/Menu.tscn" if !Global.is_story_mode else "res://scenes/menus/story menu/Menu.tscn")
 
 
 func beat_hit(beat:int):

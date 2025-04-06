@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 
 		var timer:SceneTreeTimer = get_tree().create_timer(2.0)
 		timer.timeout.connect(func():
-			Global.switch_scene("res://scenes/TitleScreen.tscn")
+			Global.switch_scene("res://scenes/menus/title/Menu.tscn")
 		)
 
 func switch_page(switch:int):

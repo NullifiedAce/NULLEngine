@@ -1,192 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://ceqkxfben3ivj"]
+[gd_scene load_steps=18 format=3 uid="uid://ceqkxfben3ivj"]
 
 [ext_resource type="Script" uid="uid://d0io7gyqibbdq" path="res://autoload/scripts/TrophyHandler.gd" id="1_ef356"]
-[ext_resource type="Script" uid="uid://dbnyvm7jk3io8" path="res://resources/TrophyItem.gd" id="2_5hf7t"]
 [ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="3_axsf8"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="4_cruty"]
 [ext_resource type="Texture2D" uid="uid://cwrt4rlavcb58" path="res://assets/images/menus/achievements/trophies.png" id="4_uvjbk"]
 [ext_resource type="Texture2D" uid="uid://5pduqhtq7gk7" path="res://assets/images/menus/achievements/particle.png" id="5_fsck5"]
 [ext_resource type="AudioStream" uid="uid://b0h158k7rnbrk" path="res://assets/sounds/character select/CS_unlock.ogg" id="6_8wvhj"]
-
-[sub_resource type="Resource" id="Resource_fic07"]
-script = ExtResource("2_5hf7t")
-id = "BT"
-title = "Beat the tutorial!"
-description = "Beat Week \"Tutorial\"."
-starts_locked = false
-rarity = 0
-particles = false
-amount = 8.0
-
-[sub_resource type="Resource" id="Resource_3vq8f"]
-script = ExtResource("2_5hf7t")
-id = "BT_0"
-title = "Crushed the tutorial!!"
-description = "Beat Week \"Tutorial\" without missing on difficulty \"Hard.\""
-starts_locked = true
-rarity = 1
-particles = true
-amount = 2.0
-
-[sub_resource type="Resource" id="Resource_3qp3d"]
-script = ExtResource("2_5hf7t")
-id = "B1"
-title = "She's mine!!"
-description = "Beat Week 1"
-starts_locked = false
-rarity = 0
-particles = false
-amount = 8.0
-
-[sub_resource type="Resource" id="Resource_26jv4"]
-script = ExtResource("2_5hf7t")
-id = "B1_0"
-title = "Ex-Ex-Rockstar"
-description = "Beat Week 1 without missing on difficulty \"Hard.\""
-starts_locked = true
-rarity = 1
-particles = true
-amount = 2.0
-
-[sub_resource type="Resource" id="Resource_iapcp"]
-script = ExtResource("2_5hf7t")
-id = "B2"
-title = "Trick or treat!"
-description = "Beat Week 2."
-starts_locked = false
-rarity = 0
-particles = false
-amount = 8.0
-
-[sub_resource type="Resource" id="Resource_1w1nd"]
-script = ExtResource("2_5hf7t")
-id = "B2_0"
-title = "Sorry, spooky month's over!!"
-description = "Beat Week 2 without missing on difficulty \"Hard.\""
-starts_locked = true
-rarity = 1
-particles = true
-amount = 2.0
-
-[sub_resource type="Resource" id="Resource_cl5db"]
-script = ExtResource("2_5hf7t")
-id = "B3"
-title = "Philly Nice!"
-description = "Beat Week 3."
-starts_locked = false
-rarity = 0
-particles = true
-amount = 1.0
-
-[sub_resource type="Resource" id="Resource_iueyw"]
-script = ExtResource("2_5hf7t")
-id = "B3_0"
-title = "Ex-BF!!"
-description = "Beat Week 3 without missing on difficulty \"Hard.\""
-starts_locked = true
-rarity = 1
-particles = true
-amount = 4.0
-
-[sub_resource type="Resource" id="Resource_1tw78"]
-script = ExtResource("2_5hf7t")
-id = "B4"
-title = "Highway Funkin'!"
-description = "Beat Week 4."
-starts_locked = false
-rarity = 0
-particles = true
-amount = 2.0
-
-[sub_resource type="Resource" id="Resource_f8aag"]
-script = ExtResource("2_5hf7t")
-id = "B4_0"
-title = "Mother knows best!!"
-description = "Beat Week 4 without missing on difficulty \"Hard.\""
-starts_locked = true
-rarity = 1
-particles = true
-amount = 4.0
-
-[sub_resource type="Resource" id="Resource_hhlft"]
-script = ExtResource("2_5hf7t")
-id = "B5"
-title = "Family Holiday!"
-description = "Beat Week 5."
-starts_locked = false
-rarity = 0
-particles = false
-amount = 8.0
-
-[sub_resource type="Resource" id="Resource_oofs2"]
-script = ExtResource("2_5hf7t")
-id = "B5_0"
-title = "Sinful christmas!!"
-description = "Beat Week 5 without missing on difficulty \"Hard.\""
-starts_locked = true
-rarity = 1
-particles = true
-amount = 2.0
-
-[sub_resource type="Resource" id="Resource_tyw4n"]
-script = ExtResource("2_5hf7t")
-id = "B6"
-title = "Feelin' Retro!"
-description = "Beat Week 6"
-starts_locked = false
-rarity = 0
-particles = true
-amount = 1.0
-
-[sub_resource type="Resource" id="Resource_b8rv2"]
-script = ExtResource("2_5hf7t")
-id = "B6_0"
-title = "Inescapable Heat!!"
-description = "Beat Week 6 without missing on difficulty \"Hard.\""
-starts_locked = true
-rarity = 1
-particles = true
-amount = 4.0
-
-[sub_resource type="Resource" id="Resource_tecde"]
-script = ExtResource("2_5hf7t")
-id = "B7"
-title = "Trespassing!"
-description = "Beat Week 7."
-starts_locked = false
-rarity = 1
-particles = true
-amount = 2.0
-
-[sub_resource type="Resource" id="Resource_gc468"]
-script = ExtResource("2_5hf7t")
-id = "B7_0"
-title = "All in a days work!!"
-description = "Beat Week 7 without missing on difficulty \"Hard.\""
-starts_locked = true
-rarity = 2
-particles = true
-amount = 2.0
-
-[sub_resource type="Resource" id="Resource_ie7t0"]
-script = ExtResource("2_5hf7t")
-id = "B8"
-title = "Best Freinds!"
-description = "Beat Weekend 1."
-starts_locked = false
-rarity = 1
-particles = true
-amount = 1.0
-
-[sub_resource type="Resource" id="Resource_eqp8o"]
-script = ExtResource("2_5hf7t")
-id = "B8_0"
-title = "Knock 'em dead!!"
-description = "Beat Weekend 1 without missing on difficulty \"Hard.\""
-starts_locked = true
-rarity = 2
-particles = true
-amount = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aoofd"]
 bg_color = Color(0, 0, 0, 0.74902)
@@ -368,7 +187,6 @@ _data = {
 [node name="TrophyDisplay" type="CanvasLayer"]
 layer = 128
 script = ExtResource("1_ef356")
-trophies_array = Array[ExtResource("2_5hf7t")]([SubResource("Resource_fic07"), SubResource("Resource_3vq8f"), SubResource("Resource_3qp3d"), SubResource("Resource_26jv4"), SubResource("Resource_iapcp"), SubResource("Resource_1w1nd"), SubResource("Resource_cl5db"), SubResource("Resource_iueyw"), SubResource("Resource_1tw78"), SubResource("Resource_f8aag"), SubResource("Resource_hhlft"), SubResource("Resource_oofs2"), SubResource("Resource_tyw4n"), SubResource("Resource_b8rv2"), SubResource("Resource_tecde"), SubResource("Resource_gc468"), SubResource("Resource_ie7t0"), SubResource("Resource_eqp8o")])
 
 [node name="BG" type="Panel" parent="."]
 custom_minimum_size = Vector2(320, 128)
@@ -400,8 +218,7 @@ theme = ExtResource("3_axsf8")
 theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("4_cruty")
 theme_override_font_sizes/font_size = 24
-text = "UNLOCKED TROPHY!!"
-horizontal_alignment = 1
+text = "TROPHY UNLOCKED"
 
 [node name="Trophy" type="Control" parent="BG"]
 anchors_preset = 0
@@ -438,13 +255,13 @@ z_index = 5
 position = Vector2(640, 340)
 emitting = false
 amount = 64
+texture = SubResource("CanvasTexture_5mlew")
 lifetime = 2.0
 one_shot = true
 speed_scale = 0.5
 explosiveness = 1.0
 randomness = 1.0
 lifetime_randomness = 1.0
-texture = SubResource("CanvasTexture_5mlew")
 emission_shape = 3
 emission_rect_extents = Vector2(640, 360)
 direction = Vector2(0, 1)
@@ -459,7 +276,7 @@ color_ramp = SubResource("Gradient_fa1jx")
 
 [node name="Animation" type="AnimationPlayer" parent="BG/Trophy"]
 libraries = {
-"": SubResource("AnimationLibrary_ic0o3")
+&"": SubResource("AnimationLibrary_ic0o3")
 }
 
 [node name="UnlockSound" type="AudioStreamPlayer" parent="BG/Trophy"]

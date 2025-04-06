@@ -178,7 +178,7 @@ func _process(delta):
 				Audio.play_music("freakyMenu")
 
 				Global.scene_arguments["options_menu"].exit_scene_path = "res://scenes/gameplay/Gameplay.tscn"
-				Global.switch_scene("res://scenes/OptionsMenu.tscn")
+				Global.switch_scene("res://scenes/menus/options/Menu.tscn")
 				queue_free()
 
 			"Exit To Menu":
@@ -186,7 +186,7 @@ func _process(delta):
 
 				Global.queued_songs = []
 				Global.variation = "default" # reset for freeplay
-				Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
+				Global.switch_scene("res://scenes/menus/freeplay/Menu.tscn" if !Global.is_story_mode else "res://scenes/menus/story menu/Menu.tscn")
 				Ranking.clear_results()
 				queue_free()
 

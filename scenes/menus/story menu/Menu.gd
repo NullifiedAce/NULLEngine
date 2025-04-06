@@ -89,7 +89,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		selected_week = true
 		Audio.play_sound("cancelMenu")
-		Global.switch_scene("res://scenes/MainMenu.tscn")
+		Global.switch_scene("res://scenes/menus/main menu/Menu.tscn")
 
 	if Input.is_action_just_pressed("ui_accept"):
 		select_week()

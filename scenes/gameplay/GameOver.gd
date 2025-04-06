@@ -33,7 +33,7 @@ var is_ending:bool = false
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
-		Global.switch_scene("res://scenes/StoryMenu.tscn" if Global.is_story_mode else "res://scenes/FreeplayMenu.tscn")
+		Global.switch_scene("res://scenes/menus/story menu/Menu.tscn" if Global.is_story_mode else "res://scenes/menus/freeplay/Menu.tscn")
 
 	if Input.is_action_just_pressed("ui_accept"):
 		end_bullshit()

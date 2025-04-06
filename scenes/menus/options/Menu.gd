@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 		if len(exit_scene_path) > 0:
 			Global.switch_scene(exit_scene_path)
 		else:
-			Global.switch_scene("res://scenes/MainMenu.tscn")
+			Global.switch_scene("res://scenes/menus/main menu/Menu.tscn")
 
 func _on_tab_pressed(extra_arg_0: int) -> void:
 	Audio.play_sound("scrollMenu")

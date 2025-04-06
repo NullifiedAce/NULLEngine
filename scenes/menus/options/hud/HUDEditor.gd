@@ -56,7 +56,7 @@ func _process(_delta: float) -> void:
 		if Input.is_key_label_pressed(KEY_ESCAPE) and !pressed:
 			Audio.play_sound("cancelMenu")
 			pressed = true
-			Global.switch_scene("res://scenes/OptionsMenu.tscn")
+			Global.switch_scene("res://scenes/menus/options/Menu.tscn")
 		if Input.is_action_just_pressed("hud_hide"):
 			if !hide:
 				hide = true
