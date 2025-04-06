@@ -189,6 +189,7 @@ layer = 128
 script = ExtResource("1_ef356")
 
 [node name="BG" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(320, 128)
 offset_left = 16.0
 offset_top = 16.0

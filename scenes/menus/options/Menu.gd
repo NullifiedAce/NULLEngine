@@ -45,7 +45,7 @@ func update_tabs(selection:int):
 		if i == bg.get_child(cur_tab): i.show()
 
 func _on_hud_editor_pressed() -> void:
-	Global.switch_scene("res://scenes/HUDEditor.tscn")
+	Global.switch_scene("res://scenes/menus/options/hud/Menu.tscn")
 
 func _on_strum_editor_pressed() -> void:
 	strum_editor_open = true

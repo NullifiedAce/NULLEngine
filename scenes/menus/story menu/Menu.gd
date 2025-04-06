@@ -61,7 +61,7 @@ func _process(delta):
 		return
 
 	if Input.is_action_just_pressed("switch_mod"):
-		add_child(load("res://scenes/ModsMenu.tscn").instantiate())
+		add_child(load("res://scenes/menus/mod menu/Menu.tscn").instantiate())
 
 	if Input.is_action_just_pressed("ui_up"):
 		change_week(-1)
@@ -157,7 +157,7 @@ func get_week_score():
 	return _score
 
 func make_char(name:String, pos_node:Node2D, scale:float, index:int):
-	var char_path:String = "res://scenes/story_chars/" + name + ".tscn"
+	var char_path:String = "res://scenes/menus/story menu/characters/" + name + ".tscn"
 	var char:Node2D
 	if ResourceLoader.exists(char_path):
 		char = load(char_path).instantiate()

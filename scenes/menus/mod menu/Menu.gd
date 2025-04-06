@@ -121,4 +121,4 @@ func _on_files_dropped(mods:PackedStringArray) -> void:
 		DirAccess.copy_absolute(mod_path, SaveData.path + 'mods/' + mod_path.get_file())
 
 	queue_free()
-	get_parent().add_child(load("res://scenes/ModsMenu.tscn").instantiate())
+	get_parent().add_child(load("res://scenes/menus/mod menu/Menu.tscn").instantiate())

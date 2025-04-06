@@ -33,7 +33,7 @@ func _process(delta):
 		Global.switch_scene("res://scenes/menus/title/Menu.tscn")
 
 	if Input.is_action_just_pressed("switch_mod"):
-		add_child(load("res://scenes/ModsMenu.tscn").instantiate())
+		add_child(load("res://scenes/menus/mod menu/Menu.tscn").instantiate())
 
 	if Input.is_action_just_pressed("ui_up"):
 		change_selection(-1)

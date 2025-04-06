@@ -537,6 +537,10 @@ func beat_hit(beat:int):
 	stage.callv("on_beat_hit", [beat])
 	script_group.call_func("on_beat_hit", [beat])
 
+	for track in tracks:
+		if abs((track.get_playback_position() * 1000.0 - METADATA.offsets["instrumental"]) - (Conductor.position)) >= 20:
+			resync_tracks()
+
 	if icon_bumping and icon_bumping_interval > 0 and beat % icon_bumping_interval == 0:
 		cpu_icon.scale += Vector2(0.2, 0.2)
 		player_icon.scale += Vector2(0.2, 0.2)
@@ -1048,7 +1052,7 @@ func _process(delta:float) -> void:
 
 	if Input.is_action_just_pressed("ui_pause") and not Global.transitioning:
 		emit_signal("paused")
-		add_child(load("res://scenes/gameplay/PauseMenu.tscn").instantiate())
+		add_child(load("res://scenes/menus/pause/Menu.tscn").instantiate())
 
 	if Input.is_action_just_pressed('space_bar') and not (skipped_intro or starting_song):
 		skip_intro()

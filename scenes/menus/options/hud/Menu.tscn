@@ -1,22 +1,22 @@
 [gd_scene load_steps=22 format=3 uid="uid://bqsrwpb82r34v"]
 
-[ext_resource type="Script" uid="uid://bydrrqjf2awjd" path="res://scenes/HUDEditor.gd" id="1_028jv"]
+[ext_resource type="Script" uid="uid://bydrrqjf2awjd" path="res://scenes/menus/options/hud/Menu.gd" id="1_028jv"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_a6t8j"]
 [ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="2_p2wl7"]
-[ext_resource type="Script" uid="uid://qmlieixwhdtx" path="res://scenes/options/Checkbox.gd" id="3_0xuk5"]
+[ext_resource type="Script" uid="uid://qmlieixwhdtx" path="res://scenes/menus/options/buttons/Checkbox.gd" id="3_0xuk5"]
 [ext_resource type="StyleBox" uid="uid://c4lt0ydus4t75" path="res://assets/styles/healthbar/opponent.tres" id="3_uow7h"]
-[ext_resource type="Script" uid="uid://cayyq5tvyebbr" path="res://scenes/options/HUDPreview.gd" id="3_xc1l4"]
+[ext_resource type="Script" uid="uid://cayyq5tvyebbr" path="res://scenes/menus/options/hud/HUDPreview.gd" id="3_xc1l4"]
 [ext_resource type="StyleBox" uid="uid://ccmycpgoa47g0" path="res://assets/styles/healthbar/player.tres" id="4_8nyy7"]
 [ext_resource type="Texture2D" uid="uid://bgk48t11fpyuf" path="res://assets/images/gameplay/icons/icon-face.png" id="6_qitva"]
 [ext_resource type="Script" uid="uid://bhg3vp5ab5eol" path="res://scripts/HealthIcon.gd" id="7_0mpxd"]
-[ext_resource type="Script" uid="uid://djg4bpom1ft8m" path="res://scenes/options/SpinBox.gd" id="10_dvgfv"]
-[ext_resource type="Script" uid="uid://kfxavdmygaor" path="res://scenes/options/HUD Editor/SaveHUDPreset.gd" id="10_hm7nf"]
-[ext_resource type="Script" uid="uid://camj8pcei1yqt" path="res://scenes/options/ColorPicker.gd" id="10_uokwq"]
-[ext_resource type="Script" uid="uid://c0vgcwfv0652j" path="res://scenes/options/HUD Editor/LoadHUDPreset.gd" id="11_6clei"]
-[ext_resource type="Script" uid="uid://b5tp15cppggub" path="res://scenes/options/TextEdit.gd" id="11_y3j1p"]
-[ext_resource type="Script" uid="uid://bvkxeleh55x6b" path="res://scenes/options/RearrangeScore.gd" id="14_gju6m"]
-[ext_resource type="Script" uid="uid://bugsjdxsflar0" path="res://scenes/options/HUD Editor/AddButton.gd" id="15_dvv1b"]
-[ext_resource type="Script" uid="uid://bye1emu3qkvh8" path="res://scenes/options/CustomizeCounter.gd" id="16_rop5y"]
+[ext_resource type="Script" uid="uid://djg4bpom1ft8m" path="res://scenes/menus/options/buttons/SpinBox.gd" id="10_dvgfv"]
+[ext_resource type="Script" uid="uid://kfxavdmygaor" path="res://scenes/menus/options/hud/SaveHUDPreset.gd" id="10_hm7nf"]
+[ext_resource type="Script" uid="uid://camj8pcei1yqt" path="res://scenes/menus/options/buttons/ColorPicker.gd" id="10_uokwq"]
+[ext_resource type="Script" uid="uid://c0vgcwfv0652j" path="res://scenes/menus/options/hud/LoadHUDPreset.gd" id="11_6clei"]
+[ext_resource type="Script" uid="uid://b5tp15cppggub" path="res://scenes/menus/options/buttons/TextEdit.gd" id="11_y3j1p"]
+[ext_resource type="Script" uid="uid://bvkxeleh55x6b" path="res://scenes/menus/options/hud/RearrangeScore.gd" id="14_gju6m"]
+[ext_resource type="Script" uid="uid://bugsjdxsflar0" path="res://scenes/menus/options/hud/AddButton.gd" id="15_dvv1b"]
+[ext_resource type="Script" uid="uid://bye1emu3qkvh8" path="res://scenes/menus/options/hud/CustomizeCounter.gd" id="16_rop5y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2nblc"]
 content_margin_bottom = 48.0
@@ -108,7 +108,7 @@ offset_top = 8.0
 offset_right = 392.0
 offset_bottom = 712.0
 theme = ExtResource("2_p2wl7")
-current_tab = 1
+current_tab = 2
 tab_focus_mode = 0
 metadata/_edit_lock_ = true
 
@@ -161,7 +161,6 @@ script = ExtResource("10_hm7nf")
 title = "Save HUD Preset"
 initial_position = 2
 size = Vector2i(320, 460)
-ok_button_text = "Save"
 access = 1
 filters = PackedStringArray("*.cfg")
 
@@ -186,6 +185,7 @@ access = 1
 filters = PackedStringArray("*.cfg")
 
 [node name="Health Bar" type="TabBar" parent="Editor/TabContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
 metadata/_tab_index = 1
@@ -355,7 +355,6 @@ script = ExtResource("3_0xuk5")
 option = "hide icons"
 
 [node name="Score Text" type="TabBar" parent="Editor/TabContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_p2wl7")
 metadata/_tab_index = 2
@@ -773,7 +772,7 @@ option = "ghost taps suffix"
 
 [node name="hide" type="AnimationPlayer" parent="Editor/TabContainer"]
 libraries = {
-"": SubResource("AnimationLibrary_ldd0u")
+&"": SubResource("AnimationLibrary_ldd0u")
 }
 
 [node name="Rearrange" type="CanvasLayer" parent="."]

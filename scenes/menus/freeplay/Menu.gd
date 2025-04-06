@@ -138,7 +138,7 @@ func _process(delta):
 	position_highscore()
 
 	if Input.is_action_just_pressed("switch_mod"):
-		add_child(load("res://scenes/ModsMenu.tscn").instantiate())
+		add_child(load("res://scenes/menus/mod menu/Menu.tscn").instantiate())
 
 	if Input.is_action_just_pressed("ui_up"):
 		change_selection(-1)
@@ -158,7 +158,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("change_variation"):
 		if Global.variation == "default":
 			Global.variation = "erect"
-			Global.switch_scene("res://scenes/FreeplayMenu_erect.tscn")
+			Global.switch_scene("res://scenes/menus/freeplay/MenuErect.tscn")
 		else:
 			Global.variation = "default"
 			Global.switch_scene("res://scenes/menus/freeplay/Menu.tscn")
