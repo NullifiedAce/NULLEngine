@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cd8qnbjwrowm3"]
+[gd_scene load_steps=15 format=3 uid="uid://cd8qnbjwrowm3"]
 
 [ext_resource type="Script" uid="uid://bnhssv5rrxvts" path="res://scenes/gameplay/Gameplay.gd" id="1_8k5hd"]
 [ext_resource type="Script" uid="uid://bhqqfjrg7g7o" path="res://classes/ScriptGroup.gd" id="2_5pmok"]
@@ -14,28 +14,8 @@
 [ext_resource type="Theme" uid="uid://c5ev302cjh1mu" path="res://assets/styles/FunkinOptions.tres" id="12_0ecoy"]
 [ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="13_c6vus"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ecoy"]
-bg_color = Color(0.099986, 0.099986, 0.099986, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-expand_margin_left = 6.0
-expand_margin_top = 6.0
-expand_margin_right = 6.0
-expand_margin_bottom = 6.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6h1qp"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83uuq"]
 bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_8k5hd")
@@ -144,27 +124,20 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="TimeBar" type="ColorRect" parent="HUD"]
-offset_left = 390.0
-offset_top = 25.0
-offset_right = 890.0
-offset_bottom = 44.0
-color = Color(0, 0, 0, 0)
+offset_left = 340.0
+offset_top = 23.6
+offset_right = 941.0
+offset_bottom = 42.6
+color = Color(0, 0, 0, 1)
 
 [node name="ProgressBar" type="ProgressBar" parent="HUD/TimeBar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_0ecoy")
-theme_override_styles/fill = SubResource("StyleBoxFlat_6h1qp")
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.5
+offset_right = 596.0
+offset_bottom = 14.5
+theme_override_styles/fill = SubResource("StyleBoxFlat_83uuq")
 max_value = 1.0
-step = 0.0
 show_percentage = false
 
 [node name="TimeText" type="Label" parent="HUD/TimeBar"]

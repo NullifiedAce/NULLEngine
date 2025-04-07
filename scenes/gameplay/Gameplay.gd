@@ -27,6 +27,9 @@ var health:float = 1.0:
 
 var max_health:float = Constants.HEALTH_MAX
 
+var cur_time:float
+var max_time:float
+
 var songScore:int = 0
 var misses:int = 0
 var combo:int = 0
@@ -80,12 +83,11 @@ var accuracy:float:
 
 var ui_skin:UISkin
 
-var results_screen = preload("res://scenes/gameplay/ResultScreen.tscn")
+#var results_screen = preload("res://scenes/gameplay/ResultScreen.tscn")
 
 @onready var camera:Camera2D = $Camera2D
 @onready var hud:CanvasLayer = $HUD
 @onready var characters: Node2D = $characters
-
 
 @onready var strumlines:Node2D = $HUD/StrumLines
 
@@ -101,6 +103,10 @@ var results_screen = preload("res://scenes/gameplay/ResultScreen.tscn")
 @onready var cpu_icon:Sprite2D = $HUD/HealthBar/ProgressBar/CPUIcon
 @onready var player_icon:Sprite2D = $HUD/HealthBar/ProgressBar/PlayerIcon
 @onready var score_text:Label = $HUD/HealthBar/ScoreText
+
+@onready var time_bar_bg: ColorRect = $HUD/TimeBar
+@onready var time_bar: ProgressBar = $HUD/TimeBar/ProgressBar
+@onready var time_text: Label = $HUD/TimeBar/TimeText
 
 @onready var countdown_sprite:Sprite2D = $HUD/CountdownSprite
 
@@ -311,9 +317,11 @@ func _ready() -> void:
 	if SettingsAPI.get_setting("downscroll"):
 		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
 		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y") * SettingsAPI.get_setting("hpbar down multiplier")
+		time_bar_bg.position.y = 691
 	else:
 		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
 		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y")
+		time_bar_bg.position.y = 10
 
 	if SettingsAPI.get_setting("hide hpbar"):
 		health_bar_bg.self_modulate = Color(1, 1, 1, 0)
@@ -328,7 +336,6 @@ func _ready() -> void:
 	else:
 		player_icon.show()
 		cpu_icon.show()
-
 
 	if SettingsAPI.get_setting("judgement camera").to_lower() == "hud":
 		remove_child(combo_group)
@@ -349,6 +356,8 @@ func _ready() -> void:
 	start_countdown()
 
 	update_score_text()
+
+	max_time = tracks[0].stream.get_length() * 1000.0
 
 	stage.callv("_ready_post", [])
 	script_group.call_func("_ready_post", [])
@@ -1022,6 +1031,13 @@ func _process(delta:float) -> void:
 
 	cpu_icon.health = 100.0 - percent
 	player_icon.health = percent
+
+	cur_time = Conductor.position
+
+	var time_percent:float = cur_time / max_time
+	time_bar.value = time_percent
+
+	time_text.text = "%s / %s" % [Global.format_time(cur_time / 1000.0), Global.format_time(max_time / 1000.0)]
 
 	if icon_zooming:
 		var icon_speed:float = clampf((delta * ICON_DELTA_MULTIPLIER) * Conductor.rate, 0.0, 1.0)
