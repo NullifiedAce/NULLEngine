@@ -102,7 +102,7 @@ var ui_skin:UISkin
 
 @onready var cpu_icon:Sprite2D = $HUD/HealthBar/ProgressBar/CPUIcon
 @onready var player_icon:Sprite2D = $HUD/HealthBar/ProgressBar/PlayerIcon
-@onready var score_text:Label = $HUD/HealthBar/ScoreText
+@onready var score_text:Label = $HUD/ScoreText
 
 @onready var time_bar_bg: ColorRect = $HUD/TimeBar
 @onready var time_bar: ProgressBar = $HUD/TimeBar/ProgressBar
@@ -1037,7 +1037,10 @@ func _process(delta:float) -> void:
 	var time_percent:float = cur_time / max_time
 	time_bar.value = time_percent
 
-	time_text.text = "%s / %s" % [Global.format_time(cur_time / 1000.0), Global.format_time(max_time / 1000.0)]
+	var time_left = Global.format_time((max_time - cur_time) / 1000.0)
+
+	#time_text.text = "%s / %s" % [Global.format_time(cur_time / 1000.0), Global.format_time(max_time / 1000.0)]
+	time_text.text = "%s" % time_left
 
 	if icon_zooming:
 		var icon_speed:float = clampf((delta * ICON_DELTA_MULTIPLIER) * Conductor.rate, 0.0, 1.0)

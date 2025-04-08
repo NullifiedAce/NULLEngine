@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://eugpu5xl3ax"]
+
+[ext_resource type="Script" uid="uid://b612ydujv6i18" path="res://scenes/menus/options/hud/Elements/HUDLabel.gd" id="1_s3t6e"]
+
+[node name="HUDLabel" type="Label"]
+offset_right = 1.0
+offset_bottom = 23.0
+script = ExtResource("1_s3t6e")
+
+[node name="HSeparator" type="HSeparator" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 4.0
+
+[node name="CheckBox" type="CheckBox" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+tooltip_text = "Counter: Keeps track of a value during gameplay."
+focus_mode = 0
+text = "Counter?"

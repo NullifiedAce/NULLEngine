@@ -44,19 +44,28 @@ var _settings:Dictionary = {
 	# hud editor
 	"bg color": "ffffff",
 
+	# time bar
+	"time x": 390.0,
+	"time y": 10.0,
+	"time down multi": 69.0, # haha, very funny
+
 	# health bar
 	"icon colors": false,
 	"custom color": false,
-	"hide hpbar": false,
-	"hide icons": false,
+	"icon alpha": 1.0,
 	"player color": "00ff00",
 	"opp color": "ff0000",
 
-	"hpbar x": 340,
-	"hpbar y": 636,
+	"hpbar x": 340.0,
+	"hpbar y": 636.0,
 	"hpbar down multiplier": 0.1,
+	"hpbar alpha": 1.0,
 
 	#score text
+	"score x": 0.0,
+	"score y": 676.0,
+	"score down multi": 0.15,
+
 	"seperator": " - ",
 
 	"score_arrangement": "[\"score\", \"seperator\", \"misses\", \"seperator\", \"accuracy\", \"seperator\", \"ranks\"]",
