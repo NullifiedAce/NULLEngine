@@ -32,7 +32,8 @@ icon_alignment = 1
 [node name="Configure" type="Window" parent="."]
 title = "Configure HUD Element"
 initial_position = 2
-size = Vector2i(256, 256)
+size = Vector2i(256, 320)
+visible = false
 min_size = Vector2i(256, 256)
 content_scale_mode = 1
 content_scale_aspect = 1
@@ -53,7 +54,7 @@ anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = -8.0
-offset_bottom = -8.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -61,14 +62,17 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Configure/ScrollContainer/VBoxContainer"]
+[node name="Default Options" type="VBoxContainer" parent="Configure/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Configure/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Configure/ScrollContainer/VBoxContainer/Default Options/HBoxContainer"]
 layout_mode = 2
 text = "HUD Type:"
 
-[node name="Type" type="OptionButton" parent="Configure/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Type" type="OptionButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/HBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 selected = 0
@@ -78,75 +82,55 @@ popup/item_0/id = 0
 popup/item_1/text = "Progress Bar"
 popup/item_1/id = 1
 
-[node name="HSeparator" type="HSeparator" parent="Configure/ScrollContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
 layout_mode = 2
 
-[node name="PosTitle" type="Label" parent="Configure/ScrollContainer/VBoxContainer"]
+[node name="PosTitle" type="Label" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
 layout_mode = 2
 text = "Position:"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Configure/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
 layout_mode = 2
 
-[node name="XPos" type="SpinBox" parent="Configure/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="XPos" type="SpinBox" parent="Configure/ScrollContainer/VBoxContainer/Default Options/HBoxContainer2"]
 layout_mode = 2
 min_value = -1280.0
 max_value = 1280.0
 suffix = "x"
 script = ExtResource("4_ma0ri")
 
-[node name="YPos" type="SpinBox" parent="Configure/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="YPos" type="SpinBox" parent="Configure/ScrollContainer/VBoxContainer/Default Options/HBoxContainer2"]
 layout_mode = 2
 min_value = -720.0
 max_value = 720.0
 suffix = "y"
 script = ExtResource("4_ma0ri")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
-offset_left = -280.0
-offset_top = -168.0
-offset_right = -63.0
-offset_bottom = -67.0
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="DownscrollTitle" type="Label" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
 layout_mode = 2
+text = "Downscroll Mutliplier:"
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Downscroll SpinBox" type="SpinBox" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
 layout_mode = 2
-text = "HUD Type:"
-
-[node name="Type" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-selected = 0
-item_count = 2
-popup/item_0/text = "Label"
-popup/item_0/id = 0
-popup/item_1/text = "Progress Bar"
-popup/item_1/id = 1
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="PosTitle" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Position:"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="XPos" type="SpinBox" parent="VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-min_value = -1280.0
-max_value = 1280.0
+size_flags_horizontal = 0
 suffix = "x"
-script = ExtResource("4_ma0ri")
 
-[node name="YPos" type="SpinBox" parent="VBoxContainer/HBoxContainer2"]
+[node name="HSeparator2" type="HSeparator" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
 layout_mode = 2
-min_value = -720.0
-max_value = 720.0
-suffix = "y"
-script = ExtResource("4_ma0ri")
+
+[node name="Type Options" type="VBoxContainer" parent="Configure/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Save" type="Button" parent="Configure"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -40.0
+offset_right = 24.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Save"

@@ -249,11 +249,9 @@ item_2/text = "Delete HUD Element"
 item_2/id = 2
 item_2/disabled = true
 
-[node name="HUD Element" parent="." instance=ExtResource("7_k8jfr")]
-offset_left = 192.0
-offset_top = 192.0
-offset_right = 192.0
-offset_bottom = 192.0
+[node name="Template" parent="." instance=ExtResource("7_k8jfr")]
+offset_left = -384.0
+offset_right = -384.0
 
 [connection signal="popup_closed" from="Preferences/ScrollContainer/VBoxContainer/BGColor/ColorBG" to="Preferences/ScrollContainer/VBoxContainer/BGColor/ColorBG" method="_on_popup_closed"]
 [connection signal="popup_closed" from="Preferences/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" to="Preferences/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" method="_on_popup_closed"]

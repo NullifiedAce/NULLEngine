@@ -1118,6 +1118,7 @@ focus_mode = 0
 selected = 0
 item_count = 2
 popup/item_0/text = "Multiplier"
+popup/item_0/id = 0
 popup/item_1/text = "Constant"
 popup/item_1/id = 1
 script = ExtResource("16_b81jf")
@@ -1388,6 +1389,7 @@ focus_mode = 0
 selected = 0
 item_count = 2
 popup/item_0/text = "World"
+popup/item_0/id = 0
 popup/item_1/text = "HUD"
 popup/item_1/id = 1
 script = ExtResource("16_b81jf")
@@ -1541,6 +1543,7 @@ offset_bottom = 139.0
 focus_mode = 0
 item_count = 7
 popup/item_0/text = "60"
+popup/item_0/id = 0
 popup/item_1/text = "120"
 popup/item_1/id = 1
 popup/item_2/text = "240"
@@ -1664,7 +1667,7 @@ text = "TXT Converter"
 
 [node name="switch" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_h4lpb")
+&"": SubResource("AnimationLibrary_h4lpb")
 }
 
 [node name="Tools" type="Button" parent="."]
