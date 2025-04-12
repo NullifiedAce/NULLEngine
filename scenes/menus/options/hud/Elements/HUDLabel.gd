@@ -14,8 +14,10 @@ var parent = HUDElement
 @onready var font_options: OptionButton = $CustomizeWindow/ScrollContainer/VBoxContainer/HBoxContainer/FontOptions
 @onready var font_color_picker: ColorPickerButton = $CustomizeWindow/ScrollContainer/VBoxContainer/HBoxContainer/FontColor
 @onready var font_size: SpinBox = $CustomizeWindow/ScrollContainer/VBoxContainer/HBoxContainer/FontSize
+
 @onready var outline_color_picker: ColorPickerButton = $CustomizeWindow/ScrollContainer/VBoxContainer/Outlines/OutlineColor
 @onready var outline_size: SpinBox = $CustomizeWindow/ScrollContainer/VBoxContainer/Outlines/OutlineSize
+
 @onready var shadow_color_picker: ColorPickerButton = $CustomizeWindow/ScrollContainer/VBoxContainer/Shadows/ShadowColor
 @onready var shadow_size: SpinBox = $CustomizeWindow/ScrollContainer/VBoxContainer/Shadows/ShadowSize
 @onready var shadow_offset_x: SpinBox = $CustomizeWindow/ScrollContainer/VBoxContainer/Shadows2/ShadowOffsetX
@@ -25,10 +27,7 @@ func _ready() -> void:
 	_on_reload_pressed()
 
 func _process(delta: float) -> void:
-	if !track_value_check.button_pressed:
-		text = label_text.text
-	else:
-		text = prefix_box.text + "0" + suffix_box.text
+	text = label_text.text
 
 func _on_customize_pressed() -> void:
 	if customize_window.visible: customize_window.hide()
@@ -48,3 +47,18 @@ func _on_reload_pressed() -> void:
 	add_theme_constant_override('shadow_outline_size', shadow_size.value)
 	add_theme_constant_override('shadow_offset_x', shadow_offset_x.value)
 	add_theme_constant_override('shadow_offset_y', shadow_offset_y.value)
+
+func _on_apply_default_pressed() -> void:
+	font_options.selected = EngineTheme.get_theme_data("Label Font")
+	font_color_picker.color = Color.from_string(EngineTheme.get_theme_data("Label Font Color"), Color.WHITE)
+	font_size.value = EngineTheme.get_theme_data("Label Font Size")
+
+	outline_color_picker.color = Color.from_string(EngineTheme.get_theme_data("Label Outline Color"), Color.BLACK)
+	outline_size.value = EngineTheme.get_theme_data("Label Outline Size")
+
+	shadow_color_picker.color = Color.from_string(EngineTheme.get_theme_data("Label Shadow Color"), Color.TRANSPARENT)
+	shadow_size.value = EngineTheme.get_theme_data("Label Shadow Size")
+	shadow_offset_x.value = EngineTheme.get_theme_data("Label Shadow Offset X")
+	shadow_offset_y.value = EngineTheme.get_theme_data("Label Shadow Offset Y")
+
+	_on_reload_pressed()

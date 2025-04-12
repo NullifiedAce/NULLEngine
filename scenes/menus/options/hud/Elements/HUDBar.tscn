@@ -1,0 +1,655 @@
+[gd_scene load_steps=3 format=3 uid="uid://s8ci5hu0xftg"]
+
+[ext_resource type="Script" uid="uid://d0tlsa5ojlfgp" path="res://scenes/menus/options/hud/Elements/HUDBar.gd" id="1_5k8sf"]
+[ext_resource type="Theme" uid="uid://dqqyiyf33vtjn" path="res://assets/styles/NULLEngine.tres" id="2_ny6ii"]
+
+[node name="HUDBar" type="ProgressBar"]
+offset_right = 1.0
+offset_bottom = 1.0
+max_value = 1.0
+value = 0.5
+show_percentage = false
+script = ExtResource("1_5k8sf")
+
+[node name="Size" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 49.0
+offset_bottom = 23.0
+text = "Size X:"
+
+[node name="Sizes" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SizeX" type="SpinBox" parent="Sizes"]
+layout_mode = 2
+min_value = 4.0
+max_value = 1280.0
+value = 4.0
+suffix = "x"
+
+[node name="SizeY" type="SpinBox" parent="Sizes"]
+layout_mode = 2
+min_value = 4.0
+max_value = 720.0
+value = 4.0
+suffix = "y"
+
+[node name="FillModeTitle" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Fill Mode:"
+
+[node name="FillMode" type="OptionButton" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 20.0
+focus_mode = 0
+selected = 0
+fit_to_longest_item = false
+item_count = 4
+popup/item_0/text = "Begin to End"
+popup/item_0/id = 0
+popup/item_1/text = "End to Begin"
+popup/item_1/id = 1
+popup/item_2/text = "Top to Bottom"
+popup/item_2/id = 2
+popup/item_3/text = "Bottom to Top"
+popup/item_3/id = 3
+
+[node name="Customize" type="Button" parent="."]
+visible = false
+offset_right = 89.0
+offset_bottom = 31.0
+focus_mode = 0
+text = "Customize"
+
+[node name="CustomizeWindow" type="Window" parent="."]
+title = "Customize"
+initial_position = 2
+size = Vector2i(640, 360)
+visible = false
+min_size = Vector2i(128, 128)
+
+[node name="BG" type="ColorRect" parent="CustomizeWindow"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CustomizeWindow"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -113.5
+offset_top = -40.0
+offset_right = 113.5
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Apply Default" type="Button" parent="CustomizeWindow/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Apply Default/Reset"
+
+[node name="Reload" type="Button" parent="CustomizeWindow/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Reload"
+
+[node name="TabContainer" type="TabContainer" parent="CustomizeWindow"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ny6ii")
+current_tab = 0
+tab_focus_mode = 0
+
+[node name="Background" type="TabBar" parent="CustomizeWindow/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CustomizeWindow/TabContainer/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CustomizeWindow/TabContainer/Background/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorSettingsTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Color Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Colors" type="HBoxContainer" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BGColorTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Background Color:"
+
+[node name="BGColor" type="ColorPickerButton" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="VSeparator" type="VSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+
+[node name="BorderColorTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Border Color:"
+
+[node name="BorderColor" type="ColorPickerButton" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="VSeparator2" type="VSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+
+[node name="ShadowColorTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Shadow Color:"
+
+[node name="ShadowColor" type="ColorPickerButton" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0, 0, 0, 0.6)
+
+[node name="HSeparator2" type="HSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BorderSettingsTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Border Width Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Border" type="HBoxContainer" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Left:"
+
+[node name="LeftWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+value = 4.0
+
+[node name="VSeparator" type="VSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="Top" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Top:"
+
+[node name="TopWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+value = 4.0
+
+[node name="VSeparator2" type="VSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="Right" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Right:"
+
+[node name="RightWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+value = 4.0
+
+[node name="VSeparator3" type="VSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="Bottom" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Bottom:"
+
+[node name="BottomWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+value = 4.0
+
+[node name="HSeparator4" type="HSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CornerRadiusTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Corner Radius Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator5" type="HSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ConrerRadius" type="HBoxContainer" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TopLeftTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+text = "Top Left:"
+
+[node name="TopLeft" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+
+[node name="TopRightTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+text = "Top Right:"
+
+[node name="TopRight" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+
+[node name="ConrerRadius2" type="HBoxContainer" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BottomLeftTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+text = "Bottom Left:"
+
+[node name="BottomLeft" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+
+[node name="VSeparator3" type="VSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+
+[node name="BottomRightTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+text = "Bottom Right:"
+
+[node name="BottomRight" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+
+[node name="HSeparator6" type="HSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExpandMarginsTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Expand Margins Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator7" type="HSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExpandMargins" type="HBoxContainer" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Left:"
+
+[node name="LeftWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+value = 4.0
+
+[node name="VSeparator" type="VSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="Top" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Top:"
+
+[node name="TopWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+value = 4.0
+
+[node name="VSeparator2" type="VSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="Right" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Right:"
+
+[node name="RightWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+value = 4.0
+
+[node name="VSeparator3" type="VSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="Bottom" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Bottom:"
+
+[node name="BottomWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+value = 4.0
+
+[node name="HSeparator8" type="HSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShadowSettingsTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shadow Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator9" type="HSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowSizeTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Shadow Size:"
+
+[node name="ShadowSize" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ShadowOffsetTitle" type="Label" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Shadow Offsets:"
+
+[node name="ShadowOffsetX" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+suffix = "x"
+
+[node name="ShadowOffsetY" type="SpinBox" parent="CustomizeWindow/TabContainer/Background/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+suffix = "y"
+
+[node name="Fill" type="TabBar" parent="CustomizeWindow/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CustomizeWindow/TabContainer/Fill"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorSettingsTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Color Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Colors" type="HBoxContainer" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BGColorTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Background Color:"
+
+[node name="BGColor" type="ColorPickerButton" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="VSeparator" type="VSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+
+[node name="BorderColorTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Border Color:"
+
+[node name="BorderColor" type="ColorPickerButton" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="VSeparator2" type="VSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+
+[node name="ShadowColorTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Shadow Color:"
+
+[node name="ShadowColor" type="ColorPickerButton" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0, 0, 0, 0.6)
+
+[node name="HSeparator2" type="HSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BorderSettingsTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Border Width Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Border" type="HBoxContainer" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Left:"
+
+[node name="LeftWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="Top" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Top:"
+
+[node name="TopWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="Right" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Right:"
+
+[node name="RightWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="VSeparator3" type="VSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="Bottom" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Bottom:"
+
+[node name="BottomWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="HSeparator4" type="HSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CornerRadiusTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Corner Radius Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator5" type="HSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ConrerRadius" type="HBoxContainer" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TopLeftTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+text = "Top Left:"
+
+[node name="TopLeft" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+
+[node name="TopRightTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+text = "Top Right:"
+
+[node name="TopRight" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+
+[node name="ConrerRadius2" type="HBoxContainer" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BottomLeftTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+text = "Bottom Left:"
+
+[node name="BottomLeft" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+
+[node name="VSeparator3" type="VSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+
+[node name="BottomRightTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+text = "Bottom Right:"
+
+[node name="BottomRight" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+
+[node name="HSeparator6" type="HSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExpandMarginsTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Expand Margins Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator7" type="HSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExpandMargins" type="HBoxContainer" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Left:"
+
+[node name="LeftWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="Top" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Top:"
+
+[node name="TopWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="Right" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Right:"
+
+[node name="RightWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="VSeparator3" type="VSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="Bottom" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Bottom:"
+
+[node name="BottomWidth" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="HSeparator8" type="HSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShadowSettingsTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shadow Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator9" type="HSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowSizeTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Shadow Size:"
+
+[node name="ShadowSize" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ShadowOffsetTitle" type="Label" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Shadow Offsets:"
+
+[node name="ShadowOffsetX" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+suffix = "x"
+
+[node name="ShadowOffsetY" type="SpinBox" parent="CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+suffix = "y"
+
+[connection signal="pressed" from="Customize" to="." method="_on_customize_pressed"]
+[connection signal="pressed" from="CustomizeWindow/HBoxContainer/Reload" to="." method="_on_reload_pressed"]

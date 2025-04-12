@@ -118,19 +118,33 @@ suffix = "x"
 [node name="HSeparator2" type="HSeparator" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
 layout_mode = 2
 
+[node name="RotTitle" type="Label" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
+layout_mode = 2
+text = "Rotation:"
+
+[node name="Rotation" type="SpinBox" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = -360.0
+max_value = 360.0
+
 [node name="Type Options" type="VBoxContainer" parent="Configure/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Save" type="Button" parent="Configure"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Configure"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -24.0
+offset_left = -120.0
 offset_top = -40.0
-offset_right = 24.0
+offset_right = 120.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
+alignment = 1
+
+[node name="Save" type="Button" parent="Configure/HBoxContainer"]
+layout_mode = 2
 text = "Save"

@@ -4,9 +4,23 @@ var cfg_file:ConfigFile = ConfigFile.new()
 var path = SaveData.path + "EngineTheme.cfg"
 
 var theme_data:Dictionary = {
+	# HUD Editor Background
 	"HUD BG Color": "ffffff",
 	"HUD BG Gradiant1": "ffffff69",
 	"HUD BG Gradiant2": "ffffff00",
+
+	# Label Style Default
+	"Label Font": 0,
+	"Label Font Color": "ffffff",
+	"Label Font Size": 16,
+
+	"Label Outline Color": "000000",
+	"Label Outline Size": 8,
+
+	"Label Shadow Color": "00000000",
+	"Label Shadow Size": 0,
+	"Label Shadow Offset X": 0,
+	"Label Shadow Offset Y": 0,
 }
 
 func _ready() -> void:

@@ -116,6 +116,7 @@ title = "Customize"
 initial_position = 2
 size = Vector2i(640, 360)
 visible = false
+min_size = Vector2i(128, 128)
 
 [node name="BG" type="ColorRect" parent="CustomizeWindow"]
 anchors_preset = 15
@@ -133,7 +134,7 @@ anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = -8.0
-offset_bottom = -80.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
@@ -291,20 +292,30 @@ min_value = -100.0
 suffix = "y"
 script = ExtResource("2_4milo")
 
-[node name="Reload" type="Button" parent="CustomizeWindow"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CustomizeWindow"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -30.5
-offset_top = -47.0
-offset_right = 30.5
-offset_bottom = -16.0
+offset_left = -113.5
+offset_top = -40.0
+offset_right = 113.5
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
+alignment = 1
+
+[node name="Apply Default" type="Button" parent="CustomizeWindow/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Apply Default/Reset"
+
+[node name="Reload" type="Button" parent="CustomizeWindow/HBoxContainer"]
+layout_mode = 2
 focus_mode = 0
 text = "Reload"
 
 [connection signal="pressed" from="Customize" to="." method="_on_customize_pressed"]
-[connection signal="pressed" from="CustomizeWindow/Reload" to="." method="_on_reload_pressed"]
+[connection signal="pressed" from="CustomizeWindow/HBoxContainer/Apply Default" to="." method="_on_apply_default_pressed"]
+[connection signal="pressed" from="CustomizeWindow/HBoxContainer/Reload" to="." method="_on_reload_pressed"]

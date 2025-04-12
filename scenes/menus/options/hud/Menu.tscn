@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqsrwpb82r34v"]
+[gd_scene load_steps=13 format=3 uid="uid://bqsrwpb82r34v"]
 
 [ext_resource type="Script" uid="uid://bydrrqjf2awjd" path="res://scenes/menus/options/hud/Menu.gd" id="1_028jv"]
 [ext_resource type="Script" uid="uid://b1pwa7eu337d2" path="res://scenes/menus/options/hud/ThemeHandler.gd" id="2_7hp2n"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://co00xq8h2ivbw" path="res://scenes/menus/options/hud/EngineColor.gd" id="6_sg4b6"]
 [ext_resource type="PackedScene" uid="uid://d3skr632i6bbj" path="res://scenes/menus/options/hud/Elements/HUDElement.tscn" id="7_k8jfr"]
 [ext_resource type="Script" uid="uid://cayyq5tvyebbr" path="res://scenes/menus/options/hud/HUDPreview.gd" id="8_4ahyr"]
+[ext_resource type="Script" uid="uid://d1mg4gki84igd" path="res://scenes/menus/options/hud/EngineThemeOption.gd" id="8_cgx1m"]
+[ext_resource type="Script" uid="uid://d1m5agyfh2uer" path="res://scenes/menus/options/hud/EngineThemeSpinBox.gd" id="9_36kso"]
 
 [sub_resource type="Gradient" id="Gradient_yb4yc"]
 interpolation_mode = 2
@@ -118,125 +120,12 @@ text = "Help"
 flat = false
 switch_on_hover = true
 item_count = 1
-popup/item_0/text = "About"
+popup/item_0/text = "User Guide"
 popup/item_0/id = 0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 127
 script = ExtResource("8_4ahyr")
-
-[node name="Preferences" type="Window" parent="."]
-title = "Preferences"
-initial_position = 2
-size = Vector2i(512, 512)
-visible = false
-min_size = Vector2i(128, 128)
-content_scale_mode = 1
-content_scale_aspect = 1
-
-[node name="BG" type="ColorRect" parent="Preferences"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.298039, 0.298039, 0.298039, 1)
-metadata/_edit_lock_ = true
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Preferences"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Preferences/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ThemeTitle" type="Label" parent="Preferences/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Theme"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="Preferences/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="BG" type="Label" parent="Preferences/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Background Options"
-horizontal_alignment = 1
-
-[node name="HSeparator3" type="HSeparator" parent="Preferences/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="BGColor" type="HBoxContainer" parent="Preferences/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="BGColor" type="Label" parent="Preferences/ScrollContainer/VBoxContainer/BGColor"]
-custom_minimum_size = Vector2(144, 0)
-layout_mode = 2
-text = "Background Color:"
-
-[node name="ColorBG" type="ColorPickerButton" parent="Preferences/ScrollContainer/VBoxContainer/BGColor"]
-custom_minimum_size = Vector2(80, 32)
-layout_mode = 2
-focus_mode = 0
-edit_alpha = false
-script = ExtResource("6_sg4b6")
-data = "HUD BG Color"
-metadata/_custom_type_script = "uid://co00xq8h2ivbw"
-
-[node name="Gradiant" type="Label" parent="Preferences/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Gradiant Options"
-horizontal_alignment = 1
-
-[node name="HSeparator2" type="HSeparator" parent="Preferences/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="GradiantColor" type="HBoxContainer" parent="Preferences/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Grad1" type="Label" parent="Preferences/ScrollContainer/VBoxContainer/GradiantColor"]
-custom_minimum_size = Vector2(144, 0)
-layout_mode = 2
-text = "Gradiant 1 Color:"
-
-[node name="Gradient1" type="ColorPickerButton" parent="Preferences/ScrollContainer/VBoxContainer/GradiantColor"]
-custom_minimum_size = Vector2(80, 32)
-layout_mode = 2
-focus_mode = 0
-script = ExtResource("6_sg4b6")
-data = "HUD BG Gradiant1"
-metadata/_custom_type_script = "uid://co00xq8h2ivbw"
-
-[node name="Grad2" type="Label" parent="Preferences/ScrollContainer/VBoxContainer/GradiantColor"]
-custom_minimum_size = Vector2(144, 0)
-layout_mode = 2
-text = "Gradiant 2 Color:"
-
-[node name="Gradient2" type="ColorPickerButton" parent="Preferences/ScrollContainer/VBoxContainer/GradiantColor"]
-custom_minimum_size = Vector2(80, 32)
-layout_mode = 2
-focus_mode = 0
-script = ExtResource("6_sg4b6")
-data = "HUD BG Gradiant2"
-metadata/_custom_type_script = "uid://co00xq8h2ivbw"
-
-[node name="HSeparator4" type="HSeparator" parent="Preferences/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Reload" type="Button" parent="Preferences/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-focus_mode = 0
-text = "Reload"
 
 [node name="AddPopup" type="PopupMenu" parent="."]
 size = Vector2i(198, 66)
@@ -253,7 +142,364 @@ item_2/disabled = true
 offset_left = -384.0
 offset_right = -384.0
 
-[connection signal="popup_closed" from="Preferences/ScrollContainer/VBoxContainer/BGColor/ColorBG" to="Preferences/ScrollContainer/VBoxContainer/BGColor/ColorBG" method="_on_popup_closed"]
-[connection signal="popup_closed" from="Preferences/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" to="Preferences/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" method="_on_popup_closed"]
-[connection signal="popup_closed" from="Preferences/ScrollContainer/VBoxContainer/GradiantColor/Gradient2" to="Preferences/ScrollContainer/VBoxContainer/GradiantColor/Gradient2" method="_on_popup_closed"]
-[connection signal="pressed" from="Preferences/ScrollContainer/VBoxContainer/Reload" to="ThemeHandler" method="_on_reload_pressed"]
+[node name="Windows" type="Node" parent="."]
+
+[node name="Preferences" type="Window" parent="Windows"]
+title = "Preferences"
+initial_position = 2
+size = Vector2i(512, 512)
+visible = false
+min_size = Vector2i(128, 128)
+content_scale_mode = 1
+content_scale_aspect = 1
+
+[node name="BG" type="ColorRect" parent="Windows/Preferences"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+metadata/_edit_lock_ = true
+
+[node name="TabContainer" type="TabContainer" parent="Windows/Preferences"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_k68oh")
+current_tab = 0
+tab_focus_mode = 0
+
+[node name="Theme" type="TabBar" parent="Windows/Preferences/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Windows/Preferences/TabContainer/Theme"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BG" type="Label" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Background Options"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BGColor" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BGColor" type="Label" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor"]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "Background Color:"
+
+[node name="ColorBG" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor"]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 2
+focus_mode = 0
+edit_alpha = false
+script = ExtResource("6_sg4b6")
+data = "HUD BG Color"
+metadata/_custom_type_script = "uid://co00xq8h2ivbw"
+
+[node name="Gradiant" type="Label" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Gradiant Options"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GradiantColor" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Grad1" type="Label" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor"]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "Gradiant 1 Color:"
+
+[node name="Gradient1" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor"]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 2
+focus_mode = 0
+script = ExtResource("6_sg4b6")
+data = "HUD BG Gradiant1"
+metadata/_custom_type_script = "uid://co00xq8h2ivbw"
+
+[node name="Grad2" type="Label" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor"]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "Gradiant 2 Color:"
+
+[node name="Gradient2" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor"]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 2
+focus_mode = 0
+script = ExtResource("6_sg4b6")
+data = "HUD BG Gradiant2"
+metadata/_custom_type_script = "uid://co00xq8h2ivbw"
+
+[node name="HSeparator4" type="HSeparator" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Reload" type="Button" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "Reload"
+
+[node name="Label Defaults" type="TabBar" parent="Windows/Preferences/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Windows/Preferences/TabContainer/Label Defaults"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FontSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Font Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+alignment = 1
+
+[node name="FontText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Font:"
+
+[node name="FontOptions" type="OptionButton" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+selected = 0
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "VCR"
+popup/item_0/id = 0
+popup/item_1/text = "funkin"
+popup/item_1/id = 1
+script = ExtResource("8_cgx1m")
+data = "Label Font"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="FontColorText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Font Color:"
+
+[node name="FontColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(1, 1, 1, 1)
+script = ExtResource("6_sg4b6")
+data = "Label Font Color"
+
+[node name="VSeparator2" type="VSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="FontSizeText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Font Size:"
+
+[node name="FontSize" type="SpinBox" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+max_value = 255.0
+value = 16.0
+script = ExtResource("9_36kso")
+data = "Label Font Size"
+
+[node name="HSeparator2" type="HSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OutlineSettingTitle" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Outline Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Outlines" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="OutlineColorText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines"]
+layout_mode = 2
+text = "Outline Color:"
+
+[node name="OutlineColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+script = ExtResource("6_sg4b6")
+data = "Label Outline Color"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines"]
+layout_mode = 2
+
+[node name="OutlineSizeText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines"]
+layout_mode = 2
+text = "Outline Size:"
+
+[node name="OutlineSize" type="SpinBox" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines"]
+layout_mode = 2
+value = 8.0
+script = ExtResource("9_36kso")
+data = "Label Outline Size"
+
+[node name="HSeparator4" type="HSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShadowSettingTitle" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shadow Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator5" type="HSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Shadows" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="ShadowColorText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows"]
+layout_mode = 2
+text = "Shadow Color:"
+
+[node name="ShadowColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0, 0, 0, 0)
+script = ExtResource("6_sg4b6")
+data = "Label Shadow Color"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows"]
+layout_mode = 2
+
+[node name="ShadowSizeText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows"]
+layout_mode = 2
+text = "Shadow Size:"
+
+[node name="ShadowSize" type="SpinBox" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Label Shadow Size"
+
+[node name="Shadows2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="ShadowOffsetsText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2"]
+layout_mode = 2
+text = "Shadow Offsets:"
+
+[node name="ShadowOffsetX" type="SpinBox" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2"]
+layout_mode = 2
+min_value = -100.0
+suffix = "x"
+script = ExtResource("9_36kso")
+data = "Label Shadow Offset X"
+
+[node name="ShadowOffsetY" type="SpinBox" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2"]
+layout_mode = 2
+min_value = -100.0
+suffix = "y"
+script = ExtResource("9_36kso")
+data = "Label Shadow Offset Y"
+
+[node name="About" type="Window" parent="Windows"]
+title = "User Guide"
+initial_position = 2
+size = Vector2i(512, 512)
+visible = false
+min_size = Vector2i(512, 512)
+max_size = Vector2i(1280, 720)
+
+[node name="BG" type="ColorRect" parent="Windows/About"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+metadata/_edit_lock_ = true
+
+[node name="TabContainer" type="TabContainer" parent="Windows/About"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_k68oh")
+current_tab = 0
+tab_focus_mode = 0
+
+[node name="Basics" type="TabBar" parent="Windows/About/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Hotkeys" type="TabBar" parent="Windows/About/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor/ColorBG" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor/ColorBG" method="_on_popup_closed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" method="_on_popup_closed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient2" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient2" method="_on_popup_closed"]
+[connection signal="pressed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/Reload" to="ThemeHandler" method="_on_reload_pressed"]
+[connection signal="item_selected" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer/FontOptions" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer/FontOptions" method="_on_item_selected"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer/FontColor" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer/FontColor" method="_on_popup_closed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer/FontSize" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer/FontSize" method="_on_value_changed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines/OutlineColor" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines/OutlineColor" method="_on_popup_closed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines/OutlineSize" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines/OutlineSize" method="_on_value_changed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows/ShadowColor" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows/ShadowColor" method="_on_popup_closed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows/ShadowSize" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows/ShadowSize" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2/ShadowOffsetX" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2/ShadowOffsetX" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2/ShadowOffsetY" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2/ShadowOffsetY" method="_on_value_changed"]

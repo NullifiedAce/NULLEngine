@@ -6,11 +6,10 @@ class_name HUDEditor
 @onready var options_menu: MenuButton = $Options
 @onready var help_menu: MenuButton = $Help
 
-@onready var preferences_window: Window = $Preferences
+@onready var preferences_window: Window = $Windows/Preferences
 @onready var add_popup: PopupMenu = $AddPopup
 
 @onready var hud_template: HUDElement = $Template
-
 
 func _ready() -> void:
 	for i in FPS.get_children():
