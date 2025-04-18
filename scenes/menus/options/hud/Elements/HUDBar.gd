@@ -56,6 +56,7 @@ var parent = HUDElement
 @onready var fill_shadow_offset_y: SpinBox = $CustomizeWindow/TabContainer/Fill/ScrollContainer/VBoxContainer/HBoxContainer/ShadowOffsetY
 
 @onready var customize_window: Window = $CustomizeWindow
+@onready var icon_array: VBoxContainer = $'CustomizeWindow/TabContainer/Bar Icon/ScrollContainer/VBoxContainer'
 
 func _ready() -> void:
 	_on_reload_pressed()
@@ -126,3 +127,57 @@ func apply_fill():
 	s.shadow_offset = Vector2(fill_shadow_offset_x.value, fill_shadow_offset_x.value)
 
 	add_theme_stylebox_override('fill', s)
+
+func _on_apply_default_pressed() -> void:
+	bg_bg_color.color =			EngineTheme.get_theme_data("Bar BG Color")
+	bg_border_color.color =		EngineTheme.get_theme_data("Bar BG Border Color")
+	bg_shadow_color.color =		EngineTheme.get_theme_data("Bar BG Shadow Color")
+
+	bg_left_width.value =		EngineTheme.get_theme_data("Bar BG Border Left")
+	bg_top_width.value =		EngineTheme.get_theme_data("Bar BG Border Left")
+	bg_right_width.value =		EngineTheme.get_theme_data("Bar BG Border Left")
+	bg_bottom_width.value =		EngineTheme.get_theme_data("Bar BG Border Left")
+
+	bg_top_left.value =			EngineTheme.get_theme_data("Bar BG Corner Radius TopLeft")
+	bg_top_right.value =		EngineTheme.get_theme_data("Bar BG Corner Radius TopRight")
+	bg_bottom_left.value =		EngineTheme.get_theme_data("Bar BG Corner Radius BottomLeft")
+	bg_bottom_right.value =		EngineTheme.get_theme_data("Bar BG Corner Radius BottomRight")
+
+	bg_left_margin.value =		EngineTheme.get_theme_data("Bar BG Expand Left")
+	bg_top_margin.value =		EngineTheme.get_theme_data("Bar BG Expand Top")
+	bg_right_margin.value =		EngineTheme.get_theme_data("Bar BG Expand Right")
+	bg_bottom_margin.value =	EngineTheme.get_theme_data("Bar BG Expand Bottom")
+
+	bg_shadow_size.value =		EngineTheme.get_theme_data("Bar BG Shadow Size")
+	bg_shadow_offset_x.value =	EngineTheme.get_theme_data("Bar BG Shadow Offset X")
+	bg_shadow_offset_y.value =	EngineTheme.get_theme_data("Bar BG Shadow Offset Y")
+
+
+	fill_bg_color.color =		EngineTheme.get_theme_data("Bar Fill Color")
+	fill_border_color.color =	EngineTheme.get_theme_data("Bar Fill Border Color")
+	fill_shadow_color.color =	EngineTheme.get_theme_data("Bar Fill Shadow Color")
+
+	fill_left_width.value =		EngineTheme.get_theme_data("Bar Fill Border Left")
+	fill_top_width.value =		EngineTheme.get_theme_data("Bar Fill Border Left")
+	fill_right_width.value =	EngineTheme.get_theme_data("Bar Fill Border Left")
+	fill_bottom_width.value =	EngineTheme.get_theme_data("Bar Fill Border Left")
+
+	fill_top_left.value =		EngineTheme.get_theme_data("Bar Fill Corner Radius TopLeft")
+	fill_top_right.value =		EngineTheme.get_theme_data("Bar Fill Corner Radius TopRight")
+	fill_bottom_left.value =	EngineTheme.get_theme_data("Bar Fill Corner Radius BottomLeft")
+	fill_bottom_right.value =	EngineTheme.get_theme_data("Bar Fill Corner Radius BottomRight")
+
+	fill_left_margin.value =	EngineTheme.get_theme_data("Bar Fill Expand Left")
+	fill_top_margin.value =		EngineTheme.get_theme_data("Bar Fill Expand Top")
+	fill_right_margin.value =	EngineTheme.get_theme_data("Bar Fill Expand Right")
+	fill_bottom_margin.value =	EngineTheme.get_theme_data("Bar Fill Expand Bottom")
+
+	fill_shadow_size.value =	EngineTheme.get_theme_data("Bar Fill Shadow Size")
+	fill_shadow_offset_x.value =EngineTheme.get_theme_data("Bar Fill Shadow Offset X")
+	fill_shadow_offset_y.value =EngineTheme.get_theme_data("Bar Fill Shadow Offset Y")
+
+	_on_reload_pressed()
+
+func _on_add_icon_pressed() -> void:
+	var icon = load("res://scenes/menus/options/hud/Elements/HUDIconButton.tscn").instantiate()
+	icon_array.add_child(icon)

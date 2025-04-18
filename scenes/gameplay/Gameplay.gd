@@ -97,17 +97,6 @@ var ui_skin:UISkin
 @onready var rating_template:VelocitySprite = $Ratings/RatingTemplate
 @onready var combo_template:VelocitySprite = $Ratings/ComboTemplate
 
-@onready var health_bar_bg:ColorRect = $HUD/HealthBar
-@onready var health_bar:ProgressBar = $HUD/HealthBar/ProgressBar
-
-@onready var cpu_icon:Sprite2D = $HUD/HealthBar/ProgressBar/CPUIcon
-@onready var player_icon:Sprite2D = $HUD/HealthBar/ProgressBar/PlayerIcon
-@onready var score_text:Label = $HUD/ScoreText
-
-@onready var time_bar_bg: ColorRect = $HUD/TimeBar
-@onready var time_bar: ProgressBar = $HUD/TimeBar/ProgressBar
-@onready var time_text: Label = $HUD/TimeBar/TimeText
-
 @onready var countdown_sprite:Sprite2D = $HUD/CountdownSprite
 
 @onready var countdown_prepare_sound:AudioStreamPlayer = $CountdownSounds/Prepare
@@ -246,10 +235,6 @@ func _ready() -> void:
 
 	health = Constants.HEALTH_STARTING
 
-	health_bar.min_value = Constants.HEALTH_MIN
-	health_bar.max_value = max_health
-	health_bar.value = health
-
 	cpu_strums = load("res://scenes/gameplay/strumlines/4K.tscn").instantiate()
 	cpu_strums.note_skin = ui_skin
 	cpu_strums.handle_input = false
@@ -311,32 +296,6 @@ func _ready() -> void:
 
 	load_song()
 
-	update_health_bar()
-	setup_label_settings()
-
-	if SettingsAPI.get_setting("downscroll"):
-		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
-		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y") * SettingsAPI.get_setting("hpbar down multiplier")
-		time_bar_bg.position.y = 691
-	else:
-		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
-		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y")
-		time_bar_bg.position.y = 10
-
-	if SettingsAPI.get_setting("hide hpbar"):
-		health_bar_bg.self_modulate = Color(1, 1, 1, 0)
-		health_bar.self_modulate = Color(1, 1, 1, 0)
-	else:
-		health_bar_bg.self_modulate = Color(1, 1, 1, 1)
-		health_bar.self_modulate = Color(1, 1, 1, 1)
-
-	if SettingsAPI.get_setting("hide icons"):
-		player_icon.hide()
-		cpu_icon.hide()
-	else:
-		player_icon.show()
-		cpu_icon.show()
-
 	if SettingsAPI.get_setting("judgement camera").to_lower() == "hud":
 		remove_child(combo_group)
 		hud.add_child(combo_group)
@@ -352,10 +311,7 @@ func _ready() -> void:
 
 	SettingsAPI.setup_binds()
 
-	position_icons()
 	start_countdown()
-
-	update_score_text()
 
 	max_time = tracks[0].stream.get_length() * 1000.0
 
@@ -408,20 +364,6 @@ func load_player():
 	characters.add_child(player)
 	player.z_index = stage.character_positions["player"].z_index
 	player.get_child(0).material = stage.character_positions["player"].material
-
-func update_health_bar():
-	cpu_icon.texture = opponent.health_icon
-	cpu_icon.hframes = opponent.health_icon_frames
-
-	player_icon.texture = player.health_icon
-	player_icon.hframes = player.health_icon_frames
-
-	if SettingsAPI.get_setting("icon colors"):
-		OPPONENT_HEALTH_COLOR.bg_color = opponent.health_color
-		PLAYER_HEALTH_COLOR.bg_color = player.health_color
-	#elif SettingsAPI.get_setting("custom color"):
-		#OPPONENT_HEALTH_COLOR.bg_color = SettingsAPI.get_setting("opponent color")
-		#PLAYER_HEALTH_COLOR.bg_color = SettingsAPI.get_setting("player color")
 
 func start_cutscene(postfix:String = "-start"):
 	var cutscene_path = "res://scenes/gameplay/cutscenes/" + METADATA.rawSongName.to_lower() + postfix + ".tscn"
@@ -549,11 +491,6 @@ func beat_hit(beat:int):
 	for track in tracks:
 		if abs((track.get_playback_position() * 1000.0 - METADATA.offsets["instrumental"]) - (Conductor.position)) >= 20:
 			resync_tracks()
-
-	if icon_bumping and icon_bumping_interval > 0 and beat % icon_bumping_interval == 0:
-		cpu_icon.scale += Vector2(0.2, 0.2)
-		player_icon.scale += Vector2(0.2, 0.2)
-		position_icons()
 
 	if cam_bumping and beat % camera_zoom_rate == 0:
 		if SettingsAPI.get_setting("zoom camera"): camera.zoom += Vector2(camera_bop_intensitiy, camera_bop_intensitiy)
@@ -702,7 +639,6 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 			break
 	else:
 		ghost_taps += 1
-		update_score_text()
 		if not SettingsAPI.get_setting("ghost tapping"):
 			fake_miss(data)
 			if SettingsAPI.get_setting("miss sounds"):
@@ -715,7 +651,6 @@ func fake_miss(direction:int = -1):
 
 	misses += 1
 	accuracy_pressed_notes += 1
-	update_score_text()
 
 	applyScore(-10, "miss", healthChange, true)
 
@@ -860,8 +795,6 @@ func good_note_hit(note:Note):
 		combo = 0
 		accuracy_pressed_notes += 1
 
-	update_score_text()
-
 	note.was_good_hit = true
 
 	var sing_anim = get_sing_anim(note)
@@ -907,57 +840,6 @@ func applyScore(score:int, daRating:String, healthChange:float, isComboBreak:boo
 
 	songScore += score
 
-	update_score_text()
-
-func get_sing_anim(note:Note):
-	var strums = player_strums if note.must_press else cpu_strums
-	var sing_anim:String = "sing%s" % strums.get_child(note.direction).direction.to_upper()
-
-	# add here suffixes if needed and stuff!!!
-	if note.alt_anim:
-		sing_anim += "-alt"
-
-	return sing_anim
-
-func position_icons():
-	var icon_offset:int = 26
-	var percent:float = (health_bar.value / health_bar.max_value) * 100
-
-	var cpu_icon_width:float = (cpu_icon.texture.get_width() / cpu_icon.hframes) * cpu_icon.scale.x
-
-	player_icon.position.x = (health_bar.size.x * ((100 - percent) * 0.01)) - icon_offset
-	cpu_icon.position.x = (health_bar.size.x * ((100 - percent) * 0.01)) - (cpu_icon_width - icon_offset)
-	script_group.call_func("on_position_icons", [])
-
-func update_score_text():
-	var hp_percent:float = (health_bar.value / health_bar.max_value) * 100
-
-	var score_values: Dictionary = {
-		"score": format_number(songScore),
-		"misses": misses,
-		"accuracy": snapped(accuracy * 100.0, 0.01),
-		"ranks": Ranking.rank_from_accuracy(accuracy * 100.0).name,
-		"health": snapped(hp_percent, 0.01),
-		"combo": format_number(combo),
-		"max combo": format_number(max_combo),
-		"ghost taps": format_number(ghost_taps)
-	}
-
-	var array = str_to_var(SettingsAPI.get_setting("score_arrangement"))
-	var text_length = 0
-
-	score_text.text = ""
-
-	for i in array:
-		text_length += 1
-
-		if i == "seperator":
-			score_text.text += SettingsAPI.get_setting(i)
-		else:
-			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix")
-
-	script_group.call_func("on_update_score_text", [])
-
 func format_number(number: int) -> String:
 	# Handle negative numbers by adding the "minus" sign in advance, as we discard it
 	# when looping over the number.
@@ -979,25 +861,16 @@ func format_number(number: int) -> String:
 
 	return formatted_number
 
-func setup_label_settings():
-	var text_settings = LabelSettings.new()
-	var text_bg = StyleBoxFlat.new()
+func get_sing_anim(note:Note):
+	var strums = player_strums if note.must_press else cpu_strums
+	var sing_anim:String = "sing%s" % strums.get_child(note.direction).direction.to_upper()
 
-	text_settings.font = load(SettingsAPI.get_setting("font path"))
-	text_settings.font_size = SettingsAPI.get_setting("font size")
-	text_settings.font_color = SettingsAPI.get_setting("font color")
+	# add here suffixes if needed and stuff!!!
+	if note.alt_anim:
+		sing_anim += "-alt"
 
-	text_settings.outline_size = SettingsAPI.get_setting("outline size")
-	text_settings.outline_color = SettingsAPI.get_setting("outline color")
+	return sing_anim
 
-	text_bg.bg_color = Color.from_string(SettingsAPI.get_setting("score bg color"), Color.WHITE)
-	text_bg.expand_margin_bottom = SettingsAPI.get_setting("score bg expand")
-	text_bg.expand_margin_left = SettingsAPI.get_setting("score bg expand")
-	text_bg.expand_margin_right = SettingsAPI.get_setting("score bg expand")
-	text_bg.expand_margin_top = SettingsAPI.get_setting("score bg expand")
-
-	score_text.label_settings = text_settings
-	score_text.add_theme_stylebox_override("normal", text_bg)
 
 
 func game_over():
@@ -1012,6 +885,17 @@ func game_over():
 
 	get_tree().change_scene_to_file("res://scenes/gameplay/GameOver.tscn")
 
+var score_values: Dictionary = {
+	"score": format_number(songScore),
+	"misses": misses,
+	"accuracy": snapped(accuracy * 100.0, 0.01),
+	"ranks": Ranking.rank_from_accuracy(accuracy * 100.0).name,
+	"health": 50,
+	"combo": format_number(combo),
+	"max combo": format_number(max_combo),
+	"ghost taps": format_number(ghost_taps)
+}
+
 func _process(delta:float) -> void:
 	if in_cutscene:
 		get_tree().paused = true
@@ -1025,28 +909,14 @@ func _process(delta:float) -> void:
 	if health <= 0:
 		game_over()
 
-	var percent:float = (health / max_health) * 100.0
-	health_bar.max_value = max_health
-	health_bar.value = health
-
-	cpu_icon.health = 100.0 - percent
-	player_icon.health = percent
-
-	cur_time = Conductor.position
-
-	var time_percent:float = cur_time / max_time
-	time_bar.value = time_percent
-
-	var time_left = Global.format_time((max_time - cur_time) / 1000.0)
-
-	#time_text.text = "%s / %s" % [Global.format_time(cur_time / 1000.0), Global.format_time(max_time / 1000.0)]
-	time_text.text = "%s" % time_left
-
-	if icon_zooming:
-		var icon_speed:float = clampf((delta * ICON_DELTA_MULTIPLIER) * Conductor.rate, 0.0, 1.0)
-		cpu_icon.scale = lerp(cpu_icon.scale, Vector2.ONE, icon_speed)
-		player_icon.scale = lerp(player_icon.scale, Vector2.ONE, icon_speed)
-		position_icons()
+	score_values["score"] =			format_number(songScore)
+	score_values["misses"] =		misses
+	score_values["accuracy"] = 		snapped(accuracy * 100.0, 0.01)
+	score_values["ranks"] = 		Ranking.rank_from_accuracy(accuracy * 100.0).name
+	score_values["health"] =		(health / Constants.HEALTH_MAX) * 100
+	score_values["combo"] =			format_number(combo)
+	score_values["max combo"] =		format_number(max_combo)
+	score_values["ghost taps"] =	format_number(ghost_taps)
 
 	if cam_zooming:
 		var camera_speed:float = clampf((delta * ZOOM_DELTA_MULTIPLIER) * Conductor.rate, 0.0, 1.0)

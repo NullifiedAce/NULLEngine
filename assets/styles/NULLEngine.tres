@@ -46,6 +46,8 @@ border_width_bottom = 2
 border_color = Color(0.351563, 0.351563, 0.351563, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvvhq"]
+content_margin_left = 4.0
+content_margin_right = 4.0
 bg_color = Color(0.215686, 0.215686, 0.215686, 1)
 border_width_left = 2
 border_width_top = 2
@@ -55,6 +57,8 @@ expand_margin_left = 2.0
 expand_margin_right = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6g8l"]
+content_margin_left = 4.0
+content_margin_right = 4.0
 bg_color = Color(0.215686, 0.215686, 0.215686, 1)
 border_width_left = 2
 border_width_top = 2
@@ -64,6 +68,8 @@ expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qm28"]
+content_margin_left = 4.0
+content_margin_right = 4.0
 bg_color = Color(0.215686, 0.215686, 0.215686, 1)
 border_width_left = 2
 border_width_top = 2
@@ -86,6 +92,7 @@ MenuButton/styles/normal = SubResource("StyleBoxFlat_dsxsl")
 MenuButton/styles/pressed = SubResource("StyleBoxFlat_tu1x4")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_ygugw")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_g87qd")
+TabContainer/constants/side_margin = 0
 TabContainer/styles/panel = SubResource("StyleBoxFlat_bhqk4")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_kvvhq")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_i6g8l")

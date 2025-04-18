@@ -28,6 +28,17 @@ func _input(event: InputEvent) -> void:
 		add_popup.position = get_viewport().get_mouse_position()
 		add_popup.show()
 
+	if Input.is_action_just_pressed("ui_up"):
+		var label = HUDLabel.new()
+		label.position = Global.game_size / 2
+		label.downscroll_multiplier = 0.1
+		label.text = "This is a test string!"
+		label.track_value = true
+		label.track = "score"
+		label.prefix = "Score: "
+		label.suffix = " pt(s)"
+		HUDHandler.hud_labels.append(label)
+
 func _file_stuff(id:int):
 	var file = file_menu.get_popup()
 	match file.get_item_text(id):

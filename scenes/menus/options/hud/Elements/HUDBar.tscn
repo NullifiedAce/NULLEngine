@@ -65,6 +65,7 @@ popup/item_3/id = 3
 
 [node name="Customize" type="Button" parent="."]
 visible = false
+layout_mode = 0
 offset_right = 89.0
 offset_bottom = 31.0
 focus_mode = 0
@@ -74,7 +75,6 @@ text = "Customize"
 title = "Customize"
 initial_position = 2
 size = Vector2i(640, 360)
-visible = false
 min_size = Vector2i(128, 128)
 
 [node name="BG" type="ColorRect" parent="CustomizeWindow"]
@@ -121,10 +121,11 @@ offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_ny6ii")
-current_tab = 0
+current_tab = 2
 tab_focus_mode = 0
 
 [node name="Background" type="TabBar" parent="CustomizeWindow/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -651,5 +652,33 @@ suffix = "x"
 layout_mode = 2
 suffix = "y"
 
+[node name="Bar Icon" type="TabBar" parent="CustomizeWindow/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CustomizeWindow/TabContainer/Bar Icon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CustomizeWindow/TabContainer/Bar Icon/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddIcon" type="Button" parent="CustomizeWindow/TabContainer/Bar Icon/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 0
+text = "+ Add Icon"
+
 [connection signal="pressed" from="Customize" to="." method="_on_customize_pressed"]
+[connection signal="pressed" from="CustomizeWindow/HBoxContainer/Apply Default" to="." method="_on_apply_default_pressed"]
 [connection signal="pressed" from="CustomizeWindow/HBoxContainer/Reload" to="." method="_on_reload_pressed"]
+[connection signal="pressed" from="CustomizeWindow/TabContainer/Bar Icon/ScrollContainer/VBoxContainer/AddIcon" to="." method="_on_add_icon_pressed"]

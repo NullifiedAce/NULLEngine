@@ -450,7 +450,635 @@ suffix = "y"
 script = ExtResource("9_36kso")
 data = "Label Shadow Offset Y"
 
+[node name="Bar Defaults" type="TabBar" parent="Windows/Preferences/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="TabContainer" type="TabContainer" parent="Windows/Preferences/TabContainer/Bar Defaults"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_k68oh")
+current_tab = 0
+tab_focus_mode = 0
+
+[node name="Background" type="TabBar" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Color Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Colors" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BGColorTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Background Color:"
+
+[node name="BGColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0.6, 0.6, 0.6, 1)
+script = ExtResource("6_sg4b6")
+data = "Bar BG Color"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+
+[node name="BorderColorTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Border Color:"
+
+[node name="BorderColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0.8, 0.8, 0.8, 1)
+script = ExtResource("6_sg4b6")
+data = "Bar BG Border Color"
+
+[node name="Colors2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowColorTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors2"]
+layout_mode = 2
+text = "Shadow Color:"
+
+[node name="ShadowColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors2"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0, 0, 0, 0.6)
+script = ExtResource("6_sg4b6")
+data = "Bar BG Shadow Color"
+
+[node name="HSeparator2" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BorderSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Border Width Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Border" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Left:"
+
+[node name="LeftWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Border Left"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="Top" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Top:"
+
+[node name="TopWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Border Top"
+
+[node name="Border2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Right" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+text = "Right:"
+
+[node name="RightWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Border Right"
+
+[node name="VSeparator3" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+
+[node name="Bottom" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+text = "Bottom:"
+
+[node name="BottomWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Border Bottom"
+
+[node name="HSeparator4" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CornerRadiusTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Corner Radius Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator5" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ConrerRadius" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TopLeftTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+text = "Top Left:"
+
+[node name="TopLeft" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar BG Corner Radius TopLeft"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+
+[node name="TopRightTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+text = "Top Right:"
+
+[node name="TopRight" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar BG Corner Radius TopRight"
+
+[node name="ConrerRadius2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BottomLeftTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+text = "Bottom Left:"
+
+[node name="BottomLeft" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar BG Corner Radius BottomLeft"
+
+[node name="VSeparator3" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+
+[node name="BottomRightTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+text = "Bottom Right:"
+
+[node name="BottomRight" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar BG Corner Radius BottomRight"
+
+[node name="HSeparator6" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExpandMarginsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Expand Margins Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator7" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExpandMargins" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Left:"
+
+[node name="LeftWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Expand Left"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="Top" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Top:"
+
+[node name="TopWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Expand Top"
+
+[node name="ExpandMargins2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Right" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+text = "Right:"
+
+[node name="RightWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Expand Right"
+
+[node name="VSeparator3" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+
+[node name="Bottom" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+text = "Bottom:"
+
+[node name="BottomWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Expand Bottom"
+
+[node name="HSeparator8" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShadowSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shadow Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator9" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Shadow" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowSizeTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow"]
+layout_mode = 2
+text = "Shadow Size:"
+
+[node name="ShadowSize" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar BG Shadow Size"
+
+[node name="Shadow2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowOffsetTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+text = "Shadow Offsets:"
+
+[node name="ShadowOffsetX" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+suffix = "x"
+script = ExtResource("9_36kso")
+data = "Bar BG Shadow Offset X"
+
+[node name="ShadowOffsetY" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+suffix = "y"
+script = ExtResource("9_36kso")
+data = "Bar BG Shadow Offset Y"
+
+[node name="Fill" type="TabBar" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Color Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Colors" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BGColorTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Background Color:"
+
+[node name="BGColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0.6, 0.6, 0.6, 1)
+script = ExtResource("6_sg4b6")
+data = "Bar Fill Color"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+
+[node name="BorderColorTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Border Color:"
+
+[node name="BorderColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0.8, 0.8, 0.8, 1)
+script = ExtResource("6_sg4b6")
+data = "Bar Fill Border Color"
+
+[node name="Colors2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowColorTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors2"]
+layout_mode = 2
+text = "Shadow Color:"
+
+[node name="ShadowColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors2"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0, 0, 0, 0.6)
+script = ExtResource("6_sg4b6")
+data = "Bar Fill Shadow Color"
+
+[node name="HSeparator2" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BorderSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Border Width Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Border" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Left:"
+
+[node name="LeftWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Border Left"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="Top" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Top:"
+
+[node name="TopWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Border Top"
+
+[node name="Border2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Right" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+text = "Right:"
+
+[node name="RightWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Border Right"
+
+[node name="VSeparator3" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+
+[node name="Bottom" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+text = "Bottom:"
+
+[node name="BottomWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Border Bottom"
+
+[node name="HSeparator4" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CornerRadiusTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Corner Radius Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator5" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ConrerRadius" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TopLeftTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+text = "Top Left:"
+
+[node name="TopLeft" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Corner Radius TopLeft"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+
+[node name="TopRightTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+text = "Top Right:"
+
+[node name="TopRight" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Corner Radius TopRight"
+
+[node name="ConrerRadius2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BottomLeftTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+text = "Bottom Left:"
+
+[node name="BottomLeft" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Corner Radius BottomLeft"
+
+[node name="VSeparator3" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+
+[node name="BottomRightTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+text = "Bottom Right:"
+
+[node name="BottomRight" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Corner Radius BottomRight"
+
+[node name="HSeparator6" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExpandMarginsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Expand Margins Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator7" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExpandMargins" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Left:"
+
+[node name="LeftWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Expand Left"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="Top" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Top:"
+
+[node name="TopWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Expand Top"
+
+[node name="ExpandMargins2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Right" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+text = "Right:"
+
+[node name="RightWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Expand Right"
+
+[node name="VSeparator3" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+
+[node name="Bottom" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+text = "Bottom:"
+
+[node name="BottomWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Expand Bottom"
+
+[node name="HSeparator8" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShadowSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shadow Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator9" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Shadow" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowSizeTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow"]
+layout_mode = 2
+text = "Shadow Size:"
+
+[node name="ShadowSize" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Shadow Size"
+
+[node name="Shadow2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowOffsetTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+text = "Shadow Offsets:"
+
+[node name="ShadowOffsetX" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+suffix = "x"
+script = ExtResource("9_36kso")
+data = "Bar Fill Shadow Offset X"
+
+[node name="ShadowOffsetY" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+suffix = "y"
+script = ExtResource("9_36kso")
+data = "Bar Fill Shadow Offset X"
+
 [node name="About" type="Window" parent="Windows"]
+process_mode = 4
 title = "User Guide"
 initial_position = 2
 size = Vector2i(512, 512)
@@ -503,3 +1131,39 @@ metadata/_tab_index = 1
 [connection signal="value_changed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows/ShadowSize" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows/ShadowSize" method="_on_value_changed"]
 [connection signal="value_changed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2/ShadowOffsetX" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2/ShadowOffsetX" method="_on_value_changed"]
 [connection signal="value_changed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2/ShadowOffsetY" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2/ShadowOffsetY" method="_on_value_changed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors/BGColor" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors/BGColor" method="_on_popup_closed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors/BorderColor" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors/BorderColor" method="_on_popup_closed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors2/ShadowColor" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors2/ShadowColor" method="_on_popup_closed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border/LeftWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border/LeftWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border/TopWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border/TopWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2/RightWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2/RightWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2/BottomWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2/BottomWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius/TopLeft" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius/TopLeft" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius/TopRight" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius/TopRight" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2/BottomLeft" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2/BottomLeft" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2/BottomRight" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2/BottomRight" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins/LeftWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins/LeftWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins/TopWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins/TopWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2/RightWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2/RightWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2/BottomWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2/BottomWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow/ShadowSize" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow/ShadowSize" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetX" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetX" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" method="_on_value_changed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors/BGColor" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors/BGColor" method="_on_popup_closed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors/BorderColor" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors/BorderColor" method="_on_popup_closed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors2/ShadowColor" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors2/ShadowColor" method="_on_popup_closed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border/LeftWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border/LeftWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border/TopWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border/TopWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2/RightWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2/RightWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2/BottomWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2/BottomWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius/TopLeft" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius/TopLeft" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius/TopRight" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius/TopRight" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2/BottomLeft" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2/BottomLeft" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2/BottomRight" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2/BottomRight" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins/LeftWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins/LeftWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins/TopWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins/TopWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2/RightWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2/RightWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2/BottomWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2/BottomWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow/ShadowSize" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow/ShadowSize" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetX" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetX" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" method="_on_value_changed"]

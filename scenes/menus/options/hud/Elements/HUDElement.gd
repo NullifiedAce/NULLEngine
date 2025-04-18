@@ -1,7 +1,9 @@
 extends Control
 class_name HUDElement
 
-var hud_label:HUDLabel
+var current_type:int
+
+var hud_label:HUDEditorLabel
 var hud_bar:HUDBar
 
 @onready var config: Button = $Config
@@ -45,6 +47,7 @@ func _process(delta: float) -> void:
 	else: move.position.y = 48
 
 func _update_type(index:int):
+	current_type = index
 	for i in type_options.get_children():
 		i.queue_free()
 	if index == 0:

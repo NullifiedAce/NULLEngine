@@ -21,6 +21,54 @@ var theme_data:Dictionary = {
 	"Label Shadow Size": 0,
 	"Label Shadow Offset X": 0,
 	"Label Shadow Offset Y": 0,
+
+	# Bar Style Default (Background)
+	"Bar BG Color": "999999",
+	"Bar BG Border Color": "cccccc",
+	"Bar BG Shadow Color": "00000099",
+
+	"Bar BG Border Left": 4,
+	"Bar BG Border Top": 4,
+	"Bar BG Border Right": 4,
+	"Bar BG Border Bottom": 4,
+
+	"Bar BG Corner Radius TopLeft": 0,
+	"Bar BG Corner Radius TopRight": 0,
+	"Bar BG Corner Radius BottomLeft": 0,
+	"Bar BG Corner Radius BottomRight": 0,
+
+	"Bar BG Expand Left": 4,
+	"Bar BG Expand Top": 4,
+	"Bar BG Expand Right": 4,
+	"Bar BG Expand Bottom": 4,
+
+	"Bar BG Shadow Size": 0,
+	"Bar BG Shadow Offset X": 0,
+	"Bar BG Shadow Offset Y": 0,
+
+	# Bar Style Default (Fill)
+	"Bar Fill Color": "999999",
+	"Bar Fill Border Color": "cccccc",
+	"Bar Fill Shadow Color": "00000099",
+
+	"Bar Fill Border Left": 0,
+	"Bar Fill Border Top": 0,
+	"Bar Fill Border Right": 0,
+	"Bar Fill Border Bottom": 0,
+
+	"Bar Fill Corner Radius TopLeft": 0,
+	"Bar Fill Corner Radius TopRight": 0,
+	"Bar Fill Corner Radius BottomLeft": 0,
+	"Bar Fill Corner Radius BottomRight": 0,
+
+	"Bar Fill Expand Left": 0,
+	"Bar Fill Expand Top": 0,
+	"Bar Fill Expand Right": 0,
+	"Bar Fill Expand Bottom": 0,
+
+	"Bar Fill Shadow Size": 0,
+	"Bar Fill Shadow Offset X": 0,
+	"Bar Fill Shadow Offset Y": 0,
 }
 
 func _ready() -> void:

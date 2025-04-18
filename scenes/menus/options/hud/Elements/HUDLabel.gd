@@ -1,5 +1,5 @@
 extends Label
-class_name HUDLabel
+class_name HUDEditorLabel
 
 var parent = HUDElement
 
