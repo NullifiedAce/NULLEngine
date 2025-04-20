@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2mn4hc4v5q13"]
+[gd_scene load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://scenes/gameplay/events/Add Camera Zoom.gd" id="1_hlvo7"]
 

@@ -7,7 +7,7 @@ func _ready() -> void:
 		"0", "bf": character = "bf"
 		"1", "dad": character = "dad"
 		"2", "gf": character = "gf"
-
+	
 	change_char()
 
 func change_char() -> void:
@@ -17,13 +17,13 @@ func change_char() -> void:
 		return
 	var old_character:Character
 	var new_character:Character = load(character_path).instantiate()
-
+	
 	if character == "bf":
 		new_character._is_true_player = true
-
+	
 	game.remove_child(old_character)
 	game.add_child(new_character)
-
+	
 	match character:
 		"dad":
 			old_character = game.opponent
@@ -39,6 +39,6 @@ func change_char() -> void:
 			old_character = game.spectator
 			new_character.position = old_character.position
 			game.spectator = new_character
-
+	
 	old_character.queue_free()
 	queue_free()

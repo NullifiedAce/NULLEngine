@@ -384,7 +384,6 @@ _data = {
 [node name="gf-tankmen" type="Node2D"]
 script = ExtResource("1_ngov4")
 dance_steps = Array[String](["danceLeft", "danceRight"])
-voices_paths = "gf"
 health_icon = ExtResource("2_r2mvf")
 health_color = Color(1, 0.635294, 0.72549, 1)
 

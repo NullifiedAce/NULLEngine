@@ -17,10 +17,10 @@ class_name Stage
 
 func _ready_post():
 	pass
-
+	
 func _process_post(delta:float):
 	pass
-
+	
 func on_start_countdown():
 	pass
 
@@ -29,7 +29,7 @@ func on_countdown_tick(tick:int, tween:Tween):
 
 func on_start_song():
 	pass
-
+	
 func on_end_song():
 	pass
 
@@ -38,6 +38,6 @@ func on_beat_hit(beat:int):
 
 func on_beat_hit_post(beat:int):
 	pass
-
+	
 func on_event(name:String, parameters:Array):
 	pass
