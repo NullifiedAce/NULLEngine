@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dltyb6suddc8s"]
 
-[ext_resource type="Script" path="res://scenes/options/ColorPicker.gd" id="1_rfi4e"]
+[ext_resource type="Script" uid="uid://dus3qqlvsu1b0" path="res://scenes/options/ColorPicker.gd" id="1_rfi4e"]
 
 [node name="OptionColorPick" type="ColorPickerButton"]
 offset_right = 8.0

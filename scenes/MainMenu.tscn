@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://q64jd3rbs8je"]
 
-[ext_resource type="Script" path="res://scenes/MainMenu.gd" id="1_f3mce"]
+[ext_resource type="Script" uid="uid://cwdb7nqrbcftu" path="res://scenes/MainMenu.gd" id="1_f3mce"]
 [ext_resource type="Texture2D" uid="uid://8cpkvnc78sok" path="res://assets/images/menus/menuBG.png" id="2_25v5u"]
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="3_sklie"]
 [ext_resource type="SpriteFrames" path="res://assets/images/menus/mainmenu/story mode.res" id="4_vrrvm"]
@@ -28,7 +28,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o84so"]
 _data = {
-"flash": SubResource("Animation_vsdk4")
+&"flash": SubResource("Animation_vsdk4")
 }
 
 [sub_resource type="Animation" id="Animation_j6yp2"]
@@ -64,8 +64,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o48h0"]
 _data = {
-"RESET": SubResource("Animation_j6yp2"),
-"flash": SubResource("Animation_kyg7j")
+&"RESET": SubResource("Animation_j6yp2"),
+&"flash": SubResource("Animation_kyg7j")
 }
 
 [sub_resource type="Animation" id="Animation_ekx12"]
@@ -171,7 +171,7 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ojo21"]
 _data = {
-"entrance": SubResource("Animation_ekx12")
+&"entrance": SubResource("Animation_ekx12")
 }
 
 [node name="MainMenu" type="Node2D"]

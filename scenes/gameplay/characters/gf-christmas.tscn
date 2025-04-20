@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://cfyusopspsban"]
 
-[ext_resource type="Script" path="res://scripts/Character.gd" id="1_oyr01"]
+[ext_resource type="Script" uid="uid://b4adxcf66q6bc" path="res://scripts/Character.gd" id="1_oyr01"]
 [ext_resource type="Texture2D" uid="uid://bggn4j2x81mod" path="res://assets/images/gameplay/icons/icon-gf.png" id="2_xdf4g"]
 [ext_resource type="SpriteFrames" uid="uid://cjo612j8tv115" path="res://assets/images/gameplay/characters/gf/christmas.res" id="3_lcvc8"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="4_d6s84"]
+[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="4_d6s84"]
 
 [sub_resource type="Animation" id="Animation_2dld1"]
 resource_name = "cheer"
@@ -269,11 +269,11 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
 _data = {
-"cheer": SubResource("Animation_2dld1"),
-"danceLeft": SubResource("Animation_epq6v"),
-"danceRight": SubResource("Animation_7jg6a"),
-"sad": SubResource("Animation_5esl2"),
-"scared": SubResource("Animation_fyb3s")
+&"cheer": SubResource("Animation_2dld1"),
+&"danceLeft": SubResource("Animation_epq6v"),
+&"danceRight": SubResource("Animation_7jg6a"),
+&"sad": SubResource("Animation_5esl2"),
+&"scared": SubResource("Animation_fyb3s")
 }
 
 [node name="gf-christmas" type="Node2D"]

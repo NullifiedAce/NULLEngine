@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://di2d1ekueo61y"]
 
-[ext_resource type="Script" path="res://scripts/Character.gd" id="1_focc0"]
+[ext_resource type="Script" uid="uid://b4adxcf66q6bc" path="res://scripts/Character.gd" id="1_focc0"]
 [ext_resource type="Texture2D" uid="uid://bvafd1dvo4ke4" path="res://assets/images/gameplay/icons/icon-bf.png" id="2_ejjwq"]
 [ext_resource type="SpriteFrames" uid="uid://dqrmjfs48haqy" path="res://assets/images/gameplay/characters/bf/dead.res" id="3_n0p5m"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="4_x1ydy"]
+[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="4_x1ydy"]
 
 [sub_resource type="Animation" id="Animation_o4jtb"]
 resource_name = "deathConfirm"
@@ -166,9 +166,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
 _data = {
-"deathConfirm": SubResource("Animation_o4jtb"),
-"deathLoop": SubResource("Animation_v57bb"),
-"firstDeath": SubResource("Animation_53fqm")
+&"deathConfirm": SubResource("Animation_o4jtb"),
+&"deathLoop": SubResource("Animation_v57bb"),
+&"firstDeath": SubResource("Animation_53fqm")
 }
 
 [node name="bf-dead" type="Node2D"]

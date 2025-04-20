@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="StoryWeekList" load_steps=42 format=3 uid="uid://b2liyp0jv6vgq"]
 
-[ext_resource type="Script" path="res://resources/StoryWeekList.gd" id="1_gavso"]
-[ext_resource type="Script" path="res://resources/StoryWeek.gd" id="2_lywg0"]
+[ext_resource type="Script" uid="uid://clwcs3sk8re2l" path="res://resources/StoryWeekList.gd" id="1_gavso"]
+[ext_resource type="Script" uid="uid://bcp35bsrrqo43" path="res://resources/StoryWeek.gd" id="2_lywg0"]
 [ext_resource type="Texture2D" uid="uid://cwo480ns8m6ri" path="res://assets/images/menus/storymenu/weeks/tutorial.png" id="3_by41y"]
-[ext_resource type="Script" path="res://resources/StorySong.gd" id="3_sto51"]
+[ext_resource type="Script" uid="uid://j45100x3p0ey" path="res://resources/StorySong.gd" id="3_sto51"]
 [ext_resource type="Texture2D" uid="uid://c70gno0qbhc0i" path="res://assets/images/menus/storymenu/weeks/week1.png" id="5_1lkfg"]
 [ext_resource type="Texture2D" uid="uid://bcr7dl5jw2f4q" path="res://assets/images/menus/storymenu/weeks/week2.png" id="6_nmk3e"]
 [ext_resource type="Texture2D" uid="uid://72mm1w7xognk" path="res://assets/images/menus/storymenu/weeks/week3.png" id="7_e8si1"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bv81gapin4vog"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/stages/halloween.gd" id="1_pmnw3"]
+[ext_resource type="Script" uid="uid://cg3ulmnc068rr" path="res://scenes/gameplay/stages/halloween.gd" id="1_pmnw3"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/spooky/halloween_bg.res" id="2_c5lkq"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="3_j3ley"]
+[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="3_j3ley"]
 [ext_resource type="Texture2D" uid="uid://m5strgod1naq" path="res://icon.svg" id="5_8cg4i"]
 
 [node name="stage" type="Node2D"]
