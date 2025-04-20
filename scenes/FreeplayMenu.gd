@@ -162,6 +162,7 @@ func _process(delta):
 
 			Global.current_difficulty = song_list.songs[cur_selected].difficulties[cur_difficulty]
 			Global.SONG = Chart.load_chart(song_list.songs[cur_selected].song, Global.current_difficulty)
+			Global.METADATA = Metadata.load_metadata(song_list.songs[cur_selected].song, "default")
 
 			loaded_chart_info = {
 				"name": song_list.songs[cur_selected].song,
@@ -205,6 +206,7 @@ func _process(delta):
 		if loaded_chart_info.difficulty != Global.current_difficulty or \
 			loaded_chart_info.name != song_list.songs[cur_selected].song:
 			Global.SONG = Chart.load_chart(song_list.songs[cur_selected].song, Global.current_difficulty)
+			Global.METADATA = Metadata.load_metadata(song_list.songs[cur_selected].song, "default")
 
 		Global.switch_scene("res://scenes/gameplay/Gameplay.tscn")
 

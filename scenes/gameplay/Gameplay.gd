@@ -11,8 +11,9 @@ var OPPONENT_HEALTH_COLOR:StyleBoxFlat = preload("res://assets/styles/healthbar/
 var PLAYER_HEALTH_COLOR:StyleBoxFlat = preload("res://assets/styles/healthbar/player.tres")
 
 var SONG:Chart = Global.SONG
+var METADATA:Metadata = Global.METADATA
 var meta:SongMetaData = SongMetaData.new()
-var note_data_array:Array[SectionNote] = []
+var note_data_array:Array[SongNote] = []
 var event_data_array:Array[SongEvent] = []
 
 var starting_song:bool = true
@@ -25,13 +26,20 @@ var health:float = 1.0:
 	set(v):
 		health = clampf(v, 0.0, max_health)
 
-var max_health:float = 2.0
+var max_health:float = Constants.HEALTH_MAX
 
-var score:int = 0
+var songScore:int = 0
 var misses:int = 0
 var combo:int = 0
 var max_combo:int = 0
 var ghost_taps:int = 0
+
+var sicks: int = 0
+var goods: int = 0
+var bads: int = 0
+var shits: int = 0
+
+var total_notes: int = 0
 
 var accuracy_pressed_notes:int = 0
 var accuracy_total_hit:float = 0.0
@@ -65,8 +73,12 @@ var accuracy:float:
 
 var ui_skin:UISkin
 
+var results_screen = preload("res://scenes/gameplay/ResultScreen.tscn")
+
 @onready var camera:Camera2D = $Camera2D
 @onready var hud:CanvasLayer = $HUD
+@onready var characters: Node2D = $characters
+
 
 @onready var strumlines:Node2D = $HUD/StrumLines
 
@@ -102,40 +114,48 @@ signal paused
 
 var tracks:Array[AudioStreamPlayer] = []
 func load_song():
-	var music_path:String = "res://assets/songs/%s/audio/" % SONG.name.to_lower()
+	var music_path:String = "res://assets/songs/%s/audio/" % [METADATA.rawSongName.to_lower()]
 
 	if DirAccess.dir_exists_absolute(music_path):
 		var dir = DirAccess.open(music_path)
 
-		for file in dir.get_files():
-			var music:AudioStreamPlayer = AudioStreamPlayer.new()
-			for f in Global.audio_formats:
-				if file.ends_with(f + ".import"):
-					music.stream = load(music_path + file.replace(".import",""))
-					music.pitch_scale = Conductor.rate
-					tracks.append(music)
+		load_track(music_path, "Inst")
+		load_track(music_path, "Voices-%s" % opponent.voices_paths)
+		load_track(music_path, "Voices-%s" % player.voices_paths)
+
+func load_track(music_path:String, fileName:String):
+	var track:AudioStreamPlayer = AudioStreamPlayer.new()
+	track.name = fileName
+	if Global.variation == "default":
+		track.stream = load(music_path + fileName + ".ogg")
+	else:
+		track.stream = load(music_path + fileName + "-" + Global.variation + ".ogg")
+		print(music_path + fileName + "-" + Global.variation + ".ogg")
+	track.pitch_scale = Conductor.rate
+
+	if fileName == "Inst":
+		track.finished.connect(end_song)
+
+	tracks.append(track)
 
 func gen_song(delete_before_time:float = -1.0):
-	for section in SONG.sections:
-		for note in section.notes:
-			if note.time <= delete_before_time:
-				continue
+	for note in SONG.notes:
+		if note.time <= delete_before_time:
+			continue
 
-			# i can't use fucking duplicate
-			# it fucks up!!!
-			var n = SectionNote.new()
-			n.time = note.time
-			n.direction = note.direction
-			n.length = note.length
-			n.type = note.type
-			n.alt_anim = note.alt_anim
-			n.player_section = section.is_player
+		# i can't use fucking duplicate
+		# it fucks up!!!
+		var n = SongNote.new()
+		n.time = note.time
+		n.direction = note.direction
+		n.length = note.length
+		n.kind = note.kind
 
-			var note_type_path:String = "res://scenes/gameplay/notes/"+note.type+".tscn"
-			if not note.type in template_notes and ResourceLoader.exists(note_type_path):
-				template_notes[note.type] = load(note_type_path).instantiate()
+		var note_type_path:String = "res://scenes/gameplay/notes/"+note.kind+".tscn"
+		if not note.kind in template_notes and ResourceLoader.exists(note_type_path):
+			template_notes[note.kind] = load(note_type_path).instantiate()
 
-			note_data_array.append(n)
+		note_data_array.append(n)
 
 	note_data_array.sort_custom(func(a, b): return a.time < b.time)
 
@@ -161,42 +181,7 @@ func load_event_array(event_array:Array[Variant]) -> Array[SongEvent]:
 	return return_events
 
 func load_events() -> void:
-	var event_path:String = "res://assets/songs/%s/events.json" % SONG.name.to_lower()
-
-	if not ResourceLoader.exists(event_path):
-		return
-
-	var event_data:Dictionary = \
-			JSON.parse_string(FileAccess.open(event_path, FileAccess.READ).get_as_text()).song
-
-	if not event_data.has('events'):
-		event_data['events'] = []
-	if not event_data.has('notes'):
-		event_data['notes'] = []
-
-	for event in event_data.events:
-		for song_event in load_event_array(event):
-			event_data_array.append(song_event)
-
-			if not template_events.has(song_event.name):
-				var song_event_path:String = "res://scenes/gameplay/events/%s.tscn" % song_event.name
-				if ResourceLoader.exists(song_event_path):
-					template_events[song_event.name] = load(song_event_path).instantiate()
-				else:
-					printerr("event not found: %s" % song_event.name)
-
-	for section in event_data.notes:
-		for note in section.sectionNotes:
-			if note[1] is Array or note[1] < 0:
-				for song_event in load_event_array(note):
-					event_data_array.append(song_event)
-
-					if not template_events.has(song_event.name):
-						var song_event_path:String = "res://scenes/gameplay/events/%s.tscn" % song_event.name
-						if ResourceLoader.exists(song_event_path):
-							template_events[song_event.name] = load(song_event_path).instantiate()
-						else:
-							printerr("event not found: %s" % song_event.name)
+	pass
 
 func _ready() -> void:
 	super._ready()
@@ -209,10 +194,12 @@ func _ready() -> void:
 	Ranking.ranks = Ranking.default_ranks.duplicate(true)
 
 	if Global.SONG == null:
-		Global.SONG = Chart.load_chart("tutorial", "hard")
+		Global.SONG = Chart.load_chart("tutorial", "hard", "default")
+		Global.METADATA = Metadata.load_metadata("tutorial", "default")
 		SONG = Global.SONG
+		METADATA = Global.METADATA
 
-	var meta_path:String = "res://assets/songs/" + SONG.name.to_lower() + "/meta"
+	var meta_path:String = "res://assets/songs/" + METADATA.rawSongName.to_lower() + "/meta"
 	if ResourceLoader.exists(meta_path + ".tres"):
 		meta = load(meta_path + ".tres")
 
@@ -227,34 +214,34 @@ func _ready() -> void:
 			"constant":
 				scroll_speed = SettingsAPI.get_setting("scroll speed")
 
-	ui_skin = load("res://scenes/gameplay/ui_skins/"+SONG.ui_skin+".tscn").instantiate()
+	ui_skin = load("res://scenes/gameplay/ui_skins/"+METADATA.playData["noteStyle"]+".tscn").instantiate()
 	# music shit
 
-	load_song()
-
-	Conductor.map_bpm_changes(SONG)
-	Conductor.change_bpm(SONG.bpm)
+	Conductor.map_bpm_changes(METADATA)
+	Conductor.change_bpm(METADATA.timeChanges[0]["bpm"])
 	Conductor.position = Conductor.crochet * -5
+
+
 
 	gen_song()
 	load_events()
 
-	health = max_health * 0.5
+	health = Constants.HEALTH_STARTING
 
-	health_bar.min_value = 0.0
+	health_bar.min_value = Constants.HEALTH_MIN
 	health_bar.max_value = max_health
 	health_bar.value = health
 
-	cpu_strums = load("res://scenes/gameplay/strumlines/"+str(SONG.key_count)+"K.tscn").instantiate()
+	cpu_strums = load("res://scenes/gameplay/strumlines/4K.tscn").instantiate()
 	cpu_strums.note_skin = ui_skin
 	strumlines.add_child(cpu_strums)
 
-	player_strums = load("res://scenes/gameplay/strumlines/"+str(SONG.key_count)+"K.tscn").instantiate()
+	player_strums = load("res://scenes/gameplay/strumlines/4K.tscn").instantiate()
 	player_strums.note_skin = ui_skin
 	strumlines.add_child(player_strums)
 
 	# load song scripts (put in assets/songs/SONGNAME)
-	var script_path:String = "res://assets/songs/"+SONG.name.to_lower()+"/"
+	var script_path:String = "res://assets/songs/"+METADATA.rawSongName.to_lower()+"/"
 	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
 	for item in file_list:
 		if item.ends_with(".tscn") or item.ends_with(".tscn.remap"):
@@ -273,11 +260,11 @@ func _ready() -> void:
 	cpu_strums.position = Vector2((Global.game_size.x * 0.5) - (320.0 if not SettingsAPI.get_setting("centered notefield") else 10000.0), strum_y)
 	player_strums.position = Vector2((Global.game_size.x * 0.5) + (320.0 if not SettingsAPI.get_setting("centered notefield") else 0.0), strum_y)
 
-	var stage_path:String = "res://scenes/gameplay/stages/"+SONG.stage+".tscn"
+	var stage_path:String = "res://scenes/gameplay/stages/"+METADATA.playData["stage"]+".tscn"
 	if ResourceLoader.exists(stage_path):
 		stage = load(stage_path).instantiate()
 	else:
-		stage = load("res://scenes/gameplay/stages/stage.tscn").instantiate()
+		stage = load("res://scenes/gameplay/stages/mainStage.tscn").instantiate()
 
 	default_cam_zoom = stage.default_cam_zoom
 	camera.zoom = Vector2(default_cam_zoom, default_cam_zoom)
@@ -289,12 +276,14 @@ func _ready() -> void:
 	load_opponent()
 	load_player()
 
+	load_song()
+
 	update_health_bar()
 	setup_label_settings()
 
 	if SettingsAPI.get_setting("downscroll"):
 		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
-		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y") * 0.1
+		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y") * SettingsAPI.get_setting("hpbar down multiplier")
 	else:
 		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
 		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y")
@@ -322,7 +311,7 @@ func _ready() -> void:
 	combo_group.remove_child(rating_template)
 	combo_group.remove_child(combo_template)
 
-	update_camera()
+	update_camera(spectator.camera_pos.global_position.x, spectator.camera_pos.global_position.y, 0, Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 	for i in player_strums.get_child_count():
 		pressed.append(false)
@@ -334,32 +323,35 @@ func _ready() -> void:
 
 	update_score_text()
 
-	RichPresence.set_text(str(SONG.name) + " (" + str(Global.current_difficulty).capitalize() + ")", "")
-
 	stage.callv("_ready_post", [])
 	script_group.call_func("_ready_post", [])
 
 func load_spectator():
-	var spectator_path:String = "res://scenes/gameplay/characters/"+SONG.spectator+".tscn"
+	var spectator_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["girlfriend"]+".tscn"
 	if ResourceLoader.exists(spectator_path):
 		spectator = load(spectator_path).instantiate()
 	else:
 		spectator = load("res://scenes/gameplay/characters/bf.tscn").instantiate()
 
 	spectator.position = stage.character_positions["spectator"].position
-	add_child(spectator)
+	spectator.z_index = stage.character_positions["spectator"].z_index
+	spectator.get_child(0).material = stage.character_positions["spectator"].material
+	characters.add_child(spectator)
 
 func load_opponent():
-	var opponent_path:String = "res://scenes/gameplay/characters/"+SONG.opponent+".tscn"
+	var opponent_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["opponent"]+".tscn"
 	if ResourceLoader.exists(opponent_path):
 		opponent = load(opponent_path).instantiate()
 	else:
 		opponent = load("res://scenes/gameplay/characters/bf.tscn").instantiate()
 
 	opponent.position = stage.character_positions["opponent"].position
-	add_child(opponent)
+	opponent.z_index = stage.character_positions["opponent"].z_index
+	opponent.get_child(0).material = stage.character_positions["opponent"].material
+	print(stage.character_positions["opponent"].z_index)
+	characters.add_child(opponent)
 
-	if SONG.opponent == SONG.spectator:
+	if METADATA.playData["characters"]["opponent"] == METADATA.playData["characters"]["girlfriend"]:
 		opponent.position = spectator.position
 		spectator.queue_free()
 		# someone complain about dis
@@ -367,7 +359,7 @@ func load_opponent():
 		spectator = null
 
 func load_player():
-	var player_path:String = "res://scenes/gameplay/characters/"+SONG.player+".tscn"
+	var player_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["player"]+".tscn"
 	if ResourceLoader.exists(player_path):
 		player = load(player_path).instantiate()
 	else:
@@ -375,7 +367,9 @@ func load_player():
 
 	player._is_true_player = true
 	player.position = stage.character_positions["player"].position
-	add_child(player)
+	player.z_index = stage.character_positions["player"].z_index
+	player.get_child(0).material = stage.character_positions["player"].material
+	characters.add_child(player)
 
 func update_health_bar():
 	cpu_icon.texture = opponent.health_icon
@@ -392,7 +386,7 @@ func update_health_bar():
 		#PLAYER_HEALTH_COLOR.bg_color = SettingsAPI.get_setting("player color")
 
 func start_cutscene(postfix:String = "-start"):
-	var cutscene_path = "res://scenes/gameplay/cutscenes/" + SONG.name.to_lower() + postfix + ".tscn"
+	var cutscene_path = "res://scenes/gameplay/cutscenes/" + METADATA.rawSongName.to_lower() + postfix + ".tscn"
 	if ResourceLoader.exists(cutscene_path):
 		in_cutscene = true
 		hud.add_child(load(cutscene_path).instantiate())
@@ -474,7 +468,7 @@ func start_song():
 
 	for track in tracks:
 		add_child(track)
-		track.play((Conductor.position + meta.start_offset) / 1000.0)
+		track.play((Conductor.position + METADATA.offsets["instrumental"]) / 1000.0)
 
 	starting_song = false
 
@@ -494,14 +488,16 @@ func end_song():
 	stage.callv("on_end_song", [])
 	var ret:Variant = script_group.call_func("on_end_song", [])
 	if ret == false: return
-	if score > HighScore.get_score(SONG.name,Global.current_difficulty):
-		HighScore.set_score(SONG.name,Global.current_difficulty,score)
+	if songScore > HighScore.get_score(METADATA.rawSongName,Global.current_difficulty):
+		HighScore.set_score(METADATA.rawSongName,Global.current_difficulty,songScore)
 
 	if Global.queued_songs.size() > 0:
 		Global.SONG = Chart.load_chart(Global.queued_songs[0], Global.current_difficulty)
 		Global.queued_songs.remove_at(0)
-		Global.switch_scene("res://scenes/gameplay/Gameplay.tscn")
+		Ranking.add_results(songScore, misses, max_combo, sicks, goods, bads, shits, total_notes)
+		Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
 	else:
+		Ranking.add_results(songScore, misses, max_combo, sicks, goods, bads, shits, total_notes)
 		Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
 
 func beat_hit(beat:int):
@@ -532,23 +528,22 @@ func do_event(event_name:String,parameters:Array[String]):
 	ev.parameters = parameters
 	add_child(ev)
 
-
-func section_hit(section:int):
-	for track in tracks:
-		if abs((track.get_playback_position() * 1000.0 - meta.start_offset) - (Conductor.position)) >= 20:
-			resync_tracks()
-
-	if note_data_array.size() == 0 and note_group.get_children().size() == 0:
-		get_tree().create_timer((meta.end_offset/1000) / Conductor.rate).timeout.connect(end_song)
-
-	if not range(SONG.sections.size()).has(section): return
-
-	script_group.call_func("on_section_hit", [section])
-
-	if cam_switching:
-		update_camera(section)
-
-	script_group.call_func("on_section_hit_post", [section])
+#func section_hit(section:int):
+	#for track in tracks:
+		#if abs((track.get_playback_position() * 1000.0 - meta.start_offset) - (Conductor.position)) >= 20:
+			#resync_tracks()
+#
+	#if note_data_array.size() == 0 and note_group.get_children().size() == 0:
+		#get_tree().create_timer((meta.end_offset/1000) / Conductor.rate).timeout.connect(end_song)
+#
+	#if not range(SONG.sections.size()).has(section): return
+#
+	#script_group.call_func("on_section_hit", [section])
+#
+	#if cam_switching:
+		#update_camera(section)
+#
+	#script_group.call_func("on_section_hit_post", [section])
 
 func character_bop():
 	if opponent != null and opponent.dance_on_beat and not opponent.last_anim.begins_with("sing"):
@@ -562,14 +557,15 @@ func character_bop():
 
 	script_group.call_func("on_character_bop", [])
 
-func update_camera(sec:int = 0):
-	if not range(SONG.sections.size()).has(sec): return
-
-	var cur_sec:Section = SONG.sections[sec]
-	if cur_sec != null and cur_sec.is_player:
-		camera.position = player.get_camera_pos() + stage.player_cam_offset
+func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
+	var cam_tween = get_tree().create_tween()
+	if duration == 0:
+		camera.position = Vector2(targetX, targetY)
 	else:
-		camera.position = opponent.get_camera_pos() + stage.opponent_cam_offset
+		cam_tween.tween_property(camera, "position", Vector2(targetX, targetY), duration).set_trans(trans).set_ease(ease)
+
+	await cam_tween.finished
+	cam_tween.kill()
 
 	script_group.call_func("on_update_camera", [])
 
@@ -644,16 +640,13 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 		script_group.call_func("on_ghost_tap", [data])
 
 func fake_miss(direction:int = -1):
-	var new_health = health - 0.0475 * Global.health_loss_mult
-
-	var hp_tween = get_tree().create_tween()
-	hp_tween.tween_property(self, "health", new_health, 0.1)
+	var healthChange = health - Constants.HEALTH_MISS_PENALTY * Global.health_loss_mult
 
 	misses += 1
-	score -= 10
-	combo = 0
 	accuracy_pressed_notes += 1
 	update_score_text()
+
+	applyScore(-10, "miss", healthChange, true)
 
 	if direction < 0: return
 
@@ -672,7 +665,6 @@ func pop_up_score(judgement:Judgement) -> void:
 
 	accuracy_pressed_notes += 1
 	accuracy_total_hit += judgement.accuracy_gain
-	score += judgement.score
 	combo += 1
 
 	if max_combo < combo:
@@ -763,7 +755,35 @@ func good_note_hit(note:Note):
 		receptor.splash.visible = true
 		script_group.call_func("on_spawn_note_splash", [receptor.splash])
 
+	var score = Scoring.scoreNote(note_diff, "PBOT1")
+	var daRating = Scoring.judgeNote(note_diff, "PBOT1")
+
+	var healthChange = 0.0
+	var isComboBreak = false
+	match daRating:
+		"sick":
+			healthChange = health + Constants.HEALTH_SICK_BONUS * note.health_gain_mult * judgement.health_gain_mult * (
+				Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
+				else Global.health_loss_mult)
+			isComboBreak = Constants.JUDGEMENT_SICK_COMBO_BREAK
+		"good":
+			healthChange = health + Constants.HEALTH_GOOD_BONUS * note.health_gain_mult * judgement.health_gain_mult * (
+				Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
+				else Global.health_loss_mult)
+			isComboBreak = Constants.JUDGEMENT_GOOD_COMBO_BREAK
+		"bad":
+			healthChange = health + Constants.HEALTH_GOOD_BONUS * note.health_gain_mult * judgement.health_gain_mult * (
+				Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
+				else Global.health_loss_mult)
+			isComboBreak = Constants.JUDGEMENT_BAD_COMBO_BREAK
+		"shit":
+			healthChange = health + Constants.HEALTH_SHIT_BONUS * note.health_gain_mult * judgement.health_gain_mult * (
+				Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
+				else Global.health_loss_mult)
+			isComboBreak = Constants.JUDGEMENT_SHIT_COMBO_BREAK
+
 	if note.should_hit:
+		applyScore(score, daRating, healthChange, isComboBreak)
 		pop_up_score(judgement)
 	else:
 		combo = 0
@@ -776,13 +796,6 @@ func good_note_hit(note:Note):
 	var sing_anim = get_sing_anim(note)
 	player.play_anim(sing_anim, true)
 	player.hold_timer = 0.0
-
-	var new_health = health + 0.023 * note.health_gain_mult * judgement.health_gain_mult * (
-			Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
-			else Global.health_loss_mult)
-
-	var hp_tween = get_tree().create_tween()
-	hp_tween.tween_property(self, "health", new_health, 0.1)
 
 	if note.length <= 0:
 		note._player_hit()
@@ -814,6 +827,23 @@ func opponent_note_hit(note:Note):
 	#await get_tree().create_timer(0.1).timeout
 	#receptor.play_anim("static")
 
+func applyScore(score:int, daRating:String, healthChange:float, isComboBreak:bool):
+	match daRating:
+		"sick": sicks += 1
+		"good": goods += 1
+		"bad": bads += 1
+		"shit": shits += 1
+
+	var hp_tween = get_tree().create_tween()
+	hp_tween.tween_property(self, "health", healthChange, 0.1)
+
+	if isComboBreak:
+		combo = 0
+
+	songScore += score
+
+	update_score_text()
+
 func get_sing_anim(note:Note):
 	var strums = player_strums if note.must_press else cpu_strums
 	var sing_anim:String = "sing%s" % strums.get_child(note.direction).direction.to_upper()
@@ -838,11 +868,11 @@ func update_score_text():
 	var hp_percent:float = (health_bar.value / health_bar.max_value) * 100
 
 	var score_values: Dictionary = {
-		"score": score,
+		"score": songScore,
 		"misses": misses,
 		"accuracy": snapped(accuracy * 100.0, 0.01),
 		"ranks": Ranking.rank_from_accuracy(accuracy * 100.0).name,
-		"health": round(hp_percent),
+		"health": snapped(hp_percent, 0.01),
 		"combo": combo,
 		"max combo": max_combo,
 		"ghost taps": ghost_taps
@@ -853,12 +883,15 @@ func update_score_text():
 
 	score_text.text = ""
 
+	RichPresence.set_text(str(METADATA.rawSongName) + " (" + str(Global.current_difficulty).capitalize() + ")", "Score: %s" % songScore)
+
 	for i in array:
 		text_length += 1
-		if text_length == array.size():
-			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix")
+
+		if i == "seperator":
+			score_text.text += SettingsAPI.get_setting(i)
 		else:
-			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix") + SettingsAPI.get_setting("seperator")
+			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix")
 
 	script_group.call_func("on_update_score_text", [])
 
@@ -968,28 +1001,27 @@ func _physics_process(_delta: float) -> void:
 			continue
 
 		var key_count:int = 4
-		var is_player_note:bool = note.player_section
 
-		if note.direction > key_count - 1:
-			is_player_note = !note.player_section
-
-		var instance_type:String = note.type
-		if not note.type in template_notes:
+		var instance_type:String = note.kind
+		if not note.kind in template_notes:
 			print("type not found " + instance_type)
 			instance_type = "default"
 
 		var new_note:Note = template_notes[instance_type].duplicate()
-		new_note.strumline = player_strums if is_player_note else cpu_strums
+		new_note.strumline = player_strums if note.direction < 4 else cpu_strums
 		new_note.direction = note.direction % key_count
 		new_note.position = Vector2(new_note.strumline.get_child(new_note.direction).position.x, -9999)
 		new_note.time = note.time
 		new_note.length = note.length * 0.85
-		new_note.must_press = is_player_note
+		new_note.must_press = true if note.direction < 4 else false
 		new_note.note_skin = ui_skin
 		new_note.note_type = instance_type
 
+		if new_note.must_press:
+			total_notes += 1
+
 		if not new_note.alt_anim:
-			new_note.alt_anim = note.alt_anim or (note.type == "Alt Animation")
+			new_note.alt_anim = (note.kind == "Alt Animation")
 
 		note_group.add_child(new_note)
 		script_group.call_func("on_note_spawn", [new_note])

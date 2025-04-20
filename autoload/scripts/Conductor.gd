@@ -26,18 +26,18 @@ signal beat_hit(beat:int)
 signal step_hit(step:int)
 signal section_hit(section:int)
 
-func map_bpm_changes(song:Chart):
+func map_bpm_changes(meta:Metadata):
 	bpm_change_map = []
-	var cur_bpm:float = song.bpm
+	var cur_bpm:float = meta.timeChanges[0]["bpm"]
 	var total_steps:int = 0
 	var total_pos:float = 0.0
-	for i in song.sections.size():
-		if song.sections[i].change_bpm and song.sections[i].bpm != cur_bpm:
-			cur_bpm = song.sections[i].bpm
+	for i in meta.timeChanges.size():
+		if meta.timeChanges[i]["bpm"] and meta.timeChanges[i]["bpm"] != cur_bpm:
+			cur_bpm = meta.timeChanges[i]["bpm"]
 			var event:BPMChangeEvent = BPMChangeEvent.create(total_steps, total_pos, cur_bpm)
 			bpm_change_map.append(event)
-			
-		var delta_steps:int = song.sections[i].length_in_steps
+
+		var delta_steps:int = meta.timeChanges[i]["bpm"] * 4
 		total_steps += delta_steps
 		total_pos += (((60.0 / cur_bpm) * 1000.0) / 4.0) * delta_steps
 
@@ -50,14 +50,14 @@ func _process(delta):
 	var old_step:int = cur_step
 	var old_beat:int = cur_beat
 	var old_section:int = cur_section
-	
+
 	var last_change:BPMChangeEvent = BPMChangeEvent.create(0, 0, 0)
 	for i in bpm_change_map.size():
 		if position >= bpm_change_map[i].song_time:
 			last_change = bpm_change_map[i]
-			
+
 	if last_change.bpm > 0 and bpm != last_change.bpm: change_bpm(last_change.bpm)
-	
+
 	cur_step = last_change.step_time + floor((position - last_change.song_time) / step_crochet)
 	cur_beat = floor(cur_step / 4.0)
 	cur_section = floor(cur_step / 16)
@@ -65,11 +65,11 @@ func _process(delta):
 	cur_dec_step = last_change.step_time + ((position - last_change.song_time) / step_crochet)
 	cur_dec_beat = cur_dec_step / 4.0
 	cur_dec_section = cur_dec_step / 16.0
-	
+
 	if old_step != cur_step && cur_step > 0: step_hit.emit(cur_step)
 	if old_beat != cur_beat && cur_beat > 0: beat_hit.emit(cur_beat)
 	if old_section != cur_section && cur_section > 0: section_hit.emit(cur_section)
-	
+
 func is_sound_synced(sound:AudioStreamPlayer):
 	# i love windows
 	var ms_allowed:float = (30 if OS.get_name() == "Windows" else 20) * sound.pitch_scale

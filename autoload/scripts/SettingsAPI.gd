@@ -43,11 +43,12 @@ var _settings:Dictionary = {
 
 	"hpbar x": 340,
 	"hpbar y": 636,
+	"hpbar down multiplier": 0.1,
 
 	#score text
 	"seperator": " - ",
 
-	"score_arrangement": "[\"score\", \"misses\", \"accuracy\", \"ranks\"]",
+	"score_arrangement": "[\"score\", \"seperator\", \"misses\", \"seperator\", \"accuracy\", \"seperator\", \"ranks\"]",
 
 	"font path": "res://assets/fonts/vcr.ttf",
 	"font size": 19,

@@ -174,6 +174,7 @@ _data = {
 [node name="bf-pixel-dead" type="Node2D"]
 script = ExtResource("1_ue7c4")
 is_player = true
+voices_paths = "bf"
 health_icon = ExtResource("2_undx0")
 health_color = Color(0.482353, 0.839216, 0.964706, 1)
 
