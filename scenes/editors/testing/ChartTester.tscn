@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dn3nbeli6ykl2"]
 
-[ext_resource type="Script" uid="uid://ivu01njnpboj" path="res://scenes/editors/testing/ChartTester.gd" id="1_55bua"]
+[ext_resource type="Script" path="res://scenes/editors/testing/ChartTester.gd" id="1_55bua"]
 [ext_resource type="PackedScene" uid="uid://w5olx2s2jovt" path="res://scenes/gameplay/strumlines/4K.tscn" id="2_1tymy"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="3_xi52y"]
 

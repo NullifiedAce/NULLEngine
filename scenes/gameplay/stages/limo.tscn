@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bmgel05dhlx15"]
 
-[ext_resource type="Script" uid="uid://bht5v32etjy6k" path="res://scenes/gameplay/stages/limo.gd" id="1_l6mq2"]
+[ext_resource type="Script" path="res://scenes/gameplay/stages/limo.gd" id="1_l6mq2"]
 [ext_resource type="Texture2D" uid="uid://bvas2e32474uk" path="res://assets/images/gameplay/stages/limo/limoSunset.png" id="2_0e01u"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/limo/bgLimo.res" id="3_8det4"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/limo/limoDrive.res" id="4_vbsde"]

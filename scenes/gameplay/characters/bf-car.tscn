@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://bsovbfsdio48u"]
 
-[ext_resource type="Script" uid="uid://b4adxcf66q6bc" path="res://scripts/Character.gd" id="1_qocue"]
+[ext_resource type="Script" path="res://scripts/Character.gd" id="1_qocue"]
 [ext_resource type="Texture2D" uid="uid://bvafd1dvo4ke4" path="res://assets/images/gameplay/icons/icon-bf.png" id="2_mfdj3"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/bf/car.res" id="3_va8in"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="4_1w7t3"]
+[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="4_1w7t3"]
 
 [sub_resource type="Animation" id="Animation_wucwq"]
 resource_name = "hey"
@@ -574,17 +574,17 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
 _data = {
-&"hey": SubResource("Animation_wucwq"),
-&"idle": SubResource("Animation_epq6v"),
-&"scared": SubResource("Animation_jlgog"),
-&"singDOWN": SubResource("Animation_8yhx3"),
-&"singDOWNmiss": SubResource("Animation_qv7xy"),
-&"singLEFT": SubResource("Animation_4fmcm"),
-&"singLEFTmiss": SubResource("Animation_vhk6i"),
-&"singRIGHT": SubResource("Animation_yk1cf"),
-&"singRIGHTmiss": SubResource("Animation_smaak"),
-&"singUP": SubResource("Animation_55yur"),
-&"singUPmiss": SubResource("Animation_53fqm")
+"hey": SubResource("Animation_wucwq"),
+"idle": SubResource("Animation_epq6v"),
+"scared": SubResource("Animation_jlgog"),
+"singDOWN": SubResource("Animation_8yhx3"),
+"singDOWNmiss": SubResource("Animation_qv7xy"),
+"singLEFT": SubResource("Animation_4fmcm"),
+"singLEFTmiss": SubResource("Animation_vhk6i"),
+"singRIGHT": SubResource("Animation_yk1cf"),
+"singRIGHTmiss": SubResource("Animation_smaak"),
+"singUP": SubResource("Animation_55yur"),
+"singUPmiss": SubResource("Animation_53fqm")
 }
 
 [node name="bf" type="Node2D"]

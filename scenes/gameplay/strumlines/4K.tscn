@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://w5olx2s2jovt"]
 
-[ext_resource type="Script" uid="uid://cdlpo6qrdnbsx" path="res://scenes/gameplay/strumlines/StrumLine.gd" id="1_f14q3"]
+[ext_resource type="Script" path="res://scenes/gameplay/strumlines/StrumLine.gd" id="1_f14q3"]
 [ext_resource type="PackedScene" uid="uid://c5dlifad40usc" path="res://scenes/gameplay/strumlines/Receptor.tscn" id="1_gdhw2"]
 
 [node name="4K" type="Node2D"]

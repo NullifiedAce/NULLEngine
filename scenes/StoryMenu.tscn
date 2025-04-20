@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://dn03drrma3p5y"]
 
-[ext_resource type="Script" uid="uid://bk5d6qj72myub" path="res://scenes/StoryMenu.gd" id="1_66cjt"]
+[ext_resource type="Script" path="res://scenes/StoryMenu.gd" id="1_66cjt"]
 [ext_resource type="Resource" uid="uid://b2liyp0jv6vgq" path="res://assets/storyWeekList.tres" id="2_7t8os"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="4_rt1a8"]
 [ext_resource type="SpriteFrames" uid="uid://bbjun33w44uoy" path="res://assets/images/menus/storymenu/campaign_menu_UI_assets.res" id="9_cmblc"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="10_j4qu2"]
+[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="10_j4qu2"]
 [ext_resource type="Texture2D" uid="uid://dq6ww4di7h8uc" path="res://assets/images/menus/storymenu/difficulties/normal.png" id="11_hvcc2"]
 
 [sub_resource type="Animation" id="Animation_avyuw"]
@@ -87,8 +87,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_afupd"]
 _data = {
-&"idle": SubResource("Animation_avyuw"),
-&"push": SubResource("Animation_4lm31")
+"idle": SubResource("Animation_avyuw"),
+"push": SubResource("Animation_4lm31")
 }
 
 [sub_resource type="Animation" id="Animation_ra2cl"]
@@ -171,8 +171,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ctomo"]
 _data = {
-&"idle": SubResource("Animation_ra2cl"),
-&"push": SubResource("Animation_it523")
+"idle": SubResource("Animation_ra2cl"),
+"push": SubResource("Animation_it523")
 }
 
 [node name="StoryMenu" type="Node2D"]

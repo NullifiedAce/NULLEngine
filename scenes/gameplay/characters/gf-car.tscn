@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://b318ar8ywph4q"]
 
-[ext_resource type="Script" uid="uid://b4adxcf66q6bc" path="res://scripts/Character.gd" id="1_lv1fs"]
+[ext_resource type="Script" path="res://scripts/Character.gd" id="1_lv1fs"]
 [ext_resource type="Texture2D" uid="uid://bggn4j2x81mod" path="res://assets/images/gameplay/icons/icon-gf.png" id="2_1rsyn"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/gf/car.res" id="3_e78wm"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="4_2a7e4"]
+[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="4_2a7e4"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "danceLeft"
@@ -111,8 +111,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
 _data = {
-&"danceLeft": SubResource("Animation_epq6v"),
-&"danceRight": SubResource("Animation_7jg6a")
+"danceLeft": SubResource("Animation_epq6v"),
+"danceRight": SubResource("Animation_7jg6a")
 }
 
 [node name="gf-car" type="Node2D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c46rwg2l7p4we"]
 
-[ext_resource type="Script" uid="uid://ckdgdpg6pqe6m" path="res://scenes/editors/CharacterEditor.gd" id="1_u2pfu"]
+[ext_resource type="Script" path="res://scenes/editors/CharacterEditor.gd" id="1_u2pfu"]
 [ext_resource type="PackedScene" uid="uid://cbld2pm6f27au" path="res://scenes/gameplay/stages/stage.tscn" id="2_72ttl"]
 [ext_resource type="PackedScene" uid="uid://cyj73wfovhpu" path="res://scenes/gameplay/characters/gf.tscn" id="3_b4g0o"]
 [ext_resource type="PackedScene" uid="uid://bv2bmp1oon3uw" path="res://scenes/gameplay/characters/dad.tscn" id="4_6qktl"]

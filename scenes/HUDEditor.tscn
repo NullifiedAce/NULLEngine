@@ -1,22 +1,22 @@
 [gd_scene load_steps=22 format=3 uid="uid://bqsrwpb82r34v"]
 
-[ext_resource type="Script" uid="uid://bxj4gqf5wvyn4" path="res://scenes/HUDEditor.gd" id="1_028jv"]
+[ext_resource type="Script" path="res://scenes/HUDEditor.gd" id="1_028jv"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_a6t8j"]
 [ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="2_p2wl7"]
-[ext_resource type="Script" uid="uid://dbxmtk8tob1a8" path="res://scenes/options/Checkbox.gd" id="3_0xuk5"]
+[ext_resource type="Script" path="res://scenes/options/Checkbox.gd" id="3_0xuk5"]
 [ext_resource type="StyleBox" uid="uid://c4lt0ydus4t75" path="res://assets/styles/healthbar/opponent.tres" id="3_uow7h"]
-[ext_resource type="Script" uid="uid://dex4khgmtgolp" path="res://scenes/options/HUDPreview.gd" id="3_xc1l4"]
+[ext_resource type="Script" path="res://scenes/options/HUDPreview.gd" id="3_xc1l4"]
 [ext_resource type="StyleBox" uid="uid://ccmycpgoa47g0" path="res://assets/styles/healthbar/player.tres" id="4_8nyy7"]
 [ext_resource type="Texture2D" uid="uid://bgk48t11fpyuf" path="res://assets/images/gameplay/icons/icon-face.png" id="6_qitva"]
-[ext_resource type="Script" uid="uid://dybuj41aseies" path="res://scripts/HealthIcon.gd" id="7_0mpxd"]
-[ext_resource type="Script" uid="uid://d04m4p4k7b5yt" path="res://scenes/options/SpinBox.gd" id="10_dvgfv"]
-[ext_resource type="Script" uid="uid://cdef15bgtqe47" path="res://scenes/options/HUD Editor/SaveHUDPreset.gd" id="10_hm7nf"]
-[ext_resource type="Script" uid="uid://dus3qqlvsu1b0" path="res://scenes/options/ColorPicker.gd" id="10_uokwq"]
-[ext_resource type="Script" uid="uid://8yykb70h5rxc" path="res://scenes/options/HUD Editor/LoadHUDPreset.gd" id="11_6clei"]
-[ext_resource type="Script" uid="uid://bk43npatfl4qv" path="res://scenes/options/TextEdit.gd" id="11_y3j1p"]
-[ext_resource type="Script" uid="uid://cqv4f6mt7no84" path="res://scenes/options/RearrangeScore.gd" id="14_gju6m"]
-[ext_resource type="Script" uid="uid://bkit7ohd13fux" path="res://scenes/options/HUD Editor/AddButton.gd" id="15_dvv1b"]
-[ext_resource type="Script" uid="uid://brhs8jpul0i0g" path="res://scenes/options/CustomizeCounter.gd" id="16_rop5y"]
+[ext_resource type="Script" path="res://scripts/HealthIcon.gd" id="7_0mpxd"]
+[ext_resource type="Script" path="res://scenes/options/SpinBox.gd" id="10_dvgfv"]
+[ext_resource type="Script" path="res://scenes/options/HUD Editor/SaveHUDPreset.gd" id="10_hm7nf"]
+[ext_resource type="Script" path="res://scenes/options/ColorPicker.gd" id="10_uokwq"]
+[ext_resource type="Script" path="res://scenes/options/HUD Editor/LoadHUDPreset.gd" id="11_6clei"]
+[ext_resource type="Script" path="res://scenes/options/TextEdit.gd" id="11_y3j1p"]
+[ext_resource type="Script" path="res://scenes/options/RearrangeScore.gd" id="14_gju6m"]
+[ext_resource type="Script" path="res://scenes/options/HUD Editor/AddButton.gd" id="15_dvv1b"]
+[ext_resource type="Script" path="res://scenes/options/CustomizeCounter.gd" id="16_rop5y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2nblc"]
 content_margin_bottom = 48.0
@@ -42,7 +42,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ldd0u"]
 _data = {
-&"hidden": SubResource("Animation_q580i")
+"hidden": SubResource("Animation_q580i")
 }
 
 [node name="HUD Editor" type="Node2D"]

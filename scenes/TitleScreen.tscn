@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://duhqsh5l5bbtm"]
+[gd_scene load_steps=18 format=3 uid="uid://duhqsh5l5bbtm"]
 
-[ext_resource type="Script" uid="uid://bbg357av8ic7k" path="res://scenes/TitleScreen.gd" id="1_eg0nr"]
+[ext_resource type="Script" path="res://scenes/TitleScreen.gd" id="1_eg0nr"]
 [ext_resource type="Material" uid="uid://dlwbyy60pp0e2" path="res://assets/shaders/TitleScreenShaderMaterial.tres" id="2_f6nud"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="2_rhavx"]
+[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="2_rhavx"]
 [ext_resource type="SpriteFrames" uid="uid://xmmicsrmtycf" path="res://assets/images/titlescreen/gfDanceTitle.res" id="2_u0gnt"]
 [ext_resource type="SpriteFrames" path="res://assets/images/titlescreen/logoBumpin.res" id="4_dmwg3"]
 [ext_resource type="SpriteFrames" uid="uid://6vecp03qpxmj" path="res://assets/images/titlescreen/titleEnter.res" id="5_0ol1a"]
@@ -17,6 +17,176 @@ width = 1280
 height = 720
 fill_from = Vector2(0.5, 1)
 fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Animation" id="Animation_hoy8b"]
+resource_name = "entrance"
+length = 1.5
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gf:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0, 0.5, 1),
+"update": 0,
+"values": [Vector2(640, 360), Vector2(640, 360), Vector2(880, 400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gf:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0, 2, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("logo:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0, 0.5, 1),
+"update": 0,
+"values": [Vector2(-850, 640), Vector2(-850, 640), Vector2(356, 256)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("logo:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0, 2, 1),
+"update": 0,
+"values": [Vector2(1.25, 1.25), Vector2(1.25, 1.25), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("titleEnter:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [Vector2(100, 720), Vector2(100, 720), Vector2(100, 612)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("titleEnter:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6bwq4"]
+resource_name = "exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gf:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(880, 400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("logo:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, -0.5, 1),
+"update": 0,
+"values": [Vector2(356, 256), Vector2(356, 256), Vector2(640, 360)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("titleEnter:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(100, 612), Vector2(512, 720)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("titleEnter:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1.25, 1.25), Vector2(0.25, 0.25)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("logo:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(4, 4)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("logo:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("logo:material")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dk36c"]
+_data = {
+"entrance": SubResource("Animation_hoy8b"),
+"exit": SubResource("Animation_6bwq4")
+}
 
 [sub_resource type="Animation" id="Animation_ldyfc"]
 resource_name = "danceLeft"
@@ -83,71 +253,6 @@ tracks/4/keys = {
 "values": [Color(0.219608, 0.254902, 0.733333, 1), Color(0.219608, 0.254902, 0.733333, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_n5wdf"]
-resource_name = "danceLeft_noFL"
-length = 0.625004
-step = 0.0416667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"gfDance"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.583333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 14]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.583333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../../BG:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.219608, 0.254902, 0.733333, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_mht0r"]
 resource_name = "danceRight"
 length = 0.625004
@@ -211,6 +316,71 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 0.247059, 0.67451, 1), Color(1, 0.247059, 0.67451, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n5wdf"]
+resource_name = "danceLeft_noFL"
+length = 0.625004
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"gfDance"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.583333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 14]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.583333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../BG:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.219608, 0.254902, 0.733333, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_sca7u"]
@@ -280,10 +450,10 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j2p0c"]
 _data = {
-&"danceLeft": SubResource("Animation_ldyfc"),
-&"danceLeft_noFL": SubResource("Animation_n5wdf"),
-&"danceRight": SubResource("Animation_mht0r"),
-&"danceRight_noFL": SubResource("Animation_sca7u")
+"danceLeft": SubResource("Animation_ldyfc"),
+"danceLeft_noFL": SubResource("Animation_n5wdf"),
+"danceRight": SubResource("Animation_mht0r"),
+"danceRight_noFL": SubResource("Animation_sca7u")
 }
 
 [node name="TitleScreen" type="Node2D"]
@@ -297,9 +467,15 @@ texture = SubResource("GradientTexture2D_xdgb1")
 [node name="TitleGroup" type="Node2D" parent="."]
 visible = false
 
+[node name="entrance" type="AnimationPlayer" parent="TitleGroup"]
+libraries = {
+"": SubResource("AnimationLibrary_dk36c")
+}
+
 [node name="gf" type="AnimatedSprite2D" parent="TitleGroup"]
 material = ExtResource("2_f6nud")
-position = Vector2(880, 400)
+position = Vector2(640, 360)
+scale = Vector2(1.1, 1.1)
 sprite_frames = ExtResource("2_u0gnt")
 animation = &"gfDance"
 frame = 29
@@ -308,18 +484,19 @@ script = ExtResource("2_rhavx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TitleGroup/gf"]
 libraries = {
-&"": SubResource("AnimationLibrary_j2p0c")
+"": SubResource("AnimationLibrary_j2p0c")
 }
 
 [node name="logo" type="AnimatedSprite2D" parent="TitleGroup"]
-position = Vector2(356, 256)
+position = Vector2(-850, 640)
+scale = Vector2(1.25, 1.25)
 sprite_frames = ExtResource("4_dmwg3")
 animation = &"logo bumpin"
 script = ExtResource("2_rhavx")
 
 [node name="titleEnter" type="AnimatedSprite2D" parent="TitleGroup"]
 material = ExtResource("2_f6nud")
-position = Vector2(100, 612)
+position = Vector2(100, 720)
 sprite_frames = ExtResource("5_0ol1a")
 animation = &"Press Enter to Begin"
 centered = false

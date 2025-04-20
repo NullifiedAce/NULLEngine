@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bt85mt8exeopy"]
 
 [ext_resource type="SpriteFrames" uid="uid://tjwnn4yye8y8" path="res://assets/images/menus/storymenu/characters/boyfriend.res" id="1_rsj62"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="2_exxes"]
+[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="2_exxes"]
 
 [sub_resource type="Animation" id="Animation_m5o1j"]
 resource_name = "confirm"
@@ -83,8 +83,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i7hoh"]
 _data = {
-&"confirm": SubResource("Animation_m5o1j"),
-&"idle": SubResource("Animation_l816d")
+"confirm": SubResource("Animation_m5o1j"),
+"idle": SubResource("Animation_l816d")
 }
 
 [node name="bf" type="Node2D"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://u4mrxnjg7g02"]
 
-[ext_resource type="Script" uid="uid://ba6bsfi2m4b7" path="res://scenes/Outdated.gd" id="1_4ld70"]
+[ext_resource type="Script" path="res://scenes/Outdated.gd" id="1_4ld70"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_qmdor"]
 [ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="3_ptqga"]
 [ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="4_ueipp"]
 [ext_resource type="FontFile" uid="uid://cf2wd6a4pa5kb" path="res://assets/fonts/funkin.ttf" id="5_ch0dd"]
-[ext_resource type="Script" uid="uid://cfb0rk2udmc4c" path="res://scenes/options/LinkButton.gd" id="6_bxp14"]
+[ext_resource type="Script" path="res://scenes/options/LinkButton.gd" id="6_bxp14"]
 
 [node name="Outdated State" type="Node2D"]
 script = ExtResource("1_4ld70")

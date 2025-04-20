@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c462cllic036r"]
 
-[ext_resource type="Script" uid="uid://covyl2gql8vk0" path="res://scenes/editors/3do.gd" id="1_pqrdr"]
+[ext_resource type="Script" path="res://scenes/editors/3do.gd" id="1_pqrdr"]
 [ext_resource type="Texture2D" uid="uid://m5strgod1naq" path="res://icon.svg" id="2_ws5aa"]
 
 [sub_resource type="Environment" id="Environment_el0js"]

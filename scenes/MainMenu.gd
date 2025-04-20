@@ -17,6 +17,8 @@ func _ready():
 	$PB/UILayer/Version.text = "Nova Engine Godot v1.2.0\nNULL Engine v" + str(ProjectSettings.get_setting("application/config/version"))
 	RichPresence.set_text("In the menus", "Main Menu")
 
+	$PB/UILayer/entrance.play('entrance')
+
 	change_selection()
 
 func _process(delta):
@@ -40,6 +42,9 @@ func _process(delta):
 		selected_something = true
 		if SettingsAPI.get_setting("flashing lights"):
 			magenta_anim.play("flash")
+
+		$PB/UILayer/entrance.speed_scale = 0.4
+		$PB/UILayer/entrance.play_backwards('entrance')
 
 		button_anim.root_node = buttons.get_child(cur_selected).get_path()
 		button_anim.play("flash")

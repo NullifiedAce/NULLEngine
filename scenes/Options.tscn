@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cognicyoqefsb"]
 
-[ext_resource type="Script" uid="uid://b23bu5gcrt1j5" path="res://classes/MusicBeatScene.gd" id="1_hma0q"]
+[ext_resource type="Script" path="res://classes/MusicBeatScene.gd" id="1_hma0q"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_dd0nd"]
 [ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="3_2y2ed"]
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://cyj73wfovhpu"]
 
-[ext_resource type="Script" uid="uid://b4adxcf66q6bc" path="res://scripts/Character.gd" id="1_gsm5k"]
+[ext_resource type="Script" path="res://scripts/Character.gd" id="1_gsm5k"]
 [ext_resource type="Texture2D" uid="uid://bggn4j2x81mod" path="res://assets/images/gameplay/icons/icon-gf.png" id="2_licmi"]
 [ext_resource type="SpriteFrames" uid="uid://tmpfiub6j2gs" path="res://assets/images/gameplay/characters/gf/normal.res" id="3_by1y0"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="4_qap3x"]
+[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="4_qap3x"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "danceLeft"
@@ -372,13 +372,13 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
 _data = {
-&"danceLeft": SubResource("Animation_epq6v"),
-&"danceRight": SubResource("Animation_7jg6a"),
-&"scared": SubResource("Animation_fyb3s"),
-&"singDOWN": SubResource("Animation_5gaxy"),
-&"singLEFT": SubResource("Animation_8kry3"),
-&"singRIGHT": SubResource("Animation_iolxn"),
-&"singUP": SubResource("Animation_bbwrf")
+"danceLeft": SubResource("Animation_epq6v"),
+"danceRight": SubResource("Animation_7jg6a"),
+"scared": SubResource("Animation_fyb3s"),
+"singDOWN": SubResource("Animation_5gaxy"),
+"singLEFT": SubResource("Animation_8kry3"),
+"singRIGHT": SubResource("Animation_iolxn"),
+"singUP": SubResource("Animation_bbwrf")
 }
 
 [node name="gf" type="Node2D"]

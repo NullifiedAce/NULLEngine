@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://clua6hh7k221s"]
 
-[ext_resource type="Script" uid="uid://bw7coaxuffadi" path="res://scenes/gameplay/stages/mallXmas.gd" id="1_e8xy8"]
+[ext_resource type="Script" path="res://scenes/gameplay/stages/mallXmas.gd" id="1_e8xy8"]
 [ext_resource type="Texture2D" uid="uid://spiajomm7rt6" path="res://assets/images/gameplay/stages/mall/bgEscalator.png" id="2_jelh1"]
 [ext_resource type="Texture2D" uid="uid://bccq613ipfegh" path="res://assets/images/gameplay/stages/mall/christmasTree.png" id="2_n10v8"]
 [ext_resource type="Texture2D" uid="uid://buyn3nel7gcss" path="res://assets/images/gameplay/stages/mall/fgSnow.png" id="2_s0f8v"]
 [ext_resource type="Texture2D" uid="uid://bpc0l5byrc22n" path="res://assets/images/gameplay/stages/mall/bgWalls.png" id="2_tuw3h"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/mall/upperBop.res" id="3_dgiad"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="3_wu4ul"]
+[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="3_wu4ul"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/mall/bottomBop.res" id="7_kuy1x"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/mall/santa.res" id="9_4mmiq"]
 
@@ -27,7 +27,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a8lx5"]
 _data = {
-&"bop": SubResource("Animation_2ong5")
+"bop": SubResource("Animation_2ong5")
 }
 
 [node name="mall" type="Node2D"]

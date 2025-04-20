@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d2er11vv1rshu"]
 
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/limo/limoDancer.res" id="1_hdqeu"]
-[ext_resource type="Script" uid="uid://cyqtk2gofm5e6" path="res://scenes/gameplay/stages/objects/dancey-boi.gd" id="2_3n2qe"]
+[ext_resource type="Script" path="res://scenes/gameplay/stages/objects/dancey-boi.gd" id="2_3n2qe"]
 
 [sub_resource type="Animation" id="Animation_soj41"]
 resource_name = "danceLeft"
@@ -85,8 +85,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oqt4f"]
 _data = {
-&"danceLeft": SubResource("Animation_soj41"),
-&"danceRight": SubResource("Animation_tjqsq")
+"danceLeft": SubResource("Animation_soj41"),
+"danceRight": SubResource("Animation_tjqsq")
 }
 
 [node name="dancey-boi" type="AnimatedSprite2D"]
