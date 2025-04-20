@@ -11,12 +11,12 @@ config_version=5
 [application]
 
 config/name="NULL Engine"
-config/version="1.0.1"
+config/version="1.0.2"
 config/tags=PackedStringArray("2d", "funkin", "rhythm")
 run/main_scene="res://Init.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="NULLSonic/NULLEngine"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://assets/images/default_mod_icon.png"
 
 [autoload]

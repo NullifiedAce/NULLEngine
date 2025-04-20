@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c52ag5d72hnej"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/stages/school.gd" id="1_3caaj"]
+[ext_resource type="Script" uid="uid://yxssnp6xboao" path="res://scenes/gameplay/stages/school.gd" id="1_3caaj"]
 [ext_resource type="Texture2D" uid="uid://cejnp7ebusdue" path="res://assets/images/gameplay/stages/school/weebSky.png" id="2_qbyx2"]
 [ext_resource type="Texture2D" uid="uid://crjmqc1w1kuxj" path="res://assets/images/gameplay/stages/school/weebSchool.png" id="3_34qhi"]
 [ext_resource type="Texture2D" uid="uid://crl3m0gqutifu" path="res://assets/images/gameplay/stages/school/weebStreet.png" id="4_dpw4v"]

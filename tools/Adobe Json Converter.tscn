@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="1_dytjv"]
 [ext_resource type="Theme" uid="uid://br6hapg0jupnv" path="res://assets/styles/nova_purple_panel.tres" id="2_yycrj"]
-[ext_resource type="Script" path="res://tools/Adobe Json Converter.gd" id="3_3gd5o"]
+[ext_resource type="Script" uid="uid://rssjacdk7rqf" path="res://tools/Adobe Json Converter.gd" id="3_3gd5o"]
 [ext_resource type="Theme" uid="uid://blt3c0a5po0yj" path="res://assets/styles/nova_purple_button.tres" id="4_eli0x"]
-[ext_resource type="Script" path="res://tools/Choose Sprites.gd" id="5_wo2vc"]
+[ext_resource type="Script" uid="uid://hnxhx5ak5xkn" path="res://tools/Choose Sprites.gd" id="5_wo2vc"]
 
 [node name="XML Converter" type="Node2D"]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://wenqf7p5udgm"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/characters/pico-speaker.gd" id="1_acd4u"]
+[ext_resource type="Script" uid="uid://60ghxxu4a7su" path="res://scenes/gameplay/characters/pico-speaker.gd" id="1_acd4u"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/pico/speaker.res" id="3_a7ohd"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="4_img30"]
+[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="4_img30"]
 
 [sub_resource type="Animation" id="Animation_wvy3m"]
 resource_name = "shoot1"
@@ -218,10 +218,10 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
 _data = {
-"shoot1": SubResource("Animation_wvy3m"),
-"shoot2": SubResource("Animation_a8har"),
-"shoot3": SubResource("Animation_o3435"),
-"shoot4": SubResource("Animation_6wbnx")
+&"shoot1": SubResource("Animation_wvy3m"),
+&"shoot2": SubResource("Animation_a8har"),
+&"shoot3": SubResource("Animation_o3435"),
+&"shoot4": SubResource("Animation_6wbnx")
 }
 
 [node name="picospeaker" type="Node2D"]

@@ -1,18 +1,18 @@
 [gd_scene load_steps=14 format=3 uid="uid://duo1h603vpbjc"]
 
-[ext_resource type="Script" path="res://scenes/FreeplayMenu.gd" id="1_fmw2k"]
+[ext_resource type="Script" uid="uid://btyoh8rdd6q0j" path="res://scenes/FreeplayMenu.gd" id="1_fmw2k"]
 [ext_resource type="Resource" uid="uid://rkmusgpraddm" path="res://assets/freeplaySongList.tres" id="2_c5rpj"]
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="2_qkwra"]
 [ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="3_476d5"]
 [ext_resource type="Texture2D" uid="uid://bvafd1dvo4ke4" path="res://assets/images/gameplay/icons/icon-bf.png" id="4_7vmig"]
-[ext_resource type="Script" path="res://scripts/FreeplayAlphabet.gd" id="5_x5jdf"]
-[ext_resource type="Script" path="res://scripts/HealthIcon.gd" id="5_y3j5c"]
+[ext_resource type="Script" uid="uid://dy57nc5i1jiej" path="res://scripts/FreeplayAlphabet.gd" id="5_x5jdf"]
+[ext_resource type="Script" uid="uid://dybuj41aseies" path="res://scripts/HealthIcon.gd" id="5_y3j5c"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="8_rgyml"]
 [ext_resource type="Theme" uid="uid://br6hapg0jupnv" path="res://assets/styles/nova_purple_panel.tres" id="9_l28b6"]
 [ext_resource type="Theme" uid="uid://c7bhikvxte264" path="res://assets/styles/nova_purple.tres" id="10_8grtk"]
-[ext_resource type="Script" path="res://scenes/options/Display Slider Optionless.gd" id="11_g1sif"]
+[ext_resource type="Script" uid="uid://cvbbwxy0ba6v6" path="res://scenes/options/Display Slider Optionless.gd" id="11_g1sif"]
 [ext_resource type="Theme" uid="uid://blt3c0a5po0yj" path="res://assets/styles/nova_purple_button.tres" id="12_vvju7"]
-[ext_resource type="Script" path="res://scenes/options/HUD Editor/LoadHUDPreset.gd" id="13_bc0k6"]
+[ext_resource type="Script" uid="uid://8yykb70h5rxc" path="res://scenes/options/HUD Editor/LoadHUDPreset.gd" id="13_bc0k6"]
 
 [node name="FreeplayMenu" type="Node2D"]
 script = ExtResource("1_fmw2k")

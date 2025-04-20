@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cjpo7po4bckhr"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/PauseMenu.gd" id="1_g8qxe"]
+[ext_resource type="Script" uid="uid://c6xpeqqk2vcel" path="res://scenes/gameplay/PauseMenu.gd" id="1_g8qxe"]
 [ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="2_kylok"]
-[ext_resource type="Script" path="res://scripts/FreeplayAlphabet.gd" id="3_3aljb"]
+[ext_resource type="Script" uid="uid://dy57nc5i1jiej" path="res://scripts/FreeplayAlphabet.gd" id="3_3aljb"]
 [ext_resource type="AudioStream" uid="uid://c3pxiarfaanaa" path="res://assets/music/breakfast.ogg" id="4_6ao0p"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="5_6nkco"]
 

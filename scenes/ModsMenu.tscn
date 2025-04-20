@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c7ob71i2ta1iq"]
 
-[ext_resource type="Script" path="res://scenes/ModsMenu.gd" id="1_i7gh0"]
+[ext_resource type="Script" uid="uid://cc63jk2pqqnv0" path="res://scenes/ModsMenu.gd" id="1_i7gh0"]
 [ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="2_1okte"]
-[ext_resource type="Script" path="res://scripts/FreeplayAlphabet.gd" id="3_4o3d3"]
+[ext_resource type="Script" uid="uid://dy57nc5i1jiej" path="res://scripts/FreeplayAlphabet.gd" id="3_4o3d3"]
 [ext_resource type="Texture2D" uid="uid://djvwyf5uvg64p" path="res://assets/images/menus/modsmenu/contributor_icons/ninjamuffin99.png" id="5_56ilp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a28mi"]

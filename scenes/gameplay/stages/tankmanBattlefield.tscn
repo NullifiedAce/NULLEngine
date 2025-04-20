@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://bnr3j8crxh2mj"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/stages/tankmanBattlefield.gd" id="1_hx0hu"]
+[ext_resource type="Script" uid="uid://j82rkuo8isr0" path="res://scenes/gameplay/stages/tankmanBattlefield.gd" id="1_hx0hu"]
 [ext_resource type="Texture2D" uid="uid://bir1mgfolyi7f" path="res://assets/images/gameplay/stages/tank/tankSky.png" id="2_gdow6"]
 [ext_resource type="Texture2D" uid="uid://bu6g73vpywar" path="res://assets/images/gameplay/stages/tank/tankClouds.png" id="3_e8qdn"]
 [ext_resource type="Texture2D" uid="uid://rl2fei4d3qhu" path="res://assets/images/gameplay/stages/tank/tankMountains.png" id="3_hvagv"]

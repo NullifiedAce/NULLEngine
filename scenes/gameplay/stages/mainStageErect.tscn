@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=3 uid="uid://cys3l578mwdyu"]
 
-[ext_resource type="Script" path="res://scenes/gameplay/stages/mainStageErect.gd" id="1_8vwlo"]
+[ext_resource type="Script" uid="uid://fv43d6gtbfhx" path="res://scenes/gameplay/stages/mainStageErect.gd" id="1_8vwlo"]
 [ext_resource type="Texture2D" uid="uid://13co4svlbwp7" path="res://assets/images/gameplay/stages/stage/erect/backDark.png" id="2_c0nuu"]
 [ext_resource type="Texture2D" uid="uid://c0gqg8l826fpo" path="res://assets/images/gameplay/stages/stage/erect/brightLightSmall.png" id="3_g7dt4"]
 [ext_resource type="SpriteFrames" uid="uid://blohjvh5eb7yb" path="res://assets/images/gameplay/stages/stage/erect/crowd.res" id="4_1df25"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="5_mp3ss"]
+[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="5_mp3ss"]
 [ext_resource type="Texture2D" uid="uid://bqdjfj37c6vh3" path="res://assets/images/gameplay/stages/stage/erect/bg.png" id="5_sjrhj"]
 [ext_resource type="Texture2D" uid="uid://gvoekae7mfx4" path="res://assets/images/gameplay/stages/stage/erect/lightgreen.png" id="6_bg7vw"]
 [ext_resource type="Texture2D" uid="uid://djq6fg3no24y3" path="res://assets/images/gameplay/stages/stage/erect/server.png" id="6_l8k6e"]
@@ -60,7 +60,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kc5q2"]
 shader = SubResource("Shader_khasu")
 shader_parameter/hue = -32.0
-shader_parameter/saturation = null
+shader_parameter/saturation = 0.0
 shader_parameter/brightness = -33.0
 shader_parameter/contrast = -23.0
 
@@ -111,7 +111,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0sp2o"]
 shader = SubResource("Shader_f53w6")
 shader_parameter/hue = -8.99998
-shader_parameter/saturation = null
+shader_parameter/saturation = 0.0
 shader_parameter/brightness = -30.0
 shader_parameter/contrast = -3.99999
 
@@ -162,7 +162,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_10564"]
 shader = SubResource("Shader_txx2t")
 shader_parameter/hue = 12.0
-shader_parameter/saturation = null
+shader_parameter/saturation = 0.0
 shader_parameter/brightness = -23.0
 shader_parameter/contrast = 7.00001
 
