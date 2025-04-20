@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://q64jd3rbs8je"]
+[gd_scene load_steps=14 format=3 uid="uid://q64jd3rbs8je"]
 
 [ext_resource type="Script" uid="uid://cwdb7nqrbcftu" path="res://scenes/MainMenu.gd" id="1_f3mce"]
 [ext_resource type="Texture2D" uid="uid://8cpkvnc78sok" path="res://assets/images/menus/menuBG.png" id="2_25v5u"]
@@ -68,112 +68,6 @@ _data = {
 &"flash": SubResource("Animation_kyg7j")
 }
 
-[sub_resource type="Animation" id="Animation_ekx12"]
-resource_name = "entrance"
-length = 0.55
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StoryMode:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(640, 820), Vector2(640, 150)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Freeplay:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 0.35),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(640, 820), Vector2(640, 290)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Options:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.2, 0.45),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(640, 820), Vector2(640, 430)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Credits:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.3, 0.55),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(640, 820), Vector2(640, 570)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("StoryMode:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Freeplay:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.1, 0.35),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Options:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.2, 0.45),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Credits:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0.3, 0.55),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ojo21"]
-_data = {
-&"entrance": SubResource("Animation_ekx12")
-}
-
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_f3mce")
 
@@ -196,7 +90,7 @@ texture = ExtResource("3_sklie")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PB/BGLayer/Magenta"]
 libraries = {
-"": SubResource("AnimationLibrary_o84so")
+&"": SubResource("AnimationLibrary_o84so")
 }
 
 [node name="UILayer" type="ParallaxLayer" parent="PB"]
@@ -227,7 +121,7 @@ animation = &"idle"
 [node name="ButtonFlashing" type="AnimationPlayer" parent="PB/UILayer"]
 root_node = NodePath("../Buttons")
 libraries = {
-"": SubResource("AnimationLibrary_o48h0")
+&"": SubResource("AnimationLibrary_o48h0")
 }
 
 [node name="Version" type="Label" parent="PB/UILayer"]
@@ -236,19 +130,13 @@ offset_top = 680.0
 offset_right = 238.0
 offset_bottom = 710.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
 theme_override_constants/line_spacing = 0
+theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("7_fi2y3")
 theme_override_font_sizes/font_size = 16
 text = "Nova Engine Godot v1.2.0
 NULL Engine v"
 autowrap_mode = 3
-
-[node name="entrance" type="AnimationPlayer" parent="PB/UILayer"]
-root_node = NodePath("../Buttons")
-libraries = {
-"": SubResource("AnimationLibrary_ojo21")
-}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 359)

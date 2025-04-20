@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cd8qnbjwrowm3"]
+[gd_scene load_steps=16 format=3 uid="uid://cd8qnbjwrowm3"]
 
 [ext_resource type="Script" uid="uid://dfkfu4t24qynb" path="res://scenes/gameplay/Gameplay.gd" id="1_8k5hd"]
 [ext_resource type="Script" uid="uid://cce1hgifs001v" path="res://classes/ScriptGroup.gd" id="2_5pmok"]
@@ -11,7 +11,24 @@
 [ext_resource type="Texture2D" uid="uid://bgk48t11fpyuf" path="res://assets/images/gameplay/icons/icon-face.png" id="5_hiat0"]
 [ext_resource type="StyleBox" uid="uid://ccmycpgoa47g0" path="res://assets/styles/healthbar/player.tres" id="7_xkyo6"]
 [ext_resource type="Script" uid="uid://dybuj41aseies" path="res://scripts/HealthIcon.gd" id="9_42oq6"]
+[ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="12_0ecoy"]
 [ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="13_c6vus"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83uuq"]
+bg_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ecoy"]
+bg_color = Color(0.93845, 0.93845, 0.93845, 1)
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_8k5hd")
@@ -116,6 +133,40 @@ grow_vertical = 0
 text = "Score: 0 - Misses: 0 - Accuracy: 0% [N/A]"
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="TimeBar" type="ProgressBar" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -175.0
+offset_top = 20.0
+offset_right = 175.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_83uuq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0ecoy")
+max_value = 1.0
+step = 0.0
+show_percentage = false
+
+[node name="Timer" type="Label" parent="HUD/TimeBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -12.5
+offset_right = 69.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("12_0ecoy")
+theme_override_font_sizes/font_size = 18
+text = "00:00 / 00:00"
+vertical_alignment = 1
 
 [node name="CountdownSprite" type="Sprite2D" parent="HUD"]
 position = Vector2(640, 360)

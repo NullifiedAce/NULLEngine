@@ -33,6 +33,12 @@ var combo:int = 0
 var max_combo:int = 0
 var ghost_taps:int = 0
 
+var cur_time:float
+var max_time:float
+var time_progress:float = 0.0:
+	set(t):
+		time_progress = clampf(t, 0.0, 1.0)
+
 var accuracy_pressed_notes:int = 0
 var accuracy_total_hit:float = 0.0
 
@@ -78,6 +84,9 @@ var ui_skin:UISkin
 
 @onready var health_bar_bg:ColorRect = $HUD/HealthBar
 @onready var health_bar:ProgressBar = $HUD/HealthBar/ProgressBar
+
+@onready var time_bar: ProgressBar = $HUD/TimeBar
+@onready var timer: Label = $HUD/TimeBar/Timer
 
 @onready var cpu_icon:Sprite2D = $HUD/HealthBar/ProgressBar/CPUIcon
 @onready var player_icon:Sprite2D = $HUD/HealthBar/ProgressBar/PlayerIcon
@@ -295,9 +304,11 @@ func _ready() -> void:
 	if SettingsAPI.get_setting("downscroll"):
 		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
 		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y") * 0.1
+		time_bar.position.y = 690
 	else:
 		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
 		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y")
+		time_bar.position.y = 20
 
 	if SettingsAPI.get_setting("hide hpbar"):
 		health_bar_bg.self_modulate = Color(1, 1, 1, 0)
@@ -313,6 +324,7 @@ func _ready() -> void:
 		player_icon.show()
 		cpu_icon.show()
 
+	max_time = tracks[0].stream.get_length() * 1000.0
 
 	if SettingsAPI.get_setting("judgement camera").to_lower() == "hud":
 		remove_child(combo_group)
@@ -911,6 +923,13 @@ func _process(delta:float) -> void:
 	var percent:float = (health / max_health) * 100.0
 	health_bar.max_value = max_health
 	health_bar.value = health
+
+	cur_time = Conductor.position
+
+	time_progress = cur_time / max_time
+	time_bar.value = time_progress
+
+	timer.text = "%s / %s" % [Global.format_time(cur_time / 1000.0), Global.format_time(max_time / 1000.0)]
 
 	cpu_icon.health = 100.0 - percent
 	player_icon.health = percent
