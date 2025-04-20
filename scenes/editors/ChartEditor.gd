@@ -72,14 +72,13 @@ var arrow_rotations:Array[float] = [0, 270, 90, 180]
 var tracks:Array[AudioStreamPlayer] = []
 
 var chart_data:Chart = Global.SONG
-var metadata:Metadata = Global.METADATA
 var track_length:float = 100000
 
 var take_input:bool = true
 
 func load_song():
 	track_mute.clear()
-	var music_path:String = "res://assets/songs/%s/audio/" % metadata.rawSongName.to_lower()
+	var music_path:String = "res://assets/songs/%s/audio/" % chart_data.name.to_lower()
 
 	if DirAccess.dir_exists_absolute(music_path):
 		var dir = DirAccess.open(music_path)
@@ -102,10 +101,8 @@ func load_song():
 
 func _init(): # doing it on init because doing it on ready causes a crash on "Run Current Scene"
 	if chart_data == null:
-		chart_data = Chart.load_chart("bopeebo","hard","default")
-		metadata =	Metadata.load_metadata("bopeboo","default")
+		chart_data = Chart.load_chart("bopeebo","hard")
 		Global.SONG = chart_data
-		Global.METADATA = metadata
 
 func _ready():
 	load_song()
@@ -113,7 +110,7 @@ func _ready():
 
 	Conductor.position = 0
 	Conductor.cur_section = 0
-	Conductor.map_bpm_changes(metadata)
+	Conductor.map_bpm_changes(chart_data)
 	# regen_notes() not calling it on ready because PlayerLane's x is not set yet.
 
 	bloom_mat = ShaderMaterial.new()
@@ -139,12 +136,12 @@ func _notification(what):
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT or what == NOTIFICATION_WM_CLOSE_REQUEST:
 		if not DirAccess.dir_exists_absolute("user://chart_autosaves"):
 			DirAccess.make_dir_absolute("user://chart_autosaves")
-		windows[0]._save_song("user://chart_autosaves/" + metadata.rawSongName + ".json")
+		windows[0]._save_song("user://chart_autosaves/" + chart_data.raw_name + ".json")
 
 func _exit_tree():
 	if not DirAccess.dir_exists_absolute("user://chart_autosaves"):
 		DirAccess.make_dir_absolute("user://chart_autosaves")
-	windows[0]._save_song("user://chart_autosaves/" + metadata.rawSongName + ".json")
+	windows[0]._save_song("user://chart_autosaves/" + chart_data.raw_name + ".json")
 
 func get_quant_color(hit_time:float):
 	var measure_time:float = 60 / Conductor.bpm * 1000 * 4

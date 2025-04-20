@@ -3,10 +3,7 @@ extends Node
 func _ready() -> void:
 	DiscordRPC.app_id = 1264652502700134400
 	DiscordRPC.large_image = "logo"
-	if OS.is_debug_build():
-		DiscordRPC.large_image_text = "NULL Engine (DEBUG) v" + ProjectSettings.get_setting("application/config/version")
-	else:
-		DiscordRPC.large_image_text = "NULL Engine v" + ProjectSettings.get_setting("application/config/version")
+	DiscordRPC.large_image_text = "NULL Engine v" + ProjectSettings.get_setting("application/config/version")
 
 	DiscordRPC.refresh()
 

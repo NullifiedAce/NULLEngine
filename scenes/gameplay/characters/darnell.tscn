@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdl6ag75dmpuv"]
+[gd_scene load_steps=11 format=3 uid="uid://clflv717qf201"]
 
-[ext_resource type="Script" path="res://scripts/Character.gd" id="1_3xaox"]
-[ext_resource type="Texture2D" uid="uid://bb4v0d5dmjwd0" path="res://assets/images/gameplay/icons/icon-darnell.png" id="2_tdxa5"]
-[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/darnell/darnell.res" id="3_ntmjc"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="4_a6msp"]
+[ext_resource type="Script" path="res://scripts/Character.gd" id="1_jq454"]
+[ext_resource type="Texture2D" uid="uid://cb4g78s0nksa0" path="res://assets/images/gameplay/icons/icon-dad.png" id="2_5slxk"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/darnell/darnell.res" id="3_lxcm2"]
+[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="4_sxej0"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "idle"
+length = 0.625004
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -144,7 +145,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-1, 0)]
+"values": [Vector2(1, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -195,7 +196,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-4, -3)]
+"values": [Vector2(4, 3)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -246,7 +247,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-8, -5)]
+"values": [Vector2(8, 5)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -270,30 +271,20 @@ _data = {
 "singUP": SubResource("Animation_55yur")
 }
 
-[node name="darnell" type="Node2D"]
-script = ExtResource("1_3xaox")
-sing_duration = 8.0
-voices_paths = "darnell"
-health_icon = ExtResource("2_tdxa5")
-health_color = Color(0.45098, 0.368627, 0.690196, 1)
-
-[node name="AnimatedSprite2" type="AnimatedSprite2D" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.470588)
-position = Vector2(-320, -544)
-sprite_frames = ExtResource("3_ntmjc")
-animation = &"Idle"
-centered = false
-script = ExtResource("4_a6msp")
+[node name="dad" type="Node2D"]
+script = ExtResource("1_jq454")
+sing_duration = 6.1
+health_icon = ExtResource("2_5slxk")
+health_color = Color(0.686275, 0.4, 0.807843, 1)
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-320, -544)
-sprite_frames = ExtResource("3_ntmjc")
+position = Vector2(-232, -520)
+sprite_frames = ExtResource("3_lxcm2")
 animation = &"Idle"
 frame = 27
 frame_progress = 1.0
 centered = false
-script = ExtResource("4_a6msp")
+script = ExtResource("4_sxej0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 libraries = {
@@ -301,4 +292,4 @@ libraries = {
 }
 
 [node name="CameraPos" type="Node2D" parent="."]
-position = Vector2(-24, -352)
+position = Vector2(48, -296)

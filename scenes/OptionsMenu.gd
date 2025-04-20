@@ -20,9 +20,6 @@ func _ready():
 	# lazy way to make strumline pop up when the scene loads
 	_on_gameplay_checkbox_pressed("Downscroll")
 
-	if !ProjectSettings.get_setting("engine/customization/hud_editor"):
-		$TabContainer/Appearance/HUDEditor.queue_free()
-
 	Ranking.judgements = Ranking.default_judgements.duplicate(true)
 	Ranking.ranks = Ranking.default_ranks.duplicate(true)
 	RichPresence.set_text("In the menus", "Configuring Options")

@@ -118,7 +118,6 @@ _data = {
 [node name="gf-pixel" type="Node2D"]
 script = ExtResource("1_mbwa4")
 dance_steps = Array[String](["danceLeft", "danceRight"])
-voices_paths = "gf"
 health_icon = ExtResource("2_y7fxc")
 health_color = Color(0.647059, 0, 0.301961, 1)
 

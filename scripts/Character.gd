@@ -6,7 +6,6 @@ class_name Character extends Node2D
 @export var is_player:bool = false
 @export var sing_duration:float = 4.0
 @export var dance_steps:Array[String] = ["idle"]
-@export var voices_paths:String = "dad"
 
 @export_group("Health Icon")
 @export var health_icon:Texture2D = load("res://assets/images/gameplay/icons/icon-face.png")
