@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7g307k28vya8"]
+[gd_scene load_steps=13 format=3 uid="uid://b7g307k28vya8"]
 
-[ext_resource type="Script" uid="uid://dbw5c8o4o5825" path="res://scenes/menus/options/hud/Elements/HUDIconButton.gd" id="1_gg11e"]
+[ext_resource type="Script" uid="uid://dbw5c8o4o5825" path="res://scenes/menus/options/hud/elements/HUDIconButton.gd" id="1_gg11e"]
 [ext_resource type="Theme" uid="uid://dqqyiyf33vtjn" path="res://assets/styles/NULLEngine.tres" id="1_q3n0l"]
 [ext_resource type="Shader" uid="uid://7jkaq411xr28" path="res://assets/shaders/BasicColorShader.gdshader" id="1_twvyw"]
 [ext_resource type="Texture2D" uid="uid://cb4g78s0nksa0" path="res://assets/images/gameplay/icons/icon-dad.png" id="2_8wb1x"]
@@ -11,6 +11,12 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4cgdy"]
 shader = ExtResource("1_twvyw")
 shader_parameter/swag_color = Color(0.366595, 0.366595, 0.366595, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4e684"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t8sid"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fx3dg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t8sid"]
 shader = ExtResource("7_4e684")
@@ -114,6 +120,9 @@ popup/item_1/id = 1
 popup/item_2/text = "Misc."
 popup/item_2/id = 2
 
+[node name="HSeparator3" type="HSeparator" parent="Window/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="AppearanceTitle" type="Label" parent="Window/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "Appearance:"
@@ -124,7 +133,83 @@ layout_mode = 2
 [node name="Appearance" type="HBoxContainer" parent="Window/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="AlphaTitle" type="Label" parent="Window/ScrollContainer/VBoxContainer/Appearance"]
+[node name="HueTitle" type="Label" parent="Window/ScrollContainer/VBoxContainer/Appearance"]
+layout_mode = 2
+text = "Hue:"
+
+[node name="VSeparator2" type="VSeparator" parent="Window/ScrollContainer/VBoxContainer/Appearance"]
+layout_mode = 2
+theme_override_constants/separation = 40
+theme_override_styles/separator = SubResource("StyleBoxEmpty_4e684")
+
+[node name="Hue" type="SpinBox" parent="Window/ScrollContainer/VBoxContainer/Appearance"]
+layout_mode = 2
+min_value = -360.0
+max_value = 360.0
+
+[node name="VSeparator" type="VSeparator" parent="Window/ScrollContainer/VBoxContainer/Appearance"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_4e684")
+
+[node name="SaturationTitle" type="Label" parent="Window/ScrollContainer/VBoxContainer/Appearance"]
+layout_mode = 2
+text = "Saturation:"
+
+[node name="Saturation" type="SpinBox" parent="Window/ScrollContainer/VBoxContainer/Appearance"]
+layout_mode = 2
+min_value = -100.0
+
+[node name="Appearance2" type="HBoxContainer" parent="Window/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BrightnessTitle" type="Label" parent="Window/ScrollContainer/VBoxContainer/Appearance2"]
+layout_mode = 2
+text = "Brightness:"
+
+[node name="Brightness" type="SpinBox" parent="Window/ScrollContainer/VBoxContainer/Appearance2"]
+layout_mode = 2
+min_value = -255.0
+max_value = 255.0
+
+[node name="VSeparator" type="VSeparator" parent="Window/ScrollContainer/VBoxContainer/Appearance2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_t8sid")
+
+[node name="ContrastTitle" type="Label" parent="Window/ScrollContainer/VBoxContainer/Appearance2"]
+layout_mode = 2
+text = "Contrast:"
+
+[node name="VSeparator2" type="VSeparator" parent="Window/ScrollContainer/VBoxContainer/Appearance2"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_t8sid")
+
+[node name="Contrast" type="SpinBox" parent="Window/ScrollContainer/VBoxContainer/Appearance2"]
+layout_mode = 2
+min_value = -255.0
+max_value = 255.0
+
+[node name="Appearance3" type="HBoxContainer" parent="Window/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AlphaTitle" type="Label" parent="Window/ScrollContainer/VBoxContainer/Appearance3"]
+layout_mode = 2
+text = "Alpha:"
+
+[node name="VSeparator" type="VSeparator" parent="Window/ScrollContainer/VBoxContainer/Appearance3"]
+layout_mode = 2
+theme_override_constants/separation = 29
+theme_override_styles/separator = SubResource("StyleBoxEmpty_fx3dg")
+
+[node name="Alpha" type="SpinBox" parent="Window/ScrollContainer/VBoxContainer/Appearance3"]
+layout_mode = 2
+min_value = -255.0
+max_value = 255.0
+value = 255.0
+
+[node name="HSeparator4" type="HSeparator" parent="Window/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="OptionsTitle" type="Label" parent="Window/ScrollContainer/VBoxContainer"]

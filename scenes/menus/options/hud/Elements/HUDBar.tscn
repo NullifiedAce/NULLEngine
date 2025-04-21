@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://s8ci5hu0xftg"]
 
-[ext_resource type="Script" uid="uid://d0tlsa5ojlfgp" path="res://scenes/menus/options/hud/Elements/HUDBar.gd" id="1_5k8sf"]
+[ext_resource type="Script" uid="uid://d0tlsa5ojlfgp" path="res://scenes/menus/options/hud/elements/HUDBar.gd" id="1_5k8sf"]
 [ext_resource type="Theme" uid="uid://dqqyiyf33vtjn" path="res://assets/styles/NULLEngine.tres" id="2_ny6ii"]
 
 [node name="HUDBar" type="ProgressBar"]

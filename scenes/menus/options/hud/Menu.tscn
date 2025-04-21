@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqsrwpb82r34v"]
+[gd_scene load_steps=15 format=3 uid="uid://bqsrwpb82r34v"]
 
 [ext_resource type="Script" uid="uid://bydrrqjf2awjd" path="res://scenes/menus/options/hud/Menu.gd" id="1_028jv"]
 [ext_resource type="Script" uid="uid://b1pwa7eu337d2" path="res://scenes/menus/options/hud/ThemeHandler.gd" id="2_7hp2n"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_a6t8j"]
 [ext_resource type="Theme" uid="uid://dqqyiyf33vtjn" path="res://assets/styles/NULLEngine.tres" id="3_k68oh"]
-[ext_resource type="Script" uid="uid://co00xq8h2ivbw" path="res://scenes/menus/options/hud/EngineColor.gd" id="6_sg4b6"]
-[ext_resource type="PackedScene" uid="uid://d3skr632i6bbj" path="res://scenes/menus/options/hud/Elements/HUDElement.tscn" id="7_k8jfr"]
+[ext_resource type="Script" uid="uid://d0o06je565e5c" path="res://scenes/menus/options/hud/data/Saving.gd" id="3_lo8x1"]
+[ext_resource type="Script" uid="uid://jhia0wb1d1yg" path="res://scenes/menus/options/hud/data/Loading.gd" id="4_ricit"]
+[ext_resource type="Script" uid="uid://co00xq8h2ivbw" path="res://classes/EngineTheme/EngineThemeColor.gd" id="6_sg4b6"]
+[ext_resource type="PackedScene" uid="uid://d3skr632i6bbj" path="res://scenes/menus/options/hud/elements/HUDElement.tscn" id="7_k8jfr"]
 [ext_resource type="Script" uid="uid://cayyq5tvyebbr" path="res://scenes/menus/options/hud/HUDPreview.gd" id="8_4ahyr"]
-[ext_resource type="Script" uid="uid://d1mg4gki84igd" path="res://scenes/menus/options/hud/EngineThemeOption.gd" id="8_cgx1m"]
-[ext_resource type="Script" uid="uid://d1m5agyfh2uer" path="res://scenes/menus/options/hud/EngineThemeSpinBox.gd" id="9_36kso"]
+[ext_resource type="Script" uid="uid://d1mg4gki84igd" path="res://classes/EngineTheme/EngineThemeOption.gd" id="8_cgx1m"]
+[ext_resource type="Script" uid="uid://d1m5agyfh2uer" path="res://classes/EngineTheme/EngineThemeSpinBox.gd" id="9_36kso"]
 
 [sub_resource type="Gradient" id="Gradient_yb4yc"]
 interpolation_mode = 2
@@ -32,6 +34,12 @@ script = ExtResource("1_028jv")
 [node name="ThemeHandler" type="Node" parent="."]
 process_mode = 3
 script = ExtResource("2_7hp2n")
+
+[node name="Saving" type="Node" parent="."]
+script = ExtResource("3_lo8x1")
+
+[node name="Loading" type="Node" parent="."]
+script = ExtResource("4_ricit")
 
 [node name="BG" parent="." instance=ExtResource("2_a6t8j")]
 gradiant = SubResource("GradientTexture2D_k68oh")
@@ -1117,6 +1125,8 @@ metadata/_tab_index = 0
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="HUDElements" type="Node" parent="."]
 
 [connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor/ColorBG" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor/ColorBG" method="_on_popup_closed"]
 [connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" method="_on_popup_closed"]

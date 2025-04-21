@@ -10,10 +10,16 @@ class_name HUDEditor
 @onready var add_popup: PopupMenu = $AddPopup
 
 @onready var hud_template: HUDElement = $Template
+@onready var hud_elements: Node = $HUDElements
+
+@onready var saving: Node = $Saving
+@onready var loading: Node = $Loading
 
 func _ready() -> void:
 	for i in FPS.get_children():
 		i.modulate = Color(1, 1, 1, 0.25)
+
+	loading.load_hud()
 
 	file_menu.get_popup().id_pressed.connect(_file_stuff)
 	edit_menu.get_popup().id_pressed.connect(_edit)
@@ -28,20 +34,11 @@ func _input(event: InputEvent) -> void:
 		add_popup.position = get_viewport().get_mouse_position()
 		add_popup.show()
 
-	if Input.is_action_just_pressed("ui_up"):
-		var label = HUDLabel.new()
-		label.position = Global.game_size / 2
-		label.downscroll_multiplier = 0.1
-		label.text = "This is a test string!"
-		label.track_value = true
-		label.track = "score"
-		label.prefix = "Score: "
-		label.suffix = " pt(s)"
-		HUDHandler.hud_labels.append(label)
-
 func _file_stuff(id:int):
 	var file = file_menu.get_popup()
 	match file.get_item_text(id):
+		"Save HUD":
+			saving.save_hud()
 		"Exit":
 			Global.switch_scene("res://scenes/menus/options/Menu.tscn")
 
@@ -63,7 +60,7 @@ func _add_stuff(id:int):
 	match add_popup.get_item_text(id):
 		"Add HUD Element here":
 			var new_hud = load("res://scenes/menus/options/hud/Elements/HUDElement.tscn").instantiate()
-			add_child(new_hud)
+			hud_elements.add_child(new_hud)
 
 			new_hud.x_pos_box.value = get_viewport().get_mouse_position().x
 			new_hud.y_pos_box.value = get_viewport().get_mouse_position().y

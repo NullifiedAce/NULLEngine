@@ -1,23 +1,21 @@
-[gd_scene load_steps=29 format=3 uid="uid://ch4gdkufvdmy6"]
+[gd_scene load_steps=27 format=3 uid="uid://ch4gdkufvdmy6"]
 
 [ext_resource type="Script" uid="uid://ba8wgwgwwuiad" path="res://scenes/menus/freeplay/Menu.gd" id="1_5pt7i"]
-[ext_resource type="Script" uid="uid://cd6m2dg6wrnkj" path="res://resources/FreeplaySongList.gd" id="2_tlqqb"]
-[ext_resource type="Script" uid="uid://dvtla3mpdl3pn" path="res://resources/FreeplaySong.gd" id="3_7sxe0"]
+[ext_resource type="Script" uid="uid://nv2aiootxy14" path="res://resources/FreeplaySongList.gd" id="2_tlqqb"]
+[ext_resource type="Script" uid="uid://d2aadxmkcubvp" path="res://resources/FreeplaySong.gd" id="3_7sxe0"]
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="3_a0p0u"]
 [ext_resource type="Texture2D" uid="uid://cb4g78s0nksa0" path="res://assets/images/gameplay/icons/icon-dad.png" id="4_c3tt0"]
 [ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="4_ksq8p"]
 [ext_resource type="Texture2D" uid="uid://8x72hfd6b7g6" path="res://assets/images/gameplay/icons/icon-spooky.png" id="5_1t08r"]
-[ext_resource type="Script" uid="uid://81nuyyx0kka2" path="res://scripts/FreeplayAlphabet.gd" id="5_16n8m"]
+[ext_resource type="Script" uid="uid://dy57nc5i1jiej" path="res://scripts/FreeplayAlphabet.gd" id="5_16n8m"]
 [ext_resource type="Texture2D" uid="uid://erlcw6602qeq" path="res://assets/images/gameplay/icons/icon-pico.png" id="5_mul57"]
 [ext_resource type="Texture2D" uid="uid://bvafd1dvo4ke4" path="res://assets/images/gameplay/icons/icon-bf.png" id="6_udyrg"]
 [ext_resource type="Texture2D" uid="uid://e8xt5mniecrb" path="res://assets/images/gameplay/icons/icon-mom.png" id="7_as88b"]
-[ext_resource type="Script" uid="uid://bhg3vp5ab5eol" path="res://scripts/HealthIcon.gd" id="7_y5ig6"]
+[ext_resource type="Script" uid="uid://dybuj41aseies" path="res://scripts/HealthIcon.gd" id="7_y5ig6"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="8_iepj7"]
 [ext_resource type="Theme" uid="uid://br6hapg0jupnv" path="res://assets/styles/nova_purple_panel.tres" id="9_ldt14"]
 [ext_resource type="Theme" uid="uid://c7bhikvxte264" path="res://assets/styles/nova_purple.tres" id="10_htvm7"]
 [ext_resource type="Script" uid="uid://dnx1lap6keint" path="res://scenes/menus/options/buttons/Display Slider Optionless.gd" id="11_b1ky7"]
-[ext_resource type="Theme" uid="uid://blt3c0a5po0yj" path="res://assets/styles/nova_purple_button.tres" id="12_ulu8n"]
-[ext_resource type="Script" uid="uid://c0vgcwfv0652j" path="res://scenes/menus/options/hud/LoadHUDPreset.gd" id="13_5ea1q"]
 
 [sub_resource type="Resource" id="Resource_qq4qh"]
 script = ExtResource("3_7sxe0")
@@ -285,29 +283,6 @@ offset_bottom = 6.0
 text = "1"
 horizontal_alignment = 2
 
-[node name="LoadHUD" type="Button" parent="GameplayModifiers/Control"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 132.0
-offset_right = 161.0
-offset_bottom = 164.0
-focus_mode = 0
-theme = ExtResource("12_ulu8n")
-text = "Load HUD Preset"
-script = ExtResource("13_5ea1q")
-
-[node name="load" type="FileDialog" parent="GameplayModifiers/Control/LoadHUD"]
-auto_translate_mode = 1
-title = "Open a File"
-initial_position = 2
-size = Vector2i(320, 460)
-ok_button_text = "Open"
-file_mode = 0
-access = 1
-filters = PackedStringArray("*.cfg")
-
 [connection signal="value_changed" from="GameplayModifiers/Control/Playback Rate" to="GameplayModifiers/Control/Playback Rate" method="_on_value_changed"]
 [connection signal="value_changed" from="GameplayModifiers/Control/Health Gain Mult" to="GameplayModifiers/Control/Health Gain Mult" method="_on_value_changed"]
 [connection signal="value_changed" from="GameplayModifiers/Control/Health Loss Mult" to="GameplayModifiers/Control/Health Loss Mult" method="_on_value_changed"]
-[connection signal="pressed" from="GameplayModifiers/Control/LoadHUD" to="GameplayModifiers/Control/LoadHUD" method="_on_pressed"]
-[connection signal="file_selected" from="GameplayModifiers/Control/LoadHUD/load" to="GameplayModifiers/Control/LoadHUD" method="_on_load"]

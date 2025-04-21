@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://d3skr632i6bbj"]
 
-[ext_resource type="Script" uid="uid://bs52doc7pfc5d" path="res://scenes/menus/options/hud/Elements/HUDElement.gd" id="1_706s6"]
+[ext_resource type="Script" uid="uid://bs52doc7pfc5d" path="res://scenes/menus/options/hud/elements/HUDElement.gd" id="1_706s6"]
 [ext_resource type="Texture2D" uid="uid://b6ssah0oor7i1" path="res://assets/images/material_icons/Script.svg" id="1_m38vx"]
 [ext_resource type="Texture2D" uid="uid://bgdu28q5fj0wb" path="res://assets/images/material_icons/ToolMove.svg" id="3_kee81"]
-[ext_resource type="Script" uid="uid://xr3edch5rxun" path="res://scenes/menus/options/hud/Elements/SpinBoxMulti.gd" id="4_ma0ri"]
+[ext_resource type="Script" uid="uid://xr3edch5rxun" path="res://scenes/menus/options/hud/elements/SpinBoxMulti.gd" id="4_ma0ri"]
 
 [node name="HUD Element" type="Control"]
 layout_mode = 3
@@ -113,6 +113,7 @@ text = "Downscroll Mutliplier:"
 [node name="Downscroll SpinBox" type="SpinBox" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
 layout_mode = 2
 size_flags_horizontal = 0
+value = 1.0
 suffix = "x"
 
 [node name="HSeparator2" type="HSeparator" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
@@ -145,6 +146,6 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
-[node name="Save" type="Button" parent="Configure/HBoxContainer"]
+[node name="Delete" type="Button" parent="Configure/HBoxContainer"]
 layout_mode = 2
-text = "Save"
+text = "Delete"

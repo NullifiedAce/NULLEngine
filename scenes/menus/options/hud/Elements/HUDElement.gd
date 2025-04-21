@@ -1,7 +1,7 @@
 extends Control
 class_name HUDElement
 
-var current_type:int
+var current_type:int = 0
 
 var hud_label:HUDEditorLabel
 var hud_bar:HUDBar
@@ -23,14 +23,16 @@ var hud_bar:HUDBar
 
 @onready var rotation_box: SpinBox = $'Configure/ScrollContainer/VBoxContainer/Default Options/Rotation'
 
-@onready var save_button: Button = $Configure/HBoxContainer/Save
-
+@onready var delete_button: Button = $Configure/HBoxContainer/Delete
 
 func _ready() -> void:
 	config.pressed.connect(_config_window)
 	type.item_selected.connect(_update_type)
 
-	_update_type(0)
+	delete_button.pressed.connect(func():
+		queue_free())
+
+	_update_type(current_type)
 
 func _process(delta: float) -> void:
 	if move.button_pressed:

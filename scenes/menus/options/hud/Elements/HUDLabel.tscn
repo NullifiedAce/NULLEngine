@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://eugpu5xl3ax"]
 
-[ext_resource type="Script" uid="uid://b612ydujv6i18" path="res://scenes/menus/options/hud/Elements/HUDLabel.gd" id="1_s3t6e"]
-[ext_resource type="Script" uid="uid://xr3edch5rxun" path="res://scenes/menus/options/hud/Elements/SpinBoxMulti.gd" id="2_4milo"]
+[ext_resource type="Script" uid="uid://b612ydujv6i18" path="res://scenes/menus/options/hud/elements/HUDLabel.gd" id="1_s3t6e"]
+[ext_resource type="Script" uid="uid://xr3edch5rxun" path="res://scenes/menus/options/hud/elements/SpinBoxMulti.gd" id="2_4milo"]
 
 [node name="HUDLabel" type="Label"]
 process_mode = 3
