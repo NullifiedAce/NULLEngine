@@ -40,6 +40,8 @@ func _ready():
 	Audio.play_music("freakyMenu")
 	Conductor.change_bpm(Audio.music.stream.bpm)
 
+	Global.scene_arguments["options_menu"].exit_scene_path = ""
+
 	for i in song_list.songs.size():
 		var meta:FreeplaySong = song_list.songs[i]
 

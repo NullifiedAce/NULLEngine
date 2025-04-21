@@ -34,6 +34,8 @@ var lerp_score:int = 0
 func _ready():
 	Audio.play_music("freakyMenu")
 
+	Global.scene_arguments["options_menu"].exit_scene_path = ""
+
 	Ranking.clear_results()
 
 	for i in week_list.weeks.size():
