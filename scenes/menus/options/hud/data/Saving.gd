@@ -17,7 +17,7 @@ func save_hud():
 
 			HUDHandler.hud_labels.append(save_label(hud_label, og_label, i))
 
-	print("Saving HUD finished!")
+	print("Saved HUD!")
 
 func save_label(new:HUDLabel, old:HUDEditorLabel, element:HUDElement):
 	new.position = element.position

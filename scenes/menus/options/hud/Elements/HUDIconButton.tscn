@@ -209,6 +209,16 @@ min_value = -255.0
 max_value = 255.0
 value = 255.0
 
+[node name="VSeparator2" type="VSeparator" parent="Window/ScrollContainer/VBoxContainer/Appearance3"]
+layout_mode = 2
+theme_override_constants/separation = 117
+theme_override_styles/separator = SubResource("StyleBoxEmpty_fx3dg")
+
+[node name="Button" type="Button" parent="Window/ScrollContainer/VBoxContainer/Appearance3"]
+layout_mode = 2
+focus_mode = 0
+text = "Apply"
+
 [node name="HSeparator4" type="HSeparator" parent="Window/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 

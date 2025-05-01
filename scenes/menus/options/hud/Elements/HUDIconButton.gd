@@ -12,6 +12,8 @@ extends Button
 @onready var icon_type: OptionButton = $Window/ScrollContainer/VBoxContainer/HBoxContainer/IconType
 @onready var window: Window = $Window
 
+@onready var preview_icon: Sprite2D = $Window/Preview/PreviewIcon
+
 func _ready() -> void:
 	delete.pressed.connect(func():
 		queue_free())
@@ -24,4 +26,5 @@ func _ready() -> void:
 
 func _update_icon(index: int):
 	health_icon.texture = load(default_icons[index].resource_path)
+	preview_icon.texture = load(default_icons[index].resource_path)
 	button_title.text = title[index]

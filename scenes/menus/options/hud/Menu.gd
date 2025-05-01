@@ -1,10 +1,10 @@
 extends MusicBeatScene
 class_name HUDEditor
 
-@onready var file_menu: MenuButton = $File
-@onready var edit_menu: MenuButton = $Edit
-@onready var options_menu: MenuButton = $Options
-@onready var help_menu: MenuButton = $Help
+@onready var file_menu: MenuButton = $MenuOptions/File
+@onready var edit_menu: MenuButton = $MenuOptions/Edit
+@onready var options_menu: MenuButton = $MenuOptions/Options
+@onready var help_menu: MenuButton = $MenuOptions/Help
 
 @onready var preferences_window: Window = $Windows/Preferences
 @onready var add_popup: PopupMenu = $AddPopup

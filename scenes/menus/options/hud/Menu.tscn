@@ -63,11 +63,16 @@ label_settings = SubResource("LabelSettings_k8jfr")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="File" type="MenuButton" parent="."]
+[node name="MenuOptions" type="HBoxContainer" parent="."]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 112.0
+offset_right = 448.0
 offset_bottom = 40.0
+size_flags_horizontal = 0
+
+[node name="File" type="MenuButton" parent="MenuOptions"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
 theme = ExtResource("3_k68oh")
 text = "File"
 flat = false
@@ -90,11 +95,9 @@ popup/item_6/separator = true
 popup/item_7/text = "Exit"
 popup/item_7/id = 7
 
-[node name="Edit" type="MenuButton" parent="."]
-offset_left = 112.0
-offset_top = 8.0
-offset_right = 216.0
-offset_bottom = 40.0
+[node name="Edit" type="MenuButton" parent="MenuOptions"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
 theme = ExtResource("3_k68oh")
 text = "Edit"
 flat = false
@@ -104,11 +107,9 @@ popup/item_0/text = "Preferences"
 popup/item_0/checkable = 1
 popup/item_0/id = 0
 
-[node name="Options" type="MenuButton" parent="."]
-offset_left = 216.0
-offset_top = 8.0
-offset_right = 320.0
-offset_bottom = 40.0
+[node name="Options" type="MenuButton" parent="MenuOptions"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
 theme = ExtResource("3_k68oh")
 text = "Options"
 flat = false
@@ -118,11 +119,9 @@ popup/item_0/text = "Use downscroll?"
 popup/item_0/checkable = 1
 popup/item_0/id = 0
 
-[node name="Help" type="MenuButton" parent="."]
-offset_left = 320.0
-offset_top = 8.0
-offset_right = 424.0
-offset_bottom = 40.0
+[node name="Help" type="MenuButton" parent="MenuOptions"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
 theme = ExtResource("3_k68oh")
 text = "Help"
 flat = false
@@ -1085,46 +1084,13 @@ suffix = "y"
 script = ExtResource("9_36kso")
 data = "Bar Fill Shadow Offset X"
 
-[node name="About" type="Window" parent="Windows"]
-process_mode = 4
-title = "User Guide"
-initial_position = 2
+[node name="Welcome" type="Window" parent="Windows"]
+title = "Welcome"
+initial_position = 1
 size = Vector2i(512, 512)
-visible = false
-min_size = Vector2i(512, 512)
-max_size = Vector2i(1280, 720)
-
-[node name="BG" type="ColorRect" parent="Windows/About"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.298039, 0.298039, 0.298039, 1)
-metadata/_edit_lock_ = true
-
-[node name="TabContainer" type="TabContainer" parent="Windows/About"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 4.0
-offset_right = -8.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_k68oh")
-current_tab = 0
-tab_focus_mode = 0
-
-[node name="Basics" type="TabBar" parent="Windows/About/TabContainer"]
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="Hotkeys" type="TabBar" parent="Windows/About/TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
+min_size = Vector2i(128, 128)
+content_scale_mode = 1
+content_scale_aspect = 1
 
 [node name="HUDElements" type="Node" parent="."]
 
