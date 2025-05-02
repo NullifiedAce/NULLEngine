@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://m06060drxqk1" path="res://scenes/options/BindButton.gd" id="4_ly35g"]
 [ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="4_o67fm"]
 [ext_resource type="Texture2D" uid="uid://cuef5iw2rb0l7" path="res://assets/images/menus/options/defaultNotes.png" id="5_axs2u"]
-[ext_resource type="Shader" uid="uid://cg556dq4flg1p" path="res://assets/shaders/BasicColorShader.gdshader" id="6_iyctw"]
+[ext_resource type="Shader" uid="uid://7jkaq411xr28" path="res://assets/shaders/BasicColorShader.gdshader" id="6_iyctw"]
 [ext_resource type="Texture2D" uid="uid://88aw03tlr1oh" path="res://assets/images/menus/options/acceptBind.png" id="7_pp740"]
 [ext_resource type="Texture2D" uid="uid://dfs5s3i6cl6am" path="res://assets/images/menus/options/backBind.png" id="8_jhdmc"]
 [ext_resource type="Texture2D" uid="uid://bnah4iv83h5ec" path="res://assets/images/menus/options/pauseBind.png" id="9_wykt2"]
@@ -170,6 +170,7 @@ grow_horizontal = 0
 grow_vertical = 2
 
 [node name="Controls" type="Control" parent="OptionPlacement/BG"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -950,7 +951,6 @@ script = ExtResource("14_qu3w5")
 option = "skip intro by default"
 
 [node name="Appearance" type="Control" parent="OptionPlacement/BG"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1058,6 +1058,15 @@ theme_override_font_sizes/font_size = 18
 text = "Flashing Lights"
 script = ExtResource("14_qu3w5")
 option = "flashing lights"
+
+[node name="HUDEditor" type="Button" parent="OptionPlacement/BG/Appearance"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 160.0
+offset_right = 160.0
+offset_bottom = 192.0
+focus_mode = 0
+text = "HUD Editor"
 
 [node name="Window" type="Control" parent="OptionPlacement/BG"]
 visible = false

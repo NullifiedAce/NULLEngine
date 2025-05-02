@@ -5,9 +5,13 @@ var tools_open: bool = false
 var strum_editor_open:bool = false
 
 @onready var bg: Panel = $OptionPlacement/BG
+@onready var hud_editor: Button = $OptionPlacement/BG/Appearance/HUDEditor
 
 func _ready() -> void:
 	Audio.play_music("freakyMenu")
+
+	hud_editor.pressed.connect(func():
+		Global.switch_scene("res://scenes/HUDEditor.tscn"))
 
 	Ranking.judgements = Ranking.default_judgements.duplicate(true)
 	Ranking.ranks = Ranking.default_ranks.duplicate(true)
