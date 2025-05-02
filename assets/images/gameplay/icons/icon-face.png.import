@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgk48t11fpyuf"
 path.s3tc="res://.godot/imported/icon-face.png-4ed32e9f884df004bc2dd1037471cf26.s3tc.ctex"
+path.etc2="res://.godot/imported/icon-face.png-4ed32e9f884df004bc2dd1037471cf26.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/images/gameplay/icons/icon-face.png"
-dest_files=["res://.godot/imported/icon-face.png-4ed32e9f884df004bc2dd1037471cf26.s3tc.ctex"]
+dest_files=["res://.godot/imported/icon-face.png-4ed32e9f884df004bc2dd1037471cf26.s3tc.ctex", "res://.godot/imported/icon-face.png-4ed32e9f884df004bc2dd1037471cf26.etc2.ctex"]
 
 [params]
 
