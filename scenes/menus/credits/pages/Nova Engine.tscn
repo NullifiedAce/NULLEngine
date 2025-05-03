@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtauqc7klcnie"]
+
+[ext_resource type="PackedScene" uid="uid://158jh5bmr0r8" path="res://scenes/menus/credits/CreditsItem.tscn" id="1_cpbk8"]
+
+[node name="NovaEngine" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Swordcube" parent="." instance=ExtResource("1_cpbk8")]
+avatar_url = "https://avatars.githubusercontent.com/u/49110074?v=4"
+credit_name = "swordcube"
+credits_description = "GitHub Contributor"
+
+[node name="lavycat" parent="." instance=ExtResource("1_cpbk8")]
+jpeg = true
+avatar_url = "https://avatars.githubusercontent.com/u/88630349?v=4"
+credit_name = "lavycat"
+credits_description = "GitHub Contributor"
+
+[node name="Leather128" parent="." instance=ExtResource("1_cpbk8")]
+avatar_url = "https://avatars.githubusercontent.com/u/81660872?v=4"
+credit_name = "Leather128"
+credits_description = "GitHub Contributor"
+
+[node name="SrtHero278" parent="." instance=ExtResource("1_cpbk8")]
+avatar_url = "https://avatars.githubusercontent.com/u/93018286?v=4"
+credit_name = "SrtHero278"
+credits_description = "GitHub Contributor"
+
+[node name="Alexg1247" parent="." instance=ExtResource("1_cpbk8")]
+avatar_url = "https://avatars.githubusercontent.com/u/96444229?v=4"
+credit_name = "Alexg1247"
+credits_description = "GitHub Contributor"
+
+[node name="Vortex2Oblivion" parent="." instance=ExtResource("1_cpbk8")]
+avatar_url = "https://avatars.githubusercontent.com/u/73261680?v=4"
+credit_name = "Vortex2Oblivion "
+credits_description = "GitHub Contributor"
+
+[node name="nightshade-006" parent="." instance=ExtResource("1_cpbk8")]
+avatar_url = "https://avatars.githubusercontent.com/u/196592635?v=4"
+credit_name = "nightshade-006"
+credits_description = "GitHub Contributor"
+
+[node name="ThatOneIdiotXav" parent="." instance=ExtResource("1_cpbk8")]
+avatar_url = "https://avatars.githubusercontent.com/u/30373294?v=4"
+credit_name = "ThatOneIdiotXav "
+credits_description = "GitHub Contributor"

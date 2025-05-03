@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dmdmp83awaosx"]
 
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="1_lk34i"]
-[ext_resource type="Script" uid="uid://dbxwmps7r1syc" path="res://classes/MusicBeatScene.gd" id="1_tugvx"]
+[ext_resource type="Script" uid="uid://bfcp5dn8r0tl5" path="res://scenes/menus/credits/Menu.gd" id="1_w0t65"]
 [ext_resource type="SpriteFrames" uid="uid://bqn0cjor0adm0" path="res://assets/images/menus/mainmenu/credits.res" id="2_5eo6d"]
-[ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="3_5j6ft"]
+[ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="4_w0t65"]
 
 [sub_resource type="Gradient" id="Gradient_5eo6d"]
 interpolation_mode = 2
@@ -17,34 +17,58 @@ fill = 1
 fill_from = Vector2(0.5, 1)
 fill_to = Vector2(0.5, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tugvx"]
-bg_color = Color(0, 0, 0, 0.411765)
-expand_margin_top = 2.0
-expand_margin_bottom = 2.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w0t65"]
+bg_color = Color(0, 0, 0, 0.498039)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [node name="Menu" type="Node2D"]
-script = ExtResource("1_tugvx")
+script = ExtResource("1_w0t65")
+category = Array[String](["NULL Engine", "Nova Engine", "Addons", "Funkin' Crew"])
 metadata/_custom_type_script = "uid://dbxwmps7r1syc"
 
-[node name="BG Sprite" parent="." instance=ExtResource("1_lk34i")]
+[node name="BG" parent="." instance=ExtResource("1_lk34i")]
 self_modulate = Color(0.481789, 0.481789, 0.481789, 1)
 color = Color(0.481789, 0.481789, 0.481789, 1)
 gradiant = SubResource("GradientTexture2D_5j6ft")
+metadata/_edit_lock_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BG Sprite"]
-position = Vector2(0, -288)
-scale = Vector2(0.75, 0.75)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BG"]
+position = Vector2(0, -308)
+scale = Vector2(0.55, 0.55)
 sprite_frames = ExtResource("2_5eo6d")
 animation = &"selected"
 
-[node name="Title" type="Label" parent="."]
-offset_top = 672.0
-offset_right = 1280.0
-offset_bottom = 704.0
-theme_override_constants/outline_size = 16
-theme_override_fonts/font = ExtResource("3_5j6ft")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_tugvx")
-text = "< NULL Engine >"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Title" type="Label" parent="BG"]
+offset_left = -616.0
+offset_top = -320.0
+offset_right = -376.0
+offset_bottom = -297.0
+theme = ExtResource("4_w0t65")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_w0t65")
+text = "<Q NULL Engine E>"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CreditsItems" type="ScrollContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 104.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_w0t65")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CreditsItems"]
+layout_mode = 2

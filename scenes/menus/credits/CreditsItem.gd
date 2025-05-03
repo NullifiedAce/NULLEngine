@@ -1,6 +1,8 @@
 extends Control
+class_name CreditsItem
 
-@export var avatar_url:String
+@export var jpeg:bool = false
+@export var avatar_url:String ## Set a URL to an image to show it here.
 @export var credit_name:String
 @export_multiline var credits_description:String
 
@@ -9,6 +11,10 @@ extends Control
 @onready var description: Label = $Description
 
 func _ready():
+	name_label.text = credit_name
+	description.text = credits_description
+
+func load_pfp():
 	# Create an HTTP request node and connect its completion signal.
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
@@ -19,16 +25,14 @@ func _ready():
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
 
-	name_label.text = credit_name
-	description.text = credits_description
-
 # Called when the HTTP request is completed.
 func _http_request_completed(result, response_code, headers, body):
 	if result != HTTPRequest.RESULT_SUCCESS:
 		push_error("Image couldn't be downloaded. Try a different image.")
+		return
 
 	var image = Image.new()
-	var error = image.load_png_from_buffer(body)
+	var error = image.load_png_from_buffer(body) if !jpeg else image.load_jpg_from_buffer(body)
 	if error != OK:
 		push_error("Couldn't load the image.")
 

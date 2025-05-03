@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://7loecinmlo71"]
+
+[ext_resource type="Script" uid="uid://do88yli3mlquc" path="res://scenes/menus/credits/pages/FunkinCrew.gd" id="1_ptfy5"]
+[ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="1_vcb5y"]
+
+[node name="FunkinCrew" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ptfy5")
+
+[node name="Header" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("1_vcb5y")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Header Label"
+
+[node name="Line" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("1_vcb5y")
+text = "Line Label"
