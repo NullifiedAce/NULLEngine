@@ -1,13 +1,21 @@
 [gd_scene load_steps=3 format=3 uid="uid://eugpu5xl3ax"]
 
-[ext_resource type="Script" uid="uid://b612ydujv6i18" path="res://scenes/menus/options/hud/elements/HUDLabel.gd" id="1_s3t6e"]
-[ext_resource type="Script" uid="uid://xr3edch5rxun" path="res://scenes/menus/options/hud/elements/SpinBoxMulti.gd" id="2_4milo"]
+[ext_resource type="Script" uid="uid://b612ydujv6i18" path="res://scenes/menus/options/hud/Elements/HUDLabel.gd" id="1_s3t6e"]
+[ext_resource type="Script" uid="uid://xr3edch5rxun" path="res://scenes/menus/options/hud/Elements/SpinBoxMulti.gd" id="2_4milo"]
 
 [node name="HUDLabel" type="Label"]
 process_mode = 3
 offset_right = 1.0
 offset_bottom = 23.0
 script = ExtResource("1_s3t6e")
+
+[node name="Customize" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 89.0
+offset_bottom = 31.0
+focus_mode = 0
+text = "Customize"
 
 [node name="LabelText" type="Label" parent="."]
 visible = false
@@ -102,14 +110,6 @@ offset_right = 64.0
 offset_bottom = 36.0
 placeholder_text = "Suffix"
 scroll_fit_content_height = true
-
-[node name="Customize" type="Button" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-focus_mode = 0
-text = "Customize"
 
 [node name="CustomizeWindow" type="Window" parent="."]
 title = "Customize"

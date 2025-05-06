@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://b7g307k28vya8"]
 
-[ext_resource type="Script" uid="uid://dbw5c8o4o5825" path="res://scenes/menus/options/hud/elements/HUDIconButton.gd" id="1_gg11e"]
+[ext_resource type="Script" uid="uid://dbw5c8o4o5825" path="res://scenes/menus/options/hud/Elements/HUDIconButton.gd" id="1_gg11e"]
 [ext_resource type="Theme" uid="uid://dqqyiyf33vtjn" path="res://assets/styles/NULLEngine.tres" id="1_q3n0l"]
 [ext_resource type="Shader" uid="uid://7jkaq411xr28" path="res://assets/shaders/BasicColorShader.gdshader" id="1_twvyw"]
 [ext_resource type="Texture2D" uid="uid://cb4g78s0nksa0" path="res://assets/images/gameplay/icons/icon-dad.png" id="2_8wb1x"]
@@ -127,9 +127,6 @@ layout_mode = 2
 layout_mode = 2
 text = "Appearance:"
 
-[node name="HSeparator2" type="HSeparator" parent="Window/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
 [node name="Appearance" type="HBoxContainer" parent="Window/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -214,7 +211,7 @@ layout_mode = 2
 theme_override_constants/separation = 117
 theme_override_styles/separator = SubResource("StyleBoxEmpty_fx3dg")
 
-[node name="Button" type="Button" parent="Window/ScrollContainer/VBoxContainer/Appearance3"]
+[node name="ReloadButton" type="Button" parent="Window/ScrollContainer/VBoxContainer/Appearance3"]
 layout_mode = 2
 focus_mode = 0
 text = "Apply"
@@ -225,9 +222,6 @@ layout_mode = 2
 [node name="OptionsTitle" type="Label" parent="Window/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "Options:"
-
-[node name="HSeparator" type="HSeparator" parent="Window/ScrollContainer/VBoxContainer"]
-layout_mode = 2
 
 [node name="Options" type="HBoxContainer" parent="Window/ScrollContainer/VBoxContainer"]
 layout_mode = 2

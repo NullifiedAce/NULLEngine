@@ -4,7 +4,7 @@
   "rawSongName": "dad battle",
   "charter": "Jenny Crowe + fabs + Spazkid",
   "artist": "Kawai Sprite",
-  "offsets": { "vocals": { "bf": 0, "dad": -8 } },
+  "offsets": { "instrumental": 0,"vocals": { "bf": 0, "dad": -8 } },
   "playData": {
     "difficulties": ["erect", "nightmare"],
     "characters": {

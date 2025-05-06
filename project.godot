@@ -61,6 +61,7 @@ customization/check_for_updates=false
 customization/chart_editor_on_release=false
 customization/first_launch_menu=true
 customization/hud_editor=true
+customization/chart_type="FunkinVSlice"
 
 [importer_defaults]
 

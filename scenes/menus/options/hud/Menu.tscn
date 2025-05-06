@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://d0o06je565e5c" path="res://scenes/menus/options/hud/data/Saving.gd" id="3_lo8x1"]
 [ext_resource type="Script" uid="uid://jhia0wb1d1yg" path="res://scenes/menus/options/hud/data/Loading.gd" id="4_ricit"]
 [ext_resource type="Script" uid="uid://co00xq8h2ivbw" path="res://classes/EngineTheme/EngineThemeColor.gd" id="6_sg4b6"]
-[ext_resource type="PackedScene" uid="uid://d3skr632i6bbj" path="res://scenes/menus/options/hud/elements/HUDElement.tscn" id="7_k8jfr"]
+[ext_resource type="PackedScene" uid="uid://d3skr632i6bbj" path="res://scenes/menus/options/hud/Elements/HUDElement.tscn" id="7_k8jfr"]
 [ext_resource type="Script" uid="uid://cayyq5tvyebbr" path="res://scenes/menus/options/hud/HUDPreview.gd" id="8_4ahyr"]
 [ext_resource type="Script" uid="uid://d1mg4gki84igd" path="res://classes/EngineTheme/EngineThemeOption.gd" id="8_cgx1m"]
 [ext_resource type="Script" uid="uid://d1m5agyfh2uer" path="res://classes/EngineTheme/EngineThemeSpinBox.gd" id="9_36kso"]
@@ -1088,6 +1088,7 @@ data = "Bar Fill Shadow Offset X"
 title = "Welcome"
 initial_position = 1
 size = Vector2i(512, 512)
+visible = false
 min_size = Vector2i(128, 128)
 content_scale_mode = 1
 content_scale_aspect = 1
