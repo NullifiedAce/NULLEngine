@@ -55,7 +55,7 @@ func _update_type(index:int):
 	if index == 0:
 		if hud_label != null: hud_label.queue_free()
 		if hud_bar != null: hud_bar.queue_free()
-		hud_label = load("res://scenes/menus/options/hud/Elements/HUDLabel.tscn").instantiate()
+		hud_label = load("res://scenes/menus/options/hud/Elements/HUDEditorLabel.tscn").instantiate()
 		add_child(hud_label)
 		for i in hud_label.get_children():
 			i.reparent(type_options)

@@ -871,8 +871,6 @@ func get_sing_anim(note:Note):
 
 	return sing_anim
 
-
-
 func game_over():
 	Global.death_character = player.death_character
 	Global.death_camera_zoom = camera.zoom
@@ -889,11 +887,18 @@ var score_values: Dictionary = {
 	"score": format_number(songScore),
 	"misses": misses,
 	"accuracy": snapped(accuracy * 100.0, 0.01),
-	"ranks": Ranking.rank_from_accuracy(accuracy * 100.0).name,
+	"accuracy rank": Ranking.rank_from_accuracy(accuracy * 100.0).name,
+	"rank": "N/A",
 	"health": 50,
 	"combo": format_number(combo),
 	"max combo": format_number(max_combo),
-	"ghost taps": format_number(ghost_taps)
+	"ghost presses": format_number(ghost_taps),
+	"key pressed": 0,
+	"time": Global.format_time(cur_time),
+	"sick hits": sicks,
+	"good hits": goods,
+	"bad hits": bads,
+	"shit hits": shits,
 }
 
 func _process(delta:float) -> void:
@@ -912,11 +917,18 @@ func _process(delta:float) -> void:
 	score_values["score"] =			format_number(songScore)
 	score_values["misses"] =		misses
 	score_values["accuracy"] = 		snapped(accuracy * 100.0, 0.01)
-	score_values["ranks"] = 		Ranking.rank_from_accuracy(accuracy * 100.0).name
+	score_values["accuracy rank"] = Ranking.rank_from_accuracy(accuracy * 100.0).name
+	score_values["rank"] =			"N/A"
 	score_values["health"] =		(health / Constants.HEALTH_MAX) * 100
 	score_values["combo"] =			format_number(combo)
 	score_values["max combo"] =		format_number(max_combo)
-	score_values["ghost taps"] =	format_number(ghost_taps)
+	score_values["ghost presses"] =	format_number(ghost_taps)
+	score_values["key presses"] =	0
+	score_values["time"] =			Global.format_time(Conductor.position / 1000)
+	score_values["sick hits"] =		format_number(sicks)
+	score_values["good hits"] =		format_number(goods)
+	score_values["bad hits"] =		format_number(bads)
+	score_values["shit hits"] =		format_number(shits)
 
 	if cam_zooming:
 		var camera_speed:float = clampf((delta * ZOOM_DELTA_MULTIPLIER) * Conductor.rate, 0.0, 1.0)

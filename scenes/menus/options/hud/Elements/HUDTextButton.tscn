@@ -1,0 +1,186 @@
+[gd_scene load_steps=3 format=3 uid="uid://bywjurcco2feh"]
+
+[ext_resource type="Script" uid="uid://g4nywqxjqqps" path="res://scenes/menus/options/hud/Elements/HUDTextButton.gd" id="1_18aq7"]
+[ext_resource type="Theme" uid="uid://dqqyiyf33vtjn" path="res://assets/styles/NULLEngine.tres" id="1_w20kd"]
+
+[node name="HUDTextButton" type="Button"]
+custom_minimum_size = Vector2(0, 32)
+offset_right = 512.0
+offset_bottom = 32.0
+focus_mode = 0
+alignment = 0
+script = ExtResource("1_18aq7")
+
+[node name="Delete" type="Button" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -16.0
+offset_right = -40.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+text = "X"
+
+[node name="MoveDown" type="Button" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+text = "V"
+
+[node name="MoveUp" type="Button" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -16.0
+offset_right = -80.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 3.14159
+pivot_offset = Vector2(16, 16)
+focus_mode = 0
+text = "V"
+
+[node name="OutputTextLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = 41.0
+grow_vertical = 2
+vertical_alignment = 1
+
+[node name="Window" type="Window" parent="."]
+auto_translate_mode = 1
+title = "Edit Text Item"
+initial_position = 1
+size = Vector2i(340, 150)
+visible = false
+unresizable = true
+min_size = Vector2i(340, 150)
+max_size = Vector2i(340, 150)
+
+[node name="BG" type="ColorRect" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_w20kd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextTitle" type="Label" parent="Window/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Text:"
+
+[node name="TextBoxes" type="HBoxContainer" parent="Window/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DefaultText" type="TextEdit" parent="Window/ScrollContainer/VBoxContainer/TextBoxes"]
+layout_mode = 2
+placeholder_text = "Default Text"
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+
+[node name="TextPrefix" type="TextEdit" parent="Window/ScrollContainer/VBoxContainer/TextBoxes"]
+visible = false
+layout_mode = 2
+placeholder_text = "Prefix Text"
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+
+[node name="TextSuffix" type="TextEdit" parent="Window/ScrollContainer/VBoxContainer/TextBoxes"]
+visible = false
+layout_mode = 2
+placeholder_text = "Suffix Text"
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+
+[node name="HSeparator" type="HSeparator" parent="Window/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ValueTitle" type="Label" parent="Window/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Track Values:"
+
+[node name="Values" type="HBoxContainer" parent="Window/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TrackValueBox" type="CheckBox" parent="Window/ScrollContainer/VBoxContainer/Values"]
+layout_mode = 2
+focus_mode = 0
+text = "Track Gameplay Value?"
+
+[node name="TrackValue" type="OptionButton" parent="Window/ScrollContainer/VBoxContainer/Values"]
+layout_mode = 2
+focus_mode = 0
+selected = 0
+item_count = 15
+popup/item_0/text = "Score"
+popup/item_0/id = 0
+popup/item_1/text = "Misses"
+popup/item_1/id = 1
+popup/item_2/text = "Accuracy"
+popup/item_2/id = 2
+popup/item_3/text = "Accuracy Rank"
+popup/item_3/id = 3
+popup/item_4/text = "Rank"
+popup/item_4/id = 4
+popup/item_5/text = "Combo"
+popup/item_5/id = 5
+popup/item_6/text = "Max Combo"
+popup/item_6/id = 6
+popup/item_7/text = "Health"
+popup/item_7/id = 7
+popup/item_8/text = "Ghost Presses"
+popup/item_8/id = 8
+popup/item_9/text = "Key Presses"
+popup/item_9/id = 9
+popup/item_10/text = "Time"
+popup/item_10/id = 10
+popup/item_11/text = "Sick Hits"
+popup/item_11/id = 11
+popup/item_12/text = "Good Hits"
+popup/item_12/id = 12
+popup/item_13/text = "Bad Hits"
+popup/item_13/id = 13
+popup/item_14/text = "Shit Hits"
+popup/item_14/id = 14

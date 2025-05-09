@@ -12,11 +12,8 @@ func setup_labels():
 		new_label.position = i.position
 		new_label.downscroll_multiplier = i.downscroll_multiplier
 		new_label.rotation = i.rotation
-		new_label.text = i.text
-		new_label.track_value = i.track_value
-		new_label.track = i.track
-		new_label.prefix = i.prefix
-		new_label.suffix = i.suffix
+		new_label.items = i.items
+		new_label.layout_mode_option = i.layout_mode_option
 		setup_label_style(new_label, {
 			"font": i.font,
 			"font color": i.font_color,
