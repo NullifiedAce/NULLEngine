@@ -136,7 +136,7 @@ offset_bottom = 1825.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="0-0"]
 libraries = {
-"": SubResource("AnimationLibrary_g68j8")
+&"": SubResource("AnimationLibrary_g68j8")
 }
 
 [node name="Character Positions" type="Node2D" parent="."]
@@ -152,7 +152,7 @@ position = Vector2(1353, 1125)
 
 [node name="Player" type="Node2D" parent="Character Positions"]
 z_index = 2000
-position = Vector2(-237, 100)
+position = Vector2(1137, 549)
 scale = Vector2(1.75, 1.75)
 
 [node name="Rain" type="CanvasLayer" parent="."]

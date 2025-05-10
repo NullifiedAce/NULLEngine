@@ -919,7 +919,7 @@ func _process(delta:float) -> void:
 	score_values["accuracy"] = 		snapped(accuracy * 100.0, 0.01)
 	score_values["accuracy rank"] = Ranking.rank_from_accuracy(accuracy * 100.0).name
 	score_values["rank"] =			"N/A"
-	score_values["health"] =		(health / Constants.HEALTH_MAX) * 100
+	score_values["health"] =		snapped((health / Constants.HEALTH_MAX) * 100, 0)
 	score_values["combo"] =			format_number(combo)
 	score_values["max combo"] =		format_number(max_combo)
 	score_values["ghost presses"] =	format_number(ghost_taps)
