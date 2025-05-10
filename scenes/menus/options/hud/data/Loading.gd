@@ -41,3 +41,19 @@ func load_label(old:HUDLabel):
 		for e in item.track_value.item_count:
 			if item.track_value.get_item_text(e) == i["track_value"]:
 				item.track_value.selected = e
+
+	for i in label.font_options.item_count:
+		if label.font_options.get_item_text(i) == old.font:
+			label.font_options.selected = i
+	label.font_size.value = old.font_size
+	label.font_color_picker.color = Color.from_string(old.font_color, Color.WHITE)
+
+	label.outline_color_picker.color = Color.from_string(old.outline_color, Color.BLACK)
+	label.outline_size.value = old.outline_size
+
+	label.shadow_color_picker.color = Color.from_string(old.shadow_color, Color.TRANSPARENT)
+	label.shadow_size.value = old.shadow_size
+	label.shadow_offset_x.value = old.shadow_offset_x
+	label.shadow_offset_y.value = old.shadow_offset_y
+
+	label._on_reload_pressed()
