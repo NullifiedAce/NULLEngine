@@ -142,7 +142,7 @@ func on_player_miss(note:Note):
 		"weekend-1-fakeout":
 			play_hit_high_anim();
 		"weekend-1-taunt":
-			play_taunt_conditional_anim();
+			play_taunt_anim();
 		"weekend-1-tauntforce":
 			play_taunt_anim();
 		"weekend-1-reversefakeout":

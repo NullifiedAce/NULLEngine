@@ -143,7 +143,7 @@ libraries = {
 
 [node name="Opponent" type="Node2D" parent="Character Positions"]
 z_index = 3000
-position = Vector2(-237, 150)
+position = Vector2(567, 541)
 scale = Vector2(1.75, 1.75)
 
 [node name="Spectator" type="Node2D" parent="Character Positions"]
@@ -152,7 +152,7 @@ position = Vector2(1353, 1125)
 
 [node name="Player" type="Node2D" parent="Character Positions"]
 z_index = 2000
-position = Vector2(1137, 549)
+position = Vector2(1209, 549)
 scale = Vector2(1.75, 1.75)
 
 [node name="Rain" type="CanvasLayer" parent="."]
