@@ -161,7 +161,7 @@ position = Vector2(920, 1310)
 
 [node name="Spectator" type="Node2D" parent="Character Positions"]
 z_index = 300
-position = Vector2(1453, 1100)
+position = Vector2(1584, 1059)
 
 [node name="Player" type="Node2D" parent="Character Positions"]
 z_index = 400

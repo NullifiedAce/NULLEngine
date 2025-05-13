@@ -1,9 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://blm6t143stm4s"]
+[gd_scene load_steps=21 format=3 uid="uid://blm6t143stm4s"]
 
 [ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_cic73"]
 [ext_resource type="Texture2D" uid="uid://bggn4j2x81mod" path="res://assets/images/gameplay/icons/icon-gf.png" id="2_2858l"]
+[ext_resource type="Texture2D" uid="uid://btumqbrhwlpcq" path="res://assets/images/gameplay/characters/aBot/stereoBG.png" id="3_qmrcp"]
 [ext_resource type="SpriteFrames" uid="uid://fttm1uy27ik2" path="res://assets/images/gameplay/characters/nene/Nene.res" id="3_y7tss"]
 [ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_2ffry"]
+[ext_resource type="Script" uid="uid://b77ohh56bw485" path="res://scenes/gameplay/audio_viz/AudioVizBars.gd" id="4_adlsy"]
+[ext_resource type="Script" uid="uid://mc1cjwdprghw" path="res://addons/godot_texture_atlas/atlas_sprite.gd" id="4_jgpmk"]
+[ext_resource type="Texture2D" uid="uid://d0ftkcse2fuko" path="res://assets/images/gameplay/characters/aBot/viz30000.png" id="5_1d756"]
+[ext_resource type="JSON" path="res://assets/images/gameplay/characters/aBot/abotSystem/Animation.json" id="5_eox4i"]
+[ext_resource type="Texture2D" uid="uid://blbrwmhrxtunw" path="res://assets/images/gameplay/characters/aBot/viz20000.png" id="6_qy0jb"]
+[ext_resource type="Texture2D" uid="uid://dvn5tjknf10im" path="res://assets/images/gameplay/characters/aBot/viz10000.png" id="7_yxesj"]
+[ext_resource type="Texture2D" uid="uid://bkwiokh37x3qc" path="res://assets/images/gameplay/characters/aBot/viz40000.png" id="8_2cid4"]
+[ext_resource type="Texture2D" uid="uid://cbxdfpxot8jj" path="res://assets/images/gameplay/characters/aBot/viz50000.png" id="9_esg3n"]
+[ext_resource type="Texture2D" uid="uid://gdrne85v2ybt" path="res://assets/images/gameplay/characters/aBot/viz60000.png" id="10_28ye0"]
+[ext_resource type="Texture2D" uid="uid://dpp7i08gget01" path="res://assets/images/gameplay/characters/aBot/viz70000.png" id="11_c0pc3"]
+[ext_resource type="Texture2D" uid="uid://ku8msysyuqgx" path="res://assets/images/gameplay/characters/aBot/systemEyes/spritemap1.png" id="12_adlsy"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "danceLeft"
@@ -55,6 +67,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../ABot:cur_frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 16]
 }
 
 [sub_resource type="Animation" id="Animation_7jg6a"]
@@ -108,9 +132,37 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../ABot:cur_frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 16]
+}
+
+[sub_resource type="Animation" id="Animation_qmrcp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ABot:cur_frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-19]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
 _data = {
+&"RESET": SubResource("Animation_qmrcp"),
 &"danceLeft": SubResource("Animation_epq6v"),
 &"danceRight": SubResource("Animation_7jg6a")
 }
@@ -118,16 +170,211 @@ _data = {
 [node name="nene" type="Node2D"]
 script = ExtResource("1_cic73")
 dance_steps = Array[String](["danceLeft", "danceRight"])
-voices_paths = "gf"
 health_icon = ExtResource("2_2858l")
 health_color = Color(0.647059, 0, 0.301961, 1)
+voices_paths = "gf"
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(-252, -309)
+texture = ExtResource("3_qmrcp")
+centered = false
+
+[node name="Right" type="Control" parent="BG"]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 17.5
+offset_top = -20.0
+offset_right = 57.5
+offset_bottom = 20.0
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("4_adlsy")
+
+[node name="R3" type="TextureProgressBar" parent="BG/Right"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 135.0
+offset_top = -84.0
+offset_right = 193.0
+offset_bottom = 132.0
+grow_vertical = 2
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("5_1d756")
+
+[node name="R2" type="TextureProgressBar" parent="BG/Right"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 55.0
+offset_top = -83.5
+offset_right = 113.0
+offset_bottom = 132.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("6_qy0jb")
+
+[node name="R" type="TextureProgressBar" parent="BG/Right"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -73.5
+offset_right = 44.0
+offset_bottom = 142.5
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("7_yxesj")
+
+[node name="Middle" type="Control" parent="BG"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_adlsy")
+vu_count = 1
+bar_height = 100
+
+[node name="M" type="TextureProgressBar" parent="BG/Middle"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -84.0
+offset_right = 36.5
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("8_2cid4")
+
+[node name="Left" type="Control" parent="BG"]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("4_adlsy")
+
+[node name="L3" type="TextureProgressBar" parent="BG/Left"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -86.0
+offset_right = -138.0
+offset_bottom = 130.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("9_esg3n")
+
+[node name="L2" type="TextureProgressBar" parent="BG/Left"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.5
+offset_top = -83.0
+offset_right = -57.5
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("10_28ye0")
+
+[node name="L" type="TextureProgressBar" parent="BG/Left"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -73.0
+offset_right = 18.0
+offset_bottom = 143.0
+grow_vertical = 2
+pivot_offset = Vector2(28.5, 108)
+max_value = 80.0
+value = 80.0
+fill_mode = 3
+texture_progress = ExtResource("11_c0pc3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -365.0
+offset_top = -95.0
+offset_right = -253.0
+offset_bottom = -40.0
+
+[node name="Eyes" type="Sprite2D" parent="."]
+position = Vector2(-310, -70)
+texture = ExtResource("12_adlsy")
+region_enabled = true
+region_rect = Rect2(0, 40.3486, 106, 24.8532)
+
+[node name="ABot" type="Node2D" parent="."]
+position = Vector2(-413, -337)
+script = ExtResource("4_jgpmk")
+symbol = "Abot System"
+cur_frame = -19
+animation_json = ExtResource("5_eox4i")
+metadata/_custom_type_script = "uid://mc1cjwdprghw"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-352, -648)
+position = Vector2(-280, -652)
 sprite_frames = ExtResource("3_y7tss")
 animation = &"Idle"
 frame = 29
-frame_progress = 1.0
 centered = false
 script = ExtResource("4_2ffry")
 
