@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://batd08luoj2ds"]
-
-[ext_resource type="Script" uid="uid://cqd38swnma1vp" path="res://assets/songs/blazin/modchart.gd" id="1_jj0qp"]
-
-[node name="Modchart" type="Node"]
-script = ExtResource("1_jj0qp")

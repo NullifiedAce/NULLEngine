@@ -5,6 +5,7 @@ class_name Character extends Node2D
 @export var can_sing:bool = true
 @export var is_player:bool = false
 @export var sing_duration:float = 4.0
+@export var dances:bool = true
 @export var dance_steps:Array[String] = ["idle"]
 
 @export_group("Health Icon")
@@ -132,7 +133,7 @@ func play_anim(anim:String, force:bool = false, special:bool = false):
 		anim_player.play(anim)
 
 func dance(force:bool = false):
-	if special_anim and not force:
+	if special_anim and not force or !dances:
 		return
 
 	play_anim(dance_steps[cur_dance_step], force)

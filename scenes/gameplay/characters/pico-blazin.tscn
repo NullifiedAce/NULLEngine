@@ -882,6 +882,7 @@ script = ExtResource("1_8cjps")
 can_sing = false
 is_player = true
 sing_duration = 0.0
+dances = false
 health_icon = ExtResource("2_o33mh")
 health_color = Color(0.717647, 0.847059, 0.333333, 1)
 death_music = ExtResource("3_llrev")

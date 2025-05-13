@@ -1,7 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://dt2t8eyb1p3f5"]
+[gd_scene load_steps=24 format=3 uid="uid://dt2t8eyb1p3f5"]
 
 [ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_e8d5a"]
-[ext_resource type="Texture2D" uid="uid://erlcw6602qeq" path="res://assets/images/gameplay/icons/icon-pico.png" id="2_3rapx"]
 [ext_resource type="Script" uid="uid://mc1cjwdprghw" path="res://addons/godot_texture_atlas/atlas_sprite.gd" id="3_kq3in"]
 [ext_resource type="JSON" path="res://assets/images/gameplay/characters/darnell/darnellBlazin/Animation.json" id="4_e8d5a"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/darnell/darnellBlazin/Darnell_Blazin.res" id="5_e8d5a"]
@@ -116,6 +115,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".:offset")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(50, -46)]
 }
 
 [sub_resource type="Animation" id="Animation_bwgf0"]
@@ -754,10 +765,10 @@ tracks/7/path = NodePath(".:offset")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": []
+"values": [Vector2(50, -46)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -1423,11 +1434,11 @@ _data = {
 
 [node name="Darnell" type="Node2D"]
 script = ExtResource("1_e8d5a")
-can_sing = false
 sing_duration = 9999.0
-health_icon = ExtResource("2_3rapx")
-health_color = Color(0.717647, 0.847059, 0.333333, 1)
+dances = false
 voices_paths = ""
+character_script_folder = "darnell"
+character_script_name = "blazin"
 
 [node name="Darnell" type="Node2D" parent="."]
 script = ExtResource("3_kq3in")

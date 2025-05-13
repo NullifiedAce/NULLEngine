@@ -7,6 +7,8 @@ var player
 func _ready_post() -> void:
 	player = game.player
 
+	player.play_anim("idle")
+
 	player.anim_player.speed_scale = 1.1
 
 func _process(delta: float) -> void:
@@ -14,6 +16,12 @@ func _process(delta: float) -> void:
 	game.player_strums.position.x = Global.game_size.x / 2 #  Forced middlescroll :P
 
 	game.hud_zoom_intensitiy = 0.0
+
+func move_to_back():
+	player.z_index = 2000
+
+func move_to_front():
+	player.z_index = 3000
 
 func on_note_hit(note:Note):
 	game.stage.rain_time_scale += 0.7
@@ -78,7 +86,7 @@ func on_note_hit(note:Note):
 		"weekend-1-fakeout":
 			play_fakeout_anim();
 		"weekend-1-taunt":
-			play_taunt_conditional_anim();
+			play_taunt_anim();
 		"weekend-1-tauntforce":
 			play_taunt_anim();
 		"weekend-1-reversefakeout":
@@ -162,42 +170,55 @@ func do_alternate():
 
 func play_dodge_anim():
 	player.play_anim("dodge", true, true)
+	move_to_back()
 
 func play_block_anim():
 	player.play_anim("block", true, true)
+	move_to_back()
 
 func play_idle_anim():
 	player.play_anim("idle", true, true)
+	move_to_back()
 
 func play_fakeout_anim():
 	player.play_anim("fakeout", true, true)
+	move_to_back()
 
 func play_uppercut_prep_anim():
 	player.play_anim("uppercutPrep", true, true)
+	move_to_front()
 
 func play_uppercut_hit_anim():
 	player.play_anim("uppercutHit", true, true)
+	move_to_back()
 
 func play_uppercut_anim(hit:bool):
 	player.play_anim("uppercut", true, true)
+	move_to_front()
 
 func play_hit_high_anim():
 	player.play_anim("hitHigh", true, true)
+	move_to_back()
 
 func play_hit_low_anim():
 	player.play_anim("hitLow", true, true)
+	move_to_back()
 
 func play_hit_spin_anim():
 	player.play_anim("hitSpin", true, true)
+	move_to_back()
 
 func play_punch_high_anim():
 	player.play_anim("punchHigh " + do_alternate(), true, true)
+	move_to_front()
 
 func play_punch_low_anim():
 	player.play_anim("punchLow " + do_alternate(), true, true)
+	move_to_front()
 
 func play_taunt_anim():
 	player.play_anim("taunt", true, true)
+	move_to_back()
 
 func play_taunt_conditional_anim():
 	if player.anim_player.current_animation == "fakout":
