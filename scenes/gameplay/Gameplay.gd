@@ -122,8 +122,9 @@ func load_song():
 		var dir = DirAccess.open(music_path)
 
 		load_track(music_path, "Inst")
-		load_track(music_path, "Voices-%s" % opponent.voices_paths)
-		load_track(music_path, "Voices-%s" % player.voices_paths)
+		# Making sure a path was even set.
+		if opponent.voices_paths != "": load_track(music_path, "Voices-%s" % opponent.voices_paths)
+		if player.voices_paths != "": load_track(music_path, "Voices-%s" % player.voices_paths)
 
 func load_track(music_path:String, fileName:String):
 	var track:AudioStreamPlayer = AudioStreamPlayer.new()
@@ -331,6 +332,14 @@ func load_spectator():
 	spectator.z_index = stage.character_positions["spectator"].z_index
 	spectator.get_child(0).material = stage.character_positions["spectator"].material
 
+	# load character scripts (put in scenes/gameplay/scripts/characters/CHARACTER_FOLDER)
+	var script_path:String = "res://scenes/gameplay/scripts/characters/"+spectator.character_script_folder+"/"
+	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
+	for item in file_list:
+		if item.ends_with(spectator.character_script_name+".tscn") or item.ends_with(spectator.character_script_name+".tscn.remap"):
+			var script:FunkinScript = FunkinScript.create(script_path+item.replace(".remap", ""), self)
+			script_group.add_script(script)
+
 func load_opponent():
 	var opponent_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["opponent"]+".tscn"
 	if ResourceLoader.exists(opponent_path):
@@ -343,6 +352,14 @@ func load_opponent():
 	characters.add_child(opponent)
 	opponent.z_index = stage.character_positions["opponent"].z_index
 	opponent.get_child(0).material = stage.character_positions["opponent"].material
+
+	# load character scripts (put in scenes/gameplay/scripts/characters/CHARACTER_FOLDER)
+	var script_path:String = "res://scenes/gameplay/scripts/characters/"+opponent.character_script_folder+"/"
+	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
+	for item in file_list:
+		if item.ends_with(opponent.character_script_name+".tscn") or item.ends_with(opponent.character_script_name+".tscn.remap"):
+			var script:FunkinScript = FunkinScript.create(script_path+item.replace(".remap", ""), self)
+			script_group.add_script(script)
 
 	if METADATA.playData["characters"]["opponent"] == METADATA.playData["characters"]["girlfriend"]:
 		opponent.position = spectator.position
@@ -364,6 +381,15 @@ func load_player():
 	characters.add_child(player)
 	player.z_index = stage.character_positions["player"].z_index
 	player.get_child(0).material = stage.character_positions["player"].material
+
+	# load character scripts (put in scenes/gameplay/scripts/characters/CHARACTER_FOLDER)
+	var script_path:String = "res://scenes/gameplay/scripts/characters/"+player.character_script_folder+"/"
+	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
+	for item in file_list:
+		if item.ends_with(player.character_script_name+".tscn") or item.ends_with(player.character_script_name+".tscn.remap"):
+			var script:FunkinScript = FunkinScript.create(script_path+item.replace(".remap", ""), self)
+			script_group.add_script(script)
+			print("hio")
 
 func start_cutscene(postfix:String = "-start"):
 	var cutscene_path = "res://scenes/gameplay/cutscenes/" + METADATA.rawSongName.to_lower() + postfix + ".tscn"

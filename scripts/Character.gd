@@ -6,7 +6,6 @@ class_name Character extends Node2D
 @export var is_player:bool = false
 @export var sing_duration:float = 4.0
 @export var dance_steps:Array[String] = ["idle"]
-@export var voices_paths:String = "dad"
 
 @export_group("Health Icon")
 @export var health_icon:Texture2D = load("res://assets/images/gameplay/icons/icon-face.png")
@@ -18,6 +17,11 @@ class_name Character extends Node2D
 @export var death_sound:AudioStream = preload("res://assets/sounds/death/fnf_loss_sfx.ogg")
 @export var death_music:AudioStream = preload("res://assets/music/gameOver.ogg")
 @export var retry_sound:AudioStream = preload("res://assets/music/gameOverEnd.ogg")
+
+@export_group("File Info")
+@export var voices_paths:String = "dad"
+@export var character_script_folder:String
+@export var character_script_name:String
 
 @onready var anim_sprite:AnimatedSprite = $AnimatedSprite
 @onready var anim_player:AnimationPlayer = $AnimatedSprite/AnimationPlayer

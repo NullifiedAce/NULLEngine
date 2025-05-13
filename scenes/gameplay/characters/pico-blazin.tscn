@@ -1,11 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://c1sqq7grehd8t"]
+[gd_scene load_steps=26 format=3 uid="uid://c1sqq7grehd8t"]
 
 [ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_8cjps"]
 [ext_resource type="Texture2D" uid="uid://erlcw6602qeq" path="res://assets/images/gameplay/icons/icon-pico.png" id="2_o33mh"]
 [ext_resource type="Script" uid="uid://mc1cjwdprghw" path="res://addons/godot_texture_atlas/atlas_sprite.gd" id="3_bm6j8"]
+[ext_resource type="AudioStream" uid="uid://celdniji4yn1b" path="res://assets/music/gameplay/gameover/gameOver-pico.ogg" id="3_llrev"]
 [ext_resource type="SpriteFrames" uid="uid://v3awyrjvjb00" path="res://assets/levels/weekend1/images/fightPico.res" id="3_u0xaw"]
 [ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_0tv7e"]
 [ext_resource type="JSON" path="res://assets/images/gameplay/characters/pico/picoBlazin/Animation.json" id="4_caexa"]
+[ext_resource type="AudioStream" uid="uid://dwh34j4w2aovi" path="res://assets/music/gameplay/gameover/gameOverEnd-pico.ogg" id="4_u07fg"]
 
 [sub_resource type="Animation" id="Animation_caexa"]
 length = 0.001
@@ -880,9 +882,13 @@ script = ExtResource("1_8cjps")
 can_sing = false
 is_player = true
 sing_duration = 0.0
-voices_paths = ""
 health_icon = ExtResource("2_o33mh")
 health_color = Color(0.717647, 0.847059, 0.333333, 1)
+death_music = ExtResource("3_llrev")
+retry_sound = ExtResource("4_u07fg")
+voices_paths = ""
+character_script_folder = "pico"
+character_script_name = "blazin"
 
 [node name="Pico" type="Node2D" parent="."]
 script = ExtResource("3_bm6j8")

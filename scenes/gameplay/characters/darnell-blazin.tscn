@@ -1425,9 +1425,9 @@ _data = {
 script = ExtResource("1_e8d5a")
 can_sing = false
 sing_duration = 9999.0
-voices_paths = ""
 health_icon = ExtResource("2_3rapx")
 health_color = Color(0.717647, 0.847059, 0.333333, 1)
+voices_paths = ""
 
 [node name="Darnell" type="Node2D" parent="."]
 script = ExtResource("3_kq3in")
