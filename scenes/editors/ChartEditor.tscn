@@ -1,12 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://d82jsypulsbw"]
+[gd_scene load_steps=18 format=3 uid="uid://d82jsypulsbw"]
 
-[ext_resource type="Theme" uid="uid://br6hapg0jupnv" path="res://assets/styles/nova_purple_panel.tres" id="1_coqmp"]
 [ext_resource type="Script" uid="uid://coiebx4q8l35i" path="res://scenes/editors/ChartEditor.gd" id="1_f5f6h"]
+[ext_resource type="Theme" uid="uid://dqqyiyf33vtjn" path="res://assets/styles/NULLEngine.tres" id="1_n3k1t"]
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="3_jjy8c"]
 [ext_resource type="AudioStream" uid="uid://bydbrgy3513au" path="res://assets/sounds/hitsound.ogg" id="5_m47hh"]
 [ext_resource type="Shader" uid="uid://enx8hh7drbxf" path="res://assets/shaders/ChartLine.gdshader" id="7_ccjci"]
 [ext_resource type="PackedScene" uid="uid://w5olx2s2jovt" path="res://scenes/gameplay/strumlines/4K.tscn" id="7_h418h"]
-[ext_resource type="Theme" uid="uid://bwwcx6e50tbwu" path="res://assets/styles/nova_purple_charter.tres" id="8_87ymt"]
 [ext_resource type="Script" uid="uid://b3nbso012bpiv" path="res://scripts/charter/SongWindow.gd" id="8_txt3a"]
 [ext_resource type="Script" uid="uid://bhe35428icjn1" path="res://scripts/charter/AssetsWindow.gd" id="8_uqes3"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="9_4xp5r"]
@@ -61,7 +60,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
-theme = ExtResource("1_coqmp")
+theme = ExtResource("1_n3k1t")
 script = ExtResource("1_f5f6h")
 metadata/_edit_lock_ = true
 metadata/_edit_vertical_guides_ = []
@@ -101,14 +100,14 @@ material = SubResource("ShaderMaterial_7uhct")
 custom_minimum_size = Vector2(200, 680)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("1_coqmp")
+theme = ExtResource("1_n3k1t")
 
 [node name="PlayerLane" type="Panel" parent="GridContainer"]
 material = SubResource("ShaderMaterial_7uhct")
 custom_minimum_size = Vector2(200, 680)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("1_coqmp")
+theme = ExtResource("1_n3k1t")
 
 [node name="NotesGroup" type="CanvasGroup" parent="."]
 
@@ -169,7 +168,7 @@ min_size = Vector2i(65, 65)
 content_scale_size = Vector2i(150, 150)
 content_scale_mode = 2
 content_scale_aspect = 4
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 script = ExtResource("8_txt3a")
 
 [node name="Panel" type="Panel" parent="song"]
@@ -179,7 +178,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="song/Panel"]
 clip_contents = false
@@ -196,12 +195,12 @@ theme_override_constants/separation = 2
 
 [node name="SongLabel" type="Label" parent="song/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Song Name"
 
 [node name="SongName" type="LineEdit" parent="song/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Bopeebo"
 
 [node name="HSeparator" type="HSeparator" parent="song/Panel/ScrollContainer/VBoxContainer"]
@@ -210,7 +209,7 @@ layout_mode = 2
 [node name="BPM" type="SpinBox" parent="song/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 1
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 min_value = 60.0
 max_value = 500.0
 value = 60.0
@@ -220,7 +219,7 @@ suffix = "BPM"
 layout_mode = 2
 tooltip_text = "The scroll speed of the notes."
 mouse_default_cursor_shape = 1
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 min_value = 1.0
 max_value = 10.0
 step = 0.1
@@ -235,39 +234,39 @@ layout_mode = 2
 layout_mode = 2
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Save Song"
 
 [node name="ReloadAudio" type="Button" parent="song/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Reload Audio"
 
 [node name="LoadJSON" type="Button" parent="song/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Load Different JSON"
 
 [node name="LoadAutosave" type="Button" parent="song/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Load Autosaved JSON"
 
 [node name="assets" type="Window" parent="."]
 title = "Song Assets"
-position = Vector2i(50, 341)
+position = Vector2i(50, 217)
 size = Vector2i(200, 200)
 min_size = Vector2i(65, 65)
 content_scale_size = Vector2i(150, 150)
 content_scale_mode = 2
 content_scale_aspect = 4
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 script = ExtResource("8_uqes3")
 
 [node name="Panel" type="Panel" parent="assets"]
@@ -277,7 +276,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="assets/Panel"]
 clip_contents = false
@@ -294,7 +293,7 @@ theme_override_constants/separation = 30
 
 [node name="Player" type="Label" parent="assets/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Player: bf"
 
 [node name="SwitchButton" type="Button" parent="assets/Panel/ScrollContainer/VBoxContainer/Player"]
@@ -304,12 +303,12 @@ offset_right = 135.0
 offset_bottom = 40.0
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Change"
 
 [node name="Opponent" type="Label" parent="assets/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Opponent: dad"
 
 [node name="SwitchButton" type="Button" parent="assets/Panel/ScrollContainer/VBoxContainer/Opponent"]
@@ -319,12 +318,12 @@ offset_right = 135.0
 offset_bottom = 40.0
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Change"
 
 [node name="Spectator" type="Label" parent="assets/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Spectator: gf"
 
 [node name="SwitchButton" type="Button" parent="assets/Panel/ScrollContainer/VBoxContainer/Spectator"]
@@ -334,12 +333,12 @@ offset_right = 135.0
 offset_bottom = 40.0
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Change"
 
 [node name="Stage" type="Label" parent="assets/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Stage: stage"
 
 [node name="SwitchButton" type="Button" parent="assets/Panel/ScrollContainer/VBoxContainer/Stage"]
@@ -349,12 +348,12 @@ offset_right = 135.0
 offset_bottom = 40.0
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Change"
 
 [node name="UISkin" type="Label" parent="assets/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "UI Skin: default"
 
 [node name="SwitchButton" type="Button" parent="assets/Panel/ScrollContainer/VBoxContainer/UISkin"]
@@ -364,18 +363,18 @@ offset_right = 135.0
 offset_bottom = 40.0
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Change"
 
 [node name="section" type="Window" parent="."]
 title = "Section Data"
-position = Vector2i(968, 100)
+position = Vector2i(355, 100)
 size = Vector2i(200, 200)
 min_size = Vector2i(65, 65)
 content_scale_size = Vector2i(150, 150)
 content_scale_mode = 2
 content_scale_aspect = 4
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 script = ExtResource("11_v6ax2")
 
 [node name="Panel" type="Panel" parent="section"]
@@ -385,7 +384,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="section/Panel"]
 clip_contents = false
@@ -404,7 +403,7 @@ theme_override_constants/separation = 4
 layout_mode = 2
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 theme_override_font_sizes/font_size = 12
 text = "Camera on Player"
 
@@ -415,7 +414,7 @@ layout_mode = 2
 layout_mode = 2
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 theme_override_font_sizes/font_size = 12
 text = "Change BPM"
 
@@ -423,7 +422,7 @@ text = "Change BPM"
 layout_mode = 2
 tooltip_text = "The BPM the section will change to."
 mouse_default_cursor_shape = 1
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 min_value = 60.0
 max_value = 500.0
 value = 60.0
@@ -437,7 +436,7 @@ layout_mode = 2
 layout_mode = 2
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Swap Section"
 
 [node name="Clear" type="Button" parent="section/Panel/ScrollContainer/VBoxContainer"]
@@ -445,7 +444,7 @@ modulate = Color(1, 0, 0.298039, 1)
 layout_mode = 2
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Clear Section"
 
 [node name="HSeparator5" type="HSeparator" parent="section/Panel/ScrollContainer/VBoxContainer"]
@@ -454,7 +453,7 @@ layout_mode = 2
 
 [node name="DymLabel" type="Label" parent="section/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Dynamic Pasting"
 
 [node name="CamDynamic" type="OptionButton" parent="section/Panel/ScrollContainer/VBoxContainer"]
@@ -463,7 +462,7 @@ tooltip_text = "Whether to swap the section when
 the copied camera target is different
 from the current camera target."
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 selected = 1
 item_count = 4
 popup/item_0/text = "None"
@@ -479,14 +478,14 @@ popup/item_3/id = 3
 layout_mode = 2
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Copy Section"
 
 [node name="Paste" type="Button" parent="section/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Paste Section"
 
 [node name="HSeparator6" type="HSeparator" parent="section/Panel/ScrollContainer/VBoxContainer"]
@@ -497,13 +496,13 @@ layout_mode = 2
 layout_mode = 2
 focus_mode = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 theme_override_font_sizes/font_size = 12
 text = "Copy Last Section"
 
 [node name="LastSpin" type="SpinBox" parent="section/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 min_value = 1.0
 max_value = 99999.0
 value = 1.0
@@ -511,13 +510,13 @@ suffix = "sections back"
 
 [node name="note" type="Window" parent="."]
 title = "Note Data"
-position = Vector2i(968, 341)
+position = Vector2i(355, 217)
 size = Vector2i(200, 200)
 min_size = Vector2i(65, 65)
 content_scale_size = Vector2i(150, 150)
 content_scale_mode = 2
 content_scale_aspect = 4
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 
 [node name="Panel" type="Panel" parent="note"]
 anchors_preset = 15
@@ -526,13 +525,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 
 [node name="CharDialog" type="FileDialog" parent="."]
 title = "Select a Character"
 initial_position = 2
 size = Vector2i(500, 500)
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 ok_button_text = "Open"
 mode_overrides_title = false
 file_mode = 0
@@ -543,7 +542,7 @@ filters = PackedStringArray("*.tscn")
 title = "Select a Stage"
 initial_position = 2
 size = Vector2i(500, 500)
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 ok_button_text = "Open"
 mode_overrides_title = false
 file_mode = 0
@@ -554,7 +553,7 @@ filters = PackedStringArray("*.tscn")
 title = "Select a UI Skin"
 initial_position = 2
 size = Vector2i(500, 500)
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 ok_button_text = "Open"
 mode_overrides_title = false
 file_mode = 0
@@ -565,7 +564,7 @@ filters = PackedStringArray("*.tscn")
 title = "Save Song JSON"
 initial_position = 2
 size = Vector2i(500, 500)
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 mode_overrides_title = false
 root_subfolder = "res://assets/songs/"
 filters = PackedStringArray("*.json")
@@ -574,7 +573,7 @@ filters = PackedStringArray("*.json")
 title = "Load Song JSON"
 initial_position = 2
 size = Vector2i(500, 500)
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 ok_button_text = "Open"
 mode_overrides_title = false
 file_mode = 0
@@ -585,7 +584,7 @@ filters = PackedStringArray("*.json")
 title = "Select Autosaved Song"
 initial_position = 2
 size = Vector2i(500, 500)
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 
 [node name="PosInfo" type="Label" parent="."]
 layout_mode = 1
@@ -613,7 +612,7 @@ offset_right = 1280.0
 offset_bottom = 31.0
 tooltip_text = "Test the song to see how
 your chart is like so far."
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Test"
 flat = false
 switch_on_hover = true
@@ -636,7 +635,7 @@ offset_right = 1180.0
 offset_bottom = 31.0
 tooltip_text = "Toggles the visiblity of
 windows you may not need."
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 text = "Window"
 flat = false
 switch_on_hover = true
@@ -664,7 +663,7 @@ offset_left = 980.0
 offset_right = 1080.0
 offset_bottom = 31.0
 tooltip_text = "Change the way you chart."
-theme = ExtResource("8_87ymt")
+theme = ExtResource("1_n3k1t")
 theme_override_styles/focus = SubResource("StyleBoxFlat_wxpdd")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_w644q")
 theme_override_styles/hover = SubResource("StyleBoxFlat_eukpm")

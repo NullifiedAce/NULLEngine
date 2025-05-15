@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FreeplaySongList" load_steps=40 format=3 uid="uid://rkmusgpraddm"]
 
-[ext_resource type="Script" uid="uid://nv2aiootxy14" path="res://resources/FreeplaySongList.gd" id="1_sxs7f"]
-[ext_resource type="Script" uid="uid://d2aadxmkcubvp" path="res://resources/FreeplaySong.gd" id="2_7bcx6"]
+[ext_resource type="Script" uid="uid://cd6m2dg6wrnkj" path="res://resources/FreeplaySongList.gd" id="1_sxs7f"]
+[ext_resource type="Script" uid="uid://dvtla3mpdl3pn" path="res://resources/FreeplaySong.gd" id="2_7bcx6"]
 [ext_resource type="Texture2D" uid="uid://bggn4j2x81mod" path="res://assets/images/gameplay/icons/icon-gf.png" id="2_e0r34"]
 [ext_resource type="Texture2D" uid="uid://cb4g78s0nksa0" path="res://assets/images/gameplay/icons/icon-dad.png" id="4_u64um"]
 [ext_resource type="Texture2D" uid="uid://8x72hfd6b7g6" path="res://assets/images/gameplay/icons/icon-spooky.png" id="5_qo83t"]
