@@ -8,9 +8,9 @@ func _ready() -> void:
 	if not parameters.has("y"):
 		parameters["y"] = 0
 	if not parameters.has("duration"):
-		parameters["duration"] = 4
+		parameters["duration"] = 14
 	if not parameters.has("transitionType"):
-		parameters["transitionType"] = Tween.TRANS_SINE
+		parameters["transitionType"] = Tween.TRANS_QUINT
 	if not parameters.has("easeType"):
 		parameters["easeType"] = Tween.EASE_OUT
 

@@ -50,7 +50,6 @@ func _process(delta:float) -> void:
 					var sing_anim:String = "sing%s" % note.strumline.get_child(note.direction).direction.to_upper()
 					if note.alt_anim:
 						sing_anim += "-alt"
-
 					game.opponent.play_anim(sing_anim, true)
 					game.opponent.hold_timer = 0.0
 
@@ -85,6 +84,8 @@ func _process(delta:float) -> void:
 				note.queue_free()
 		else:
 			if note.time <= Conductor.position and note.should_hit and not note.was_good_hit:
+				var receptor:Receptor = note.strumline.get_child(note.direction)
+				receptor.play_anim("confirm")
 				note.was_good_hit = true
 				note.anim_sprite.visible = false
 				note._cpu_hit()
