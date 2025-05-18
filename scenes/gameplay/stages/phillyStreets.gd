@@ -43,7 +43,7 @@ func _ready_post():
 func _process(delta: float) -> void:
 	global_delta = delta
 
-	var remapped_intensity_value:float = clamp(remap(Conductor.position, 0, Audio.music.stream.get_length() * 1000, rain_start_intensity, rain_end_intensity), rain_start_intensity, rain_end_intensity)
+	var remapped_intensity_value:float = clamp(remap(Conductor.position, 0, game.max_time, rain_start_intensity, rain_end_intensity), rain_start_intensity, rain_end_intensity)
 	intensity = remapped_intensity_value
 	time += delta
 	rain_rect.material.set_shader_parameter("uTime", time)
