@@ -555,7 +555,6 @@ func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.Tra
 	await cam_tween.finished
 	cam_tween.kill()
 
-	print("Updating camera at %s %s." % [targetX, targetY])
 	script_group.call_func("on_update_camera", [])
 
 func zoom_camera(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
@@ -572,7 +571,6 @@ func zoom_camera(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tw
 	await cam_tween.finished
 	cam_tween.kill()
 
-	print("Camera zoom happened, Zoom: %s." % zoom)
 	script_group.call_func("on_camera_zoom", [])
 
 func hud_zoom(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):

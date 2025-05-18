@@ -40,9 +40,9 @@ var playData: Dictionary = {
 
 static func load_metadata(song:String, variation:String = "default"):
 	var json = JSON.parse_string(FileAccess.open("res://assets/songs/"+song.to_lower()+"/metadata-"+variation+".json", FileAccess.READ).get_as_text())
-	return load_from_json(song, json)
+	return load_from_json(json)
 
-static func load_from_json(song:String, json):
+static func load_from_json(json):
 	var metadata = new()
 
 	metadata.version = json.version

@@ -7,9 +7,9 @@ var scroll_speed:float = 1.0
 
 static func load_chart(song:String, difficulty:String = "normal", variation:String = "default"):
 	var json = JSON.parse_string(FileAccess.open("res://assets/songs/"+song.to_lower()+"/chart-"+variation+".json", FileAccess.READ).get_as_text())
-	return load_from_json(song, json, difficulty)
+	return load_from_json(json, difficulty)
 
-static func load_from_json(song:String, json, difficulty:String):
+static func load_from_json(json, difficulty:String):
 	var chart = new()
 
 	if difficulty in json.scrollSpeed:

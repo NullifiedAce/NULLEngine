@@ -59,6 +59,7 @@ func _ready():
 	anim_sprite.playing = false
 
 	anim_player.connect("animation_finished", func(name): anim_finished = true)
+	anim_player.animation_finished.connect(handle_loop_anims)
 	dance(true)
 
 	if anim_sprite.sprite_frames:
@@ -102,6 +103,8 @@ func play_anim(anim:String, force:bool = false, special:bool = false):
 	if not is_animated: return
 	if "sing" in anim and not can_sing: return
 
+	anim_player.clear_queue()
+
 	special_anim = special
 
 	# swap left and right anims
@@ -123,7 +126,7 @@ func play_anim(anim:String, force:bool = false, special:bool = false):
 		push_warning("Animation \""+anim+"\" doesn't exist.")
 		return
 
-	if force or last_anim != anim or anim_finished:
+	if force or last_anim != anim or anim_finished or last_anim.contains("-loop"):
 		if last_anim == anim:
 			anim_player.seek(0.0)
 
@@ -131,6 +134,10 @@ func play_anim(anim:String, force:bool = false, special:bool = false):
 		anim_finished = false
 
 		anim_player.play(anim)
+
+func handle_loop_anims(anim_name: StringName):
+	if anim_player.has_animation(anim_name + "-loop"):
+		anim_player.play(anim_name + "-loop")
 
 func dance(force:bool = false):
 	if special_anim and not force or !dances:
