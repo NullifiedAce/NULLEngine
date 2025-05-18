@@ -19,7 +19,7 @@ func _ready() -> void:
 
 	var durSeconds = Conductor.step_crochet * duration / 1000
 
-	if parameters["mode"] == "stage":
+	if mode == "stage":
 		game.zoom_camera(zoom, durSeconds, trans_type, ease_type)
-	elif parameters["mode"] == "hud":
+	elif mode == "hud":
 		game.hud_zoom(zoom, durSeconds, trans_type, ease_type)

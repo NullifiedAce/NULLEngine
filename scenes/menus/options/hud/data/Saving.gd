@@ -70,9 +70,20 @@ func save_label(new:HUDLabel, old:HUDEditorLabel, element:HUDElement, save_data:
 		"DownscrollMulti": new.downscroll_multiplier,
 		"Rotation": new.rotation,
 
-		"Text": new.text,
+		"Items": new.items,
+		"LayoutMode": new.layout_mode_option,
 
-		
+		"Font": new.font,
+		"FontSize": new.font_size,
+		"FontColor": new.font_color,
+
+		"OutlineColor": new.outline_color,
+		"OutlineSize": new.outline_size,
+
+		"ShadowColor": new.shadow_color,
+		"ShadowSize": new.shadow_size,
+		"ShadowOffsteX": new.shadow_offset_x,
+		"ShadowOffsteY": new.shadow_offset_y
 	})
 
 	return new
