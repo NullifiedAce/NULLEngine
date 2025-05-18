@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://d3skr632i6bbj"]
 
-[ext_resource type="Script" uid="uid://bs52doc7pfc5d" path="res://scenes/menus/options/hud/elements/HUDElement.gd" id="1_706s6"]
+[ext_resource type="Script" uid="uid://bs52doc7pfc5d" path="res://scenes/menus/options/hud/Elements/HUDElement.gd" id="1_706s6"]
 [ext_resource type="Texture2D" uid="uid://b6ssah0oor7i1" path="res://assets/images/material_icons/Script.svg" id="1_m38vx"]
 [ext_resource type="Texture2D" uid="uid://bgdu28q5fj0wb" path="res://assets/images/material_icons/ToolMove.svg" id="3_kee81"]
-[ext_resource type="Script" uid="uid://xr3edch5rxun" path="res://scenes/menus/options/hud/elements/SpinBoxMulti.gd" id="4_ma0ri"]
+[ext_resource type="Script" uid="uid://xr3edch5rxun" path="res://scenes/menus/options/hud/Elements/SpinBoxMulti.gd" id="4_ma0ri"]
 
 [node name="HUD Element" type="Control"]
 layout_mode = 3

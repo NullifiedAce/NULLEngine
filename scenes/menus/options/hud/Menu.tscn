@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bqsrwpb82r34v"]
+[gd_scene load_steps=14 format=3 uid="uid://bqsrwpb82r34v"]
 
 [ext_resource type="Script" uid="uid://bydrrqjf2awjd" path="res://scenes/menus/options/hud/Menu.gd" id="1_028jv"]
 [ext_resource type="Script" uid="uid://b1pwa7eu337d2" path="res://scenes/menus/options/hud/ThemeHandler.gd" id="2_7hp2n"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://jhia0wb1d1yg" path="res://scenes/menus/options/hud/data/Loading.gd" id="4_ricit"]
 [ext_resource type="Script" uid="uid://co00xq8h2ivbw" path="res://classes/EngineTheme/EngineThemeColor.gd" id="6_sg4b6"]
 [ext_resource type="PackedScene" uid="uid://d3skr632i6bbj" path="res://scenes/menus/options/hud/Elements/HUDElement.tscn" id="7_k8jfr"]
-[ext_resource type="Script" uid="uid://cayyq5tvyebbr" path="res://scenes/menus/options/hud/HUDPreview.gd" id="8_4ahyr"]
 [ext_resource type="Script" uid="uid://d1mg4gki84igd" path="res://classes/EngineTheme/EngineThemeOption.gd" id="8_cgx1m"]
 [ext_resource type="Script" uid="uid://d1m5agyfh2uer" path="res://classes/EngineTheme/EngineThemeSpinBox.gd" id="9_36kso"]
 
@@ -42,10 +41,12 @@ script = ExtResource("3_lo8x1")
 script = ExtResource("4_ricit")
 
 [node name="BG" parent="." instance=ExtResource("2_a6t8j")]
+z_index = -1
 gradiant = SubResource("GradientTexture2D_k68oh")
 metadata/_edit_lock_ = true
 
 [node name="TopBar" type="ColorRect" parent="BG"]
+z_as_relative = false
 offset_left = -640.0
 offset_top = -360.0
 offset_right = 640.0
@@ -114,10 +115,13 @@ theme = ExtResource("3_k68oh")
 text = "Options"
 flat = false
 switch_on_hover = true
-item_count = 1
+item_count = 2
 popup/item_0/text = "Use downscroll?"
 popup/item_0/checkable = 1
 popup/item_0/id = 0
+popup/item_1/text = "Show misc. Items?"
+popup/item_1/checkable = 1
+popup/item_1/id = 1
 
 [node name="Help" type="MenuButton" parent="MenuOptions"]
 custom_minimum_size = Vector2(56, 0)
@@ -129,10 +133,6 @@ switch_on_hover = true
 item_count = 1
 popup/item_0/text = "User Guide"
 popup/item_0/id = 0
-
-[node name="HUD" type="CanvasLayer" parent="."]
-layer = 127
-script = ExtResource("8_4ahyr")
 
 [node name="AddPopup" type="PopupMenu" parent="."]
 size = Vector2i(198, 66)

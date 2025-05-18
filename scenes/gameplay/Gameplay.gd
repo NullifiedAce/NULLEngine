@@ -532,11 +532,6 @@ func step_hit(step:int):
 	script_group.call_func("on_step_hit", [step])
 	script_group.call_func("on_step_hit_post", [step])
 
-func do_event(event_name:String,parameters:Dictionary):
-	var ev:Event = load("res://scenes/events/" + event_name + ".tscn").instantiate()
-	ev.parameters = parameters
-	add_child(ev)
-
 func character_bop():
 	if opponent != null and opponent.dance_on_beat and not opponent.last_anim.begins_with("sing"):
 		opponent.dance()
@@ -990,18 +985,13 @@ func _process(delta:float) -> void:
 	script_group.call_func("_process_post", [delta])
 
 func _physics_process(_delta: float) -> void:
-	while (not event_data_array.is_empty()) and Conductor.position >= event_data_array[0].time:
-		print('running %s at %.3f ms with %s.' % [event_data_array[0].name,
-				event_data_array[0].time,
-				event_data_array[0].parameters])
+	for event in event_data_array:
+		if event.time > Conductor.position: break
 
 		if template_events.has(event_data_array[0].name):
-			var event:Event = template_events[event_data_array[0].name].duplicate()
-			event.parameters = event_data_array[0].parameters
-			add_child(event)
-
-		stage.callv("on_event", [event_data_array[0].name, event_data_array[0].parameters])
-		script_group.call_func("on_event", [event_data_array[0].name, event_data_array[0].parameters])
+			var new_event:Event = template_events[event_data_array[0].name].duplicate()
+			new_event.parameters = event_data_array[0].parameters
+			add_child(new_event)
 
 		event_data_array.pop_front()
 

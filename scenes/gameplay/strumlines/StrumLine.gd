@@ -20,6 +20,8 @@ func _ready() -> void:
 
 func update_skin() -> void:
 	for i in get_child_count():
+		if get_child(i) is not Receptor: return
+		
 		var receptor:Receptor = get_child(i)
 		receptor.sprite_frames = load(note_skin.note_texture_path+"assets.res")
 		receptor.play_anim("static")
@@ -36,6 +38,8 @@ func _input(event:InputEvent) -> void:
 
 func key_shit() -> void:
 	for i in get_child_count():
+		if get_child(i) is not Receptor: return
+		
 		if not current_scene is Gameplay and Input.is_action_just_pressed(controls[i]):
 			var receptor:Receptor = get_child(i)
 			receptor.play_anim("pressed")
