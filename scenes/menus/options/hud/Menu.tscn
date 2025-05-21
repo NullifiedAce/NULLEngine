@@ -78,7 +78,7 @@ theme = ExtResource("3_k68oh")
 text = "File"
 flat = false
 switch_on_hover = true
-item_count = 8
+item_count = 7
 popup/item_0/text = "New HUD"
 popup/item_0/id = 0
 popup/item_1/id = 1
@@ -89,12 +89,10 @@ popup/item_3/id = 3
 popup/item_3/separator = true
 popup/item_4/text = "Save HUD"
 popup/item_4/id = 4
-popup/item_5/text = "Save HUD as..."
-popup/item_5/id = 5
-popup/item_6/id = 6
-popup/item_6/separator = true
-popup/item_7/text = "Exit"
-popup/item_7/id = 7
+popup/item_5/id = 6
+popup/item_5/separator = true
+popup/item_6/text = "Exit"
+popup/item_6/id = 7
 
 [node name="Edit" type="MenuButton" parent="MenuOptions"]
 custom_minimum_size = Vector2(56, 0)
@@ -1093,6 +1091,21 @@ min_size = Vector2i(128, 128)
 content_scale_mode = 1
 content_scale_aspect = 1
 
+[node name="SaveDialog" type="FileDialog" parent="Windows"]
+title = "Save HUD"
+initial_position = 1
+dialog_close_on_escape = false
+access = 1
+filters = PackedStringArray("*.json")
+
+[node name="OpenDialog" type="FileDialog" parent="Windows"]
+title = "Open a File"
+initial_position = 1
+ok_button_text = "Open"
+file_mode = 0
+access = 1
+filters = PackedStringArray("*.json")
+
 [node name="HUDElements" type="Node" parent="."]
 
 [connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor/ColorBG" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor/ColorBG" method="_on_popup_closed"]
@@ -1144,3 +1157,5 @@ content_scale_aspect = 1
 [connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow/ShadowSize" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow/ShadowSize" method="_on_value_changed"]
 [connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetX" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetX" method="_on_value_changed"]
 [connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" method="_on_value_changed"]
+[connection signal="file_selected" from="Windows/SaveDialog" to="Saving" method="_save_hud"]
+[connection signal="file_selected" from="Windows/OpenDialog" to="Loading" method="_on_hud_opened"]

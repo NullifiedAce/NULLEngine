@@ -8,6 +8,8 @@ class_name HUDEditor
 
 @onready var preferences_window: Window = $Windows/Preferences
 @onready var add_popup: PopupMenu = $AddPopup
+@onready var save_hud_dialog: FileDialog = $Windows/SaveDialog
+@onready var open_hud_dialog: FileDialog = $Windows/OpenDialog
 
 @onready var hud_template: HUDElement = $Template
 @onready var hud_elements: Node = $HUDElements
@@ -18,6 +20,9 @@ class_name HUDEditor
 func _ready() -> void:
 	for i in FPS.get_children():
 		i.modulate = Color(1, 1, 1, 0.25)
+
+	save_hud_dialog.root_subfolder = SaveData.path
+	open_hud_dialog.root_subfolder = SaveData.path
 
 	loading.load_hud()
 
@@ -37,8 +42,10 @@ func _input(event: InputEvent) -> void:
 func _file_stuff(id:int):
 	var file = file_menu.get_popup()
 	match file.get_item_text(id):
+		"Open HUD...":
+			open_hud_dialog.show()
 		"Save HUD":
-			saving.save_hud()
+			save_hud_dialog.show()
 		"Exit":
 			Global.switch_scene("res://scenes/menus/options/Menu.tscn")
 

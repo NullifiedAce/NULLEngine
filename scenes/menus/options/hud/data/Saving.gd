@@ -1,11 +1,10 @@
 # Splitting saving into it's own node, as the editor node itself should only handle menu popups.
 #
-
 extends Node
 
 @onready var hud_elements: Node = $'../HUDElements'
 
-func save_hud():
+func _save_hud(path: String):
 	print("Saving current HUD...")
 
 	var save_json:Dictionary = {
@@ -23,7 +22,7 @@ func save_hud():
 
 			HUDHandler.hud_labels.append(new_label)
 
-	var file = FileAccess.open(SaveData.path + "hud.json", FileAccess.WRITE)
+	var file = FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(JSON.stringify({"HUD": save_json}, "\t"))
 	file.close()
 
@@ -82,8 +81,8 @@ func save_label(new:HUDLabel, old:HUDEditorLabel, element:HUDElement, save_data:
 
 		"ShadowColor": new.shadow_color,
 		"ShadowSize": new.shadow_size,
-		"ShadowOffsteX": new.shadow_offset_x,
-		"ShadowOffsteY": new.shadow_offset_y
+		"ShadowOffsetX": new.shadow_offset_x,
+		"ShadowOffsetY": new.shadow_offset_y
 	})
 
 	return new
