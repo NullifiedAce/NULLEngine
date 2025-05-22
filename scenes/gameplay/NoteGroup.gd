@@ -53,6 +53,9 @@ func _process(delta:float) -> void:
 					game.opponent.play_anim(sing_anim, true)
 					game.opponent.hold_timer = 0.0
 
+				var receptor:Receptor = note.strumline.get_child(note.direction)
+				receptor.play_anim("confirm")
+
 				note.is_sustain_note = true
 				note._cpu_hit()
 				note._note_hit(false)
