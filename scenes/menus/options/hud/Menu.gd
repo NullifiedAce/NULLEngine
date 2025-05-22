@@ -41,9 +41,12 @@ func _input(event: InputEvent) -> void:
 
 func _file_stuff(id:int):
 	var file = file_menu.get_popup()
+	print(file.get_item_text(id))
 	match file.get_item_text(id):
 		"Open HUD...":
 			open_hud_dialog.show()
+		"Load Default HUD":
+			loading._on_hud_opened("res://assets/defaultHud.json")
 		"Save HUD":
 			save_hud_dialog.show()
 		"Exit":

@@ -78,21 +78,23 @@ theme = ExtResource("3_k68oh")
 text = "File"
 flat = false
 switch_on_hover = true
-item_count = 7
+item_count = 8
 popup/item_0/text = "New HUD"
 popup/item_0/id = 0
 popup/item_1/id = 1
 popup/item_1/separator = true
 popup/item_2/text = "Open HUD..."
 popup/item_2/id = 2
+popup/item_3/text = "Load Default HUD"
 popup/item_3/id = 3
-popup/item_3/separator = true
-popup/item_4/text = "Save HUD"
 popup/item_4/id = 4
-popup/item_5/id = 6
-popup/item_5/separator = true
-popup/item_6/text = "Exit"
-popup/item_6/id = 7
+popup/item_4/separator = true
+popup/item_5/text = "Save HUD"
+popup/item_5/id = 5
+popup/item_6/id = 6
+popup/item_6/separator = true
+popup/item_7/text = "Exit"
+popup/item_7/id = 7
 
 [node name="Edit" type="MenuButton" parent="MenuOptions"]
 custom_minimum_size = Vector2(56, 0)
@@ -153,7 +155,6 @@ offset_right = -384.0
 title = "Preferences"
 initial_position = 2
 size = Vector2i(512, 512)
-visible = false
 min_size = Vector2i(128, 128)
 content_scale_mode = 1
 content_scale_aspect = 1
@@ -178,10 +179,11 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_k68oh")
-current_tab = 0
+current_tab = 3
 tab_focus_mode = 0
 
 [node name="Theme" type="TabBar" parent="Windows/Preferences/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -1081,6 +1083,54 @@ layout_mode = 2
 suffix = "y"
 script = ExtResource("9_36kso")
 data = "Bar Fill Shadow Offset X"
+
+[node name="Ranks" type="TabBar" parent="Windows/Preferences/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="RankTypes" type="TabContainer" parent="Windows/Preferences/TabContainer/Ranks"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+tab_focus_mode = 0
+
+[node name="Accuracy Ranks" type="TabBar" parent="Windows/Preferences/TabContainer/Ranks/RankTypes"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Windows/Preferences/TabContainer/Ranks/RankTypes/Accuracy Ranks"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Preferences/TabContainer/Ranks/RankTypes/Accuracy Ranks/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddRank" type="Button" parent="Windows/Preferences/TabContainer/Ranks/RankTypes/Accuracy Ranks/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "+ Add Rank"
+
+[node name="Funkin Ranks" type="TabBar" parent="Windows/Preferences/TabContainer/Ranks/RankTypes"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="Welcome" type="Window" parent="Windows"]
 title = "Welcome"

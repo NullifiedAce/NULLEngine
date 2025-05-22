@@ -59,10 +59,15 @@ func load_label(old:HUDLabel):
 	label._on_reload_pressed()
 
 func _on_hud_opened(path: String) -> void:
+	var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
+
+	if not "HUD" in json:
+		print("Failed to load JSON. JSON doesn't contain \"HUD\". JSON: " + str(json))
+		return
+
 	for i in hud_elements.get_children():
 		i.queue_free()
 
-	var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
 
 	for i in json["HUD"]["HUDLabel"]:
 		var element:HUDElement = load("res://scenes/menus/options/hud/Elements/HUDElement.tscn").instantiate()

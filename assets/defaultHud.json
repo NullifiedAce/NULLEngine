@@ -1,0 +1,67 @@
+{
+	"HUD": {
+		"HUDBar": [],
+		"HUDLabel": [
+			{
+				"DownscrollMulti": 1.0,
+				"Font": "vcr",
+				"FontColor": "ffffffff",
+				"FontSize": 16,
+				"Items": [
+					{
+						"prefix_text": "SCORE: ",
+						"suffix_text": "",
+						"text": "",
+						"track": true,
+						"track_value": "Score"
+					},
+					{
+						"prefix_text": "",
+						"suffix_text": "",
+						"text": " - ",
+						"track": false,
+						"track_value": "Score"
+					},
+					{
+						"prefix_text": "MISSED: ",
+						"suffix_text": "",
+						"text": "",
+						"track": true,
+						"track_value": "Misses"
+					},
+					{
+						"prefix_text": "",
+						"suffix_text": "",
+						"text": " - ",
+						"track": false,
+						"track_value": "Score"
+					},
+					{
+						"prefix_text": "ACC: ",
+						"suffix_text": "",
+						"text": "",
+						"track": true,
+						"track_value": "Accuracy"
+					},
+					{
+						"prefix_text": " [",
+						"suffix_text": "]",
+						"text": "",
+						"track": true,
+						"track_value": "Accuracy Rank"
+					}
+				],
+				"LayoutMode": "Single Line",
+				"OutlineColor": "000000ff",
+				"OutlineSize": 8,
+				"PosX": 474.0,
+				"PosY": 87.0,
+				"Rotation": 0.0,
+				"ShadowColor": "00000000",
+				"ShadowOffsetX": 0,
+				"ShadowOffsetY": 0,
+				"ShadowSize": 0
+			}
+		]
+	}
+}

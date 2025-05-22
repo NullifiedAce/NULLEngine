@@ -37,64 +37,9 @@ var _settings:Dictionary = {
 	"playerStrumVis": 1.0,
 	"playerStrumScale": 1.0,
 
-	# hud
-	"engine theme": "Purple",
-	"color style": "NULL",
-
-	# hud editor
-	"bg color": "ffffff",
-
-	# time bar
-	"time x": 390.0,
-	"time y": 10.0,
-	"time down multi": 69.0, # haha, very funny
-
-	# health bar
-	"icon colors": false,
-	"custom color": false,
-	"icon alpha": 1.0,
-	"player color": "00ff00",
-	"opp color": "ff0000",
-
-	"hpbar x": 340.0,
-	"hpbar y": 636.0,
-	"hpbar down multiplier": 0.1,
-	"hpbar alpha": 1.0,
-
-	#score text
-	"score x": 0.0,
-	"score y": 676.0,
-	"score down multi": 0.15,
-
-	"seperator": " - ",
-
-	"score_arrangement": "[\"score\", \"seperator\", \"misses\", \"seperator\", \"accuracy\", \"seperator\", \"ranks\"]",
-
-	"font path": "res://assets/fonts/vcr.ttf",
-	"font size": 19,
-	"font color": "ffffff",
-
-	"outline size": 10,
-	"outline color": "000000",
-
-	"score bg color": "0000009b",
-	"score bg expand": 2,
-
-	# score
-	"score prefix": "Score: ",
-	"score suffix": "",
-
-	# misses
-	"misses prefix": "Misses: ",
-	"misses suffix": "",
-
-	# accuracy
-	"accuracy prefix": "Accuracy: ",
-	"accuracy suffix": "%",
+	"lastHudFile": "res://assets/defaultHud.json",
 
 	# ranks
-	"ranks prefix": "[",
-	"ranks suffix": "]",
 	"s+ rank": "S+",
 	"s rank": "S",
 	"a rank": "A",
@@ -104,22 +49,6 @@ var _settings:Dictionary = {
 	"e rank": "E",
 	"f rank": "F",
 	"null rank": "N/A",
-
-	# health
-	"health prefix": "",
-	"health suffix": "%",
-
-	# combo
-	"combo prefix": "Combo: ",
-	"combo suffix": "x",
-
-	# max combo
-	"max combo prefix": "(",
-	"max combo suffix": ")",
-
-	# ghost taps
-	"ghost taps prefix": "Ghost Taps: ",
-	"ghost taps suffix": "",
 
 	# misc
 	"auto pause": true,

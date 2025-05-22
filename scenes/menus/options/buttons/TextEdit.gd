@@ -11,3 +11,9 @@ func _on_focus_exited() -> void:
 	SettingsAPI.flush()
 
 	SettingsAPI.update_settings()
+
+func _on_text_changed() -> void:
+	SettingsAPI.set_setting(option, text)
+	SettingsAPI.flush()
+
+	SettingsAPI.update_settings()
