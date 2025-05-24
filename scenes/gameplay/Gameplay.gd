@@ -814,27 +814,26 @@ func good_note_hit(note:Note):
 
 	var healthChange = 0.0
 	var isComboBreak = false
+	print(daRating)
 	match daRating:
 		"sick":
-			healthChange = health + Constants.HEALTH_SICK_BONUS * note.health_gain_mult * judgement.health_gain_mult * (
-				Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
-				else Global.health_loss_mult)
+			healthChange = health + Constants.HEALTH_SICK_BONUS
 			isComboBreak = Constants.JUDGEMENT_SICK_COMBO_BREAK
 		"good":
-			healthChange = health + Constants.HEALTH_GOOD_BONUS * note.health_gain_mult * judgement.health_gain_mult * (
-				Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
-				else Global.health_loss_mult)
+			healthChange = health + Constants.HEALTH_GOOD_BONUS
 			isComboBreak = Constants.JUDGEMENT_GOOD_COMBO_BREAK
 		"bad":
-			healthChange = health + Constants.HEALTH_GOOD_BONUS * note.health_gain_mult * judgement.health_gain_mult * (
-				Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
-				else Global.health_loss_mult)
+			healthChange = health + Constants.HEALTH_GOOD_BONUS
 			isComboBreak = Constants.JUDGEMENT_BAD_COMBO_BREAK
 		"shit":
-			healthChange = health + Constants.HEALTH_SHIT_BONUS * note.health_gain_mult * judgement.health_gain_mult * (
-				Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
-				else Global.health_loss_mult)
+			healthChange = health + Constants.HEALTH_SHIT_BONUS
+			print(Constants.HEALTH_SHIT_BONUS)
 			isComboBreak = Constants.JUDGEMENT_SHIT_COMBO_BREAK
+		"miss":
+			healthChange = health - Constants.HEALTH_MISS_PENALTY
+			isComboBreak = true
+
+	print(healthChange)
 
 	if note.should_hit:
 		applyScore(score, daRating, healthChange, isComboBreak)
@@ -880,8 +879,7 @@ func applyScore(score:int, daRating:String, healthChange:float, isComboBreak:boo
 		"bad": bads += 1
 		"shit": shits += 1
 
-	var hp_tween = get_tree().create_tween()
-	hp_tween.tween_property(self, "health", healthChange, 0.1)
+	health = healthChange
 
 	if isComboBreak:
 		combo = 0

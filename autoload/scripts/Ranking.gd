@@ -1,10 +1,10 @@
 extends Node
 
 var default_judgements:Array[Judgement] = [
-	Judgement.create("sick",	350,	45.0,	1.0,	1.0,	true,	Color.FOREST_GREEN),
-	Judgement.create("good",	200,	75.0,	0.7,	1.0,	false,	Color.DEEP_SKY_BLUE),
-	Judgement.create("bad",		100,	90.0,	0.3,	0.75,	false,	Color.ORANGE),
-	Judgement.create("shit",	50,		135.0,	0.0,	-4.5,	false,	Color.DARK_RED)
+	Judgement.create("sick",	350,	Scoring.PBOT1_SICK_THRESHOLD,	1.0,	1.0,	true,	Color.FOREST_GREEN),
+	Judgement.create("good",	200,	Scoring.PBOT1_GOOD_THRESHOLD,	0.7,	1.0,	false,	Color.DEEP_SKY_BLUE),
+	Judgement.create("bad",		100,	Scoring.PBOT1_BAD_THRESHOLD,	0.3,	0.75,	false,	Color.ORANGE),
+	Judgement.create("shit",	50,		Scoring.PBOT1_SHIT_THRESHOLD,	0.0,	-4.5,	false,	Color.DARK_RED)
 ]
 var default_ranks:Array[AccuracyRank] = []
 var null_rank:AccuracyRank

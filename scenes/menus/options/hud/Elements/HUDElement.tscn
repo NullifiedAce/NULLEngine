@@ -1,9 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3skr632i6bbj"]
+[gd_scene load_steps=18 format=3 uid="uid://d3skr632i6bbj"]
 
 [ext_resource type="Script" uid="uid://bs52doc7pfc5d" path="res://scenes/menus/options/hud/Elements/HUDElement.gd" id="1_706s6"]
 [ext_resource type="Texture2D" uid="uid://b6ssah0oor7i1" path="res://assets/images/material_icons/Script.svg" id="1_m38vx"]
 [ext_resource type="Texture2D" uid="uid://bgdu28q5fj0wb" path="res://assets/images/material_icons/ToolMove.svg" id="3_kee81"]
 [ext_resource type="Script" uid="uid://xr3edch5rxun" path="res://scenes/menus/options/hud/Elements/SpinBoxMulti.gd" id="4_ma0ri"]
+[ext_resource type="Texture2D" uid="uid://baj8mqr1ho88r" path="res://assets/images/material_icons/HUDAnchors/TopLeft.svg" id="5_lnyi8"]
+[ext_resource type="Texture2D" uid="uid://bepu06b217gei" path="res://assets/images/material_icons/HUDAnchors/TopCenter.svg" id="6_6we48"]
+[ext_resource type="Texture2D" uid="uid://dlgd4ruflvigc" path="res://assets/images/material_icons/HUDAnchors/TopRight.svg" id="7_l5ah5"]
+[ext_resource type="Texture2D" uid="uid://dttj3t2avx4op" path="res://assets/images/material_icons/HUDAnchors/TopFill.svg" id="8_205qw"]
+[ext_resource type="Texture2D" uid="uid://dpbjxsvj0fwx4" path="res://assets/images/material_icons/HUDAnchors/CenterLeft.svg" id="9_v2tn4"]
+[ext_resource type="Texture2D" uid="uid://bcanggu0jin38" path="res://assets/images/material_icons/HUDAnchors/Center.svg" id="10_b27ww"]
+[ext_resource type="Texture2D" uid="uid://dfxess6cgp1l2" path="res://assets/images/material_icons/HUDAnchors/CenterRight.svg" id="11_taquf"]
+[ext_resource type="Texture2D" uid="uid://b8e7q8swbo1eb" path="res://assets/images/material_icons/HUDAnchors/CenterFill.svg" id="12_am6fi"]
+[ext_resource type="Texture2D" uid="uid://bsiuen04gc8qg" path="res://assets/images/material_icons/HUDAnchors/Full.svg" id="13_6we48"]
+[ext_resource type="Texture2D" uid="uid://dg2r8ffcp0h4f" path="res://assets/images/material_icons/HUDAnchors/BottomLeft.svg" id="13_s7asj"]
+[ext_resource type="Texture2D" uid="uid://vpd8mtowo5q" path="res://assets/images/material_icons/HUDAnchors/BottomCenter.svg" id="14_uju8l"]
+[ext_resource type="Texture2D" uid="uid://b6dign15qej7t" path="res://assets/images/material_icons/HUDAnchors/BottomRight.svg" id="15_hoh28"]
+[ext_resource type="Texture2D" uid="uid://cuboytf4ln1lp" path="res://assets/images/material_icons/HUDAnchors/BottomFill.svg" id="16_bhlsy"]
 
 [node name="HUD Element" type="Control"]
 layout_mode = 3
@@ -115,6 +128,132 @@ layout_mode = 2
 size_flags_horizontal = 0
 value = 1.0
 suffix = "x"
+
+[node name="AnchorTitle" type="Label" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
+layout_mode = 2
+text = "Anchor:"
+
+[node name="AnchorsTop" type="HBoxContainer" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
+layout_mode = 2
+
+[node name="TopLeft" type="TextureButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsTop"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("5_lnyi8")
+stretch_mode = 0
+
+[node name="TopCenter" type="TextureButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsTop"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("6_6we48")
+stretch_mode = 0
+
+[node name="TopRight" type="TextureButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsTop"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("7_l5ah5")
+stretch_mode = 0
+
+[node name="VSeparator" type="VSeparator" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsTop"]
+layout_mode = 2
+
+[node name="TopFill" type="TextureButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsTop"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("8_205qw")
+stretch_mode = 0
+
+[node name="AnchorsCenter" type="HBoxContainer" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
+layout_mode = 2
+
+[node name="CenterLeft" type="TextureButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsCenter"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("9_v2tn4")
+stretch_mode = 0
+
+[node name="Center" type="TextureButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsCenter"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("10_b27ww")
+stretch_mode = 0
+
+[node name="CenterRight" type="TextureButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsCenter"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("11_taquf")
+stretch_mode = 0
+
+[node name="VSeparator" type="VSeparator" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsCenter"]
+layout_mode = 2
+
+[node name="CenterFill" type="TextureButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsCenter"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("12_am6fi")
+stretch_mode = 0
+
+[node name="Full" type="TextureButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsCenter"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("13_6we48")
+stretch_mode = 0
+
+[node name="AnchorsBottom" type="HBoxContainer" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
+layout_mode = 2
+
+[node name="BottomLeft" type="TextureButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsBottom"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("13_s7asj")
+stretch_mode = 0
+
+[node name="BottomCenter" type="TextureButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsBottom"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("14_uju8l")
+stretch_mode = 0
+
+[node name="BottomRight" type="TextureButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsBottom"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("15_hoh28")
+stretch_mode = 0
+
+[node name="VSeparator" type="VSeparator" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsBottom"]
+layout_mode = 2
+
+[node name="BottomFill" type="TextureButton" parent="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsBottom"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("16_bhlsy")
+stretch_mode = 0
 
 [node name="HSeparator2" type="HSeparator" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
 layout_mode = 2

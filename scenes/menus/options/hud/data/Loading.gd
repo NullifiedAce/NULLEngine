@@ -114,8 +114,8 @@ func _on_hud_opened(path: String) -> void:
 		var label = element.hud_label
 
 		for f in label.item_array.get_children():
-			if i is OptionButton:
-				for e in i["Items"]:
+			if f is OptionButton:
+				for e in f.item_count:
 					if i["LayoutMode"] == f.get_item_text(e):
 						f.selected = e
 
