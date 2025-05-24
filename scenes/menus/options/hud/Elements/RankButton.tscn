@@ -3,10 +3,27 @@
 [ext_resource type="Script" uid="uid://ibx7cx8bspqu" path="res://scenes/menus/options/hud/Elements/RankButton.gd" id="1_63b8d"]
 
 [node name="RankOptionButton" type="Button"]
+custom_minimum_size = Vector2(32, 32)
 offset_right = 8.0
 offset_bottom = 8.0
 focus_mode = 0
 script = ExtResource("1_63b8d")
+
+[node name="Delete" type="Button" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+text = "X"
 
 [node name="Window" type="Window" parent="."]
 title = "Configure Rank"

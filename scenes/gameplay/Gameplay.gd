@@ -35,6 +35,7 @@ var misses:int = 0
 var combo:int = 0
 var max_combo:int = 0
 var ghost_taps:int = 0
+var key_pressed:int = 0
 
 var sicks: int = 0
 var goods: int = 0
@@ -658,6 +659,7 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 		dont_hit.append(false)
 
 	if possible_notes.size() > 0:
+		key_pressed += 1
 		for note in possible_notes:
 			if not dont_hit[data] and note.direction == data:
 				dont_hit[data] = true
@@ -677,6 +679,7 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 			break
 	else:
 		ghost_taps += 1
+		key_pressed += 1
 		if not SettingsAPI.get_setting("ghost tapping"):
 			fake_miss(data)
 			if SettingsAPI.get_setting("miss sounds"):
@@ -925,13 +928,13 @@ var score_values: Dictionary = {
 	"score": format_number(songScore),
 	"misses": misses,
 	"accuracy": snapped(accuracy * 100.0, 0.01),
-	"accuracy rank": Ranking.rank_from_accuracy(accuracy * 100.0).name,
+	"accuracy rank": "N/A",
 	"rank": "N/A",
 	"health": 50,
 	"combo": format_number(combo),
 	"max combo": format_number(max_combo),
 	"ghost presses": format_number(ghost_taps),
-	"key pressed": 0,
+	"key pressed": format_number(key_pressed),
 	"time": Global.format_time(cur_time),
 	"sick hits": sicks,
 	"good hits": goods,
@@ -961,7 +964,7 @@ func _process(delta:float) -> void:
 	score_values["combo"] =			format_number(combo)
 	score_values["max combo"] =		format_number(max_combo)
 	score_values["ghost presses"] =	format_number(ghost_taps)
-	score_values["key presses"] =	0
+	score_values["key presses"] =	format_number(key_pressed)
 	score_values["time"] =			Global.format_time(Conductor.position / 1000)
 	score_values["sick hits"] =		format_number(sicks)
 	score_values["good hits"] =		format_number(goods)
