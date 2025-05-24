@@ -544,47 +544,66 @@ func character_bop():
 
 	script_group.call_func("on_character_bop", [])
 
+var cam_focus_tween: Tween
+
 func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
-	var cam_tween = get_tree().create_tween()
+
+	if cam_focus_tween:
+		cam_focus_tween.kill()
+
+	cam_focus_tween = create_tween()
+
 	if duration == 0:
 		camera.position = Vector2(targetX, targetY)
-		cam_tween.kill()
+		cam_focus_tween.kill()
 	else:
-		cam_tween.tween_property(camera, "position", Vector2(targetX, targetY), duration).set_trans(trans).set_ease(ease)
+		cam_focus_tween.tween_property(camera, "position", Vector2(targetX, targetY), duration).set_trans(trans).set_ease(ease)
 
-	await cam_tween.finished
-	cam_tween.kill()
+	await cam_focus_tween.finished
+	cam_focus_tween.kill()
 
 	script_group.call_func("on_update_camera", [])
+
+var cam_zoom_tween: Tween
 
 func zoom_camera(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
 	if !SettingsAPI.get_setting("zoom camera"): return
 
-	var cam_tween = get_tree().create_tween()
+	if cam_zoom_tween:
+		cam_zoom_tween.kill()
+
+	cam_zoom_tween = create_tween()
+
 	if duration == 0:
 		camera.zoom = Vector2(zoom, zoom)
-		cam_tween.kill()
+		cam_zoom_tween.kill()
 	else:
-		cam_tween.tween_property(camera, "zoom", Vector2(zoom, zoom), duration).set_trans(trans).set_ease(ease)
+		cam_zoom_tween.tween_property(camera, "zoom", Vector2(zoom, zoom), duration).set_trans(trans).set_ease(ease)
 		cam_zoom = zoom
 
-	await cam_tween.finished
-	cam_tween.kill()
+	await cam_zoom_tween.finished
+	cam_zoom_tween.kill()
 
 	script_group.call_func("on_camera_zoom", [])
+
+var hud_zoom_tween: Tween
 
 func hud_zoom(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
 	if !SettingsAPI.get_setting("zoom hud"): return
 
-	var hud_tween = get_tree().create_tween()
+	if hud_zoom_tween:
+		hud_zoom_tween.kill()
+
+	hud_zoom_tween = create_tween()
+
 	if duration == 0:
 		hud.scale = Vector2(zoom, zoom)
-		hud_tween.kill()
+		hud_zoom_tween.kill()
 	else:
-		hud_tween.tween_property(hud, "scale", Vector2(zoom, zoom), duration).set_trans(trans).set_ease(ease)
+		hud_zoom_tween.tween_property(hud, "scale", Vector2(zoom, zoom), duration).set_trans(trans).set_ease(ease)
 
-	await hud_tween.finished
-	hud_tween.kill()
+	await hud_zoom_tween.finished
+	hud_zoom_tween.kill()
 
 func camera_shake(strength:float, fade:float, shake_camera:bool = true, hud_shake:bool = false):
 	cam_shake_strength = strength
