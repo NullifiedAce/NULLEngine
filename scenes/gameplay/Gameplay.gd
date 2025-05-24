@@ -252,12 +252,20 @@ func _ready() -> void:
 	player_strums.note_skin = ui_skin
 	strumlines.add_child(player_strums)
 
-	# load song scripts (put in assets/songs/SONGNAME)
-	var script_path:String = "res://assets/songs/"+METADATA.rawSongName.to_lower()+"/"
-	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
+	# load global song scripts (put in assets/data/scripts/songs/)
+	var global_song_script_path:String = "res://assets/data/scripts/songs/"
+	var file_list:PackedStringArray = Global.list_files_in_dir(global_song_script_path)
 	for item in file_list:
 		if item.ends_with(".tscn") or item.ends_with(".tscn.remap"):
-			var script:FunkinScript = FunkinScript.create(script_path+item.replace(".remap", ""), self)
+			var script:FunkinScript = FunkinScript.create(global_song_script_path+item.replace(".remap", ""), self)
+			script_group.add_script(script)
+
+	# load song scripts (put in assets/songs/SONGNAME)
+	var song_script_path:String = "res://assets/songs/"+METADATA.rawSongName.to_lower()+"/"
+	var song_file_list = Global.list_files_in_dir(song_script_path)
+	for item in song_file_list:
+		if item.ends_with(".tscn") or item.ends_with(".tscn.remap"):
+			var script:FunkinScript = FunkinScript.create(song_script_path+item.replace(".remap", ""), self)
 			script_group.add_script(script)
 
 	# load global scripts (put in assets/songs)
@@ -333,8 +341,8 @@ func load_spectator():
 	spectator.z_index = stage.character_positions["spectator"].z_index
 	spectator.get_child(0).material = stage.character_positions["spectator"].material
 
-	# load character scripts (put in scenes/gameplay/scripts/characters/CHARACTER_FOLDER)
-	var script_path:String = "res://scenes/gameplay/scripts/characters/"+spectator.character_script_folder+"/"
+	# load character scripts (put in assets/data/scripts/characters/CHARACTER_FOLDER)
+	var script_path:String = "res://assets/data/scripts/characters/"+spectator.character_script_folder+"/"
 	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
 	for item in file_list:
 		if item.ends_with(spectator.character_script_name+".tscn") or item.ends_with(spectator.character_script_name+".tscn.remap"):
@@ -354,8 +362,8 @@ func load_opponent():
 	opponent.z_index = stage.character_positions["opponent"].z_index
 	opponent.get_child(0).material = stage.character_positions["opponent"].material
 
-	# load character scripts (put in scenes/gameplay/scripts/characters/CHARACTER_FOLDER)
-	var script_path:String = "res://scenes/gameplay/scripts/characters/"+opponent.character_script_folder+"/"
+	# load character scripts (put in assets/data/scripts/characters/CHARACTER_FOLDER)
+	var script_path:String = "res://assets/data/scripts/characters/"+opponent.character_script_folder+"/"
 	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
 	for item in file_list:
 		if item.ends_with(opponent.character_script_name+".tscn") or item.ends_with(opponent.character_script_name+".tscn.remap"):
@@ -383,14 +391,13 @@ func load_player():
 	player.z_index = stage.character_positions["player"].z_index
 	player.get_child(0).material = stage.character_positions["player"].material
 
-	# load character scripts (put in scenes/gameplay/scripts/characters/CHARACTER_FOLDER)
-	var script_path:String = "res://scenes/gameplay/scripts/characters/"+player.character_script_folder+"/"
+	# load character scripts (put in assets/data/scripts/characters/CHARACTER_FOLDER)
+	var script_path:String = "res://assets/data/scripts/characters/"+player.character_script_folder+"/"
 	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
 	for item in file_list:
 		if item.ends_with(player.character_script_name+".tscn") or item.ends_with(player.character_script_name+".tscn.remap"):
 			var script:FunkinScript = FunkinScript.create(script_path+item.replace(".remap", ""), self)
 			script_group.add_script(script)
-			print("hio")
 
 func start_cutscene(postfix:String = "-start"):
 	var cutscene_path = "res://scenes/gameplay/cutscenes/" + METADATA.rawSongName.to_lower() + postfix + ".tscn"

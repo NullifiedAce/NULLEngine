@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c8ainqqtng2ce"]
 
-[ext_resource type="Script" uid="uid://bd4t5qrqxdkel" path="res://scenes/gameplay/scripts/characters/pico/blazin.gd" id="1_k1ax7"]
+[ext_resource type="Script" uid="uid://bd4t5qrqxdkel" path="res://assets/data/scripts/characters/pico/blazin.gd" id="1_k1ax7"]
 
 [node name="pico-blazin" type="Node"]
 script = ExtResource("1_k1ax7")
