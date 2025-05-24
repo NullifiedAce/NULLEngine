@@ -3,6 +3,7 @@
 extends Node
 
 @onready var hud_elements: Node = $'../HUDElements'
+@onready var accuracy_ranks: VBoxContainer = $"../Windows/Preferences/TabContainer/Ranks/RankTypes/Accuracy Ranks/ScrollContainer/VBoxContainer"
 
 func _save_hud(path: String):
 	print("Saving current HUD...")
@@ -10,9 +11,12 @@ func _save_hud(path: String):
 	var save_json:Dictionary = {
 		"HUDLabel": [],
 		"HUDBar": [],
+		"AccuracyRanks": [],
 	}
 
 	HUDHandler.hud_labels.clear()
+	HUDHandler.hud_bars.clear()
+	HUDHandler.accuracy_ranks.clear()
 
 	for i:HUDElement in hud_elements.get_children():
 		if i.current_type == 0:
@@ -22,9 +26,26 @@ func _save_hud(path: String):
 
 			HUDHandler.hud_labels.append(new_label)
 
+	for i in accuracy_ranks.get_children():
+		if i is RankButton:
+			var rank:HUDAccuracyRank = HUDAccuracyRank.new()
+			rank.rank_name = i.rank_name.text
+			rank.rank_accuracy = i.rank_accuracy.value
+			rank.null_rank = i.null_rank
+
+			save_json["AccuracyRanks"].append({
+				"RankName": i.rank_name.text,
+				"RankAccuracy": i.rank_accuracy.value,
+				"NullRank": i.null_rank
+			})
+ 
+			HUDHandler.accuracy_ranks.append(rank)
+
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(JSON.stringify({"HUD": save_json}, "\t"))
 	file.close()
+
+	SettingsAPI.set_setting("lastHudFile", path)
 
 	print("Saved HUD!")
 
@@ -35,7 +56,6 @@ func save_label(new:HUDLabel, old:HUDEditorLabel, element:HUDElement, save_data:
 
 	for i in old.item_array.get_children():
 		if i is HUDTextButton:
-			print("Saving item %s..." % i)
 			var new_item = {
 				"text": i.default_text.text,
 				"prefix_text": i.text_prefix.text,
@@ -47,9 +67,6 @@ func save_label(new:HUDLabel, old:HUDEditorLabel, element:HUDElement, save_data:
 			new.items.append(new_item)
 		if i is OptionButton:
 			new.layout_mode_option = i.get_item_text(i.selected)
-
-		else:
-			print("Item %s is not a HUDTextButton, skipping this one." % i)
 
 	new.font = old.font_options.get_item_text(old.font_options.selected).to_lower()
 	new.font_size = old.font_size.value

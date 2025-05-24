@@ -40,16 +40,11 @@ func rank_from_accuracy(accuracy:float):
 
 func create_default_ranks():
 	default_ranks.clear()
-	default_ranks.append(AccuracyRank.create(SettingsAPI.get_setting("s+ rank"), 100.0))
-	default_ranks.append(AccuracyRank.create(SettingsAPI.get_setting("s rank"), 90.0))
-	default_ranks.append(AccuracyRank.create(SettingsAPI.get_setting("a rank"), 80.0))
-	default_ranks.append(AccuracyRank.create(SettingsAPI.get_setting("b rank"), 70.0))
-	default_ranks.append(AccuracyRank.create(SettingsAPI.get_setting("c rank"), 55.0))
-	default_ranks.append(AccuracyRank.create(SettingsAPI.get_setting("d rank"), 45.0))
-	default_ranks.append(AccuracyRank.create(SettingsAPI.get_setting("e rank"), 40.0))
-	default_ranks.append(AccuracyRank.create(SettingsAPI.get_setting("f rank"), 0.000001))
-
-	null_rank = AccuracyRank.create(SettingsAPI.get_setting("null rank"), 0.0)
+	for i:HUDAccuracyRank in HUDHandler.accuracy_ranks:
+		if i.null_rank:
+			null_rank = AccuracyRank.create(i.rank_name, 0.0)
+		else:
+			default_ranks.append(AccuracyRank.create(i.rank_name, i.rank_accuracy))
 
 func set_results(score: int = 0, misses: int = 0, max_combo: int = 0, sicks: int = 0, goods: int = 0, bads: int = 0, shits: int = 0, total: int = 0):
 	final_score = score

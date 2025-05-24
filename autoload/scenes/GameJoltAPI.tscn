@@ -1,0 +1,143 @@
+[gd_scene load_steps=6 format=3 uid="uid://mjvaqbm186ue"]
+
+[ext_resource type="Script" uid="uid://qmnpunisienx" path="res://addons/gamejolt/main.gd" id="1_057jm"]
+[ext_resource type="Script" uid="uid://d3lnrj2nokkeh" path="res://autoload/scenes/GameJolt.gd" id="1_57jt6"]
+[ext_resource type="Texture2D" uid="uid://cvd4ggylb12c3" path="res://art/GameJoltAPI/logo.png" id="2_8q4pr"]
+[ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="2_bq1px"]
+[ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="4_57jt6"]
+
+[node name="GameJolt" type="CanvasLayer"]
+script = ExtResource("1_57jt6")
+
+[node name="GameJoltAPI" type="HTTPRequest" parent="."]
+script = ExtResource("1_057jm")
+data_path = "res://assets/gameJoltData.json"
+verbose = true
+metadata/_custom_type_script = "uid://qmnpunisienx"
+
+[node name="LogIn" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_bq1px")
+color = Color(0, 0, 0, 0.423529)
+
+[node name="GameJoltLogo" type="TextureRect" parent="LogIn"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -328.0
+offset_top = 32.0
+offset_right = 328.0
+offset_bottom = 104.0
+grow_horizontal = 2
+texture = ExtResource("2_8q4pr")
+
+[node name="Text" type="Label" parent="LogIn"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -173.5
+offset_bottom = -82.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("4_57jt6")
+theme_override_font_sizes/font_size = 24
+text = "NULL Engine makes use of the GameJolt API for Trophies and Leaderboards.
+
+If you'd wish you can log into your account below or continue without any of this."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LogIn"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -241.0
+offset_top = -266.0
+offset_right = 241.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LogIn/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 32
+
+[node name="Username" type="HBoxContainer" parent="LogIn/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="LogIn/ScrollContainer/VBoxContainer/Username"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Username: "
+vertical_alignment = 1
+
+[node name="Username" type="LineEdit" parent="LogIn/ScrollContainer/VBoxContainer/Username"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Username"
+alignment = 2
+expand_to_text_length = true
+
+[node name="GameToken" type="HBoxContainer" parent="LogIn/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="LogIn/ScrollContainer/VBoxContainer/GameToken"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Game Toke:"
+vertical_alignment = 1
+
+[node name="GameToken" type="LineEdit" parent="LogIn/ScrollContainer/VBoxContainer/GameToken"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Game Token"
+alignment = 2
+expand_to_text_length = true
+secret = true
+
+[node name="Buttons" type="HBoxContainer" parent="LogIn/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 56
+alignment = 1
+
+[node name="LogIn" type="Button" parent="LogIn/ScrollContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Log In"
+
+[node name="Cancel" type="Button" parent="LogIn/ScrollContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Continue
+without account"

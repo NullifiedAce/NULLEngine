@@ -1,7 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpvmujqng6bmj"]
 
-[ext_resource type="Script" uid="uid://w1fcl262csw1" path="res://scenes/trophy/Menu.gd" id="1_lj40j"]
+[ext_resource type="Script" uid="uid://w1fcl262csw1" path="res://scenes/menus/trophy/Menu.gd" id="1_lj40j"]
 
 [node name="AchievementsMenu" type="Node2D"]
 script = ExtResource("1_lj40j")
-metadata/_edit_vertical_guides_ = [640.0]

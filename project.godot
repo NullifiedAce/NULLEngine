@@ -26,6 +26,7 @@ config/icon="res://assets/images/default_mod_icon.png"
 SaveData="*res://autoload/scripts/SaveData.gd"
 SettingsAPI="*res://autoload/scripts/SettingsAPI.gd"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
+GameJolt="*res://autoload/scenes/GameJoltAPI.tscn"
 ModManager="*res://autoload/scripts/ModManager.gd"
 EngineTheme="*res://autoload/scripts/EngineTheme.gd"
 TrophyHandler="*res://autoload/scenes/TrophyDisplay.tscn"
@@ -53,7 +54,7 @@ mouse_cursor/custom_image="res://assets/images/cursor/cursor-default.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg")
+enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg", "res://addons/gamejolt/plugin.cfg")
 
 [engine]
 

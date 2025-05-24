@@ -43,6 +43,8 @@ func _file_stuff(id:int):
 	var file = file_menu.get_popup()
 	print(file.get_item_text(id))
 	match file.get_item_text(id):
+		"New HUD":
+			for i in hud_elements.get_children(): i.queue_free()
 		"Open HUD...":
 			open_hud_dialog.show()
 		"Load Default HUD":

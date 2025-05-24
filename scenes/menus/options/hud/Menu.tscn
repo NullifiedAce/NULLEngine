@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqsrwpb82r34v"]
+[gd_scene load_steps=16 format=3 uid="uid://bqsrwpb82r34v"]
 
 [ext_resource type="Script" uid="uid://bydrrqjf2awjd" path="res://scenes/menus/options/hud/Menu.gd" id="1_028jv"]
 [ext_resource type="Script" uid="uid://b1pwa7eu337d2" path="res://scenes/menus/options/hud/ThemeHandler.gd" id="2_7hp2n"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" uid="uid://co00xq8h2ivbw" path="res://classes/EngineTheme/EngineThemeColor.gd" id="6_sg4b6"]
 [ext_resource type="PackedScene" uid="uid://d3skr632i6bbj" path="res://scenes/menus/options/hud/Elements/HUDElement.tscn" id="7_k8jfr"]
 [ext_resource type="Script" uid="uid://d1mg4gki84igd" path="res://classes/EngineTheme/EngineThemeOption.gd" id="8_cgx1m"]
+[ext_resource type="Script" uid="uid://3e3h47gdrf3f" path="res://scenes/menus/options/hud/windows/Preferences.gd" id="8_ricit"]
 [ext_resource type="Script" uid="uid://d1m5agyfh2uer" path="res://classes/EngineTheme/EngineThemeSpinBox.gd" id="9_36kso"]
+[ext_resource type="PackedScene" uid="uid://bumoha7lb8qch" path="res://scenes/menus/options/hud/Elements/RankButton.tscn" id="11_lo8x1"]
 
 [sub_resource type="Gradient" id="Gradient_yb4yc"]
 interpolation_mode = 2
@@ -158,6 +160,7 @@ size = Vector2i(512, 512)
 min_size = Vector2i(128, 128)
 content_scale_mode = 1
 content_scale_aspect = 1
+script = ExtResource("8_ricit")
 
 [node name="BG" type="ColorRect" parent="Windows/Preferences"]
 anchors_preset = 15
@@ -1127,6 +1130,14 @@ layout_mode = 2
 focus_mode = 0
 text = "+ Add Rank"
 
+[node name="RankOptionButton" parent="Windows/Preferences/TabContainer/Ranks/RankTypes/Accuracy Ranks/ScrollContainer/VBoxContainer" instance=ExtResource("11_lo8x1")]
+layout_mode = 2
+tooltip_text = "This rank is required as it serves as the N/A rank when no notes were hit yet."
+null_rank = true
+
+[node name="RankName" parent="Windows/Preferences/TabContainer/Ranks/RankTypes/Accuracy Ranks/ScrollContainer/VBoxContainer/RankOptionButton/Window/ScrollContainer/VBoxContainer/HBoxContainer" index="1"]
+text = "N/A"
+
 [node name="Funkin Ranks" type="TabBar" parent="Windows/Preferences/TabContainer/Ranks/RankTypes"]
 visible = false
 layout_mode = 2
@@ -1209,3 +1220,5 @@ filters = PackedStringArray("*.json")
 [connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" method="_on_value_changed"]
 [connection signal="file_selected" from="Windows/SaveDialog" to="Saving" method="_save_hud"]
 [connection signal="file_selected" from="Windows/OpenDialog" to="Loading" method="_on_hud_opened"]
+
+[editable path="Windows/Preferences/TabContainer/Ranks/RankTypes/Accuracy Ranks/ScrollContainer/VBoxContainer/RankOptionButton"]

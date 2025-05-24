@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://bumoha7lb8qch"]
+
+[ext_resource type="Script" uid="uid://ibx7cx8bspqu" path="res://scenes/menus/options/hud/Elements/RankButton.gd" id="1_63b8d"]
+
+[node name="RankOptionButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+focus_mode = 0
+script = ExtResource("1_63b8d")
+
+[node name="Window" type="Window" parent="."]
+title = "Configure Rank"
+initial_position = 1
+size = Vector2i(256, 96)
+visible = false
+min_size = Vector2i(256, 96)
+
+[node name="BG" type="ColorRect" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameTitle" type="Label" parent="Window/ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Rank Name:"
+vertical_alignment = 1
+
+[node name="RankName" type="TextEdit" parent="Window/ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(108, 36)
+layout_mode = 2
+size_flags_horizontal = 10
+tooltip_text = "The name of the rank displayed during gameplay."
+placeholder_text = "Rank Name"
+scroll_fit_content_height = true
+scroll_fit_content_width = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Window/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AccuracyTitle" type="Label" parent="Window/ScrollContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Accuracy:"
+vertical_alignment = 1
+
+[node name="RankAccuracy" type="SpinBox" parent="Window/ScrollContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(108, 36)
+layout_mode = 2
+size_flags_horizontal = 10
+tooltip_text = "The accuracy needed for the rank."
+step = 0.01
