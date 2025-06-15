@@ -25,8 +25,8 @@ script = ExtResource("1_706s6")
 
 [node name="Config" type="Button" parent="."]
 layout_mode = 0
-offset_left = -48.0
-offset_right = -8.0
+offset_left = 8.0
+offset_right = 48.0
 offset_bottom = 40.0
 focus_mode = 0
 icon = ExtResource("1_m38vx")
@@ -34,9 +34,9 @@ icon_alignment = 1
 
 [node name="Move" type="Button" parent="."]
 layout_mode = 0
-offset_left = -48.0
+offset_left = 8.0
 offset_top = 48.0
-offset_right = -8.0
+offset_right = 48.0
 offset_bottom = 88.0
 focus_mode = 0
 icon = ExtResource("3_kee81")
@@ -126,6 +126,7 @@ text = "Downscroll Mutliplier:"
 [node name="Downscroll SpinBox" type="SpinBox" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
 layout_mode = 2
 size_flags_horizontal = 0
+step = 0.1
 value = 1.0
 suffix = "x"
 
@@ -255,6 +256,12 @@ focus_mode = 0
 texture_normal = ExtResource("16_bhlsy")
 stretch_mode = 0
 
+[node name="UseOffset" type="CheckBox" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
+layout_mode = 2
+tooltip_text = "If checked, uses the position of the element as offset."
+focus_mode = 0
+text = "Use position as offset"
+
 [node name="HSeparator2" type="HSeparator" parent="Configure/ScrollContainer/VBoxContainer/Default Options"]
 layout_mode = 2
 
@@ -288,3 +295,17 @@ alignment = 1
 [node name="Delete" type="Button" parent="Configure/HBoxContainer"]
 layout_mode = 2
 text = "Delete"
+
+[connection signal="pressed" from="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsTop/TopLeft" to="." method="_on_anchor_pressed" binds= [0]]
+[connection signal="pressed" from="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsTop/TopCenter" to="." method="_on_anchor_pressed" binds= [5]]
+[connection signal="pressed" from="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsTop/TopRight" to="." method="_on_anchor_pressed" binds= [1]]
+[connection signal="pressed" from="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsTop/TopFill" to="." method="_on_anchor_pressed" binds= [10]]
+[connection signal="pressed" from="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsCenter/CenterLeft" to="." method="_on_anchor_pressed" binds= [4]]
+[connection signal="pressed" from="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsCenter/Center" to="." method="_on_anchor_pressed" binds= [8]]
+[connection signal="pressed" from="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsCenter/CenterRight" to="." method="_on_anchor_pressed" binds= [6]]
+[connection signal="pressed" from="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsCenter/CenterFill" to="." method="_on_anchor_pressed" binds= [13]]
+[connection signal="pressed" from="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsCenter/Full" to="." method="_on_anchor_pressed" binds= [15]]
+[connection signal="pressed" from="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsBottom/BottomLeft" to="." method="_on_anchor_pressed" binds= [2]]
+[connection signal="pressed" from="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsBottom/BottomCenter" to="." method="_on_anchor_pressed" binds= [7]]
+[connection signal="pressed" from="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsBottom/BottomRight" to="." method="_on_anchor_pressed" binds= [3]]
+[connection signal="pressed" from="Configure/ScrollContainer/VBoxContainer/Default Options/AnchorsBottom/BottomFill" to="." method="_on_anchor_pressed" binds= [12]]

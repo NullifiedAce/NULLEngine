@@ -1,10 +1,13 @@
 extends MusicBeatScene
 class_name HUDEditor
 
-@onready var file_menu: MenuButton = $MenuOptions/File
-@onready var edit_menu: MenuButton = $MenuOptions/Edit
-@onready var options_menu: MenuButton = $MenuOptions/Options
-@onready var help_menu: MenuButton = $MenuOptions/Help
+var use_donwscroll:bool = false
+var dragging:bool = false
+
+@onready var file_menu: MenuButton = $CanvasLayer/MenuOptions/File
+@onready var edit_menu: MenuButton = $CanvasLayer/MenuOptions/Edit
+@onready var options_menu: MenuButton = $CanvasLayer/MenuOptions/Options
+@onready var help_menu: MenuButton = $CanvasLayer/MenuOptions/Help
 
 @onready var preferences_window: Window = $Windows/Preferences
 @onready var add_popup: PopupMenu = $AddPopup
@@ -16,6 +19,8 @@ class_name HUDEditor
 
 @onready var saving: Node = $Saving
 @onready var loading: Node = $Loading
+
+@onready var camera: Camera2D = $Camera
 
 func _ready() -> void:
 	for i in FPS.get_children():
@@ -30,6 +35,10 @@ func _ready() -> void:
 	edit_menu.get_popup().id_pressed.connect(_edit)
 	options_menu.get_popup().id_pressed.connect(_options)
 	add_popup.id_pressed.connect(_add_stuff)
+
+func _process(delta: float) -> void:
+	for i in hud_elements.get_children():
+		i.use_downscroll = use_donwscroll
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("hud_exit"):
@@ -66,6 +75,7 @@ func _options(id:int):
 	match options_menu.get_popup().get_item_text(id):
 		"Use downscroll?":
 			var is_pressed = not options_menu.get_popup().is_item_checked(id)
+			use_donwscroll = is_pressed
 			options_menu.get_popup().set_item_checked(id, is_pressed)
 
 func _add_stuff(id:int):

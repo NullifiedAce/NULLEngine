@@ -3,7 +3,7 @@
 extends Node
 
 @onready var hud_elements: Node = $'../HUDElements'
-@onready var accuracy_ranks: VBoxContainer = $"../Windows/Preferences/TabContainer/Ranks/RankTypes/Accuracy Ranks/ScrollContainer/VBoxContainer"
+@onready var accuracy_ranks: VBoxContainer = $"../Windows/Preferences/TabContainer/AccuracyRanks/ScrollContainer/VBoxContainer"
 
 func _save_hud(path: String):
 	print("Saving current HUD...")
@@ -52,7 +52,9 @@ func _save_hud(path: String):
 func save_label(new:HUDLabel, old:HUDEditorLabel, element:HUDElement, save_data:Dictionary):
 	new.position = element.position
 	new.downscroll_multiplier = element.donwscroll_box.value
+	new.anchor_preset = element.anchor_preset
 	new.rotation = element.rotation
+	new.use_offset = element.use_offset.button_pressed
 
 	for i in old.item_array.get_children():
 		if i is HUDTextButton:
@@ -67,6 +69,8 @@ func save_label(new:HUDLabel, old:HUDEditorLabel, element:HUDElement, save_data:
 			new.items.append(new_item)
 		if i is OptionButton:
 			new.layout_mode_option = i.get_item_text(i.selected)
+
+	new.alignment = old.alignment.selected
 
 	new.font = old.font_options.get_item_text(old.font_options.selected).to_lower()
 	new.font_size = old.font_size.value
@@ -85,6 +89,9 @@ func save_label(new:HUDLabel, old:HUDEditorLabel, element:HUDElement, save_data:
 		"PosY": new.position.y,
 		"DownscrollMulti": new.downscroll_multiplier,
 		"Rotation": new.rotation,
+
+		"Alignment": new.alignment,
+		"AnchorPreset": new.anchor_preset,
 
 		"Items": new.items,
 		"LayoutMode": new.layout_mode_option,

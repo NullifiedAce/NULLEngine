@@ -8,12 +8,16 @@ func _ready() -> void:
 
 func setup_labels():
 	for i in HUDHandler.hud_labels:
-		var new_label = load("res://scenes/gameplay/hud/Objects/HUDLabel.tscn").instantiate()
+		var new_label:HUDLabel = load("res://scenes/gameplay/hud/Objects/HUDLabel.tscn").instantiate()
 		new_label.position = i.position
+		new_label.use_offset = i.use_offset
+		new_label.offsets = i.position
 		new_label.downscroll_multiplier = i.downscroll_multiplier
 		new_label.rotation = i.rotation
 		new_label.items = i.items
 		new_label.layout_mode_option = i.layout_mode_option
+		new_label.anchor_preset = i.anchor_preset
+		new_label.alignment = i.alignment
 		setup_label_style(new_label, {
 			"font": i.font,
 			"font color": i.font_color,

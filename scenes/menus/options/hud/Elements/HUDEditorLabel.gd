@@ -8,6 +8,8 @@ var output_text:String
 @onready var customize_window: Window = $CustomizeWindow
 @onready var manage_window: Window = $ManageWindow
 
+@onready var alignment: OptionButton = $Alignment
+
 @onready var manage_items: Button = $ManageItems
 
 @onready var font_options: OptionButton = $CustomizeWindow/ScrollContainer/VBoxContainer/HBoxContainer/FontOptions

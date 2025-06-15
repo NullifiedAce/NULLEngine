@@ -3,6 +3,10 @@ class_name HUDElement
 
 var current_type:int = 0
 
+var use_downscroll:bool = false
+
+var anchor_preset = 0
+
 var hud_label:HUDEditorLabel
 var hud_bar:HUDBar
 
@@ -21,6 +25,8 @@ var hud_bar:HUDBar
 @onready var y_pos_box: SpinBox = $'Configure/ScrollContainer/VBoxContainer/Default Options/HBoxContainer2/YPos'
 @onready var donwscroll_box: SpinBox = $'Configure/ScrollContainer/VBoxContainer/Default Options/Downscroll SpinBox'
 
+@onready var use_offset: CheckBox = $"Configure/ScrollContainer/VBoxContainer/Default Options/UseOffset"
+
 @onready var rotation_box: SpinBox = $'Configure/ScrollContainer/VBoxContainer/Default Options/Rotation'
 
 @onready var delete_button: Button = $Configure/HBoxContainer/Delete
@@ -36,12 +42,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if move.button_pressed:
-		position.x = clampf(get_viewport().get_mouse_position().x + 28, 20, 1320)
-		position.y = clampf(get_viewport().get_mouse_position().y - 56, -30, 705)
+		position.x = clampf(get_viewport().get_mouse_position().x - 28, 20, 1320)
+		position.y = clampf(get_viewport().get_mouse_position().y - 64, -30, 705)
 		x_pos_box.value = position.x
 		y_pos_box.value = position.y
 	else:
-		position = Vector2(x_pos_box.value, y_pos_box.value)
+		position = Vector2(x_pos_box.value, y_pos_box.value if !use_downscroll else y_pos_box.value * donwscroll_box.value)
 
 	rotation = deg_to_rad(rotation_box.value)
 
@@ -72,3 +78,6 @@ func _update_type(index:int):
 func _config_window():
 	if configure_window.visible: configure_window.hide()
 	else: configure_window.show()
+
+func _on_anchor_pressed(extra_arg_0: int) -> void:
+	anchor_preset = extra_arg_0

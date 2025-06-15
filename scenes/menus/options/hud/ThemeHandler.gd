@@ -1,6 +1,6 @@
 extends Node
 
-@onready var bg: BGSprite = $'../BG'
+@onready var bg: BGSprite = $"../CanvasLayer/BG"
 
 func _ready() -> void:
 	_on_reload_pressed()

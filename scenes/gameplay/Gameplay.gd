@@ -36,6 +36,8 @@ var combo:int = 0
 var max_combo:int = 0
 var ghost_taps:int = 0
 var key_pressed:int = 0
+var rank:float = 0.0
+var notes_hit:int = 0
 
 var sicks: int = 0
 var goods: int = 0
@@ -836,6 +838,7 @@ func good_note_hit(note:Note):
 	print(healthChange)
 
 	if note.should_hit:
+		notes_hit += 1
 		applyScore(score, daRating, healthChange, isComboBreak)
 		pop_up_score(judgement)
 	else:
@@ -940,7 +943,11 @@ var score_values: Dictionary = {
 	"max combo": format_number(max_combo),
 	"ghost presses": format_number(ghost_taps),
 	"key pressed": format_number(key_pressed),
-	"time": Global.format_time(cur_time),
+	"current time": Global.format_time(cur_time),
+	"max time": Global.format_time(max_time),
+	"time left": Global.format_time(max_time - cur_time),
+	"song name": "Bopeebo",
+	"difficulty": "Hard",
 	"sick hits": sicks,
 	"good hits": goods,
 	"bad hits": bads,
@@ -964,13 +971,17 @@ func _process(delta:float) -> void:
 	score_values["misses"] =		misses
 	score_values["accuracy"] = 		snapped(accuracy * 100.0, 0.01)
 	score_values["accuracy rank"] = Ranking.rank_from_accuracy(accuracy * 100.0).name
-	score_values["rank"] =			"N/A"
+	score_values["rank"] =			calculate_rank()
 	score_values["health"] =		snapped((health / Constants.HEALTH_MAX) * 100, 0)
 	score_values["combo"] =			format_number(combo)
 	score_values["max combo"] =		format_number(max_combo)
 	score_values["ghost presses"] =	format_number(ghost_taps)
 	score_values["key presses"] =	format_number(key_pressed)
-	score_values["time"] =			Global.format_time(Conductor.position / 1000)
+	score_values["current time"] =	Global.format_time(Conductor.position / 1000)
+	score_values["max time"] =		Global.format_time(max_time / 1000)
+	score_values["time left"] =		Global.format_time((max_time / 1000) - (Conductor.position / 1000))
+	score_values["song name"] =		METADATA.songName.capitalize()
+	score_values["difficulty"] =	Global.current_difficulty.capitalize()
 	score_values["sick hits"] =		format_number(sicks)
 	score_values["good hits"] =		format_number(goods)
 	score_values["bad hits"] =		format_number(bads)
@@ -1053,6 +1064,25 @@ func _physics_process(_delta: float) -> void:
 		script_group.call_func("on_note_spawn", [new_note])
 
 		note_data_array.erase(note)
+
+func calculate_rank():
+	if float(notes_hit + misses) != 0:
+		rank = (float(sicks) + float(goods)) / float(notes_hit + misses)
+	else:
+		rank = 0.00
+
+	if rank == Constants.RANK_PERFECT_THRESHOLD:
+		return "PERFECT!!!"
+	elif rank >= Constants.RANK_EXCELLENT_THRESHOLD:
+		return "Excellent!!"
+	elif rank >= Constants.RANK_GREAT_THRESHOLD:
+		return "Great!"
+	elif rank >= Constants.RANK_GOOD_THRESHOLD:
+		return "Good"
+	elif rank > 0.00:
+		return "Loss"
+	else:
+		return "N/A"
 
 var can_skip_intro: bool = true
 

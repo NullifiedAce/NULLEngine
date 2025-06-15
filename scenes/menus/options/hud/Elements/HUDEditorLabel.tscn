@@ -9,6 +9,30 @@ offset_right = 1.0
 offset_bottom = 23.0
 script = ExtResource("1_i0r70")
 
+[node name="AlignmentTitle" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Alignment:"
+
+[node name="Alignment" type="OptionButton" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 20.0
+focus_mode = 0
+selected = 0
+item_count = 4
+popup/item_0/text = "Left"
+popup/item_0/id = 0
+popup/item_1/text = "Center"
+popup/item_1/id = 1
+popup/item_2/text = "Right"
+popup/item_2/id = 2
+popup/item_3/text = "Fill"
+popup/item_3/id = 3
+
 [node name="ManageItems" type="Button" parent="."]
 visible = false
 layout_mode = 0

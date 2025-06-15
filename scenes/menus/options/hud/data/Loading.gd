@@ -1,7 +1,7 @@
 extends Node
 
 @onready var hud_elements: Node = $'../HUDElements'
-@onready var accuracy_ranks: VBoxContainer = $"../Windows/Preferences/TabContainer/Ranks/RankTypes/Accuracy Ranks/ScrollContainer/VBoxContainer"
+@onready var accuracy_ranks: VBoxContainer = $"../Windows/Preferences/TabContainer/AccuracyRanks/ScrollContainer/VBoxContainer"
 
 func load_hud():
 	for i in HUDHandler.hud_labels:
@@ -34,6 +34,9 @@ func load_label(old:HUDLabel):
 	element.y_pos_box.value = old.position.y
 	element.donwscroll_box.value = old.downscroll_multiplier
 	element.rotation_box.value = old.rotation
+
+	element.use_offset.button_pressed = old.use_offset
+	element.anchor_preset = old.anchor_preset
 
 	var label = element.hud_label
 

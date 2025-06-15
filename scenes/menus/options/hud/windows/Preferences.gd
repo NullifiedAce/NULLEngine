@@ -1,7 +1,7 @@
 extends Window
 
-@onready var accuracy_ranks: VBoxContainer = $"TabContainer/Ranks/RankTypes/Accuracy Ranks/ScrollContainer/VBoxContainer"
-@onready var add_accuracy_rank_button: Button = $"TabContainer/Ranks/RankTypes/Accuracy Ranks/ScrollContainer/VBoxContainer/AddRank"
+@onready var accuracy_ranks: VBoxContainer = $TabContainer/AccuracyRanks/ScrollContainer/VBoxContainer
+@onready var add_accuracy_rank_button: Button = $TabContainer/AccuracyRanks/ScrollContainer/VBoxContainer/AddRank
 
 func _ready() -> void:
 	add_accuracy_rank_button.pressed.connect(add_accuracy_rank)
