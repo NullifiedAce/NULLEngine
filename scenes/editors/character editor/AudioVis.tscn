@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm5kgxle4i1v5"]
+
+[ext_resource type="Script" uid="uid://bdsgr0skffsel" path="res://scenes/editors/character editor/AudioVisTest.gd" id="1_vtd66"]
+
+[node name="AudioVis" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vtd66")
+
+[node name="Right" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bottom" type="Control" parent="Right"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Right/Bottom"]
+custom_minimum_size = Vector2(2, 1)
+layout_mode = 0
+offset_right = 2.0
+offset_bottom = 1.0
+pivot_offset = Vector2(1, 0.5)
+color = Color(0.127736, 0.127736, 0.127736, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Right/Bottom"]
+custom_minimum_size = Vector2(2, 1)
+layout_mode = 0
+offset_left = 3.0
+offset_right = 5.0
+offset_bottom = 1.0
+pivot_offset = Vector2(1, 0.5)
+color = Color(0.127736, 0.127736, 0.127736, 1)

@@ -1,7 +1,7 @@
 extends Node2D
 class_name Stage
 
-@onready var game:Gameplay = $"../"
+var game:Gameplay
 
 @export var default_cam_zoom:float = 1.05
 
@@ -15,6 +15,10 @@ class_name Stage
 	"spectator": $"Character Positions/Spectator",
 	"player": $"Character Positions/Player"
 }
+
+func _ready() -> void:
+	if get_tree().current_scene is Gameplay:
+		game = get_tree().current_scene
 
 func _ready_post():
 	pass

@@ -11,27 +11,29 @@ default_cam_zoom = 1.1
 player_cam_offset = Vector2(-100, -100)
 opponent_cam_offset = Vector2(150, -100)
 
-[node name="PL1" type="Parallax2D" parent="."]
+[node name="0-9" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.9, 0.9)
 
-[node name="stageBack" type="Sprite2D" parent="PL1"]
-z_index = 10
+[node name="stageBack" type="Sprite2D" parent="0-9"]
+z_index = 1
 position = Vector2(-600, -200)
 texture = ExtResource("2_y78mw")
 centered = false
 
-[node name="stageFront" type="Sprite2D" parent="PL1"]
-z_index = 20
+[node name="1-0" type="Parallax2D" parent="."]
+
+[node name="stageFront" type="Sprite2D" parent="1-0"]
+z_index = 2
 position = Vector2(-650, 600)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_ac72p")
 centered = false
 
-[node name="PL2" type="Parallax2D" parent="."]
+[node name="1-3" type="Parallax2D" parent="."]
 scroll_scale = Vector2(1.3, 1.3)
 
-[node name="stageCurtains" type="Sprite2D" parent="PL2"]
-z_index = 30
+[node name="stageCurtains" type="Sprite2D" parent="1-3"]
+z_index = 10
 position = Vector2(-500, -300)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("4_gk1p1")
@@ -40,13 +42,13 @@ centered = false
 [node name="Character Positions" type="Node2D" parent="."]
 
 [node name="Opponent" type="Node2D" parent="Character Positions"]
-z_index = 200
+z_index = 3
 position = Vector2(335, 885)
 
 [node name="Spectator" type="Node2D" parent="Character Positions"]
-z_index = 100
+z_index = 3
 position = Vector2(751.5, 787)
 
 [node name="Player" type="Node2D" parent="Character Positions"]
-z_index = 300
+z_index = 3
 position = Vector2(989.5, 885)

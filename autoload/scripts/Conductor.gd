@@ -19,6 +19,9 @@ var cur_dec_beat:float = 0
 var cur_dec_step:float = 0
 var cur_dec_section:float = 0
 
+var numerator:int = 4
+var denominator:int = 4
+
 # i am so fucking happy you can make arrays of custom resources now
 var bpm_change_map:Array[BPMChangeEvent] = []
 
@@ -59,12 +62,12 @@ func _process(delta):
 	if last_change.bpm > 0 and bpm != last_change.bpm: change_bpm(last_change.bpm)
 
 	cur_step = last_change.step_time + floor((position - last_change.song_time) / step_crochet)
-	cur_beat = floor(cur_step / 4.0)
-	cur_section = floor(cur_step / 16)
+	cur_beat = floor(cur_step / numerator)
+	cur_section = floor(cur_step / (numerator * denominator))
 
 	cur_dec_step = last_change.step_time + ((position - last_change.song_time) / step_crochet)
-	cur_dec_beat = cur_dec_step / 4.0
-	cur_dec_section = cur_dec_step / 16.0
+	cur_dec_beat = cur_dec_step / numerator
+	cur_dec_section = cur_dec_step / (numerator * denominator)
 
 	if old_step != cur_step && cur_step > 0: step_hit.emit(cur_step)
 	if old_beat != cur_beat && cur_beat > 0: beat_hit.emit(cur_beat)

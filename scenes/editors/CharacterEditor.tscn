@@ -1,29 +1,423 @@
-[gd_scene load_steps=6 format=3 uid="uid://c46rwg2l7p4we"]
+[gd_scene load_steps=14 format=3 uid="uid://c46rwg2l7p4we"]
 
 [ext_resource type="Script" uid="uid://b7lcxeqkqqoqq" path="res://scenes/editors/CharacterEditor.gd" id="1_u2pfu"]
-[ext_resource type="PackedScene" uid="uid://cbld2pm6f27au" path="res://scenes/gameplay/stages/mainStage.tscn" id="2_72ttl"]
+[ext_resource type="Theme" uid="uid://dqqyiyf33vtjn" path="res://assets/styles/NULLEngine.tres" id="2_6v8at"]
 [ext_resource type="PackedScene" uid="uid://cyj73wfovhpu" path="res://scenes/gameplay/characters/gf.tscn" id="3_b4g0o"]
+[ext_resource type="Script" uid="uid://bfi3s1atfmf37" path="res://classes/EditorCamera.gd" id="3_kc7xh"]
 [ext_resource type="PackedScene" uid="uid://bv2bmp1oon3uw" path="res://scenes/gameplay/characters/dad.tscn" id="4_6qktl"]
 [ext_resource type="PackedScene" uid="uid://rahjtmlrruke" path="res://scenes/gameplay/characters/bf.tscn" id="5_t3be4"]
+[ext_resource type="Script" uid="uid://dmknvxcthud7h" path="res://scenes/editors/character editor/windows/BackgroundTrack.gd" id="7_57n0p"]
+[ext_resource type="Texture2D" uid="uid://bu1lcynh7qj3l" path="res://assets/images/material_icons/Editors/Play.svg" id="7_eguqf"]
+[ext_resource type="Script" uid="uid://8mxbydkyk7td" path="res://scripts/AudioPlayer.gd" id="7_kc7xh"]
+[ext_resource type="Theme" uid="uid://cssw0ibglp2x6" path="res://assets/styles/FileButton.tres" id="7_y3yfv"]
+[ext_resource type="Script" uid="uid://bdsgr0skffsel" path="res://scenes/editors/character editor/AudioVisTest.gd" id="8_lpa0m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpa0m"]
+bg_color = Color(0.261113, 0.261113, 0.261113, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3yfv"]
+bg_color = Color(0.235732, 0.235732, 0.235732, 1)
 
 [node name="CharacterEditor" type="Node2D"]
 script = ExtResource("1_u2pfu")
+metadata/_custom_type_script = "uid://dbxwmps7r1syc"
 
-[node name="Stage" parent="." instance=ExtResource("2_72ttl")]
-script = null
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="TopBar" type="ColorRect" parent="Menu"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+color = Color(0.215686, 0.215686, 0.215686, 1)
+
+[node name="MenuButtons" type="HBoxContainer" parent="Menu/TopBar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 448.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+
+[node name="File" type="MenuButton" parent="Menu/TopBar/MenuButtons"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+theme = ExtResource("2_6v8at")
+text = "File"
+flat = false
+switch_on_hover = true
+
+[node name="Edit" type="MenuButton" parent="Menu/TopBar/MenuButtons"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+theme = ExtResource("2_6v8at")
+text = "Edit"
+flat = false
+switch_on_hover = true
+
+[node name="Windows" type="MenuButton" parent="Menu/TopBar/MenuButtons"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+theme = ExtResource("2_6v8at")
+text = "Windows"
+flat = false
+switch_on_hover = true
+item_count = 4
+popup/item_0/text = "Character Data"
+popup/item_0/checkable = 1
+popup/item_0/id = 0
+popup/item_1/text = "Animations"
+popup/item_1/checkable = 1
+popup/item_1/id = 1
+popup/item_2/text = "Data File"
+popup/item_2/checkable = 1
+popup/item_2/id = 2
+popup/item_3/text = "Background Track"
+popup/item_3/checkable = 1
+popup/item_3/id = 3
+
+[node name="About" type="MenuButton" parent="Menu/TopBar/MenuButtons"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+theme = ExtResource("2_6v8at")
+text = "About"
+flat = false
+switch_on_hover = true
+
+[node name="Title" type="Label" parent="Menu/TopBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -11.5
+offset_right = -8.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.433266, 0.433266, 0.433266, 1)
+text = "Character Editor V1.0"
+horizontal_alignment = 2
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+script = ExtResource("3_kc7xh")
 
 [node name="Character Ghosts" type="Node2D" parent="."]
 modulate = Color(0, 0, 0, 0.6)
 
 [node name="gf" parent="Character Ghosts" instance=ExtResource("3_b4g0o")]
-position = Vector2(310, 76)
+position = Vector2(751.5, 787)
 
 [node name="dad" parent="Character Ghosts" instance=ExtResource("4_6qktl")]
-position = Vector2(49, 805)
+position = Vector2(335, 885)
 
 [node name="bf" parent="Character Ghosts" instance=ExtResource("5_t3be4")]
-position = Vector2(774, 54)
+position = Vector2(989.5, 885)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(640, 360)
-zoom = Vector2(0.9, 0.9)
+[node name="Windows" type="Node" parent="."]
+
+[node name="Welcome" type="Window" parent="Windows"]
+title = "Welcome Dialog"
+initial_position = 1
+size = Vector2i(896, 512)
+unresizable = true
+min_size = Vector2i(256, 256)
+
+[node name="BG" type="ColorRect" parent="Windows/Welcome"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Windows/Welcome"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Recent" type="Panel" parent="Windows/Welcome/HBoxContainer"]
+custom_minimum_size = Vector2(276, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lpa0m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Welcome/HBoxContainer/Recent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RecentTitle" type="Label" parent="Windows/Welcome/HBoxContainer/Recent/VBoxContainer"]
+layout_mode = 2
+text = "Open Recent"
+
+[node name="HSeparator" type="HSeparator" parent="Windows/Welcome/HBoxContainer/Recent/VBoxContainer"]
+layout_mode = 2
+
+[node name="Recent" type="Panel" parent="Windows/Welcome/HBoxContainer/Recent/VBoxContainer"]
+custom_minimum_size = Vector2(256, 224)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y3yfv")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Windows/Welcome/HBoxContainer/Recent/VBoxContainer/Recent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Welcome/HBoxContainer/Recent/VBoxContainer/Recent/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="Windows/Welcome/HBoxContainer/Recent/VBoxContainer/Recent/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("7_y3yfv")
+text = "res://assets/data/characters/bf.xml"
+alignment = 0
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="Windows/Welcome/HBoxContainer/Recent/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+text = "Open character..."
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Welcome/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Create" type="Panel" parent="Windows/Welcome/HBoxContainer"]
+custom_minimum_size = Vector2(276, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lpa0m")
+
+[node name="VSeparator2" type="VSeparator" parent="Windows/Welcome/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Existing" type="Panel" parent="Windows/Welcome/HBoxContainer"]
+custom_minimum_size = Vector2(276, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lpa0m")
+
+[node name="Data File" type="Window" parent="Windows"]
+disable_3d = true
+title = "Character Data File"
+position = Vector2i(697, 130)
+size = Vector2i(512, 512)
+visible = false
+min_size = Vector2i(128, 128)
+
+[node name="CodeSpace" type="CodeEdit" parent="Windows/Data File"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background Track" type="Window" parent="Windows"]
+title = "Background Track"
+position = Vector2i(40, 100)
+size = Vector2i(256, 128)
+visible = false
+unresizable = true
+min_size = Vector2i(256, 128)
+max_size = Vector2i(256, 128)
+script = ExtResource("7_57n0p")
+
+[node name="BG" type="ColorRect" parent="Windows/Background Track"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+metadata/_edit_lock_ = true
+
+[node name="AudioVis" type="Control" parent="Windows/Background Track" node_paths=PackedStringArray("audio_player")]
+modulate = Color(0, 0, 0, 0.12549)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, -1)
+pivot_offset = Vector2(128, 64)
+script = ExtResource("8_lpa0m")
+audio_player = NodePath("../../../Music")
+
+[node name="Track" type="OptionButton" parent="Windows/Background Track"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -39.5
+offset_right = 101.0
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+selected = 0
+item_count = 3
+popup/item_0/text = "01. Artistic Expression"
+popup/item_0/id = 0
+popup/item_1/text = "02. Gettin' Freaky"
+popup/item_1/id = 1
+popup/item_2/text = "03.  Breakfast"
+popup/item_2/id = 2
+
+[node name="Play" type="Button" parent="Windows/Background Track"]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = 16.0
+offset_right = -69.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+icon = ExtResource("7_eguqf")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Lower" type="Button" parent="Windows/Background Track"]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = 16.0
+offset_right = -29.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "-"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Higher" type="Button" parent="Windows/Background Track"]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 69.0
+offset_top = 16.0
+offset_right = 101.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "+"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Bars" type="HBoxContainer" parent="Windows/Background Track"]
+offset_left = 103.0
+offset_top = 80.0
+offset_right = 193.0
+offset_bottom = 112.0
+alignment = 1
+
+[node name="1" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 3.2)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="2" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 6.4)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="3" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 9.6)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="4" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 12.8)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="5" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 16)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="6" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 19.2)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="7" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 22.4)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="8" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 25.6)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="9" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 28.8)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="10" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 32)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+script = ExtResource("7_kc7xh")
+metadata/_custom_type_script = "uid://8mxbydkyk7td"
+
+[connection signal="item_selected" from="Windows/Background Track/Track" to="Windows/Background Track" method="_on_track_selected"]
