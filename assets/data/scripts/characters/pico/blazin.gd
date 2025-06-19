@@ -24,6 +24,7 @@ func move_to_front():
 	player.z_index = 3000
 
 func on_note_hit(note:Note):
+
 	game.stage.rain_time_scale += 0.7
 
 	game.camera_shake(10.0, 10.0, true, true)

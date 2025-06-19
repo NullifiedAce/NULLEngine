@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx4qxcj2cr5sf"
-path="res://.godot/imported/normal.png-2c98a044da79c549b6fcb28e2619fcde.ctex"
+uid="uid://bhbvlw2oo30ll"
+path="res://.godot/imported/Pico_Basic.png-9ca9fdc625a075ceba4fa83800dafd38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/gameplay/characters/pico/normal.png"
-dest_files=["res://.godot/imported/normal.png-2c98a044da79c549b6fcb28e2619fcde.ctex"]
+source_file="res://assets/images/gameplay/characters/pico/Pico_Basic.png"
+dest_files=["res://.godot/imported/Pico_Basic.png-9ca9fdc625a075ceba4fa83800dafd38.ctex"]
 
 [params]
 

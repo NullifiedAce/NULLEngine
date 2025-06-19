@@ -18,8 +18,6 @@ func move_to_front():
 	opponent.z_index = 3000
 
 func on_note_hit(note:Note):
-	print("darnell do something bruh")
-	
 	match note.note_type:
 		"weekend-1-punchlow":
 			play_hit_low_anim();

@@ -593,13 +593,13 @@ _data = {
 [node name="bf-pixel" type="Node2D"]
 script = ExtResource("1_adf3r")
 is_player = true
-voices_paths = "bf"
 health_icon = ExtResource("2_3auwy")
 health_color = Color(0.482353, 0.839216, 0.964706, 1)
 death_character = "bf-pixel-dead"
 death_sound = ExtResource("3_76bjx")
 death_music = ExtResource("4_l63cw")
 retry_sound = ExtResource("5_7l6i0")
+voices_paths = "bf"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -614,7 +614,7 @@ script = ExtResource("4_p1yy3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_vgtrv")
+&"": SubResource("AnimationLibrary_vgtrv")
 }
 
 [node name="CameraPos" type="Node2D" parent="."]

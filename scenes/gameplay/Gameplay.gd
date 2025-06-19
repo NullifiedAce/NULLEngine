@@ -1037,7 +1037,7 @@ func _physics_process(_delta: float) -> void:
 
 		var instance_type:String = note.kind
 		if not note.kind in template_notes:
-			print("type not found " + instance_type)
+			if METADATA.rawSongName != "blazin": print("type not found " + instance_type)
 			instance_type = "default"
 
 		var new_note:Note = template_notes[instance_type].duplicate()
