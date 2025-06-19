@@ -816,7 +816,6 @@ func good_note_hit(note:Note):
 
 	var healthChange = 0.0
 	var isComboBreak = false
-	print(daRating)
 	match daRating:
 		"sick":
 			healthChange = health + Constants.HEALTH_SICK_BONUS
@@ -829,13 +828,10 @@ func good_note_hit(note:Note):
 			isComboBreak = Constants.JUDGEMENT_BAD_COMBO_BREAK
 		"shit":
 			healthChange = health + Constants.HEALTH_SHIT_BONUS
-			print(Constants.HEALTH_SHIT_BONUS)
 			isComboBreak = Constants.JUDGEMENT_SHIT_COMBO_BREAK
 		"miss":
 			healthChange = health - Constants.HEALTH_MISS_PENALTY
 			isComboBreak = true
-
-	print(healthChange)
 
 	if note.should_hit:
 		notes_hit += 1

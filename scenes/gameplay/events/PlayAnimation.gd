@@ -13,7 +13,7 @@ func _ready() -> void:
 
 	if parameters.has("force"): force = parameters["force"]
 
-	if target == "player":
+	if target == "player" || "bf":
 		target_char = game.player
 	if target == "opponent":
 		target_char = game.opponent

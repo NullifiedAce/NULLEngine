@@ -2,12 +2,12 @@ extends Event
 
 var target: int = -1
 var target_pos: Vector2 = Vector2.ZERO
-var duration: float = 8
+var duration: float = 14.0
 var trans_type: Tween.TransitionType = Tween.TRANS_QUINT
 var easy_type: Tween.EaseType = Tween.EASE_OUT
 
 func _ready() -> void:
-	if parameters.has("target"): target = parameters["target"]
+	if parameters.has("char"): target = parameters["char"]
 
 	if parameters.has("x"): target_pos.x =  parameters["x"]
 
@@ -15,9 +15,9 @@ func _ready() -> void:
 
 	if parameters.has("duration"): duration = parameters["duration"]
 
-	if parameters.has("transitionType"): trans_type = parameters["transitionType"]
-
-	if parameters.has("easeType"): easy_type = parameters["easeType"]
+	if parameters.has("ease"):
+		var ease:String = str(parameters["ease"])
+		
 
 	var targetX = target_pos.x
 	var targetY = target_pos.y
