@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://blm6t143stm4s"]
+[gd_scene load_steps=20 format=3 uid="uid://blm6t143stm4s"]
 
 [ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_cic73"]
 [ext_resource type="Texture2D" uid="uid://bggn4j2x81mod" path="res://assets/images/gameplay/icons/icon-gf.png" id="2_2858l"]
@@ -6,9 +6,7 @@
 [ext_resource type="SpriteFrames" uid="uid://fttm1uy27ik2" path="res://assets/images/gameplay/characters/nene/Nene.res" id="3_y7tss"]
 [ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_2ffry"]
 [ext_resource type="Script" uid="uid://b77ohh56bw485" path="res://scenes/gameplay/audio_viz/AudioVizBars.gd" id="4_adlsy"]
-[ext_resource type="Script" uid="uid://mc1cjwdprghw" path="res://addons/godot_texture_atlas/atlas_sprite.gd" id="4_jgpmk"]
 [ext_resource type="Texture2D" uid="uid://d0ftkcse2fuko" path="res://assets/images/gameplay/characters/aBot/viz30000.png" id="5_1d756"]
-[ext_resource type="JSON" path="res://assets/images/gameplay/characters/aBot/abotSystem/Animation.json" id="5_eox4i"]
 [ext_resource type="Texture2D" uid="uid://blbrwmhrxtunw" path="res://assets/images/gameplay/characters/aBot/viz20000.png" id="6_qy0jb"]
 [ext_resource type="Texture2D" uid="uid://dvn5tjknf10im" path="res://assets/images/gameplay/characters/aBot/viz10000.png" id="7_yxesj"]
 [ext_resource type="Texture2D" uid="uid://bkwiokh37x3qc" path="res://assets/images/gameplay/characters/aBot/viz40000.png" id="8_2cid4"]
@@ -16,6 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://gdrne85v2ybt" path="res://assets/images/gameplay/characters/aBot/viz60000.png" id="10_28ye0"]
 [ext_resource type="Texture2D" uid="uid://dpp7i08gget01" path="res://assets/images/gameplay/characters/aBot/viz70000.png" id="11_c0pc3"]
 [ext_resource type="Texture2D" uid="uid://ku8msysyuqgx" path="res://assets/images/gameplay/characters/aBot/systemEyes/spritemap1.png" id="12_adlsy"]
+[ext_resource type="Script" uid="uid://3lax1w5pcsp0" path="res://addons/gdanimate/animate_symbol.gd" id="13_qmrcp"]
+
+[sub_resource type="Animation" id="Animation_qmrcp"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "danceLeft"
@@ -71,14 +73,38 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../ABot:cur_frame")
+tracks/4/path = NodePath("../AnimateSymbol:symbol")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 16]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Abot System"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../AnimateSymbol:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../AnimateSymbol:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_7jg6a"]
@@ -135,29 +161,38 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../ABot:cur_frame")
+tracks/4/path = NodePath("../AnimateSymbol:symbol")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 16]
-}
-
-[sub_resource type="Animation" id="Animation_qmrcp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../ABot:cur_frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-19]
+"update": 1,
+"values": ["Abot System"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../AnimateSymbol:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../AnimateSymbol:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
@@ -362,15 +397,17 @@ texture = ExtResource("12_adlsy")
 region_enabled = true
 region_rect = Rect2(0, 40.3486, 106, 24.8532)
 
-[node name="ABot" type="Node2D" parent="."]
+[node name="AnimateSymbol" type="Node2D" parent="."]
 position = Vector2(-413, -337)
-script = ExtResource("4_jgpmk")
+script = ExtResource("13_qmrcp")
+atlas = "res://assets/images/gameplay/characters/aBot/abotSystem"
+frame = 15
 symbol = "Abot System"
-cur_frame = -19
-animation_json = ExtResource("5_eox4i")
-metadata/_custom_type_script = "uid://mc1cjwdprghw"
+loop_mode = "Play Once"
+metadata/_custom_type_script = "uid://3lax1w5pcsp0"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+z_index = 10
 position = Vector2(-280, -652)
 sprite_frames = ExtResource("3_y7tss")
 animation = &"Idle"
