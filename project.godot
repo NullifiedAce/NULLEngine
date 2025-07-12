@@ -54,7 +54,7 @@ mouse_cursor/custom_image="res://assets/images/cursor/cursor-default.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg", "res://addons/gamejolt/plugin.cfg")
+enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg", "res://addons/gamejolt/plugin.cfg", "res://addons/gdanimate/plugin.cfg")
 
 [engine]
 

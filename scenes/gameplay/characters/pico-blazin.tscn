@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c1sqq7grehd8t"]
+[gd_scene load_steps=27 format=3 uid="uid://c1sqq7grehd8t"]
 
 [ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_8cjps"]
 [ext_resource type="Texture2D" uid="uid://erlcw6602qeq" path="res://assets/images/gameplay/icons/icon-pico.png" id="2_o33mh"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_0tv7e"]
 [ext_resource type="JSON" path="res://assets/images/gameplay/characters/pico/picoBlazin/Animation.json" id="4_caexa"]
 [ext_resource type="AudioStream" uid="uid://dwh34j4w2aovi" path="res://assets/music/gameplay/gameover/gameOverEnd-pico.ogg" id="4_u07fg"]
+[ext_resource type="Script" uid="uid://3lax1w5pcsp0" path="res://addons/gdanimate/animate_symbol.gd" id="5_u07fg"]
 
 [sub_resource type="Animation" id="Animation_caexa"]
 length = 0.001
@@ -890,6 +891,13 @@ retry_sound = ExtResource("4_u07fg")
 voices_paths = ""
 character_script_folder = "pico"
 character_script_name = "blazin"
+
+[node name="AnimateSymbol" type="Node2D" parent="."]
+position = Vector2(-83, 399)
+script = ExtResource("5_u07fg")
+atlas = "res://assets/images/gameplay/characters/pico/picoBlazin"
+loop_mode = "Play Once"
+metadata/_custom_type_script = "uid://3lax1w5pcsp0"
 
 [node name="Pico" type="Node2D" parent="."]
 script = ExtResource("3_bm6j8")
