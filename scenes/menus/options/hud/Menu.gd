@@ -14,7 +14,6 @@ var dragging:bool = false
 @onready var save_hud_dialog: FileDialog = $Windows/SaveDialog
 @onready var open_hud_dialog: FileDialog = $Windows/OpenDialog
 
-@onready var hud_template: HUDElement = $Template
 @onready var hud_elements: Node = $HUDElements
 
 @onready var saving: Node = $Saving
@@ -35,10 +34,6 @@ func _ready() -> void:
 	edit_menu.get_popup().id_pressed.connect(_edit)
 	options_menu.get_popup().id_pressed.connect(_options)
 	add_popup.id_pressed.connect(_add_stuff)
-
-func _process(delta: float) -> void:
-	for i in hud_elements.get_children():
-		i.use_downscroll = use_donwscroll
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("hud_exit"):
@@ -81,11 +76,7 @@ func _options(id:int):
 func _add_stuff(id:int):
 	match add_popup.get_item_text(id):
 		"Add HUD Element here":
-			var new_hud = load("res://scenes/menus/options/hud/Elements/HUDElement.tscn").instantiate()
-			hud_elements.add_child(new_hud)
-
-			new_hud.x_pos_box.value = get_viewport().get_mouse_position().x
-			new_hud.y_pos_box.value = get_viewport().get_mouse_position().y
+			print("new hud element")
 
 func _exit_tree() -> void:
 	for i in FPS.get_children():

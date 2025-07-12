@@ -32,6 +32,7 @@ offset_left = 55.0
 offset_top = 19.0
 offset_right = 271.0
 offset_bottom = 35.0
+mouse_filter = 2
 theme = ExtResource("2_w4tmp")
 max_value = 1.0
 step = 0.1

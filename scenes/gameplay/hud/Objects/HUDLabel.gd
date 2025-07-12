@@ -1,51 +1,36 @@
-extends Label
-class_name HUDLabel
+class_name HUDEditorLabel extends Label
 
-var output_text:String
+var hud_editor:HUDEditor
 
-var downscroll_multiplier:float
+var drag:bool = false
+var mouse_pressed:bool = false
+var mouse_hovered:bool = false
 
-var use_offset:bool
-var offsets: Vector2
-var anchor_preset = 0
-var alignment = 0
+@onready var pos_box_x: SpinBox = $EditWindow/ScrollContainer/VBoxContainer/Position/PositionX
+@onready var pos_box_y: SpinBox = $EditWindow/ScrollContainer/VBoxContainer/Position/PositionY
+@onready var rot_box: SpinBox = $EditWindow/ScrollContainer/VBoxContainer/Rotation
 
-var items:Array[Dictionary]
-
-var layout_mode_option:String
-
-var font:String = "vcr"
-var font_color:String = "ffffffff"
-var font_size:int = 16
-
-var outline_color:String = "000000ff"
-var outline_size:int = 0
-
-var shadow_color:String = "00000000"
-var shadow_size:int = 0
-var shadow_offset_x:int = 0
-var shadow_offset_y:int = 0
-
-@onready var game: Gameplay = $'../..'
 
 func _ready() -> void:
-	if SettingsAPI.get_setting("downscroll"): position.y = position.y * downscroll_multiplier
+	if get_parent().get_parent() is HUDEditor: # Check if the node we're looking for is the HUD Editor.
+		hud_editor = get_parent().get_parent()
+	else:
+		printerr(str(get_parent().get_parent())+" is not class \"HUDEditor\".")
 
-func _process(_delta: float) -> void:
-	output_text = ""
+	mouse_entered.connect(func(): mouse_hovered = true)
+	mouse_exited.connect(func(): mouse_hovered = false if !mouse_pressed else true)
 
-	if SettingsAPI.get_setting("downscroll"): position.y = position.y * downscroll_multiplier
+func _process(delta: float) -> void:
+	if !drag: position = Vector2(pos_box_x.value, pos_box_y.value)
+	rotation = deg_to_rad(rot_box.value)
 
-	for i in items:
-		if layout_mode_option == "Single Line":
-			if !i["track"]: output_text += i["text"]
-			else: output_text += i["prefix_text"] + str(game.score_values[i["track_value"].to_lower()]) + i["suffix_text"]
-		else:
-			if !i["track"]: output_text += i["text"] + "\n"
-			else: output_text += i["prefix_text"] + str(game.score_values[i["track_value"].to_lower()]) + i["suffix_text"] + "\n"
+	drag = mouse_hovered and mouse_pressed
 
-	text = output_text
-
-	set_anchors_and_offsets_preset(anchor_preset)
-	horizontal_alignment = alignment
-	if use_offset: position = offsets
+func _input(event: InputEvent) -> void:
+	if event.is_action("drag"):
+		if event.is_pressed(): mouse_pressed = true
+		else: mouse_pressed = false
+	elif event is InputEventMouseMotion and drag:
+		position = get_viewport().get_mouse_position()
+		pos_box_x.value = position.x
+		pos_box_y.value = position.y

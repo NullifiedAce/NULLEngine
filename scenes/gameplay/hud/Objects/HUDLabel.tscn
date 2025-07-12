@@ -2,7 +2,89 @@
 
 [ext_resource type="Script" uid="uid://dcp4otddduiih" path="res://scenes/gameplay/hud/Objects/HUDLabel.gd" id="1_y3yhj"]
 
-[node name="HUDLabel" type="Label"]
+[node name="HUDEditorLabel" type="Label"]
 offset_right = 40.0
 offset_bottom = 23.0
+mouse_filter = 0
+text = "Testing"
 script = ExtResource("1_y3yhj")
+
+[node name="EditWindow" type="Window" parent="."]
+title = "Edit Label"
+initial_position = 1
+size = Vector2i(256, 202)
+
+[node name="BG" type="ColorRect" parent="EditWindow"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="EditWindow"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditWindow/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PositionTitle" type="Label" parent="EditWindow/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Position:"
+horizontal_alignment = 1
+
+[node name="Position" type="HBoxContainer" parent="EditWindow/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PositionX" type="SpinBox" parent="EditWindow/ScrollContainer/VBoxContainer/Position"]
+custom_minimum_size = Vector2(88, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+min_value = -9999.0
+max_value = 9999.0
+prefix = "X:"
+
+[node name="PositionY" type="SpinBox" parent="EditWindow/ScrollContainer/VBoxContainer/Position"]
+custom_minimum_size = Vector2(88, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+min_value = -9999.0
+max_value = 9999.0
+prefix = "Y:"
+
+[node name="RotationTitle" type="Label" parent="EditWindow/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Rotation:"
+horizontal_alignment = 1
+
+[node name="Rotation" type="SpinBox" parent="EditWindow/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+min_value = -360.0
+max_value = 360.0
+suffix = "°"
+
+[node name="HSeparator" type="HSeparator" parent="EditWindow/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Customize" type="Button" parent="EditWindow/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "Customize Style"
+
+[node name="EditText" type="Button" parent="EditWindow/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "Edit Text"
