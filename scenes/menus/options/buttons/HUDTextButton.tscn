@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://hndw7fj5q6e3"]
+
+[ext_resource type="Script" uid="uid://b0cdrt1bo2sgn" path="res://scenes/menus/options/buttons/HUDTextButton.gd" id="1_4cmit"]
+
+[node name="HUDTextButton" type="Button"]
+custom_minimum_size = Vector2(0, 32)
+offset_right = 8.0
+offset_bottom = 32.0
+size_flags_horizontal = 3
+tooltip_text = "Press \"Del\" while hovering to delete.
+Scroll with the mouse while hovering to move up/down."
+focus_mode = 0
+script = ExtResource("1_4cmit")

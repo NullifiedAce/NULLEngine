@@ -4,6 +4,8 @@ class_name HUDEditor
 var use_donwscroll:bool = false
 var dragging:bool = false
 
+var hovered_object:CanvasItem = null
+
 @onready var file_menu: MenuButton = $CanvasLayer/MenuOptions/File
 @onready var edit_menu: MenuButton = $CanvasLayer/MenuOptions/Edit
 @onready var options_menu: MenuButton = $CanvasLayer/MenuOptions/Options
@@ -11,6 +13,7 @@ var dragging:bool = false
 
 @onready var preferences_window: Window = $Windows/Preferences
 @onready var add_popup: PopupMenu = $AddPopup
+@onready var add_element: PopupMenu = $AddElement
 @onready var save_hud_dialog: FileDialog = $Windows/SaveDialog
 @onready var open_hud_dialog: FileDialog = $Windows/OpenDialog
 
@@ -34,6 +37,19 @@ func _ready() -> void:
 	edit_menu.get_popup().id_pressed.connect(_edit)
 	options_menu.get_popup().id_pressed.connect(_options)
 	add_popup.id_pressed.connect(_add_stuff)
+	add_element.id_pressed.connect(_add_element)
+	add_popup.popup_hide.connect(func():
+		get_tree().create_timer(0.0).timeout.connect(func():
+			if hovered_object: hovered_object = null )
+	)
+
+func _process(delta: float) -> void:
+	if hovered_object and !add_popup.visible:
+		add_popup.set_item_disabled(2, false)
+		add_popup.set_item_disabled(3, false)
+	elif !hovered_object and !add_popup.visible:
+		add_popup.set_item_disabled(2, true)
+		add_popup.set_item_disabled(3, true)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("hud_exit"):
@@ -75,8 +91,22 @@ func _options(id:int):
 
 func _add_stuff(id:int):
 	match add_popup.get_item_text(id):
-		"Add HUD Element here":
-			print("new hud element")
+		"New HUD Element":
+			add_element.position = add_popup.position
+			add_element.show()
+		"Edit HUD Element":
+			hovered_object.edit_window.show()
+		"Delete HUD Element":
+			hovered_object.queue_free()
+			hovered_object = null
+
+func _add_element(id:int):
+	match add_element.get_item_text(id):
+		"New HUDLabel":
+			var new_label:HUDEditorLabel = load("res://scenes/menus/options/hud/Elements/HUDLabel.tscn").instantiate()
+			hud_elements.add_child(new_label)
+			new_label.pos_box_x.value = get_viewport().get_mouse_position().x
+			new_label.pos_box_y.value = get_viewport().get_mouse_position().y
 
 func _exit_tree() -> void:
 	for i in FPS.get_children():

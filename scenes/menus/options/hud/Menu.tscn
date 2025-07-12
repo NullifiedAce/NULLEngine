@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bqsrwpb82r34v"]
+[gd_scene load_steps=16 format=3 uid="uid://bqsrwpb82r34v"]
 
 [ext_resource type="Script" uid="uid://bydrrqjf2awjd" path="res://scenes/menus/options/hud/Menu.gd" id="1_028jv"]
 [ext_resource type="Script" uid="uid://b1pwa7eu337d2" path="res://scenes/menus/options/hud/ThemeHandler.gd" id="2_7hp2n"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://3e3h47gdrf3f" path="res://scenes/menus/options/hud/windows/Preferences.gd" id="8_ricit"]
 [ext_resource type="Script" uid="uid://d1m5agyfh2uer" path="res://classes/EngineTheme/EngineThemeSpinBox.gd" id="9_36kso"]
 [ext_resource type="PackedScene" uid="uid://bumoha7lb8qch" path="res://scenes/menus/options/hud/Elements/RankButton.tscn" id="11_lo8x1"]
-[ext_resource type="PackedScene" uid="uid://b3gogyya0gqoj" path="res://scenes/gameplay/hud/Objects/HUDLabel.tscn" id="13_o65hx"]
 
 [sub_resource type="Gradient" id="Gradient_yb4yc"]
 interpolation_mode = 2
@@ -158,6 +157,14 @@ item_2/disabled = true
 item_3/text = "Delete HUD Element"
 item_3/id = 3
 item_3/disabled = true
+
+[node name="AddElement" type="PopupMenu" parent="."]
+size = Vector2i(137, 62)
+item_count = 2
+item_0/text = "New HUDLabel"
+item_0/id = 0
+item_1/text = "New HUDBar"
+item_1/id = 1
 
 [node name="Windows" type="Node" parent="."]
 
@@ -1154,12 +1161,6 @@ access = 1
 filters = PackedStringArray("*.json")
 
 [node name="HUDElements" type="Node" parent="."]
-
-[node name="HUDEditorLabel" parent="HUDElements" instance=ExtResource("13_o65hx")]
-offset_left = 148.0
-offset_top = 296.0
-offset_right = 204.0
-offset_bottom = 319.0
 
 [connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor/ColorBG" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor/ColorBG" method="_on_popup_closed"]
 [connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" method="_on_popup_closed"]
