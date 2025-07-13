@@ -10,6 +10,7 @@ var dragging = false
 @export var max_zoom = 3.0
 
 func _input(event):
+	pass
 	#if event.is_action("drag"):
 		#if event.is_pressed():
 			#mouse_start_pos = event.position
@@ -20,13 +21,13 @@ func _input(event):
 	#elif event is InputEventMouseMotion and dragging:
 		#position = zoom * (mouse_start_pos - event.position) + screen_start_position
 
-	if event.is_action_pressed("cam_zoom_in"):
-		zoom.x = max(min_zoom, zoom.x - zoom_speed)
-		zoom.y = max(min_zoom, zoom.y - zoom_speed)
-	elif event.is_action_pressed("cam_zoom_out"):
-		zoom.x = min(max_zoom, zoom.x + zoom_speed)
-		zoom.y = min(max_zoom, zoom.y + zoom_speed)
-
-	if event.is_action_pressed("cam_reset"):
-		position = Vector2(640, 360)
-		zoom = Vector2.ONE
+	#if event.is_action_pressed("cam_zoom_in"):
+		#zoom.x = max(min_zoom, zoom.x - zoom_speed)
+		#zoom.y = max(min_zoom, zoom.y - zoom_speed)
+	#elif event.is_action_pressed("cam_zoom_out"):
+		#zoom.x = min(max_zoom, zoom.x + zoom_speed)
+		#zoom.y = min(max_zoom, zoom.y + zoom_speed)
+#
+	#if event.is_action_pressed("cam_reset"):
+		#position = Vector2(640, 360)
+		#zoom = Vector2.ONE

@@ -103,7 +103,7 @@ func _add_stuff(id:int):
 func _add_element(id:int):
 	match add_element.get_item_text(id):
 		"New HUDLabel":
-			var new_label:HUDEditorLabel = load("res://scenes/menus/options/hud/Elements/HUDLabel.tscn").instantiate()
+			var new_label:HUDEditorLabel = load("res://scenes/menus/options/hud/Elements/HUDEditorLabel.tscn").instantiate()
 			hud_elements.add_child(new_label)
 			new_label.pos_box_x.value = get_viewport().get_mouse_position().x
 			new_label.pos_box_y.value = get_viewport().get_mouse_position().y

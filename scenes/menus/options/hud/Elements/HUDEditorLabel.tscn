@@ -1,13 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3gogyya0gqoj"]
+[gd_scene load_steps=3 format=3 uid="uid://b3gogyya0gqoj"]
 
-[ext_resource type="Script" uid="uid://dcp4otddduiih" path="res://scenes/menus/options/hud/Elements/HUDLabel.gd" id="1_y3yhj"]
+[ext_resource type="Script" uid="uid://dcp4otddduiih" path="res://scenes/menus/options/hud/Elements/HUDEditorLabel.gd" id="1_de56r"]
+[ext_resource type="PackedScene" uid="uid://hndw7fj5q6e3" path="res://scenes/menus/options/hud/Elements/HUDTextButton.tscn" id="2_i0r70"]
 
 [node name="HUDEditorLabel" type="Label"]
 offset_right = 40.0
 offset_bottom = 23.0
 mouse_filter = 0
 text = "Testing"
-script = ExtResource("1_y3yhj")
+script = ExtResource("1_de56r")
 
 [node name="EditWindow" type="Window" parent="."]
 title = "Edit Label"
@@ -95,7 +96,6 @@ auto_translate_mode = 1
 title = "Edit Text"
 initial_position = 1
 size = Vector2i(256, 256)
-visible = false
 min_size = Vector2i(256, 256)
 
 [node name="BG" type="ColorRect" parent="EditText"]
@@ -134,6 +134,9 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="EditText/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="HUDTextButton" parent="EditText/ScrollContainer/VBoxContainer" instance=ExtResource("2_i0r70")]
+layout_mode = 2
 
 [connection signal="close_requested" from="EditWindow" to="EditWindow" method="hide"]
 [connection signal="close_requested" from="EditText" to="EditText" method="hide"]

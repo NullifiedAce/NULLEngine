@@ -255,7 +255,7 @@ script = ExtResource("10_j4qu2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LeftArrow"]
 libraries = {
-"": SubResource("AnimationLibrary_afupd")
+&"": SubResource("AnimationLibrary_afupd")
 }
 
 [node name="RightArrow" type="AnimatedSprite2D" parent="."]
@@ -268,7 +268,7 @@ script = ExtResource("10_j4qu2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RightArrow"]
 libraries = {
-"": SubResource("AnimationLibrary_ctomo")
+&"": SubResource("AnimationLibrary_ctomo")
 }
 
 [node name="Difficulty" type="Sprite2D" parent="."]
