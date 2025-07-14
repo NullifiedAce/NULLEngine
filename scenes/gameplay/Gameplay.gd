@@ -136,11 +136,7 @@ func load_track(music_path:String, fileName:String):
 		track.stream = load(music_path + fileName + ".ogg")
 	else:
 		track.stream = load(music_path + fileName + "-" + Global.variation + ".ogg")
-		print(music_path + fileName + "-" + Global.variation + ".ogg")
 	track.pitch_scale = Conductor.rate
-
-	if fileName == "Inst":
-		track.finished.connect(end_song)
 
 	track.bus = "Music"
 	tracks.append(track)
@@ -569,10 +565,8 @@ func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.Tra
 	else:
 		cam_focus_tween.tween_property(camera, "position", Vector2(targetX, targetY), duration).set_trans(trans).set_ease(ease)
 
-	await cam_focus_tween.finished
-	cam_focus_tween.kill()
-
-	script_group.call_func("on_update_camera", [])
+	cam_focus_tween.finished.connect(func():
+		script_group.call_func("on_update_camera", []))
 
 var cam_zoom_tween: Tween
 
@@ -591,10 +585,8 @@ func zoom_camera(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tw
 		cam_zoom_tween.tween_property(camera, "zoom", Vector2(zoom, zoom), duration).set_trans(trans).set_ease(ease)
 		cam_zoom = zoom
 
-	await cam_zoom_tween.finished
-	cam_zoom_tween.kill()
-
-	script_group.call_func("on_camera_zoom", [])
+	cam_zoom_tween.finished.connect(func():
+		script_group.call_func("on_camera_zoom", []))
 
 var hud_zoom_tween: Tween
 
@@ -612,8 +604,13 @@ func hud_zoom(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween
 	else:
 		hud_zoom_tween.tween_property(hud, "scale", Vector2(zoom, zoom), duration).set_trans(trans).set_ease(ease)
 
-	await hud_zoom_tween.finished
-	hud_zoom_tween.kill()
+var scroll_speed_tween: Tween
+
+func tween_scroll_speed(scroll:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
+	if scroll_speed_tween: scroll_speed_tween.kill()
+
+	scroll_speed_tween = create_tween()
+	scroll_speed_tween.tween_property(self, "scroll_speed", scroll, duration).set_trans(trans).set_ease(ease)
 
 func camera_shake(strength:float, fade:float, shake_camera:bool = true, hud_shake:bool = false):
 	cam_shake_strength = strength
@@ -963,6 +960,8 @@ func _process(delta:float) -> void:
 	if health <= 0:
 		game_over()
 
+	cur_time = Conductor.position
+
 	score_values["score"] =			format_number(songScore)
 	score_values["misses"] =		misses
 	score_values["accuracy"] = 		snapped(accuracy * 100.0, 0.01)
@@ -982,6 +981,8 @@ func _process(delta:float) -> void:
 	score_values["good hits"] =		format_number(goods)
 	score_values["bad hits"] =		format_number(bads)
 	score_values["shit hits"] =		format_number(shits)
+
+	if cur_time > max_time: end_song()
 
 	if cam_zooming:
 		var camera_speed:float = clampf((delta * ZOOM_DELTA_MULTIPLIER) * Conductor.rate, 0.0, 1.0)

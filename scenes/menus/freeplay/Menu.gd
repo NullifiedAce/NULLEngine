@@ -237,7 +237,9 @@ func load_track(music_path:String, fileName:String):
 		track.stream = load(music_path + fileName + ".ogg")
 	else:
 		track.stream = load(music_path + fileName + "-" + Global.variation + ".ogg")
-		print(music_path + fileName + "-" + Global.variation + ".ogg")
+
+	track.stream.loop = true
+
 	track.pitch_scale = Conductor.rate
 
 	track.bus = "Music"

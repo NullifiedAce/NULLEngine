@@ -172,3 +172,43 @@ func float_to_seconds(value:float) -> float:
 func format_time(value:float) -> String:
 	if value < 0.0: value = 0.0
 	return "%02d:%02d" % [float_to_minute(value), float_to_seconds(value)]
+
+var trans_types = {
+		"linear": Tween.TRANS_LINEAR,
+		"sine": Tween.TRANS_SINE,
+		"quint": Tween.TRANS_QUINT,
+		"quart": Tween.TRANS_QUART,
+		"quad": Tween.TRANS_QUAD,
+		"expo": Tween.TRANS_EXPO,
+		"elastic": Tween.TRANS_ELASTIC,
+		"cubic": Tween.TRANS_CUBIC,
+		"circ": Tween.TRANS_CIRC,
+		"bounce": Tween.TRANS_BOUNCE,
+		"back": Tween.TRANS_BACK,
+		"spring": Tween.TRANS_SPRING
+	}
+
+var ease_types = {
+		"inout": Tween.EASE_IN_OUT,
+		"outin": Tween.EASE_OUT_IN,
+		"in": Tween.EASE_IN,
+		"out": Tween.EASE_OUT
+	}
+
+func parse_ease(ease_string: String) -> Dictionary:
+	var ease_type = Tween.EASE_IN_OUT  # default
+	var trans_type_str = "linear"  # fallback
+	ease_string = ease_string.to_lower()
+
+	for suffix in ease_types.keys():
+		if ease_string.ends_with(suffix):
+			ease_type = ease_types[suffix]
+			trans_type_str = ease_string.left(ease_string.length() - suffix.length())
+			break
+
+	var trans_type = trans_types.get(trans_type_str, Tween.TRANS_LINEAR)
+
+	return {
+		"trans_type": trans_type,
+		"ease_type": ease_type
+	}

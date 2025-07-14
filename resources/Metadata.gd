@@ -50,7 +50,10 @@ static func load_from_json(json):
 	metadata.artist = json.artist
 	if "charter" in json:
 		metadata.charter = json.charter
-	metadata.rawSongName = json.rawSongName
+	if "rawSongName" in json:
+		metadata.rawSongName = json.rawSongName
+	else:
+		metadata.rawSongName = json.songName.replace(" Erect", "").to_lower()
 	metadata.songName = json.songName
 	metadata.timeChanges = json.timeChanges
 	if json.has("offsets"):

@@ -8,9 +8,7 @@ var target_char
 
 func _ready() -> void:
 	if parameters.has("target"): target = parameters["target"]
-
 	if parameters.has("anim"): anim = parameters["anim"]
-
 	if parameters.has("force"): force = parameters["force"]
 
 	if target == "player" || "bf":
@@ -21,4 +19,4 @@ func _ready() -> void:
 		target_char = game.spectator
 
 	if target_char is Character:
-		target_char.play_anim(anim, force)
+		target_char.play_anim(anim, force, force)

@@ -8,14 +8,12 @@ var ease_type: Tween.EaseType = Tween.EASE_IN
 
 func _ready() -> void:
 	if parameters.has("zoom"): zoom = parameters["zoom"]
-
 	if parameters.has("duration"): duration = parameters["duration"]
-
 	if parameters.has("mode"): mode = parameters["mode"]
-
-	if parameters.has("transitionType"): trans_type = parameters["transitionType"]
-
-	if parameters.has("easeType"): ease_type = parameters["easeType"]
+	if parameters.has("ease"):
+		var ease_data = Global.parse_ease(parameters["ease"])
+		trans_type = ease_data.trans_type
+		ease_type = ease_data.ease_type
 
 	var durSeconds = Conductor.step_crochet * duration / 1000
 

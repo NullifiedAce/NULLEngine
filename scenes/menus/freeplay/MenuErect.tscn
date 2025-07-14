@@ -36,7 +36,7 @@ bg_color = Color(0.686275, 0.4, 0.807843, 1)
 
 [sub_resource type="Resource" id="Resource_syvf0"]
 script = ExtResource("3_7sxe0")
-song = "dad battle"
+song = "dadbattle"
 display_name = "Dadbattle Erect"
 character_icon = ExtResource("4_c3tt0")
 icon_frames = 2
