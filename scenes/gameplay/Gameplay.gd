@@ -925,28 +925,6 @@ func game_over():
 
 	get_tree().change_scene_to_file("res://scenes/gameplay/GameOver.tscn")
 
-var score_values: Dictionary = {
-	"score": format_number(songScore),
-	"misses": misses,
-	"accuracy": snapped(accuracy * 100.0, 0.01),
-	"accuracy rank": "N/A",
-	"rank": "N/A",
-	"health": 50,
-	"combo": format_number(combo),
-	"max combo": format_number(max_combo),
-	"ghost presses": format_number(ghost_taps),
-	"key pressed": format_number(key_pressed),
-	"current time": Global.format_time(cur_time),
-	"max time": Global.format_time(max_time),
-	"time left": Global.format_time(max_time - cur_time),
-	"song name": "Bopeebo",
-	"difficulty": "Hard",
-	"sick hits": sicks,
-	"good hits": goods,
-	"bad hits": bads,
-	"shit hits": shits,
-}
-
 func _process(delta:float) -> void:
 	if in_cutscene:
 		get_tree().paused = true
@@ -962,25 +940,25 @@ func _process(delta:float) -> void:
 
 	cur_time = Conductor.position
 
-	score_values["score"] =			format_number(songScore)
-	score_values["misses"] =		misses
-	score_values["accuracy"] = 		snapped(accuracy * 100.0, 0.01)
-	score_values["accuracy rank"] = Ranking.rank_from_accuracy(accuracy * 100.0).name
-	score_values["rank"] =			calculate_rank()
-	score_values["health"] =		snapped((health / Constants.HEALTH_MAX) * 100, 0)
-	score_values["combo"] =			format_number(combo)
-	score_values["max combo"] =		format_number(max_combo)
-	score_values["ghost presses"] =	format_number(ghost_taps)
-	score_values["key presses"] =	format_number(key_pressed)
-	score_values["current time"] =	Global.format_time(Conductor.position / 1000)
-	score_values["max time"] =		Global.format_time(max_time / 1000)
-	score_values["time left"] =		Global.format_time((max_time / 1000) - (Conductor.position / 1000))
-	score_values["song name"] =		METADATA.songName.capitalize()
-	score_values["difficulty"] =	Global.current_difficulty.capitalize()
-	score_values["sick hits"] =		format_number(sicks)
-	score_values["good hits"] =		format_number(goods)
-	score_values["bad hits"] =		format_number(bads)
-	score_values["shit hits"] =		format_number(shits)
+	Global.gameplay_values["score"] =			format_number(songScore)
+	Global.gameplay_values["misses"] =			misses
+	Global.gameplay_values["accuracy"] =		snapped(accuracy * 100.0, 0.01)
+	Global.gameplay_values["accuracy rank"] =	Ranking.rank_from_accuracy(accuracy * 100.0).name
+	Global.gameplay_values["rank"] =			calculate_rank()
+	Global.gameplay_values["health"] =			snapped((health / Constants.HEALTH_MAX) * 100, 0)
+	Global.gameplay_values["combo"] =			format_number(combo)
+	Global.gameplay_values["max combo"] =		format_number(max_combo)
+	Global.gameplay_values["ghost presses"] =	format_number(ghost_taps)
+	Global.gameplay_values["key presses"] =		format_number(key_pressed)
+	Global.gameplay_values["current time"] =	Global.format_time(Conductor.position / 1000)
+	Global.gameplay_values["max time"] =		Global.format_time(max_time / 1000)
+	Global.gameplay_values["time left"] =		Global.format_time((max_time / 1000) - (Conductor.position / 1000))
+	Global.gameplay_values["song name"] =		METADATA.songName.capitalize()
+	Global.gameplay_values["difficulty"] =		Global.current_difficulty.capitalize()
+	Global.gameplay_values["sick hits"] =		format_number(sicks)
+	Global.gameplay_values["good hits"] =		format_number(goods)
+	Global.gameplay_values["bad hits"] =		format_number(bads)
+	Global.gameplay_values["shit hits"] =		format_number(shits)
 
 	if cur_time > max_time: end_song()
 
@@ -1100,6 +1078,8 @@ func skip_intro() -> void:
 		resync_tracks()
 
 func _exit_tree():
+	Global.reset_gameplay_values()
+
 	script_group.call_func("on_destroy", [])
 	script_group.call_func("on_exit_tree", [])
 	script_group.queue_free()

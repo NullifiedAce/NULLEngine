@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bqsrwpb82r34v"]
+[gd_scene load_steps=21 format=3 uid="uid://bqsrwpb82r34v"]
 
 [ext_resource type="Script" uid="uid://bydrrqjf2awjd" path="res://scenes/menus/options/hud/Menu.gd" id="1_028jv"]
 [ext_resource type="Script" uid="uid://b1pwa7eu337d2" path="res://scenes/menus/options/hud/ThemeHandler.gd" id="2_7hp2n"]
@@ -8,10 +8,15 @@
 [ext_resource type="Script" uid="uid://d0o06je565e5c" path="res://scenes/menus/options/hud/Data/Saving.gd" id="3_lo8x1"]
 [ext_resource type="Script" uid="uid://jhia0wb1d1yg" path="res://scenes/menus/options/hud/Data/Loading.gd" id="4_ricit"]
 [ext_resource type="Script" uid="uid://co00xq8h2ivbw" path="res://classes/EngineTheme/EngineThemeColor.gd" id="6_sg4b6"]
+[ext_resource type="Script" uid="uid://c6iql4h5apy70" path="res://scenes/menus/options/hud/Ruler.gd" id="8_bd15s"]
 [ext_resource type="Script" uid="uid://d1mg4gki84igd" path="res://classes/EngineTheme/EngineThemeOption.gd" id="8_cgx1m"]
 [ext_resource type="Script" uid="uid://3e3h47gdrf3f" path="res://scenes/menus/options/hud/Windows/Preferences.gd" id="8_ricit"]
 [ext_resource type="Script" uid="uid://d1m5agyfh2uer" path="res://classes/EngineTheme/EngineThemeSpinBox.gd" id="9_36kso"]
 [ext_resource type="PackedScene" uid="uid://bumoha7lb8qch" path="res://scenes/menus/options/hud/Elements/RankButton.tscn" id="11_lo8x1"]
+[ext_resource type="Script" uid="uid://dmknvxcthud7h" path="res://scenes/editors/character editor/windows/BackgroundTrack.gd" id="13_ryb5n"]
+[ext_resource type="Script" uid="uid://bdsgr0skffsel" path="res://scenes/editors/character editor/AudioVisTest.gd" id="14_4ahyr"]
+[ext_resource type="Texture2D" uid="uid://bu1lcynh7qj3l" path="res://assets/images/material_icons/Editors/Play.svg" id="15_bd15s"]
+[ext_resource type="Script" uid="uid://8mxbydkyk7td" path="res://scripts/AudioPlayer.gd" id="16_4ahyr"]
 
 [sub_resource type="Gradient" id="Gradient_yb4yc"]
 interpolation_mode = 2
@@ -74,6 +79,29 @@ label_settings = SubResource("LabelSettings_k8jfr")
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="RulerTop" type="Control" parent="CanvasLayer"]
+z_index = -1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_bd15s")
+
+[node name="RulerLeft" type="Control" parent="CanvasLayer"]
+z_index = -1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_bd15s")
+is_horizontal = false
+
 [node name="MenuOptions" type="HBoxContainer" parent="CanvasLayer"]
 offset_left = 8.0
 offset_top = 8.0
@@ -113,10 +141,6 @@ theme = ExtResource("3_k68oh")
 text = "Edit"
 flat = false
 switch_on_hover = true
-item_count = 1
-popup/item_0/text = "Preferences"
-popup/item_0/checkable = 1
-popup/item_0/id = 0
 
 [node name="Options" type="MenuButton" parent="CanvasLayer/MenuOptions"]
 custom_minimum_size = Vector2(64, 0)
@@ -131,6 +155,19 @@ popup/item_0/checkable = 1
 popup/item_0/id = 0
 popup/item_1/text = "Show misc. Items?"
 popup/item_1/checkable = 1
+popup/item_1/id = 1
+
+[node name="Windows" type="MenuButton" parent="CanvasLayer/MenuOptions"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+theme = ExtResource("3_k68oh")
+text = "Windows"
+flat = false
+switch_on_hover = true
+item_count = 2
+popup/item_0/text = "Preferences"
+popup/item_0/id = 0
+popup/item_1/text = "Background Track"
 popup/item_1/id = 1
 
 [node name="Help" type="MenuButton" parent="CanvasLayer/MenuOptions"]
@@ -1160,8 +1197,189 @@ file_mode = 0
 access = 1
 filters = PackedStringArray("*.json")
 
+[node name="Background Track" type="Window" parent="Windows"]
+auto_translate_mode = 1
+title = "Background Track"
+position = Vector2i(40, 100)
+size = Vector2i(256, 128)
+visible = false
+unresizable = true
+min_size = Vector2i(256, 128)
+max_size = Vector2i(256, 128)
+script = ExtResource("13_ryb5n")
+
+[node name="BG" type="ColorRect" parent="Windows/Background Track"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+metadata/_edit_lock_ = true
+
+[node name="AudioVis" type="Control" parent="Windows/Background Track"]
+modulate = Color(0, 0, 0, 0.12549)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, -1)
+pivot_offset = Vector2(128, 64)
+script = ExtResource("14_4ahyr")
+
+[node name="Track" type="OptionButton" parent="Windows/Background Track"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -39.5
+offset_right = 101.0
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+selected = 0
+item_count = 3
+popup/item_0/text = "01. Artistic Expression"
+popup/item_0/id = 0
+popup/item_1/text = "02. Gettin' Freaky"
+popup/item_1/id = 1
+popup/item_2/text = "03.  Breakfast"
+popup/item_2/id = 2
+
+[node name="Play" type="Button" parent="Windows/Background Track"]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = 16.0
+offset_right = -69.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+icon = ExtResource("15_bd15s")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Lower" type="Button" parent="Windows/Background Track"]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = 16.0
+offset_right = -29.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "-"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Higher" type="Button" parent="Windows/Background Track"]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 69.0
+offset_top = 16.0
+offset_right = 101.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "+"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Bars" type="HBoxContainer" parent="Windows/Background Track"]
+offset_left = 103.0
+offset_top = 80.0
+offset_right = 193.0
+offset_bottom = 112.0
+alignment = 1
+
+[node name="1" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 3.2)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="2" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 6.4)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="3" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 9.6)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="4" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 12.8)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="5" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 16)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="6" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 19.2)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="7" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 22.4)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="8" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 25.6)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="9" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 28.8)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="10" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 32)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
 [node name="HUDElements" type="Node" parent="."]
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+script = ExtResource("16_4ahyr")
+metadata/_custom_type_script = "uid://8mxbydkyk7td"
+
+[connection signal="close_requested" from="Windows/Preferences" to="Windows/Preferences" method="hide"]
 [connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor/ColorBG" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor/ColorBG" method="_on_popup_closed"]
 [connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" method="_on_popup_closed"]
 [connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient2" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient2" method="_on_popup_closed"]
@@ -1213,5 +1431,7 @@ filters = PackedStringArray("*.json")
 [connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" method="_on_value_changed"]
 [connection signal="file_selected" from="Windows/SaveDialog" to="Saving" method="_save_hud"]
 [connection signal="file_selected" from="Windows/OpenDialog" to="Loading" method="_on_hud_opened"]
+[connection signal="close_requested" from="Windows/Background Track" to="Windows/Background Track" method="hide"]
+[connection signal="item_selected" from="Windows/Background Track/Track" to="Windows/Background Track" method="_on_track_selected"]
 
 [editable path="Windows/Preferences/TabContainer/AccuracyRanks/ScrollContainer/VBoxContainer/RankOptionButton"]

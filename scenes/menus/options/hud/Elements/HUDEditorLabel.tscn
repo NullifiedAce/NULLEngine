@@ -1,13 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3gogyya0gqoj"]
 
 [ext_resource type="Script" uid="uid://dcp4otddduiih" path="res://scenes/menus/options/hud/Elements/HUDEditorLabel.gd" id="1_de56r"]
-[ext_resource type="PackedScene" uid="uid://hndw7fj5q6e3" path="res://scenes/menus/options/hud/Elements/HUDTextButton.tscn" id="2_i0r70"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_de56r"]
 
 [node name="HUDEditorLabel" type="Label"]
 offset_right = 40.0
 offset_bottom = 23.0
 mouse_filter = 0
-text = "Testing"
+label_settings = SubResource("LabelSettings_de56r")
 script = ExtResource("1_de56r")
 
 [node name="EditWindow" type="Window" parent="."]
@@ -96,6 +97,7 @@ auto_translate_mode = 1
 title = "Edit Text"
 initial_position = 1
 size = Vector2i(256, 256)
+visible = false
 min_size = Vector2i(256, 256)
 
 [node name="BG" type="ColorRect" parent="EditText"]
@@ -135,8 +137,195 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HUDTextButton" parent="EditText/ScrollContainer/VBoxContainer" instance=ExtResource("2_i0r70")]
+[node name="EditStyle" type="Window" parent="."]
+title = "Customize Style"
+initial_position = 1
+size = Vector2i(512, 319)
+visible = false
+unresizable = true
+
+[node name="BG" type="ColorRect" parent="EditStyle"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="EditStyle"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditStyle/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FontTitle" type="Label" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Font Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Font" type="HBoxContainer" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="FontTitle" type="Label" parent="EditStyle/ScrollContainer/VBoxContainer/Font"]
+layout_mode = 2
+text = "Font:"
+
+[node name="FontOption" type="OptionButton" parent="EditStyle/ScrollContainer/VBoxContainer/Font"]
+layout_mode = 2
+focus_mode = 0
+selected = 0
+item_count = 2
+popup/item_0/text = "VCR"
+popup/item_0/id = 0
+popup/item_1/text = "Funkin"
+popup/item_1/id = 1
+
+[node name="SizeTitle" type="Label" parent="EditStyle/ScrollContainer/VBoxContainer/Font"]
+layout_mode = 2
+text = "Font Size:"
+
+[node name="Size" type="SpinBox" parent="EditStyle/ScrollContainer/VBoxContainer/Font"]
+layout_mode = 2
+max_value = 9999.0
+update_on_text_changed = true
+
+[node name="ColorTitle" type="Label" parent="EditStyle/ScrollContainer/VBoxContainer/Font"]
+layout_mode = 2
+text = "Font Color:"
+
+[node name="Color" type="ColorPickerButton" parent="EditStyle/ScrollContainer/VBoxContainer/Font"]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(1, 1, 1, 1)
+
+[node name="HSeparator2" type="HSeparator" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OutlineTitle" type="Label" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Outline Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Outline" type="HBoxContainer" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="SizeTitle" type="Label" parent="EditStyle/ScrollContainer/VBoxContainer/Outline"]
+layout_mode = 2
+text = "Outline Size:"
+
+[node name="Size" type="SpinBox" parent="EditStyle/ScrollContainer/VBoxContainer/Outline"]
+layout_mode = 2
+max_value = 9999.0
+update_on_text_changed = true
+
+[node name="ColorTitle" type="Label" parent="EditStyle/ScrollContainer/VBoxContainer/Outline"]
+layout_mode = 2
+text = "Outline Color:"
+
+[node name="Color" type="ColorPickerButton" parent="EditStyle/ScrollContainer/VBoxContainer/Outline"]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(1, 1, 1, 1)
+
+[node name="HSeparator4" type="HSeparator" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShadowTitle" type="Label" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shadow Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator5" type="HSeparator" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Shadow" type="HBoxContainer" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="SizeTitle" type="Label" parent="EditStyle/ScrollContainer/VBoxContainer/Shadow"]
+layout_mode = 2
+text = "Shadow Size:"
+
+[node name="Size" type="SpinBox" parent="EditStyle/ScrollContainer/VBoxContainer/Shadow"]
+layout_mode = 2
+max_value = 9999.0
+update_on_text_changed = true
+
+[node name="ColorTitle" type="Label" parent="EditStyle/ScrollContainer/VBoxContainer/Shadow"]
+layout_mode = 2
+text = "Shadow Color:"
+
+[node name="Color" type="ColorPickerButton" parent="EditStyle/ScrollContainer/VBoxContainer/Shadow"]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 2
+focus_mode = 0
+
+[node name="Shadow2" type="HBoxContainer" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="OffsetTitle" type="Label" parent="EditStyle/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+text = "Shadow Offset:"
+
+[node name="OffsetX" type="SpinBox" parent="EditStyle/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+min_value = -9999.0
+max_value = 9999.0
+update_on_text_changed = true
+suffix = "X"
+
+[node name="OffsetY" type="SpinBox" parent="EditStyle/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+min_value = -9999.0
+max_value = 9999.0
+update_on_text_changed = true
+suffix = "Y"
+
+[node name="HSeparator6" type="HSeparator" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditStyle/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LoadDefaults" type="Button" parent="EditStyle/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Apply the global default values.
+These can be changed under Windows > Preferences > Label Defaults"
+focus_mode = 0
+text = "Load Defaults"
+
+[node name="ApplyChanges" type="Button" parent="EditStyle/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Apply all changes made."
+focus_mode = 0
+text = "Apply Changes"
 
 [connection signal="close_requested" from="EditWindow" to="EditWindow" method="hide"]
 [connection signal="close_requested" from="EditText" to="EditText" method="hide"]
+[connection signal="close_requested" from="EditStyle" to="EditStyle" method="hide"]
+[connection signal="pressed" from="EditStyle/ScrollContainer/VBoxContainer/HBoxContainer/LoadDefaults" to="." method="_on_load_defaults_pressed"]
+[connection signal="pressed" from="EditStyle/ScrollContainer/VBoxContainer/HBoxContainer/ApplyChanges" to="." method="_on_apply_changes_pressed"]

@@ -1,17 +1,10 @@
 extends Node
 
-var path: String = "user://" + "V" + ProjectSettings.get_setting("application/config/version") + "/"
-
-var prev_ver:String = "1.0.1"
-
-var show_message: bool = false
+var path: String = "user://" + "V" + ProjectSettings.get_setting("engine/customization/save_version") + "/"
 
 func _ready() -> void:
 	if !DirAccess.dir_exists_absolute(path):
 		DirAccess.make_dir_absolute(path)
-
-	if Global.game_version != prev_ver:
-		show_message = true
 
 func copy_old_save(old_path: String):
 	var dir_acc = DirAccess.open(old_path)

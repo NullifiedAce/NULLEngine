@@ -195,6 +195,50 @@ var ease_types = {
 		"out": Tween.EASE_OUT
 	}
 
+var gameplay_values: Dictionary = {
+	"nothing": "",
+	"score": 0,
+	"misses": 0,
+	"accuracy": 0.00,
+	"accuracy rank": "N/A",
+	"rank": "N/A",
+	"health": 50,
+	"combo": 0,
+	"max combo": 0,
+	"ghost presses": 0,
+	"key presses": 0,
+	"current time": format_time(0),
+	"max time": format_time(0),
+	"time left": format_time(0),
+	"song name": "Bopeebo",
+	"difficulty": "Hard",
+	"sick hits": 0,
+	"good hits": 0,
+	"bad hits": 0,
+	"shit hits": 0,
+}
+
+func reset_gameplay_values():
+	gameplay_values["score"] =			0
+	gameplay_values["misses"] =			0
+	gameplay_values["accuracy"] =		0.00
+	gameplay_values["accuracy rank"] =	"N/A"
+	gameplay_values["rank"] =			"N/A"
+	gameplay_values["health"] =			50
+	gameplay_values["combo"] =			0
+	gameplay_values["max combo"] =		0
+	gameplay_values["ghost presses"] =	0
+	gameplay_values["key presses"] =	0
+	gameplay_values["current time"] =	format_time(0)
+	gameplay_values["max time"] =		format_time(0)
+	gameplay_values["time left"] =		format_time(0)
+	gameplay_values["song name"] =		"Bopeebo"
+	gameplay_values["difficulty"] =		"Hard"
+	gameplay_values["sick hits"] =		0
+	gameplay_values["good hits"] =		0
+	gameplay_values["bad hits"] =		0
+	gameplay_values["shit hits"] =		0
+
 func parse_ease(ease_string: String) -> Dictionary:
 	var ease_type = Tween.EASE_IN_OUT  # default
 	var trans_type_str = "linear"  # fallback
