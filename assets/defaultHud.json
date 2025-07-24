@@ -47,48 +47,50 @@
 				"RankName": "F"
 			}
 		],
-		"HUDBar": [],
-		"HUDLabel": [
+		"HUDLabels": [
 			{
-				"Alignment": 1,
-				"AnchorPreset": 12,
-				"DownscrollMulti": 1.0,
-				"Font": "vcr",
-				"FontColor": "ffffffff",
-				"FontSize": 16,
-				"Items": [
+				"font": "vcr",
+				"font_color": "ffffffff",
+				"font_size": 16,
+				"outline_color": "000000ff",
+				"outline_size": 8,
+				"position": "(478.0, 647.0)",
+				"rotation": 0.0,
+				"shadow_color": "00000000",
+				"shadow_offset": "(0.0, 0.0)",
+				"shadow_size": 0,
+				"text_items": [
 					{
-						"prefix_text": "",
-						"suffix_text": " pt(s)",
-						"text": "",
-						"track": true,
-						"track_value": "Score"
+						"prefix": "Score: ",
+						"suffix": "",
+						"value_option": "Score"
 					},
 					{
-						"prefix_text": "",
-						"suffix_text": "",
-						"text": " - ",
-						"track": false,
-						"track_value": "Score"
+						"prefix": " - ",
+						"suffix": "",
+						"value_option": "Nothing"
 					},
 					{
-						"prefix_text": "Accuracy: ",
-						"suffix_text": "",
-						"text": "",
-						"track": true,
-						"track_value": "Accuracy"
+						"prefix": "Misses: ",
+						"suffix": "",
+						"value_option": "Misses"
+					},
+					{
+						"prefix": " - ",
+						"suffix": "",
+						"value_option": "Nothing"
+					},
+					{
+						"prefix": "Accuracy: ",
+						"suffix": "%",
+						"value_option": "Accuracy"
+					},
+					{
+						"prefix": " [",
+						"suffix": "]",
+						"value_option": "Accuracy Rank"
 					}
-				],
-				"LayoutMode": "Single Line",
-				"OutlineColor": "000000ff",
-				"OutlineSize": 8,
-				"PosX": 387.0,
-				"PosY": 265.0,
-				"Rotation": 0.0,
-				"ShadowColor": "00000000",
-				"ShadowOffsetX": 0,
-				"ShadowOffsetY": 0,
-				"ShadowSize": 0
+				]
 			}
 		]
 	}

@@ -74,7 +74,7 @@ offset_left = 1064.0
 offset_top = 8.0
 offset_right = 1272.0
 offset_bottom = 40.0
-text = "HUD Editor Version 1.0"
+text = "HUD Editor Version 2.0"
 label_settings = SubResource("LabelSettings_k8jfr")
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -88,6 +88,7 @@ anchor_bottom = 1.0
 offset_top = 48.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("8_bd15s")
 
 [node name="RulerLeft" type="Control" parent="CanvasLayer"]
@@ -99,6 +100,7 @@ anchor_bottom = 1.0
 offset_top = 48.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("8_bd15s")
 is_horizontal = false
 

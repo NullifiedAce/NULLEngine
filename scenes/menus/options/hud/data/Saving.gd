@@ -84,5 +84,6 @@ func _save_hud(path: String):
 	file.close()
 
 	SettingsAPI.set_setting("lastHudFile", path)
+	SettingsAPI.flush()
 
 	print("Saved HUD!")
