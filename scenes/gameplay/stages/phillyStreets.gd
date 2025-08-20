@@ -29,7 +29,7 @@ func _ready_post():
 	if game.METADATA["rawSongName"] == "darnell":
 		rain_start_intensity = 0.0
 		rain_end_intensity = 0.1
-	elif game.METADATA["rawSongName"] == "lit up":
+	elif game.METADATA["rawSongName"] == "lit-up":
 		rain_start_intensity = 0.1
 		rain_end_intensity = 0.2
 	elif game.METADATA["rawSongName"] == "2hot":

@@ -7,10 +7,10 @@ var trans_type: Tween.TransitionType = Tween.TRANS_QUINT
 var ease_type: Tween.EaseType = Tween.EASE_OUT
 
 func _ready() -> void:
-	if parameters.has("char"): target = parameters["char"]
-	if parameters.has("target"): target = parameters["target"]
-	if parameters.has("x"): target_pos.x =  parameters["x"]
-	if parameters.has("y"): target_pos.y = parameters["y"]
+	if parameters.has("char"): target = int(parameters["char"])
+	if parameters.has("target"): target = int(parameters["target"])
+	if parameters.has("x"): target_pos.x =  float(parameters["x"])
+	if parameters.has("y"): target_pos.y = float(parameters["y"])
 	if parameters.has("duration"): duration = parameters["duration"]
 	if parameters.has("ease"):
 		if !parameters["ease"] == "CLASSIC":

@@ -4,6 +4,7 @@ class_name HUD
 @export var game:Gameplay
 
 func _ready() -> void:
+	return
 	for i in HUDHandler.hud_elements:
 		if i is HUDLabel:
 			var new_label:HUDLabel = HUDLabel.new() # Gotta create a new one because duplicating gets rid of the global one when exiting the gameplay scene.
