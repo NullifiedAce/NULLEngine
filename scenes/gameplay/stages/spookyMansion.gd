@@ -2,6 +2,7 @@ extends Stage
 @onready var bg = $PB/AnimatedSprite
 
 func _ready():
+	super._ready()
 	Conductor.beat_hit.connect(beat_hit)
 
 var lightningStrikeBeat:int = 0

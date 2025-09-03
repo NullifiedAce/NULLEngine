@@ -88,8 +88,8 @@ bg_color = Color(0.580392, 0.0862745, 0.32549, 1)
 
 [sub_resource type="Resource" id="Resource_jarqo"]
 script = ExtResource("2_7bcx6")
-song = "philly nice"
-display_name = ""
+song = "philly-nice"
+display_name = "philly nice"
 character_icon = ExtResource("7_trolw")
 icon_frames = 2
 difficulties = Array[String](["easy", "normal", "hard"])

@@ -73,7 +73,7 @@ bg_color = Color(0.717647, 0.847059, 0.333333, 1)
 
 [sub_resource type="Resource" id="Resource_tndgv"]
 script = ExtResource("3_7sxe0")
-song = "philly nice"
+song = "philly-nice"
 display_name = "Philly Nice Erect"
 character_icon = ExtResource("5_mul57")
 icon_frames = 2

@@ -14,7 +14,7 @@ static func load_from_json(json, difficulty:String):
 
 	if difficulty in json.scrollSpeed:
 		chart.scroll_speed = json.scrollSpeed[difficulty]
-	else :
+	else:
 		chart.scroll_speed = json.scrollSpeed["default"]
 
 	# oh god wish me luck converting these

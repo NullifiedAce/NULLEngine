@@ -618,9 +618,9 @@ _data = {
 position = Vector2(0, 5)
 script = ExtResource("1_tn45d")
 dance_steps = Array[String](["danceLeft", "danceRight"])
-voices_paths = "spooky"
 health_icon = ExtResource("2_xvqow")
 health_color = Color(0.835294, 0.494118, 0, 1)
+voices_paths = "spooky-dark"
 
 [node name="Light" type="AnimatedSprite2D" parent="."]
 position = Vector2(-248, -554)
@@ -638,7 +638,7 @@ script = ExtResource("4_4ml16")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_vgtrv")
+&"": SubResource("AnimationLibrary_vgtrv")
 }
 
 [node name="CameraPos" type="Node2D" parent="."]

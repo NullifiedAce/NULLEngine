@@ -1,6 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3gogyya0gqoj"]
+[gd_scene load_steps=16 format=3 uid="uid://b3gogyya0gqoj"]
 
 [ext_resource type="Script" uid="uid://dcp4otddduiih" path="res://scenes/menus/options/hud/Elements/HUDEditorLabel.gd" id="1_de56r"]
+[ext_resource type="Texture2D" uid="uid://baj8mqr1ho88r" path="res://assets/images/material_icons/HUDAnchors/TopLeft.svg" id="2_t0l1o"]
+[ext_resource type="Texture2D" uid="uid://bepu06b217gei" path="res://assets/images/material_icons/HUDAnchors/TopCenter.svg" id="3_jmto2"]
+[ext_resource type="Texture2D" uid="uid://dlgd4ruflvigc" path="res://assets/images/material_icons/HUDAnchors/TopRight.svg" id="4_a8sq5"]
+[ext_resource type="Texture2D" uid="uid://dpbjxsvj0fwx4" path="res://assets/images/material_icons/HUDAnchors/CenterLeft.svg" id="5_2c7p7"]
+[ext_resource type="Texture2D" uid="uid://dttj3t2avx4op" path="res://assets/images/material_icons/HUDAnchors/TopFill.svg" id="5_roqnu"]
+[ext_resource type="Texture2D" uid="uid://bcanggu0jin38" path="res://assets/images/material_icons/HUDAnchors/Center.svg" id="6_roqnu"]
+[ext_resource type="Texture2D" uid="uid://dfxess6cgp1l2" path="res://assets/images/material_icons/HUDAnchors/CenterRight.svg" id="7_6havg"]
+[ext_resource type="Texture2D" uid="uid://dg2r8ffcp0h4f" path="res://assets/images/material_icons/HUDAnchors/BottomLeft.svg" id="8_jb281"]
+[ext_resource type="Texture2D" uid="uid://b8e7q8swbo1eb" path="res://assets/images/material_icons/HUDAnchors/CenterFill.svg" id="9_6havg"]
+[ext_resource type="Texture2D" uid="uid://vpd8mtowo5q" path="res://assets/images/material_icons/HUDAnchors/BottomCenter.svg" id="9_o37rp"]
+[ext_resource type="Texture2D" uid="uid://b6dign15qej7t" path="res://assets/images/material_icons/HUDAnchors/BottomRight.svg" id="10_h5ban"]
+[ext_resource type="Texture2D" uid="uid://cuboytf4ln1lp" path="res://assets/images/material_icons/HUDAnchors/BottomFill.svg" id="13_jb281"]
+[ext_resource type="Texture2D" uid="uid://bsiuen04gc8qg" path="res://assets/images/material_icons/HUDAnchors/Full.svg" id="14_o37rp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_de56r"]
 
@@ -80,17 +93,27 @@ suffix = "°"
 [node name="HSeparator" type="HSeparator" parent="EditWindow/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Customize" type="Button" parent="EditWindow/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="EditWindow/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Customize" type="Button" parent="EditWindow/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
 text = "Customize Style"
 
-[node name="EditText" type="Button" parent="EditWindow/ScrollContainer/VBoxContainer"]
+[node name="EditText" type="Button" parent="EditWindow/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
 text = "Edit Text"
+
+[node name="SetAnchor" type="Button" parent="EditWindow/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "Set Anchor"
 
 [node name="EditText" type="Window" parent="."]
 auto_translate_mode = 1
@@ -324,8 +347,152 @@ tooltip_text = "Apply all changes made."
 focus_mode = 0
 text = "Apply Changes"
 
+[node name="SetAnchor" type="Window" parent="."]
+title = "Set Anchor"
+initial_position = 1
+size = Vector2i(256, 256)
+unresizable = true
+
+[node name="BG" type="ColorRect" parent="SetAnchor"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SetAnchor"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SetAnchor/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TopLeft" type="TextureButton" parent="SetAnchor/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("2_t0l1o")
+stretch_mode = 0
+
+[node name="TopCenter" type="TextureButton" parent="SetAnchor/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("3_jmto2")
+stretch_mode = 0
+
+[node name="TopRight" type="TextureButton" parent="SetAnchor/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("4_a8sq5")
+stretch_mode = 0
+
+[node name="VSeparator" type="VSeparator" parent="SetAnchor/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TopFull" type="TextureButton" parent="SetAnchor/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("5_roqnu")
+stretch_mode = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SetAnchor/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CenterLeft" type="TextureButton" parent="SetAnchor/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("5_2c7p7")
+stretch_mode = 0
+
+[node name="Center" type="TextureButton" parent="SetAnchor/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("6_roqnu")
+stretch_mode = 0
+
+[node name="CenterRight" type="TextureButton" parent="SetAnchor/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("7_6havg")
+stretch_mode = 0
+
+[node name="VSeparator" type="VSeparator" parent="SetAnchor/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="CenterFull" type="TextureButton" parent="SetAnchor/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("9_6havg")
+stretch_mode = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="SetAnchor/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BottomLeft" type="TextureButton" parent="SetAnchor/VBoxContainer/HBoxContainer3"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("8_jb281")
+stretch_mode = 0
+
+[node name="BottomCenter" type="TextureButton" parent="SetAnchor/VBoxContainer/HBoxContainer3"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("9_o37rp")
+stretch_mode = 0
+
+[node name="BottomRight" type="TextureButton" parent="SetAnchor/VBoxContainer/HBoxContainer3"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("10_h5ban")
+stretch_mode = 0
+
+[node name="VSeparator" type="VSeparator" parent="SetAnchor/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="BottomFull" type="TextureButton" parent="SetAnchor/VBoxContainer/HBoxContainer3"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("13_jb281")
+stretch_mode = 0
+
+[node name="HSeparator" type="HSeparator" parent="SetAnchor/VBoxContainer"]
+custom_minimum_size = Vector2(211, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Full" type="TextureButton" parent="SetAnchor/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("14_o37rp")
+stretch_mode = 0
+flip_v = true
+
 [connection signal="close_requested" from="EditWindow" to="EditWindow" method="hide"]
 [connection signal="close_requested" from="EditText" to="EditText" method="hide"]
 [connection signal="close_requested" from="EditStyle" to="EditStyle" method="hide"]
 [connection signal="pressed" from="EditStyle/ScrollContainer/VBoxContainer/HBoxContainer/LoadDefaults" to="." method="_on_load_defaults_pressed"]
 [connection signal="pressed" from="EditStyle/ScrollContainer/VBoxContainer/HBoxContainer/ApplyChanges" to="." method="_on_apply_changes_pressed"]
+[connection signal="close_requested" from="SetAnchor" to="SetAnchor" method="hide"]
