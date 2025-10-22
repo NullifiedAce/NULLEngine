@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://dt2t8eyb1p3f5"]
+[gd_scene load_steps=25 format=3 uid="uid://dt2t8eyb1p3f5"]
 
 [ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_e8d5a"]
+[ext_resource type="Texture2D" uid="uid://bb4v0d5dmjwd0" path="res://assets/images/gameplay/icons/icon-darnell.png" id="2_x68yc"]
 [ext_resource type="Script" uid="uid://3lax1w5pcsp0" path="res://addons/gdanimate/animate_symbol.gd" id="4_3rapx"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/darnell/darnellBlazin/Darnell_Blazin.res" id="5_e8d5a"]
 [ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="6_xd6oj"]
@@ -920,6 +921,72 @@ tracks/4/keys = {
 "values": [Vector2(9, -19)]
 }
 
+[sub_resource type="Animation" id="Animation_mhxbd"]
+resource_name = "uppercut-loop"
+length = 0.8333
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Darnell:symbol")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["uppercut darnell"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Darnell:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Darnell:loop_mode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Play Once"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Darnell:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Darnell:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(9, -19)]
+}
+
 [sub_resource type="Animation" id="Animation_hlsnx"]
 resource_name = "uppercutHit"
 length = 0.375
@@ -1050,72 +1117,6 @@ tracks/4/keys = {
 "values": [Vector2(-50, 166)]
 }
 
-[sub_resource type="Animation" id="Animation_mhxbd"]
-resource_name = "uppercut-loop"
-length = 0.8333
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Darnell:symbol")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["uppercut darnell"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Darnell:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Darnell:loop_mode")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["Play Once"]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Darnell:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Darnell:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(9, -19)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_caexa"]
 _data = {
 &"RESET": SubResource("Animation_caexa"),
@@ -1142,6 +1143,8 @@ _data = {
 script = ExtResource("1_e8d5a")
 sing_duration = 9999.0
 dances = false
+health_icon = ExtResource("2_x68yc")
+health_color = Color(0.45098, 0.368627, 0.690196, 1)
 voices_paths = ""
 character_script_folder = "darnell"
 character_script_name = "blazin"
@@ -1149,7 +1152,6 @@ character_script_name = "blazin"
 [node name="Darnell" type="Node2D" parent="."]
 script = ExtResource("4_3rapx")
 atlas = "res://assets/images/gameplay/characters/darnell/darnellBlazin"
-frame = 13
 symbol = "Idle Fight Darnell"
 loop_mode = "Play Once"
 metadata/_custom_type_script = "uid://3lax1w5pcsp0"

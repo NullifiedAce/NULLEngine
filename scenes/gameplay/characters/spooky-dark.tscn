@@ -620,7 +620,7 @@ script = ExtResource("1_tn45d")
 dance_steps = Array[String](["danceLeft", "danceRight"])
 health_icon = ExtResource("2_xvqow")
 health_color = Color(0.835294, 0.494118, 0, 1)
-voices_paths = "spooky-dark"
+voices_paths = "spooky"
 
 [node name="Light" type="AnimatedSprite2D" parent="."]
 position = Vector2(-248, -554)

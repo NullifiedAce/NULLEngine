@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://6ms6cgmdb504"]
+
+[ext_resource type="Script" uid="uid://ckd1jrhc6tyq" path="res://scenes/gameplay/cutscenes/video-example.gd" id="1_xednj"]
+[ext_resource type="VideoStream" uid="uid://c5crxpbr2efc" path="res://assets/videos/darnellCutscene.mp4" id="2_ee5ou"]
+
+[node name="video-example" type="Node"]
+process_mode = 3
+script = ExtResource("1_xednj")
+
+[node name="video" type="VideoStreamPlayer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_ee5ou")
+autoplay = true
+expand = true

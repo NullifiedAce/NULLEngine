@@ -3,14 +3,15 @@ extends CanvasLayer
 var show_extra_info:bool = false
 var _vram_peak:float = 0.0
 
-var _update_timer:float = 0.0
-
 @onready var fps_label:Label = $FPSLabel
 @onready var mem_label:Label = $MEMLabel
 
 func _ready():
 	update_text(true)
 	mem_label.visible = show_extra_info
+
+func _process(delta: float) -> void:
+	update_text()
 
 func _physics_process(delta):
 	visible = SettingsAPI.get_setting("fps counter")
@@ -19,14 +20,8 @@ func _physics_process(delta):
 		show_extra_info = not show_extra_info
 		mem_label.visible = show_extra_info
 
-	_update_timer += delta
-
-	if _update_timer >= 1.0:
-		_update_timer = 0.0
-		update_text()
-
 func update_text(force_update_mem:bool = false):
-	fps_label.text = "FPS: "+str(Engine.get_frames_per_second())
+	fps_label.text = "FPS: %d" % Engine.get_frames_per_second()
 
 	if OS.is_debug_build() and (show_extra_info or force_update_mem):
 		var mem:String = Global.bytes_to_human(OS.get_static_memory_usage())
@@ -55,7 +50,7 @@ func update_text(force_update_mem:bool = false):
 
 		mem_label.text += "\n---------== Engine Info == ----------\n"
 
-		mem_label.text += "Objects: "+str(Performance.get_monitor(Performance.OBJECT_NODE_COUNT))+"\n"
+		mem_label.text += "Objects: %d" % Performance.get_monitor(Performance.OBJECT_NODE_COUNT)+"\n"
 		mem_label.text += "Process Time: "+str(Performance.get_monitor(Performance.TIME_PROCESS))+"\n"
 		mem_label.text += "Physics Process Time: "+str(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS))+"\n"
 

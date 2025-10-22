@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ch4gdkufvdmy6"]
+[gd_scene load_steps=39 format=3 uid="uid://ch4gdkufvdmy6"]
 
 [ext_resource type="Script" uid="uid://ba8wgwgwwuiad" path="res://scenes/menus/freeplay/Menu.gd" id="1_5pt7i"]
 [ext_resource type="Script" uid="uid://cd6m2dg6wrnkj" path="res://resources/FreeplaySongList.gd" id="2_tlqqb"]
@@ -13,8 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://e8xt5mniecrb" path="res://assets/images/gameplay/icons/icon-mom.png" id="7_as88b"]
 [ext_resource type="Script" uid="uid://bhg3vp5ab5eol" path="res://scripts/HealthIcon.gd" id="7_y5ig6"]
 [ext_resource type="Texture2D" uid="uid://bb4v0d5dmjwd0" path="res://assets/images/gameplay/icons/icon-darnell.png" id="8_0d2fn"]
+[ext_resource type="Texture2D" uid="uid://c64fkfk5hgpo6" path="res://assets/images/gameplay/icons/icon-parents.png" id="8_63rvd"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="8_iepj7"]
+[ext_resource type="Texture2D" uid="uid://br4sq5exy3kcm" path="res://assets/images/gameplay/icons/icon-senpai.png" id="9_8j4g0"]
+[ext_resource type="Texture2D" uid="uid://dc1jxy8dleesb" path="res://assets/images/gameplay/icons/icon-senpai-angry.png" id="10_b33x4"]
 [ext_resource type="Script" uid="uid://dnx1lap6keint" path="res://scenes/menus/options/buttons/Display Slider Optionless.gd" id="11_b1ky7"]
+[ext_resource type="Texture2D" uid="uid://d3jxxi3dppb74" path="res://assets/images/gameplay/icons/icon-spirit.png" id="11_jej1v"]
+[ext_resource type="Texture2D" uid="uid://cxcsjc5lvkj08" path="res://assets/images/gameplay/icons/icon-tankman.png" id="12_jpdve"]
 [ext_resource type="Theme" uid="uid://dqqyiyf33vtjn" path="res://assets/styles/NULLEngine.tres" id="14_8fsw8"]
 
 [sub_resource type="Resource" id="Resource_qq4qh"]
@@ -23,6 +28,8 @@ song = "bopeebo"
 display_name = "Bopeebo Erect"
 character_icon = ExtResource("4_c3tt0")
 icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
 difficulties = Array[String](["erect", "nightmare"])
 bg_color = Color(0.686275, 0.4, 0.807843, 1)
 
@@ -32,6 +39,8 @@ song = "fresh"
 display_name = "Fresh Erect"
 character_icon = ExtResource("4_c3tt0")
 icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
 difficulties = Array[String](["erect", "nightmare"])
 bg_color = Color(0.686275, 0.4, 0.807843, 1)
 
@@ -41,6 +50,8 @@ song = "dadbattle"
 display_name = "Dadbattle Erect"
 character_icon = ExtResource("4_c3tt0")
 icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
 difficulties = Array[String](["erect", "nightmare"])
 bg_color = Color(0.686275, 0.4, 0.807843, 1)
 
@@ -50,6 +61,8 @@ song = "spookeez"
 display_name = "Spookeez Erect"
 character_icon = ExtResource("5_1t08r")
 icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
 difficulties = Array[String](["erect", "nightmare"])
 bg_color = Color(0.705882, 0.705882, 0.705882, 1)
 
@@ -59,6 +72,8 @@ song = "south"
 display_name = "South Erect"
 character_icon = ExtResource("5_1t08r")
 icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
 difficulties = Array[String](["erect", "nightmare"])
 bg_color = Color(0.835294, 0.494118, 0, 1)
 
@@ -68,6 +83,8 @@ song = "pico"
 display_name = "Pico Erect"
 character_icon = ExtResource("5_mul57")
 icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
 difficulties = Array[String](["erect", "nightmare"])
 bg_color = Color(0.717647, 0.847059, 0.333333, 1)
 
@@ -77,6 +94,8 @@ song = "philly-nice"
 display_name = "Philly Nice Erect"
 character_icon = ExtResource("5_mul57")
 icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
 difficulties = Array[String](["erect", "nightmare"])
 bg_color = Color(0.717647, 0.847059, 0.333333, 1)
 
@@ -86,17 +105,93 @@ song = "blammed"
 display_name = "Blammed Erect"
 character_icon = ExtResource("5_mul57")
 icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
 difficulties = Array[String](["erect", "nightmare"])
 bg_color = Color(0.717647, 0.847059, 0.333333, 1)
 
 [sub_resource type="Resource" id="Resource_hlcsf"]
 script = ExtResource("3_7sxe0")
-song = "satin panties"
-display_name = "Satin Panties Erect"
+song = "high"
+display_name = "High Erect"
 character_icon = ExtResource("7_as88b")
 icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
 difficulties = Array[String](["erect", "nightmare"])
 bg_color = Color(0.847059, 0.333333, 0.556863, 1)
+
+[sub_resource type="Resource" id="Resource_8j4g0"]
+script = ExtResource("3_7sxe0")
+song = "cocoa"
+display_name = "Cocoa Erect"
+character_icon = ExtResource("8_63rvd")
+icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
+difficulties = Array[String](["erect", "nightmare"])
+bg_color = Color(0.627451, 0.819608, 1, 1)
+metadata/_custom_type_script = "uid://dvtla3mpdl3pn"
+
+[sub_resource type="Resource" id="Resource_b33x4"]
+script = ExtResource("3_7sxe0")
+song = "eggnog"
+display_name = "Eggnog Erect"
+character_icon = ExtResource("8_63rvd")
+icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
+difficulties = Array[String](["erect", "nightmare"])
+bg_color = Color(0.627451, 0.819608, 1, 1)
+metadata/_custom_type_script = "uid://dvtla3mpdl3pn"
+
+[sub_resource type="Resource" id="Resource_jej1v"]
+script = ExtResource("3_7sxe0")
+song = "senpai"
+display_name = "Senpai Erect"
+character_icon = ExtResource("9_8j4g0")
+icon_frames = 2
+icon_scale = 4.75
+icon_filter = 1
+difficulties = Array[String](["erect", "nightmare"])
+bg_color = Color(1, 0.666667, 0.435294, 1)
+metadata/_custom_type_script = "uid://dvtla3mpdl3pn"
+
+[sub_resource type="Resource" id="Resource_jpdve"]
+script = ExtResource("3_7sxe0")
+song = "roses"
+display_name = "Roses Erect"
+character_icon = ExtResource("10_b33x4")
+icon_frames = 2
+icon_scale = 4.75
+icon_filter = 1
+difficulties = Array[String](["erect", "nightmare"])
+bg_color = Color(1, 0.666667, 0.435294, 1)
+metadata/_custom_type_script = "uid://dvtla3mpdl3pn"
+
+[sub_resource type="Resource" id="Resource_034dv"]
+script = ExtResource("3_7sxe0")
+song = "thorns"
+display_name = "Thorns Erect"
+character_icon = ExtResource("11_jej1v")
+icon_frames = 2
+icon_scale = 4.75
+icon_filter = 1
+difficulties = Array[String](["erect", "nightmare"])
+bg_color = Color(1, 0.235294, 0.431373, 1)
+metadata/_custom_type_script = "uid://dvtla3mpdl3pn"
+
+[sub_resource type="Resource" id="Resource_8ujo7"]
+script = ExtResource("3_7sxe0")
+song = "ugh"
+display_name = "Ugh Erect"
+character_icon = ExtResource("12_jpdve")
+icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
+difficulties = Array[String](["erect", "nightmare"])
+bg_color = Color(0.882353, 0.882353, 0.882353, 1)
+metadata/_custom_type_script = "uid://dvtla3mpdl3pn"
 
 [sub_resource type="Resource" id="Resource_63rvd"]
 script = ExtResource("3_7sxe0")
@@ -104,13 +199,15 @@ song = "darnell"
 display_name = "Darnell Erect"
 character_icon = ExtResource("8_0d2fn")
 icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
 difficulties = Array[String](["erect", "nightmare"])
 bg_color = Color(0.45098, 0.368627, 0.690196, 1)
 metadata/_custom_type_script = "uid://dvtla3mpdl3pn"
 
 [sub_resource type="Resource" id="Resource_bmspx"]
 script = ExtResource("2_tlqqb")
-songs = Array[ExtResource("3_7sxe0")]([SubResource("Resource_qq4qh"), SubResource("Resource_jy1nf"), SubResource("Resource_syvf0"), SubResource("Resource_cw27x"), SubResource("Resource_v8f8f"), SubResource("Resource_yfs53"), SubResource("Resource_tndgv"), SubResource("Resource_kj5ru"), SubResource("Resource_hlcsf"), SubResource("Resource_63rvd")])
+songs = Array[ExtResource("3_7sxe0")]([SubResource("Resource_qq4qh"), SubResource("Resource_jy1nf"), SubResource("Resource_syvf0"), SubResource("Resource_cw27x"), SubResource("Resource_v8f8f"), SubResource("Resource_yfs53"), SubResource("Resource_tndgv"), SubResource("Resource_kj5ru"), SubResource("Resource_hlcsf"), SubResource("Resource_hlcsf"), SubResource("Resource_8j4g0"), SubResource("Resource_b33x4"), SubResource("Resource_jej1v"), SubResource("Resource_jpdve"), SubResource("Resource_034dv"), SubResource("Resource_8ujo7"), SubResource("Resource_63rvd")])
 
 [node name="FreeplayMenu" type="Node2D"]
 script = ExtResource("1_5pt7i")

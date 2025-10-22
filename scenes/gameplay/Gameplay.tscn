@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cd8qnbjwrowm3"]
+[gd_scene load_steps=16 format=3 uid="uid://cd8qnbjwrowm3"]
 
 [ext_resource type="Script" uid="uid://bnhssv5rrxvts" path="res://scenes/gameplay/Gameplay.gd" id="1_8k5hd"]
 [ext_resource type="Script" uid="uid://bhqqfjrg7g7o" path="res://classes/ScriptGroup.gd" id="2_5pmok"]
@@ -8,6 +8,27 @@
 [ext_resource type="Texture2D" uid="uid://l154yr6latgu" path="res://assets/images/gameplay/score/default/num0.png" id="4_5os72"]
 [ext_resource type="FontFile" uid="uid://cf2wd6a4pa5kb" path="res://assets/fonts/funkin.ttf" id="5_64arv"]
 [ext_resource type="Script" uid="uid://dhqduq1do8xqn" path="res://scenes/gameplay/hud/HUD.gd" id="6_8q01y"]
+[ext_resource type="StyleBox" uid="uid://c4lt0ydus4t75" path="res://assets/styles/healthbar/opponent.tres" id="9_83uuq"]
+[ext_resource type="StyleBox" uid="uid://ccmycpgoa47g0" path="res://assets/styles/healthbar/player.tres" id="10_0ecoy"]
+[ext_resource type="Texture2D" uid="uid://bgk48t11fpyuf" path="res://assets/images/gameplay/icons/icon-face.png" id="11_6h1qp"]
+[ext_resource type="Script" uid="uid://bhg3vp5ab5eol" path="res://scripts/HealthIcon.gd" id="12_fwbmj"]
+[ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="13_0ecoy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ecoy"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6h1qp"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_8k5hd")
@@ -62,6 +83,123 @@ theme_override_fonts/font = ExtResource("5_64arv")
 theme_override_font_sizes/font_size = 48
 text = "160ms"
 horizontal_alignment = 1
+
+[node name="HealthBar" type="ColorRect" parent="HUD"]
+offset_left = 340.0
+offset_top = 636.0
+offset_right = 941.0
+offset_bottom = 655.0
+pivot_offset = Vector2(300.5, 9.5)
+color = Color(0, 0, 0, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD/HealthBar"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.5
+offset_right = 596.0
+offset_bottom = 14.5
+theme_override_styles/background = ExtResource("9_83uuq")
+theme_override_styles/fill = ExtResource("10_0ecoy")
+max_value = 2.0
+step = 0.0
+value = 1.0
+fill_mode = 1
+show_percentage = false
+
+[node name="PlayerIcon" type="Sprite2D" parent="HUD/HealthBar/ProgressBar"]
+position = Vector2(270, -69.5)
+texture = ExtResource("11_6h1qp")
+centered = false
+flip_h = true
+hframes = 2
+script = ExtResource("12_fwbmj")
+react_to_health = true
+
+[node name="CPUIcon" type="Sprite2D" parent="HUD/HealthBar/ProgressBar"]
+position = Vector2(166, -69.5)
+texture = ExtResource("11_6h1qp")
+centered = false
+hframes = 2
+script = ExtResource("12_fwbmj")
+react_to_health = true
+
+[node name="ScoreText" type="Label" parent="HUD/HealthBar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -339.0
+offset_top = 17.0
+offset_right = 340.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(640, 11.5)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("13_0ecoy")
+theme_override_font_sizes/font_size = 19
+text = "SCORE: 0 - MISSED: 0 - ACC: 0% [N/A]"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TimeBar" type="ProgressBar" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -175.0
+offset_top = 20.0
+offset_right = 175.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_0ecoy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6h1qp")
+max_value = 1.0
+step = 0.0
+show_percentage = false
+
+[node name="Timer" type="Label" parent="HUD/TimeBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -11.5
+offset_right = 48.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("13_0ecoy")
+theme_override_font_sizes/font_size = 18
+text = "00:00 / 00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ratings" type="Label" parent="HUD"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -38.0
+offset_right = -16.0
+offset_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(640, 11.5)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("13_0ecoy")
+theme_override_font_sizes/font_size = 19
+text = "SICKS: 0
+GOODS: 0
+BADS: 0
+SHITS: 0"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="CountdownSprite" type="Sprite2D" parent="HUD"]
 position = Vector2(640, 360)

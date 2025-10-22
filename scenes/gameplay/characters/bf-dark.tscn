@@ -1121,7 +1121,7 @@ script = ExtResource("1_ikca6")
 is_player = true
 health_icon = ExtResource("2_l1nkk")
 health_color = Color(0.192157, 0.690196, 0.819608, 1)
-voices_paths = "bf-dark"
+voices_paths = "bf"
 
 [node name="Light" type="AnimatedSprite2D" parent="."]
 position = Vector2(-206, -407)

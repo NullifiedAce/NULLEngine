@@ -594,6 +594,8 @@ _data = {
 script = ExtResource("1_adf3r")
 is_player = true
 health_icon = ExtResource("2_3auwy")
+health_icon_scale = 4.75
+health_icon_filter = 1
 health_color = Color(0.482353, 0.839216, 0.964706, 1)
 death_character = "bf-pixel-dead"
 death_sound = ExtResource("3_76bjx")
@@ -607,8 +609,6 @@ position = Vector2(-219, -437)
 scale = Vector2(6, 6)
 sprite_frames = ExtResource("3_q8mh6")
 animation = &"BF IDLE instance 1"
-frame = 13
-frame_progress = 1.0
 centered = false
 script = ExtResource("4_p1yy3")
 

@@ -227,8 +227,8 @@ _data = {
 [node name="picospeaker" type="Node2D"]
 script = ExtResource("1_acd4u")
 dance_steps = Array[String]([""])
-voices_paths = "pico"
 health_color = Color(0.647059, 0, 0.301961, 1)
+voices_paths = "pico"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-352, -800)
@@ -242,7 +242,7 @@ script = ExtResource("4_img30")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_vgtrv")
+&"": SubResource("AnimationLibrary_vgtrv")
 }
 
 [node name="CameraPos" type="Node2D" parent="."]

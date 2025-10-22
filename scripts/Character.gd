@@ -7,9 +7,12 @@ class_name Character extends Node2D
 @export var sing_duration:float = 4.0
 @export var dances:bool = true
 @export var dance_steps:Array[String] = ["idle"]
+@export var combo_anims:Dictionary[int, String]
 
 @export_group("Health Icon")
 @export var health_icon:Texture2D = load("res://assets/images/gameplay/icons/icon-face.png")
+@export var health_icon_scale:float = 1.0
+@export var health_icon_filter:TextureFilter
 @export var health_icon_frames:int = 2
 @export var health_color:Color = Color("#A1A1A1")
 
@@ -68,7 +71,7 @@ func _ready():
 			anim_sprite.sprite_frames.get_frame_texture(anim_sprite.animation, 0).get_height()
 		)
 
-	camera_pos.position = anim_sprite.position + initial_size / 2 # Set camera position to the middle of the character.
+	camera_pos.position = anim_sprite.position + ((initial_size / 2) * anim_sprite.scale) # Set camera position to the middle of the character.
 
 	if is_player != _is_true_player:
 		scale.x *= -1

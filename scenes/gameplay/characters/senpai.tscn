@@ -274,9 +274,11 @@ _data = {
 [node name="senpai" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_6lys8")
-voices_paths = "senpai"
 health_icon = ExtResource("2_43nnn")
+health_icon_scale = 4.75
+health_icon_filter = 1
 health_color = Color(1, 0.666667, 0.435294, 1)
+voices_paths = "senpai"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-372, -882)
@@ -289,7 +291,7 @@ script = ExtResource("4_yww20")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_vgtrv")
+&"": SubResource("AnimationLibrary_vgtrv")
 }
 
 [node name="CameraPos" type="Node2D" parent="."]

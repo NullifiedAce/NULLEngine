@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6mt5mwrjdojc"]
+
+[ext_resource type="Script" uid="uid://b4vgil827cedt" path="res://assets/songs/2hot/canScript.gd" id="1_krg4g"]
+[ext_resource type="Script" uid="uid://3lax1w5pcsp0" path="res://addons/gdanimate/animate_symbol.gd" id="2_7whdw"]
+[ext_resource type="SpriteFrames" uid="uid://dbtw5xnwxs6qi" path="res://assets/levels/weekend1/images/spraypaintExplosionEZ.res" id="3_7whdw"]
+
+[sub_resource type="Animation" id="Animation_s0awt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_umi8j"]
+resource_name = "canShoot"
+length = 1.04
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.04),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [26, 43]
+}
+
+[sub_resource type="Animation" id="Animation_oucvj"]
+resource_name = "canStart"
+length = 0.75
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 18]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cw7f7"]
+_data = {
+&"RESET": SubResource("Animation_s0awt"),
+&"canShoot": SubResource("Animation_umi8j"),
+&"canStart": SubResource("Animation_oucvj")
+}
+
+[node name="CanScript" type="Node"]
+script = ExtResource("1_krg4g")
+metadata/_custom_type_script = "uid://b4lw27khplo47"
+
+[node name="can" type="Node2D" parent="."]
+visible = false
+script = ExtResource("2_7whdw")
+atlas = "res://assets/levels/weekend1/images/spraycanAtlas"
+symbol = "Can with Labels"
+loop_mode = "Play Once"
+metadata/_custom_type_script = "uid://3lax1w5pcsp0"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="can"]
+libraries = {
+&"": SubResource("AnimationLibrary_cw7f7")
+}
+
+[node name="explode" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("3_7whdw")
+animation = &"idle"

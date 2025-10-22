@@ -35,8 +35,9 @@ func _process(delta:float) -> void:
 					var sing_anim:String = "sing%s" % note.strumline.get_child(note.direction).direction.to_upper()
 					if note.alt_anim:
 						sing_anim += "-alt"
-					game.player.play_anim(sing_anim, true)
-					game.player.hold_timer = 0.0
+					if note.play_sing_anim:
+						game.player.play_anim(sing_anim, true)
+						game.player.hold_timer = 0.0
 
 				note.is_sustain_note = true
 				note._player_hit()
@@ -50,8 +51,9 @@ func _process(delta:float) -> void:
 					var sing_anim:String = "sing%s" % note.strumline.get_child(note.direction).direction.to_upper()
 					if note.alt_anim:
 						sing_anim += "-alt"
-					game.opponent.play_anim(sing_anim, true)
-					game.opponent.hold_timer = 0.0
+					if note.play_sing_anim:
+						game.opponent.play_anim(sing_anim, true)
+						game.opponent.hold_timer = 0.0
 
 				var receptor:Receptor = note.strumline.get_child(note.direction)
 				receptor.play_anim("confirm")

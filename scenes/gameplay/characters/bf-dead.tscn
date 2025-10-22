@@ -181,10 +181,10 @@ voices_paths = "bf"
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-235.5, -435)
 sprite_frames = ExtResource("3_n0p5m")
-animation = &"BF Dead Loop"
-frame_progress = 0.147138
+animation = &"BF Dead confirm"
+frame_progress = 0.797195
 centered = false
-offset = Vector2(0, -4)
+offset = Vector2(0, -68)
 script = ExtResource("4_x1ydy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]

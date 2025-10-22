@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://e2da50oj4ive"]
+
+[ext_resource type="Script" uid="uid://ckd1jrhc6tyq" path="res://scenes/gameplay/cutscenes/video-example.gd" id="1_cixfo"]
+[ext_resource type="VideoStream" uid="uid://bqw33h1md6n4n" path="res://assets/videos/2hotCutscene.mp4" id="2_cixfo"]
+
+[node name="video-example" type="Node"]
+process_mode = 3
+script = ExtResource("1_cixfo")
+
+[node name="video" type="VideoStreamPlayer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_cixfo")
+autoplay = true
+expand = true

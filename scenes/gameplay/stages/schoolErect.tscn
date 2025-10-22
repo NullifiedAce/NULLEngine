@@ -1,0 +1,170 @@
+[gd_scene load_steps=16 format=3 uid="uid://dlgv1mdojkgdd"]
+
+[ext_resource type="Script" uid="uid://c8ni1wyk78qrs" path="res://scenes/gameplay/stages/SchoolErect.gd" id="1_d55cj"]
+[ext_resource type="Texture2D" uid="uid://bbqcfp11keit5" path="res://assets/images/gameplay/stages/school/erect/weebSky.png" id="2_07drq"]
+[ext_resource type="Texture2D" uid="uid://dnymqq2afg8dv" path="res://assets/images/gameplay/stages/school/erect/weebSchool.png" id="3_moomn"]
+[ext_resource type="Texture2D" uid="uid://crk1d8amd2g0e" path="res://assets/images/gameplay/stages/school/erect/weebTreesBack.png" id="4_goljw"]
+[ext_resource type="Texture2D" uid="uid://cdqtv24dqn7p8" path="res://assets/images/gameplay/stages/school/erect/weebStreet.png" id="5_y2tvx"]
+[ext_resource type="SpriteFrames" uid="uid://dvqdoohqghxsu" path="res://assets/images/gameplay/stages/school/erect/weebTrees.res" id="6_y2tvx"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/school/erect/petals.res" id="7_d55cj"]
+[ext_resource type="Script" uid="uid://b8ue04llyptp5" path="res://scenes/gameplay/stages/objects/DropShadow.gd" id="8_ck8gf"]
+[ext_resource type="Shader" uid="uid://f578ctwatlej" path="res://assets/shaders/DropShadow.gdshader" id="8_nbtp5"]
+[ext_resource type="Texture2D" uid="uid://dne6pis3ixucu" path="res://assets/images/gameplay/stages/school/erect/masks/senpai_mask.png" id="10_7woy7"]
+[ext_resource type="Texture2D" uid="uid://v8jkbksce3es" path="res://assets/images/gameplay/stages/school/erect/masks/gfPixel_mask.png" id="10_gtk0h"]
+[ext_resource type="Texture2D" uid="uid://7v08ynvtegtd" path="res://assets/images/gameplay/stages/school/erect/masks/bfPixel_mask.png" id="10_quv7o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dgrth"]
+shader = ExtResource("8_nbtp5")
+shader_parameter/u_frame_bounds = Vector4(0, 0, 1, 1)
+shader_parameter/ang = 90.0
+shader_parameter/dist = 4.5
+shader_parameter/str = 1.0
+shader_parameter/thr = 0.1
+shader_parameter/ang_offset = 0.0
+shader_parameter/use_mask = false
+shader_parameter/thr2 = 1.0
+shader_parameter/dropColor = Color(0.321569, 0.207843, 0.113725, 1)
+shader_parameter/hue = -10.0
+shader_parameter/saturation = -23.0
+shader_parameter/brightness = -66.0
+shader_parameter/contrast = 24.0
+shader_parameter/AA_STAGES = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7woy7"]
+shader = ExtResource("8_nbtp5")
+shader_parameter/u_frame_bounds = Vector4(0, 0, 1, 1)
+shader_parameter/ang = 90.0
+shader_parameter/dist = 4.5
+shader_parameter/str = 1.0
+shader_parameter/thr = 0.1
+shader_parameter/ang_offset = 0.0
+shader_parameter/use_mask = false
+shader_parameter/thr2 = 1.0
+shader_parameter/dropColor = Color(0.321569, 0.207843, 0.113725, 1)
+shader_parameter/hue = -10.0
+shader_parameter/saturation = -23.0
+shader_parameter/brightness = -66.0
+shader_parameter/contrast = 24.0
+shader_parameter/AA_STAGES = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gtk0h"]
+shader = ExtResource("8_nbtp5")
+shader_parameter/u_frame_bounds = Vector4(0, 0, 1, 1)
+shader_parameter/ang = 90.0
+shader_parameter/dist = 4.5
+shader_parameter/str = 1.0
+shader_parameter/thr = 0.1
+shader_parameter/ang_offset = 0.0
+shader_parameter/use_mask = false
+shader_parameter/thr2 = 0.1
+shader_parameter/dropColor = Color(0.321569, 0.207843, 0.113725, 1)
+shader_parameter/hue = -10.0
+shader_parameter/saturation = -23.0
+shader_parameter/brightness = -66.0
+shader_parameter/contrast = 24.0
+shader_parameter/AA_STAGES = 0.0
+
+[node name="stage" type="Node2D"]
+script = ExtResource("1_d55cj")
+default_cam_zoom = 1.0
+player_cam_offset = Vector2(-200, -94)
+opponent_cam_offset = Vector2(160, 0)
+spectator_cam_offset = Vector2(40, 40)
+
+[node name="0-2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
+
+[node name="sky" type="Sprite2D" parent="0-2"]
+z_index = 10
+texture_filter = 1
+position = Vector2(-626, -78)
+scale = Vector2(6, 6)
+texture = ExtResource("2_07drq")
+centered = false
+
+[node name="0-75" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.75, 0.75)
+
+[node name="school" type="Sprite2D" parent="0-75"]
+z_index = 20
+texture_filter = 1
+position = Vector2(-816, -38)
+scale = Vector2(6, 6)
+texture = ExtResource("3_moomn")
+centered = false
+
+[node name="0-5" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0.5)
+
+[node name="backTrees" type="Sprite2D" parent="0-5"]
+z_index = 15
+texture_filter = 1
+position = Vector2(-842, -80)
+scale = Vector2(6, 6)
+texture = ExtResource("4_goljw")
+centered = false
+
+[node name="street" type="Sprite2D" parent="."]
+z_index = 30
+texture_filter = 1
+position = Vector2(-662, 6)
+scale = Vector2(6, 6)
+texture = ExtResource("5_y2tvx")
+centered = false
+
+[node name="backTrees" type="Sprite2D" parent="."]
+z_index = 40
+texture_filter = 1
+position = Vector2(-500, 6)
+scale = Vector2(6, 6)
+texture = ExtResource("4_goljw")
+centered = false
+
+[node name="treesBG" type="AnimatedSprite2D" parent="."]
+z_index = 60
+texture_filter = 1
+position = Vector2(-806, -1050)
+scale = Vector2(6, 6)
+sprite_frames = ExtResource("6_y2tvx")
+animation = &"trees"
+centered = false
+
+[node name="0-85" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.085, 0.085)
+
+[node name="petals" type="AnimatedSprite2D" parent="0-85"]
+z_index = 70
+texture_filter = 1
+position = Vector2(-20, -40)
+scale = Vector2(6, 6)
+sprite_frames = ExtResource("7_d55cj")
+animation = &"PETALS ALL"
+centered = false
+
+[node name="Character Positions" type="Node2D" parent="."]
+
+[node name="Opponent" type="Node2D" parent="Character Positions" node_paths=PackedStringArray("stage")]
+z_index = 200
+material = SubResource("ShaderMaterial_dgrth")
+position = Vector2(306, 899)
+script = ExtResource("8_ck8gf")
+character = 1
+alt_mask = ExtResource("10_7woy7")
+stage = NodePath("../..")
+
+[node name="Spectator" type="Node2D" parent="Character Positions" node_paths=PackedStringArray("stage")]
+z_index = 100
+material = SubResource("ShaderMaterial_7woy7")
+position = Vector2(724, 773)
+script = ExtResource("8_ck8gf")
+character = 2
+alt_mask = ExtResource("10_gtk0h")
+stage = NodePath("../..")
+
+[node name="Player" type="Node2D" parent="Character Positions" node_paths=PackedStringArray("stage")]
+z_index = 300
+material = SubResource("ShaderMaterial_gtk0h")
+position = Vector2(1165, 899)
+script = ExtResource("8_ck8gf")
+alt_mask = ExtResource("10_quv7o")
+stage = NodePath("../..")

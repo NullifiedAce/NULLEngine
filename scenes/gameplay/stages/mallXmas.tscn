@@ -62,7 +62,7 @@ script = ExtResource("3_wu4ul")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PL2/UpperBop"]
 libraries = {
-"": SubResource("AnimationLibrary_a8lx5")
+&"": SubResource("AnimationLibrary_a8lx5")
 }
 
 [node name="PL3" type="Parallax2D" parent="."]
@@ -99,7 +99,7 @@ script = ExtResource("3_wu4ul")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PL5/BottomBop"]
 libraries = {
-"": SubResource("AnimationLibrary_a8lx5")
+&"": SubResource("AnimationLibrary_a8lx5")
 }
 
 [node name="PL6" type="Parallax2D" parent="."]
@@ -128,7 +128,7 @@ script = ExtResource("3_wu4ul")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PL6/Santa"]
 libraries = {
-"": SubResource("AnimationLibrary_a8lx5")
+&"": SubResource("AnimationLibrary_a8lx5")
 }
 
 [node name="Character Positions" type="Node2D" parent="."]
@@ -143,4 +143,4 @@ position = Vector2(808.5, 854)
 
 [node name="Player" type="Node2D" parent="Character Positions"]
 z_index = 300
-position = Vector2(1177.5, 817)
+position = Vector2(1177.5, 882)

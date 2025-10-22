@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjgbokwa3q01b"]
+
+[ext_resource type="Script" uid="uid://c0vaah4w14sbm" path="res://scenes/gameplay/notes/weekend-1-kickcan.gd" id="1_5urf0"]
+[ext_resource type="Texture2D" uid="uid://2iywwtpufmt4" path="res://assets/images/gameplay/notes/default/sustains/left hold piece.png" id="2_wtdej"]
+[ext_resource type="Texture2D" uid="uid://dcu1auf2cj0ob" path="res://assets/images/gameplay/notes/default/sustains/left hold end.png" id="3_g5ndb"]
+[ext_resource type="SpriteFrames" uid="uid://cmrrdlnfn8rek" path="res://assets/images/gameplay/notes/default/assets.res" id="4_hs0ys"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="5_l8rpx"]
+
+[node name="Default" type="Node2D"]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_5urf0")
+play_sing_anim = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+clip_contents = true
+offset_left = -56.0
+offset_right = 56.0
+offset_bottom = 720.0
+color = Color(1, 1, 1, 0)
+
+[node name="Sustain" type="Line2D" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0.6)
+position = Vector2(56, 0)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 50.0
+texture = ExtResource("2_wtdej")
+texture_mode = 1
+
+[node name="EndPiece" type="Sprite2D" parent="ColorRect/Sustain"]
+texture = ExtResource("3_g5ndb")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("4_hs0ys")
+animation = &"left"
+script = ExtResource("5_l8rpx")

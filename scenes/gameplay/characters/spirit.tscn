@@ -273,9 +273,11 @@ _data = {
 
 [node name="spirit" type="Node2D"]
 script = ExtResource("1_ub1fd")
-voices_paths = "spirit"
 health_icon = ExtResource("2_kre1c")
+health_icon_scale = 4.75
+health_icon_filter = 1
 health_color = Color(1, 0.235294, 0.431373, 1)
+voices_paths = "spirit"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -290,7 +292,7 @@ script = ExtResource("4_cqb0l")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_vgtrv")
+&"": SubResource("AnimationLibrary_vgtrv")
 }
 
 [node name="CameraPos" type="Node2D" parent="."]

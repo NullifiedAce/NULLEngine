@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://cul3k2hut6c1d"]
+
+[ext_resource type="Script" uid="uid://baug3or0geg7g" path="res://scenes/gameplay/stages/schoolEvilErect.gd" id="1_w0agn"]
+[ext_resource type="Shader" uid="uid://bmvvb255akbyk" path="res://assets/shaders/wiggle.gdshader" id="2_mtstv"]
+[ext_resource type="Texture2D" uid="uid://dpnhbgrpjhyyh" path="res://assets/images/gameplay/stages/school/erect/evil/weebSchool.png" id="3_mtstv"]
+[ext_resource type="Texture2D" uid="uid://y0xey8ya7qy6" path="res://assets/images/gameplay/stages/school/erect/evil/backSpike.png" id="4_ducdt"]
+[ext_resource type="Texture2D" uid="uid://cufxewd2rp2va" path="res://assets/images/gameplay/stages/school/erect/evil/weebBackSpikes.png" id="5_s51t2"]
+[ext_resource type="Texture2D" uid="uid://c4tmsonsx1nxe" path="res://assets/images/gameplay/stages/school/erect/evil/weebStreet.png" id="6_lbro2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w0agn"]
+shader = ExtResource("2_mtstv")
+shader_parameter/uTime = 0.0
+shader_parameter/uSpeed = 2.0
+shader_parameter/uFrequency = 4.0
+shader_parameter/uWaveAmplitude = 0.017
+shader_parameter/effectType = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mtstv"]
+shader = ExtResource("2_mtstv")
+shader_parameter/uTime = 0.0
+shader_parameter/uSpeed = 2.0
+shader_parameter/uFrequency = 4.0
+shader_parameter/uWaveAmplitude = 0.01
+shader_parameter/effectType = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ducdt"]
+shader = ExtResource("2_mtstv")
+shader_parameter/uTime = 0.0
+shader_parameter/uSpeed = 1.6
+shader_parameter/uFrequency = 1.6
+shader_parameter/uWaveAmplitude = 0.011
+shader_parameter/effectType = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0633g"]
+shader = ExtResource("2_mtstv")
+shader_parameter/uTime = 0.0
+shader_parameter/uSpeed = 2.0
+shader_parameter/uFrequency = 4.0
+shader_parameter/uWaveAmplitude = 0.007
+shader_parameter/effectType = 0
+
+[node name="stage" type="Node2D"]
+script = ExtResource("1_w0agn")
+
+[node name="0-75" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.75, 0.75)
+
+[node name="school" type="Sprite2D" parent="0-75"]
+z_index = 20
+texture_filter = 1
+material = SubResource("ShaderMaterial_w0agn")
+position = Vector2(-816, -38)
+scale = Vector2(6, 6)
+texture = ExtResource("3_mtstv")
+centered = false
+
+[node name="0-85" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.85, 0.85)
+
+[node name="backSpike" type="Sprite2D" parent="0-85"]
+z_index = 25
+texture_filter = 1
+material = SubResource("ShaderMaterial_mtstv")
+position = Vector2(1416, 464)
+scale = Vector2(6, 6)
+texture = ExtResource("4_ducdt")
+centered = false
+
+[node name="0-5" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0.5)
+
+[node name="backspikes" type="Sprite2D" parent="0-5"]
+z_index = 15
+texture_filter = 1
+material = SubResource("ShaderMaterial_ducdt")
+position = Vector2(-842, -180)
+scale = Vector2(6, 6)
+texture = ExtResource("5_s51t2")
+centered = false
+
+[node name="street" type="Sprite2D" parent="."]
+z_index = 30
+texture_filter = 1
+material = SubResource("ShaderMaterial_0633g")
+position = Vector2(-662, 6)
+scale = Vector2(6, 6)
+texture = ExtResource("6_lbro2")
+centered = false
+
+[node name="Character Positions" type="Node2D" parent="."]
+
+[node name="Opponent" type="Node2D" parent="Character Positions"]
+z_index = 200
+position = Vector2(341, 844)
+
+[node name="Spectator" type="Node2D" parent="Character Positions"]
+z_index = 100
+position = Vector2(724, 767)
+
+[node name="Player" type="Node2D" parent="Character Positions"]
+z_index = 300
+position = Vector2(1168, 844)

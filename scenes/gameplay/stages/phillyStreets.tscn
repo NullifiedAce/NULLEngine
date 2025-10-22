@@ -40,7 +40,7 @@ rain_scale = 3.6
 rain_color = Color(0.4, 0.501961, 0.8, 1)
 default_cam_zoom = 0.77
 player_cam_offset = Vector2(-350, -100)
-opponent_cam_offset = Vector2(500, -100)
+opponent_cam_offset = Vector2(250, -100)
 
 [node name="0-1" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.1, 0.1)
@@ -80,15 +80,13 @@ position = Vector2(1800, 360)
 texture = ExtResource("5_swy56")
 centered = false
 
-[node name="1-1" type="Parallax2D" parent="."]
-
-[node name="phillyHighwayLights" type="Sprite2D" parent="1-1"]
+[node name="phillyHighwayLights" type="Sprite2D" parent="."]
 z_index = 50
 position = Vector2(284, 304)
 texture = ExtResource("6_ka2ji")
 centered = false
 
-[node name="lightmap" type="PointLight2D" parent="1-1/phillyHighwayLights"]
+[node name="lightmap" type="PointLight2D" parent="phillyHighwayLights"]
 z_index = 50
 energy = 2.5
 range_z_max = 50
@@ -96,19 +94,19 @@ range_layer_min = -100
 texture = ExtResource("7_6couu")
 offset = Vector2(541, 98)
 
-[node name="phillyHighway" type="Sprite2D" parent="1-1"]
+[node name="phillyHighway" type="Sprite2D" parent="."]
 z_index = 60
 position = Vector2(139, 208)
 texture = ExtResource("8_50wsj")
 centered = false
 
-[node name="phillyForeground" type="Sprite2D" parent="1-1"]
+[node name="phillyForeground" type="Sprite2D" parent="."]
 z_index = 100
 position = Vector2(88, 316)
 texture = ExtResource("9_sai2o")
 centered = false
 
-[node name="spraycanPile" type="Sprite2D" parent="1-1"]
+[node name="spraycanPile" type="Sprite2D" parent="."]
 z_index = 690
 position = Vector2(920, 1044)
 texture = ExtResource("10_lm3l6")

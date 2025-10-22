@@ -55,6 +55,9 @@ func _ready():
 		icon.texture = meta.character_icon
 		icon.hframes = meta.icon_frames
 		icon.position.x = song.size.x + 80
+		icon.scale = Vector2(meta.icon_scale, meta.icon_scale)
+		icon.set_meta("scale", meta.icon_scale)
+		icon.texture_filter = meta.icon_filter
 		song.position = Vector2(0, (70 * i) + 30)
 		song.visible = true
 		song.is_menu_item = true
@@ -102,7 +105,7 @@ func _input(e):
 			change_selection(1)
 
 func position_highscore():
-	score_text.text = "PERSONAL BEST:"+str(floor(lerp_score))
+	score_text.text = "PERSONAL BEST:%d" % (floor(lerp_score))
 	score_text.size.x = 0
 
 	await get_tree().create_timer(0.001).timeout
@@ -228,7 +231,7 @@ func _process(delta):
 
 	if cur_icon > -1:
 		var icon:Sprite2D = songs.get_child(cur_icon).get_node('HealthIcon')
-		icon.scale = lerp(icon.scale, Vector2.ONE, delta * 9.0)
+		icon.scale = lerp(icon.scale, Vector2(icon.get_meta("scale"), icon.get_meta("scale")), delta * 9.0)
 
 func load_track(music_path:String, fileName:String):
 	var track:AudioStreamPlayer = AudioStreamPlayer.new()
@@ -248,4 +251,4 @@ func load_track(music_path:String, fileName:String):
 func on_beat_hit(beat:int) -> void:
 	if cur_icon > -1:
 		var icon:Sprite2D = songs.get_child(cur_icon).get_node('HealthIcon')
-		icon.scale += Vector2(0.2, 0.2)
+		icon.scale += Vector2(0.2, 0.2) * icon.get_meta("scale")

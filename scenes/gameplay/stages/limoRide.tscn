@@ -6,9 +6,13 @@
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/limo/limoDrive.res" id="4_vbsde"]
 [ext_resource type="PackedScene" uid="uid://d2er11vv1rshu" path="res://scenes/gameplay/stages/objects/dancey-boi.tscn" id="5_8pi7w"]
 
-[node name="limo" type="Node2D"]
+[node name="limo" type="Node2D" node_paths=PackedStringArray("back_limo", "limo")]
 z_index = -1
 script = ExtResource("1_l6mq2")
+back_limo = NodePath("PL2/limo")
+back_limo_anim = "background limo pink"
+limo = NodePath("PL3/limo")
+limo_anim = "Limo stage"
 default_cam_zoom = 0.9
 player_cam_offset = Vector2(-300, -100)
 opponent_cam_offset = Vector2(150, 0)

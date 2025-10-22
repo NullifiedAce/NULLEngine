@@ -11,12 +11,12 @@ func _ready() -> void:
 	if parameters.has("anim"): anim = parameters["anim"]
 	if parameters.has("force"): force = parameters["force"]
 
-	if target == "player" || "bf":
+	if target == "player" or target == "bf":
 		target_char = game.player
-	if target == "opponent":
+	if target == "opponent" or target == "dad":
 		target_char = game.opponent
-	if target == "spectator":
+	if target == "spectator" or target == "gf":
 		target_char = game.spectator
 
 	if target_char is Character:
-		target_char.play_anim(anim, force, force)
+		target_char.play_anim(anim, force, true)

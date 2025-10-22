@@ -89,7 +89,7 @@ var ui_skin:UISkin
 #var results_screen = preload("res://scenes/gameplay/ResultScreen.tscn")
 
 @onready var camera:Camera2D = $Camera2D
-@onready var hud:CanvasLayer = $HUD
+@onready var hud:HUD = $HUD
 @onready var characters: Node2D = $characters
 
 @onready var strumlines:Node2D = $HUD/StrumLines
@@ -266,14 +266,6 @@ func _ready() -> void:
 			var script:FunkinScript = FunkinScript.create(song_script_path+item.replace(".remap", ""), self)
 			script_group.add_script(script)
 
-	# load global scripts (put in assets/songs)
-	var init_path:String = "res://assets/songs/"
-	file_list = Global.list_files_in_dir(init_path)
-	for item in file_list:
-		if item.ends_with(".tscn") or item.ends_with(".tscn.remap"):
-			var script:FunkinScript = FunkinScript.create(init_path+item.replace(".remap", ""), self)
-			script_group.add_script(script)
-
 	var strum_y:float = Global.game_size.y - 100.0 if SettingsAPI.get_setting("downscroll") else 100.0
 	cpu_strums.position = Vector2((Global.game_size.x * 0.5) - 320.0, strum_y)
 	if SettingsAPI.get_setting("centered notefield"):
@@ -321,6 +313,14 @@ func _ready() -> void:
 
 	start_countdown()
 
+	sicks = 0
+	goods = 0
+	bads = 0
+	shits = 0
+
+	hud.game = self
+	hud.setup_hud()
+
 	max_time = tracks[0].stream.get_length() * 1000.0
 
 	stage.callv("_ready_post", [])
@@ -337,7 +337,7 @@ func load_spectator():
 	spectator.scale = stage.character_positions["spectator"].scale
 	characters.add_child(spectator)
 	spectator.z_index = stage.character_positions["spectator"].z_index
-	spectator.get_child(0).material = stage.character_positions["spectator"].material
+	spectator.anim_sprite.material = stage.character_positions["spectator"].material
 
 	# load character scripts (put in assets/data/scripts/characters/CHARACTER_FOLDER)
 	var script_path:String = "res://assets/data/scripts/characters/"+spectator.character_script_folder+"/"
@@ -358,7 +358,7 @@ func load_opponent():
 	opponent.scale = stage.character_positions["opponent"].scale
 	characters.add_child(opponent)
 	opponent.z_index = stage.character_positions["opponent"].z_index
-	opponent.get_child(0).material = stage.character_positions["opponent"].material
+	opponent.anim_sprite.material = stage.character_positions["opponent"].material
 
 	# load character scripts (put in assets/data/scripts/characters/CHARACTER_FOLDER)
 	var script_path:String = "res://assets/data/scripts/characters/"+opponent.character_script_folder+"/"
@@ -387,7 +387,7 @@ func load_player():
 	player.scale = stage.character_positions["player"].scale
 	characters.add_child(player)
 	player.z_index = stage.character_positions["player"].z_index
-	player.get_child(0).material = stage.character_positions["player"].material
+	player.anim_sprite.material = stage.character_positions["player"].material
 
 	# load character scripts (put in assets/data/scripts/characters/CHARACTER_FOLDER)
 	var script_path:String = "res://assets/data/scripts/characters/"+player.character_script_folder+"/"
@@ -523,6 +523,11 @@ func beat_hit(beat:int):
 	for track in tracks:
 		if abs((track.get_playback_position() * 1000.0 - METADATA.offsets["instrumental"]) - (Conductor.position)) >= 20:
 			resync_tracks()
+
+	if icon_bumping and icon_bumping_interval > 0 and beat % icon_bumping_interval == 0:
+		hud.cpu_icon.scale += Vector2(0.2, 0.2) * opponent.health_icon_scale
+		hud.player_icon.scale += Vector2(0.2, 0.2) * player.health_icon_scale
+		hud.position_icons()
 
 	if cam_bumping and beat % camera_zoom_rate == 0:
 		if SettingsAPI.get_setting("zoom camera"): camera.zoom += Vector2(camera_bop_intensitiy, camera_bop_intensitiy)
@@ -684,6 +689,7 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 
 			break
 	else:
+		hud.update_score_text()
 		ghost_taps += 1
 		key_pressed += 1
 		if not SettingsAPI.get_setting("ghost tapping"):
@@ -700,6 +706,7 @@ func fake_miss(direction:int = -1):
 	accuracy_pressed_notes += 1
 
 	applyScore(-10, "miss", healthChange, true)
+	hud.update_score_text()
 
 	if direction < 0: return
 
@@ -722,6 +729,12 @@ func pop_up_score(judgement:Judgement) -> void:
 
 	if max_combo < combo:
 		max_combo = combo
+
+	if spectator and spectator.combo_anims.has(combo):
+		if spectator.anim_player.has_animation(spectator.combo_anims[combo]):
+			spectator.play_anim(spectator.combo_anims[combo], true, true)
+		else:
+			push_warning("Animation \'"+spectator.combo_anims[combo]+"\' does not exist.")
 
 	if not SettingsAPI.get_setting('judgement stacking'):
 		for child in combo_group.get_children():
@@ -838,11 +851,14 @@ func good_note_hit(note:Note):
 		combo = 0
 		accuracy_pressed_notes += 1
 
+	hud.update_score_text()
+
 	note.was_good_hit = true
 
 	var sing_anim = get_sing_anim(note)
-	player.play_anim(sing_anim, true)
-	player.hold_timer = 0.0
+	if note.play_sing_anim:
+		player.play_anim(sing_anim, true)
+		player.hold_timer = 0.0
 
 	if note.length <= 0:
 		note._player_hit()
@@ -860,8 +876,9 @@ func good_note_hit(note:Note):
 
 func opponent_note_hit(note:Note):
 	var sing_anim:String = get_sing_anim(note)
-	opponent.play_anim(sing_anim, true)
-	opponent.hold_timer = 0.0
+	if note.play_sing_anim:
+		opponent.play_anim(sing_anim, true)
+		opponent.hold_timer = 0.0
 
 	if opponent.name.to_lower() == "tankman":
 		if sing_anim.ends_with("DOWN-alt"):
