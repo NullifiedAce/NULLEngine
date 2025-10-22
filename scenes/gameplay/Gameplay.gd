@@ -568,7 +568,7 @@ func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.Tra
 		camera.position = Vector2(targetX, targetY)
 		cam_focus_tween.kill()
 	else:
-		cam_focus_tween.tween_property(camera, "position", Vector2(targetX, targetY), duration).set_trans(trans).set_ease(ease)
+		cam_focus_tween.tween_property(camera, "position", Vector2(targetX, targetY), duration * Conductor.rate).set_trans(trans).set_ease(ease)
 
 	cam_focus_tween.finished.connect(func():
 		script_group.call_func("on_update_camera", []))
@@ -587,7 +587,7 @@ func zoom_camera(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tw
 		camera.zoom = Vector2(zoom, zoom)
 		cam_zoom_tween.kill()
 	else:
-		cam_zoom_tween.tween_property(camera, "zoom", Vector2(zoom, zoom), duration).set_trans(trans).set_ease(ease)
+		cam_zoom_tween.tween_property(camera, "zoom", Vector2(zoom, zoom), duration * Conductor.rate).set_trans(trans).set_ease(ease)
 		cam_zoom = zoom
 
 	cam_zoom_tween.finished.connect(func():

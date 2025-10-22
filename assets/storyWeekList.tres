@@ -42,7 +42,7 @@ song_path = "fresh"
 [sub_resource type="Resource" id="Resource_u1wb6"]
 script = ExtResource("3_sto51")
 display_name = "Dad Battle"
-song_path = "dad battle"
+song_path = "dadbattle"
 
 [sub_resource type="Resource" id="Resource_inpee"]
 script = ExtResource("2_lywg0")
@@ -89,7 +89,7 @@ song_path = "pico"
 [sub_resource type="Resource" id="Resource_qonrq"]
 script = ExtResource("3_sto51")
 display_name = "Philly Nice"
-song_path = "philly nice"
+song_path = "philly-nice"
 
 [sub_resource type="Resource" id="Resource_jqtyc"]
 script = ExtResource("3_sto51")
@@ -110,7 +110,7 @@ difficulties = ["easy", "normal", "hard"]
 [sub_resource type="Resource" id="Resource_l3std"]
 script = ExtResource("3_sto51")
 display_name = "Satin Panties"
-song_path = "satin panties"
+song_path = "satin-panties"
 
 [sub_resource type="Resource" id="Resource_x6kum"]
 script = ExtResource("3_sto51")
@@ -120,7 +120,7 @@ song_path = "high"
 [sub_resource type="Resource" id="Resource_4n5ql"]
 script = ExtResource("3_sto51")
 display_name = "M.I.L.F"
-song_path = "m.i.l.f"
+song_path = "milf"
 
 [sub_resource type="Resource" id="Resource_ips1q"]
 script = ExtResource("2_lywg0")
@@ -146,7 +146,7 @@ song_path = "eggnog"
 [sub_resource type="Resource" id="Resource_ymlg5"]
 script = ExtResource("3_sto51")
 display_name = "Winter Horrorland"
-song_path = "winter horrorland"
+song_path = "winter-horrorland"
 
 [sub_resource type="Resource" id="Resource_w2lo6"]
 script = ExtResource("2_lywg0")
@@ -236,9 +236,9 @@ script = ExtResource("2_lywg0")
 name = "DUE DEBTS"
 week_texture = ExtResource("12_a1gte")
 bg_color = Color(0.254902, 0.235294, 0.682353, 1)
-player = "pico"
-opponent = "dad"
-spectator = "gf"
+player = "pico-player"
+opponent = "darnell"
+spectator = "nene"
 songs = Array[ExtResource("3_sto51")]([SubResource("Resource_yvob8"), SubResource("Resource_qo0rd"), SubResource("Resource_lupo7"), SubResource("Resource_g6y2m")])
 difficulties = ["easy", "normal", "hard"]
 

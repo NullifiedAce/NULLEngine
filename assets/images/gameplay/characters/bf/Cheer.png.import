@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do3s66qi2pffi"
-path="res://.godot/imported/nene.png-7e15d66b74bcfa91a0dec946da973d74.ctex"
+uid="uid://jvx2g2pshphu"
+path="res://.godot/imported/Cheer.png-1e3127338c00f75702bc83e87de0d81e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/menus/storymenu/characters/nene.png"
-dest_files=["res://.godot/imported/nene.png-7e15d66b74bcfa91a0dec946da973d74.ctex"]
+source_file="res://assets/images/gameplay/characters/bf/Cheer.png"
+dest_files=["res://.godot/imported/Cheer.png-1e3127338c00f75702bc83e87de0d81e.ctex"]
 
 [params]
 
