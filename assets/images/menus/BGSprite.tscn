@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bw7tphb8v4njj"]
 
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="1_tj4im"]
-[ext_resource type="Script" uid="uid://dptjrcbl6rfy1" path="res://classes/BG Sprite.gd" id="2_lrni7"]
+[ext_resource type="Script" uid="uid://ce6e4k12q0i0" path="res://classes/BG Sprite.gd" id="2_lrni7"]
 
 [node name="BG Sprite" type="Sprite2D"]
 position = Vector2(640, 360)

@@ -4,3 +4,5 @@
 # other ignores
 export/
 .vscode/settings.json
+.DS_Store
+assets/gameJoltData.json

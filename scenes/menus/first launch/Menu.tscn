@@ -1,0 +1,134 @@
+[gd_scene load_steps=15 format=3 uid="uid://5gv2so4ckba1"]
+
+[ext_resource type="Script" uid="uid://crhccs5hhdvlf" path="res://scenes/menus/first launch/Menu.gd" id="1_cjiy5"]
+[ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_jkndc"]
+[ext_resource type="Texture2D" uid="uid://ceuewex8spqfl" path="res://assets/images/discordRPC/logo_no_bg.png" id="3_1m2wd"]
+[ext_resource type="Theme" uid="uid://4futibrds7cj" path="res://assets/styles/NULL/purple.tres" id="4_gguo6"]
+[ext_resource type="Texture2D" uid="uid://hjfgofepc31y" path="res://assets/images/gameplay/stages/stage/stage_light.png" id="4_h5el2"]
+[ext_resource type="FontFile" uid="uid://cf2wd6a4pa5kb" path="res://assets/fonts/funkin.ttf" id="5_vc868"]
+[ext_resource type="Texture2D" uid="uid://bajg5ri5ikwq2" path="res://assets/images/material_icons/checkbox/checked.svg" id="8_l67b5"]
+[ext_resource type="Texture2D" uid="uid://cuwsd23w8tsnn" path="res://assets/images/material_icons/checkbox/checked_disabled.svg" id="9_xq1mu"]
+[ext_resource type="Texture2D" uid="uid://u4kysxd17gha" path="res://assets/images/material_icons/checkbox/unchecked.svg" id="10_c4ct6"]
+[ext_resource type="Texture2D" uid="uid://deittp727l7il" path="res://assets/images/material_icons/checkbox/unchecked_disabled.svg" id="11_hl8wv"]
+[ext_resource type="Script" uid="uid://qmlieixwhdtx" path="res://scenes/menus/options/buttons/Checkbox.gd" id="12_uplql"]
+
+[sub_resource type="Gradient" id="Gradient_b5v8e"]
+colors = PackedColorArray(1, 1, 1, 0.0980392, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ddlc0"]
+gradient = SubResource("Gradient_b5v8e")
+width = 1280
+height = 720
+fill = 1
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="Theme" id="Theme_3lb0i"]
+CheckBox/colors/font_color = Color(1, 1, 1, 1)
+CheckBox/colors/font_outline_color = Color(0, 0, 0, 1)
+CheckBox/constants/outline_size = 8
+CheckBox/font_sizes/font_size = 16
+CheckBox/fonts/font = ExtResource("5_vc868")
+CheckBox/icons/checked = ExtResource("8_l67b5")
+CheckBox/icons/checked_disabled = ExtResource("9_xq1mu")
+CheckBox/icons/unchecked = ExtResource("10_c4ct6")
+CheckBox/icons/unchecked_disabled = ExtResource("11_hl8wv")
+
+[node name="FirstLaunch" type="Node2D"]
+script = ExtResource("1_cjiy5")
+
+[node name="BG Sprite" parent="." instance=ExtResource("2_jkndc")]
+self_modulate = Color(0.123068, 0.000208153, 0.290046, 1)
+color = Color(0.123068, 0.000208153, 0.290046, 1)
+gradiant = SubResource("GradientTexture2D_ddlc0")
+metadata/_edit_lock_ = true
+
+[node name="Gradiant" parent="BG Sprite" index="0"]
+z_index = 1
+texture = SubResource("GradientTexture2D_ddlc0")
+
+[node name="Logo" type="Sprite2D" parent="BG Sprite"]
+position = Vector2(0, -280)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_1m2wd")
+metadata/_edit_lock_ = true
+
+[node name="LampL" type="Sprite2D" parent="BG Sprite"]
+position = Vector2(-608, -328)
+rotation = -0.287979
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_h5el2")
+metadata/_edit_lock_ = true
+
+[node name="LampR" type="Sprite2D" parent="BG Sprite"]
+position = Vector2(608, -328)
+rotation = 1.34216
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_h5el2")
+metadata/_edit_lock_ = true
+
+[node name="Flash" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+metadata/_edit_lock_ = true
+
+[node name="Page" type="RichTextLabel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 192.0
+offset_right = 1280.0
+offset_bottom = 912.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_gguo6")
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("5_vc868")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center][font_size=56]/!\\ WARNING /!\\[/font_size]
+
+
+This Engine contains [color=red]Flashing Lights[/color], which for some user might not be suitable!
+
+You can disable this here by unchecking the checkbox below or continue on with flashing lights enabled.
+
+
+
+
+With all said and done:
+
+ENJOY :D
+
+
+
+
+Press \"ENTER\" to start the Engine[/center]"
+
+[node name="flashing lights" type="CheckBox" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 557.5
+offset_top = 416.5
+offset_right = 722.5
+offset_bottom = 447.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+mouse_filter = 1
+theme = SubResource("Theme_3lb0i")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+button_pressed = true
+text = "FLASHING LIGHTS"
+script = ExtResource("12_uplql")
+option = "flashing lights"
+
+[connection signal="pressed" from="flashing lights" to="flashing lights" method="_on_pressed"]
+
+[editable path="BG Sprite"]

@@ -1,6 +1,6 @@
 extends Node
 
-const _json_path:String = "user://funkin_settings.json"
+var _json_path:String = SaveData.path + "funkin_settings.json"
 var _settings:Dictionary = {
 	# gameplay
 	"downscroll": false,
@@ -21,59 +21,25 @@ var _settings:Dictionary = {
 	"subtitles": true,
 	"story always yellow": false,
 	"judgement camera": "World",
+	"camera movement": true,
+	"zoom camera": true,
+	"camera shake": true,
+	"zoom hud": true,
+	"hud shake": true,
 	"judgement stacking": true,
 	"hide score": false,
 	"freeplay icon bumping": true,
 	"flashing lights": true,
 
-	# hud
-	"engine theme": "Purple",
-	"color style": "NULL",
+	# strum options
+	"oppStrumVis": 1.0,
+	"oppStrumScale": 1.0,
+	"playerStrumVis": 1.0,
+	"playerStrumScale": 1.0,
 
-	# hud editor
-	"bg color": "ffffff",
-
-	# health bar
-	"icon colors": false,
-	"custom color": false,
-	"hide hpbar": false,
-	"hide icons": false,
-	"player color": "00ff00",
-	"opp color": "ff0000",
-
-	"hpbar x": 340,
-	"hpbar y": 636,
-
-	#score text
-	"seperator": " - ",
-
-	"score_arrangement": "[\"score\", \"misses\", \"accuracy\", \"ranks\"]",
-
-	"font path": "res://assets/fonts/vcr.ttf",
-	"font size": 19,
-	"font color": "ffffff",
-
-	"outline size": 10,
-	"outline color": "000000",
-
-	"score bg color": "0000009b",
-	"score bg expand": 2,
-
-	# score
-	"score prefix": "Score: ",
-	"score suffix": "",
-
-	# misses
-	"misses prefix": "Misses: ",
-	"misses suffix": "",
-
-	# accuracy
-	"accuracy prefix": "Accuracy: ",
-	"accuracy suffix": "%",
+	"lastHudFile": "res://assets/defaultHud.json",
 
 	# ranks
-	"ranks prefix": "[",
-	"ranks suffix": "]",
 	"s+ rank": "S+",
 	"s rank": "S",
 	"a rank": "A",
@@ -84,28 +50,12 @@ var _settings:Dictionary = {
 	"f rank": "F",
 	"null rank": "N/A",
 
-	# health
-	"health prefix": "",
-	"health suffix": "%",
-
-	# combo
-	"combo prefix": "Combo: ",
-	"combo suffix": "x",
-
-	# max combo
-	"max combo prefix": "(",
-	"max combo suffix": ")",
-
-	# ghost taps
-	"ghost taps prefix": "Ghost Taps: ",
-	"ghost taps suffix": "",
-
 	# misc
-	"auto pause": true,
+	"auto pause": false,
 	"volume beep pitching": false,
 	"vsync": false,
 	"multi threaded rendering": false,
-	"fps": 240,
+	"fps": 120,
 	"first launch": true,
 
 	# controls (gameplay)

@@ -1,31 +1,103 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4njerl6jit4y"]
+[gd_scene load_steps=11 format=3 uid="uid://b4njerl6jit4y"]
 
-[ext_resource type="Script" uid="uid://pudn1i4qh8i5" path="res://scenes/gameplay/stages/schoolEvil.gd" id="1_rw3jb"]
-[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/school/animatedEvilSchool.res" id="2_at60x"]
+[ext_resource type="Script" uid="uid://drcpupdpnrw07" path="res://scenes/gameplay/stages/schoolEvil.gd" id="1_rw3jb"]
+[ext_resource type="Texture2D" uid="uid://brgryxj6mwg3l" path="res://assets/images/gameplay/stages/school/evil/weebSchool.png" id="2_vtpp0"]
+[ext_resource type="Texture2D" uid="uid://c3f0bh8emdwna" path="res://assets/images/gameplay/stages/school/evil/weebBackTrees.png" id="3_16cgj"]
+[ext_resource type="Shader" uid="uid://bmvvb255akbyk" path="res://assets/shaders/wiggle.gdshader" id="3_0633g"]
+[ext_resource type="Texture2D" uid="uid://bc5rurpl2mfvy" path="res://assets/images/gameplay/stages/school/evil/weebStreet.png" id="4_0633g"]
+[ext_resource type="Texture2D" uid="uid://bomvqqd7fgd27" path="res://assets/images/gameplay/stages/school/evil/weebTrees.png" id="5_7c7c2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_16cgj"]
+shader = ExtResource("3_0633g")
+shader_parameter/uTime = 0.0
+shader_parameter/uSpeed = 2.0
+shader_parameter/uFrequency = 4.0
+shader_parameter/uWaveAmplitude = 0.017
+shader_parameter/effectType = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7c7c2"]
+shader = ExtResource("3_0633g")
+shader_parameter/uTime = 0.0
+shader_parameter/uSpeed = 1.6
+shader_parameter/uFrequency = 1.6
+shader_parameter/uWaveAmplitude = 0.011
+shader_parameter/effectType = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0633g"]
+shader = ExtResource("3_0633g")
+shader_parameter/uTime = 0.0
+shader_parameter/uSpeed = 2.0
+shader_parameter/uFrequency = 4.0
+shader_parameter/uWaveAmplitude = 0.007
+shader_parameter/effectType = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12nlm"]
+shader = ExtResource("3_0633g")
+shader_parameter/uTime = 0.0
+shader_parameter/uSpeed = 2.0
+shader_parameter/uFrequency = 4.0
+shader_parameter/uWaveAmplitude = 0.007
+shader_parameter/effectType = 0
 
 [node name="stage" type="Node2D"]
 script = ExtResource("1_rw3jb")
-player_cam_offset = Vector2(-100, -100)
+default_cam_zoom = 1.0
+player_cam_offset = Vector2(-200, -94)
+opponent_cam_offset = Vector2(73, 45)
+spectator_cam_offset = Vector2(40, 40)
 
-[node name="PB" type="ParallaxBackground" parent="."]
+[node name="0-75" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.75, 0.75)
 
-[node name="PL1" type="ParallaxLayer" parent="PB"]
-motion_scale = Vector2(0.9, 0.9)
-
-[node name="AnimatedSprite" type="AnimatedSprite2D" parent="PB/PL1"]
+[node name="school" type="Sprite2D" parent="0-75"]
+z_index = 20
 texture_filter = 1
-position = Vector2(569, 347)
+material = SubResource("ShaderMaterial_16cgj")
+position = Vector2(-816, -38)
 scale = Vector2(6, 6)
-sprite_frames = ExtResource("2_at60x")
-animation = &"background 2 instance 1"
+texture = ExtResource("2_vtpp0")
+centered = false
+
+[node name="0-5" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0.5)
+
+[node name="weebBackTrees" type="Sprite2D" parent="0-5"]
+z_index = 15
+texture_filter = 1
+material = SubResource("ShaderMaterial_7c7c2")
+position = Vector2(-842, -80)
+scale = Vector2(6, 6)
+texture = ExtResource("3_16cgj")
+centered = false
+
+[node name="street" type="Sprite2D" parent="."]
+z_index = 30
+texture_filter = 1
+material = SubResource("ShaderMaterial_0633g")
+position = Vector2(-662, 6)
+scale = Vector2(6, 6)
+texture = ExtResource("4_0633g")
+centered = false
 
 [node name="Character Positions" type="Node2D" parent="."]
 
 [node name="Opponent" type="Node2D" parent="Character Positions"]
-position = Vector2(205, 779)
+z_index = 200
+position = Vector2(341, 900)
 
 [node name="Spectator" type="Node2D" parent="Character Positions"]
-position = Vector2(692, 714)
+z_index = 100
+position = Vector2(724, 823)
 
 [node name="Player" type="Node2D" parent="Character Positions"]
-position = Vector2(1014, 790)
+z_index = 300
+position = Vector2(1168, 900)
+
+[node name="trees" type="Sprite2D" parent="."]
+z_index = 30
+texture_filter = 1
+material = SubResource("ShaderMaterial_12nlm")
+position = Vector2(-662, 6)
+scale = Vector2(6, 6)
+texture = ExtResource("5_7c7c2")
+centered = false

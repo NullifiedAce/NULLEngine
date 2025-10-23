@@ -1,0 +1,178 @@
+[gd_scene load_steps=12 format=3 uid="uid://lh12vqwmj0re"]
+
+[ext_resource type="Script" uid="uid://shqpb108e6sc" path="res://scenes/gameplay/stages/spookyMansionErect.gd" id="1_3sl0w"]
+[ext_resource type="Texture2D" uid="uid://cpf4lxlpv7j0u" path="res://assets/images/gameplay/stages/spooky/erect/bgDark.png" id="4_g4div"]
+[ext_resource type="Texture2D" uid="uid://dr7pqlqj2xk7f" path="res://assets/images/gameplay/stages/spooky/erect/bgLight.png" id="5_cpbuy"]
+[ext_resource type="Texture2D" uid="uid://cene0rctnkldp" path="res://assets/images/gameplay/stages/spooky/erect/stairsDark.png" id="6_3q6g1"]
+[ext_resource type="SpriteFrames" uid="uid://dvap421ic27q0" path="res://assets/images/gameplay/stages/spooky/erect/bgtrees.res" id="6_hdmpo"]
+[ext_resource type="AudioStream" uid="uid://dghug5fvtdvce" path="res://assets/sounds/stages/spooky/thunder1.ogg" id="7_kgem3"]
+[ext_resource type="Texture2D" uid="uid://h3xcn0aq6ttn" path="res://assets/images/gameplay/stages/spooky/erect/stairsLight.png" id="7_xfxyp"]
+[ext_resource type="AudioStream" uid="uid://uc1tgua1hmms" path="res://assets/sounds/stages/spooky/thunder2.ogg" id="8_dj4sa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qua63"]
+
+[sub_resource type="Shader" id="Shader_ns3go"]
+code = "shader_type canvas_item;
+
+// Uniforms
+uniform float uScale;
+uniform float uIntensity;
+uniform float uTime;
+uniform float uPuddleY;
+uniform float uPuddleScaleY;
+uniform sampler2D uBlurredScreen;
+uniform sampler2D uMask;
+uniform vec3 uRainColor;
+uniform sampler2D screen_texture : hint_screen_texture;
+
+// Random function
+float rand(vec2 a) {
+	return fract(sin(dot(a, vec2(12.9898, 78.233))) * 43758.5453);
+}
+
+// Rain distortion function
+float rainDist(vec2 p, float scale, float intensity) {
+	p *= 0.05; // Adjusted for smaller raindrops
+	p.x += p.y * 0.1;
+	p.y -= uTime * 500.0 / scale;
+	p.y *= 0.03;
+	float ix = floor(p.x);
+	p.y += mod(ix, 2.0) * 0.5 + (rand(vec2(ix)) - 0.5) * 0.3;
+	float iy = floor(p.y);
+	vec2 index = vec2(ix, iy);
+	p -= index;
+	p.x += (rand(index.yx) * 2.0 - 1.0) * 0.35;
+	vec2 a = abs(p - 0.5);
+	float res = max(a.x * 0.8, a.y * 0.5) - 0.1;
+	bool empty = rand(index) < mix(1.0, 0.1, intensity);
+	return empty ? 1.0 : res;
+}
+
+// Main fragment function
+void fragment() {
+	vec2 uv = SCREEN_UV; // Use screen coordinates
+	vec4 scene_color = texture(screen_texture, uv); // Sample the game screen
+
+	vec3 add = vec3(0.0);
+	float rainSum = 0.0;
+
+	const int numLayers = 4;
+	float scales[4] = float[](1.0, 1.8, 2.6, 4.8);
+
+	for (int i = 0; i < numLayers; i++) {
+		float scale = scales[i];
+		// Scale the raindrop size by uScale
+		float r = rainDist(uv * scale * (uScale * 100.0) + 500.0 * float(i), scale, uIntensity);
+		if (r < 0.0) {
+			float v = (1.0 - exp(r * 5.0)) / scale * 2.0;
+			// Adjust the distortion to account for smaller raindrops
+			uv.x += v * 10.0 / (uScale * 100.0);
+			uv.y -= v * 2.0 / (uScale * 100.0);
+			add += vec3(0.1, 0.15, 0.2) * v;
+			rainSum += (1.0 - rainSum) * 0.75;
+		}
+	}
+
+	vec4 final_color = texture(screen_texture, uv); // Sample screen again with distortion
+	final_color.rgb += add; // Apply rain effect
+	final_color.rgb = mix(final_color.rgb, uRainColor, 0.1 * rainSum);
+
+	COLOR = final_color; // Output final blended color
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ixog"]
+shader = SubResource("Shader_ns3go")
+shader_parameter/uScale = 3.6
+shader_parameter/uIntensity = 0.4
+shader_parameter/uTime = 0.0
+shader_parameter/uPuddleY = 0.0
+shader_parameter/uPuddleScaleY = 0.0
+shader_parameter/uRainColor = Vector3(0, 0, 0)
+
+[node name="stage" type="Node2D"]
+script = ExtResource("1_3sl0w")
+intensity = 0.4
+rain_scale = 3.6
+rain_color = Color(0.4, 0.501961, 0.8, 1)
+default_cam_zoom = 1.0
+player_cam_offset = Vector2(-100, -100)
+opponent_cam_offset = Vector2(150, -100)
+
+[node name="1-1" type="Parallax2D" parent="."]
+
+[node name="solid" type="ColorRect" parent="1-1"]
+z_index = -500
+offset_left = -300.0
+offset_top = -500.0
+offset_right = 2100.0
+offset_bottom = 1500.0
+color = Color(0.141176, 0.137255, 0.211765, 1)
+
+[node name="bgDark" type="Sprite2D" parent="1-1"]
+z_index = -100
+position = Vector2(-360, -220)
+texture = ExtResource("4_g4div")
+centered = false
+
+[node name="bgLight" type="Sprite2D" parent="1-1"]
+modulate = Color(1, 1, 1, 0)
+z_index = -99
+position = Vector2(-360, -220)
+texture = ExtResource("5_cpbuy")
+centered = false
+
+[node name="stairsDark" type="Sprite2D" parent="1-1"]
+z_index = 400
+position = Vector2(966, -225)
+texture = ExtResource("6_3q6g1")
+centered = false
+
+[node name="stairsLight" type="Sprite2D" parent="1-1"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 401
+position = Vector2(966, -225)
+texture = ExtResource("7_xfxyp")
+centered = false
+
+[node name="0-8" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.8, 0.8)
+
+[node name="bgTrees" type="AnimatedSprite2D" parent="0-8"]
+z_index = -101
+material = SubResource("ShaderMaterial_qua63")
+position = Vector2(200, 50)
+sprite_frames = ExtResource("6_hdmpo")
+animation = &"bgtrees"
+centered = false
+
+[node name="rain" type="ColorRect" parent="0-8"]
+z_index = -101
+material = SubResource("ShaderMaterial_0ixog")
+offset_left = 200.0
+offset_top = 50.0
+offset_right = 800.0
+offset_bottom = 450.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Character Positions" type="Node2D" parent="."]
+
+[node name="Opponent" type="Node2D" parent="Character Positions"]
+z_index = 200
+position = Vector2(382, 831)
+
+[node name="Spectator" type="Node2D" parent="Character Positions"]
+z_index = 100
+position = Vector2(821.5, 800)
+
+[node name="Player" type="Node2D" parent="Character Positions"]
+z_index = 300
+position = Vector2(1250, 835)
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Lightning1" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("7_kgem3")
+
+[node name="Lightning2" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("8_dj4sa")

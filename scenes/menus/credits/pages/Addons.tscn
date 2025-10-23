@@ -1,0 +1,100 @@
+[gd_scene load_steps=3 format=3 uid="uid://xt6f6imghpau"]
+
+[ext_resource type="PackedScene" uid="uid://158jh5bmr0r8" path="res://scenes/menus/credits/CreditsItem.tscn" id="1_alwo1"]
+[ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="1_r80ve"]
+
+[node name="Addons" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_r80ve")
+
+[node name="DiscordRPC" type="Label" parent="."]
+layout_mode = 0
+offset_right = 319.0
+offset_bottom = 28.5
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Discord RPC Godot"
+
+[node name="vaporvee" parent="." instance=ExtResource("1_alwo1")]
+jpeg = true
+avatar_url = "https://avatars.githubusercontent.com/u/80621863?v=4"
+credit_name = "vaporvee "
+credits_description = "GitHub Contributor"
+
+[node name="Pukimaa" parent="." instance=ExtResource("1_alwo1")]
+avatar_url = "https://avatars.githubusercontent.com/u/58347116?v=4"
+credit_name = "Pukimaa"
+credits_description = "GitHub Contributor"
+
+[node name="EddieDover" parent="." instance=ExtResource("1_alwo1")]
+jpeg = true
+avatar_url = "https://avatars.githubusercontent.com/u/464286?v=4"
+credit_name = "EddieDover"
+credits_description = "GitHub Contributor"
+
+[node name="koyuawsmbrtn" parent="." instance=ExtResource("1_alwo1")]
+avatar_url = "https://avatars.githubusercontent.com/u/40538332?v=4"
+credit_name = "koyuawsmbrtn"
+credits_description = "GitHub Contributor"
+
+[node name="vaartis" parent="." instance=ExtResource("1_alwo1")]
+avatar_url = "https://avatars.githubusercontent.com/u/14316128?v=4"
+credit_name = "vaartis"
+credits_description = "GitHub Contributor"
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 4.0
+
+[node name="GodotTODO" type="Label" parent="."]
+layout_mode = 0
+offset_right = 319.0
+offset_bottom = 28.5
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Simple TODO"
+
+[node name="KoBeWi" parent="." instance=ExtResource("1_alwo1")]
+avatar_url = "https://avatars.githubusercontent.com/u/2223172?v=4"
+credit_name = "KoBeWi"
+credits_description = "GitHub Contributor"
+
+[node name="Nukiloco" parent="." instance=ExtResource("1_alwo1")]
+jpeg = true
+avatar_url = "https://avatars.githubusercontent.com/u/16618467?v=4"
+credit_name = "Nukiloco"
+credits_description = "GitHub Contributor"
+
+[node name="gdanimate" type="Label" parent="."]
+layout_mode = 0
+offset_right = 319.0
+offset_bottom = 28.5
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "GDAnimate"
+
+[node name="cherrythecool" parent="." instance=ExtResource("1_alwo1")]
+jpeg = true
+avatar_url = "https://avatars.githubusercontent.com/u/138817584?v=4"
+credit_name = "cherrythecool "
+credits_description = "GitHub Contributor"
+
+[node name="ffmpeg godot" type="Label" parent="."]
+layout_mode = 0
+offset_right = 319.0
+offset_bottom = 28.5
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "ffmpeg godot support"
+
+[node name="cherrythecool2" parent="." instance=ExtResource("1_alwo1")]
+jpeg = true
+avatar_url = "https://avatars.githubusercontent.com/u/138817584?v=4"
+credit_name = "cherrythecool "
+credits_description = "GitHub Contributor"

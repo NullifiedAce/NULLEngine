@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmgel05dhlx15"]
+
+[ext_resource type="Script" uid="uid://bsg6s08v5u153" path="res://scenes/gameplay/stages/limo.gd" id="1_l6mq2"]
+[ext_resource type="Texture2D" uid="uid://bvas2e32474uk" path="res://assets/images/gameplay/stages/limo/limoSunset.png" id="2_0e01u"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/limo/bgLimo.res" id="3_8det4"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/limo/limoDrive.res" id="4_vbsde"]
+[ext_resource type="PackedScene" uid="uid://d2er11vv1rshu" path="res://scenes/gameplay/stages/objects/dancey-boi.tscn" id="5_8pi7w"]
+
+[node name="limo" type="Node2D" node_paths=PackedStringArray("back_limo", "limo")]
+z_index = -1
+script = ExtResource("1_l6mq2")
+back_limo = NodePath("PL2/limo")
+back_limo_anim = "background limo pink"
+limo = NodePath("PL3/limo")
+limo_anim = "Limo stage"
+default_cam_zoom = 0.9
+player_cam_offset = Vector2(-300, -100)
+opponent_cam_offset = Vector2(150, 0)
+
+[node name="PL1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 0.1)
+
+[node name="LimoSunset" type="Sprite2D" parent="PL1"]
+z_index = 10
+position = Vector2(-120, -50)
+texture = ExtResource("2_0e01u")
+centered = false
+
+[node name="PL2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 0.4)
+
+[node name="limo" type="AnimatedSprite2D" parent="PL2"]
+z_index = 20
+position = Vector2(-200, 480)
+sprite_frames = ExtResource("3_8det4")
+animation = &"background limo pink"
+frame_progress = 0.733341
+centered = false
+
+[node name="dancey_group" type="Node2D" parent="PL2/limo"]
+
+[node name="dancey-boi" parent="PL2/limo/dancey_group" instance=ExtResource("5_8pi7w")]
+position = Vector2(370, -390)
+
+[node name="dancey-boi2" parent="PL2/limo/dancey_group" instance=ExtResource("5_8pi7w")]
+position = Vector2(740, -390)
+
+[node name="dancey-boi3" parent="PL2/limo/dancey_group" instance=ExtResource("5_8pi7w")]
+position = Vector2(1110, -390)
+
+[node name="dancey-boi4" parent="PL2/limo/dancey_group" instance=ExtResource("5_8pi7w")]
+position = Vector2(1480, -390)
+
+[node name="PL3" type="Parallax2D" parent="."]
+
+[node name="limo" type="AnimatedSprite2D" parent="PL3"]
+z_index = 150
+position = Vector2(-120, 550)
+sprite_frames = ExtResource("4_vbsde")
+animation = &"Limo stage"
+centered = false
+
+[node name="Character Positions" type="Node2D" parent="."]
+
+[node name="Opponent" type="Node2D" parent="Character Positions"]
+z_index = 200
+position = Vector2(329.5, 913)
+
+[node name="Spectator" type="Node2D" parent="Character Positions"]
+z_index = 100
+position = Vector2(787, 779)
+
+[node name="Player" type="Node2D" parent="Character Positions"]
+z_index = 300
+position = Vector2(1217.5, 592)

@@ -1,0 +1,177 @@
+[gd_scene load_steps=17 format=3 uid="uid://cccq8x62cccmh"]
+
+[ext_resource type="Script" uid="uid://kjajkn85d5bm" path="res://scenes/gameplay/stages/PhillyBlazin.gd" id="1_wjjk6"]
+[ext_resource type="Texture2D" uid="uid://c5gwlwh4q31k1" path="res://assets/levels/weekend1/images/phillyBlazin/skyBlur.png" id="2_v2nwi"]
+[ext_resource type="SpriteFrames" path="res://assets/levels/weekend1/images/phillyBlazin/lightning.res" id="3_nb515"]
+[ext_resource type="Texture2D" uid="uid://rrh6wuqxk3n0" path="res://assets/levels/weekend1/images/phillyBlazin/streetBlur.png" id="4_buul3"]
+[ext_resource type="Shader" uid="uid://dagdovuph785s" path="res://assets/shaders/rain.gdshader" id="4_we2qc"]
+[ext_resource type="Shader" uid="uid://c6lkaqkg2vwp7" path="res://assets/shaders/MultiplyShader.gdshader" id="5_ka6ya"]
+[ext_resource type="AudioStream" uid="uid://86to0x2ppw2" path="res://assets/levels/weekend1/sounds/Lightning1.ogg" id="6_sisba"]
+[ext_resource type="AudioStream" uid="uid://bofmi5ayscev7" path="res://assets/levels/weekend1/sounds/Lightning2.ogg" id="7_0g2un"]
+[ext_resource type="AudioStream" uid="uid://ddnt60n0n1anq" path="res://assets/levels/weekend1/sounds/Lightning3.ogg" id="8_lkg3m"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tnc1r"]
+blend_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6nj4s"]
+shader = ExtResource("5_ka6ya")
+shader_parameter/alpha = 0.64
+shader_parameter/overlay = ExtResource("4_buul3")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cmv4v"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_0wt5r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("foregroundMultiply:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.64]
+}
+
+[sub_resource type="Animation" id="Animation_glu58"]
+resource_name = "strike"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("foregroundMultiply:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.64, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g68j8"]
+_data = {
+&"RESET": SubResource("Animation_0wt5r"),
+&"strike": SubResource("Animation_glu58")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yx1aw"]
+shader = ExtResource("4_we2qc")
+shader_parameter/uScale = 0.0
+shader_parameter/uIntensity = 0.0
+shader_parameter/uTime = 0.0
+shader_parameter/uPuddleY = 0.0
+shader_parameter/uPuddleScaleY = 0.0
+shader_parameter/uRainColor = Vector3(0, 0, 0)
+
+[node name="phillyBlazin" type="Node2D"]
+script = ExtResource("1_wjjk6")
+intensity = 0.5
+rain_scale = 3.6
+rain_color = Color(0.4, 0.501961, 0.8, 1)
+default_cam_zoom = 0.75
+player_cam_offset = Vector2(-350, -100)
+opponent_cam_offset = Vector2(500, 200)
+spectator_cam_offset = Vector2(0, 20)
+
+[node name="sky" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(2427.25, 0)
+autoscroll = Vector2(-35, 0)
+
+[node name="skyBlur" type="Sprite2D" parent="sky"]
+z_index = 10
+position = Vector2(-500, -120)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("2_v2nwi")
+centered = false
+
+[node name="0-0" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0)
+
+[node name="skyAdditive" type="Sprite2D" parent="0-0"]
+visible = false
+z_index = 11
+material = SubResource("CanvasItemMaterial_tnc1r")
+position = Vector2(-600, -175)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("2_v2nwi")
+centered = false
+
+[node name="lightning" type="AnimatedSprite2D" parent="0-0"]
+visible = false
+z_index = 20
+position = Vector2(50, -300)
+scale = Vector2(1.75, 1.75)
+sprite_frames = ExtResource("3_nb515")
+animation = &"lightning"
+centered = false
+
+[node name="phillyForegroundCity" type="Sprite2D" parent="0-0"]
+z_index = 30
+position = Vector2(-600, -175)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("4_buul3")
+centered = false
+
+[node name="foregroundMultiply" type="Sprite2D" parent="0-0"]
+visible = false
+z_index = 31
+material = SubResource("ShaderMaterial_6nj4s")
+position = Vector2(-600, -175)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("4_buul3")
+centered = false
+
+[node name="additionalLighten" type="ColorRect" parent="0-0"]
+visible = false
+z_index = 40
+material = SubResource("CanvasItemMaterial_cmv4v")
+offset_left = -600.0
+offset_top = -175.0
+offset_right = 1900.0
+offset_bottom = 1825.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="0-0"]
+libraries = {
+&"": SubResource("AnimationLibrary_g68j8")
+}
+
+[node name="Character Positions" type="Node2D" parent="."]
+
+[node name="Opponent" type="Node2D" parent="Character Positions"]
+z_index = 3000
+position = Vector2(647, 541)
+scale = Vector2(1.75, 1.75)
+
+[node name="Spectator" type="Node2D" parent="Character Positions"]
+z_index = 1000
+position = Vector2(1353, 1125)
+
+[node name="Player" type="Node2D" parent="Character Positions"]
+z_index = 2000
+position = Vector2(1289, 549)
+scale = Vector2(1.75, 1.75)
+
+[node name="Rain" type="CanvasLayer" parent="."]
+
+[node name="Rain" type="ColorRect" parent="Rain"]
+material = SubResource("ShaderMaterial_yx1aw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LightningSounds" type="Node" parent="."]
+
+[node name="Lightning1" type="AudioStreamPlayer" parent="LightningSounds"]
+stream = ExtResource("6_sisba")
+
+[node name="Lightning2" type="AudioStreamPlayer" parent="LightningSounds"]
+stream = ExtResource("7_0g2un")
+
+[node name="Lightning3" type="AudioStreamPlayer" parent="LightningSounds"]
+stream = ExtResource("8_lkg3m")

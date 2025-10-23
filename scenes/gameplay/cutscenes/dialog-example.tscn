@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bf1cb0xc0my4t"]
 
-[ext_resource type="Script" uid="uid://mr4074gyulg0" path="res://scenes/gameplay/cutscenes/dialog.gd" id="1_0elnn"]
+[ext_resource type="Script" uid="uid://dvhjty75f54rb" path="res://scenes/gameplay/cutscenes/dialog.gd" id="1_0elnn"]
 [ext_resource type="FontFile" uid="uid://ui3m7nvlvh8y" path="res://assets/fonts/pixel.otf" id="2_wjtgb"]
-[ext_resource type="Script" uid="uid://dshlknqiw8uf4" path="res://scenes/gameplay/cutscenes/typeing.gd" id="3_i1c67"]
+[ext_resource type="Script" uid="uid://b4a4r3myt4nlq" path="res://scenes/gameplay/cutscenes/typeing.gd" id="3_i1c67"]
 [ext_resource type="AudioStream" uid="uid://n42ha0ifsni4" path="res://assets/sounds/menus/scrollMenu.ogg" id="4_6lr2t"]
-[ext_resource type="Script" uid="uid://clrr70emde3ux" path="res://scripts/AudioPlayer.gd" id="5_nogg1"]
+[ext_resource type="Script" uid="uid://8mxbydkyk7td" path="res://scripts/AudioPlayer.gd" id="5_nogg1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1ixq"]
 bg_color = Color(0, 0, 0, 1)

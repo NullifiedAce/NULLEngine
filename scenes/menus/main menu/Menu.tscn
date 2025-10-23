@@ -1,0 +1,241 @@
+[gd_scene load_steps=22 format=3 uid="uid://q64jd3rbs8je"]
+
+[ext_resource type="Script" uid="uid://c64ug4ui3jcc4" path="res://scenes/menus/main menu/Menu.gd" id="1_f3mce"]
+[ext_resource type="Texture2D" uid="uid://8cpkvnc78sok" path="res://assets/images/menus/menuBG.png" id="2_25v5u"]
+[ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="3_sklie"]
+[ext_resource type="PackedScene" uid="uid://cyj73wfovhpu" path="res://scenes/gameplay/characters/gf.tscn" id="4_tsg3x"]
+[ext_resource type="SpriteFrames" path="res://assets/images/menus/mainmenu/story mode.res" id="4_vrrvm"]
+[ext_resource type="SpriteFrames" path="res://assets/images/menus/mainmenu/freeplay.res" id="5_q251e"]
+[ext_resource type="SpriteFrames" path="res://assets/images/menus/mainmenu/options.res" id="6_jtmjb"]
+[ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="7_fi2y3"]
+[ext_resource type="SpriteFrames" uid="uid://bqn0cjor0adm0" path="res://assets/images/menus/mainmenu/credits.res" id="7_n0of5"]
+[ext_resource type="Texture2D" uid="uid://cwrt4rlavcb58" path="res://assets/images/menus/achievements/trophies.png" id="10_etwjy"]
+
+[sub_resource type="Animation" id="Animation_vsdk4"]
+resource_name = "flash"
+length = 1.1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o84so"]
+_data = {
+&"flash": SubResource("Animation_vsdk4")
+}
+
+[sub_resource type="Animation" id="Animation_j6yp2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_kyg7j"]
+resource_name = "flash"
+step = 0.06
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.0601, 0.12, 0.18, 0.24, 0.3, 0.3001, 0.36, 0.42, 0.48, 0.54, 0.5401, 0.6, 0.66, 0.72, 0.78, 0.7801, 0.84, 0.9, 0.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false, true, false, true, true, false, true, false, true, true, false, true, false, true, true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o48h0"]
+_data = {
+&"RESET": SubResource("Animation_j6yp2"),
+&"flash": SubResource("Animation_kyg7j")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cdqi"]
+bg_color = Color(0, 0, 0, 0.501961)
+expand_margin_left = 8.0
+expand_margin_top = 5.0
+expand_margin_right = 4.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjrmj"]
+bg_color = Color(0.411765, 0.411765, 0.411765, 0.74902)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4y3i"]
+bg_color = Color(0.215686, 0.215686, 0.215686, 0.74902)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nnp8x"]
+bg_color = Color(0, 0, 0, 0.74902)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_sea3w"]
+diffuse_texture = ExtResource("10_etwjy")
+texture_filter = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tk2g"]
+atlas = SubResource("CanvasTexture_sea3w")
+region = Rect2(0, 64, 64, 64)
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_f3mce")
+
+[node name="PB" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2(0, 0)
+
+[node name="BGLayer" type="ParallaxLayer" parent="PB"]
+motion_scale = Vector2(0, 0.17)
+
+[node name="MenuBG" type="Sprite2D" parent="PB/BGLayer"]
+position = Vector2(640, 360)
+texture = ExtResource("2_25v5u")
+
+[node name="Magenta" type="Sprite2D" parent="PB/BGLayer"]
+visible = false
+modulate = Color(0.992157, 0.443137, 0.607843, 1)
+position = Vector2(640, 360)
+texture = ExtResource("3_sklie")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PB/BGLayer/Magenta"]
+libraries = {
+&"": SubResource("AnimationLibrary_o84so")
+}
+
+[node name="UILayer" type="ParallaxLayer" parent="PB"]
+motion_scale = Vector2(0, 0)
+
+[node name="gf" parent="PB/UILayer" instance=ExtResource("4_tsg3x")]
+position = Vector2(376, 720)
+
+[node name="BG" type="ColorRect" parent="PB/UILayer"]
+offset_left = 648.0
+offset_top = -16.0
+offset_right = 1281.0
+offset_bottom = 886.0
+rotation = -0.261799
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Buttons" type="Node2D" parent="PB/UILayer"]
+
+[node name="StoryMode" type="AnimatedSprite2D" parent="PB/UILayer/Buttons"]
+position = Vector2(880, 144)
+sprite_frames = ExtResource("4_vrrvm")
+animation = &"selected"
+
+[node name="Freeplay" type="AnimatedSprite2D" parent="PB/UILayer/Buttons"]
+position = Vector2(1032, 288)
+sprite_frames = ExtResource("5_q251e")
+animation = &"idle"
+
+[node name="Options" type="AnimatedSprite2D" parent="PB/UILayer/Buttons"]
+position = Vector2(1032, 432)
+sprite_frames = ExtResource("6_jtmjb")
+animation = &"idle"
+
+[node name="Credits" type="AnimatedSprite2D" parent="PB/UILayer/Buttons"]
+position = Vector2(1056, 576)
+sprite_frames = ExtResource("7_n0of5")
+animation = &"idle"
+
+[node name="ButtonFlashing" type="AnimationPlayer" parent="PB/UILayer"]
+root_node = NodePath("../Buttons")
+libraries = {
+&"": SubResource("AnimationLibrary_o48h0")
+}
+
+[node name="Version" type="Label" parent="PB/UILayer"]
+offset_left = 8.0
+offset_top = 680.0
+offset_right = 238.0
+offset_bottom = 710.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("7_fi2y3")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_2cdqi")
+text = "Nova Engine Godot v1.2.0
+NULL Engine v"
+autowrap_mode = 3
+
+[node name="Achievement" type="Button" parent="PB/UILayer"]
+visible = false
+custom_minimum_size = Vector2(128, 128)
+offset_left = 680.0
+offset_top = 584.0
+offset_right = 808.0
+offset_bottom = 712.0
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_vjrmj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j4y3i")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nnp8x")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="TextureRect" parent="PB/UILayer/Achievement"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.75, 1.75)
+pivot_offset = Vector2(32, 32)
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2tk2g")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 359)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[connection signal="pressed" from="PB/UILayer/Achievement" to="." method="_on_achievement_pressed"]

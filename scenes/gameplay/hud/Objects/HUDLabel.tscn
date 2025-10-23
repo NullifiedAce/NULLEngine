@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv4bx2odjoduw"]
+
+[ext_resource type="Script" uid="uid://bt4pk5uoue3h0" path="res://scenes/gameplay/hud/Objects/HUDLabel.gd" id="1_y3yhj"]
+
+[node name="HUDLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("1_y3yhj")

@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbld2pm6f27au"]
+
+[ext_resource type="Script" uid="uid://c2o2m52qk7w4g" path="res://scripts/Stage.gd" id="1_kglcc"]
+[ext_resource type="Texture2D" uid="uid://bf0pjitkjn6tp" path="res://assets/images/gameplay/stages/stage/stageback.png" id="2_y78mw"]
+[ext_resource type="Texture2D" uid="uid://yjeat30yq2eo" path="res://assets/images/gameplay/stages/stage/stagefront.png" id="3_ac72p"]
+[ext_resource type="Texture2D" uid="uid://b1felplvm5ir" path="res://assets/images/gameplay/stages/stage/stagecurtains.png" id="4_gk1p1"]
+
+[node name="stage" type="Node2D"]
+script = ExtResource("1_kglcc")
+default_cam_zoom = 1.1
+player_cam_offset = Vector2(-100, -100)
+opponent_cam_offset = Vector2(150, -100)
+
+[node name="0-9" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.9, 0.9)
+
+[node name="stageBack" type="Sprite2D" parent="0-9"]
+z_index = 1
+position = Vector2(-600, -200)
+texture = ExtResource("2_y78mw")
+centered = false
+
+[node name="1-0" type="Parallax2D" parent="."]
+
+[node name="stageFront" type="Sprite2D" parent="1-0"]
+z_index = 2
+position = Vector2(-650, 600)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("3_ac72p")
+centered = false
+
+[node name="1-3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.3, 1.3)
+
+[node name="stageCurtains" type="Sprite2D" parent="1-3"]
+z_index = 10
+position = Vector2(-500, -300)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("4_gk1p1")
+centered = false
+
+[node name="Character Positions" type="Node2D" parent="."]
+
+[node name="Opponent" type="Node2D" parent="Character Positions"]
+z_index = 3
+position = Vector2(335, 885)
+
+[node name="Spectator" type="Node2D" parent="Character Positions"]
+z_index = 3
+position = Vector2(751.5, 787)
+
+[node name="Player" type="Node2D" parent="Character Positions"]
+z_index = 3
+position = Vector2(989.5, 885)

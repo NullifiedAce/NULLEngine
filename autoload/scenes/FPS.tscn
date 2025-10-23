@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://56o6e6wcsohk"]
 
-[ext_resource type="Script" uid="uid://dlpiux520gphd" path="res://autoload/scenes/FPS.gd" id="1_ui6lb"]
+[ext_resource type="Script" uid="uid://calprshrwfi4o" path="res://autoload/scenes/FPS.gd" id="1_ui6lb"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="2_5hvya"]
 
 [node name="FPS" type="CanvasLayer"]
@@ -14,8 +14,8 @@ offset_top = 3.0
 offset_right = 74.0
 offset_bottom = 19.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 9
 theme_override_constants/line_spacing = 0
+theme_override_constants/outline_size = 9
 theme_override_fonts/font = ExtResource("2_5hvya")
 theme_override_font_sizes/font_size = 20
 text = "FPS: 0"

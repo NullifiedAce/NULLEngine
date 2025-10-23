@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://bnxtc0q8j3p5r"]
 
-[ext_resource type="Script" uid="uid://b4adxcf66q6bc" path="res://scripts/Character.gd" id="1_ngov4"]
+[ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_ngov4"]
 [ext_resource type="Texture2D" uid="uid://bggn4j2x81mod" path="res://assets/images/gameplay/icons/icon-gf.png" id="2_r2mvf"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/gf/tankmen.res" id="3_5mmn2"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="4_muxfw"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_muxfw"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "danceLeft"
@@ -384,6 +384,7 @@ _data = {
 [node name="gf-tankmen" type="Node2D"]
 script = ExtResource("1_ngov4")
 dance_steps = Array[String](["danceLeft", "danceRight"])
+voices_paths = "gf"
 health_icon = ExtResource("2_r2mvf")
 health_color = Color(1, 0.635294, 0.72549, 1)
 

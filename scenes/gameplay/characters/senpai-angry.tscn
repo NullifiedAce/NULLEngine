@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://7y3pj5mrw2xy"]
 
-[ext_resource type="Script" uid="uid://b4adxcf66q6bc" path="res://scripts/Character.gd" id="1_ydu0a"]
-[ext_resource type="Texture2D" uid="uid://br4sq5exy3kcm" path="res://assets/images/gameplay/icons/icon-senpai.png" id="2_4xoi6"]
+[ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_ydu0a"]
+[ext_resource type="Texture2D" uid="uid://dc1jxy8dleesb" path="res://assets/images/gameplay/icons/icon-senpai-angry.png" id="2_nla5c"]
 [ext_resource type="SpriteFrames" uid="uid://wd8ng1wegwsn" path="res://assets/images/gameplay/characters/senpai/normal.res" id="3_v36ws"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="4_w4r2h"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_w4r2h"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "idle"
@@ -274,8 +274,11 @@ _data = {
 [node name="senpai-angry" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_ydu0a")
-health_icon = ExtResource("2_4xoi6")
+health_icon = ExtResource("2_nla5c")
+health_icon_scale = 4.75
+health_icon_filter = 1
 health_color = Color(1, 0.666667, 0.435294, 1)
+voices_paths = "senpai"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-372, -882)
@@ -289,7 +292,7 @@ script = ExtResource("4_w4r2h")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_vgtrv")
+&"": SubResource("AnimationLibrary_vgtrv")
 }
 
 [node name="CameraPos" type="Node2D" parent="."]

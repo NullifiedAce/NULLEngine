@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ie3g8rsboi1u"]
+
+[ext_resource type="Script" uid="uid://4cdgyru2r6h8" path="res://assets/data/scripts/characters/darnell/blazin.gd" id="1_y44c8"]
+
+[node name="darnell-blazin" type="Node"]
+script = ExtResource("1_y44c8")
+metadata/_custom_type_script = "uid://b4lw27khplo47"

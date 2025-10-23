@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://bjadqo1a0m8oh"]
 
-[ext_resource type="Script" uid="uid://b4adxcf66q6bc" path="res://scripts/Character.gd" id="1_ub1fd"]
+[ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_ub1fd"]
 [ext_resource type="Texture2D" uid="uid://d3jxxi3dppb74" path="res://assets/images/gameplay/icons/icon-spirit.png" id="2_kre1c"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/spirit/spirit.res" id="3_b6qp7"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="4_cqb0l"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_cqb0l"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "idle"
@@ -274,7 +274,10 @@ _data = {
 [node name="spirit" type="Node2D"]
 script = ExtResource("1_ub1fd")
 health_icon = ExtResource("2_kre1c")
+health_icon_scale = 4.75
+health_icon_filter = 1
 health_color = Color(1, 0.235294, 0.431373, 1)
+voices_paths = "spirit"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -289,7 +292,7 @@ script = ExtResource("4_cqb0l")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_vgtrv")
+&"": SubResource("AnimationLibrary_vgtrv")
 }
 
 [node name="CameraPos" type="Node2D" parent="."]

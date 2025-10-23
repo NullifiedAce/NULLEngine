@@ -1,0 +1,194 @@
+[gd_scene load_steps=18 format=3 uid="uid://dai0p3cmgkncf"]
+
+[ext_resource type="Script" uid="uid://bvlxmo5y8ysaq" path="res://scenes/gameplay/stages/mallXmas.gd" id="1_5f41c"]
+[ext_resource type="Texture2D" uid="uid://dpnom7ffdssnj" path="res://assets/images/gameplay/stages/mall/erect/bgWalls.png" id="2_s6c0q"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/mall/erect/upperBop.res" id="3_d5elo"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_3u47a"]
+[ext_resource type="Texture2D" uid="uid://u7sci5niskex" path="res://assets/images/gameplay/stages/mall/erect/bgEscalator.png" id="5_opfgm"]
+[ext_resource type="Texture2D" uid="uid://di0gpdrbfs6ot" path="res://assets/images/gameplay/stages/mall/erect/christmasTree.png" id="6_8vmhm"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/mall/erect/bottomBop.res" id="7_xw13t"]
+[ext_resource type="Texture2D" uid="uid://d1t8w7556rpgj" path="res://assets/images/gameplay/stages/mall/erect/white.png" id="8_ecupc"]
+[ext_resource type="Texture2D" uid="uid://buyn3nel7gcss" path="res://assets/images/gameplay/stages/mall/fgSnow.png" id="8_xkpvv"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/mall/santa.res" id="9_tolx8"]
+[ext_resource type="Shader" uid="uid://w3ts7tyvmub1" path="res://assets/shaders/AdjustColor.gdshader" id="10_prig0"]
+
+[sub_resource type="Animation" id="Animation_2ong5"]
+resource_name = "bop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8lx5"]
+_data = {
+&"bop": SubResource("Animation_2ong5")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7et5n"]
+shader = ExtResource("10_prig0")
+shader_parameter/hue = 5.00002
+shader_parameter/saturation = 20.0
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 0.0
+shader_parameter/alpha = 255.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m2im8"]
+shader = ExtResource("10_prig0")
+shader_parameter/hue = 5.00002
+shader_parameter/saturation = 20.0
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 0.0
+shader_parameter/alpha = 255.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vui0a"]
+shader = ExtResource("10_prig0")
+shader_parameter/hue = 5.00002
+shader_parameter/saturation = 20.0
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 0.0
+shader_parameter/alpha = 255.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vskr3"]
+shader = ExtResource("10_prig0")
+shader_parameter/hue = 5.00002
+shader_parameter/saturation = 20.0
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 0.0
+shader_parameter/alpha = 255.0
+
+[node name="mall" type="Node2D"]
+script = ExtResource("1_5f41c")
+default_cam_zoom = 0.8
+player_cam_offset = Vector2(-300, -200)
+opponent_cam_offset = Vector2(150, -100)
+
+[node name="PL1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
+
+[node name="Bg" type="Sprite2D" parent="PL1"]
+z_index = 10
+position = Vector2(-1000, -440)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_s6c0q")
+centered = false
+
+[node name="PL2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.33, 0.33)
+
+[node name="UpperBop" type="AnimatedSprite2D" parent="PL2"]
+z_index = 20
+position = Vector2(-240, -40)
+scale = Vector2(0.85, 0.85)
+sprite_frames = ExtResource("3_d5elo")
+animation = &"upperBop"
+frame = 13
+frame_progress = 1.0
+centered = false
+script = ExtResource("4_3u47a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PL2/UpperBop"]
+libraries = {
+&"": SubResource("AnimationLibrary_a8lx5")
+}
+
+[node name="PL3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 0.3)
+
+[node name="BgEscalator" type="Sprite2D" parent="PL3"]
+z_index = 30
+position = Vector2(-1100, -540)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("5_opfgm")
+centered = false
+
+[node name="PL4" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 0.4)
+
+[node name="Tree" type="Sprite2D" parent="PL4"]
+z_index = 40
+position = Vector2(370, -250)
+texture = ExtResource("6_8vmhm")
+centered = false
+
+[node name="PL5" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.9, 0.9)
+
+[node name="BottomBop" type="AnimatedSprite2D" parent="PL5"]
+z_index = 50
+position = Vector2(-410, 100)
+sprite_frames = ExtResource("7_xw13t")
+animation = &"bottomBop"
+frame = 13
+frame_progress = 1.0
+centered = false
+script = ExtResource("4_3u47a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PL5/BottomBop"]
+libraries = {
+&"": SubResource("AnimationLibrary_a8lx5")
+}
+
+[node name="PL7" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.85, 0.85)
+
+[node name="fog" type="Sprite2D" parent="PL7"]
+z_index = 49
+position = Vector2(-1000, 100)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("8_ecupc")
+centered = false
+
+[node name="PL6" type="Parallax2D" parent="."]
+
+[node name="FgSnow" type="Sprite2D" parent="PL6"]
+z_index = 60
+position = Vector2(-1150, 680)
+texture = ExtResource("8_xkpvv")
+centered = false
+
+[node name="snowUnder" type="ColorRect" parent="PL6"]
+z_index = 59
+offset_left = -1200.0
+offset_top = 800.0
+offset_right = 4200.0
+offset_bottom = 3800.0
+color = Color(0.952941, 0.956863, 0.960784, 1)
+
+[node name="Santa" type="AnimatedSprite2D" parent="PL6"]
+z_index = 210
+material = SubResource("ShaderMaterial_7et5n")
+position = Vector2(-840, 150)
+sprite_frames = ExtResource("9_tolx8")
+animation = &"santa idle in fear"
+centered = false
+script = ExtResource("4_3u47a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PL6/Santa"]
+libraries = {
+&"": SubResource("AnimationLibrary_a8lx5")
+}
+
+[node name="Character Positions" type="Node2D" parent="."]
+
+[node name="Opponent" type="Node2D" parent="Character Positions"]
+z_index = 200
+material = SubResource("ShaderMaterial_m2im8")
+position = Vector2(42, 882)
+
+[node name="Spectator" type="Node2D" parent="Character Positions"]
+z_index = 100
+material = SubResource("ShaderMaterial_vui0a")
+position = Vector2(808.5, 854)
+
+[node name="Player" type="Node2D" parent="Character Positions"]
+z_index = 300
+material = SubResource("ShaderMaterial_vskr3")
+position = Vector2(1177.5, 882)

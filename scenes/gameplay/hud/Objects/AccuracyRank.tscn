@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cow87werfcq4j"]
+
+[ext_resource type="Script" uid="uid://b3m1u64all6wp" path="res://scenes/gameplay/hud/Objects/AccuracyRank.gd" id="1_fdhum"]
+
+[node name="AccuracyRank" type="Node"]
+script = ExtResource("1_fdhum")

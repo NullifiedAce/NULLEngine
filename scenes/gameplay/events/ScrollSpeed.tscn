@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://chudskvahkm47"]
+
+[ext_resource type="Script" uid="uid://4eg3dn4jmfdy" path="res://scenes/gameplay/events/ScrollSpeed.gd" id="1_bv8mj"]
+
+[node name="ScrollSpeed" type="Node"]
+script = ExtResource("1_bv8mj")
+metadata/_custom_type_script = "uid://hn0ru1mf6kli"

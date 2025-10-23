@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv81gapin4vog"]
+
+[ext_resource type="Script" uid="uid://cxoq1tmhc0043" path="res://scenes/gameplay/stages/spookyMansion.gd" id="1_pmnw3"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/spooky/halloween_bg.res" id="2_c5lkq"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="3_j3ley"]
+
+[node name="stage" type="Node2D"]
+script = ExtResource("1_pmnw3")
+default_cam_zoom = 1.0
+player_cam_offset = Vector2(-100, -100)
+opponent_cam_offset = Vector2(150, -100)
+
+[node name="PB" type="ParallaxBackground" parent="."]
+follow_viewport_enabled = true
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="PB"]
+position = Vector2(-464, -62)
+sprite_frames = ExtResource("2_c5lkq")
+animation = &"halloweem bg"
+centered = false
+script = ExtResource("3_j3ley")
+
+[node name="Character Positions" type="Node2D" parent="."]
+
+[node name="Opponent" type="Node2D" parent="Character Positions"]
+position = Vector2(298.5, 884)
+
+[node name="Spectator" type="Node2D" parent="Character Positions"]
+position = Vector2(698, 852)
+
+[node name="Player" type="Node2D" parent="Character Positions"]
+position = Vector2(973, 884)

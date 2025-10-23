@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://6d1welc7v2y2"]
+
+[ext_resource type="PackedScene" uid="uid://158jh5bmr0r8" path="res://scenes/menus/credits/CreditsItem.tscn" id="1_maigk"]
+
+[node name="NullEngine" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NULL" parent="." instance=ExtResource("1_maigk")]
+avatar_url = "https://avatars.githubusercontent.com/u/110543339?v=4"
+credit_name = "NullifiedAce"
+credits_description = "Owner & Coder"
+
+[node name="Em" parent="." instance=ExtResource("1_maigk")]
+avatar_url = "https://avatars.githubusercontent.com/u/182429609?v=4"
+credit_name = "clairemonkle"
+credits_description = "Coder"
+
+[node name="Fazzoc" parent="." instance=ExtResource("1_maigk")]
+avatar_url = "https://avatars.githubusercontent.com/u/87571200?v=4"
+credit_name = "Fazzoc"
+credits_description = "Logo Artist & Small Fixes Help"

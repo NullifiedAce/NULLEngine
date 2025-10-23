@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://clflv717qf201"]
+[gd_scene load_steps=14 format=3 uid="uid://d3gq6vasw2fa6"]
 
-[ext_resource type="Script" uid="uid://b4adxcf66q6bc" path="res://scripts/Character.gd" id="1_jq454"]
-[ext_resource type="Texture2D" uid="uid://cb4g78s0nksa0" path="res://assets/images/gameplay/icons/icon-dad.png" id="2_5slxk"]
-[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/darnell/darnell.res" id="3_lxcm2"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="4_sxej0"]
+[ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_ng5y5"]
+[ext_resource type="Texture2D" uid="uid://bb4v0d5dmjwd0" path="res://assets/images/gameplay/icons/icon-darnell.png" id="2_lvj21"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/darnell/darnell.res" id="3_w2mi7"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_hr83i"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "idle"
@@ -44,6 +44,165 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_urckt"]
+resource_name = "kick"
+length = 0.625004
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Kick Up"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -16)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hop46"]
+resource_name = "knee"
+length = 0.625004
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Knee Forward"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-20, -10)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_mao23"]
+resource_name = "light can"
+length = 0.625004
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Light Can"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-20, -20)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -244,10 +403,10 @@ tracks/2/path = NodePath(".:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(-0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(8, 5)]
+"values": [Vector2(-8, 5)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -265,31 +424,35 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
 _data = {
 &"idle": SubResource("Animation_epq6v"),
+&"kick": SubResource("Animation_urckt"),
+&"knee": SubResource("Animation_hop46"),
+&"light can": SubResource("Animation_mao23"),
 &"singDOWN": SubResource("Animation_8yhx3"),
 &"singLEFT": SubResource("Animation_4fmcm"),
 &"singRIGHT": SubResource("Animation_yk1cf"),
 &"singUP": SubResource("Animation_55yur")
 }
 
-[node name="dad" type="Node2D"]
-script = ExtResource("1_jq454")
-sing_duration = 6.1
-health_icon = ExtResource("2_5slxk")
-health_color = Color(0.686275, 0.4, 0.807843, 1)
+[node name="darnell" type="Node2D"]
+script = ExtResource("1_ng5y5")
+sing_duration = 8.0
+health_icon = ExtResource("2_lvj21")
+health_color = Color(0.45098, 0.368627, 0.690196, 1)
+voices_paths = "darnell"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-232, -520)
-sprite_frames = ExtResource("3_lxcm2")
+position = Vector2(-304, -680)
+sprite_frames = ExtResource("3_w2mi7")
 animation = &"Idle"
 frame = 27
 frame_progress = 1.0
 centered = false
-script = ExtResource("4_sxej0")
+script = ExtResource("4_hr83i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_vgtrv")
+&"": SubResource("AnimationLibrary_vgtrv")
 }
 
 [node name="CameraPos" type="Node2D" parent="."]
-position = Vector2(48, -296)
+position = Vector2(-32, -440)

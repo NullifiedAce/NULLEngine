@@ -28,21 +28,23 @@ func _ready():
 	death_sound.pitch_scale = Conductor.rate
 	death_sound.play()
 
+	get_tree().create_timer(0.5).timeout.connect(func():
+		is_following_already = true
+		camera.position_smoothing_enabled = true
+		camera.position_smoothing_speed = Conductor.rate
+		camera.position = character.get_camera_pos()
+	)
+
 var is_following_already:bool = false
 var is_ending:bool = false
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
-		Global.switch_scene("res://scenes/StoryMenu.tscn" if Global.is_story_mode else "res://scenes/FreeplayMenu.tscn")
+		Global.variation = "default"
+		Global.switch_scene("res://scenes/menus/story menu/Menu.tscn" if Global.is_story_mode else "res://scenes/menus/freeplay/Menu.tscn")
 
 	if Input.is_action_just_pressed("ui_accept"):
 		end_bullshit()
-
-	if character.last_anim == "firstDeath" and character.anim_sprite.frame >= 12 and not is_following_already:
-		is_following_already = true
-		camera.position_smoothing_enabled = true
-		camera.position_smoothing_speed = Conductor.rate
-		camera.position = character.get_camera_pos()
 
 	if character.last_anim == "firstDeath" and character.anim_finished:
 		cool_start_death()

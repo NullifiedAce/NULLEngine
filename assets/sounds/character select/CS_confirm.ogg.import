@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dki2rgn317rj1"
+path="res://.godot/imported/CS_confirm.ogg-f43c512bde45cb382cb564094d19faec.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/character select/CS_confirm.ogg"
+dest_files=["res://.godot/imported/CS_confirm.ogg-f43c512bde45cb382cb564094d19faec.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

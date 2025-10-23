@@ -5,10 +5,14 @@ class_name Character extends Node2D
 @export var can_sing:bool = true
 @export var is_player:bool = false
 @export var sing_duration:float = 4.0
+@export var dances:bool = true
 @export var dance_steps:Array[String] = ["idle"]
+@export var combo_anims:Dictionary[int, String]
 
 @export_group("Health Icon")
 @export var health_icon:Texture2D = load("res://assets/images/gameplay/icons/icon-face.png")
+@export var health_icon_scale:float = 1.0
+@export var health_icon_filter:TextureFilter
 @export var health_icon_frames:int = 2
 @export var health_color:Color = Color("#A1A1A1")
 
@@ -17,6 +21,11 @@ class_name Character extends Node2D
 @export var death_sound:AudioStream = preload("res://assets/sounds/death/fnf_loss_sfx.ogg")
 @export var death_music:AudioStream = preload("res://assets/music/gameOver.ogg")
 @export var retry_sound:AudioStream = preload("res://assets/music/gameOverEnd.ogg")
+
+@export_group("File Info")
+@export var voices_paths:String = "dad"
+@export var character_script_folder:String
+@export var character_script_name:String
 
 @onready var anim_sprite:AnimatedSprite = $AnimatedSprite
 @onready var anim_player:AnimationPlayer = $AnimatedSprite/AnimationPlayer
@@ -37,12 +46,23 @@ var dance_on_beat:bool = true
 
 var initial_size:Vector2 = Vector2.ZERO
 
+var characterOrigin:Vector2
+
+func get_characterOirigin():
+	pass
+
+var cameraFocusPoint: Vector2 = Vector2(0, 0)
+
 func _ready():
 	anim_sprite.speed_scale = Conductor.rate
+	for i in get_children():
+		if i is AnimatedSprite:
+			i.speed_scale = Conductor.rate # Set this if there are more than one AnimatedSprites. Such as the dark variants.
 	anim_player.speed_scale = Conductor.rate
 	anim_sprite.playing = false
 
 	anim_player.connect("animation_finished", func(name): anim_finished = true)
+	anim_player.animation_finished.connect(handle_loop_anims)
 	dance(true)
 
 	if anim_sprite.sprite_frames:
@@ -50,6 +70,9 @@ func _ready():
 			anim_sprite.sprite_frames.get_frame_texture(anim_sprite.animation, 0).get_width(),
 			anim_sprite.sprite_frames.get_frame_texture(anim_sprite.animation, 0).get_height()
 		)
+
+	camera_pos.position = anim_sprite.position + ((initial_size / 2) * anim_sprite.scale) # Set camera position to the middle of the character.
+
 	if is_player != _is_true_player:
 		scale.x *= -1
 
@@ -79,11 +102,13 @@ func _process(delta):
 			hold_timer = 0.0
 			dance()
 
-func play_anim(anim:String, force:bool = false):
+func play_anim(anim:String, force:bool = false, special:bool = false):
 	if not is_animated: return
 	if "sing" in anim and not can_sing: return
 
-	special_anim = false
+	anim_player.clear_queue()
+
+	special_anim = special
 
 	# swap left and right anims
 	if is_player != _is_true_player:
@@ -104,7 +129,7 @@ func play_anim(anim:String, force:bool = false):
 		push_warning("Animation \""+anim+"\" doesn't exist.")
 		return
 
-	if force or last_anim != anim or anim_finished:
+	if force or last_anim != anim or anim_finished or last_anim.contains("-loop"):
 		if last_anim == anim:
 			anim_player.seek(0.0)
 
@@ -113,8 +138,12 @@ func play_anim(anim:String, force:bool = false):
 
 		anim_player.play(anim)
 
+func handle_loop_anims(anim_name: StringName):
+	if anim_player.has_animation(anim_name + "-loop"):
+		anim_player.play(anim_name + "-loop")
+
 func dance(force:bool = false):
-	if special_anim and not force:
+	if special_anim and not force or !dances:
 		return
 
 	play_anim(dance_steps[cur_dance_step], force)

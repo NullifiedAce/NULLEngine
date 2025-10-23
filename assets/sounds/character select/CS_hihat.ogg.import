@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bbg80p45ui5fw"
+path="res://.godot/imported/CS_hihat.ogg-7ed5f0f934d06ed4df8aefd407d044d0.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/character select/CS_hihat.ogg"
+dest_files=["res://.godot/imported/CS_hihat.ogg-7ed5f0f934d06ed4df8aefd407d044d0.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

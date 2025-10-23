@@ -10,6 +10,7 @@ class_name Note
 
 @export var direction:int = 0
 @export var length:float = 0.0
+@export var play_sing_anim:bool = true
 
 @export var in_editor:bool = false
 @export var alt_anim:bool = false

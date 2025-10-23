@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Pico_Shooting.png">
+	<!-- Created using the Spritesheet and XML generator -->
+	<!-- https://uncertainprod.github.io/FNF-Spritesheet-XML-generator-Web -->
+	<SubTexture name="Hit Can0000" x="541" y="1173" width="547" height="457" frameX="-3" frameY="-13" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0001" x="1088" y="1173" width="547" height="456" frameX="-3" frameY="-14" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0002" x="541" y="700" width="541" height="473" frameX="2" frameY="2" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0003" x="0" y="1173" width="541" height="473" frameX="2" frameY="2" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0004" x="0" y="700" width="541" height="473" frameX="2" frameY="2" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0005" x="1416" y="473" width="541" height="473" frameX="2" frameY="2" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0006" x="1416" y="0" width="541" height="473" frameX="2" frameY="2" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0007" x="0" y="700" width="541" height="473" frameX="2" frameY="2" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0008" x="1416" y="473" width="541" height="473" frameX="2" frameY="2" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0009" x="1416" y="0" width="541" height="473" frameX="2" frameY="2" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0010" x="0" y="700" width="541" height="473" frameX="2" frameY="2" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0011" x="1416" y="473" width="541" height="473" frameX="2" frameY="2" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0012" x="1416" y="0" width="541" height="473" frameX="2" frameY="2" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0013" x="0" y="700" width="541" height="473" frameX="2" frameY="2" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Hit Can0014" x="1416" y="473" width="541" height="473" frameX="2" frameY="2" frameWidth="548" frameHeight="469"/>
+	<SubTexture name="Reload0000" x="1957" y="472" width="455" height="472" frameX="2" frameY="1" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0001" x="1957" y="0" width="455" height="472" frameX="2" frameY="1" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0002" x="2412" y="0" width="440" height="475" frameX="-2" frameY="2" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0003" x="1957" y="944" width="440" height="475" frameX="-2" frameY="2" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0004" x="1957" y="944" width="440" height="475" frameX="-2" frameY="2" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0005" x="1957" y="944" width="440" height="475" frameX="-2" frameY="2" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0006" x="1957" y="944" width="440" height="475" frameX="-2" frameY="2" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0007" x="1957" y="944" width="440" height="475" frameX="-2" frameY="2" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0008" x="1957" y="944" width="440" height="475" frameX="-2" frameY="2" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0009" x="1957" y="944" width="440" height="475" frameX="-2" frameY="2" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0010" x="1957" y="944" width="440" height="475" frameX="-2" frameY="2" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0011" x="1957" y="944" width="440" height="475" frameX="-2" frameY="2" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0012" x="1957" y="944" width="440" height="475" frameX="-2" frameY="2" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0013" x="1957" y="944" width="440" height="475" frameX="-2" frameY="2" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Reload0014" x="1957" y="944" width="440" height="475" frameX="-2" frameY="2" frameWidth="451" frameHeight="471"/>
+	<SubTexture name="Shoot Hip Full0000" x="770" y="0" width="646" height="606" frameX="-122" frameY="-92" frameWidth="766" frameHeight="696"/>
+	<SubTexture name="Shoot Hip Full0001" x="0" y="0" width="770" height="700" frameX="2" frameY="2" frameWidth="766" frameHeight="696"/>
+	<SubTexture name="Shoot Hip Full0002" x="0" y="1646" width="486" height="438" frameX="-279" frameY="-260" frameWidth="766" frameHeight="696"/>
+	<SubTexture name="Shoot Hip Full0003" x="486" y="1646" width="481" height="438" frameX="-284" frameY="-260" frameWidth="766" frameHeight="696"/>
+	<SubTexture name="Shoot Hip Full0004" x="967" y="1646" width="477" height="438" frameX="-288" frameY="-260" frameWidth="766" frameHeight="696"/>
+	<SubTexture name="Shoot Hip Full0005" x="967" y="1646" width="477" height="438" frameX="-288" frameY="-260" frameWidth="766" frameHeight="696"/>
+	<SubTexture name="Shoot Hip Full0006" x="967" y="1646" width="477" height="438" frameX="-288" frameY="-260" frameWidth="766" frameHeight="696"/>
+</TextureAtlas>

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://clxuymo1u5elo"]
 
-[ext_resource type="Script" uid="uid://3got5exve8js" path="res://autoload/scenes/Transition.gd" id="1_ojhhb"]
+[ext_resource type="Script" uid="uid://0utfihwjnekr" path="res://autoload/scenes/Transition.gd" id="1_ojhhb"]
 
 [sub_resource type="Gradient" id="Gradient_m4426"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
@@ -80,10 +80,10 @@ script = ExtResource("1_ojhhb")
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_top = -1440.0
 offset_right = 1280.0
-offset_bottom = -0.000488281
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_hmev6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
 libraries = {
-"": SubResource("AnimationLibrary_g6a2m")
+&"": SubResource("AnimationLibrary_g6a2m")
 }

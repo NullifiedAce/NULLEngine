@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://158jh5bmr0r8"]
+
+[ext_resource type="Script" uid="uid://bjcgwbdy86c5j" path="res://scenes/menus/credits/CreditsItem.gd" id="1_xp4et"]
+[ext_resource type="Shader" uid="uid://c1lmtjykufl4t" path="res://assets/shaders/CircleShape.gdshader" id="2_oc72p"]
+[ext_resource type="Texture2D" uid="uid://m5strgod1naq" path="res://icon.svg" id="3_gdyw1"]
+[ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="4_0q4ka"]
+
+[sub_resource type="Gradient" id="Gradient_52f4j"]
+colors = PackedColorArray(0, 0, 0, 0.74902, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0s1ti"]
+gradient = SubResource("Gradient_52f4j")
+fill_to = Vector2(0.9, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdyw1"]
+shader = ExtResource("2_oc72p")
+shader_parameter/radius = 1.0
+
+[node name="CreditsItem" type="Control"]
+custom_minimum_size = Vector2(640, 104)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 104.0
+script = ExtResource("1_xp4et")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0s1ti")
+metadata/_edit_lock_ = true
+
+[node name="PFP" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_gdyw1")
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 96.0
+offset_bottom = 96.0
+texture = ExtResource("3_gdyw1")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 1
+offset_left = 112.0
+offset_top = 16.0
+offset_right = 312.0
+offset_bottom = 44.5
+theme = ExtResource("4_0q4ka")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "NAME"
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 48.0
+offset_right = 544.0
+offset_bottom = 72.0
+theme = ExtResource("4_0q4ka")
+text = "Description"
+autowrap_mode = 3

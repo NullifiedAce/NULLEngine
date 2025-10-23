@@ -1,34 +1,44 @@
 [gd_scene load_steps=5 format=3 uid="uid://db8ukjocqly28"]
 
-[ext_resource type="Script" uid="uid://cd454wv2tj6hs" path="res://scripts/Stage.gd" id="1_02ijf"]
+[ext_resource type="Script" uid="uid://c2o2m52qk7w4g" path="res://scripts/Stage.gd" id="1_02ijf"]
 [ext_resource type="Texture2D" uid="uid://nl0ylx34txwb" path="res://assets/images/gameplay/stages/mall/evilBG.png" id="2_ccujm"]
 [ext_resource type="Texture2D" uid="uid://4e4lqmtuhcaa" path="res://assets/images/gameplay/stages/mall/evilTree.png" id="3_3frqs"]
 [ext_resource type="Texture2D" uid="uid://cvuxr5d7h2312" path="res://assets/images/gameplay/stages/mall/evilSnow.png" id="4_7db16"]
 
 [node name="mallEvil" type="Node2D"]
 script = ExtResource("1_02ijf")
-default_cam_zoom = 0.95
-player_cam_offset = Vector2(0, -100)
+default_cam_zoom = 1.0
+player_cam_offset = Vector2(-100, -100)
+opponent_cam_offset = Vector2(150, -100)
 
-[node name="PB" type="ParallaxBackground" parent="."]
+[node name="PL1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
 
-[node name="0-2" type="ParallaxLayer" parent="PB"]
-motion_scale = Vector2(0.2, 0.2)
+[node name="solid" type="ColorRect" parent="PL1"]
+offset_left = -500.0
+offset_top = -1000.0
+offset_right = 1900.0
+offset_bottom = 1000.0
+color = Color(0.137255, 0.0235294, 0.176471, 1)
+metadata/_edit_use_anchors_ = true
 
-[node name="Bg" type="Sprite2D" parent="PB/0-2"]
+[node name="Bg" type="Sprite2D" parent="PL1"]
+z_index = 10
 position = Vector2(-400, -500)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_ccujm")
 centered = false
 
-[node name="Tree" type="Sprite2D" parent="PB/0-2"]
+[node name="Tree" type="Sprite2D" parent="PL1"]
+z_index = 20
 position = Vector2(300, -300)
 texture = ExtResource("3_3frqs")
 centered = false
 
-[node name="1-0" type="ParallaxLayer" parent="PB"]
+[node name="PL2" type="Parallax2D" parent="."]
 
-[node name="FgSnow" type="Sprite2D" parent="PB/1-0"]
+[node name="FgSnow" type="Sprite2D" parent="PL2"]
+z_index = 20
 position = Vector2(-200, 700)
 texture = ExtResource("4_7db16")
 centered = false
@@ -36,10 +46,13 @@ centered = false
 [node name="Character Positions" type="Node2D" parent="."]
 
 [node name="Opponent" type="Node2D" parent="Character Positions"]
-position = Vector2(317, 884)
+z_index = 200
+position = Vector2(290.5, 869)
 
 [node name="Spectator" type="Node2D" parent="Character Positions"]
-position = Vector2(400, 130)
+z_index = 100
+position = Vector2(808.5, 854)
 
 [node name="Player" type="Node2D" parent="Character Positions"]
-position = Vector2(1090, 884)
+z_index = 300
+position = Vector2(1297.5, 871)

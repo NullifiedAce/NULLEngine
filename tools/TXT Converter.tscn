@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://btdl3bi5drnnx"]
+[gd_scene load_steps=5 format=3 uid="uid://btdl3bi5drnnx"]
 
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="1_41jli"]
-[ext_resource type="Theme" uid="uid://br6hapg0jupnv" path="res://assets/styles/nova_purple_panel.tres" id="2_aqime"]
-[ext_resource type="Script" uid="uid://dqsuwkjpt1byo" path="res://tools/TXT Converter.gd" id="3_8e38u"]
-[ext_resource type="Theme" uid="uid://blt3c0a5po0yj" path="res://assets/styles/nova_purple_button.tres" id="4_xbktm"]
-[ext_resource type="Script" uid="uid://hnxhx5ak5xkn" path="res://tools/Choose Sprites.gd" id="5_jnfp1"]
+[ext_resource type="Theme" uid="uid://dqqyiyf33vtjn" path="res://assets/styles/NULLEngine.tres" id="2_7gcem"]
+[ext_resource type="Script" uid="uid://ce2xo7yq02bkd" path="res://tools/TXT Converter.gd" id="3_8e38u"]
+[ext_resource type="Script" uid="uid://bxpjsagprh680" path="res://tools/Choose Sprites.gd" id="5_jnfp1"]
 
 [node name="TXT Converter" type="Node2D"]
 
@@ -20,7 +19,7 @@ offset_left = 558.0
 offset_top = 20.0
 offset_right = 1258.0
 offset_bottom = 700.0
-theme = ExtResource("2_aqime")
+theme = ExtResource("2_7gcem")
 
 [node name="ConvertedSprites" type="Label" parent="Converted Panel"]
 layout_mode = 0
@@ -38,7 +37,7 @@ offset_left = 20.0
 offset_top = 20.0
 offset_right = 540.0
 offset_bottom = 260.0
-theme = ExtResource("2_aqime")
+theme = ExtResource("2_7gcem")
 script = ExtResource("3_8e38u")
 
 [node name="Title" type="Label" parent="Main Panel"]
@@ -56,7 +55,7 @@ offset_top = 75.0
 offset_right = 138.0
 offset_bottom = 106.0
 focus_mode = 0
-theme = ExtResource("4_xbktm")
+theme = ExtResource("2_7gcem")
 text = "Choose Sprites"
 script = ExtResource("5_jnfp1")
 
@@ -66,7 +65,7 @@ offset_left = 191.0
 offset_top = 74.0
 offset_right = 258.062
 offset_bottom = 105.0
-theme = ExtResource("2_aqime")
+theme = ExtResource("2_7gcem")
 text = "24"
 placeholder_text = "24"
 
@@ -85,7 +84,7 @@ offset_top = 129.0
 offset_right = 109.0
 offset_bottom = 160.0
 focus_mode = 0
-theme = ExtResource("4_xbktm")
+theme = ExtResource("2_7gcem")
 text = "Looped?"
 
 [node name="Optimized Checkbox" type="CheckBox" parent="Main Panel"]
@@ -94,7 +93,7 @@ offset_left = 16.0
 offset_top = 166.0
 offset_right = 132.0
 offset_bottom = 197.0
-theme = ExtResource("4_xbktm")
+theme = ExtResource("2_7gcem")
 text = "Optimized?"
 
 [node name="Convert Button" type="Button" parent="Main Panel"]
@@ -104,7 +103,7 @@ offset_top = 145.0
 offset_right = 261.0
 offset_bottom = 176.0
 focus_mode = 0
-theme = ExtResource("4_xbktm")
+theme = ExtResource("2_7gcem")
 text = "Convert"
 
 [node name="FileDialog" type="FileDialog" parent="."]

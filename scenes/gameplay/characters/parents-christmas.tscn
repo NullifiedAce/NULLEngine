@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://x58dd8wnm0i7"]
 
-[ext_resource type="Script" uid="uid://b4adxcf66q6bc" path="res://scripts/Character.gd" id="1_bu1n1"]
+[ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_bu1n1"]
 [ext_resource type="Texture2D" uid="uid://c64fkfk5hgpo6" path="res://assets/images/gameplay/icons/icon-parents.png" id="2_ia3kl"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/parents-christmas/parents-christmas.res" id="3_f5ndv"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="4_xynka"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_xynka"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "idle"
@@ -482,6 +482,7 @@ _data = {
 [node name="parents" type="Node2D"]
 script = ExtResource("1_bu1n1")
 sing_duration = 6.1
+voices_paths = "parents"
 health_icon = ExtResource("2_ia3kl")
 health_color = Color(0.713726, 0.415686, 0.843137, 1)
 

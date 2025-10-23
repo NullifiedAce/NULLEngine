@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://cy0kj25p1pfub"]
 
-[ext_resource type="Script" uid="uid://b4adxcf66q6bc" path="res://scripts/Character.gd" id="1_cermu"]
+[ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_cermu"]
 [ext_resource type="Texture2D" uid="uid://cxcsjc5lvkj08" path="res://assets/images/gameplay/icons/icon-tankman.png" id="2_ml8k3"]
 [ext_resource type="SpriteFrames" uid="uid://bbyglg10c3kfn" path="res://assets/images/gameplay/characters/tankman/tankman.res" id="3_1uiba"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="4_33p5v"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_33p5v"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "idle"
@@ -383,6 +383,7 @@ _data = {
 script = ExtResource("1_cermu")
 health_icon = ExtResource("2_ml8k3")
 health_color = Color(0.121569, 0.121569, 0.121569, 1)
+voices_paths = "tankman"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-216, -576)
@@ -396,7 +397,7 @@ script = ExtResource("4_33p5v")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_vgtrv")
+&"": SubResource("AnimationLibrary_vgtrv")
 }
 
 [node name="CameraPos" type="Node2D" parent="."]

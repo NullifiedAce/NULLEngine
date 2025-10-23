@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dfp47jgej6x34"
+path="res://.godot/imported/CS_Lights.ogg-4a3ecf24d015b97fd8d578aac4a916be.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/character select/CS_Lights.ogg"
+dest_files=["res://.godot/imported/CS_Lights.ogg-4a3ecf24d015b97fd8d578aac4a916be.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

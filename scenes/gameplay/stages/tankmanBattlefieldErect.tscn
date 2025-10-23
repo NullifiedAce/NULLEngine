@@ -1,0 +1,123 @@
+[gd_scene load_steps=12 format=3 uid="uid://iacac0vsxml6"]
+
+[ext_resource type="Script" uid="uid://p5karpvmichh" path="res://scenes/gameplay/stages/tankmanBattlefieldErect.gd" id="1_mbjj3"]
+[ext_resource type="Texture2D" uid="uid://kfxg3ajk6urh" path="res://assets/images/gameplay/stages/tank/erect/bg.png" id="2_6jk3g"]
+[ext_resource type="SpriteFrames" uid="uid://b5pmsvegwwtfr" path="res://assets/images/gameplay/stages/tank/erect/sniper.res" id="3_r4myk"]
+[ext_resource type="SpriteFrames" uid="uid://c1h4116huhfr7" path="res://assets/images/gameplay/stages/tank/erect/guy.res" id="4_pgxaq"]
+[ext_resource type="Texture2D" uid="uid://bcuj3lkexnow7" path="res://assets/images/gameplay/stages/tank/erect/bricksGround.png" id="5_jqsna"]
+[ext_resource type="Shader" uid="uid://f578ctwatlej" path="res://assets/shaders/DropShadow.gdshader" id="6_pgxaq"]
+[ext_resource type="Script" uid="uid://b8ue04llyptp5" path="res://scenes/gameplay/stages/objects/DropShadow.gd" id="7_anp7d"]
+[ext_resource type="Texture2D" uid="uid://b4u1s3nfv4nri" path="res://assets/images/gameplay/stages/tank/erect/masks/gfTankmen_mask.png" id="8_bodj2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jqsna"]
+shader = ExtResource("6_pgxaq")
+shader_parameter/u_frame_bounds = Vector4(0, 0, 1, 1)
+shader_parameter/ang = 90.0
+shader_parameter/dist = 15.0
+shader_parameter/str = 1.0
+shader_parameter/thr = 0.1
+shader_parameter/ang_offset = 0.0
+shader_parameter/use_mask = false
+shader_parameter/thr2 = 0.1
+shader_parameter/dropColor = Color(0.87451, 0.937255, 0.235294, 1)
+shader_parameter/hue = -38.0
+shader_parameter/saturation = -20.0
+shader_parameter/brightness = -46.0
+shader_parameter/contrast = -25.0
+shader_parameter/AA_STAGES = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bkyeh"]
+shader = ExtResource("6_pgxaq")
+shader_parameter/u_frame_bounds = Vector4(0, 0, 1, 1)
+shader_parameter/ang = 90.0
+shader_parameter/dist = 15.0
+shader_parameter/str = 1.0
+shader_parameter/thr = 0.1
+shader_parameter/ang_offset = 0.0
+shader_parameter/use_mask = false
+shader_parameter/thr2 = 1.0
+shader_parameter/dropColor = Color(0.87451, 0.937255, 0.235294, 1)
+shader_parameter/hue = -38.0
+shader_parameter/saturation = -20.0
+shader_parameter/brightness = -46.0
+shader_parameter/contrast = -25.0
+shader_parameter/AA_STAGES = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bodj2"]
+shader = ExtResource("6_pgxaq")
+shader_parameter/u_frame_bounds = Vector4(0, 0, 1, 1)
+shader_parameter/ang = 90.0
+shader_parameter/dist = 15.0
+shader_parameter/str = 1.0
+shader_parameter/thr = 0.1
+shader_parameter/ang_offset = 0.0
+shader_parameter/use_mask = false
+shader_parameter/thr2 = 0.1
+shader_parameter/dropColor = Color(0.87451, 0.937255, 0.235294, 1)
+shader_parameter/hue = -38.0
+shader_parameter/saturation = -20.0
+shader_parameter/brightness = -46.0
+shader_parameter/contrast = -25.0
+shader_parameter/AA_STAGES = 0.0
+
+[node name="tank" type="Node2D"]
+script = ExtResource("1_mbjj3")
+default_cam_zoom = 0.7
+player_cam_offset = Vector2(-220, -100)
+opponent_cam_offset = Vector2(250, -100)
+
+[node name="bg" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(-985, -805)
+scale = Vector2(1.15, 1.15)
+texture = ExtResource("2_6jk3g")
+centered = false
+
+[node name="sniper" type="AnimatedSprite2D" parent="."]
+z_index = 20
+position = Vector2(-127, 349)
+scale = Vector2(1.15, 1.15)
+sprite_frames = ExtResource("3_r4myk")
+animation = &"idle"
+centered = false
+
+[node name="guy" type="AnimatedSprite2D" parent="."]
+z_index = 20
+position = Vector2(1398, 407)
+scale = Vector2(1.15, 1.15)
+sprite_frames = ExtResource("4_pgxaq")
+animation = &"idle"
+centered = false
+
+[node name="tankBricks" type="Sprite2D" parent="."]
+z_index = 101
+position = Vector2(465, 760)
+scale = Vector2(1.15, 1.15)
+texture = ExtResource("5_jqsna")
+centered = false
+
+[node name="Character Positions" type="Node2D" parent="."]
+
+[node name="Opponent" type="Node2D" parent="Character Positions" node_paths=PackedStringArray("stage")]
+z_index = 100
+material = SubResource("ShaderMaterial_jqsna")
+position = Vector2(230.5, 892)
+script = ExtResource("7_anp7d")
+character = 1
+stage = NodePath("../..")
+
+[node name="Spectator" type="Node2D" parent="Character Positions" node_paths=PackedStringArray("stage")]
+z_index = 100
+material = SubResource("ShaderMaterial_bkyeh")
+position = Vector2(800.5, 775)
+script = ExtResource("7_anp7d")
+character = 2
+alt_mask = ExtResource("8_bodj2")
+stage = NodePath("../..")
+
+[node name="Player" type="Node2D" parent="Character Positions" node_paths=PackedStringArray("stage")]
+z_index = 100
+material = SubResource("ShaderMaterial_bodj2")
+position = Vector2(1340.5, 885)
+script = ExtResource("7_anp7d")
+stage = NodePath("../..")

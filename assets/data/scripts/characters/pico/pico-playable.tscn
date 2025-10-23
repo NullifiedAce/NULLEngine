@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsjajxv13lg7o"]
+
+[ext_resource type="Script" uid="uid://bfr7dbvywh7pf" path="res://assets/data/scripts/characters/pico/pico-playable.gd" id="1_nwamm"]
+
+[node name="Pico-playable" type="Node"]
+script = ExtResource("1_nwamm")
+metadata/_custom_type_script = "uid://b4lw27khplo47"

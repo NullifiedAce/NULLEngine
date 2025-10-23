@@ -1,0 +1,97 @@
+{
+	"HUD": {
+		"AccuracyRanks": [
+			{
+				"NullRank": true,
+				"RankAccuracy": 0.0,
+				"RankName": "N/A"
+			},
+			{
+				"NullRank": false,
+				"RankAccuracy": 100.0,
+				"RankName": "S+"
+			},
+			{
+				"NullRank": false,
+				"RankAccuracy": 90.0,
+				"RankName": "S"
+			},
+			{
+				"NullRank": false,
+				"RankAccuracy": 80.0,
+				"RankName": "A"
+			},
+			{
+				"NullRank": false,
+				"RankAccuracy": 70.0,
+				"RankName": "B"
+			},
+			{
+				"NullRank": false,
+				"RankAccuracy": 55.0,
+				"RankName": "C"
+			},
+			{
+				"NullRank": false,
+				"RankAccuracy": 45.0,
+				"RankName": "D"
+			},
+			{
+				"NullRank": false,
+				"RankAccuracy": 40.0,
+				"RankName": "E"
+			},
+			{
+				"NullRank": false,
+				"RankAccuracy": 0.01,
+				"RankName": "F"
+			}
+		],
+		"HUDLabels": [
+			{
+				"font": "vcr",
+				"font_color": "ffffffff",
+				"font_size": 16,
+				"outline_color": "000000ff",
+				"outline_size": 8,
+				"position": "(478.0, 647.0)",
+				"rotation": 0.0,
+				"shadow_color": "00000000",
+				"shadow_offset": "(0.0, 0.0)",
+				"shadow_size": 0,
+				"text_items": [
+					{
+						"prefix": "Score: ",
+						"suffix": "",
+						"value_option": "Score"
+					},
+					{
+						"prefix": " - ",
+						"suffix": "",
+						"value_option": "Nothing"
+					},
+					{
+						"prefix": "Misses: ",
+						"suffix": "",
+						"value_option": "Misses"
+					},
+					{
+						"prefix": " - ",
+						"suffix": "",
+						"value_option": "Nothing"
+					},
+					{
+						"prefix": "Accuracy: ",
+						"suffix": "%",
+						"value_option": "Accuracy"
+					},
+					{
+						"prefix": " [",
+						"suffix": "]",
+						"value_option": "Accuracy Rank"
+					}
+				]
+			}
+		]
+	}
+}

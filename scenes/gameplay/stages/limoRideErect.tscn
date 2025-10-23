@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://yl2ww1dl2nkc"]
+
+[ext_resource type="Script" uid="uid://bsg6s08v5u153" path="res://scenes/gameplay/stages/limo.gd" id="1_ybtcr"]
+[ext_resource type="Texture2D" uid="uid://clt251axbtw14" path="res://assets/images/gameplay/stages/limo/erect/limoSunset.png" id="2_cr0cs"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/limo/erect/shooting star.res" id="3_54tdn"]
+[ext_resource type="PackedScene" uid="uid://d2er11vv1rshu" path="res://scenes/gameplay/stages/objects/dancey-boi.tscn" id="4_54tdn"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/limo/erect/bgLimo.res" id="4_fcryj"]
+[ext_resource type="SpriteFrames" path="res://assets/images/gameplay/stages/limo/erect/limoDrive.res" id="6_f2rop"]
+[ext_resource type="Shader" uid="uid://w3ts7tyvmub1" path="res://assets/shaders/AdjustColor.gdshader" id="7_54tdn"]
+[ext_resource type="Texture2D" uid="uid://brek76rcgojv2" path="res://assets/images/gameplay/stages/limo/fastCarLol.png" id="7_gaxox"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fcryj"]
+shader = ExtResource("7_54tdn")
+shader_parameter/hue = -30.0
+shader_parameter/saturation = -20.0
+shader_parameter/brightness = -30.0
+shader_parameter/contrast = 0.0
+shader_parameter/alpha = 255.0
+
+[node name="limo" type="Node2D" node_paths=PackedStringArray("back_limo", "limo")]
+z_index = -1
+script = ExtResource("1_ybtcr")
+back_limo = NodePath("PL2/limo")
+back_limo_anim = "background limo blue"
+limo = NodePath("limo")
+limo_anim = "Limo stage"
+default_cam_zoom = 0.9
+player_cam_offset = Vector2(-300, -100)
+opponent_cam_offset = Vector2(150, 0)
+
+[node name="0-1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.1, 0.1)
+
+[node name="limoSunset" type="Sprite2D" parent="0-1"]
+z_index = 10
+position = Vector2(-180, -80)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_cr0cs")
+centered = false
+
+[node name="0-12" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.12, 0.12)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="0-12"]
+z_index = 20
+position = Vector2(200, 0)
+sprite_frames = ExtResource("3_54tdn")
+animation = &"shooting star"
+centered = false
+
+[node name="PL2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 0.4)
+
+[node name="limo" type="AnimatedSprite2D" parent="PL2"]
+z_index = 20
+position = Vector2(-200, 480)
+sprite_frames = ExtResource("4_fcryj")
+animation = &"background limo blue"
+centered = false
+
+[node name="dancey_group" type="Node2D" parent="PL2/limo"]
+material = SubResource("ShaderMaterial_fcryj")
+
+[node name="dancey-boi" parent="PL2/limo/dancey_group" instance=ExtResource("4_54tdn")]
+use_parent_material = true
+position = Vector2(370, -390)
+
+[node name="dancey-boi2" parent="PL2/limo/dancey_group" instance=ExtResource("4_54tdn")]
+use_parent_material = true
+position = Vector2(740, -390)
+
+[node name="dancey-boi3" parent="PL2/limo/dancey_group" instance=ExtResource("4_54tdn")]
+use_parent_material = true
+position = Vector2(1110, -390)
+
+[node name="dancey-boi4" parent="PL2/limo/dancey_group" instance=ExtResource("4_54tdn")]
+use_parent_material = true
+position = Vector2(1480, -390)
+
+[node name="limo" type="AnimatedSprite2D" parent="."]
+z_index = 150
+position = Vector2(-120, 520)
+sprite_frames = ExtResource("6_f2rop")
+animation = &"Limo stage"
+centered = false
+
+[node name="Character Positions" type="Node2D" parent="."]
+
+[node name="Opponent" type="Node2D" parent="Character Positions"]
+z_index = 200
+material = SubResource("ShaderMaterial_fcryj")
+position = Vector2(329.5, 873)
+
+[node name="Spectator" type="Node2D" parent="Character Positions"]
+z_index = 100
+material = SubResource("ShaderMaterial_fcryj")
+position = Vector2(787, 779)
+
+[node name="Player" type="Node2D" parent="Character Positions"]
+z_index = 300
+material = SubResource("ShaderMaterial_fcryj")
+position = Vector2(1217.5, 584)
+
+[node name="fastCar" type="Sprite2D" parent="."]
+z_index = 500
+position = Vector2(-12600, 160)
+texture = ExtResource("7_gaxox")

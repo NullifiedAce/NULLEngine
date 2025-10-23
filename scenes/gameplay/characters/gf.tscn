@@ -1,9 +1,61 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyj73wfovhpu"]
+[gd_scene load_steps=14 format=3 uid="uid://cyj73wfovhpu"]
 
-[ext_resource type="Script" uid="uid://b4adxcf66q6bc" path="res://scripts/Character.gd" id="1_gsm5k"]
+[ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_gsm5k"]
 [ext_resource type="Texture2D" uid="uid://bggn4j2x81mod" path="res://assets/images/gameplay/icons/icon-gf.png" id="2_licmi"]
 [ext_resource type="SpriteFrames" uid="uid://tmpfiub6j2gs" path="res://assets/images/gameplay/characters/gf/normal.res" id="3_by1y0"]
-[ext_resource type="Script" uid="uid://bmjd0amnfkeq7" path="res://classes/AnimatedSprite.gd" id="4_qap3x"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="4_qap3x"]
+
+[sub_resource type="Animation" id="Animation_nd6ht"]
+resource_name = "cheer"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"GF Cheer"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "danceLeft"
@@ -372,6 +424,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
 _data = {
+&"cheer": SubResource("Animation_nd6ht"),
 &"danceLeft": SubResource("Animation_epq6v"),
 &"danceRight": SubResource("Animation_7jg6a"),
 &"scared": SubResource("Animation_fyb3s"),
@@ -384,21 +437,27 @@ _data = {
 [node name="gf" type="Node2D"]
 script = ExtResource("1_gsm5k")
 dance_steps = Array[String](["danceLeft", "danceRight"])
+combo_anims = Dictionary[int, String]({
+50: "cheer",
+200: "cheer"
+})
 health_icon = ExtResource("2_licmi")
 health_color = Color(0.647059, 0, 0.301961, 1)
+voices_paths = "gf"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-352, -648)
 sprite_frames = ExtResource("3_by1y0")
-animation = &"GF Dancing Beat"
-frame = 29
+animation = &"GF Cheer"
+frame = 20
 frame_progress = 1.0
 centered = false
+offset = Vector2(0, -8)
 script = ExtResource("4_qap3x")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 libraries = {
-"": SubResource("AnimationLibrary_vgtrv")
+&"": SubResource("AnimationLibrary_vgtrv")
 }
 
 [node name="CameraPos" type="Node2D" parent="."]

@@ -115,7 +115,7 @@ func _ready() -> void:
 	
 func _process(delta:float) -> void:
 	if Input.is_action_just_pressed("ui_cancel") and not fps_box.has_focus():
-		Global.switch_scene("res://scenes/MainMenu.tscn")
+		Global.switch_scene("res://scenes/menus/main menu/Menu.tscn")
 
 # funny signal shits
 func set_path(new_path:StringName) -> void:

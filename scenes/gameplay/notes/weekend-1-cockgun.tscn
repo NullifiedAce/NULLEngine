@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1qcb8enbfdh5"]
+
+[ext_resource type="Script" uid="uid://xh4sg74b70wn" path="res://scenes/gameplay/notes/weekend-1-cockgun.gd" id="1_n78ia"]
+[ext_resource type="Texture2D" uid="uid://2iywwtpufmt4" path="res://assets/images/gameplay/notes/default/sustains/left hold piece.png" id="2_vp6ew"]
+[ext_resource type="Texture2D" uid="uid://dcu1auf2cj0ob" path="res://assets/images/gameplay/notes/default/sustains/left hold end.png" id="3_jm8ck"]
+[ext_resource type="SpriteFrames" uid="uid://cmrrdlnfn8rek" path="res://assets/images/gameplay/notes/default/assets.res" id="4_i57uh"]
+[ext_resource type="Script" uid="uid://cgjlvgqqa7l8f" path="res://classes/AnimatedSprite.gd" id="5_0ia23"]
+
+[node name="Default" type="Node2D"]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_n78ia")
+play_sing_anim = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+clip_contents = true
+offset_left = -56.0
+offset_right = 56.0
+offset_bottom = 720.0
+color = Color(1, 1, 1, 0)
+
+[node name="Sustain" type="Line2D" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0.6)
+position = Vector2(56, 0)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 50.0
+texture = ExtResource("2_vp6ew")
+texture_mode = 1
+
+[node name="EndPiece" type="Sprite2D" parent="ColorRect/Sustain"]
+texture = ExtResource("3_jm8ck")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("4_i57uh")
+animation = &"left"
+script = ExtResource("5_0ia23")

@@ -1,0 +1,1479 @@
+[gd_scene load_steps=21 format=3 uid="uid://bqsrwpb82r34v"]
+
+[ext_resource type="Script" uid="uid://bydrrqjf2awjd" path="res://scenes/menus/options/hud/Menu.gd" id="1_028jv"]
+[ext_resource type="Script" uid="uid://b1pwa7eu337d2" path="res://scenes/menus/options/hud/ThemeHandler.gd" id="2_7hp2n"]
+[ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_a6t8j"]
+[ext_resource type="Script" uid="uid://dwu4d405oahdt" path="res://scenes/menus/options/hud/HUDCamera.gd" id="2_o65hx"]
+[ext_resource type="Theme" uid="uid://dqqyiyf33vtjn" path="res://assets/styles/NULLEngine.tres" id="3_k68oh"]
+[ext_resource type="Script" uid="uid://d0o06je565e5c" path="res://scenes/menus/options/hud/Data/Saving.gd" id="3_lo8x1"]
+[ext_resource type="Script" uid="uid://jhia0wb1d1yg" path="res://scenes/menus/options/hud/Data/Loading.gd" id="4_ricit"]
+[ext_resource type="Script" uid="uid://co00xq8h2ivbw" path="res://classes/EngineTheme/EngineThemeColor.gd" id="6_sg4b6"]
+[ext_resource type="Script" uid="uid://c6iql4h5apy70" path="res://scenes/menus/options/hud/Ruler.gd" id="8_bd15s"]
+[ext_resource type="Script" uid="uid://d1mg4gki84igd" path="res://classes/EngineTheme/EngineThemeOption.gd" id="8_cgx1m"]
+[ext_resource type="Script" uid="uid://3e3h47gdrf3f" path="res://scenes/menus/options/hud/Windows/Preferences.gd" id="8_ricit"]
+[ext_resource type="Script" uid="uid://d1m5agyfh2uer" path="res://classes/EngineTheme/EngineThemeSpinBox.gd" id="9_36kso"]
+[ext_resource type="PackedScene" uid="uid://bumoha7lb8qch" path="res://scenes/menus/options/hud/Elements/RankButton.tscn" id="11_lo8x1"]
+[ext_resource type="Script" uid="uid://dmknvxcthud7h" path="res://scenes/editors/character editor/windows/BackgroundTrack.gd" id="13_ryb5n"]
+[ext_resource type="Script" uid="uid://bdsgr0skffsel" path="res://scenes/editors/character editor/AudioVisTest.gd" id="14_4ahyr"]
+[ext_resource type="Texture2D" uid="uid://bu1lcynh7qj3l" path="res://assets/images/material_icons/Editors/Play.svg" id="15_bd15s"]
+[ext_resource type="Script" uid="uid://8mxbydkyk7td" path="res://scripts/AudioPlayer.gd" id="16_4ahyr"]
+
+[sub_resource type="Gradient" id="Gradient_yb4yc"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 0.411765, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k68oh"]
+gradient = SubResource("Gradient_yb4yc")
+width = 1280
+height = 720
+fill = 1
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k8jfr"]
+font_color = Color(0.490196, 0.490196, 0.490196, 1)
+
+[node name="HUD Editor" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_028jv")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+position_smoothing_speed = 3.0
+script = ExtResource("2_o65hx")
+
+[node name="ThemeHandler" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("2_7hp2n")
+
+[node name="Saving" type="Node" parent="."]
+script = ExtResource("3_lo8x1")
+
+[node name="Loading" type="Node" parent="."]
+script = ExtResource("4_ricit")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BG" parent="CanvasLayer" instance=ExtResource("2_a6t8j")]
+z_index = -1
+gradiant = SubResource("GradientTexture2D_k68oh")
+metadata/_edit_lock_ = true
+
+[node name="TopBar" type="ColorRect" parent="CanvasLayer/BG"]
+z_as_relative = false
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = -312.0
+color = Color(0.215686, 0.215686, 0.215686, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/BG/TopBar"]
+layout_mode = 0
+offset_left = 1064.0
+offset_top = 8.0
+offset_right = 1272.0
+offset_bottom = 40.0
+text = "HUD Editor Version 2.0"
+label_settings = SubResource("LabelSettings_k8jfr")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="RulerTop" type="Control" parent="CanvasLayer"]
+z_index = -1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_bd15s")
+
+[node name="RulerLeft" type="Control" parent="CanvasLayer"]
+z_index = -1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_bd15s")
+is_horizontal = false
+
+[node name="MenuOptions" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 448.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+
+[node name="File" type="MenuButton" parent="CanvasLayer/MenuOptions"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+theme = ExtResource("3_k68oh")
+text = "File"
+flat = false
+switch_on_hover = true
+item_count = 8
+popup/item_0/text = "New HUD"
+popup/item_0/id = 0
+popup/item_1/id = 1
+popup/item_1/separator = true
+popup/item_2/text = "Open HUD..."
+popup/item_2/id = 2
+popup/item_3/text = "Load Default HUD"
+popup/item_3/id = 3
+popup/item_4/id = 4
+popup/item_4/separator = true
+popup/item_5/text = "Save HUD"
+popup/item_5/id = 5
+popup/item_6/id = 6
+popup/item_6/separator = true
+popup/item_7/text = "Exit"
+popup/item_7/id = 7
+
+[node name="Edit" type="MenuButton" parent="CanvasLayer/MenuOptions"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+theme = ExtResource("3_k68oh")
+text = "Edit"
+flat = false
+switch_on_hover = true
+
+[node name="Options" type="MenuButton" parent="CanvasLayer/MenuOptions"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("3_k68oh")
+text = "Options"
+flat = false
+switch_on_hover = true
+item_count = 2
+popup/item_0/text = "Use downscroll?"
+popup/item_0/checkable = 1
+popup/item_0/id = 0
+popup/item_1/text = "Show misc. Items?"
+popup/item_1/checkable = 1
+popup/item_1/id = 1
+
+[node name="Windows" type="MenuButton" parent="CanvasLayer/MenuOptions"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+theme = ExtResource("3_k68oh")
+text = "Windows"
+flat = false
+switch_on_hover = true
+item_count = 2
+popup/item_0/text = "Preferences"
+popup/item_0/id = 0
+popup/item_1/text = "Background Track"
+popup/item_1/id = 1
+
+[node name="Help" type="MenuButton" parent="CanvasLayer/MenuOptions"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+theme = ExtResource("3_k68oh")
+text = "Help"
+flat = false
+switch_on_hover = true
+item_count = 1
+popup/item_0/text = "User Guide"
+popup/item_0/id = 0
+
+[node name="Left" type="ColorRect" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_bottom = 720.0
+grow_vertical = 2
+color = Color(0, 0.462745, 1, 1)
+
+[node name="Right" type="ColorRect" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1280.0
+offset_right = 1282.0
+offset_bottom = 720.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0.462745, 1, 1)
+
+[node name="Top" type="ColorRect" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -2.0
+offset_right = 1280.0
+grow_horizontal = 2
+color = Color(0, 0.462745, 1, 1)
+
+[node name="Bottom" type="ColorRect" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 720.0
+offset_right = 1280.0
+offset_bottom = 722.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0.462745, 1, 1)
+
+[node name="AddPopup" type="PopupMenu" parent="."]
+size = Vector2i(198, 93)
+item_count = 4
+item_0/text = "New HUD Element"
+item_0/id = 0
+item_1/id = 1
+item_1/separator = true
+item_2/text = "Edit HUD Element"
+item_2/id = 2
+item_2/disabled = true
+item_3/text = "Delete HUD Element"
+item_3/id = 3
+item_3/disabled = true
+
+[node name="AddElement" type="PopupMenu" parent="."]
+size = Vector2i(137, 62)
+item_count = 2
+item_0/text = "New HUDLabel"
+item_0/id = 0
+item_1/text = "New HUDBar"
+item_1/id = 1
+
+[node name="Windows" type="Node" parent="."]
+
+[node name="Preferences" type="Window" parent="Windows"]
+title = "Preferences"
+initial_position = 2
+size = Vector2i(512, 512)
+visible = false
+min_size = Vector2i(128, 128)
+content_scale_mode = 1
+content_scale_aspect = 1
+script = ExtResource("8_ricit")
+
+[node name="BG" type="ColorRect" parent="Windows/Preferences"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+metadata/_edit_lock_ = true
+
+[node name="TabContainer" type="TabContainer" parent="Windows/Preferences"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_k68oh")
+current_tab = 0
+tab_focus_mode = 0
+
+[node name="Theme" type="TabBar" parent="Windows/Preferences/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Windows/Preferences/TabContainer/Theme"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BG" type="Label" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Background Options"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BGColor" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BGColor" type="Label" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor"]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "Background Color:"
+
+[node name="ColorBG" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor"]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 2
+focus_mode = 0
+edit_alpha = false
+script = ExtResource("6_sg4b6")
+data = "HUD BG Color"
+metadata/_custom_type_script = "uid://co00xq8h2ivbw"
+
+[node name="Gradiant" type="Label" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Gradiant Options"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GradiantColor" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Grad1" type="Label" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor"]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "Gradiant 1 Color:"
+
+[node name="Gradient1" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor"]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 2
+focus_mode = 0
+script = ExtResource("6_sg4b6")
+data = "HUD BG Gradiant1"
+metadata/_custom_type_script = "uid://co00xq8h2ivbw"
+
+[node name="Grad2" type="Label" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor"]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "Gradiant 2 Color:"
+
+[node name="Gradient2" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor"]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 2
+focus_mode = 0
+script = ExtResource("6_sg4b6")
+data = "HUD BG Gradiant2"
+metadata/_custom_type_script = "uid://co00xq8h2ivbw"
+
+[node name="HSeparator4" type="HSeparator" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Reload" type="Button" parent="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "Reload"
+
+[node name="Label Defaults" type="TabBar" parent="Windows/Preferences/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Windows/Preferences/TabContainer/Label Defaults"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FontSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Font Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+alignment = 1
+
+[node name="FontText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Font:"
+
+[node name="FontOptions" type="OptionButton" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+selected = 0
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "VCR"
+popup/item_0/id = 0
+popup/item_1/text = "funkin"
+popup/item_1/id = 1
+script = ExtResource("8_cgx1m")
+data = "Label Font"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="FontColorText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Font Color:"
+
+[node name="FontColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(1, 1, 1, 1)
+script = ExtResource("6_sg4b6")
+data = "Label Font Color"
+
+[node name="VSeparator2" type="VSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="FontSizeText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Font Size:"
+
+[node name="FontSize" type="SpinBox" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+max_value = 255.0
+value = 16.0
+script = ExtResource("9_36kso")
+data = "Label Font Size"
+
+[node name="HSeparator2" type="HSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OutlineSettingTitle" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Outline Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Outlines" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="OutlineColorText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines"]
+layout_mode = 2
+text = "Outline Color:"
+
+[node name="OutlineColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+script = ExtResource("6_sg4b6")
+data = "Label Outline Color"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines"]
+layout_mode = 2
+
+[node name="OutlineSizeText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines"]
+layout_mode = 2
+text = "Outline Size:"
+
+[node name="OutlineSize" type="SpinBox" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines"]
+layout_mode = 2
+value = 8.0
+script = ExtResource("9_36kso")
+data = "Label Outline Size"
+
+[node name="HSeparator4" type="HSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShadowSettingTitle" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shadow Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator5" type="HSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Shadows" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="ShadowColorText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows"]
+layout_mode = 2
+text = "Shadow Color:"
+
+[node name="ShadowColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0, 0, 0, 0)
+script = ExtResource("6_sg4b6")
+data = "Label Shadow Color"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows"]
+layout_mode = 2
+
+[node name="ShadowSizeText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows"]
+layout_mode = 2
+text = "Shadow Size:"
+
+[node name="ShadowSize" type="SpinBox" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Label Shadow Size"
+
+[node name="Shadows2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="ShadowOffsetsText" type="Label" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2"]
+layout_mode = 2
+text = "Shadow Offsets:"
+
+[node name="ShadowOffsetX" type="SpinBox" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2"]
+layout_mode = 2
+min_value = -100.0
+suffix = "x"
+script = ExtResource("9_36kso")
+data = "Label Shadow Offset X"
+
+[node name="ShadowOffsetY" type="SpinBox" parent="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2"]
+layout_mode = 2
+min_value = -100.0
+suffix = "y"
+script = ExtResource("9_36kso")
+data = "Label Shadow Offset Y"
+
+[node name="Bar Defaults" type="TabBar" parent="Windows/Preferences/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="TabContainer" type="TabContainer" parent="Windows/Preferences/TabContainer/Bar Defaults"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_k68oh")
+current_tab = 0
+tab_focus_mode = 0
+
+[node name="Background" type="TabBar" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Color Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Colors" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BGColorTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Background Color:"
+
+[node name="BGColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0.6, 0.6, 0.6, 1)
+script = ExtResource("6_sg4b6")
+data = "Bar BG Color"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+
+[node name="BorderColorTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Border Color:"
+
+[node name="BorderColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0.8, 0.8, 0.8, 1)
+script = ExtResource("6_sg4b6")
+data = "Bar BG Border Color"
+
+[node name="Colors2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowColorTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors2"]
+layout_mode = 2
+text = "Shadow Color:"
+
+[node name="ShadowColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors2"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0, 0, 0, 0.6)
+script = ExtResource("6_sg4b6")
+data = "Bar BG Shadow Color"
+
+[node name="HSeparator2" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BorderSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Border Width Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Border" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Left:"
+
+[node name="LeftWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Border Left"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="Top" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Top:"
+
+[node name="TopWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Border Top"
+
+[node name="Border2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Right" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+text = "Right:"
+
+[node name="RightWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Border Right"
+
+[node name="VSeparator3" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+
+[node name="Bottom" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+text = "Bottom:"
+
+[node name="BottomWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Border Bottom"
+
+[node name="HSeparator4" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CornerRadiusTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Corner Radius Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator5" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ConrerRadius" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TopLeftTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+text = "Top Left:"
+
+[node name="TopLeft" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar BG Corner Radius TopLeft"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+
+[node name="TopRightTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+text = "Top Right:"
+
+[node name="TopRight" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar BG Corner Radius TopRight"
+
+[node name="ConrerRadius2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BottomLeftTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+text = "Bottom Left:"
+
+[node name="BottomLeft" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar BG Corner Radius BottomLeft"
+
+[node name="VSeparator3" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+
+[node name="BottomRightTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+text = "Bottom Right:"
+
+[node name="BottomRight" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar BG Corner Radius BottomRight"
+
+[node name="HSeparator6" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExpandMarginsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Expand Margins Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator7" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExpandMargins" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Left:"
+
+[node name="LeftWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Expand Left"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="Top" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Top:"
+
+[node name="TopWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Expand Top"
+
+[node name="ExpandMargins2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Right" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+text = "Right:"
+
+[node name="RightWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Expand Right"
+
+[node name="VSeparator3" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+
+[node name="Bottom" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+text = "Bottom:"
+
+[node name="BottomWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+value = 4.0
+script = ExtResource("9_36kso")
+data = "Bar BG Expand Bottom"
+
+[node name="HSeparator8" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShadowSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shadow Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator9" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Shadow" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowSizeTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow"]
+layout_mode = 2
+text = "Shadow Size:"
+
+[node name="ShadowSize" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar BG Shadow Size"
+
+[node name="Shadow2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowOffsetTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+text = "Shadow Offsets:"
+
+[node name="ShadowOffsetX" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+suffix = "x"
+script = ExtResource("9_36kso")
+data = "Bar BG Shadow Offset X"
+
+[node name="ShadowOffsetY" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+suffix = "y"
+script = ExtResource("9_36kso")
+data = "Bar BG Shadow Offset Y"
+
+[node name="Fill" type="TabBar" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Color Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Colors" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BGColorTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Background Color:"
+
+[node name="BGColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0.6, 0.6, 0.6, 1)
+script = ExtResource("6_sg4b6")
+data = "Bar Fill Color"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+
+[node name="BorderColorTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+layout_mode = 2
+text = "Border Color:"
+
+[node name="BorderColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0.8, 0.8, 0.8, 1)
+script = ExtResource("6_sg4b6")
+data = "Bar Fill Border Color"
+
+[node name="Colors2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowColorTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors2"]
+layout_mode = 2
+text = "Shadow Color:"
+
+[node name="ShadowColor" type="ColorPickerButton" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors2"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+focus_mode = 0
+color = Color(0, 0, 0, 0.6)
+script = ExtResource("6_sg4b6")
+data = "Bar Fill Shadow Color"
+
+[node name="HSeparator2" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BorderSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Border Width Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Border" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Left:"
+
+[node name="LeftWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Border Left"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+
+[node name="Top" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+text = "Top:"
+
+[node name="TopWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Border Top"
+
+[node name="Border2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Right" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+text = "Right:"
+
+[node name="RightWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Border Right"
+
+[node name="VSeparator3" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+
+[node name="Bottom" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+text = "Bottom:"
+
+[node name="BottomWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Border Bottom"
+
+[node name="HSeparator4" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CornerRadiusTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Corner Radius Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator5" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ConrerRadius" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TopLeftTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+text = "Top Left:"
+
+[node name="TopLeft" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Corner Radius TopLeft"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+
+[node name="TopRightTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+text = "Top Right:"
+
+[node name="TopRight" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Corner Radius TopRight"
+
+[node name="ConrerRadius2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BottomLeftTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+text = "Bottom Left:"
+
+[node name="BottomLeft" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Corner Radius BottomLeft"
+
+[node name="VSeparator3" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+
+[node name="BottomRightTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+text = "Bottom Right:"
+
+[node name="BottomRight" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Corner Radius BottomRight"
+
+[node name="HSeparator6" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExpandMarginsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Expand Margins Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator7" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExpandMargins" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Left:"
+
+[node name="LeftWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Expand Left"
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+
+[node name="Top" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+text = "Top:"
+
+[node name="TopWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Expand Top"
+
+[node name="ExpandMargins2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Right" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+text = "Right:"
+
+[node name="RightWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Expand Right"
+
+[node name="VSeparator3" type="VSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+
+[node name="Bottom" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+text = "Bottom:"
+
+[node name="BottomWidth" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Expand Bottom"
+
+[node name="HSeparator8" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShadowSettingsTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shadow Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator9" type="HSeparator" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Shadow" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowSizeTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow"]
+layout_mode = 2
+text = "Shadow Size:"
+
+[node name="ShadowSize" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow"]
+layout_mode = 2
+script = ExtResource("9_36kso")
+data = "Bar Fill Shadow Size"
+
+[node name="Shadow2" type="HBoxContainer" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ShadowOffsetTitle" type="Label" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+text = "Shadow Offsets:"
+
+[node name="ShadowOffsetX" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+suffix = "x"
+script = ExtResource("9_36kso")
+data = "Bar Fill Shadow Offset X"
+
+[node name="ShadowOffsetY" type="SpinBox" parent="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2"]
+layout_mode = 2
+suffix = "y"
+script = ExtResource("9_36kso")
+data = "Bar Fill Shadow Offset X"
+
+[node name="AccuracyRanks" type="TabBar" parent="Windows/Preferences/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Windows/Preferences/TabContainer/AccuracyRanks"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Preferences/TabContainer/AccuracyRanks/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddRank" type="Button" parent="Windows/Preferences/TabContainer/AccuracyRanks/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "+ Add Rank"
+
+[node name="RankOptionButton" parent="Windows/Preferences/TabContainer/AccuracyRanks/ScrollContainer/VBoxContainer" instance=ExtResource("11_lo8x1")]
+layout_mode = 2
+tooltip_text = "This rank is required as it serves as the N/A rank when no notes were hit yet."
+null_rank = true
+
+[node name="RankName" parent="Windows/Preferences/TabContainer/AccuracyRanks/ScrollContainer/VBoxContainer/RankOptionButton/Window/ScrollContainer/VBoxContainer/HBoxContainer" index="1"]
+text = "N/A"
+
+[node name="Welcome" type="Window" parent="Windows"]
+title = "Welcome"
+initial_position = 1
+size = Vector2i(512, 512)
+visible = false
+min_size = Vector2i(128, 128)
+content_scale_mode = 1
+content_scale_aspect = 1
+
+[node name="SaveDialog" type="FileDialog" parent="Windows"]
+title = "Save HUD"
+initial_position = 1
+dialog_close_on_escape = false
+access = 1
+filters = PackedStringArray("*.json")
+
+[node name="OpenDialog" type="FileDialog" parent="Windows"]
+title = "Open a File"
+initial_position = 1
+ok_button_text = "Open"
+file_mode = 0
+access = 1
+filters = PackedStringArray("*.json")
+
+[node name="Background Track" type="Window" parent="Windows"]
+auto_translate_mode = 1
+title = "Background Track"
+position = Vector2i(40, 100)
+size = Vector2i(256, 128)
+visible = false
+unresizable = true
+min_size = Vector2i(256, 128)
+max_size = Vector2i(256, 128)
+script = ExtResource("13_ryb5n")
+
+[node name="BG" type="ColorRect" parent="Windows/Background Track"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+metadata/_edit_lock_ = true
+
+[node name="AudioVis" type="Control" parent="Windows/Background Track"]
+modulate = Color(0, 0, 0, 0.12549)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, -1)
+pivot_offset = Vector2(128, 64)
+script = ExtResource("14_4ahyr")
+
+[node name="Track" type="OptionButton" parent="Windows/Background Track"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -39.5
+offset_right = 101.0
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+selected = 0
+item_count = 3
+popup/item_0/text = "01. Artistic Expression"
+popup/item_0/id = 0
+popup/item_1/text = "02. Gettin' Freaky"
+popup/item_1/id = 1
+popup/item_2/text = "03.  Breakfast"
+popup/item_2/id = 2
+
+[node name="Play" type="Button" parent="Windows/Background Track"]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = 16.0
+offset_right = -69.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+icon = ExtResource("15_bd15s")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Lower" type="Button" parent="Windows/Background Track"]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = 16.0
+offset_right = -29.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "-"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Higher" type="Button" parent="Windows/Background Track"]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 69.0
+offset_top = 16.0
+offset_right = 101.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+text = "+"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Bars" type="HBoxContainer" parent="Windows/Background Track"]
+offset_left = 103.0
+offset_top = 80.0
+offset_right = 193.0
+offset_bottom = 112.0
+alignment = 1
+
+[node name="1" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 3.2)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="2" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 6.4)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="3" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 9.6)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="4" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 12.8)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="5" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 16)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="6" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 19.2)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="7" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 22.4)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="8" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 25.6)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="9" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 28.8)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="10" type="ColorRect" parent="Windows/Background Track/Bars"]
+custom_minimum_size = Vector2(5, 32)
+layout_mode = 2
+size_flags_vertical = 8
+color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="HUDElements" type="Node" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+script = ExtResource("16_4ahyr")
+metadata/_custom_type_script = "uid://8mxbydkyk7td"
+
+[connection signal="close_requested" from="Windows/Preferences" to="Windows/Preferences" method="hide"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor/ColorBG" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/BGColor/ColorBG" method="_on_popup_closed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient1" method="_on_popup_closed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient2" to="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/GradiantColor/Gradient2" method="_on_popup_closed"]
+[connection signal="pressed" from="Windows/Preferences/TabContainer/Theme/ScrollContainer/VBoxContainer/Reload" to="ThemeHandler" method="_on_reload_pressed"]
+[connection signal="item_selected" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer/FontOptions" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer/FontOptions" method="_on_item_selected"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer/FontColor" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer/FontColor" method="_on_popup_closed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer/FontSize" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/HBoxContainer/FontSize" method="_on_value_changed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines/OutlineColor" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines/OutlineColor" method="_on_popup_closed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines/OutlineSize" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Outlines/OutlineSize" method="_on_value_changed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows/ShadowColor" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows/ShadowColor" method="_on_popup_closed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows/ShadowSize" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows/ShadowSize" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2/ShadowOffsetX" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2/ShadowOffsetX" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2/ShadowOffsetY" to="Windows/Preferences/TabContainer/Label Defaults/ScrollContainer/VBoxContainer/Shadows2/ShadowOffsetY" method="_on_value_changed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors/BGColor" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors/BGColor" method="_on_popup_closed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors/BorderColor" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors/BorderColor" method="_on_popup_closed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors2/ShadowColor" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Colors2/ShadowColor" method="_on_popup_closed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border/LeftWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border/LeftWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border/TopWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border/TopWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2/RightWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2/RightWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2/BottomWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Border2/BottomWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius/TopLeft" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius/TopLeft" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius/TopRight" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius/TopRight" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2/BottomLeft" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2/BottomLeft" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2/BottomRight" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ConrerRadius2/BottomRight" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins/LeftWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins/LeftWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins/TopWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins/TopWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2/RightWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2/RightWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2/BottomWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/ExpandMargins2/BottomWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow/ShadowSize" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow/ShadowSize" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetX" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetX" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Background/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" method="_on_value_changed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors/BGColor" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors/BGColor" method="_on_popup_closed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors/BorderColor" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors/BorderColor" method="_on_popup_closed"]
+[connection signal="popup_closed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors2/ShadowColor" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Colors2/ShadowColor" method="_on_popup_closed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border/LeftWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border/LeftWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border/TopWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border/TopWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2/RightWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2/RightWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2/BottomWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Border2/BottomWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius/TopLeft" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius/TopLeft" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius/TopRight" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius/TopRight" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2/BottomLeft" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2/BottomLeft" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2/BottomRight" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ConrerRadius2/BottomRight" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins/LeftWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins/LeftWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins/TopWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins/TopWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2/RightWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2/RightWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2/BottomWidth" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/ExpandMargins2/BottomWidth" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow/ShadowSize" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow/ShadowSize" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetX" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetX" method="_on_value_changed"]
+[connection signal="value_changed" from="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" to="Windows/Preferences/TabContainer/Bar Defaults/TabContainer/Fill/ScrollContainer/VBoxContainer/Shadow2/ShadowOffsetY" method="_on_value_changed"]
+[connection signal="file_selected" from="Windows/SaveDialog" to="Saving" method="_save_hud"]
+[connection signal="file_selected" from="Windows/OpenDialog" to="Loading" method="_on_hud_opened"]
+[connection signal="close_requested" from="Windows/Background Track" to="Windows/Background Track" method="hide"]
+[connection signal="item_selected" from="Windows/Background Track/Track" to="Windows/Background Track" method="_on_track_selected"]
+
+[editable path="Windows/Preferences/TabContainer/AccuracyRanks/ScrollContainer/VBoxContainer/RankOptionButton"]

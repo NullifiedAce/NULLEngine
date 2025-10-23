@@ -11,8 +11,8 @@ var OPPONENT_HEALTH_COLOR:StyleBoxFlat = preload("res://assets/styles/healthbar/
 var PLAYER_HEALTH_COLOR:StyleBoxFlat = preload("res://assets/styles/healthbar/player.tres")
 
 var SONG:Chart = Global.SONG
-var meta:SongMetaData = SongMetaData.new()
-var note_data_array:Array[SectionNote] = []
+var METADATA:Metadata = Global.METADATA
+var note_data_array:Array[SongNote] = []
 var event_data_array:Array[SongEvent] = []
 
 var starting_song:bool = true
@@ -25,27 +25,41 @@ var health:float = 1.0:
 	set(v):
 		health = clampf(v, 0.0, max_health)
 
-var max_health:float = 2.0
+var max_health:float = Constants.HEALTH_MAX
 
-var score:int = 0
+var cur_time:float
+var max_time:float
+
+var songScore:int = 0
 var misses:int = 0
 var combo:int = 0
 var max_combo:int = 0
 var ghost_taps:int = 0
+var key_pressed:int = 0
+var rank:float = 0.0
+var notes_hit:int = 0
 
-var cur_time:float
-var max_time:float
-var time_progress:float = 0.0:
-	set(t):
-		time_progress = clampf(t, 0.0, 1.0)
+var sicks: int = 0
+var goods: int = 0
+var bads: int = 0
+var shits: int = 0
+
+var total_notes: int = 0
 
 var accuracy_pressed_notes:int = 0
 var accuracy_total_hit:float = 0.0
 
 var cam_bumping:bool = true
-var cam_bumping_interval:int = 4
+var camera_bop_intensitiy:float = Constants.DEFAULT_BOP_INTENSITY -1
+var camera_zoom_rate:int = Constants.DEFAULT_ZOOM_RATE
 var cam_zooming:bool = true
 var cam_switching:bool = true
+var shake_cam:bool = true
+var cam_shake_strength:float = 0.0
+var cam_shake_fade:float = 0.0
+
+var hud_zoom_intensitiy = (Constants.DEFAULT_BOP_INTENSITY - 1.0) * 2
+var shake_hud:bool = false
 
 var icon_bumping:bool = true
 var icon_bumping_interval:int = 1
@@ -61,6 +75,7 @@ var cpu_strums:StrumLine
 var player_strums:StrumLine
 
 var default_cam_zoom:float = 1.05
+var cam_zoom:float = 1.05
 
 var skipped_intro:bool = false
 
@@ -71,8 +86,11 @@ var accuracy:float:
 
 var ui_skin:UISkin
 
+#var results_screen = preload("res://scenes/gameplay/ResultScreen.tscn")
+
 @onready var camera:Camera2D = $Camera2D
-@onready var hud:CanvasLayer = $HUD
+@onready var hud:HUD = $HUD
+@onready var characters: Node2D = $characters
 
 @onready var strumlines:Node2D = $HUD/StrumLines
 
@@ -81,16 +99,6 @@ var ui_skin:UISkin
 
 @onready var rating_template:VelocitySprite = $Ratings/RatingTemplate
 @onready var combo_template:VelocitySprite = $Ratings/ComboTemplate
-
-@onready var health_bar_bg:ColorRect = $HUD/HealthBar
-@onready var health_bar:ProgressBar = $HUD/HealthBar/ProgressBar
-
-@onready var time_bar: ProgressBar = $HUD/TimeBar
-@onready var timer: Label = $HUD/TimeBar/Timer
-
-@onready var cpu_icon:Sprite2D = $HUD/HealthBar/ProgressBar/CPUIcon
-@onready var player_icon:Sprite2D = $HUD/HealthBar/ProgressBar/PlayerIcon
-@onready var score_text:Label = $HUD/HealthBar/ScoreText
 
 @onready var countdown_sprite:Sprite2D = $HUD/CountdownSprite
 
@@ -111,40 +119,46 @@ signal paused
 
 var tracks:Array[AudioStreamPlayer] = []
 func load_song():
-	var music_path:String = "res://assets/songs/%s/audio/" % SONG.name.to_lower()
+	var music_path:String = "res://assets/songs/%s/audio/" % [METADATA.rawSongName.to_lower()]
 
 	if DirAccess.dir_exists_absolute(music_path):
 		var dir = DirAccess.open(music_path)
 
-		for file in dir.get_files():
-			var music:AudioStreamPlayer = AudioStreamPlayer.new()
-			for f in Global.audio_formats:
-				if file.ends_with(f + ".import"):
-					music.stream = load(music_path + file.replace(".import",""))
-					music.pitch_scale = Conductor.rate
-					tracks.append(music)
+		load_track(music_path, "Inst")
+		# Making sure a path was even set.
+		if opponent.voices_paths != "": load_track(music_path, "Voices-%s" % opponent.voices_paths)
+		if player.voices_paths != "": load_track(music_path, "Voices-%s" % player.voices_paths)
+
+func load_track(music_path:String, fileName:String):
+	var track:AudioStreamPlayer = AudioStreamPlayer.new()
+	track.name = fileName
+	if Global.variation == "default":
+		track.stream = load(music_path + fileName + ".ogg")
+	else:
+		track.stream = load(music_path + fileName + "-" + Global.variation + ".ogg")
+	track.pitch_scale = Conductor.rate
+
+	track.bus = "Music"
+	tracks.append(track)
 
 func gen_song(delete_before_time:float = -1.0):
-	for section in SONG.sections:
-		for note in section.notes:
-			if note.time <= delete_before_time:
-				continue
+	for note in SONG.notes:
+		if note.time <= delete_before_time:
+			continue
 
-			# i can't use fucking duplicate
-			# it fucks up!!!
-			var n = SectionNote.new()
-			n.time = note.time
-			n.direction = note.direction
-			n.length = note.length
-			n.type = note.type
-			n.alt_anim = note.alt_anim
-			n.player_section = section.is_player
+		# i can't use fucking duplicate
+		# it fucks up!!!
+		var n = SongNote.new()
+		n.time = note.time
+		n.direction = note.direction
+		n.length = note.length
+		n.kind = note.kind
 
-			var note_type_path:String = "res://scenes/gameplay/notes/"+note.type+".tscn"
-			if not note.type in template_notes and ResourceLoader.exists(note_type_path):
-				template_notes[note.type] = load(note_type_path).instantiate()
+		var note_type_path:String = "res://scenes/gameplay/notes/"+note.kind+".tscn"
+		if not note.kind in template_notes and ResourceLoader.exists(note_type_path):
+			template_notes[note.kind] = load(note_type_path).instantiate()
 
-			note_data_array.append(n)
+		note_data_array.append(n)
 
 	note_data_array.sort_custom(func(a, b): return a.time < b.time)
 
@@ -170,42 +184,20 @@ func load_event_array(event_array:Array[Variant]) -> Array[SongEvent]:
 	return return_events
 
 func load_events() -> void:
-	var event_path:String = "res://assets/songs/%s/events.json" % SONG.name.to_lower()
+	var event_data:Array = SONG.events
 
-	if not ResourceLoader.exists(event_path):
-		return
+	if not event_data.size() > 0:
+		event_data = []
 
-	var event_data:Dictionary = \
-			JSON.parse_string(FileAccess.open(event_path, FileAccess.READ).get_as_text()).song
+	for event in event_data:
+		event_data_array.append(event)
 
-	if not event_data.has('events'):
-		event_data['events'] = []
-	if not event_data.has('notes'):
-		event_data['notes'] = []
-
-	for event in event_data.events:
-		for song_event in load_event_array(event):
-			event_data_array.append(song_event)
-
-			if not template_events.has(song_event.name):
-				var song_event_path:String = "res://scenes/gameplay/events/%s.tscn" % song_event.name
-				if ResourceLoader.exists(song_event_path):
-					template_events[song_event.name] = load(song_event_path).instantiate()
-				else:
-					printerr("event not found: %s" % song_event.name)
-
-	for section in event_data.notes:
-		for note in section.sectionNotes:
-			if note[1] is Array or note[1] < 0:
-				for song_event in load_event_array(note):
-					event_data_array.append(song_event)
-
-					if not template_events.has(song_event.name):
-						var song_event_path:String = "res://scenes/gameplay/events/%s.tscn" % song_event.name
-						if ResourceLoader.exists(song_event_path):
-							template_events[song_event.name] = load(song_event_path).instantiate()
-						else:
-							printerr("event not found: %s" % song_event.name)
+		if not template_events.has(event.name):
+			var song_event_path:String = "res://scenes/gameplay/events/%s.tscn" % event.name
+			if ResourceLoader.exists(song_event_path):
+				template_events[event.name] = load(song_event_path).instantiate()
+			else:
+				printerr("event not found: %s" % event.name)
 
 func _ready() -> void:
 	super._ready()
@@ -218,15 +210,10 @@ func _ready() -> void:
 	Ranking.ranks = Ranking.default_ranks.duplicate(true)
 
 	if Global.SONG == null:
-		Global.SONG = Chart.load_chart("tutorial", "hard")
+		Global.SONG = Chart.load_chart("tutorial", "hard", "default")
+		Global.METADATA = Metadata.load_metadata("tutorial", "default")
 		SONG = Global.SONG
-
-	var meta_path:String = "res://assets/songs/" + SONG.name.to_lower() + "/meta"
-	if ResourceLoader.exists(meta_path + ".tres"):
-		meta = load(meta_path + ".tres")
-
-	if ResourceLoader.exists(meta_path + ".res"):
-		meta = load(meta_path + ".res")
+		METADATA = Global.METADATA
 
 	scroll_speed = SONG.scroll_speed
 	if SettingsAPI.get_setting("scroll speed") > 0:
@@ -236,60 +223,69 @@ func _ready() -> void:
 			"constant":
 				scroll_speed = SettingsAPI.get_setting("scroll speed")
 
-	ui_skin = load("res://scenes/gameplay/ui_skins/"+SONG.ui_skin+".tscn").instantiate()
+	ui_skin = load("res://scenes/gameplay/ui_skins/"+METADATA.playData["noteStyle"]+".tscn").instantiate()
 	# music shit
 
-	load_song()
-
-	Conductor.map_bpm_changes(SONG)
-	Conductor.change_bpm(SONG.bpm)
+	Conductor.map_bpm_changes(METADATA)
+	Conductor.change_bpm(METADATA.timeChanges[0]["bpm"])
 	Conductor.position = Conductor.crochet * -5
 
 	gen_song()
 	load_events()
 
-	health = max_health * 0.5
+	health = Constants.HEALTH_STARTING
 
-	health_bar.min_value = 0.0
-	health_bar.max_value = max_health
-	health_bar.value = health
-
-	cpu_strums = load("res://scenes/gameplay/strumlines/"+str(SONG.key_count)+"K.tscn").instantiate()
+	cpu_strums = load("res://scenes/gameplay/strumlines/4K.tscn").instantiate()
 	cpu_strums.note_skin = ui_skin
+	cpu_strums.handle_input = false
 	strumlines.add_child(cpu_strums)
 
-	player_strums = load("res://scenes/gameplay/strumlines/"+str(SONG.key_count)+"K.tscn").instantiate()
+	for strum in cpu_strums.get_children():
+		strum.animation_finished.connect(func(): \
+			if strum.animation.ends_with("confirm"): \
+				strum.play_anim("static") \
+		)
+
+	player_strums = load("res://scenes/gameplay/strumlines/4K.tscn").instantiate()
 	player_strums.note_skin = ui_skin
 	strumlines.add_child(player_strums)
 
-	# load song scripts (put in assets/songs/SONGNAME)
-	var script_path:String = "res://assets/songs/"+SONG.name.to_lower()+"/"
-	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
+	# load global song scripts (put in assets/data/scripts/songs/)
+	var global_song_script_path:String = "res://assets/data/scripts/songs/"
+	var file_list:PackedStringArray = Global.list_files_in_dir(global_song_script_path)
 	for item in file_list:
 		if item.ends_with(".tscn") or item.ends_with(".tscn.remap"):
-			var script:FunkinScript = FunkinScript.create(script_path+item.replace(".remap", ""), self)
+			var script:FunkinScript = FunkinScript.create(global_song_script_path+item.replace(".remap", ""), self)
 			script_group.add_script(script)
 
-	# load global scripts (put in assets/songs)
-	var init_path:String = "res://assets/songs/"
-	file_list = Global.list_files_in_dir(init_path)
-	for item in file_list:
+	# load song scripts (put in assets/songs/SONGNAME)
+	var song_script_path:String = "res://assets/songs/"+METADATA.rawSongName.to_lower()+"/"
+	var song_file_list = Global.list_files_in_dir(song_script_path)
+	for item in song_file_list:
 		if item.ends_with(".tscn") or item.ends_with(".tscn.remap"):
-			var script:FunkinScript = FunkinScript.create(init_path+item.replace(".remap", ""), self)
+			var script:FunkinScript = FunkinScript.create(song_script_path+item.replace(".remap", ""), self)
 			script_group.add_script(script)
 
 	var strum_y:float = Global.game_size.y - 100.0 if SettingsAPI.get_setting("downscroll") else 100.0
-	cpu_strums.position = Vector2((Global.game_size.x * 0.5) - (320.0 if not SettingsAPI.get_setting("centered notefield") else 10000.0), strum_y)
+	cpu_strums.position = Vector2((Global.game_size.x * 0.5) - 320.0, strum_y)
+	if SettingsAPI.get_setting("centered notefield"):
+		cpu_strums.get_child(2).position.x += 640
+		cpu_strums.get_child(3).position.x += 640
+	cpu_strums.modulate = Color(1, 1, 1, SettingsAPI.get_setting("oppStrumVis"))
+	cpu_strums.scale = Vector2(SettingsAPI.get_setting("oppStrumScale"), SettingsAPI.get_setting("oppStrumScale"))
 	player_strums.position = Vector2((Global.game_size.x * 0.5) + (320.0 if not SettingsAPI.get_setting("centered notefield") else 0.0), strum_y)
+	player_strums.modulate = Color(1, 1, 1, SettingsAPI.get_setting("playerStrumVis"))
+	player_strums.scale =Vector2(SettingsAPI.get_setting("playerStrumScale"), SettingsAPI.get_setting("playerStrumScale"))
 
-	var stage_path:String = "res://scenes/gameplay/stages/"+SONG.stage+".tscn"
+	var stage_path:String = "res://scenes/gameplay/stages/"+METADATA.playData["stage"]+".tscn"
 	if ResourceLoader.exists(stage_path):
 		stage = load(stage_path).instantiate()
 	else:
-		stage = load("res://scenes/gameplay/stages/stage.tscn").instantiate()
+		stage = load("res://scenes/gameplay/stages/mainStage.tscn").instantiate()
 
 	default_cam_zoom = stage.default_cam_zoom
-	camera.zoom = Vector2(default_cam_zoom, default_cam_zoom)
+	cam_zoom = default_cam_zoom
+	camera.zoom = Vector2(cam_zoom, cam_zoom)
 	camera.position_smoothing_speed *= Conductor.rate
 
 	add_child(stage)
@@ -298,33 +294,7 @@ func _ready() -> void:
 	load_opponent()
 	load_player()
 
-	update_health_bar()
-	setup_label_settings()
-
-	if SettingsAPI.get_setting("downscroll"):
-		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
-		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y") * 0.1
-		time_bar.position.y = 690
-	else:
-		health_bar_bg.position.x = SettingsAPI.get_setting("hpbar x")
-		health_bar_bg.position.y = SettingsAPI.get_setting("hpbar y")
-		time_bar.position.y = 20
-
-	if SettingsAPI.get_setting("hide hpbar"):
-		health_bar_bg.self_modulate = Color(1, 1, 1, 0)
-		health_bar.self_modulate = Color(1, 1, 1, 0)
-	else:
-		health_bar_bg.self_modulate = Color(1, 1, 1, 1)
-		health_bar.self_modulate = Color(1, 1, 1, 1)
-
-	if SettingsAPI.get_setting("hide icons"):
-		player_icon.hide()
-		cpu_icon.hide()
-	else:
-		player_icon.show()
-		cpu_icon.show()
-
-	max_time = tracks[0].stream.get_length() * 1000.0
+	load_song()
 
 	if SettingsAPI.get_setting("judgement camera").to_lower() == "hud":
 		remove_child(combo_group)
@@ -334,44 +304,71 @@ func _ready() -> void:
 	combo_group.remove_child(rating_template)
 	combo_group.remove_child(combo_template)
 
-	update_camera()
+	update_camera(spectator.camera_pos.global_position.x, spectator.camera_pos.global_position.y, 0, Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 	for i in player_strums.get_child_count():
 		pressed.append(false)
 
 	SettingsAPI.setup_binds()
 
-	position_icons()
 	start_countdown()
 
-	update_score_text()
+	sicks = 0
+	goods = 0
+	bads = 0
+	shits = 0
 
-	RichPresence.set_text(str(SONG.name) + " (" + str(Global.current_difficulty).capitalize() + ")", "")
+	hud.game = self
+	hud.setup_hud()
+
+	max_time = tracks[0].stream.get_length() * 1000.0
 
 	stage.callv("_ready_post", [])
 	script_group.call_func("_ready_post", [])
 
 func load_spectator():
-	var spectator_path:String = "res://scenes/gameplay/characters/"+SONG.spectator+".tscn"
+	var spectator_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["girlfriend"]+".tscn"
 	if ResourceLoader.exists(spectator_path):
 		spectator = load(spectator_path).instantiate()
 	else:
-		spectator = load("res://scenes/gameplay/characters/bf.tscn").instantiate()
+		spectator = load("res://scenes/gameplay/characters/gf.tscn").instantiate()
 
 	spectator.position = stage.character_positions["spectator"].position
-	add_child(spectator)
+	spectator.scale = stage.character_positions["spectator"].scale
+	characters.add_child(spectator)
+	spectator.z_index = stage.character_positions["spectator"].z_index
+	spectator.anim_sprite.material = stage.character_positions["spectator"].material
+
+	# load character scripts (put in assets/data/scripts/characters/CHARACTER_FOLDER)
+	var script_path:String = "res://assets/data/scripts/characters/"+spectator.character_script_folder+"/"
+	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
+	for item in file_list:
+		if item.ends_with(spectator.character_script_name+".tscn") or item.ends_with(spectator.character_script_name+".tscn.remap"):
+			var script:FunkinScript = FunkinScript.create(script_path+item.replace(".remap", ""), self)
+			script_group.add_script(script)
 
 func load_opponent():
-	var opponent_path:String = "res://scenes/gameplay/characters/"+SONG.opponent+".tscn"
+	var opponent_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["opponent"]+".tscn"
 	if ResourceLoader.exists(opponent_path):
 		opponent = load(opponent_path).instantiate()
 	else:
-		opponent = load("res://scenes/gameplay/characters/bf.tscn").instantiate()
+		opponent = load("res://scenes/gameplay/characters/dad.tscn").instantiate()
 
 	opponent.position = stage.character_positions["opponent"].position
-	add_child(opponent)
+	opponent.scale = stage.character_positions["opponent"].scale
+	characters.add_child(opponent)
+	opponent.z_index = stage.character_positions["opponent"].z_index
+	opponent.anim_sprite.material = stage.character_positions["opponent"].material
 
-	if SONG.opponent == SONG.spectator:
+	# load character scripts (put in assets/data/scripts/characters/CHARACTER_FOLDER)
+	var script_path:String = "res://assets/data/scripts/characters/"+opponent.character_script_folder+"/"
+	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
+	for item in file_list:
+		if item.ends_with(opponent.character_script_name+".tscn") or item.ends_with(opponent.character_script_name+".tscn.remap"):
+			var script:FunkinScript = FunkinScript.create(script_path+item.replace(".remap", ""), self)
+			script_group.add_script(script)
+
+	if METADATA.playData["characters"]["opponent"] == METADATA.playData["characters"]["girlfriend"]:
 		opponent.position = spectator.position
 		spectator.queue_free()
 		# someone complain about dis
@@ -379,7 +376,7 @@ func load_opponent():
 		spectator = null
 
 func load_player():
-	var player_path:String = "res://scenes/gameplay/characters/"+SONG.player+".tscn"
+	var player_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["player"]+".tscn"
 	if ResourceLoader.exists(player_path):
 		player = load(player_path).instantiate()
 	else:
@@ -387,24 +384,21 @@ func load_player():
 
 	player._is_true_player = true
 	player.position = stage.character_positions["player"].position
-	add_child(player)
+	player.scale = stage.character_positions["player"].scale
+	characters.add_child(player)
+	player.z_index = stage.character_positions["player"].z_index
+	player.anim_sprite.material = stage.character_positions["player"].material
 
-func update_health_bar():
-	cpu_icon.texture = opponent.health_icon
-	cpu_icon.hframes = opponent.health_icon_frames
-
-	player_icon.texture = player.health_icon
-	player_icon.hframes = player.health_icon_frames
-
-	if SettingsAPI.get_setting("icon colors"):
-		OPPONENT_HEALTH_COLOR.bg_color = opponent.health_color
-		PLAYER_HEALTH_COLOR.bg_color = player.health_color
-	#elif SettingsAPI.get_setting("custom color"):
-		#OPPONENT_HEALTH_COLOR.bg_color = SettingsAPI.get_setting("opponent color")
-		#PLAYER_HEALTH_COLOR.bg_color = SettingsAPI.get_setting("player color")
+	# load character scripts (put in assets/data/scripts/characters/CHARACTER_FOLDER)
+	var script_path:String = "res://assets/data/scripts/characters/"+player.character_script_folder+"/"
+	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
+	for item in file_list:
+		if item.ends_with(player.character_script_name+".tscn") or item.ends_with(player.character_script_name+".tscn.remap"):
+			var script:FunkinScript = FunkinScript.create(script_path+item.replace(".remap", ""), self)
+			script_group.add_script(script)
 
 func start_cutscene(postfix:String = "-start"):
-	var cutscene_path = "res://scenes/gameplay/cutscenes/" + SONG.name.to_lower() + postfix + ".tscn"
+	var cutscene_path = "res://scenes/gameplay/cutscenes/" + METADATA.rawSongName.to_lower() + postfix + ".tscn"
 	if ResourceLoader.exists(cutscene_path):
 		in_cutscene = true
 		hud.add_child(load(cutscene_path).instantiate())
@@ -486,7 +480,8 @@ func start_song():
 
 	for track in tracks:
 		add_child(track)
-		track.play((Conductor.position + meta.start_offset) / 1000.0)
+		#track.play((Conductor.position + METADATA.offsets["instrumental"]) / 1000.0)
+		track.play()
 
 	starting_song = false
 
@@ -495,7 +490,7 @@ func start_song():
 
 func resync_tracks() -> void:
 	for track in tracks:
-		track.seek((Conductor.position + meta.start_offset) / 1000.0)
+		track.seek((Conductor.position + METADATA.offsets["instrumental"]) / 1000.0)
 
 func end_song():
 	if not ending_song:
@@ -506,28 +501,37 @@ func end_song():
 	stage.callv("on_end_song", [])
 	var ret:Variant = script_group.call_func("on_end_song", [])
 	if ret == false: return
-	if score > HighScore.get_score(SONG.name,Global.current_difficulty):
-		HighScore.set_score(SONG.name,Global.current_difficulty,score)
+	if songScore > HighScore.get_score(METADATA.rawSongName,Global.current_difficulty):
+		HighScore.set_score(METADATA.rawSongName,Global.current_difficulty,songScore)
 
 	if Global.queued_songs.size() > 0:
-		Global.SONG = Chart.load_chart(Global.queued_songs[0], Global.current_difficulty)
+		Global.SONG = Chart.load_chart(Global.queued_songs[0], Global.current_difficulty, Global.variation)
+		Global.METADATA = Metadata.load_metadata(Global.queued_songs[0], Global.variation)
 		Global.queued_songs.remove_at(0)
+		Ranking.add_results(songScore, misses, max_combo, sicks, goods, bads, shits, total_notes)
 		Global.switch_scene("res://scenes/gameplay/Gameplay.tscn")
 	else:
-		Global.switch_scene("res://scenes/FreeplayMenu.tscn" if !Global.is_story_mode else "res://scenes/StoryMenu.tscn")
+		Ranking.add_results(songScore, misses, max_combo, sicks, goods, bads, shits, total_notes)
+		Global.variation = "default" # reset for freeplay
+		Global.switch_scene("res://scenes/menus/freeplay/Menu.tscn" if !Global.is_story_mode else "res://scenes/menus/story menu/Menu.tscn")
+
 
 func beat_hit(beat:int):
 	stage.callv("on_beat_hit", [beat])
 	script_group.call_func("on_beat_hit", [beat])
 
-	if icon_bumping and icon_bumping_interval > 0 and beat % icon_bumping_interval == 0:
-		cpu_icon.scale += Vector2(0.2, 0.2)
-		player_icon.scale += Vector2(0.2, 0.2)
-		position_icons()
+	for track in tracks:
+		if abs((track.get_playback_position() * 1000.0 - METADATA.offsets["instrumental"]) - (Conductor.position)) >= 20:
+			resync_tracks()
 
-	if cam_bumping and cam_bumping_interval > 0 and beat % 4 == 0:
-		camera.zoom += Vector2(0.015, 0.015)
-		hud.scale += Vector2(0.03, 0.03)
+	if icon_bumping and icon_bumping_interval > 0 and beat % icon_bumping_interval == 0:
+		hud.cpu_icon.scale += Vector2(0.2, 0.2) * opponent.health_icon_scale
+		hud.player_icon.scale += Vector2(0.2, 0.2) * player.health_icon_scale
+		hud.position_icons()
+
+	if cam_bumping and beat % camera_zoom_rate == 0:
+		if SettingsAPI.get_setting("zoom camera"): camera.zoom += Vector2(camera_bop_intensitiy, camera_bop_intensitiy)
+		if SettingsAPI.get_setting("zoom hud"): hud.scale += Vector2(hud_zoom_intensitiy, hud_zoom_intensitiy)
 		position_hud()
 
 	character_bop()
@@ -538,29 +542,6 @@ func beat_hit(beat:int):
 func step_hit(step:int):
 	script_group.call_func("on_step_hit", [step])
 	script_group.call_func("on_step_hit_post", [step])
-
-func do_event(event_name:String,parameters:Array[String]):
-	var ev:Event = load("res://scenes/events/" + event_name + ".tscn").instantiate()
-	ev.parameters = parameters
-	add_child(ev)
-
-
-func section_hit(section:int):
-	for track in tracks:
-		if abs((track.get_playback_position() * 1000.0 - meta.start_offset) - (Conductor.position)) >= 20:
-			resync_tracks()
-
-	if note_data_array.size() == 0 and note_group.get_children().size() == 0:
-		get_tree().create_timer((meta.end_offset/1000) / Conductor.rate).timeout.connect(end_song)
-
-	if not range(SONG.sections.size()).has(section): return
-
-	script_group.call_func("on_section_hit", [section])
-
-	if cam_switching:
-		update_camera(section)
-
-	script_group.call_func("on_section_hit_post", [section])
 
 func character_bop():
 	if opponent != null and opponent.dance_on_beat and not opponent.last_anim.begins_with("sing"):
@@ -574,16 +555,77 @@ func character_bop():
 
 	script_group.call_func("on_character_bop", [])
 
-func update_camera(sec:int = 0):
-	if not range(SONG.sections.size()).has(sec): return
+var cam_focus_tween: Tween
 
-	var cur_sec:Section = SONG.sections[sec]
-	if cur_sec != null and cur_sec.is_player:
-		camera.position = player.get_camera_pos() + stage.player_cam_offset
+func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
+
+	if cam_focus_tween:
+		cam_focus_tween.kill()
+
+	cam_focus_tween = create_tween()
+
+	if duration == 0:
+		camera.position = Vector2(targetX, targetY)
+		cam_focus_tween.kill()
 	else:
-		camera.position = opponent.get_camera_pos() + stage.opponent_cam_offset
+		cam_focus_tween.tween_property(camera, "position", Vector2(targetX, targetY), duration * Conductor.rate).set_trans(trans).set_ease(ease)
 
-	script_group.call_func("on_update_camera", [])
+	cam_focus_tween.finished.connect(func():
+		script_group.call_func("on_update_camera", []))
+
+var cam_zoom_tween: Tween
+
+func zoom_camera(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
+	if !SettingsAPI.get_setting("zoom camera"): return
+
+	if cam_zoom_tween:
+		cam_zoom_tween.kill()
+
+	cam_zoom_tween = create_tween()
+
+	if duration == 0:
+		camera.zoom = Vector2(zoom, zoom)
+		cam_zoom_tween.kill()
+	else:
+		cam_zoom_tween.tween_property(camera, "zoom", Vector2(zoom, zoom), duration * Conductor.rate).set_trans(trans).set_ease(ease)
+		cam_zoom = zoom
+
+	cam_zoom_tween.finished.connect(func():
+		script_group.call_func("on_camera_zoom", []))
+
+var hud_zoom_tween: Tween
+
+func hud_zoom(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
+	if !SettingsAPI.get_setting("zoom hud"): return
+
+	if hud_zoom_tween:
+		hud_zoom_tween.kill()
+
+	hud_zoom_tween = create_tween()
+
+	if duration == 0:
+		hud.scale = Vector2(zoom, zoom)
+		hud_zoom_tween.kill()
+	else:
+		hud_zoom_tween.tween_property(hud, "scale", Vector2(zoom, zoom), duration).set_trans(trans).set_ease(ease)
+
+var scroll_speed_tween: Tween
+
+func tween_scroll_speed(scroll:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
+	if scroll_speed_tween: scroll_speed_tween.kill()
+
+	scroll_speed_tween = create_tween()
+	scroll_speed_tween.tween_property(self, "scroll_speed", scroll, duration).set_trans(trans).set_ease(ease)
+
+func camera_shake(strength:float, fade:float, shake_camera:bool = true, hud_shake:bool = false):
+	cam_shake_strength = strength
+	cam_shake_fade = fade
+
+	shake_cam = shake_cam if SettingsAPI.get_setting("camera shake") else false
+	shake_hud = hud_shake if SettingsAPI.get_setting("hud shake") else false
+
+func random_offset() -> Vector2:
+	return Vector2(Global.rng.randf_range(-cam_shake_strength,cam_shake_strength), Global.rng.randf_range(-cam_shake_strength,cam_shake_strength))
 
 func position_hud():
 	hud.offset.x = (hud.scale.x - 1.0) * -(Global.game_size.x * 0.5)
@@ -606,9 +648,9 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 	if data > -1:
 		pressed[data] = key_event.is_pressed()
 
-	if data == -1 and ProjectSettings.get_setting("engine/customization/chart_editor_on_release") and key_event.is_action_pressed("chart_open"):
-		Global.switch_scene("res://scenes/editors/ChartEditor.tscn")
-		return
+	#if data == -1 and ProjectSettings.get_setting("engine/customization/chart_editor_on_release") and key_event.is_action_pressed("chart_open"):
+		#Global.switch_scene("res://scenes/editors/ChartEditor.tscn")
+		#return
 
 	if data == -1 or not Input.is_action_just_pressed(player_strums.controls[data]):
 		return
@@ -628,6 +670,7 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 		dont_hit.append(false)
 
 	if possible_notes.size() > 0:
+		key_pressed += 1
 		for note in possible_notes:
 			if not dont_hit[data] and note.direction == data:
 				dont_hit[data] = true
@@ -646,8 +689,9 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 
 			break
 	else:
+		hud.update_score_text()
 		ghost_taps += 1
-		update_score_text()
+		key_pressed += 1
 		if not SettingsAPI.get_setting("ghost tapping"):
 			fake_miss(data)
 			if SettingsAPI.get_setting("miss sounds"):
@@ -656,16 +700,13 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 		script_group.call_func("on_ghost_tap", [data])
 
 func fake_miss(direction:int = -1):
-	var new_health = health - 0.0475 * Global.health_loss_mult
-
-	var hp_tween = get_tree().create_tween()
-	hp_tween.tween_property(self, "health", new_health, 0.1)
+	var healthChange = health - Constants.HEALTH_MISS_PENALTY * Global.health_loss_mult
 
 	misses += 1
-	score -= 10
-	combo = 0
 	accuracy_pressed_notes += 1
-	update_score_text()
+
+	applyScore(-10, "miss", healthChange, true)
+	hud.update_score_text()
 
 	if direction < 0: return
 
@@ -684,11 +725,16 @@ func pop_up_score(judgement:Judgement) -> void:
 
 	accuracy_pressed_notes += 1
 	accuracy_total_hit += judgement.accuracy_gain
-	score += judgement.score
 	combo += 1
 
 	if max_combo < combo:
 		max_combo = combo
+
+	if spectator and spectator.combo_anims.has(combo):
+		if spectator.anim_player.has_animation(spectator.combo_anims[combo]):
+			spectator.play_anim(spectator.combo_anims[combo], true, true)
+		else:
+			push_warning("Animation \'"+spectator.combo_anims[combo]+"\' does not exist.")
 
 	if not SettingsAPI.get_setting('judgement stacking'):
 		for child in combo_group.get_children():
@@ -775,26 +821,44 @@ func good_note_hit(note:Note):
 		receptor.splash.visible = true
 		script_group.call_func("on_spawn_note_splash", [receptor.splash])
 
+	var score = Scoring.scoreNote(note_diff, "PBOT1")
+	var daRating = Scoring.judgeNote(note_diff, "PBOT1")
+
+	var healthChange = 0.0
+	var isComboBreak = false
+	match daRating:
+		"sick":
+			healthChange = health + Constants.HEALTH_SICK_BONUS
+			isComboBreak = Constants.JUDGEMENT_SICK_COMBO_BREAK
+		"good":
+			healthChange = health + Constants.HEALTH_GOOD_BONUS
+			isComboBreak = Constants.JUDGEMENT_GOOD_COMBO_BREAK
+		"bad":
+			healthChange = health + Constants.HEALTH_GOOD_BONUS
+			isComboBreak = Constants.JUDGEMENT_BAD_COMBO_BREAK
+		"shit":
+			healthChange = health + Constants.HEALTH_SHIT_BONUS
+			isComboBreak = Constants.JUDGEMENT_SHIT_COMBO_BREAK
+		"miss":
+			healthChange = health - Constants.HEALTH_MISS_PENALTY
+			isComboBreak = true
+
 	if note.should_hit:
+		notes_hit += 1
+		applyScore(score, daRating, healthChange, isComboBreak)
 		pop_up_score(judgement)
 	else:
 		combo = 0
 		accuracy_pressed_notes += 1
 
-	update_score_text()
+	hud.update_score_text()
 
 	note.was_good_hit = true
 
 	var sing_anim = get_sing_anim(note)
-	player.play_anim(sing_anim, true)
-	player.hold_timer = 0.0
-
-	var new_health = health + 0.023 * note.health_gain_mult * judgement.health_gain_mult * (
-			Global.health_gain_mult if judgement.health_gain_mult > 0.0 \
-			else Global.health_loss_mult)
-
-	var hp_tween = get_tree().create_tween()
-	hp_tween.tween_property(self, "health", new_health, 0.1)
+	if note.play_sing_anim:
+		player.play_anim(sing_anim, true)
+		player.hold_timer = 0.0
 
 	if note.length <= 0:
 		note._player_hit()
@@ -812,19 +876,49 @@ func good_note_hit(note:Note):
 
 func opponent_note_hit(note:Note):
 	var sing_anim:String = get_sing_anim(note)
-	opponent.play_anim(sing_anim, true)
-	opponent.hold_timer = 0.0
+	if note.play_sing_anim:
+		opponent.play_anim(sing_anim, true)
+		opponent.hold_timer = 0.0
 
 	if opponent.name.to_lower() == "tankman":
 		if sing_anim.ends_with("DOWN-alt"):
 			opponent.special_anim = true
 			opponent.anim_timer = 3
 
-	#var data:int = note.direction
-	#var receptor:Receptor = cpu_strums.get_child(data)
-	#receptor.play_anim("confirm")
-	#await get_tree().create_timer(0.1).timeout
-	#receptor.play_anim("static")
+func applyScore(score:int, daRating:String, healthChange:float, isComboBreak:bool):
+	match daRating:
+		"sick": sicks += 1
+		"good": goods += 1
+		"bad": bads += 1
+		"shit": shits += 1
+
+	health = healthChange
+
+	if isComboBreak:
+		combo = 0
+
+	songScore += score
+
+func format_number(number: int) -> String:
+	# Handle negative numbers by adding the "minus" sign in advance, as we discard it
+	# when looping over the number.
+	var formatted_number := "-" if sign(number) == -1 else ""
+	var index := 0
+	var number_string := str(abs(number))
+
+	for digit in number_string:
+		formatted_number += digit
+
+		var counter := number_string.length() - index
+
+		# Don't add a comma at the end of the number, but add a comma every 3 digits
+		# (taking into account the number's length).
+		if counter >= 2 and counter % 3 == 1:
+			formatted_number += ","
+
+		index += 1
+
+	return formatted_number
 
 func get_sing_anim(note:Note):
 	var strums = player_strums if note.must_press else cpu_strums
@@ -835,65 +929,6 @@ func get_sing_anim(note:Note):
 		sing_anim += "-alt"
 
 	return sing_anim
-
-func position_icons():
-	var icon_offset:int = 26
-	var percent:float = (health_bar.value / health_bar.max_value) * 100
-
-	var cpu_icon_width:float = (cpu_icon.texture.get_width() / cpu_icon.hframes) * cpu_icon.scale.x
-
-	player_icon.position.x = (health_bar.size.x * ((100 - percent) * 0.01)) - icon_offset
-	cpu_icon.position.x = (health_bar.size.x * ((100 - percent) * 0.01)) - (cpu_icon_width - icon_offset)
-	script_group.call_func("on_position_icons", [])
-
-func update_score_text():
-	var hp_percent:float = (health_bar.value / health_bar.max_value) * 100
-
-	var score_values: Dictionary = {
-		"score": score,
-		"misses": misses,
-		"accuracy": snapped(accuracy * 100.0, 0.01),
-		"ranks": Ranking.rank_from_accuracy(accuracy * 100.0).name,
-		"health": round(hp_percent),
-		"combo": combo,
-		"max combo": max_combo,
-		"ghost taps": ghost_taps
-	}
-
-	var array = str_to_var(SettingsAPI.get_setting("score_arrangement"))
-	var text_length = 0
-
-	score_text.text = ""
-
-	for i in array:
-		text_length += 1
-		if text_length == array.size():
-			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix")
-		else:
-			score_text.text += SettingsAPI.get_setting(i + " prefix") + str(score_values[i]) + SettingsAPI.get_setting(i + " suffix") + SettingsAPI.get_setting("seperator")
-
-	script_group.call_func("on_update_score_text", [])
-
-func setup_label_settings():
-	var text_settings = LabelSettings.new()
-	var text_bg = StyleBoxFlat.new()
-
-	text_settings.font = load(SettingsAPI.get_setting("font path"))
-	text_settings.font_size = SettingsAPI.get_setting("font size")
-	text_settings.font_color = SettingsAPI.get_setting("font color")
-
-	text_settings.outline_size = SettingsAPI.get_setting("outline size")
-	text_settings.outline_color = SettingsAPI.get_setting("outline color")
-
-	text_bg.bg_color = Color.from_string(SettingsAPI.get_setting("score bg color"), Color.WHITE)
-	text_bg.expand_margin_bottom = SettingsAPI.get_setting("score bg expand")
-	text_bg.expand_margin_left = SettingsAPI.get_setting("score bg expand")
-	text_bg.expand_margin_right = SettingsAPI.get_setting("score bg expand")
-	text_bg.expand_margin_top = SettingsAPI.get_setting("score bg expand")
-
-	score_text.label_settings = text_settings
-	score_text.add_theme_stylebox_override("normal", text_bg)
-
 
 func game_over():
 	Global.death_character = player.death_character
@@ -920,31 +955,42 @@ func _process(delta:float) -> void:
 	if health <= 0:
 		game_over()
 
-	var percent:float = (health / max_health) * 100.0
-	health_bar.max_value = max_health
-	health_bar.value = health
-
 	cur_time = Conductor.position
 
-	time_progress = cur_time / max_time
-	time_bar.value = time_progress
+	Global.gameplay_values["score"] =			format_number(songScore)
+	Global.gameplay_values["misses"] =			misses
+	Global.gameplay_values["accuracy"] =		snapped(accuracy * 100.0, 0.01)
+	Global.gameplay_values["accuracy rank"] =	Ranking.rank_from_accuracy(accuracy * 100.0).name
+	Global.gameplay_values["rank"] =			calculate_rank()
+	Global.gameplay_values["health"] =			snapped((health / Constants.HEALTH_MAX) * 100, 0)
+	Global.gameplay_values["combo"] =			format_number(combo)
+	Global.gameplay_values["max combo"] =		format_number(max_combo)
+	Global.gameplay_values["ghost presses"] =	format_number(ghost_taps)
+	Global.gameplay_values["key presses"] =		format_number(key_pressed)
+	Global.gameplay_values["current time"] =	Global.format_time(Conductor.position / 1000)
+	Global.gameplay_values["max time"] =		Global.format_time(max_time / 1000)
+	Global.gameplay_values["time left"] =		Global.format_time((max_time / 1000) - (Conductor.position / 1000))
+	Global.gameplay_values["song name"] =		METADATA.songName.capitalize()
+	Global.gameplay_values["difficulty"] =		Global.current_difficulty.capitalize()
+	Global.gameplay_values["sick hits"] =		format_number(sicks)
+	Global.gameplay_values["good hits"] =		format_number(goods)
+	Global.gameplay_values["bad hits"] =		format_number(bads)
+	Global.gameplay_values["shit hits"] =		format_number(shits)
 
-	timer.text = "%s / %s" % [Global.format_time(cur_time / 1000.0), Global.format_time(max_time / 1000.0)]
-
-	cpu_icon.health = 100.0 - percent
-	player_icon.health = percent
-
-	if icon_zooming:
-		var icon_speed:float = clampf((delta * ICON_DELTA_MULTIPLIER) * Conductor.rate, 0.0, 1.0)
-		cpu_icon.scale = lerp(cpu_icon.scale, Vector2.ONE, icon_speed)
-		player_icon.scale = lerp(player_icon.scale, Vector2.ONE, icon_speed)
-		position_icons()
+	if cur_time > max_time: end_song()
 
 	if cam_zooming:
 		var camera_speed:float = clampf((delta * ZOOM_DELTA_MULTIPLIER) * Conductor.rate, 0.0, 1.0)
-		camera.zoom = lerp(camera.zoom, Vector2(default_cam_zoom, default_cam_zoom), camera_speed)
+		camera.zoom = lerp(camera.zoom, Vector2(cam_zoom, cam_zoom), camera_speed)
 		hud.scale = lerp(hud.scale, Vector2.ONE, camera_speed)
 		position_hud()
+
+	# make a options for this later
+	if cam_shake_strength > 0:
+		cam_shake_strength = lerpf(cam_shake_strength, 0.0, cam_shake_fade * delta)
+
+		if shake_cam: camera.offset = random_offset()
+		if shake_hud: hud.offset = random_offset()
 
 	if not ending_song:
 		Conductor.position += (delta * 1000.0) * Conductor.rate
@@ -956,27 +1002,24 @@ func _process(delta:float) -> void:
 
 	if Input.is_action_just_pressed("ui_pause") and not Global.transitioning:
 		emit_signal("paused")
-		add_child(load("res://scenes/gameplay/PauseMenu.tscn").instantiate())
+		add_child(load("res://scenes/menus/pause/Menu.tscn").instantiate())
 
 	if Input.is_action_just_pressed('space_bar') and not (skipped_intro or starting_song):
 		skip_intro()
+
+	RichPresence.set_text(METADATA.songName + " (" + Global.current_difficulty.capitalize() + ")" )
 
 	stage.callv("_process_post", [delta])
 	script_group.call_func("_process_post", [delta])
 
 func _physics_process(_delta: float) -> void:
-	while (not event_data_array.is_empty()) and Conductor.position >= event_data_array[0].time:
-		print('running %s at %.3f ms with %s.' % [event_data_array[0].name,
-				event_data_array[0].time,
-				event_data_array[0].parameters])
+	for event in event_data_array:
+		if event.time > Conductor.position: break
 
 		if template_events.has(event_data_array[0].name):
-			var event:Event = template_events[event_data_array[0].name].duplicate()
-			event.parameters = event_data_array[0].parameters
-			add_child(event)
-
-		stage.callv("on_event", [event_data_array[0].name, event_data_array[0].parameters])
-		script_group.call_func("on_event", [event_data_array[0].name, event_data_array[0].parameters])
+			var new_event:Event = template_events[event_data_array[0].name].duplicate()
+			new_event.parameters = event_data_array[0].parameters
+			add_child(new_event)
 
 		event_data_array.pop_front()
 
@@ -987,33 +1030,51 @@ func _physics_process(_delta: float) -> void:
 			continue
 
 		var key_count:int = 4
-		var is_player_note:bool = note.player_section
 
-		if note.direction > key_count - 1:
-			is_player_note = !note.player_section
-
-		var instance_type:String = note.type
-		if not note.type in template_notes:
-			print("type not found " + instance_type)
+		var instance_type:String = note.kind
+		if not note.kind in template_notes:
+			if METADATA.rawSongName != "blazin": print("type not found " + instance_type)
 			instance_type = "default"
 
 		var new_note:Note = template_notes[instance_type].duplicate()
-		new_note.strumline = player_strums if is_player_note else cpu_strums
+		new_note.strumline = player_strums if note.direction < 4 else cpu_strums
 		new_note.direction = note.direction % key_count
 		new_note.position = Vector2(new_note.strumline.get_child(new_note.direction).position.x, -9999)
 		new_note.time = note.time
 		new_note.length = note.length * 0.85
-		new_note.must_press = is_player_note
+		new_note.must_press = true if note.direction < 4 else false
 		new_note.note_skin = ui_skin
-		new_note.note_type = instance_type
+		new_note.note_type = instance_type if METADATA["rawSongName"] != "blazin" else note.kind
+
+		if new_note.must_press:
+			total_notes += 1
 
 		if not new_note.alt_anim:
-			new_note.alt_anim = note.alt_anim or (note.type == "Alt Animation")
+			new_note.alt_anim = (note.kind == "Alt Animation")
 
 		note_group.add_child(new_note)
 		script_group.call_func("on_note_spawn", [new_note])
 
 		note_data_array.erase(note)
+
+func calculate_rank():
+	if float(notes_hit + misses) != 0:
+		rank = (float(sicks) + float(goods)) / float(notes_hit + misses)
+	else:
+		rank = 0.00
+
+	if rank == Constants.RANK_PERFECT_THRESHOLD:
+		return "PERFECT!!!"
+	elif rank >= Constants.RANK_EXCELLENT_THRESHOLD:
+		return "Excellent!!"
+	elif rank >= Constants.RANK_GREAT_THRESHOLD:
+		return "Great!"
+	elif rank >= Constants.RANK_GOOD_THRESHOLD:
+		return "Good"
+	elif rank > 0.00:
+		return "Loss"
+	else:
+		return "N/A"
 
 var can_skip_intro: bool = true
 
@@ -1034,6 +1095,8 @@ func skip_intro() -> void:
 		resync_tracks()
 
 func _exit_tree():
+	Global.reset_gameplay_values()
+
 	script_group.call_func("on_destroy", [])
 	script_group.call_func("on_exit_tree", [])
 	script_group.queue_free()

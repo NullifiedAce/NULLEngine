@@ -1,11 +1,14 @@
 extends Node
 
 var SONG:Chart
+var METADATA:Metadata
+var variation:String = "default"
+var instrumental:String = "default"
 
 const note_directions:Array[String] = [
 	"left", "down", "up", "right",
 ]
-var default_ui_skin:String = "default"
+var default_ui_skin:String = "funkin"
 
 const audio_formats:PackedStringArray = [".ogg", ".mp3", ".wav"]
 
@@ -35,17 +38,13 @@ var retry_sound:AudioStream = preload("res://assets/music/gameOverEnd.ogg")
 var current_difficulty:String = "hard"
 
 var is_story_mode:bool = false
+var current_week:int = 0
 var queued_songs:PackedStringArray = []
 
 var game_version = ProjectSettings.get_setting("application/config/version") #+ "\n"
 var new_version: String
 
-const hud_options: Array = ["icon colors", "custom color", "hide hpbar", "hide icons", "player color", "opp color", "hpbar x", "hpbar y",
-	"seperator", "score_arrangement", "font path", "font size", "font color", "outline size", "outline color", "score bg color",
-	"score bg expand", "score prefix", "score suffix", "misses prefix", "misses suffix", "accuracy prefix", "accuracy suffix", "ranks prefix",
-	"ranks suffix", "s+ rank", "s rank", "a rank", "b rank", "c rank", "d rank", "e rank", "f rank", "null rank", "health prefix", "health suffix",
-	"combo prefix", "combo suffix", "max combo prefix", "max combo suffix", "ghost taps prefix", "ghost taps suffix"] # wow this is a lot.
-var update_options = true # used for loading presets
+var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	last_scene_path = get_tree().current_scene.scene_file_path
@@ -173,3 +172,87 @@ func float_to_seconds(value:float) -> float:
 func format_time(value:float) -> String:
 	if value < 0.0: value = 0.0
 	return "%02d:%02d" % [float_to_minute(value), float_to_seconds(value)]
+
+var trans_types = {
+		"linear": Tween.TRANS_LINEAR,
+		"sine": Tween.TRANS_SINE,
+		"quint": Tween.TRANS_QUINT,
+		"quart": Tween.TRANS_QUART,
+		"quad": Tween.TRANS_QUAD,
+		"expo": Tween.TRANS_EXPO,
+		"elastic": Tween.TRANS_ELASTIC,
+		"cubic": Tween.TRANS_CUBIC,
+		"circ": Tween.TRANS_CIRC,
+		"bounce": Tween.TRANS_BOUNCE,
+		"back": Tween.TRANS_BACK,
+		"spring": Tween.TRANS_SPRING
+	}
+
+var ease_types = {
+		"inout": Tween.EASE_IN_OUT,
+		"outin": Tween.EASE_OUT_IN,
+		"in": Tween.EASE_IN,
+		"out": Tween.EASE_OUT
+	}
+
+var gameplay_values: Dictionary = {
+	"nothing": "",
+	"score": 0,
+	"misses": 0,
+	"accuracy": 0.00,
+	"accuracy rank": "N/A",
+	"rank": "N/A",
+	"health": 50,
+	"combo": 0,
+	"max combo": 0,
+	"ghost presses": 0,
+	"key presses": 0,
+	"current time": format_time(0),
+	"max time": format_time(0),
+	"time left": format_time(0),
+	"song name": "Bopeebo",
+	"difficulty": "Hard",
+	"sick hits": 0,
+	"good hits": 0,
+	"bad hits": 0,
+	"shit hits": 0,
+}
+
+func reset_gameplay_values():
+	gameplay_values["score"] =			0
+	gameplay_values["misses"] =			0
+	gameplay_values["accuracy"] =		0.00
+	gameplay_values["accuracy rank"] =	"N/A"
+	gameplay_values["rank"] =			"N/A"
+	gameplay_values["health"] =			50
+	gameplay_values["combo"] =			0
+	gameplay_values["max combo"] =		0
+	gameplay_values["ghost presses"] =	0
+	gameplay_values["key presses"] =	0
+	gameplay_values["current time"] =	format_time(0)
+	gameplay_values["max time"] =		format_time(0)
+	gameplay_values["time left"] =		format_time(0)
+	gameplay_values["song name"] =		"Bopeebo"
+	gameplay_values["difficulty"] =		"Hard"
+	gameplay_values["sick hits"] =		0
+	gameplay_values["good hits"] =		0
+	gameplay_values["bad hits"] =		0
+	gameplay_values["shit hits"] =		0
+
+func parse_ease(ease_string: String) -> Dictionary:
+	var ease_type = Tween.EASE_IN_OUT  # default
+	var trans_type_str = "linear"  # fallback
+	ease_string = ease_string.to_lower()
+
+	for suffix in ease_types.keys():
+		if ease_string.ends_with(suffix):
+			ease_type = ease_types[suffix]
+			trans_type_str = ease_string.left(ease_string.length() - suffix.length())
+			break
+
+	var trans_type = trans_types.get(trans_type_str, Tween.TRANS_LINEAR)
+
+	return {
+		"trans_type": trans_type,
+		"ease_type": ease_type
+	}

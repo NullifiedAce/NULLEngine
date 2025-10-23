@@ -1,2 +1,0 @@
-finish basic HUD editor
-gamebanana wip page
