@@ -1416,6 +1416,7 @@ theme_override_font_sizes/font_size = 24
 text = "HUD Options:"
 
 [node name="HUDEditor" type="Button" parent="OptionPlacement/BG/Appearance/HUDTitle"]
+visible = false
 layout_mode = 0
 offset_top = 64.0
 offset_right = 110.0

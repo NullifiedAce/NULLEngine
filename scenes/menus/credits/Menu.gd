@@ -16,8 +16,8 @@ var selected:int = 0:
 
 @export var category:Array[String]
 
-@onready var title_sprite: AnimatedSprite2D = $BG/AnimatedSprite2D
-@onready var title: Label = $BG/Title
+@onready var title_sprite: AnimatedSprite2D = $CanvasLayer/AnimatedSprite2D
+@onready var title: Label = $CanvasLayer/Title
 
 func _ready() -> void:
 	title_sprite.play("selected")

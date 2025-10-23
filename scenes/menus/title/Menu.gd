@@ -82,16 +82,16 @@ func beat_hit(beat:int):
 
 	match beat:
 		1:
-			create_cool_text(['nullsonic'])
-			add_more_text('cilystuff')
+			create_cool_text(['nullifiedace'])
+			add_more_text('claire')
 		3:
-			add_more_text('presents')
+			add_more_text('present')
 		4:
 			delete_cool_text()
 		5:
 			create_cool_text(['You should', 'check out'])
 		7:
-			add_more_text('the original port')
+			add_more_text('NOVE Engine')
 		8:
 			delete_cool_text()
 		9:

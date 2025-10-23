@@ -57,7 +57,7 @@ enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/di
 
 [engine]
 
-customization/check_for_updates=false
+customization/check_for_updates=true
 customization/first_launch_menu=true
 customization/hud_editor=true
 customization/chart_type="FunkinVSlice"

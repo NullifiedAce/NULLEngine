@@ -51,11 +51,11 @@ var _settings:Dictionary = {
 	"null rank": "N/A",
 
 	# misc
-	"auto pause": true,
+	"auto pause": false,
 	"volume beep pitching": false,
 	"vsync": false,
 	"multi threaded rendering": false,
-	"fps": 240,
+	"fps": 120,
 	"first launch": true,
 
 	# controls (gameplay)

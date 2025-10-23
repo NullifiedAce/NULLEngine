@@ -27,7 +27,6 @@ credit_name = "vaporvee "
 credits_description = "GitHub Contributor"
 
 [node name="Pukimaa" parent="." instance=ExtResource("1_alwo1")]
-jpeg = true
 avatar_url = "https://avatars.githubusercontent.com/u/58347116?v=4"
 credit_name = "Pukimaa"
 credits_description = "GitHub Contributor"
@@ -70,4 +69,32 @@ credits_description = "GitHub Contributor"
 jpeg = true
 avatar_url = "https://avatars.githubusercontent.com/u/16618467?v=4"
 credit_name = "Nukiloco"
+credits_description = "GitHub Contributor"
+
+[node name="gdanimate" type="Label" parent="."]
+layout_mode = 0
+offset_right = 319.0
+offset_bottom = 28.5
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "GDAnimate"
+
+[node name="cherrythecool" parent="." instance=ExtResource("1_alwo1")]
+jpeg = true
+avatar_url = "https://avatars.githubusercontent.com/u/138817584?v=4"
+credit_name = "cherrythecool "
+credits_description = "GitHub Contributor"
+
+[node name="ffmpeg godot" type="Label" parent="."]
+layout_mode = 0
+offset_right = 319.0
+offset_bottom = 28.5
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "ffmpeg godot support"
+
+[node name="cherrythecool2" parent="." instance=ExtResource("1_alwo1")]
+jpeg = true
+avatar_url = "https://avatars.githubusercontent.com/u/138817584?v=4"
+credit_name = "cherrythecool "
 credits_description = "GitHub Contributor"

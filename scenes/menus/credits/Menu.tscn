@@ -39,26 +39,10 @@ color = Color(0.481789, 0.481789, 0.481789, 1)
 gradiant = SubResource("GradientTexture2D_5j6ft")
 metadata/_edit_lock_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BG"]
-position = Vector2(0, -308)
-scale = Vector2(0.55, 0.55)
-sprite_frames = ExtResource("2_5eo6d")
-animation = &"selected"
-
-[node name="Title" type="Label" parent="BG"]
-offset_left = -616.0
-offset_top = -320.0
-offset_right = -376.0
-offset_bottom = -297.0
-theme = ExtResource("4_w0t65")
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_w0t65")
-text = "<Q NULL Engine E>"
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CreditsItems" type="ScrollContainer" parent="CanvasLayer"]
+clip_contents = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -72,3 +56,20 @@ theme = ExtResource("4_w0t65")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CreditsItems"]
 layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(640, 52)
+scale = Vector2(0.55, 0.55)
+sprite_frames = ExtResource("2_5eo6d")
+animation = &"selected"
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+offset_left = 24.0
+offset_top = 40.0
+offset_right = 264.0
+offset_bottom = 63.0
+theme = ExtResource("4_w0t65")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_w0t65")
+text = "<Q NULL Engine E>"
