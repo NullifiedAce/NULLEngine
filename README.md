@@ -19,6 +19,12 @@ External links where I also host this engine.
 - [Official Website](https://nullengine.carrd.co)
 
 Any other site hosting my engine could potentially contain a Virus!
+## Credits
+- Nova Engine by [swordcube](https://github.com/swordcube)
+- GDAnimate & FFMPEG Godot Support by [cherrythecool](https://github.com/cherrythecool)
+- Discord RPC Godot by [vaporvee](https://github.com/vaporvee)
+- Simple TODO by [KoBeWi](https://github.com/KoBeWi)
+
 ## Update Roadmap
 - V1.2.0 - Menu Additions + Overhauls:
   - [ ] Options API
