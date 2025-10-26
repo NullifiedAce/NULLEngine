@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://ch4gdkufvdmy6"]
+[gd_scene load_steps=40 format=3 uid="uid://ch4gdkufvdmy6"]
 
 [ext_resource type="Script" uid="uid://ba8wgwgwwuiad" path="res://scenes/menus/freeplay/Menu.gd" id="1_5pt7i"]
 [ext_resource type="Script" uid="uid://cd6m2dg6wrnkj" path="res://resources/FreeplaySongList.gd" id="2_tlqqb"]
@@ -110,7 +110,18 @@ icon_filter = 0
 difficulties = Array[String](["erect", "nightmare"])
 bg_color = Color(0.717647, 0.847059, 0.333333, 1)
 
-[sub_resource type="Resource" id="Resource_hlcsf"]
+[sub_resource type="Resource" id="Resource_qvh3i"]
+script = ExtResource("3_7sxe0")
+song = "satin-panties"
+display_name = "Satin Panties Erect"
+character_icon = ExtResource("7_as88b")
+icon_frames = 2
+icon_scale = 1.0
+icon_filter = 0
+difficulties = Array[String](["erect", "nightmare"])
+bg_color = Color(0.847059, 0.333333, 0.556863, 1)
+
+[sub_resource type="Resource" id="Resource_adbnc"]
 script = ExtResource("3_7sxe0")
 song = "high"
 display_name = "High Erect"
@@ -207,7 +218,7 @@ metadata/_custom_type_script = "uid://dvtla3mpdl3pn"
 
 [sub_resource type="Resource" id="Resource_bmspx"]
 script = ExtResource("2_tlqqb")
-songs = Array[ExtResource("3_7sxe0")]([SubResource("Resource_qq4qh"), SubResource("Resource_jy1nf"), SubResource("Resource_syvf0"), SubResource("Resource_cw27x"), SubResource("Resource_v8f8f"), SubResource("Resource_yfs53"), SubResource("Resource_tndgv"), SubResource("Resource_kj5ru"), SubResource("Resource_hlcsf"), SubResource("Resource_hlcsf"), SubResource("Resource_8j4g0"), SubResource("Resource_b33x4"), SubResource("Resource_jej1v"), SubResource("Resource_jpdve"), SubResource("Resource_034dv"), SubResource("Resource_8ujo7"), SubResource("Resource_63rvd")])
+songs = Array[ExtResource("3_7sxe0")]([SubResource("Resource_qq4qh"), SubResource("Resource_jy1nf"), SubResource("Resource_syvf0"), SubResource("Resource_cw27x"), SubResource("Resource_v8f8f"), SubResource("Resource_yfs53"), SubResource("Resource_tndgv"), SubResource("Resource_kj5ru"), SubResource("Resource_qvh3i"), SubResource("Resource_adbnc"), SubResource("Resource_8j4g0"), SubResource("Resource_b33x4"), SubResource("Resource_jej1v"), SubResource("Resource_jpdve"), SubResource("Resource_034dv"), SubResource("Resource_8ujo7"), SubResource("Resource_63rvd")])
 
 [node name="FreeplayMenu" type="Node2D"]
 script = ExtResource("1_5pt7i")
