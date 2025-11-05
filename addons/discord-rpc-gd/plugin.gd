@@ -16,7 +16,7 @@ func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
 	plugin_cfg.load(get_editor_interface().get_editor_paths().get_data_dir() + plugin_data_filename)
 	if !get_editor_interface().get_editor_settings().has_setting("DiscordRPC/EditorPresence/enabled"):
-		get_editor_interface().get_editor_settings().set_option("DiscordRPC/EditorPresence/enabled",plugin_cfg.get_value("Discord","editor_presence",false))
+		get_editor_interface().get_editor_settings().set_setting("DiscordRPC/EditorPresence/enabled",plugin_cfg.get_value("Discord","editor_presence",false))
 
 func _exit_tree() -> void:
 	if get_editor_interface().get_editor_settings().has_setting("DiscordRPC/EditorPresence/enabled"):
@@ -46,11 +46,11 @@ func save_no_restart() -> void:
 	
 var editor_presence: Node
 func _on_editor_settings_changed() -> void:
-	plugin_cfg.set_value("Discord","editor_presence",get_editor_interface().get_editor_settings().get_option("DiscordRPC/EditorPresence/enabled"))
+	plugin_cfg.set_value("Discord","editor_presence",get_editor_interface().get_editor_settings().get_setting("DiscordRPC/EditorPresence/enabled"))
 	plugin_cfg.save(get_editor_interface().get_editor_paths().get_data_dir() + plugin_data_filename)
 	if ClassDB.class_exists("EditorPresence") && editor_presence == null:
 		editor_presence = ClassDB.instantiate("EditorPresence")
-	if get_editor_interface().get_editor_settings().has_setting("DiscordRPC/EditorPresence/enabled") && get_editor_interface().get_editor_settings().get_option("DiscordRPC/EditorPresence/enabled"):
+	if get_editor_interface().get_editor_settings().has_setting("DiscordRPC/EditorPresence/enabled") && get_editor_interface().get_editor_settings().get_setting("DiscordRPC/EditorPresence/enabled"):
 		add_child(editor_presence)
 	else:
 		editor_presence.queue_free()
