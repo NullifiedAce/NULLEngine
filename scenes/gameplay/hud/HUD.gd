@@ -47,7 +47,7 @@ func setup_hud() -> void:
 
 	update_health_bar()
 
-	if SettingsAPI.get_setting("downscroll"):
+	if OptionsAPI.get_option("downscroll"):
 		health_bar_bg.position.y *= 0.1
 		time_bar.position.y = 690
 

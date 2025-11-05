@@ -44,7 +44,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		Audio.play_sound("confirmMenu")
 		selected_something = true
-		if SettingsAPI.get_setting("flashing lights"):
+		if OptionsAPI.get_option("flashing lights"):
 			magenta_anim.play("flash")
 
 		button_anim.root_node = buttons.get_child(cur_selected).get_path()
@@ -120,7 +120,7 @@ func _on_achievement_pressed() -> void:
 
 	Audio.play_sound("confirmMenu")
 	selected_something = true
-	if SettingsAPI.get_setting("flashing lights"):
+	if OptionsAPI.get_option("flashing lights"):
 		magenta_anim.play("flash")
 
 	gf.play_anim("cheer", true)

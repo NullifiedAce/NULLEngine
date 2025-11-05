@@ -63,6 +63,7 @@ var _options:Dictionary = {
 	# Engine
 	"fps counter":			false,
 	"current mod":			"Friday Night Funkin'",
+	"last hud file":		"res://assets/defaultHud.json",
 	"first launch":			true,
 }
 

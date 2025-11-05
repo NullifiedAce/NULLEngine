@@ -26,15 +26,15 @@ func _input(event):
 			toggle_mute()
 
 func toggle_mute():
-	SettingsAPI.set_setting("muted", not SettingsAPI.get_setting("muted"))
-	SettingsAPI.flush()
+	OptionsAPI.set_option("muted", not OptionsAPI.get_option("muted"))
+	OptionsAPI.flush()
 	show_panel()
 	update_volume()
 
 func change_by(amount:float):
-	SettingsAPI.set_setting("muted", false)
-	SettingsAPI.set_setting("volume", clampf(SettingsAPI.get_setting("volume") + amount, 0.0, 1.0))
-	SettingsAPI.flush()
+	OptionsAPI.set_option("muted", false)
+	OptionsAPI.set_option("volume", clampf(OptionsAPI.get_option("volume") + amount, 0.0, 1.0))
+	OptionsAPI.flush()
 	show_panel()
 	update_volume()
 
@@ -43,7 +43,7 @@ func show_panel():
 		volume_tween.stop()
 
 	volume_panel.modulate.a = 1.0
-	progress_bar.value = SettingsAPI.get_setting("volume") if not SettingsAPI.get_setting("muted") else 0.0
+	progress_bar.value = OptionsAPI.get_option("volume") if not OptionsAPI.get_option("muted") else 0.0
 
 	if progress_bar.value <= 0:
 		volume_icon.play("mute")
@@ -55,9 +55,9 @@ func show_panel():
 	volume_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	volume_tween.tween_property(volume_panel, "modulate:a", 0.0, 0.3).set_delay(0.5)
 
-	beep_sound.pitch_scale = remap(progress_bar.value, 0, 1, 0.2, 1) if SettingsAPI.get_setting("volume beep pitching") else 1.0
+	beep_sound.pitch_scale = remap(progress_bar.value, 0, 1, 0.2, 1) if OptionsAPI.get_option("volume beep pitching") else 1.0
 	beep_sound.play(0.0)
 
 func update_volume():
-	AudioServer.set_bus_volume_db(0, linear_to_db(SettingsAPI.get_setting("volume")))
-	AudioServer.set_bus_mute(0, SettingsAPI.get_setting("muted"))
+	AudioServer.set_bus_volume_db(0, linear_to_db(OptionsAPI.get_option("volume")))
+	AudioServer.set_bus_mute(0, OptionsAPI.get_option("muted"))

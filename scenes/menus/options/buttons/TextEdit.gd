@@ -4,16 +4,16 @@ class_name OptionText
 @export var option:String = ""
 
 func _ready() -> void:
-	text = SettingsAPI.get_setting(option)
+	text = OptionsAPI.get_option(option)
 
 func _on_focus_exited() -> void:
-	SettingsAPI.set_setting(option, text)
-	SettingsAPI.flush()
+	OptionsAPI.set_option(option, text)
+	OptionsAPI.flush()
 
-	SettingsAPI.update_settings()
+	OptionsAPI.update_settings()
 
 func _on_text_changed() -> void:
-	SettingsAPI.set_setting(option, text)
-	SettingsAPI.flush()
+	OptionsAPI.set_option(option, text)
+	OptionsAPI.flush()
 
-	SettingsAPI.update_settings()
+	OptionsAPI.update_settings()

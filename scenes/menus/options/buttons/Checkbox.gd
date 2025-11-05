@@ -4,12 +4,12 @@ class_name OptionCheckbox
 @export var option:String = ""
 
 func _ready() -> void:
-	button_pressed = SettingsAPI.get_setting(option)
+	button_pressed = OptionsAPI.get_option(option)
 
 func _on_pressed() -> void:
 	Audio.play_sound("scrollMenu")
 
-	SettingsAPI.set_setting(option, not SettingsAPI.get_setting(option))
-	SettingsAPI.flush()
+	OptionsAPI.set_option(option, not OptionsAPI.get_option(option))
+	OptionsAPI.flush()
 
-	SettingsAPI.update_settings()
+	OptionsAPI.update_settings()

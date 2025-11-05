@@ -18,8 +18,8 @@ func _process(delta: float) -> void:
 		enter = true
 		do_flash(1.0)
 		Audio.play_sound("menus/confirmMenu")
-		SettingsAPI.set_setting("first launch", false)
-		SettingsAPI.flush()
+		OptionsAPI.set_option("first launch", false)
+		OptionsAPI.flush()
 
 		var timer:SceneTreeTimer = get_tree().create_timer(2.0)
 		timer.timeout.connect(func():

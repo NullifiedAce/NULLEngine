@@ -216,12 +216,12 @@ func _ready() -> void:
 		METADATA = Global.METADATA
 
 	scroll_speed = SONG.scroll_speed
-	if SettingsAPI.get_setting("scroll speed") > 0:
-		match SettingsAPI.get_setting("scroll speed type").to_lower():
+	if OptionsAPI.get_option("scroll speed") > 0:
+		match OptionsAPI.get_option("scroll speed type").to_lower():
 			"multiplier":
-				scroll_speed *= SettingsAPI.get_setting("scroll speed")
+				scroll_speed *= OptionsAPI.get_option("scroll speed")
 			"constant":
-				scroll_speed = SettingsAPI.get_setting("scroll speed")
+				scroll_speed = OptionsAPI.get_option("scroll speed")
 
 	ui_skin = load("res://scenes/gameplay/ui_skins/"+METADATA.playData["noteStyle"]+".tscn").instantiate()
 	# music shit
@@ -266,16 +266,16 @@ func _ready() -> void:
 			var script:FunkinScript = FunkinScript.create(song_script_path+item.replace(".remap", ""), self)
 			script_group.add_script(script)
 
-	var strum_y:float = Global.game_size.y - 100.0 if SettingsAPI.get_setting("downscroll") else 100.0
+	var strum_y:float = Global.game_size.y - 100.0 if OptionsAPI.get_option("downscroll") else 100.0
 	cpu_strums.position = Vector2((Global.game_size.x * 0.5) - 320.0, strum_y)
-	if SettingsAPI.get_setting("centered notefield"):
+	if OptionsAPI.get_option("centered notefield"):
 		cpu_strums.get_child(2).position.x += 640
 		cpu_strums.get_child(3).position.x += 640
-	cpu_strums.modulate = Color(1, 1, 1, SettingsAPI.get_setting("oppStrumVis"))
-	cpu_strums.scale = Vector2(SettingsAPI.get_setting("oppStrumScale"), SettingsAPI.get_setting("oppStrumScale"))
-	player_strums.position = Vector2((Global.game_size.x * 0.5) + (320.0 if not SettingsAPI.get_setting("centered notefield") else 0.0), strum_y)
-	player_strums.modulate = Color(1, 1, 1, SettingsAPI.get_setting("playerStrumVis"))
-	player_strums.scale =Vector2(SettingsAPI.get_setting("playerStrumScale"), SettingsAPI.get_setting("playerStrumScale"))
+	cpu_strums.modulate = Color(1, 1, 1, OptionsAPI.get_option("oppStrumVis"))
+	cpu_strums.scale = Vector2(OptionsAPI.get_option("oppStrumScale"), OptionsAPI.get_option("oppStrumScale"))
+	player_strums.position = Vector2((Global.game_size.x * 0.5) + (320.0 if not OptionsAPI.get_option("centered notefield") else 0.0), strum_y)
+	player_strums.modulate = Color(1, 1, 1, OptionsAPI.get_option("playerStrumVis"))
+	player_strums.scale =Vector2(OptionsAPI.get_option("playerStrumScale"), OptionsAPI.get_option("playerStrumScale"))
 
 	var stage_path:String = "res://scenes/gameplay/stages/"+METADATA.playData["stage"]+".tscn"
 	if ResourceLoader.exists(stage_path):
@@ -296,7 +296,7 @@ func _ready() -> void:
 
 	load_song()
 
-	if SettingsAPI.get_setting("judgement camera").to_lower() == "hud":
+	if OptionsAPI.get_option("judgement camera").to_lower() == "hud":
 		remove_child(combo_group)
 		hud.add_child(combo_group)
 
@@ -309,7 +309,7 @@ func _ready() -> void:
 	for i in player_strums.get_child_count():
 		pressed.append(false)
 
-	SettingsAPI.setup_binds()
+	OptionsAPI.setup_binds()
 
 	start_countdown()
 
@@ -475,7 +475,7 @@ func start_song():
 	character_bop()
 	Conductor.position = 0.0
 
-	if SettingsAPI.get_setting('skip intro by default'):
+	if OptionsAPI.get_option('skip intro by default'):
 		skip_intro()
 
 	for track in tracks:
@@ -530,8 +530,8 @@ func beat_hit(beat:int):
 		hud.position_icons()
 
 	if cam_bumping and beat % camera_zoom_rate == 0:
-		if SettingsAPI.get_setting("zoom camera"): camera.zoom += Vector2(camera_bop_intensitiy, camera_bop_intensitiy)
-		if SettingsAPI.get_setting("zoom hud"): hud.scale += Vector2(hud_zoom_intensitiy, hud_zoom_intensitiy)
+		if OptionsAPI.get_option("zoom camera"): camera.zoom += Vector2(camera_bop_intensitiy, camera_bop_intensitiy)
+		if OptionsAPI.get_option("zoom hud"): hud.scale += Vector2(hud_zoom_intensitiy, hud_zoom_intensitiy)
 		position_hud()
 
 	character_bop()
@@ -576,7 +576,7 @@ func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.Tra
 var cam_zoom_tween: Tween
 
 func zoom_camera(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
-	if !SettingsAPI.get_setting("zoom camera"): return
+	if !OptionsAPI.get_option("zoom camera"): return
 
 	if cam_zoom_tween:
 		cam_zoom_tween.kill()
@@ -596,7 +596,7 @@ func zoom_camera(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tw
 var hud_zoom_tween: Tween
 
 func hud_zoom(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
-	if !SettingsAPI.get_setting("zoom hud"): return
+	if !OptionsAPI.get_option("zoom hud"): return
 
 	if hud_zoom_tween:
 		hud_zoom_tween.kill()
@@ -621,8 +621,8 @@ func camera_shake(strength:float, fade:float, shake_camera:bool = true, hud_shak
 	cam_shake_strength = strength
 	cam_shake_fade = fade
 
-	shake_cam = shake_cam if SettingsAPI.get_setting("camera shake") else false
-	shake_hud = hud_shake if SettingsAPI.get_setting("hud shake") else false
+	shake_cam = shake_cam if OptionsAPI.get_option("camera shake") else false
+	shake_hud = hud_shake if OptionsAPI.get_option("hud shake") else false
 
 func random_offset() -> Vector2:
 	return Vector2(Global.rng.randf_range(-cam_shake_strength,cam_shake_strength), Global.rng.randf_range(-cam_shake_strength,cam_shake_strength))
@@ -648,7 +648,7 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 	if data > -1:
 		pressed[data] = key_event.is_pressed()
 
-	#if data == -1 and ProjectSettings.get_setting("engine/customization/chart_editor_on_release") and key_event.is_action_pressed("chart_open"):
+	#if data == -1 and ProjectSettings.get_option("engine/customization/chart_editor_on_release") and key_event.is_action_pressed("chart_open"):
 		#Global.switch_scene("res://scenes/editors/ChartEditor.tscn")
 		#return
 
@@ -692,9 +692,9 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 		hud.update_score_text()
 		ghost_taps += 1
 		key_pressed += 1
-		if not SettingsAPI.get_setting("ghost tapping"):
+		if not OptionsAPI.get_option("ghost tapping"):
 			fake_miss(data)
-			if SettingsAPI.get_setting("miss sounds"):
+			if OptionsAPI.get_option("miss sounds"):
 				Audio.play_sound("missnote"+str(randi_range(1, 3)), randf_range(0.1, 0.3))
 
 		script_group.call_func("on_ghost_tap", [data])
@@ -736,7 +736,7 @@ func pop_up_score(judgement:Judgement) -> void:
 		else:
 			push_warning("Animation \'"+spectator.combo_anims[combo]+"\' does not exist.")
 
-	if not SettingsAPI.get_setting('judgement stacking'):
+	if not OptionsAPI.get_option('judgement stacking'):
 		for child in combo_group.get_children():
 			combo_group.remove_child(child)
 			child.queue_free()
@@ -797,8 +797,8 @@ func good_note_hit(note:Note):
 	var note_diff:float = (note.time - Conductor.position) / Conductor.rate
 	var judgement:Judgement = Ranking.judgement_from_time(note_diff)
 
-	if SettingsAPI.get_setting("show ms on note hit"):
-		var downscroll_mult:int = 1 if SettingsAPI.get_setting("downscroll") else -1
+	if OptionsAPI.get_option("show ms on note hit"):
+		var downscroll_mult:int = 1 if OptionsAPI.get_option("downscroll") else -1
 		ms_display.modulate = judgement.color
 		ms_display.text = str(note_diff).pad_decimals(2)+"ms"
 		ms_display.position.x = player_strums.position.x - (ms_display.size.x * 0.5)
@@ -813,7 +813,7 @@ func good_note_hit(note:Note):
 		ms_tween.tween_property(ms_display, "modulate:a", 0.0, 0.3).set_delay(0.5)
 		script_group.call_func("on_show_ms", [])
 
-	if judgement.do_splash and SettingsAPI.get_setting("note splashes"):
+	if judgement.do_splash and OptionsAPI.get_option("note splashes"):
 		var receptor:Receptor = player_strums.get_child(note.direction)
 		receptor.splash.frame = 0
 		var anim:String = "note impact "+str(randi_range(1, 2))+" "+Global.note_directions[note.direction]

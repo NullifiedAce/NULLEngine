@@ -45,7 +45,7 @@ func _ready():
 		week_sprite.position.y = 480 - week_sprite.texture.get_height()
 		week_group.add_child(week_sprite)
 
-	if SettingsAPI.get_setting("story always yellow"):
+	if OptionsAPI.get_option("story always yellow"):
 		$ColoredBG.color = Color("#f9cf51")
 	change_week(0)
 	RichPresence.set_text("In the menus", "Story Menu")
@@ -127,7 +127,7 @@ func change_week(inc):
 
 	week_name.text = week_list.weeks[cur_week].name.to_upper()
 
-	if !SettingsAPI.get_setting("story always yellow"):
+	if !OptionsAPI.get_option("story always yellow"):
 		get_tree().create_tween().tween_property($ColoredBG, "color", week_list.weeks[cur_week].bg_color, 0.5)
 
 	for i in 3:

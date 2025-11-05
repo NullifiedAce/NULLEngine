@@ -62,7 +62,7 @@ func _ready():
 			new_note.player_section = section.is_player
 			queued_notes.append(new_note)
 
-	if SettingsAPI.get_setting("downscroll"):
+	if OptionsAPI.get_option("downscroll"):
 		cpu_strums.position.y = 620
 		plr_strums.position.y = 620
 		info_txt.position.y = 40
@@ -122,7 +122,7 @@ func _process(delta):
 	for note in notes.get_children():
 		note_process(note, delta)
 
-		var downscroll_mult:int = -1 if SettingsAPI.get_setting("downscroll") else 1
+		var downscroll_mult:int = -1 if OptionsAPI.get_option("downscroll") else 1
 
 		var strum_line = plr_strums if note.must_press else cpu_strums
 		var strum_pos:Vector2 = strum_line.get_child(note.direction).global_position
@@ -194,7 +194,7 @@ func note_process(note:Note, delta:float):
 	note.sustain.visible = true
 	note.sustain_end.visible = true
 
-	var downscroll_mult:int = -1 if SettingsAPI.get_setting("downscroll") else 1
+	var downscroll_mult:int = -1 if OptionsAPI.get_option("downscroll") else 1
 	if downscroll_mult < 0:
 		note.clip_rect.position.y = -note.clip_rect.size.y
 		note.sustain.position.y = note.clip_rect.size.y

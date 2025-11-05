@@ -6,7 +6,7 @@ class_name Note
 
 @export var time:float = 0.0:
 	get:
-		return time + SettingsAPI.get_setting("note offset")
+		return time + OptionsAPI.get_option("note offset")
 
 @export var direction:int = 0
 @export var length:float = 0.0
@@ -86,7 +86,7 @@ func _ready() -> void:
 
 	initial_scale = scale
 
-	if SettingsAPI.get_setting("opaque sustains"):
+	if OptionsAPI.get_option("opaque sustains"):
 		sustain.modulate.a = 1.0
 
 	clip_rect.size.y = Global.game_size.y / scale.y
@@ -112,7 +112,7 @@ func _process(delta: float) -> void:
 
 	if too_late: modulate.a = 0.3
 
-	var downscroll_mult:int = -1 if SettingsAPI.get_setting("downscroll") else 1
+	var downscroll_mult:int = -1 if OptionsAPI.get_option("downscroll") else 1
 	if downscroll_mult < 0:
 		clip_rect.position.y = -clip_rect.size.y
 		sustain.position.y = clip_rect.size.y
@@ -121,7 +121,7 @@ func _process(delta: float) -> void:
 		sustain.position.y = 0
 
 	var last_point:int = sustain.points.size() - 1
-	var scroll_speed:float = game.scroll_speed if not in_editor else SettingsAPI.get_setting("scroll speed")
+	var scroll_speed:float = game.scroll_speed if not in_editor else OptionsAPI.get_option("scroll speed")
 	sustain.points[last_point].y = (((length / 2.5) * (scroll_speed / Conductor.rate)) / scale.y) * downscroll_mult
 
 	for i in sustain.points.size():

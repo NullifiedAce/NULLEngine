@@ -110,5 +110,5 @@ func _on_hud_opened(path: String) -> void:
 		new_editor_label.shadow_offset_y.value = StringHelper.string_to_vector2(i["shadow_offset"]).y
 		new_editor_label._on_apply_changes_pressed()
 
-	SettingsAPI.set_setting("lastHudFile", path)
-	SettingsAPI.flush()
+	OptionsAPI.set_option("lastHudFile", path)
+	OptionsAPI.flush()

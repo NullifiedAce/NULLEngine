@@ -9,10 +9,10 @@ func _ready():
 	for n in item_count:
 		item_list.append(get_item_text(n))
 
-	select(item_list.find(SettingsAPI.get_setting(option)))
+	select(item_list.find(OptionsAPI.get_option(option)))
 
 func _on_item_selected(index:int):
-	SettingsAPI.set_setting(option, get_item_text(index))
-	SettingsAPI.flush()
+	OptionsAPI.set_option(option, get_item_text(index))
+	OptionsAPI.flush()
 
-	SettingsAPI.update_settings()
+	OptionsAPI.update_settings()

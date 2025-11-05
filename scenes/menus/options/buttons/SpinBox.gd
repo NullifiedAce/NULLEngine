@@ -7,7 +7,7 @@ var def_step:float
 var multiplier:float = 1.0
 
 func _ready() -> void:
-	value = SettingsAPI.get_setting(option)
+	value = OptionsAPI.get_option(option)
 	def_step = step
 
 func _input(event: InputEvent) -> void:
@@ -19,6 +19,6 @@ func _process(delta: float) -> void:
 	step = def_step * multiplier
 
 func _on_changed(value: float) -> void:
-	SettingsAPI.set_setting(option, value)
-	SettingsAPI.flush()
-	SettingsAPI.update_settings()
+	OptionsAPI.set_option(option, value)
+	OptionsAPI.flush()
+	OptionsAPI.update_settings()

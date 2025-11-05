@@ -50,7 +50,7 @@ func _ready() -> void:
 		mod_configs.append(config)
 
 	# switch back to current mod to avoid conflicts or something
-	ModManager.switch_mod(SettingsAPI.get_setting("current mod"))
+	ModManager.switch_mod(OptionsAPI.get_option("current mod"))
 
 	change_selection()
 	RichPresence.set_text("In the menus", "Mods Menu")
@@ -90,9 +90,9 @@ func _process(delta):
 		Audio.stop_music()
 		Audio.play_sound("confirmMenu")
 
-		SettingsAPI.set_setting("current mod", mod_list[cur_selected].replace(ModManager.MOD_FOLDER, "").replace(".pck", ""))
-		SettingsAPI.flush()
-		ModManager.switch_mod(SettingsAPI.get_setting("current mod"))
+		OptionsAPI.set_option("current mod", mod_list[cur_selected].replace(ModManager.MOD_FOLDER, "").replace(".pck", ""))
+		OptionsAPI.flush()
+		ModManager.switch_mod(OptionsAPI.get_option("current mod"))
 
 		Global.reset_scene(true)
 		queue_free()

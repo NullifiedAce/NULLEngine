@@ -4,13 +4,13 @@ class_name OptionSlider
 @export var option:String = ""
 
 func _ready():
-	value = SettingsAPI.get_setting(option)
+	value = OptionsAPI.get_option(option)
 
 func _on_value_changed(value:float):
-	SettingsAPI.set_setting(option, value)
+	OptionsAPI.set_option(option, value)
 
 func _on_drag_ended(value_changed:bool):
 	if not value_changed: return
-	SettingsAPI.flush()
+	OptionsAPI.flush()
 
-	SettingsAPI.update_settings()
+	OptionsAPI.update_settings()

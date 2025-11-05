@@ -8,7 +8,7 @@ extends Node2D
 @onready var opp_scale_percent: Label = $CenterRef/Opponent/OppOptions/OppSize/Percent
 
 func _process(delta: float) -> void:
-	if SettingsAPI.get_setting("downscroll"):
+	if OptionsAPI.get_option("downscroll"):
 		$Player.position.y = Global.game_size.y - 100
 		$Opponent.position.y = Global.game_size.y - 100
 	else:
@@ -17,10 +17,10 @@ func _process(delta: float) -> void:
 	$PlayerLabel.position.y = $Player.position.y + 60
 	$OpponentLabel.position.y = $Opponent.position.y + 60
 
-	$Player.modulate = Color(1, 1, 1, SettingsAPI.get_setting("playerStrumVis"))
-	$Player.scale = Vector2(SettingsAPI.get_setting("playerStrumScale"), SettingsAPI.get_setting("playerStrumScale"))
-	$Opponent.modulate = Color(1, 1, 1, SettingsAPI.get_setting("oppStrumVis"))
-	$Opponent.scale = Vector2(SettingsAPI.get_setting("oppStrumScale"), SettingsAPI.get_setting("oppStrumScale"))
+	$Player.modulate = Color(1, 1, 1, OptionsAPI.get_option("playerStrumVis"))
+	$Player.scale = Vector2(OptionsAPI.get_option("playerStrumScale"), OptionsAPI.get_option("playerStrumScale"))
+	$Opponent.modulate = Color(1, 1, 1, OptionsAPI.get_option("oppStrumVis"))
+	$Opponent.scale = Vector2(OptionsAPI.get_option("oppStrumScale"), OptionsAPI.get_option("oppStrumScale"))
 
 	player_vis_percent.text = str($CenterRef/Player/OppOptions/PlayerVisibility.value * 100) + "%"
 	player_scale_percent.text = str($CenterRef/Player/OppOptions/PlayerSize.value * 100) + "%"

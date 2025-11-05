@@ -83,7 +83,7 @@ func _save_hud(path: String):
 	file.store_string(JSON.stringify({"HUD": save_json}, "\t"))
 	file.close()
 
-	SettingsAPI.set_setting("lastHudFile", path)
-	SettingsAPI.flush()
+	OptionsAPI.set_option("lastHudFile", path)
+	OptionsAPI.flush()
 
 	print("Saved HUD!")

@@ -12,7 +12,7 @@ enum BindType {
 var selecting_bind:bool = false
 
 func _ready():
-	text = SettingsAPI.get_setting(bind)[bind_type]
+	text = OptionsAPI.get_option(bind)[bind_type]
 
 func _on_pressed():
 	if selecting_bind: return
@@ -27,8 +27,8 @@ func _input(event):
 		print("yo bind is now "+key_str+"\nnow we wait a sec until you can set another bind")
 
 		text = key_str.to_upper()
-		SettingsAPI._settings[bind][bind_type] = key_str.to_upper()
-		SettingsAPI.flush()
-		SettingsAPI.setup_binds()
+		OptionsAPI._settings[bind][bind_type] = key_str.to_upper()
+		OptionsAPI.flush()
+		OptionsAPI.setup_binds()
 
 		get_tree().create_timer(0.5).timeout.connect(func(): selecting_bind = false)

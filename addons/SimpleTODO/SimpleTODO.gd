@@ -23,16 +23,16 @@ func _has_main_screen() -> bool:
 
 func setup_setting(setting: String, initial_value: String):
 	if not ProjectSettings.has_setting(setting):
-		ProjectSettings.set_setting(setting, initial_value)
+		ProjectSettings.set_option(setting, initial_value)
 	
 	ProjectSettings.add_property_info({ "name": setting, "type": TYPE_STRING, "hint": PROPERTY_HINT_SAVE_FILE })
 	ProjectSettings.set_initial_value(setting, initial_value)
 
 func _enter_tree():
 	setup_setting(TEXT_DATA_SETTING, text_data_file)
-	text_data_file = ProjectSettings.get_setting(TEXT_DATA_SETTING)
+	text_data_file = ProjectSettings.get_option(TEXT_DATA_SETTING)
 	setup_setting(IMAGE_DATA_SETTING, image_data_file)
-	image_data_file = ProjectSettings.get_setting(IMAGE_DATA_SETTING)
+	image_data_file = ProjectSettings.get_option(IMAGE_DATA_SETTING)
 	ProjectSettings.settings_changed.connect(on_settings_changed)
 	
 	todo_screen = preload("res://addons/SimpleTODO/TODO.tscn").instantiate()
@@ -46,13 +46,13 @@ func _ready() -> void:
 	set_process_input(false)
 
 func on_settings_changed():
-	var new_text_data_file: String = ProjectSettings.get_setting(TEXT_DATA_SETTING)
+	var new_text_data_file: String = ProjectSettings.get_option(TEXT_DATA_SETTING)
 	if new_text_data_file != text_data_file:
 		var da := DirAccess.open("res://")
 		da.rename(text_data_file, new_text_data_file)
 		text_data_file = new_text_data_file
 	
-	var new_image_data_file: String = ProjectSettings.get_setting(IMAGE_DATA_SETTING)
+	var new_image_data_file: String = ProjectSettings.get_option(IMAGE_DATA_SETTING)
 	if new_image_data_file != image_data_file:
 		var da := DirAccess.open("res://")
 		da.rename(image_data_file, new_image_data_file)

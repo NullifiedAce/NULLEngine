@@ -171,7 +171,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("space_bar"):
 		Audio.stop_music()
 
-		if SettingsAPI.get_setting("freeplay icon bumping"):
+		if OptionsAPI.get_option("freeplay icon bumping"):
 			cur_icon = cur_selected
 
 			Global.current_difficulty = song_list.songs[cur_selected].difficulties[cur_difficulty]

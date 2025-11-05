@@ -13,7 +13,7 @@ func _process(delta:float) -> void:
 	var scroll_speed:float = game.scroll_speed / Conductor.rate
 
 	for i in get_child_count():
-		var downscroll_mult:int = -1 if SettingsAPI.get_setting("downscroll") else 1
+		var downscroll_mult:int = -1 if OptionsAPI.get_option("downscroll") else 1
 		var note:Note = get_child(i)
 
 		if note.direction < 0: continue
@@ -75,7 +75,7 @@ func _process(delta:float) -> void:
 		if note.must_press:
 			if note.time <= Conductor.position - note_kill_range and not note.was_good_hit:
 				if note.should_hit:
-					if SettingsAPI.get_setting("miss sounds"):
+					if OptionsAPI.get_option("miss sounds"):
 						Audio.play_sound("missnote"+str(randi_range(1, 3)), randf_range(0.1, 0.3))
 
 					game.fake_miss(note.direction)

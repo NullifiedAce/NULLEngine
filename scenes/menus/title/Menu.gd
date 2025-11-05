@@ -52,7 +52,7 @@ func _process(delta):
 		if not skipped_intro:
 			skip_intro()
 		elif not transitioning:
-			if SettingsAPI.get_setting("flashing lights"):
+			if OptionsAPI.get_option("flashing lights"):
 				do_flash(1.0)
 			transitioning = true
 			title_enter.play("ENTER PRESSED")
@@ -61,7 +61,7 @@ func _process(delta):
 
 			var timer:SceneTreeTimer = get_tree().create_timer(2.0)
 			timer.timeout.connect(func():
-				SettingsAPI.update_settings()
+				OptionsAPI.update_settings()
 				if ProjectSettings.get_setting("engine/customization/check_for_updates") and Global.game_version != Global.new_version:
 					print(Global.new_version)
 					Global.switch_scene("res://scenes/menus/outdated/Menu.tscn")
@@ -73,7 +73,7 @@ func beat_hit(beat:int):
 	logo.frame = 0
 	logo.play("logo bumpin")
 
-	if SettingsAPI.get_setting("flashing lights"):
+	if OptionsAPI.get_option("flashing lights"):
 		gf.play("danceLeft" if beat % 2 == 0 else "danceRight")
 	else:
 		gf.play("danceLeft_noFL" if beat % 2 == 0 else "danceRight_noFL")
@@ -116,7 +116,7 @@ func skip_intro():
 	delete_cool_text()
 	title_group.visible = true
 
-	if SettingsAPI.get_setting("flashing lights"):
+	if OptionsAPI.get_option("flashing lights"):
 		do_flash()
 
 func do_flash(duration:float = 4.0):

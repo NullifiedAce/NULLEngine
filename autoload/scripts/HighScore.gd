@@ -20,11 +20,11 @@ func _ready():
 	print("Initialized scores!")
 	print(scores)
 func get_score(name:String,diff:String):
-	var CHESSE = name.to_lower()+"-"+diff.to_lower()+"-"+SettingsAPI.get_setting("current mod")
+	var CHESSE = name.to_lower()+"-"+diff.to_lower()+"-"+OptionsAPI.get_option("current mod")
 	if not CHESSE in scores:
 		return 0
 	return scores[CHESSE]
 func set_score(name:String,diff:String,score:int):
-	scores[name.to_lower()+"-"+diff.to_lower()+"-"+SettingsAPI.get_setting("current mod")] = score
+	scores[name.to_lower()+"-"+diff.to_lower()+"-"+OptionsAPI.get_option("current mod")] = score
 	var f = FileAccess.open(_json_path, FileAccess.WRITE)
 	f.store_string(JSON.stringify(scores))

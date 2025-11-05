@@ -4,12 +4,12 @@ class_name OptionColorPick
 @export var option:String = ""
 
 func _ready() -> void:
-	print(SettingsAPI.get_setting(option))
-	color = Color.from_string(SettingsAPI.get_setting(option), Color.TRANSPARENT)
-	#color = SettingsAPI.get_setting(option)
+	print(OptionsAPI.get_option(option))
+	color = Color.from_string(OptionsAPI.get_option(option), Color.TRANSPARENT)
+	#color = OptionsAPI.get_option(option)
 
 func _on_popup_closed() -> void:
-	SettingsAPI.set_setting(option, color.to_html())
-	SettingsAPI.flush()
+	OptionsAPI.set_option(option, color.to_html())
+	OptionsAPI.flush()
 
-	SettingsAPI.update_settings()
+	OptionsAPI.update_settings()

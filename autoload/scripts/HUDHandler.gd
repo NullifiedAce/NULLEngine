@@ -7,7 +7,7 @@ func _ready() -> void:
 	load_hud()
 
 func load_hud():
-	var json = JSON.parse_string(FileAccess.open(SettingsAPI.get_setting("lastHudFile"), FileAccess.READ).get_as_text())
+	var json = JSON.parse_string(FileAccess.open(OptionsAPI.get_option("last hud file"), FileAccess.READ).get_as_text())
 
 	if not "HUD" in json:
 		print("Failed to load JSON. JSON doesn't contain \"HUD\". JSON: " + str(json))

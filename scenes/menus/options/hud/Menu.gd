@@ -88,8 +88,8 @@ func _file_stuff(id:int):
 			open_hud_dialog.show()
 		"Load Default HUD":
 			loading._on_hud_opened("res://assets/defaultHud.json")
-			SettingsAPI.set_setting("lastHudFile", "res://assets/defaultHud.json")
-			SettingsAPI.flush()
+			OptionsAPI.set_option("lastHudFile", "res://assets/defaultHud.json")
+			OptionsAPI.flush()
 		"Save HUD":
 			save_hud_dialog.show()
 		"Exit":
