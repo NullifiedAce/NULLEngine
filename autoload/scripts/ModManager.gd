@@ -1,6 +1,6 @@
 extends Node
 
-var MOD_FOLDER:String = SaveData.path + "mods/"
+var MOD_FOLDER:String = "user://mods/"
 const FALLBACK_MOD:String = "Friday Night Funkin'"
 
 var path_lookup:Dictionary = {

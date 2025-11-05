@@ -1,7 +1,7 @@
 extends Node
 
 var cfg_file:ConfigFile = ConfigFile.new()
-var path = SaveData.path + "EngineTheme.cfg"
+var path = "user://EngineTheme.cfg"
 
 var theme_data:Dictionary = {
 	# HUD Editor Background

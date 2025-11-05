@@ -11,19 +11,18 @@ config_version=5
 [application]
 
 config/name="Friday Night Funkin': NULL Engine"
-config/version="1.1.1"
+config/version="1.2.0"
 config/tags=PackedStringArray("2d", "funkin", "rhythm")
 run/main_scene="res://Init.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="NullifiedAce/NULLEngine"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(1, 0.141176, 1, 1)
 boot_splash/image="uid://ceuewex8spqfl"
 config/icon="res://assets/images/default_mod_icon.png"
 
 [autoload]
 
-SaveData="*res://autoload/scripts/SaveData.gd"
 SettingsAPI="*res://autoload/scripts/SettingsAPI.gd"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 ModManager="*res://autoload/scripts/ModManager.gd"
@@ -57,11 +56,8 @@ enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/di
 
 [engine]
 
-customization/check_for_updates=true
+customization/check_for_updates=false
 customization/first_launch_menu=true
-customization/hud_editor=true
-customization/chart_type="FunkinVSlice"
-customization/save_version="1.1.0"
 
 [gui]
 

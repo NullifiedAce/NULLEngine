@@ -40,9 +40,6 @@ func _ready() -> void:
 	for i in FPS.get_children():
 		i.modulate = Color(1, 1, 1, 0.25)
 
-	save_hud_dialog.root_subfolder = SaveData.path
-	open_hud_dialog.root_subfolder = SaveData.path
-
 	loading.load_hud()
 
 	file_menu.get_popup().id_pressed.connect(_file_stuff)
