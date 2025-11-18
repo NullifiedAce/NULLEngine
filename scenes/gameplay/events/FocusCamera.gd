@@ -52,6 +52,6 @@ func _ready() -> void:
 		push_warning("Unknown camera focus: " + str(parameters))
 
 	var durSeconds = Conductor.step_crochet/1000*duration
-	if OptionsAPI.get_option("camera movement"):
+	if OptionsAPI.get_option("cam movement"):
 		game.update_camera(targetX, targetY, durSeconds, trans_type, ease_type)
 	queue_free()

@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://d0wih5ocuyrev"]
+
+[ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_4vgn6"]
+[ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_eusu4"]
+
+[sub_resource type="Resource" id="Resource_4vgn6"]
+script = ExtResource("2_eusu4")
+option_name = "Left"
+option_description = "Change the keybind for left."
+option_key = "funkin_left"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_eusu4"]
+script = ExtResource("2_eusu4")
+option_name = "Down"
+option_description = "Change the keybind for down."
+option_key = "funkin_down"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_0818c"]
+script = ExtResource("2_eusu4")
+option_name = "Up"
+option_description = "Change the keybind for up."
+option_key = "funkin_up"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_8746i"]
+script = ExtResource("2_eusu4")
+option_name = "Right"
+option_description = "Change the keybind for right."
+option_key = "funkin_right"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_6rxpe"]
+script = ExtResource("2_eusu4")
+option_name = "Left (Alt)"
+option_description = "Change the keybind for alt left."
+option_key = "funkin_left"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_3jffg"]
+script = ExtResource("2_eusu4")
+option_name = "Down (Alt)"
+option_description = "Change the keybind for alt down."
+option_key = "funkin_down"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_ulpov"]
+script = ExtResource("2_eusu4")
+option_name = "Up (Alt)"
+option_description = "Change the keybind for alt up."
+option_key = "funkin_up"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_wxwim"]
+script = ExtResource("2_eusu4")
+option_name = "Right (Alt)"
+option_description = "Change the keybind for alt right."
+option_key = "funkin_right"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[node name="UI" type="Node"]
+script = ExtResource("1_4vgn6")
+title = "UI"
+options = Array[ExtResource("2_eusu4")]([SubResource("Resource_4vgn6"), SubResource("Resource_eusu4"), SubResource("Resource_0818c"), SubResource("Resource_8746i"), SubResource("Resource_6rxpe"), SubResource("Resource_3jffg"), SubResource("Resource_ulpov"), SubResource("Resource_wxwim")])

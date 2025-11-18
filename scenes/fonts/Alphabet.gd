@@ -48,7 +48,7 @@ var y_add:float = 0
 
 var force_x:int
 
-var bold_letters:PackedStringArray = "#$%'\\,-\"!/*.?[]^_|~abcdefghijklmnopqrstuvwxyz".split("")
+var bold_letters:PackedStringArray = "#$%&()*+-'•,”!/¡¿.?\"“01234567890:;<>@[\\]^_abcdefghijklmnopqrstuvwxyz{|}~".split("")
 var regular_letters:PackedStringArray = "#$%'\\,-\"!/*.?[]^_|~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".split("")
 
 func _ready():
@@ -95,27 +95,32 @@ func update_text():
 			letter.position.x = x_pos
 			letter.position.y = y_pos
 
-			var anim:String = line[i].to_upper() if bold else line[i].to_lower()
+			var anim:String
+			if bold:
+				anim = line[i].to_lower()
+			else:
+				anim = line[i]
 			if bold:
 				match anim:
 					"?":
-						anim = "-question mark-"
+						anim = "-question-"
 						letter.position.y -= 10
 					"!":
-						anim = "-exclamation point-"
+						anim = "-exclamation-"
 						letter.position.y -= 10
 					"'":
-						anim = "-apostraphie-"
+						anim = "-apostrophe-"
 						letter.position.y -= 5
+					"•":
+						anim = "-bullet-"
+						letter.position.y += 18
 					"\"":
-						anim = "-end quote-"
+						anim = "-quote-"
 						letter.position.y -= 5
 					"-":
-						anim = "-dash-"
 						letter.position.y += 20
 					"*":
-						anim = "-multiply x-"
-						letter.position.y += 20
+						letter.position.y += 15
 					".":
 						anim = "-period-"
 						letter.position.y += 40
@@ -124,10 +129,18 @@ func update_text():
 						letter.position.y += 40
 					"~":
 						letter.position.y += 20
-					"\\":
-						anim = "-back slash-"
 					"/":
 						anim = "-forward slash-"
+					"”":
+						anim = "-start quote-"
+						letter.position.y -= 5
+					"“":
+						anim = "-end quote-"
+						letter.position.y -= 5
+					"¡":
+						anim = "-inverted exclamation-"
+					"¿":
+						anim = "-inverted question-"
 			else:
 				match anim:
 					"'":
@@ -183,6 +196,9 @@ func update_text():
 						letter.position.y += 33.5
 					"n", "o", "p", "q", "r", "s", "u", "v", "w", "x", "y", "z":
 						letter.position.y += 35
+
+					"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "X", "Y", "Z":
+						letter.position.y += 10
 
 					# Symbol Offsets
 					":", ";", "*":

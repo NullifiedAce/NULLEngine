@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbws52m3csr0e"]
+
+[ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_o3low"]
+[ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_5mbdj"]
+
+[sub_resource type="Resource" id="Resource_o3low"]
+script = ExtResource("2_5mbdj")
+option_name = "Auto Pause"
+option_description = "Will pause the game when the windows' focus is lost."
+option_key = "auto pause"
+option_variant = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_5mbdj"]
+script = ExtResource("2_5mbdj")
+option_name = "VSync"
+option_description = "Matches the windows' framerate to your monitor's refresh rate."
+option_key = "vsync"
+option_variant = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_hgugl"]
+script = ExtResource("2_5mbdj")
+option_name = "FPS"
+option_description = "Set the windows' max framerate."
+option_key = "fps"
+option_variant = 3
+numeric_min = 60.0
+numeric_max = 600.0
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[node name="Window" type="Node"]
+script = ExtResource("1_o3low")
+title = "Window"
+options = Array[ExtResource("2_5mbdj")]([SubResource("Resource_o3low"), SubResource("Resource_5mbdj"), SubResource("Resource_hgugl")])
+metadata/_custom_type_script = "uid://bxj2nvglcnwtb"

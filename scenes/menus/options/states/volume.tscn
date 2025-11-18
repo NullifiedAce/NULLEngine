@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://528a8yuumsvl"]
+
+[ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_dvsm8"]
+[ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_brbn7"]
+
+[sub_resource type="Resource" id="Resource_dvsm8"]
+script = ExtResource("2_brbn7")
+option_name = "Volume Up"
+option_description = "Change the bind for raising volume level."
+option_key = "volume_up"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_brbn7"]
+script = ExtResource("2_brbn7")
+option_name = "Volume Down"
+option_description = "Change the bind for lowering volume level."
+option_key = "volume_down"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_bgmbe"]
+script = ExtResource("2_brbn7")
+option_name = "Mute"
+option_description = "Change the bind for muting the game."
+option_key = "volume_mute"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_04q6q"]
+script = ExtResource("2_brbn7")
+option_name = "Volume Up (Alt)"
+option_description = "Change the bind for alt raising volume level."
+option_key = "volume_up"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_lhvbt"]
+script = ExtResource("2_brbn7")
+option_name = "Volume Down (Alt)"
+option_description = "Change the bind for alt lowering volume level."
+option_key = "volume_down"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_38d7c"]
+script = ExtResource("2_brbn7")
+option_name = "Mute (Alt)"
+option_description = "Change the bind for alt muting the game."
+option_key = "volume_mute"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[node name="Volume" type="Node"]
+script = ExtResource("1_dvsm8")
+title = "Volume"
+options = Array[ExtResource("2_brbn7")]([SubResource("Resource_dvsm8"), SubResource("Resource_brbn7"), SubResource("Resource_bgmbe"), SubResource("Resource_04q6q"), SubResource("Resource_lhvbt"), SubResource("Resource_38d7c")])

@@ -18,34 +18,19 @@
 [sub_resource type="Resource" id="Resource_ykqdk"]
 script = ExtResource("2_7bcx6")
 song = "tutorial"
-display_name = ""
 character_icon = ExtResource("2_e0r34")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.572549, 0.443137, 0.992157, 1)
 
 [sub_resource type="Resource" id="Resource_es7uv"]
 script = ExtResource("2_7bcx6")
 song = "bopeebo"
-display_name = ""
 character_icon = ExtResource("4_u64um")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.572549, 0.443137, 0.992157, 1)
 
 [sub_resource type="Resource" id="Resource_oie4e"]
 script = ExtResource("2_7bcx6")
 song = "fresh"
-display_name = ""
 character_icon = ExtResource("4_u64um")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.572549, 0.443137, 0.992157, 1)
 
 [sub_resource type="Resource" id="Resource_s18hq"]
@@ -53,54 +38,30 @@ script = ExtResource("2_7bcx6")
 song = "dadbattle"
 display_name = "dadbattle"
 character_icon = ExtResource("4_u64um")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.572549, 0.443137, 0.992157, 1)
 
 [sub_resource type="Resource" id="Resource_6p6kd"]
 script = ExtResource("2_7bcx6")
 song = "spookeez"
-display_name = ""
 character_icon = ExtResource("5_qo83t")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.133333, 0.2, 0.266667, 1)
 
 [sub_resource type="Resource" id="Resource_pbguj"]
 script = ExtResource("2_7bcx6")
 song = "south"
-display_name = ""
 character_icon = ExtResource("5_qo83t")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.133333, 0.2, 0.266667, 1)
 
 [sub_resource type="Resource" id="Resource_1pj6y"]
 script = ExtResource("2_7bcx6")
 song = "monster"
-display_name = ""
 character_icon = ExtResource("6_qjj7m")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.133333, 0.2, 0.266667, 1)
 
 [sub_resource type="Resource" id="Resource_lvts5"]
 script = ExtResource("2_7bcx6")
 song = "pico"
-display_name = ""
 character_icon = ExtResource("7_trolw")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.580392, 0.0862745, 0.32549, 1)
 
 [sub_resource type="Resource" id="Resource_jarqo"]
@@ -108,21 +69,12 @@ script = ExtResource("2_7bcx6")
 song = "philly-nice"
 display_name = "philly nice"
 character_icon = ExtResource("7_trolw")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.580392, 0.0862745, 0.32549, 1)
 
 [sub_resource type="Resource" id="Resource_gg5vo"]
 script = ExtResource("2_7bcx6")
 song = "blammed"
-display_name = ""
 character_icon = ExtResource("7_trolw")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.580392, 0.0862745, 0.32549, 1)
 
 [sub_resource type="Resource" id="Resource_jdlsf"]
@@ -130,21 +82,12 @@ script = ExtResource("2_7bcx6")
 song = "satin-panties"
 display_name = "satin panties"
 character_icon = ExtResource("8_1nwaq")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.988235, 0.588235, 0.843137, 1)
 
 [sub_resource type="Resource" id="Resource_0i7rf"]
 script = ExtResource("2_7bcx6")
 song = "high"
-display_name = ""
 character_icon = ExtResource("8_1nwaq")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.988235, 0.588235, 0.843137, 1)
 
 [sub_resource type="Resource" id="Resource_6oprx"]
@@ -152,32 +95,18 @@ script = ExtResource("2_7bcx6")
 song = "milf"
 display_name = "M.I.L.F"
 character_icon = ExtResource("8_1nwaq")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.988235, 0.588235, 0.843137, 1)
 
 [sub_resource type="Resource" id="Resource_vr8a0"]
 script = ExtResource("2_7bcx6")
 song = "cocoa"
-display_name = ""
 character_icon = ExtResource("9_tkg6c")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.627451, 0.819608, 1, 1)
 
 [sub_resource type="Resource" id="Resource_x0vrg"]
 script = ExtResource("2_7bcx6")
 song = "eggnog"
-display_name = ""
 character_icon = ExtResource("9_tkg6c")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.627451, 0.819608, 1, 1)
 
 [sub_resource type="Resource" id="Resource_yj7n3"]
@@ -185,76 +114,48 @@ script = ExtResource("2_7bcx6")
 song = "winter-horrorland"
 display_name = "winter horrorland"
 character_icon = ExtResource("6_qjj7m")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.627451, 0.819608, 1, 1)
 
 [sub_resource type="Resource" id="Resource_qxapp"]
 script = ExtResource("2_7bcx6")
 song = "senpai"
-display_name = ""
 character_icon = ExtResource("10_hb1b4")
-icon_frames = 2
 icon_scale = 4.75
 icon_filter = 1
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(1, 0.470588, 0.74902, 1)
 
 [sub_resource type="Resource" id="Resource_bqfb4"]
 script = ExtResource("2_7bcx6")
 song = "roses"
-display_name = ""
 character_icon = ExtResource("11_3sioh")
-icon_frames = 2
 icon_scale = 4.75
 icon_filter = 1
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(1, 0.470588, 0.74902, 1)
 
 [sub_resource type="Resource" id="Resource_tkrbf"]
 script = ExtResource("2_7bcx6")
 song = "thorns"
-display_name = ""
 character_icon = ExtResource("11_67103")
-icon_frames = 2
 icon_scale = 4.75
 icon_filter = 1
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(1, 0.470588, 0.74902, 1)
 
 [sub_resource type="Resource" id="Resource_udhbh"]
 script = ExtResource("2_7bcx6")
 song = "ugh"
-display_name = ""
 character_icon = ExtResource("12_eixvu")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.964706, 0.713726, 0.0156863, 1)
 
 [sub_resource type="Resource" id="Resource_pd4xj"]
 script = ExtResource("2_7bcx6")
 song = "guns"
-display_name = ""
 character_icon = ExtResource("12_eixvu")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.964706, 0.713726, 0.0156863, 1)
 
 [sub_resource type="Resource" id="Resource_hwdua"]
 script = ExtResource("2_7bcx6")
 song = "stress"
-display_name = ""
 character_icon = ExtResource("12_eixvu")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.964706, 0.713726, 0.0156863, 1)
 
 [sub_resource type="Resource" id="Resource_dpta1"]
@@ -262,10 +163,6 @@ script = ExtResource("2_7bcx6")
 song = "darnell"
 display_name = "Darnell"
 character_icon = ExtResource("14_3sioh")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.45098, 0.368627, 0.690196, 1)
 
 [sub_resource type="Resource" id="Resource_xuaxd"]
@@ -273,10 +170,6 @@ script = ExtResource("2_7bcx6")
 song = "lit-up"
 display_name = "Lit Up"
 character_icon = ExtResource("14_3sioh")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.45098, 0.368627, 0.690196, 1)
 
 [sub_resource type="Resource" id="Resource_mi3h3"]
@@ -284,10 +177,6 @@ script = ExtResource("2_7bcx6")
 song = "2hot"
 display_name = "Two Hot"
 character_icon = ExtResource("14_3sioh")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.45098, 0.368627, 0.690196, 1)
 
 [sub_resource type="Resource" id="Resource_tpvpt"]
@@ -295,10 +184,6 @@ script = ExtResource("2_7bcx6")
 song = "blazin"
 display_name = "Blazin'"
 character_icon = ExtResource("14_3sioh")
-icon_frames = 2
-icon_scale = 1.0
-icon_filter = 0
-difficulties = Array[String](["easy", "normal", "hard"])
 bg_color = Color(0.45098, 0.368627, 0.690196, 1)
 
 [resource]

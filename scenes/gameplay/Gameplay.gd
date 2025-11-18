@@ -216,7 +216,7 @@ func _ready() -> void:
 		METADATA = Global.METADATA
 
 	scroll_speed = SONG.scroll_speed
-	if OptionsAPI.get_option("scroll speed") > 0:
+	if OptionsAPI.get_option("custom scroll speed"):
 		match OptionsAPI.get_option("scroll speed type").to_lower():
 			"multiplier":
 				scroll_speed *= OptionsAPI.get_option("scroll speed")
@@ -268,12 +268,12 @@ func _ready() -> void:
 
 	var strum_y:float = Global.game_size.y - 100.0 if OptionsAPI.get_option("downscroll") else 100.0
 	cpu_strums.position = Vector2((Global.game_size.x * 0.5) - 320.0, strum_y)
-	if OptionsAPI.get_option("centered notefield"):
+	if OptionsAPI.get_option("middlescroll"):
 		cpu_strums.get_child(2).position.x += 640
 		cpu_strums.get_child(3).position.x += 640
 	cpu_strums.modulate = Color(1, 1, 1, OptionsAPI.get_option("oppStrumVis"))
 	cpu_strums.scale = Vector2(OptionsAPI.get_option("oppStrumScale"), OptionsAPI.get_option("oppStrumScale"))
-	player_strums.position = Vector2((Global.game_size.x * 0.5) + (320.0 if not OptionsAPI.get_option("centered notefield") else 0.0), strum_y)
+	player_strums.position = Vector2((Global.game_size.x * 0.5) + (320.0 if not OptionsAPI.get_option("middlescroll") else 0.0), strum_y)
 	player_strums.modulate = Color(1, 1, 1, OptionsAPI.get_option("playerStrumVis"))
 	player_strums.scale =Vector2(OptionsAPI.get_option("playerStrumScale"), OptionsAPI.get_option("playerStrumScale"))
 
@@ -558,7 +558,6 @@ func character_bop():
 var cam_focus_tween: Tween
 
 func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
-
 	if cam_focus_tween:
 		cam_focus_tween.kill()
 
@@ -576,7 +575,7 @@ func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.Tra
 var cam_zoom_tween: Tween
 
 func zoom_camera(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
-	if !OptionsAPI.get_option("zoom camera"): return
+	if !OptionsAPI.get_option("cam zooms"): return
 
 	if cam_zoom_tween:
 		cam_zoom_tween.kill()
@@ -596,7 +595,7 @@ func zoom_camera(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tw
 var hud_zoom_tween: Tween
 
 func hud_zoom(zoom:float, duration:float, trans:Tween.TransitionType, ease:Tween.EaseType):
-	if !OptionsAPI.get_option("zoom hud"): return
+	if !OptionsAPI.get_option("hud zooms"): return
 
 	if hud_zoom_tween:
 		hud_zoom_tween.kill()
@@ -621,8 +620,8 @@ func camera_shake(strength:float, fade:float, shake_camera:bool = true, hud_shak
 	cam_shake_strength = strength
 	cam_shake_fade = fade
 
-	shake_cam = shake_cam if OptionsAPI.get_option("camera shake") else false
-	shake_hud = hud_shake if OptionsAPI.get_option("hud shake") else false
+	shake_cam = shake_cam if OptionsAPI.get_option("cam shakes") else false
+	shake_hud = hud_shake if OptionsAPI.get_option("hud shakes") else false
 
 func random_offset() -> Vector2:
 	return Vector2(Global.rng.randf_range(-cam_shake_strength,cam_shake_strength), Global.rng.randf_range(-cam_shake_strength,cam_shake_strength))
@@ -692,7 +691,7 @@ func _unhandled_key_input(key_event:InputEvent) -> void:
 		hud.update_score_text()
 		ghost_taps += 1
 		key_pressed += 1
-		if not OptionsAPI.get_option("ghost tapping"):
+		if not OptionsAPI.get_option("ghost tap"):
 			fake_miss(data)
 			if OptionsAPI.get_option("miss sounds"):
 				Audio.play_sound("missnote"+str(randi_range(1, 3)), randf_range(0.1, 0.3))
@@ -767,7 +766,9 @@ func display_judgement(judgement:Judgement, tween:Tween):
 	combo_group.add_child(rating_spr)
 
 	tween.tween_property(rating_spr, "modulate:a", 0.0, 0.2) \
-			.set_delay(Conductor.crochet * 0.001).finished.connect(func(): rating_spr.queue_free())
+			.set_delay(Conductor.crochet * 0.001).finished.connect(func():
+				if is_instance_valid(rating_spr):
+					rating_spr.queue_free())
 
 func display_combo(tween:Tween):
 	var separated_score:String = Global.add_zeros(str(combo), 3)
@@ -785,7 +786,9 @@ func display_combo(tween:Tween):
 		combo_group.add_child(num_score)
 
 		tween.tween_property(num_score, "modulate:a", 0.0, 0.2) \
-			.set_delay(Conductor.crochet * 0.002).finished.connect(func(): num_score.queue_free())
+			.set_delay(Conductor.crochet * 0.002).finished.connect(func():
+				if is_instance_valid(num_score):
+					num_score.queue_free())
 
 var ms_tween:Tween
 

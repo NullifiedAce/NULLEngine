@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://bvv8pxubvcy52"]
+
+[ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_37o07"]
+[ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_qatgi"]
+
+[sub_resource type="Resource" id="Resource_ey2h8"]
+script = ExtResource("2_qatgi")
+option_name = "Accept"
+option_description = "Change the bind for menu accepts."
+option_key = "funkin_accept"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_nexyl"]
+script = ExtResource("2_qatgi")
+option_name = "Cancel"
+option_description = "Change the bind for menu cancels."
+option_key = "funkin_cancel"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_ayqsx"]
+script = ExtResource("2_qatgi")
+option_name = "Pause"
+option_description = "Change the bind for menu pauses."
+option_key = "funkin_pause"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_kd1al"]
+script = ExtResource("2_qatgi")
+option_name = "Switch Mod"
+option_description = "Change the bind for mod switching."
+option_key = "switch_mod"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_37o07"]
+script = ExtResource("2_qatgi")
+option_name = "Accept (Alt)"
+option_description = "Change the bind for alt menu accepts."
+option_key = "funkin_accept"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_qatgi"]
+script = ExtResource("2_qatgi")
+option_name = "Cancel (Alt)"
+option_description = "Change the bind for alt menu cancels."
+option_key = "funkin_cancel"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_m0rqk"]
+script = ExtResource("2_qatgi")
+option_name = "Pause (Alt)"
+option_description = "Change the bind for alt menu pauses."
+option_key = "funkin_pause"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_eok8j"]
+script = ExtResource("2_qatgi")
+option_name = "Switch Mod (Alt)"
+option_description = "Change the bind for alt mod switching."
+option_key = "switch_mod"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[node name="Menus" type="Node"]
+script = ExtResource("1_37o07")
+title = "Menu"
+options = Array[ExtResource("2_qatgi")]([SubResource("Resource_ey2h8"), SubResource("Resource_nexyl"), SubResource("Resource_ayqsx"), SubResource("Resource_kd1al"), SubResource("Resource_37o07"), SubResource("Resource_qatgi"), SubResource("Resource_m0rqk"), SubResource("Resource_eok8j")])

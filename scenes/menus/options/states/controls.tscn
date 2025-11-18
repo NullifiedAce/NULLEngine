@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bino8rcahonqd"]
+
+[ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_bm4k7"]
+[ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_6lmlp"]
+
+[sub_resource type="Resource" id="Resource_6lmlp"]
+script = ExtResource("2_6lmlp")
+option_name = "notes"
+option_description = "Change the controls for the notes."
+option_variant = 4
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_sri0f"]
+script = ExtResource("2_6lmlp")
+option_name = "ui"
+option_description = "Change the controls for the ui."
+option_variant = 4
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_dleol"]
+script = ExtResource("2_6lmlp")
+option_name = "menu"
+option_description = "Change the controls for the menus."
+option_variant = 4
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_a75gl"]
+script = ExtResource("2_6lmlp")
+option_name = "volume"
+option_description = "Change the volume controls."
+option_variant = 4
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[node name="Controls" type="Node"]
+script = ExtResource("1_bm4k7")
+title = "Controls"
+options = Array[ExtResource("2_6lmlp")]([SubResource("Resource_6lmlp"), SubResource("Resource_sri0f"), SubResource("Resource_dleol"), SubResource("Resource_a75gl")])
+metadata/_custom_type_script = "uid://bxj2nvglcnwtb"

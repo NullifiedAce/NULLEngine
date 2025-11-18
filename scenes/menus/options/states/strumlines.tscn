@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhtn4kpqa1kir"]
+
+[ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_7m4n6"]
+[ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_rvhdt"]
+
+[sub_resource type="Resource" id="Resource_pbh6w"]
+script = ExtResource("2_rvhdt")
+option_name = "CPU Visibility"
+option_description = "Change the visibility value for the opponent's strum."
+option_key = "oppStrumVis"
+option_variant = 2
+numeric_max = 1.0
+numeric_step = 0.1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_5tosy"]
+script = ExtResource("2_rvhdt")
+option_name = "CPU Scale"
+option_description = "Change the scale for the opponent's strum."
+option_key = "oppStrumScale"
+option_variant = 2
+numeric_min = 0.75
+numeric_max = 1.25
+numeric_step = 0.05
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_438if"]
+script = ExtResource("2_rvhdt")
+option_name = "Player Visibility"
+option_description = "Change the visibility value for the players's strum."
+option_key = "playerStrumVis"
+option_variant = 2
+numeric_max = 1.0
+numeric_step = 0.1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_lya0s"]
+script = ExtResource("2_rvhdt")
+option_name = "Player Scale"
+option_description = "Change the scale for the players's strum."
+option_key = "playerStrumScale"
+option_variant = 2
+numeric_min = 0.75
+numeric_max = 1.25
+numeric_step = 0.05
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[node name="Strumlines" type="Node"]
+script = ExtResource("1_7m4n6")
+title = "Strumlines"
+options = Array[ExtResource("2_rvhdt")]([SubResource("Resource_pbh6w"), SubResource("Resource_5tosy"), SubResource("Resource_438if"), SubResource("Resource_lya0s")])

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckkit4yioywy"]
+
+[ext_resource type="Script" uid="uid://bwty0r2f34owy" path="res://scenes/menus/options/OptionMenuItem.gd" id="1_0g0l2"]
+[ext_resource type="SpriteFrames" uid="uid://dow22kk1qr83p" path="res://assets/fonts/alphabet/bold.res" id="2_0g0l2"]
+[ext_resource type="SpriteFrames" path="res://assets/fonts/alphabet/default.res" id="3_m578u"]
+[ext_resource type="SpriteFrames" uid="uid://daxk7m36n75jg" path="res://assets/images/menus/options/checkboxThingie.res" id="4_0g0l2"]
+
+[node name="Alphabet" type="ReferenceRect"]
+custom_minimum_size = Vector2(0, 70)
+offset_bottom = 70.0
+border_color = Color(1, 0, 0, 0)
+script = ExtResource("1_0g0l2")
+metadata/_custom_type_script = "uid://hfjfcvwm8uhw"
+
+[node name="BoldTemplate" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("2_0g0l2")
+animation = &"#"
+centered = false
+
+[node name="DefaultTemplate" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("3_m578u")
+animation = &"A"
+centered = false
+
+[node name="Letters" type="Node2D" parent="."]
+
+[node name="Checkbox" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 35)
+sprite_frames = ExtResource("4_0g0l2")
+animation = &"selected"
+offset = Vector2(5, -10)

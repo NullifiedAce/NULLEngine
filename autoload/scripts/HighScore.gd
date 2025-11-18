@@ -28,3 +28,7 @@ func set_score(name:String,diff:String,score:int):
 	scores[name.to_lower()+"-"+diff.to_lower()+"-"+OptionsAPI.get_option("current mod")] = score
 	var f = FileAccess.open(_json_path, FileAccess.WRITE)
 	f.store_string(JSON.stringify(scores))
+func reset():
+	scores.clear()
+	var f = FileAccess.open(_json_path, FileAccess.WRITE)
+	f.store_string(JSON.stringify(scores))

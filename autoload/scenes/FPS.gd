@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+var timer:float = 0
 var show_extra_info:bool = false
 var _vram_peak:float = 0.0
 
@@ -9,9 +10,6 @@ var _vram_peak:float = 0.0
 func _ready():
 	update_text(true)
 
-func _process(delta: float) -> void:
-	update_text()
-
 func _physics_process(delta):
 	if Input.is_action_just_pressed("toggle_fps_counter"):
 		OptionsAPI.set_option("fps counter", not OptionsAPI.get_option("fps counter"))
@@ -19,7 +17,12 @@ func _physics_process(delta):
 
 	visible = OptionsAPI.get_option("fps counter")
 
-func update_text(force_update_mem:bool = false):
+	timer += delta
+	if timer > OptionsAPI.get_option("fps counter interval"):
+		timer = 0.0
+		update_text()
+
+func update_text(_force_update_mem:bool = false):
 	fps_label.text = "FPS: %d\n" % Engine.get_frames_per_second()
 
 	var mem:String = Global.bytes_to_human(OS.get_static_memory_usage())

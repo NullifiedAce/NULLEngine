@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://cviu5o04fauve"]
+
+[ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_v0t36"]
+[ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_nw7md"]
+
+[sub_resource type="Resource" id="Resource_v0t36"]
+script = ExtResource("2_nw7md")
+option_name = "Flashing Lights"
+option_description = "If unchecked, flashing lights will be turned off."
+option_key = "flashing lights"
+option_variant = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_nw7md"]
+script = ExtResource("2_nw7md")
+option_name = "Note Splashes"
+option_description = "make notes go boom boom when sick"
+option_key = "note splashes"
+option_variant = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_ebxm0"]
+script = ExtResource("2_nw7md")
+option_name = "Judgement Cam"
+option_description = "Change the camera where judgements will be located."
+option_key = "judgement camera"
+option_variant = 6
+string_array = Array[String](["hud", "world"])
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_ktoxn"]
+script = ExtResource("2_nw7md")
+option_name = "Strumlines"
+option_description = "Change options related to strumlines."
+option_variant = 4
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_kpgg4"]
+script = ExtResource("2_nw7md")
+option_name = "Camera"
+option_description = "Open a sub-menu with camera related options."
+option_variant = 4
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_dm63f"]
+script = ExtResource("2_nw7md")
+option_name = "Hud"
+option_description = "Open a sub-menu with HUD related options."
+option_variant = 4
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[node name="Appearance" type="Node"]
+script = ExtResource("1_v0t36")
+title = "Appearance"
+options = Array[ExtResource("2_nw7md")]([SubResource("Resource_v0t36"), SubResource("Resource_nw7md"), SubResource("Resource_ebxm0"), SubResource("Resource_ktoxn"), SubResource("Resource_kpgg4"), SubResource("Resource_dm63f")])

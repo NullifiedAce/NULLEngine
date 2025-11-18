@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3olo6udmgmiu"]
+
+[ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_a5ij6"]
+[ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_uinxa"]
+
+[sub_resource type="Resource" id="Resource_a5ij6"]
+script = ExtResource("2_uinxa")
+option_name = "Reset save data?"
+option_description = "Deletes all your saved data. (Options & Highscores)
+THIS CHANGE CAN NOT BE UNDONE!!"
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_uinxa"]
+script = ExtResource("2_uinxa")
+option_name = "Reset option data?"
+option_description = "Deletes all your saved options data.
+THIS CHANGE CAN NOT BE UNDONE!!"
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_63eli"]
+script = ExtResource("2_uinxa")
+option_name = "Reset highscore data?"
+option_description = "Deletes all your saved highscore data.
+THIS CHANGE CAN NOT BE UNDONE!!"
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[node name="Miscellaneous" type="Node"]
+script = ExtResource("1_a5ij6")
+title = "Miscellaneous"
+options = Array[ExtResource("2_uinxa")]([SubResource("Resource_a5ij6"), SubResource("Resource_uinxa"), SubResource("Resource_63eli")])

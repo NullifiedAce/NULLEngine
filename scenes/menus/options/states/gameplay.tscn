@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://bwv805hujj1dm"]
+
+[ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_ku1gy"]
+[ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_ipnsj"]
+
+[sub_resource type="Resource" id="Resource_nkm22"]
+script = ExtResource("2_ipnsj")
+option_name = "Downscroll"
+option_description = "If checked, notes will approach from the top instead of the bottom."
+option_key = "downscroll"
+option_variant = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_d0tf2"]
+script = ExtResource("2_ipnsj")
+option_name = "Middlescroll"
+option_description = "If checked, the player's strumline will be positioned in the middle of the screen rather than to the side."
+option_key = "middlescroll"
+option_variant = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_ipnsj"]
+script = ExtResource("2_ipnsj")
+option_name = "Ghost Tap"
+option_description = "If checked, no punishment is given when spamming notes."
+option_key = "ghost tap"
+option_variant = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_tc8mp"]
+script = ExtResource("2_ipnsj")
+option_name = "Custom Scroll Speed"
+option_description = "If checked, uses the custom scroll speed settings."
+option_key = "custom scroll speed"
+option_variant = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_1ifbx"]
+script = ExtResource("2_ipnsj")
+option_name = "Scroll Speed"
+option_description = "Set a custom scroll speed for every chart."
+option_key = "scroll speed"
+option_variant = 2
+numeric_min = 0.1
+numeric_max = 8.0
+numeric_step = 0.1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_5i5hg"]
+script = ExtResource("2_ipnsj")
+option_name = "Type"
+option_description = "Set a scroll speed type.
+Multiplier: Multiplies the chart's scroll speed by the set scroll speed.
+Constant: Sets the chart's scroll speed to the set scroll speed."
+option_key = "scroll speed type"
+option_variant = 6
+string_array = Array[String](["multiplier", "constant"])
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_422e5"]
+script = ExtResource("2_ipnsj")
+option_name = "Note Offset"
+option_description = "Delays notes by a set milliseconds. Useful for bluetooth headphones/speakers."
+option_key = "note offset"
+option_variant = 3
+numeric_min = -5000.0
+numeric_max = 5000.0
+numeric_step = 5.0
+numeric_suffix = "ms"
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[node name="Gameplay" type="Node"]
+script = ExtResource("1_ku1gy")
+title = "Gameplay"
+options = Array[ExtResource("2_ipnsj")]([SubResource("Resource_nkm22"), SubResource("Resource_d0tf2"), SubResource("Resource_ipnsj"), SubResource("Resource_tc8mp"), SubResource("Resource_1ifbx"), SubResource("Resource_5i5hg"), SubResource("Resource_422e5")])
+metadata/_custom_type_script = "uid://bxj2nvglcnwtb"

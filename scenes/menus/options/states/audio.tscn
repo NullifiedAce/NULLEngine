@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://x2xdo2xvw0fj"]
+
+[ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_kecok"]
+[ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_qovp7"]
+
+[sub_resource type="Resource" id="Resource_kecok"]
+script = ExtResource("2_qovp7")
+option_name = "Miss Sounds Volume"
+option_key = "miss sound volume"
+option_variant = 2
+numeric_max = 1.0
+numeric_step = 0.1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_qovp7"]
+script = ExtResource("2_qovp7")
+option_name = "Hit Sounds Volume"
+option_key = "hit sound volume"
+option_variant = 2
+numeric_max = 1.0
+numeric_step = 0.1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[node name="Gameplay" type="Node"]
+script = ExtResource("1_kecok")
+title = "Audio"
+options = Array[ExtResource("2_qovp7")]([SubResource("Resource_kecok"), SubResource("Resource_qovp7")])
+metadata/_custom_type_script = "uid://bxj2nvglcnwtb"

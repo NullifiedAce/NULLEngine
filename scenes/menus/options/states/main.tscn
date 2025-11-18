@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://33nigv8me2up"]
+
+[ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_0g5rm"]
+[ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_hono0"]
+
+[sub_resource type="Resource" id="Resource_iw4f7"]
+script = ExtResource("2_hono0")
+option_name = "Controls"
+option_description = "Adjust the controls for the engine to your liking here."
+option_variant = 4
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_hono0"]
+script = ExtResource("2_hono0")
+option_name = "Gameplay"
+option_description = "Adjust any option connected to the gameplay here.
+For example: Scroll Options"
+option_variant = 4
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_cc81t"]
+script = ExtResource("2_hono0")
+option_name = "Appearance"
+option_description = "Adjust any option connected to the appearance of the engine here.
+For example: Flashing Lights, Camera & HUD Options, etc."
+option_variant = 4
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_aa72x"]
+script = ExtResource("2_hono0")
+option_name = "Audio"
+option_description = "Adjust audio options here."
+option_variant = 4
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_ly5xo"]
+script = ExtResource("2_hono0")
+option_name = "Window"
+option_description = "Adjust any option connected to the window here.
+For example: Max FPS Limit, VSync, etc."
+option_variant = 4
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_hlmbc"]
+script = ExtResource("2_hono0")
+option_name = "Miscellaneous"
+option_description = "Miscellaneous options that didn't fit in any category."
+option_variant = 4
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0g5rm")
+title = "Options"
+options = Array[ExtResource("2_hono0")]([SubResource("Resource_iw4f7"), SubResource("Resource_hono0"), SubResource("Resource_cc81t"), SubResource("Resource_aa72x"), SubResource("Resource_ly5xo"), SubResource("Resource_hlmbc")])

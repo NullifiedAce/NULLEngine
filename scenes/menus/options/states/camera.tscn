@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://byq0m2jk6ivat"]
+
+[ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_s62ht"]
+[ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_ghx8a"]
+
+[sub_resource type="Resource" id="Resource_sm0bw"]
+script = ExtResource("2_ghx8a")
+option_name = "Camera Movements"
+option_description = "If unchecked, the camera in-game will stay focused on the spectators camera point."
+option_key = "cam movement"
+option_variant = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_6wdsb"]
+script = ExtResource("2_ghx8a")
+option_name = "Camera Zooms"
+option_description = "If unchecked, no camera zooms will occour during gameplay"
+option_key = "cam zooms"
+option_variant = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_frupo"]
+script = ExtResource("2_ghx8a")
+option_name = "Camera Shaking"
+option_description = "If unchecked, no camera shakes will occour during gameplay."
+option_key = "cam shakes"
+option_variant = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[node name="Camera" type="Node"]
+script = ExtResource("1_s62ht")
+title = "Camera"
+options = Array[ExtResource("2_ghx8a")]([SubResource("Resource_sm0bw"), SubResource("Resource_6wdsb"), SubResource("Resource_frupo")])
+metadata/_custom_type_script = "uid://bxj2nvglcnwtb"

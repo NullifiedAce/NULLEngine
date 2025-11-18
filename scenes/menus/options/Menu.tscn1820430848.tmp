@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://nswy1rpnvpaq"]
+[gd_scene load_steps=6 format=3 uid="uid://nswy1rpnvpaq"]
 
 [ext_resource type="Script" uid="uid://c0hn0818rei44" path="res://scenes/menus/options/Menu.gd" id="1_5840r"]
-[ext_resource type="PackedScene" uid="uid://ckkit4yioywy" path="res://scenes/menus/options/OptionMenuItem.tscn" id="2_1le6l"]
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="2_i722m"]
 [ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="3_i722m"]
 [ext_resource type="FontFile" uid="uid://cf2wd6a4pa5kb" path="res://assets/fonts/funkin.ttf" id="4_e12kt"]
@@ -22,12 +21,14 @@ anti_aliasing = false
 script = ExtResource("1_5840r")
 metadata/_custom_type_script = "uid://dbxwmps7r1syc"
 
-[node name="TemplateOption" parent="." instance=ExtResource("2_1le6l")]
-
 [node name="BG" type="Sprite2D" parent="."]
 modulate = Color(0.5137255, 0.4, 1, 1)
 position = Vector2(640, 360)
 texture = ExtResource("2_i722m")
+metadata/_edit_lock_ = true
+
+[node name="TemplateOption" parent="." instance=ExtResource("3_i722m")]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="Options" type="CanvasGroup" parent="."]
@@ -43,19 +44,19 @@ grow_horizontal = 2
 color = Color(0, 0, 0, 0.5019608)
 
 [node name="Alphabet" parent="Control" instance=ExtResource("3_i722m")]
-custom_minimum_size = Vector2(331, 70)
+custom_minimum_size = Vector2(327, 70)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -163.5
 offset_top = 8.0
-offset_right = 167.5
+offset_right = 163.5
 offset_bottom = 78.0
 grow_horizontal = 2
 pivot_offset = Vector2(163.5, 35)
 text = "Options"
 
-[node name="Description" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="Control"]
 custom_minimum_size = Vector2(1152, 0)
 anchors_preset = 7
 anchor_left = 0.5
@@ -68,10 +69,9 @@ offset_right = 576.0
 offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/outline_size = 12
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_e12kt")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_1le6l")
 horizontal_alignment = 1
 vertical_alignment = 2
-autowrap_mode = 3

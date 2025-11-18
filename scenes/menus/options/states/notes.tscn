@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://cncyscuue016h"]
+
+[ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_xosnt"]
+[ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_ucec7"]
+
+[sub_resource type="Resource" id="Resource_xosnt"]
+script = ExtResource("2_ucec7")
+option_name = "Left"
+option_description = "Change the keybind for the left note."
+option_key = "note_left"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_ucec7"]
+script = ExtResource("2_ucec7")
+option_name = "Down"
+option_description = "Change the keybind for the down note."
+option_key = "note_down"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_ojavc"]
+script = ExtResource("2_ucec7")
+option_name = "Up"
+option_description = "Change the keybind for the up note."
+option_key = "note_up"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_lwqdn"]
+script = ExtResource("2_ucec7")
+option_name = "Right"
+option_description = "Change the keybind for the right note."
+option_key = "note_right"
+option_variant = 5
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_4kb7a"]
+script = ExtResource("2_ucec7")
+option_name = "Left (Alt)"
+option_description = "Change the keybind for the alt left note."
+option_key = "note_left"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_qpqbr"]
+script = ExtResource("2_ucec7")
+option_name = "Down (Alt)"
+option_description = "Change the keybind for the alt down note."
+option_key = "note_down"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_l25u6"]
+script = ExtResource("2_ucec7")
+option_name = "Up (Alt)"
+option_description = "Change the keybind for the alt up note."
+option_key = "note_up"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[sub_resource type="Resource" id="Resource_owi5m"]
+script = ExtResource("2_ucec7")
+option_name = "Right (Alt)"
+option_description = "Change the keybind for the alt right note."
+option_key = "note_right"
+option_variant = 5
+bind_type = 1
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
+
+[node name="Notes" type="Node"]
+script = ExtResource("1_xosnt")
+title = "Notes"
+options = Array[ExtResource("2_ucec7")]([SubResource("Resource_xosnt"), SubResource("Resource_ucec7"), SubResource("Resource_ojavc"), SubResource("Resource_lwqdn"), SubResource("Resource_4kb7a"), SubResource("Resource_qpqbr"), SubResource("Resource_l25u6"), SubResource("Resource_owi5m")])

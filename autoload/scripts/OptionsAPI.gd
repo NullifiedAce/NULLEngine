@@ -29,10 +29,15 @@ var _options:Dictionary = {
 	"downscroll":			false,
 	"middlescroll":			false,
 	"ghost tap":			false,
+	"scroll speed type":	"multiplier",
+	"custom scroll speed":	false,
+	"scroll speed":			1.0,
+	"note offset":			0,
 
 	# Appearance
 	"flashing lights":		true,
 	"note splashes":		true,
+	"judgement camera":		"hud",
 
 	# Appearance/Strumline
 	"oppStrumVis":			1.0,
@@ -58,18 +63,23 @@ var _options:Dictionary = {
 	# Window
 	"auto pause":			false,
 	"vsync":				false,
-	"fps":					60,
+	"fps":					120,
 
 	# Engine
 	"fps counter":			false,
+	"fps counter interval":	1.0,
 	"current mod":			"Friday Night Funkin'",
 	"last hud file":		"res://assets/defaultHud.json",
 	"first launch":			true,
 }
 
+var _default_options:Dictionary = {} # Used for reseting options.
+
 const JSON_PATH:String = "user://options.json"
 
 func _ready() -> void:
+	_default_options = _options.duplicate(true)
+
 	var json:Dictionary
 
 	if not ResourceLoader.exists(JSON_PATH):
@@ -94,7 +104,7 @@ func _ready() -> void:
 	f.store_string(JSON.stringify(json, "\t"))
 
 	setup_binds()
-
+	update_settings()
 	print("Initialized options!")
 
 func setup_binds():
