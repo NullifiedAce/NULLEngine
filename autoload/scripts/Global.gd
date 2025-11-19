@@ -48,7 +48,7 @@ var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	last_scene_path = get_tree().current_scene.scene_file_path
-	ModManager.switch_mod(SettingsAPI.get_setting("current mod"))
+	ModManager.switch_mod(OptionsAPI.get_option("current mod"))
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
@@ -61,8 +61,8 @@ func set_vsync(value:bool):
 func _notification(what):
 	match what:
 		NOTIFICATION_APPLICATION_FOCUS_OUT:
-			if SettingsAPI.get_setting("auto pause"):
-				set_vsync(SettingsAPI.get_setting('vsync'))
+			if OptionsAPI.get_option("auto pause"):
+				set_vsync(OptionsAPI.get_option('vsync'))
 				Engine.max_fps = 10
 				Audio.process_mode = Node.PROCESS_MODE_DISABLED
 				Transition.process_mode = Node.PROCESS_MODE_DISABLED
@@ -70,9 +70,9 @@ func _notification(what):
 				get_tree().paused = true
 
 		NOTIFICATION_APPLICATION_FOCUS_IN:
-			if SettingsAPI.get_setting("auto pause"):
-				set_vsync(SettingsAPI.get_setting('vsync'))
-				Engine.max_fps = SettingsAPI.get_setting("fps")
+			if OptionsAPI.get_option("auto pause"):
+				set_vsync(OptionsAPI.get_option('vsync'))
+				Engine.max_fps = OptionsAPI.get_option("fps")
 				Audio.process_mode = Node.PROCESS_MODE_ALWAYS
 				Transition.process_mode = Node.PROCESS_MODE_ALWAYS
 				VolumeSlider.update_volume()
