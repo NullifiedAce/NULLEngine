@@ -1003,7 +1003,7 @@ func _process(delta:float) -> void:
 	for sprite in combo_group.get_children():
 		VelocitySprite._process_sprite(sprite, delta)
 
-	if Input.is_action_just_pressed("ui_pause") and not Global.transitioning:
+	if Input.is_action_just_pressed("funkin_pause") and not Global.transitioning:
 		emit_signal("paused")
 		add_child(load("res://scenes/menus/pause/Menu.tscn").instantiate())
 

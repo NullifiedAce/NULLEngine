@@ -1,0 +1,112 @@
+[gd_scene load_steps=3 format=3 uid="uid://q1tcmmq3xuyp"]
+
+[ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="1_p6kvy"]
+[ext_resource type="Script" uid="uid://csfbvyiu5qur1" path="res://tools/PsychToVSlice Converter.gd" id="1_w2pu8"]
+
+[node name="PsychToVSlice Converter" type="Node2D"]
+script = ExtResource("1_w2pu8")
+
+[node name="BG" type="Sprite2D" parent="."]
+modulate = Color(0.105882, 0.0784314, 0.12549, 1)
+position = Vector2(640, 360)
+texture = ExtResource("1_p6kvy")
+
+[node name="Main Panel" type="Panel" parent="."]
+offset_left = 64.0
+offset_top = 36.0
+offset_right = 576.0
+offset_bottom = 684.0
+
+[node name="Title" type="Label" parent="Main Panel"]
+layout_mode = 0
+offset_right = 522.0
+offset_bottom = 45.0
+text = "Psych Engine Charts -> V-Slice Chart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Converted Panel" type="Panel" parent="."]
+offset_left = 704.0
+offset_top = 36.0
+offset_right = 1216.0
+offset_bottom = 684.0
+
+[node name="Title" type="Label" parent="Converted Panel"]
+layout_mode = 0
+offset_right = 522.0
+offset_bottom = 45.0
+text = "Converted Chart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="Converted Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.6
+offset_top = 64.8
+offset_right = -25.600006
+offset_bottom = -64.79999
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+tab_focus_mode = 0
+
+[node name="Chart" type="CodeEdit" parent="Converted Panel/TabContainer"]
+layout_mode = 2
+editable = false
+gutters_draw_line_numbers = true
+metadata/_tab_index = 0
+
+[node name="Save" type="Button" parent="Converted Panel/TabContainer/Chart"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -113.0
+offset_top = -39.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+text = "Save Chart..."
+
+[node name="Metadata" type="CodeEdit" parent="Converted Panel/TabContainer"]
+visible = false
+layout_mode = 2
+editable = false
+gutters_draw_line_numbers = true
+metadata/_tab_index = 1
+
+[node name="Save" type="Button" parent="Converted Panel/TabContainer/Metadata"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -113.0
+offset_top = -39.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+text = "Save Metadata..."
+
+[node name="FileDialog" type="FileDialog" parent="."]
+oversampling_override = 1.0
+title = "Open a File"
+position = Vector2i(0, 36)
+size = Vector2i(500, 500)
+ok_button_text = "Open"
+file_mode = 0
+display_mode = 1
+root_subfolder = "res://assets/songs"
+filters = PackedStringArray("*.json ; Psych Chart")
+
+[connection signal="file_selected" from="FileDialog" to="." method="parse_psych_chart"]

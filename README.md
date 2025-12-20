@@ -30,13 +30,13 @@ Any other site hosting my engine could potentially contain a Virus!
 - V1.2.0 - Menu Additions + Overhauls:
   - [x] Options API
   - [x] New Options Menu
-  - [ ] Clean up file system
   - [ ] Psych to V-Slice Chart Converter
   - [ ] Trophies API
   - [ ] Trophy Room
   - [ ] Base Game Freeplay
   - [ ] New Story Mode Menu
   - [ ] HUD Editor
+  - [ ] Clean up file system
 - V1.3.0 - Modding + Playable Characters:
   - [ ] Chart Editor
   - [ ] Character Editor
