@@ -77,7 +77,7 @@ func setup_state(remove_old:bool = true):
 	cur_selected = 0
 	state_scene.queue_free()
 	title.position.x = 640 - (title.size.x/2)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.01/(OptionsAPI.get_option("fps")/120)).timeout
 	change_selection()
 
 func _process(_delta: float) -> void:

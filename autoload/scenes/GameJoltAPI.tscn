@@ -1,22 +1,21 @@
 [gd_scene load_steps=6 format=3 uid="uid://mjvaqbm186ue"]
 
-[ext_resource type="Script" uid="uid://qmnpunisienx" path="res://addons/gamejolt/main.gd" id="1_057jm"]
+[ext_resource type="Script" uid="uid://c1lo1035i0n08" path="res://addons/gamejolt/main.gd" id="1_057jm"]
 [ext_resource type="Script" uid="uid://d3lnrj2nokkeh" path="res://autoload/scenes/GameJolt.gd" id="1_57jt6"]
 [ext_resource type="Texture2D" uid="uid://cvd4ggylb12c3" path="res://art/GameJoltAPI/logo.png" id="2_8q4pr"]
 [ext_resource type="Theme" uid="uid://dmxgbq01mwkmu" path="res://assets/styles/Funkin.tres" id="2_bq1px"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="4_57jt6"]
 
 [node name="GameJolt" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_57jt6")
 
 [node name="GameJoltAPI" type="HTTPRequest" parent="."]
 script = ExtResource("1_057jm")
-data_path = "res://assets/gameJoltData.json"
+data_path = "res://assets/gamejoltData.json"
 verbose = true
-metadata/_custom_type_script = "uid://qmnpunisienx"
 
 [node name="LogIn" type="ColorRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

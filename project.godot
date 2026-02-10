@@ -8,6 +8,10 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Friday Night Funkin': NULL Engine"
@@ -16,7 +20,7 @@ config/tags=PackedStringArray("2d", "funkin", "rhythm")
 run/main_scene="res://Init.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="NullifiedAce/NULLEngine"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(1, 0.141176, 1, 1)
 boot_splash/image="uid://ceuewex8spqfl"
 config/icon="res://assets/images/default_mod_icon.png"
@@ -41,6 +45,7 @@ VolumeSlider="*res://autoload/scenes/VolumeSlider.tscn"
 FPS="*res://autoload/scenes/FPS.tscn"
 HighScore="*res://autoload/scripts/HighScore.gd"
 RichPresence="*res://autoload/scripts/DiscordRPC.gd"
+GameJolt="res://autoload/scenes/GameJoltAPI.tscn"
 
 [display]
 
