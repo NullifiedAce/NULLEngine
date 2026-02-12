@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxyyf7clqhywn"]
+[gd_scene format=3 uid="uid://bxyyf7clqhywn"]
 
 [ext_resource type="SpriteFrames" uid="uid://cmrrdlnfn8rek" path="res://assets/images/gameplay/notes/default/assets.res" id="1_m8ci2"]
 [ext_resource type="Script" uid="uid://jv0frq6x5pr3" path="res://scenes/gameplay/notes/Note.gd" id="1_qhp6y"]
@@ -6,18 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://2iywwtpufmt4" path="res://assets/images/gameplay/notes/default/sustains/left hold piece.png" id="4_60wbw"]
 [ext_resource type="Texture2D" uid="uid://dcu1auf2cj0ob" path="res://assets/images/gameplay/notes/default/sustains/left hold end.png" id="5_sjvx4"]
 
-[node name="Default" type="Node2D"]
+[node name="Default" type="Node2D" unique_id=1612402937]
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_qhp6y")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=108665541]
 clip_contents = true
 offset_left = -56.0
 offset_right = 56.0
 offset_bottom = 720.0
 color = Color(1, 1, 1, 0)
 
-[node name="Sustain" type="Line2D" parent="ColorRect"]
+[node name="Sustain" type="Line2D" parent="ColorRect" unique_id=1570474825]
 modulate = Color(1, 1, 1, 0.6)
 position = Vector2(56, 0)
 points = PackedVector2Array(0, 0, 0, 0)
@@ -25,10 +25,10 @@ width = 50.0
 texture = ExtResource("4_60wbw")
 texture_mode = 1
 
-[node name="EndPiece" type="Sprite2D" parent="ColorRect/Sustain"]
+[node name="EndPiece" type="Sprite2D" parent="ColorRect/Sustain" unique_id=790642553]
 texture = ExtResource("5_sjvx4")
 
-[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=1393137333]
 sprite_frames = ExtResource("1_m8ci2")
 animation = &"left"
 script = ExtResource("3_hnrov")

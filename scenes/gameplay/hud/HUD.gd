@@ -56,13 +56,13 @@ func setup_hud() -> void:
 	update_score_text()
 
 func update_health_bar():
-	cpu_icon.texture = game.opponent.health_icon
-	cpu_icon.hframes = game.opponent.health_icon_frames
-	cpu_icon.texture_filter = game.opponent.health_icon_filter
+	cpu_icon.texture = load(game.opponentData.health_icon)
+	cpu_icon.hframes = game.opponentData.health_icon_frames
+	cpu_icon.texture_filter = game.opponentData.health_icon_filter
 
-	player_icon.texture = game.player.health_icon
-	player_icon.hframes = game.player.health_icon_frames
-	player_icon.texture_filter = game.player.health_icon_filter
+	player_icon.texture = load(game.playerData.health_icon)
+	player_icon.hframes = game.playerData.health_icon_frames
+	player_icon.texture_filter = game.playerData.health_icon_filter
 
 func position_icons():
 	var icon_offset:int = 26
@@ -104,6 +104,6 @@ func _process(delta: float) -> void:
 
 	if game.icon_zooming:
 		var icon_speed:float = clampf((delta * game.ICON_DELTA_MULTIPLIER) * Conductor.rate, 0.0, 1.0)
-		cpu_icon.scale = lerp(cpu_icon.scale, Vector2(game.opponent.health_icon_scale, game.opponent.health_icon_scale), icon_speed)
-		player_icon.scale = lerp(player_icon.scale, Vector2(game.player.health_icon_scale, game.player.health_icon_scale), icon_speed)
+		cpu_icon.scale = lerp(cpu_icon.scale, Vector2(game.opponentData.health_icon_scale, game.opponentData.health_icon_scale), icon_speed)
+		player_icon.scale = lerp(player_icon.scale, Vector2(game.playerData.health_icon_scale, game.playerData.health_icon_scale), icon_speed)
 		position_icons()

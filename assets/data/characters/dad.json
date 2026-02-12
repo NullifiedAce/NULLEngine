@@ -1,0 +1,72 @@
+{
+	"is_animated": true,
+	"is_player": false,
+
+	"can_sing": true,
+
+	"sing_duration": 6.1,
+	
+	"dances": true,
+	"dance_steps": ["idle"],
+
+	"health_icon": "res://assets/images/gameplay/icons/icon-dad.png",
+	"health_icon_scale": 1.0,
+	"health_icon_filter": 0,
+	"health_icon_frames": 2,
+	"health_color": "af66ce",
+
+	"death_character": "bf-dead",
+	"death_sound": "res://assets/sounds/death/fnf_loss_sfx.ogg",
+	"death_music": "res://assets/music/gameOver.ogg",
+	"retry_sound": "res://assets/music/gameOverEnd.ogg",
+
+	"voices_path": "dad",
+	"character_script_path": "",
+	"character_script_name": "",
+
+	"sprite_frames": [
+		"res://assets/images/gameplay/characters/dad/dad.res"
+	],
+	"anim_data": [
+		[
+			"idle",
+			"Dad idle dance",
+			0,
+			0.0,
+			0.0,
+			0
+		],
+		[
+			"singDOWN",
+			"Dad Sing Note DOWN",
+			0,
+			0.0,
+			30.0,
+			0
+		],
+		[
+			"singLEFT",
+			"Dad Sing Note LEFT",
+			0,
+			9.0,
+			-10.0,
+			0
+		],
+		[
+			"singRIGHT",
+			"Dad Sing Note RIGHT",
+			0,
+			0.0,
+			-27.0,
+			0
+		],
+		[
+			"singUP",
+			"Dad Sing Note UP",
+			0,
+			6.0,
+			-50.0,
+			0
+		]
+	]
+}

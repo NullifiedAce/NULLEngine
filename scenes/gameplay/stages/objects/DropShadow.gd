@@ -1,6 +1,6 @@
 extends Node2D
 
-var target: Character
+var target
 
 @export_enum("Player", "Opponent", "Spectator") var character := 0
 @export var alt_mask: Texture2D
@@ -23,7 +23,11 @@ func _process(_delta: float) -> void:
 	if !target:
 		return
 
-	var anim_sprite: AnimatedSprite2D = target.anim_sprite
+	var anim_sprite: AnimatedSprite2D
+	if target is Character:
+		anim_sprite = target.anim_sprite
+	elif target is CharacterNode:
+		anim_sprite = target
 	if anim_sprite == null:
 		return
 

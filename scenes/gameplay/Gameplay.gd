@@ -15,6 +15,10 @@ var METADATA:Metadata = Global.METADATA
 var note_data_array:Array[SongNote] = []
 var event_data_array:Array[SongEvent] = []
 
+var playerData:CharacterData
+var opponentData:CharacterData
+var spectatorData:CharacterData
+
 var starting_song:bool = true
 var ending_song:bool = false
 var in_cutscene = false
@@ -67,9 +71,10 @@ var icon_zooming:bool = true
 
 var stage:Stage
 
-var opponent:Character
 var spectator:Character
-var player:Character
+
+var player:CharacterNode
+var opponent:CharacterNode
 
 var cpu_strums:StrumLine
 var player_strums:StrumLine
@@ -125,9 +130,9 @@ func load_song():
 		var dir = DirAccess.open(music_path)
 
 		load_track(music_path, "Inst")
-		# Making sure a path was even set.
-		if opponent.voices_paths != "": load_track(music_path, "Voices-%s" % opponent.voices_paths)
-		if player.voices_paths != "": load_track(music_path, "Voices-%s" % player.voices_paths)
+		# Make sure a path is set, then load in the audio file.
+		if opponentData.voices_path != "": load_track(music_path, "Voices-" + opponentData.voices_path)
+		if playerData.voices_path != "": load_track(music_path, "Voices-" + playerData.voices_path)
 
 func load_track(music_path:String, fileName:String):
 	var track:AudioStreamPlayer = AudioStreamPlayer.new()
@@ -225,6 +230,10 @@ func _ready() -> void:
 
 	ui_skin = load("res://scenes/gameplay/ui_skins/"+METADATA.playData["noteStyle"]+".tscn").instantiate()
 	# music shit
+
+	playerData = CharacterData.load_data(METADATA.playData["characters"]["player"])
+	opponentData = CharacterData.load_data(METADATA.playData["characters"]["opponent"])
+	#spectatorData = CharacterData.load_data(METADATA.playData["characters"]["girlfriend"])
 
 	Conductor.map_bpm_changes(METADATA)
 	Conductor.change_bpm(METADATA.timeChanges[0]["bpm"])
@@ -348,23 +357,28 @@ func load_spectator():
 			script_group.add_script(script)
 
 func load_opponent():
-	var opponent_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["opponent"]+".tscn"
-	if ResourceLoader.exists(opponent_path):
-		opponent = load(opponent_path).instantiate()
-	else:
-		opponent = load("res://scenes/gameplay/characters/dad.tscn").instantiate()
+	for i in opponentData.sprite_frames:
+		load(i)
 
+	opponent = CharacterNode.new()
+
+	opponent.centered = false
 	opponent.position = stage.character_positions["opponent"].position
 	opponent.scale = stage.character_positions["opponent"].scale
-	characters.add_child(opponent)
+	opponent.sprite_frames = load(opponentData.sprite_frames[0])
+
 	opponent.z_index = stage.character_positions["opponent"].z_index
-	opponent.anim_sprite.material = stage.character_positions["opponent"].material
+	opponent.material = stage.character_positions["opponent"].material
+
+	opponent.data = opponentData
+
+	characters.add_child(opponent)
 
 	# load character scripts (put in assets/data/scripts/characters/CHARACTER_FOLDER)
-	var script_path:String = "res://assets/data/scripts/characters/"+opponent.character_script_folder+"/"
+	var script_path:String = "res://assets/data/scripts/characters/"+opponentData.character_script_path+"/"
 	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
 	for item in file_list:
-		if item.ends_with(opponent.character_script_name+".tscn") or item.ends_with(opponent.character_script_name+".tscn.remap"):
+		if item.ends_with(opponentData.character_script_name+".tscn") or item.ends_with(opponentData.character_script_name+".tscn.remap"):
 			var script:FunkinScript = FunkinScript.create(script_path+item.replace(".remap", ""), self)
 			script_group.add_script(script)
 
@@ -376,24 +390,29 @@ func load_opponent():
 		spectator = null
 
 func load_player():
-	var player_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["player"]+".tscn"
-	if ResourceLoader.exists(player_path):
-		player = load(player_path).instantiate()
-	else:
-		player = load("res://scenes/gameplay/characters/bf.tscn").instantiate()
+	for i in playerData.sprite_frames:
+		load(i)
 
+	player = CharacterNode.new()
 	player._is_true_player = true
+
+	player.centered = false
 	player.position = stage.character_positions["player"].position
 	player.scale = stage.character_positions["player"].scale
-	characters.add_child(player)
+	player.sprite_frames = load(playerData.sprite_frames[0])
+
 	player.z_index = stage.character_positions["player"].z_index
-	player.anim_sprite.material = stage.character_positions["player"].material
+	player.material = stage.character_positions["player"].material
+
+	player.data = playerData
+
+	characters.add_child(player)
 
 	# load character scripts (put in assets/data/scripts/characters/CHARACTER_FOLDER)
-	var script_path:String = "res://assets/data/scripts/characters/"+player.character_script_folder+"/"
+	var script_path:String = "res://assets/data/scripts/characters/"+playerData.character_script_path+"/"
 	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
 	for item in file_list:
-		if item.ends_with(player.character_script_name+".tscn") or item.ends_with(player.character_script_name+".tscn.remap"):
+		if item.ends_with(playerData.character_script_name+".tscn") or item.ends_with(playerData.character_script_name+".tscn.remap"):
 			var script:FunkinScript = FunkinScript.create(script_path+item.replace(".remap", ""), self)
 			script_group.add_script(script)
 
@@ -525,8 +544,8 @@ func beat_hit(beat:int):
 			resync_tracks()
 
 	if icon_bumping and icon_bumping_interval > 0 and beat % icon_bumping_interval == 0:
-		hud.cpu_icon.scale += Vector2(0.2, 0.2) * opponent.health_icon_scale
-		hud.player_icon.scale += Vector2(0.2, 0.2) * player.health_icon_scale
+		hud.cpu_icon.scale += Vector2(0.2, 0.2) * opponentData.health_icon_scale
+		hud.player_icon.scale += Vector2(0.2, 0.2) * playerData.health_icon_scale
 		hud.position_icons()
 
 	if cam_bumping and beat % camera_zoom_rate == 0:
@@ -553,6 +572,9 @@ func character_bop():
 	if player != null and player.dance_on_beat and not player.last_anim.begins_with("sing"):
 		player.dance()
 
+	if player != null and player.dance_on_beat and not player.last_anim.begins_with("sing"):
+		player.dance()
+
 	script_group.call_func("on_character_bop", [])
 
 var cam_focus_tween: Tween
@@ -569,8 +591,11 @@ func update_camera(targetX:float, targetY:float, duration:float, trans:Tween.Tra
 	else:
 		cam_focus_tween.tween_property(camera, "position", Vector2(targetX, targetY), duration * Conductor.rate).set_trans(trans).set_ease(ease)
 
-	cam_focus_tween.finished.connect(func():
-		script_group.call_func("on_update_camera", []))
+	cam_focus_tween.finished.connect(_on_cam_focus_finished)
+
+func _on_cam_focus_finished():
+	if is_instance_valid(script_group):
+		script_group.call_func("on_update_camera", [])
 
 var cam_zoom_tween: Tween
 
@@ -737,8 +762,9 @@ func pop_up_score(judgement:Judgement) -> void:
 
 	if not OptionsAPI.get_option('judgement stacking'):
 		for child in combo_group.get_children():
-			combo_group.remove_child(child)
-			child.queue_free()
+			if is_instance_valid(child):
+				combo_group.remove_child(child)
+				child.queue_free()
 
 	display_judgement(judgement, pop_up_score_tweener)
 	display_combo(pop_up_score_tweener)
@@ -766,9 +792,11 @@ func display_judgement(judgement:Judgement, tween:Tween):
 	combo_group.add_child(rating_spr)
 
 	tween.tween_property(rating_spr, "modulate:a", 0.0, 0.2) \
-			.set_delay(Conductor.crochet * 0.001).finished.connect(func():
-				if is_instance_valid(rating_spr):
-					rating_spr.queue_free())
+			.set_delay(Conductor.crochet * 0.001).finished.connect(_on_rating_fade_finished.bind(rating_spr))
+
+func _on_rating_fade_finished(rating_spr):
+	if is_instance_valid(rating_spr):
+		rating_spr.queue_free()
 
 func display_combo(tween:Tween):
 	var separated_score:String = Global.add_zeros(str(combo), 3)
@@ -786,9 +814,11 @@ func display_combo(tween:Tween):
 		combo_group.add_child(num_score)
 
 		tween.tween_property(num_score, "modulate:a", 0.0, 0.2) \
-			.set_delay(Conductor.crochet * 0.002).finished.connect(func():
-				if is_instance_valid(num_score):
-					num_score.queue_free())
+			.set_delay(Conductor.crochet * 0.002).finished.connect(_on_combo_digit_fade_finished.bind(num_score))
+
+func _on_combo_digit_fade_finished(num_score):
+	if is_instance_valid(num_score):
+		num_score.queue_free()
 
 var ms_tween:Tween
 
@@ -951,7 +981,7 @@ func _process(delta:float) -> void:
 	else:
 		get_tree().paused = false
 
-	if not pressed.has(true) and player.last_anim.begins_with("sing") and player.hold_timer >= Conductor.step_crochet * player.sing_duration * 0.0011:
+	if not pressed.has(true) and player.last_anim.begins_with("sing") and player.hold_timer >= Conductor.step_crochet * playerData.sing_duration * 0.0011:
 		player.hold_timer = 0.0
 		player.dance()
 

@@ -86,7 +86,8 @@ func _process(delta:float) -> void:
 				game.stage.callv("on_note_miss", [note])
 				game.script_group.call_func("on_player_miss", [note])
 				game.stage.callv("on_player_miss", [note])
-				note.queue_free()
+				if is_instance_valid(note):
+					note.queue_free()
 		else:
 			if note.time <= Conductor.position and note.should_hit and not note.was_good_hit:
 				var receptor:Receptor = note.strumline.get_child(note.direction)
@@ -101,7 +102,7 @@ func _process(delta:float) -> void:
 				game.stage.callv("on_cpu_hit", [note])
 				game.opponent_note_hit(note)
 
-				if note.length <= 0:
+				if note.length <= 0 and is_instance_valid(note):
 					note.queue_free()
 
 				game.skipped_intro = true # Can't skip something you already waited for!
@@ -113,7 +114,8 @@ func _process(delta:float) -> void:
 				game.stage.callv("on_note_miss", [note])
 				game.script_group.call_func("on_cpu_miss", [note])
 				game.stage.callv("on_cpu_miss", [note])
-				note.queue_free()
+				if is_instance_valid(note):
+					note.queue_free()
 
 	# don't ask #2 >:(
 	if note_anim_time >= Conductor.step_crochet:

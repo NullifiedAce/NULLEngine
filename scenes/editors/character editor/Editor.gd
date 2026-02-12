@@ -25,17 +25,22 @@ var character_data:Dictionary = {
 	"retry_sound": "res://assets/music/gameOverEnd.ogg",
 
 	"voices_path": "dad",
-	"characters_script_path": "",
+	"character_script_path": "",
+	"character_script_name": "",
 
 	"sprite_frames": [],
 	"anim_data": [],
 }
+
+var default_data:Dictionary
 
 func _ready() -> void:
 	FPS.fps_label.modulate = Color.TRANSPARENT
 	FPS.mem_label.modulate = Color.TRANSPARENT
 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+	default_data = character_data
 
 func _exit_tree() -> void:
 	FPS.fps_label.modulate = Color.WHITE

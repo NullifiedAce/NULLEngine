@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cd8qnbjwrowm3"]
+[gd_scene format=3 uid="uid://cd8qnbjwrowm3"]
 
 [ext_resource type="Script" uid="uid://bnhssv5rrxvts" path="res://scenes/gameplay/Gameplay.gd" id="1_8k5hd"]
 [ext_resource type="Script" uid="uid://bhqqfjrg7g7o" path="res://classes/ScriptGroup.gd" id="2_5pmok"]
@@ -30,16 +30,16 @@ anti_aliasing = false
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6h1qp"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="Gameplay" type="Node2D"]
+[node name="Gameplay" type="Node2D" unique_id=1906925691]
 script = ExtResource("1_8k5hd")
 
-[node name="ScriptGroup" type="Node" parent="."]
+[node name="ScriptGroup" type="Node" parent="." unique_id=1078896183]
 script = ExtResource("2_5pmok")
 
-[node name="Ratings" type="Node2D" parent="."]
+[node name="Ratings" type="Node2D" parent="." unique_id=1563225693]
 position = Vector2(704, 300)
 
-[node name="RatingTemplate" type="Sprite2D" parent="Ratings"]
+[node name="RatingTemplate" type="Sprite2D" parent="Ratings" unique_id=105468992]
 visible = false
 position = Vector2(-40, -60)
 scale = Vector2(0.7, 0.7)
@@ -47,7 +47,7 @@ texture = ExtResource("2_t1d44")
 centered = false
 script = ExtResource("3_rou8q")
 
-[node name="ComboTemplate" type="Sprite2D" parent="Ratings"]
+[node name="ComboTemplate" type="Sprite2D" parent="Ratings" unique_id=1780996779]
 visible = false
 position = Vector2(-90, 80)
 scale = Vector2(0.5, 0.5)
@@ -55,23 +55,23 @@ texture = ExtResource("4_5os72")
 centered = false
 script = ExtResource("3_rou8q")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=713468311]
 position = Vector2(640, 360)
 position_smoothing_speed = 3.0
 
-[node name="characters" type="Node2D" parent="."]
+[node name="characters" type="Node2D" parent="." unique_id=848556000]
 
-[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("game")]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1974273772 node_paths=PackedStringArray("game")]
 layer = 127
 script = ExtResource("6_8q01y")
 game = NodePath("..")
 
-[node name="StrumLines" type="Node2D" parent="HUD"]
+[node name="StrumLines" type="Node2D" parent="HUD" unique_id=68210027]
 
-[node name="Notes" type="Node2D" parent="HUD"]
+[node name="Notes" type="Node2D" parent="HUD" unique_id=624891460]
 script = ExtResource("3_kxnu2")
 
-[node name="MSDisplay" type="Label" parent="HUD"]
+[node name="MSDisplay" type="Label" parent="HUD" unique_id=1500948998]
 visible = false
 offset_left = 795.0
 offset_top = 475.0
@@ -84,7 +84,7 @@ theme_override_font_sizes/font_size = 48
 text = "160ms"
 horizontal_alignment = 1
 
-[node name="HealthBar" type="ColorRect" parent="HUD"]
+[node name="HealthBar" type="ColorRect" parent="HUD" unique_id=2096736003]
 offset_left = 340.0
 offset_top = 636.0
 offset_right = 941.0
@@ -92,7 +92,7 @@ offset_bottom = 655.0
 pivot_offset = Vector2(300.5, 9.5)
 color = Color(0, 0, 0, 1)
 
-[node name="ProgressBar" type="ProgressBar" parent="HUD/HealthBar"]
+[node name="ProgressBar" type="ProgressBar" parent="HUD/HealthBar" unique_id=2080838146]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 4.5
@@ -106,7 +106,7 @@ value = 1.0
 fill_mode = 1
 show_percentage = false
 
-[node name="PlayerIcon" type="Sprite2D" parent="HUD/HealthBar/ProgressBar"]
+[node name="PlayerIcon" type="Sprite2D" parent="HUD/HealthBar/ProgressBar" unique_id=955485534]
 position = Vector2(270, -69.5)
 texture = ExtResource("11_6h1qp")
 centered = false
@@ -115,7 +115,7 @@ hframes = 2
 script = ExtResource("12_fwbmj")
 react_to_health = true
 
-[node name="CPUIcon" type="Sprite2D" parent="HUD/HealthBar/ProgressBar"]
+[node name="CPUIcon" type="Sprite2D" parent="HUD/HealthBar/ProgressBar" unique_id=556238216]
 position = Vector2(166, -69.5)
 texture = ExtResource("11_6h1qp")
 centered = false
@@ -123,7 +123,7 @@ hframes = 2
 script = ExtResource("12_fwbmj")
 react_to_health = true
 
-[node name="ScoreText" type="Label" parent="HUD/HealthBar"]
+[node name="ScoreText" type="Label" parent="HUD/HealthBar" unique_id=899866542]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -143,7 +143,7 @@ text = "SCORE: 0 - MISSED: 0 - ACC: 0% [N/A]"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="TimeBar" type="ProgressBar" parent="HUD"]
+[node name="TimeBar" type="ProgressBar" parent="HUD" unique_id=1129296263]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -158,7 +158,7 @@ max_value = 1.0
 step = 0.0
 show_percentage = false
 
-[node name="Timer" type="Label" parent="HUD/TimeBar"]
+[node name="Timer" type="Label" parent="HUD/TimeBar" unique_id=1671538208]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -178,7 +178,7 @@ text = "00:00 / 00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Ratings" type="Label" parent="HUD"]
+[node name="Ratings" type="Label" parent="HUD" unique_id=213676991]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -201,15 +201,15 @@ SHITS: 0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="CountdownSprite" type="Sprite2D" parent="HUD"]
+[node name="CountdownSprite" type="Sprite2D" parent="HUD" unique_id=1964997125]
 position = Vector2(640, 360)
 
-[node name="CountdownSounds" type="Node" parent="."]
+[node name="CountdownSounds" type="Node" parent="." unique_id=1025005300]
 
-[node name="Prepare" type="AudioStreamPlayer" parent="CountdownSounds"]
+[node name="Prepare" type="AudioStreamPlayer" parent="CountdownSounds" unique_id=1058739425]
 
-[node name="Ready" type="AudioStreamPlayer" parent="CountdownSounds"]
+[node name="Ready" type="AudioStreamPlayer" parent="CountdownSounds" unique_id=642776768]
 
-[node name="Set" type="AudioStreamPlayer" parent="CountdownSounds"]
+[node name="Set" type="AudioStreamPlayer" parent="CountdownSounds" unique_id=1536800614]
 
-[node name="Go" type="AudioStreamPlayer" parent="CountdownSounds"]
+[node name="Go" type="AudioStreamPlayer" parent="CountdownSounds" unique_id=1218594976]

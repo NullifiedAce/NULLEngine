@@ -1,7 +1,54 @@
 [gd_resource type="Theme" format=3 uid="uid://dqqyiyf33vtjn"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvvhq"]
+bg_color = Color(0.29803923, 0.29803923, 0.29803923, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qm28"]
+bg_color = Color(0.29803923, 0.29803923, 0.29803923, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhqk4"]
+bg_color = Color(0.21568628, 0.21568628, 0.21568628, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6g8l"]
+bg_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5b3au"]
+content_margin_left = 4.0
+content_margin_top = 3.0
+bg_color = Color(0.29803923, 0.29803923, 0.29803923, 1)
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygugw"]
+content_margin_left = 4.0
+content_margin_top = 3.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.2159017, 0.21590173, 0.21590161, 1)
+expand_margin_right = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsxsl"]
+content_margin_left = 4.0
+content_margin_top = 3.0
+bg_color = Color(0.16206557, 0.1620656, 0.16206554, 1)
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g87qd"]
+bg_color = Color(0.29803923, 0.29803923, 0.29803923, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tu1x4"]
+bg_color = Color(0.21568628, 0.21568628, 0.21568628, 1)
+
 [sub_resource type="FontVariation" id="FontVariation_y8utq"]
 spacing_glyph = -1
 
 [resource]
 default_font = SubResource("FontVariation_y8utq")
+Button/styles/hover = SubResource("StyleBoxFlat_kvvhq")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_0qm28")
+Button/styles/normal = SubResource("StyleBoxFlat_bhqk4")
+Button/styles/pressed = SubResource("StyleBoxFlat_i6g8l")
+MenuBar/styles/hover = SubResource("StyleBoxFlat_5b3au")
+MenuBar/styles/normal = SubResource("StyleBoxFlat_ygugw")
+MenuBar/styles/pressed = SubResource("StyleBoxFlat_dsxsl")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_g87qd")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_tu1x4")

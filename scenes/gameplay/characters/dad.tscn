@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bv2bmp1oon3uw"]
+[gd_scene format=3 uid="uid://bv2bmp1oon3uw"]
 
 [ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_j06qm"]
 [ext_resource type="SpriteFrames" path="res://assets/images/gameplay/characters/dad/dad.res" id="2_8b7lu"]
@@ -271,25 +271,24 @@ _data = {
 &"singUP": SubResource("Animation_55yur")
 }
 
-[node name="dad" type="Node2D"]
+[node name="dad" type="Node2D" unique_id=816666330]
 script = ExtResource("1_j06qm")
 sing_duration = 6.1
 health_icon = ExtResource("2_r8kkf")
 health_color = Color(0.686275, 0.4, 0.807843, 1)
 
-[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=1471968761]
 position = Vector2(-216, -767)
 sprite_frames = ExtResource("2_8b7lu")
-animation = &"Dad idle dance"
-frame = 12
+animation = &"Dad Sing Note UP"
+frame = 59
 frame_progress = 1.0
 centered = false
+offset = Vector2(6, -50)
 script = ExtResource("3_jmwth")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
-libraries = {
-&"": SubResource("AnimationLibrary_vgtrv")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite" unique_id=1528926383]
+libraries/ = SubResource("AnimationLibrary_vgtrv")
 
-[node name="CameraPos" type="Node2D" parent="."]
+[node name="CameraPos" type="Node2D" parent="." unique_id=1722749172]
 position = Vector2(248, -483)

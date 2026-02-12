@@ -25,6 +25,10 @@ boot_splash/bg_color=Color(1, 0.141176, 1, 1)
 boot_splash/image="uid://ceuewex8spqfl"
 config/icon="res://assets/images/default_mod_icon.png"
 
+[audio]
+
+buses/default_bus_layout="uid://cy1i3a8mes28p"
+
 [autoload]
 
 OptionsAPI="*res://autoload/scripts/OptionsAPI.gd"
@@ -46,6 +50,10 @@ FPS="*res://autoload/scenes/FPS.tscn"
 HighScore="*res://autoload/scripts/HighScore.gd"
 RichPresence="*res://autoload/scripts/DiscordRPC.gd"
 GameJolt="res://autoload/scenes/GameJoltAPI.tscn"
+
+[debug]
+
+file_logging/stdout/verbose_stdout=false
 
 [display]
 

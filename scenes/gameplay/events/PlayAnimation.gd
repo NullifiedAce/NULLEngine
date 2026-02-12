@@ -18,5 +18,5 @@ func _ready() -> void:
 	if target == "spectator" or target == "gf" or target == "girlfriend":
 		target_char = game.spectator
 
-	if target_char is Character:
+	if target_char is Character or target_char is CharacterNode:
 		target_char.play_anim(anim, force, true)
