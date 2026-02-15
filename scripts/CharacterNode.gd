@@ -83,7 +83,7 @@ func play_anim(anim:String, force:bool = false, special:bool = false):
 		sprite_frames = load(data.sprite_frames[get_anim_sprite_frame(anim)])
 
 		if last_anim == anim:
-			frame = 0
+			frame = get_anim_frame(anim)
 
 		last_anim = anim
 		anim_finished = false
@@ -109,6 +109,15 @@ func get_anim_name(anim:String):
 			anim_name = i[1]
 
 	return anim_name
+
+func get_anim_frame(anim:String):
+	var anim_frame:int
+
+	for i in data.anim_data:
+		if i[0] == anim:
+			anim_frame = i[2]
+
+	return anim_frame
 
 func get_anim_sprite_frame(anim:String):
 	var sprite_frame:float

@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bgk48t11fpyuf" path="res://assets/images/gameplay/icons/icon-face.png" id="11_6h1qp"]
 [ext_resource type="Script" uid="uid://bhg3vp5ab5eol" path="res://scripts/HealthIcon.gd" id="12_fwbmj"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="13_0ecoy"]
+[ext_resource type="AudioStream" uid="uid://bydbrgy3513au" path="res://assets/sounds/hitsound.ogg" id="14_6h1qp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ecoy"]
 bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
@@ -203,6 +204,9 @@ vertical_alignment = 1
 
 [node name="CountdownSprite" type="Sprite2D" parent="HUD" unique_id=1964997125]
 position = Vector2(640, 360)
+
+[node name="Hitsound" type="AudioStreamPlayer" parent="HUD" unique_id=1275630209]
+stream = ExtResource("14_6h1qp")
 
 [node name="CountdownSounds" type="Node" parent="." unique_id=1025005300]
 

@@ -11,7 +11,7 @@ var character_data:Dictionary = {
 	"dances": true,
 	"dance_steps": ["idle"],
 
-	"combo_anims": [],
+	"combo_anims": {},
 
 	"health_icon": "",
 	"health_icon_scale": 1.0,
@@ -29,7 +29,7 @@ var character_data:Dictionary = {
 	"character_script_name": "",
 
 	"sprite_frames": [],
-	"anim_data": [],
+	"anim_data": []
 }
 
 var default_data:Dictionary

@@ -71,10 +71,9 @@ var icon_zooming:bool = true
 
 var stage:Stage
 
-var spectator:Character
-
 var player:CharacterNode
 var opponent:CharacterNode
+var spectator:CharacterNode
 
 var cpu_strums:StrumLine
 var player_strums:StrumLine
@@ -114,6 +113,8 @@ var ui_skin:UISkin
 
 @onready var ms_display:Label = $HUD/MSDisplay
 @onready var script_group:ScriptGroup = $ScriptGroup
+
+@onready var hitsound: AudioStreamPlayer = $HUD/Hitsound
 
 var countdown_ticks:int = 3
 
@@ -233,7 +234,7 @@ func _ready() -> void:
 
 	playerData = CharacterData.load_data(METADATA.playData["characters"]["player"])
 	opponentData = CharacterData.load_data(METADATA.playData["characters"]["opponent"])
-	#spectatorData = CharacterData.load_data(METADATA.playData["characters"]["girlfriend"])
+	spectatorData = CharacterData.load_data(METADATA.playData["characters"]["girlfriend"])
 
 	Conductor.map_bpm_changes(METADATA)
 	Conductor.change_bpm(METADATA.timeChanges[0]["bpm"])
@@ -336,23 +337,28 @@ func _ready() -> void:
 	script_group.call_func("_ready_post", [])
 
 func load_spectator():
-	var spectator_path:String = "res://scenes/gameplay/characters/"+METADATA.playData["characters"]["girlfriend"]+".tscn"
-	if ResourceLoader.exists(spectator_path):
-		spectator = load(spectator_path).instantiate()
-	else:
-		spectator = load("res://scenes/gameplay/characters/gf.tscn").instantiate()
+	for i in spectatorData.sprite_frames:
+		load(i)
 
+	spectator = CharacterNode.new()
+
+	spectator.centered = false
 	spectator.position = stage.character_positions["spectator"].position
 	spectator.scale = stage.character_positions["spectator"].scale
-	characters.add_child(spectator)
+	spectator.sprite_frames = load(spectatorData.sprite_frames[0])
+
 	spectator.z_index = stage.character_positions["spectator"].z_index
-	spectator.anim_sprite.material = stage.character_positions["spectator"].material
+	spectator.material = stage.character_positions["spectator"].material
+
+	spectator.data = spectatorData
+
+	characters.add_child(spectator)
 
 	# load character scripts (put in assets/data/scripts/characters/CHARACTER_FOLDER)
-	var script_path:String = "res://assets/data/scripts/characters/"+spectator.character_script_folder+"/"
+	var script_path:String = "res://assets/data/scripts/characters/"+spectatorData.character_script_path+"/"
 	var file_list:PackedStringArray = Global.list_files_in_dir(script_path)
 	for item in file_list:
-		if item.ends_with(spectator.character_script_name+".tscn") or item.ends_with(spectator.character_script_name+".tscn.remap"):
+		if item.ends_with(spectatorData.character_script_name+".tscn") or item.ends_with(spectatorData.character_script_name+".tscn.remap"):
 			var script:FunkinScript = FunkinScript.create(script_path+item.replace(".remap", ""), self)
 			script_group.add_script(script)
 
@@ -754,9 +760,9 @@ func pop_up_score(judgement:Judgement) -> void:
 	if max_combo < combo:
 		max_combo = combo
 
-	if spectator and spectator.combo_anims.has(combo):
-		if spectator.anim_player.has_animation(spectator.combo_anims[combo]):
-			spectator.play_anim(spectator.combo_anims[combo], true, true)
+	if spectator and spectatorData.combo_anims.has(combo):
+		if spectator.anim_player.has_animation(spectatorData.combo_anims[combo]):
+			spectator.play_anim(spectatorData.combo_anims[combo], true, true)
 		else:
 			push_warning("Animation \'"+spectator.combo_anims[combo]+"\' does not exist.")
 
@@ -888,6 +894,9 @@ func good_note_hit(note:Note):
 
 	note.was_good_hit = true
 
+	hitsound.volume_linear = OptionsAPI.get_option("hit sound volume")
+	hitsound.play()
+
 	var sing_anim = get_sing_anim(note)
 	if note.play_sing_anim:
 		player.play_anim(sing_anim, true)
@@ -964,14 +973,14 @@ func get_sing_anim(note:Note):
 	return sing_anim
 
 func game_over():
-	Global.death_character = player.death_character
+	Global.death_character = playerData.death_character
 	Global.death_camera_zoom = camera.zoom
 	Global.death_camera_pos = camera.position
 	Global.death_char_pos = player.position
 
-	Global.death_music = player.death_music
-	Global.death_sound = player.death_sound
-	Global.retry_sound = player.retry_sound
+	Global.death_music = load(playerData.death_music)
+	Global.death_sound = load(playerData.death_sound)
+	Global.retry_sound = load(playerData.retry_sound)
 
 	get_tree().change_scene_to_file("res://scenes/gameplay/GameOver.tscn")
 

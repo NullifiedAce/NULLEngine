@@ -6,7 +6,7 @@ extends MusicBeatScene
 @onready var camera:Camera2D = $Camera2D
 @onready var buttons:Node2D = $PB/UILayer/Buttons
 
-@onready var gf: Character = $PB/UILayer/gf
+@onready var gf: AnimatedSprite2D = $PB/BGLayer/GF
 
 var cur_selected:int = 0
 var selected_something:bool = false
@@ -19,7 +19,7 @@ func _ready():
 	$PB/UILayer/Version.text = "Nova Engine Godot v1.2.0\nNULL Engine v" + str(ProjectSettings.get_setting("application/config/version"))
 	RichPresence.set_text("In the menus", "Main Menu")
 
-	gf.play_anim("danceLeft")
+	gf.play("GF Dancing Beat Left")
 
 	change_selection()
 
@@ -28,7 +28,7 @@ func _process(delta):
 
 	Conductor.position = Audio.music.time
 
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("mouse_right"):
 		Audio.play_sound("cancelMenu")
 		Global.switch_scene("res://scenes/menus/title/Menu.tscn")
 
@@ -41,16 +41,16 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_down"):
 		change_selection(1)
 
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("mouse_left"):
 		Audio.play_sound("confirmMenu")
 		selected_something = true
 		if OptionsAPI.get_option("flashing lights"):
 			magenta_anim.play("flash")
 
+		gf.play("GF Cheer")
+
 		button_anim.root_node = buttons.get_child(cur_selected).get_path()
 		button_anim.play("flash")
-
-		gf.play_anim("cheer", true)
 
 		button_anim.animation_finished.connect(func(anim_name:StringName):
 			for i in buttons.get_child_count():
@@ -113,7 +113,7 @@ func change_selection(change:int = 0):
 	camera.position.y = buttons.get_child(cur_selected).position.y
 
 func beat_hit(beat:int):
-	gf.play_anim("danceLeft" if beat % 2 == 0 else "danceRight")
+	gf.play("GF Dancing Beat Left" if beat % 2 == 0 else "GF Dancing Beat Right")
 
 func _on_achievement_pressed() -> void:
 	if selected_something: return
@@ -123,7 +123,7 @@ func _on_achievement_pressed() -> void:
 	if OptionsAPI.get_option("flashing lights"):
 		magenta_anim.play("flash")
 
-	gf.play_anim("cheer", true)
+	gf.play("GF Cheer")
 
 	var timer:SceneTreeTimer = get_tree().create_timer(0.45)
 	timer.timeout.connect(func():
