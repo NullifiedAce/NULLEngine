@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7y3pj5mrw2xy"]
+[gd_scene format=3 uid="uid://7y3pj5mrw2xy"]
 
 [ext_resource type="Script" uid="uid://c81k7wf40myv4" path="res://scripts/Character.gd" id="1_ydu0a"]
 [ext_resource type="Texture2D" uid="uid://dc1jxy8dleesb" path="res://assets/images/gameplay/icons/icon-senpai-angry.png" id="2_nla5c"]
@@ -271,7 +271,7 @@ _data = {
 &"singUP": SubResource("Animation_55yur")
 }
 
-[node name="senpai-angry" type="Node2D"]
+[node name="senpai-angry" type="Node2D" unique_id=153350762]
 texture_filter = 1
 script = ExtResource("1_ydu0a")
 health_icon = ExtResource("2_nla5c")
@@ -280,20 +280,19 @@ health_icon_filter = 1
 health_color = Color(1, 0.666667, 0.435294, 1)
 voices_paths = "senpai"
 
-[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=829290263]
 position = Vector2(-372, -882)
 scale = Vector2(6, 6)
 sprite_frames = ExtResource("3_v36ws")
-animation = &"Angry Senpai Idle"
+animation = &"Angry Senpai UP NOTE"
 frame = 13
 frame_progress = 1.0
 centered = false
+offset = Vector2(-2, -6)
 script = ExtResource("4_w4r2h")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
-libraries = {
-&"": SubResource("AnimationLibrary_vgtrv")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite" unique_id=1000305566]
+libraries/ = SubResource("AnimationLibrary_vgtrv")
 
-[node name="CameraPos" type="Node2D" parent="."]
+[node name="CameraPos" type="Node2D" parent="." unique_id=1245258605]
 position = Vector2(212, -410)

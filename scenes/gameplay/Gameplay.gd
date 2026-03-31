@@ -347,6 +347,9 @@ func load_spectator():
 	spectator.scale = stage.character_positions["spectator"].scale
 	spectator.sprite_frames = load(spectatorData.sprite_frames[0])
 
+	spectator.flip_h = spectatorData.flip_h
+	spectator.flip_v = spectatorData.flip_v
+
 	spectator.z_index = stage.character_positions["spectator"].z_index
 	spectator.material = stage.character_positions["spectator"].material
 
@@ -373,8 +376,14 @@ func load_opponent():
 	opponent.scale = stage.character_positions["opponent"].scale
 	opponent.sprite_frames = load(opponentData.sprite_frames[0])
 
+	opponent.flip_h = opponentData.flip_h
+	opponent.flip_v = opponentData.flip_v
+
 	opponent.z_index = stage.character_positions["opponent"].z_index
 	opponent.material = stage.character_positions["opponent"].material
+
+	opponent.scale = Vector2(opponentData.scale, opponentData.scale)
+	opponent.texture_filter = opponentData.filter as CanvasItem.TextureFilter
 
 	opponent.data = opponentData
 
@@ -406,6 +415,9 @@ func load_player():
 	player.position = stage.character_positions["player"].position
 	player.scale = stage.character_positions["player"].scale
 	player.sprite_frames = load(playerData.sprite_frames[0])
+
+	player.flip_h = playerData.flip_h
+	player.flip_v = playerData.flip_v
 
 	player.z_index = stage.character_positions["player"].z_index
 	player.material = stage.character_positions["player"].material
@@ -760,11 +772,8 @@ func pop_up_score(judgement:Judgement) -> void:
 	if max_combo < combo:
 		max_combo = combo
 
-	if spectator and spectatorData.combo_anims.has(combo):
-		if spectator.anim_player.has_animation(spectatorData.combo_anims[combo]):
-			spectator.play_anim(spectatorData.combo_anims[combo], true, true)
-		else:
-			push_warning("Animation \'"+spectator.combo_anims[combo]+"\' does not exist.")
+	if spectator and spectatorData.combo_anims.has(str(combo)):
+		spectator.play_anim(spectatorData.combo_anims[str(combo)], true, true)
 
 	if not OptionsAPI.get_option('judgement stacking'):
 		for child in combo_group.get_children():

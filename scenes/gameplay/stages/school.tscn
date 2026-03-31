@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c52ag5d72hnej"]
+[gd_scene format=3 uid="uid://c52ag5d72hnej"]
 
 [ext_resource type="Script" uid="uid://dgr1y61bnlqaa" path="res://scenes/gameplay/stages/school.gd" id="1_3caaj"]
 [ext_resource type="Texture2D" uid="uid://cejnp7ebusdue" path="res://assets/images/gameplay/stages/school/weebSky.png" id="2_qbyx2"]
@@ -9,25 +9,25 @@
 [ext_resource type="SpriteFrames" uid="uid://ctolmiymg3dri" path="res://assets/images/gameplay/stages/school/bgFreaks.res" id="7_tgywo"]
 [ext_resource type="SpriteFrames" uid="uid://dhjait3wwqiew" path="res://assets/images/gameplay/stages/school/petals.res" id="8_ukwcq"]
 
-[node name="stage" type="Node2D"]
+[node name="stage" type="Node2D" unique_id=444250915]
 script = ExtResource("1_3caaj")
 player_cam_offset = Vector2(-200, -100)
 opponent_cam_offset = Vector2(160, 0)
 
-[node name="0-1" type="Parallax2D" parent="."]
+[node name="0-1" type="Parallax2D" parent="." unique_id=651574710]
 scroll_scale = Vector2(0.1, 0.1)
 
-[node name="WeebSky" type="Sprite2D" parent="0-1"]
+[node name="WeebSky" type="Sprite2D" parent="0-1" unique_id=2142284431]
 z_index = 10
 texture_filter = 1
 scale = Vector2(6, 6)
 texture = ExtResource("2_qbyx2")
 centered = false
 
-[node name="0-6 0-9" type="Parallax2D" parent="."]
+[node name="0-6 0-9" type="Parallax2D" parent="." unique_id=200157397]
 scroll_scale = Vector2(0.6, 0.9)
 
-[node name="WeebSchool" type="Sprite2D" parent="0-6 0-9"]
+[node name="WeebSchool" type="Sprite2D" parent="0-6 0-9" unique_id=123301803]
 z_index = 20
 texture_filter = 1
 position = Vector2(-200, 0)
@@ -35,10 +35,10 @@ scale = Vector2(6, 6)
 texture = ExtResource("3_34qhi")
 centered = false
 
-[node name="0-95" type="Parallax2D" parent="."]
+[node name="0-95" type="Parallax2D" parent="." unique_id=358778227]
 scroll_scale = Vector2(0.95, 0.95)
 
-[node name="WeebStreet" type="Sprite2D" parent="0-95"]
+[node name="WeebStreet" type="Sprite2D" parent="0-95" unique_id=1270777913]
 z_index = 30
 texture_filter = 1
 position = Vector2(-200, 0)
@@ -46,10 +46,10 @@ scale = Vector2(6, 6)
 texture = ExtResource("4_dpw4v")
 centered = false
 
-[node name="0-9" type="Parallax2D" parent="."]
+[node name="0-9" type="Parallax2D" parent="." unique_id=1316658984]
 scroll_scale = Vector2(0.9, 0.9)
 
-[node name="trees back" type="Sprite2D" parent="0-9"]
+[node name="trees back" type="Sprite2D" parent="0-9" unique_id=1129694280]
 z_index = 40
 texture_filter = 1
 position = Vector2(-120, 60)
@@ -57,7 +57,7 @@ scale = Vector2(6, 6)
 texture = ExtResource("5_oyuep")
 centered = false
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="0-9"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="0-9" unique_id=1147493646]
 z_index = 80
 texture_filter = 1
 position = Vector2(-100, 190)
@@ -66,10 +66,10 @@ sprite_frames = ExtResource("7_tgywo")
 animation = &"BG fangirls dissuaded"
 centered = false
 
-[node name="0-85" type="Parallax2D" parent="."]
+[node name="0-85" type="Parallax2D" parent="." unique_id=1332213973]
 scroll_scale = Vector2(0.85, 0.85)
 
-[node name="trees" type="AnimatedSprite2D" parent="0-85"]
+[node name="trees" type="AnimatedSprite2D" parent="0-85" unique_id=760473589]
 z_index = 60
 texture_filter = 1
 position = Vector2(-780, -1000)
@@ -78,7 +78,7 @@ sprite_frames = ExtResource("6_vmvyx")
 animation = &"trees"
 centered = false
 
-[node name="petals" type="AnimatedSprite2D" parent="0-85"]
+[node name="petals" type="AnimatedSprite2D" parent="0-85" unique_id=592708822]
 z_index = 70
 texture_filter = 1
 position = Vector2(-20, -40)
@@ -87,16 +87,16 @@ sprite_frames = ExtResource("8_ukwcq")
 animation = &"PETALS ALL"
 centered = false
 
-[node name="Character Positions" type="Node2D" parent="."]
+[node name="Character Positions" type="Node2D" parent="." unique_id=443815605]
 
-[node name="Opponent" type="Node2D" parent="Character Positions"]
+[node name="Opponent" type="Node2D" parent="Character Positions" unique_id=734695873]
 z_index = 200
-position = Vector2(375, 880)
+position = Vector2(306, 960)
 
-[node name="Spectator" type="Node2D" parent="Character Positions"]
+[node name="Spectator" type="Node2D" parent="Character Positions" unique_id=190404448]
 z_index = 100
 position = Vector2(680, 760)
 
-[node name="Player" type="Node2D" parent="Character Positions"]
+[node name="Player" type="Node2D" parent="Character Positions" unique_id=1032102975]
 z_index = 300
 position = Vector2(909, 880)

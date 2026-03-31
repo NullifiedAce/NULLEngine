@@ -27,16 +27,16 @@ func do_lightning_stike(play_sound:bool, beat:int):
 
 	bg_light.modulate.a = 1.0
 	stairs_light.modulate.a = 1.0
-	game.player.anim_sprite.modulate.a = 0.0
-	game.opponent.anim_sprite.modulate.a = 0.0
-	game.spectator.anim_sprite.modulate.a = 0.0
+	game.player.modulate.a = 0.0
+	game.opponent.modulate.a = 0.0
+	game.spectator.modulate.a = 0.0
 
 	get_tree().create_timer(0.06).timeout.connect(func():
 		bg_light.modulate.a = 0.0
 		stairs_light.modulate.a = 0.0
-		game.player.anim_sprite.modulate.a = 1.0
-		game.opponent.anim_sprite.modulate.a = 1.0
-		game.spectator.anim_sprite.modulate.a = 1.0
+		game.player.modulate.a = 1.0
+		game.opponent.modulate.a = 1.0
+		game.spectator.modulate.a = 1.0
 		)
 
 	get_tree().create_timer(0.12).timeout.connect(func():
@@ -48,15 +48,15 @@ func do_lightning_stike(play_sound:bool, beat:int):
 
 		bg_light.modulate.a = 1.0
 		stairs_light.modulate.a = 1.0
-		game.player.anim_sprite.modulate.a = 0.0
-		game.opponent.anim_sprite.modulate.a = 0.0
-		game.spectator.anim_sprite.modulate.a = 0.0
+		game.player.modulate.a = 0.0
+		game.opponent.modulate.a = 0.0
+		game.spectator.modulate.a = 0.0
 
 		t1.tween_property(bg_light, "modulate:a", 0.0, 1.5)
 		t2.tween_property(stairs_light, "modulate:a", 0.0, 1.5)
-		t3.tween_property(game.player.anim_sprite, "modulate:a", 1.0, 1.5)
-		t4.tween_property(game.opponent.anim_sprite, "modulate:a", 1.0, 1.5)
-		t5.tween_property(game.spectator.anim_sprite, "modulate:a", 1.0, 1.5)
+		t3.tween_property(game.player, "modulate:a", 1.0, 1.5)
+		t4.tween_property(game.opponent, "modulate:a", 1.0, 1.5)
+		t5.tween_property(game.spectator, "modulate:a", 1.0, 1.5)
 		)
 
 	lightning_strike_beat = beat

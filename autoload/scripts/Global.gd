@@ -52,6 +52,8 @@ func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
+	OptionsAPI.update_settings()
+
 func set_vsync(value:bool):
 	if value:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ADAPTIVE)

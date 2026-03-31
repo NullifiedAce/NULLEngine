@@ -1,5 +1,5 @@
 extends AnimatedSprite2D
-class_name CharacterNode
+class_name EditorCharacter
 
 var special_anim:bool = false
 var anim_timer:float = 0.0
@@ -17,15 +17,17 @@ var initial_size:Vector2 = Vector2.ZERO
 
 var camera_pos:Node2D
 
-var data:CharacterData
-
-@onready var game: Gameplay = $"../.." # The node has to be placed in the characters Node2D group.
+@onready var character_editor: CharacterEditor = $".."
 
 func _ready() -> void:
-	speed_scale = Conductor.rate
-
 	connect("animation_finished", func(): anim_finished = true)
-	dance(true)
+
+func _setup():
+	cur_dance_step = 0
+	dance()
+
+	scale = Vector2.ONE*character_editor.character_data.scale
+	texture_filter = character_editor.character_data.filter as CanvasItem.TextureFilter
 
 	if sprite_frames:
 		initial_size = Vector2(
@@ -33,15 +35,15 @@ func _ready() -> void:
 			sprite_frames.get_frame_texture(animation, 0).get_height()
 		)
 
-	position.x -= initial_size.x/2*scale.x
-	position.y -= initial_size.y*scale.y
-
-	camera_pos = Node2D.new()
-	add_child(camera_pos)
-	camera_pos.position = ((initial_size / 2)) # Set camera position to the middle of the character.
-
-	if data.is_player != _is_true_player:
+	if character_editor.character_data.is_player != _is_true_player:
 		scale.x *= -1
+	else:
+		scale.x *= 1
+
+	position = Global.game_size/2
+
+	position.x -= initial_size.x/2*scale.x
+	position.y -= initial_size.y/2*scale.y
 
 func _process(delta):
 	if anim_timer > 0.0:
@@ -58,18 +60,21 @@ func _process(delta):
 
 	if last_anim.begins_with("sing"):
 		hold_timer += delta * Conductor.rate
-		if not _is_true_player and hold_timer >= Conductor.step_crochet * data.sing_duration * 0.0011:
+		if not _is_true_player and hold_timer >= Conductor.step_crochet * character_editor.character_data.sing_duration * 0.0011:
 			hold_timer = 0.0
 			dance()
 
 func play_anim(anim:String, force:bool = false, special:bool = false):
-	if not data.is_animated: return
-	if "sing" in anim and not data.can_sing: return
+	if !character_editor.character_data:
+		return
+
+	if not character_editor.character_data.is_animated: return
+	if "sing" in anim and not character_editor.character_data.can_sing: return
 
 	special_anim = special
 
 	# swap left and right anims
-	if data.is_player != _is_true_player:
+	if character_editor.character_data.is_player != _is_true_player:
 		if anim == "singLEFT":
 			anim = "singRIGHT"
 		elif anim == "singRIGHT":
@@ -80,7 +85,7 @@ func play_anim(anim:String, force:bool = false, special:bool = false):
 			anim = "singLEFT-alt"
 
 	if force or last_anim != anim or anim_finished or last_anim.contains("-loop"):
-		sprite_frames = load(data.sprite_frames[get_anim_sprite_frame(anim)])
+		sprite_frames = load(character_editor.character_data.sprite_frames[get_anim_sprite_frame(anim)])
 
 		if last_anim == anim:
 			frame = get_anim_frame(anim)
@@ -92,19 +97,22 @@ func play_anim(anim:String, force:bool = false, special:bool = false):
 		play(get_anim_name(anim))
 
 func dance(force:bool = false):
-	if special_anim and not force or !data.dances:
+	if !character_editor.character_data:
 		return
 
-	play_anim(data.dance_steps[cur_dance_step], force)
+	if special_anim and not force or !character_editor.character_data.dances:
+		return
+
+	play_anim(character_editor.character_data.dance_steps[cur_dance_step], force)
 
 	cur_dance_step += 1
-	if cur_dance_step > data.dance_steps.size() - 1:
+	if cur_dance_step > character_editor.character_data.dance_steps.size() - 1:
 		cur_dance_step = 0
 
 func get_anim_name(anim:String):
 	var anim_name:String
 
-	for i in data.anim_data:
+	for i in character_editor.character_data.anim_data:
 		if i[0] == anim:
 			anim_name = i[1]
 
@@ -113,7 +121,7 @@ func get_anim_name(anim:String):
 func get_anim_frame(anim:String):
 	var anim_frame:int
 
-	for i in data.anim_data:
+	for i in character_editor.character_data.anim_data:
 		if i[0] == anim:
 			anim_frame = i[2]
 
@@ -122,7 +130,7 @@ func get_anim_frame(anim:String):
 func get_anim_sprite_frame(anim:String):
 	var sprite_frame:float
 
-	for i in data.anim_data:
+	for i in character_editor.character_data.anim_data:
 		if i[0] == anim:
 			sprite_frame = i[5]
 
@@ -131,7 +139,7 @@ func get_anim_sprite_frame(anim:String):
 func get_anim_offset(anim:String):
 	var anim_offset:Vector2
 
-	for i in data.anim_data:
+	for i in character_editor.character_data.anim_data:
 		if i[0] == anim:
 			anim_offset = Vector2(i[3], i[4])
 

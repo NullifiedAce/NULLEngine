@@ -36,7 +36,7 @@ func _process(delta:float) -> void:
 					if note.alt_anim:
 						sing_anim += "-alt"
 					if note.play_sing_anim:
-						game.player.play_anim(sing_anim, true)
+						#game.player.play_anim(sing_anim, true)
 						game.player.hold_timer = 0.0
 
 				note.is_sustain_note = true
@@ -52,7 +52,7 @@ func _process(delta:float) -> void:
 					if note.alt_anim:
 						sing_anim += "-alt"
 					if note.play_sing_anim:
-						game.opponent.play_anim(sing_anim, true)
+						#game.opponent.play_anim(sing_anim, true)
 						game.opponent.hold_timer = 0.0
 
 				var receptor:Receptor = note.strumline.get_child(note.direction)

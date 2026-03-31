@@ -3,6 +3,16 @@
 [ext_resource type="Script" uid="uid://b7lcxeqkqqoqq" path="res://scenes/editors/character editor/Editor.gd" id="1_u2pfu"]
 [ext_resource type="Theme" uid="uid://dqqyiyf33vtjn" path="res://assets/styles/NULLEngine.tres" id="2_6v8at"]
 [ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="2_8a86m"]
+[ext_resource type="Script" uid="uid://bb5c3j2djmult" path="res://scenes/editors/character editor/Character.gd" id="3_nkphq"]
+[ext_resource type="Script" uid="uid://biv4l784u5oi2" path="res://scenes/editors/character editor/windows/CharacterData.gd" id="5_wf8xh"]
+[ext_resource type="Texture2D" uid="uid://b38qjchoyeubk" path="res://assets/images/material_icons/Editors/Add.svg" id="6_euvid"]
+[ext_resource type="Texture2D" uid="uid://cumn3pupqsl1c" path="res://assets/images/material_icons/Editors/FileBrowse.svg" id="7_yx6mu"]
+[ext_resource type="Texture2D" uid="uid://btjmarohyves3" path="res://assets/images/material_icons/Editors/ExternalLink.svg" id="8_yx6mu"]
+[ext_resource type="Texture2D" uid="uid://bu1lcynh7qj3l" path="res://assets/images/material_icons/Editors/Play.svg" id="9_sq5tw"]
+[ext_resource type="Script" uid="uid://bh4vjq76n65me" path="res://scenes/editors/ui/AudioStreamPlayerButton.gd" id="10_hm5gv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_euvid"]
+bg_color = Color(0, 0, 0, 0.21568628)
 
 [node name="CharacterEditor" type="Node2D" unique_id=176797306]
 script = ExtResource("1_u2pfu")
@@ -13,6 +23,11 @@ modulate = Color(0.09240001, 0.084, 0.12, 1)
 position = Vector2(640, 360)
 texture = ExtResource("2_8a86m")
 metadata/_edit_lock_ = true
+
+[node name="Character" type="AnimatedSprite2D" parent="." unique_id=496457287]
+position = Vector2(640, 360)
+centered = false
+script = ExtResource("3_nkphq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=29494552]
 
@@ -92,13 +107,36 @@ grow_vertical = 2
 color = Color(0.21568628, 0.21568628, 0.21568628, 1)
 metadata/_edit_lock_ = true
 
+[node name="LoadCharacter" type="FileDialog" parent="Windows" unique_id=491704926]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 1
+size = Vector2i(360, 360)
+unresizable = true
+file_mode = 0
+display_mode = 1
+root_subfolder = "res://assets/data/characters/"
+filters = PackedStringArray("*.json;Character Data")
+hidden_files_toggle_enabled = false
+file_filter_toggle_enabled = false
+file_sort_options_enabled = false
+folder_creation_enabled = false
+favorites_enabled = false
+recent_list_enabled = false
+layout_toggle_enabled = false
+deleting_enabled = false
+
 [node name="Character Data" type="Window" parent="Windows" unique_id=1941043274]
 oversampling_override = 1.0
 title = "Character Data"
 initial_position = 1
-size = Vector2i(640, 360)
+size = Vector2i(256, 360)
+min_size = Vector2i(256, 0)
+max_size = Vector2i(256, 32768)
+script = ExtResource("5_wf8xh")
 
 [node name="BG" type="ColorRect" parent="Windows/Character Data" unique_id=1727221436]
+z_index = -10
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -108,5 +146,438 @@ grow_vertical = 2
 color = Color(0.21568628, 0.21568628, 0.21568628, 1)
 metadata/_edit_lock_ = true
 
+[node name="ScrollContainer" type="ScrollContainer" parent="Windows/Character Data" unique_id=1358671254]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scroll_vertical = 211
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Character Data/ScrollContainer" unique_id=1145705985]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="CharScaleLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=1179430769]
+layout_mode = 2
+text = "Character Scale:"
+
+[node name="CharScale" type="SpinBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=1229341965]
+layout_mode = 2
+step = 0.01
+
+[node name="TextureFilterLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=1705936339]
+layout_mode = 2
+text = "Texture Filter:"
+
+[node name="SpriteFilter" type="OptionButton" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=834536765]
+layout_mode = 2
+focus_mode = 0
+selected = 0
+item_count = 3
+popup/item_0/text = "Inherit"
+popup/item_0/id = 0
+popup/item_1/text = "Nearest"
+popup/item_1/id = 1
+popup/item_2/text = "Linear"
+popup/item_2/id = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=81791803]
+layout_mode = 2
+
+[node name="FlipLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=473259707]
+layout_mode = 2
+text = "Flip: "
+
+[node name="FlipH" type="CheckBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=350551528]
+layout_mode = 2
+focus_mode = 0
+text = "Horizontal"
+
+[node name="FlipV" type="CheckBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=511317109]
+layout_mode = 2
+focus_mode = 0
+text = "Vertical"
+
+[node name="AnimData" type="FoldableContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=1680295540]
+custom_minimum_size = Vector2(248, 0)
+layout_mode = 2
+focus_mode = 0
+title = "Animation Data"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData" unique_id=1474362922]
+layout_mode = 2
+
+[node name="IsAnimated" type="CheckBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer" unique_id=1958125060]
+layout_mode = 2
+focus_mode = 0
+text = "Is animated?"
+
+[node name="IsPlayer" type="CheckBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer" unique_id=10533815]
+layout_mode = 2
+focus_mode = 0
+text = "Is Player?"
+
+[node name="CanSing" type="CheckBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer" unique_id=790358982]
+layout_mode = 2
+focus_mode = 0
+text = "Can Sing?"
+
+[node name="SingDurLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer" unique_id=846372613]
+layout_mode = 2
+text = "Sing Duration:"
+
+[node name="SingDur" type="SpinBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer" unique_id=1567766414]
+layout_mode = 2
+max_value = inf
+step = 0.1
+value = 4.0
+
+[node name="Dances" type="CheckBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer" unique_id=453678876]
+layout_mode = 2
+focus_mode = 0
+text = "Dances?"
+
+[node name="AddDanceSteps" type="Button" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer" unique_id=732066189]
+layout_mode = 2
+focus_mode = 0
+text = "Add Dance Step"
+icon = ExtResource("6_euvid")
+alignment = 0
+
+[node name="DanceStepGroups" type="FoldableContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer" unique_id=1460921661]
+layout_mode = 2
+focus_mode = 0
+folded = true
+title = "Dance Steps"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer/DanceStepGroups" unique_id=404314867]
+visible = false
+layout_mode = 2
+
+[node name="AddComboAnim" type="Button" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer" unique_id=1389383117]
+layout_mode = 2
+focus_mode = 0
+text = "Add Dance Step"
+icon = ExtResource("6_euvid")
+alignment = 0
+
+[node name="ComboAnimGroup" type="FoldableContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer" unique_id=1389928316]
+layout_mode = 2
+focus_mode = 0
+title = "Combo Anims"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer/ComboAnimGroup" unique_id=1109859598]
+layout_mode = 2
+
+[node name="HealthIconData" type="FoldableContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=1097428453]
+custom_minimum_size = Vector2(248, 0)
+layout_mode = 2
+focus_mode = 0
+folded = true
+title = "Health Icon Data"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HealthIconData" unique_id=927090257]
+visible = false
+layout_mode = 2
+
+[node name="ChooseHealthIcon" type="Button" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HealthIconData/VBoxContainer" unique_id=1704444194]
+layout_mode = 2
+focus_mode = 0
+text = "Choose Health Icon"
+icon = ExtResource("7_yx6mu")
+alignment = 0
+
+[node name="IconPreview" type="TextureRect" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HealthIconData/VBoxContainer" unique_id=1275724342]
+z_index = 1
+custom_minimum_size = Vector2(232, 116)
+layout_mode = 2
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HealthIconData/VBoxContainer/IconPreview" unique_id=743389566]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08627451, 0.08627451, 0.08627451, 1)
+
+[node name="Label" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HealthIconData/VBoxContainer/IconPreview" unique_id=461696816]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_euvid")
+text = "Preview:"
+horizontal_alignment = 1
+
+[node name="IconScaleLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HealthIconData/VBoxContainer" unique_id=1639315141]
+layout_mode = 2
+text = "Icon Scale:"
+
+[node name="IconScale" type="SpinBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HealthIconData/VBoxContainer" unique_id=254938494]
+layout_mode = 2
+max_value = inf
+step = 0.1
+value = 1.0
+
+[node name="IconFilterLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HealthIconData/VBoxContainer" unique_id=1560132942]
+layout_mode = 2
+text = "Icon Filter:"
+
+[node name="IconFilter" type="OptionButton" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HealthIconData/VBoxContainer" unique_id=939832814]
+layout_mode = 2
+focus_mode = 0
+selected = 0
+item_count = 3
+popup/item_0/text = "Inherit"
+popup/item_0/id = 0
+popup/item_1/text = "Nearest"
+popup/item_1/id = 1
+popup/item_2/text = "Linear"
+popup/item_2/id = 2
+
+[node name="IconFramesLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HealthIconData/VBoxContainer" unique_id=315171644]
+layout_mode = 2
+text = "Icon Frames:"
+
+[node name="IconFrames" type="SpinBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HealthIconData/VBoxContainer" unique_id=1492669075]
+layout_mode = 2
+value = 2.0
+
+[node name="IconColorLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HealthIconData/VBoxContainer" unique_id=1057727427]
+layout_mode = 2
+text = "Icon Color:"
+
+[node name="IconColor" type="ColorPickerButton" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HealthIconData/VBoxContainer" unique_id=497384867]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 0
+edit_alpha = false
+edit_intensity = false
+
+[node name="DeathCharData" type="FoldableContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=1263046040]
+custom_minimum_size = Vector2(248, 0)
+layout_mode = 2
+focus_mode = 0
+folded = true
+title = "Death Character Data"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/DeathCharData" unique_id=518963165]
+visible = false
+layout_mode = 2
+
+[node name="DeathCharLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/DeathCharData/VBoxContainer" unique_id=1831781288]
+layout_mode = 2
+text = "Death Character:"
+
+[node name="DeathChar" type="TextEdit" parent="Windows/Character Data/ScrollContainer/VBoxContainer/DeathCharData/VBoxContainer" unique_id=2077484301]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+placeholder_text = "bf-dead"
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="OpenDeathChar" type="Button" parent="Windows/Character Data/ScrollContainer/VBoxContainer/DeathCharData/VBoxContainer/DeathChar" unique_id=1308459104]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+tooltip_text = "Load death character"
+focus_mode = 0
+icon = ExtResource("8_yx6mu")
+icon_alignment = 1
+
+[node name="DeathSound" type="Button" parent="Windows/Character Data/ScrollContainer/VBoxContainer/DeathCharData/VBoxContainer" unique_id=1325658481]
+layout_mode = 2
+focus_mode = 0
+text = "Choose death sound"
+alignment = 0
+
+[node name="PlayButton" type="Button" parent="Windows/Character Data/ScrollContainer/VBoxContainer/DeathCharData/VBoxContainer/DeathSound" unique_id=1758150846]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+toggle_mode = true
+icon = ExtResource("9_sq5tw")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("10_hm5gv")
+
+[node name="DeathSoundPlayer" type="AudioStreamPlayer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/DeathCharData/VBoxContainer/DeathSound/PlayButton" unique_id=1751699419]
+
+[node name="DeathMusic" type="Button" parent="Windows/Character Data/ScrollContainer/VBoxContainer/DeathCharData/VBoxContainer" unique_id=1539033840]
+layout_mode = 2
+focus_mode = 0
+text = "Choose death music"
+alignment = 0
+
+[node name="PlayButton" type="Button" parent="Windows/Character Data/ScrollContainer/VBoxContainer/DeathCharData/VBoxContainer/DeathMusic" unique_id=938755506]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+toggle_mode = true
+icon = ExtResource("9_sq5tw")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("10_hm5gv")
+
+[node name="DeathMusicPlayer" type="AudioStreamPlayer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/DeathCharData/VBoxContainer/DeathMusic/PlayButton" unique_id=906560483]
+
+[node name="RetrySound" type="Button" parent="Windows/Character Data/ScrollContainer/VBoxContainer/DeathCharData/VBoxContainer" unique_id=1905317115]
+layout_mode = 2
+focus_mode = 0
+text = "Choose retry sound"
+alignment = 0
+
+[node name="PlayButton" type="Button" parent="Windows/Character Data/ScrollContainer/VBoxContainer/DeathCharData/VBoxContainer/RetrySound" unique_id=997244841]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+toggle_mode = true
+icon = ExtResource("9_sq5tw")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("10_hm5gv")
+
+[node name="RetrySoundPlayer" type="AudioStreamPlayer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/DeathCharData/VBoxContainer/RetrySound/PlayButton" unique_id=1345727721]
+
+[node name="CharPathData" type="FoldableContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=708207165]
+custom_minimum_size = Vector2(248, 0)
+layout_mode = 2
+focus_mode = 0
+folded = true
+title = "Character Paths Data"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/CharPathData" unique_id=1612451239]
+visible = false
+layout_mode = 2
+
+[node name="VoicesPathLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/CharPathData/VBoxContainer" unique_id=844378841]
+layout_mode = 2
+text = "Voice file name:"
+
+[node name="VoicesPath" type="TextEdit" parent="Windows/Character Data/ScrollContainer/VBoxContainer/CharPathData/VBoxContainer" unique_id=2103813544]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+placeholder_text = "dad"
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="CharScriptPathLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/CharPathData/VBoxContainer" unique_id=2096773382]
+layout_mode = 2
+text = "Character script folder:"
+
+[node name="CharScriptPath" type="TextEdit" parent="Windows/Character Data/ScrollContainer/VBoxContainer/CharPathData/VBoxContainer" unique_id=736507144]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="CharScriptNameLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/CharPathData/VBoxContainer" unique_id=1447228356]
+layout_mode = 2
+text = "Character script name:"
+
+[node name="CharScriptName" type="TextEdit" parent="Windows/Character Data/ScrollContainer/VBoxContainer/CharPathData/VBoxContainer" unique_id=1291888143]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="HealthIcon" type="FileDialog" parent="Windows" unique_id=2055507678]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 1
+size = Vector2i(364, 360)
+file_mode = 0
+root_subfolder = "res://assets/images/gameplay/icons"
+filters = PackedStringArray("*.png; Health Icon")
+folder_creation_enabled = false
+favorites_enabled = false
+recent_list_enabled = false
+overwrite_warning_enabled = false
+deleting_enabled = false
+
+[node name="DeathSoundDialog" type="FileDialog" parent="Windows" unique_id=259281511]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 1
+size = Vector2i(364, 360)
+file_mode = 0
+root_subfolder = "res://assets/sounds/death"
+filters = PackedStringArray("*.ogg")
+folder_creation_enabled = false
+favorites_enabled = false
+recent_list_enabled = false
+overwrite_warning_enabled = false
+deleting_enabled = false
+
+[node name="DeathMusicDialog" type="FileDialog" parent="Windows" unique_id=1207041105]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 1
+size = Vector2i(364, 360)
+file_mode = 0
+root_subfolder = "res://assets/music/gameplay/gameover/"
+filters = PackedStringArray("*.ogg")
+folder_creation_enabled = false
+favorites_enabled = false
+recent_list_enabled = false
+overwrite_warning_enabled = false
+deleting_enabled = false
+
+[node name="RetrySoundDialog" type="FileDialog" parent="Windows" unique_id=969382318]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 1
+size = Vector2i(364, 360)
+file_mode = 0
+root_subfolder = "res://assets/music/gameplay/gameover/"
+filters = PackedStringArray("*.ogg")
+folder_creation_enabled = false
+favorites_enabled = false
+recent_list_enabled = false
+overwrite_warning_enabled = false
+deleting_enabled = false
+
+[connection signal="id_pressed" from="CanvasLayer/MenuBar/File" to="." method="_on_file_id_pressed"]
+[connection signal="id_pressed" from="CanvasLayer/MenuBar/Windows" to="." method="_on_windows_id_pressed"]
 [connection signal="close_requested" from="Windows/NewCharacter" to="Windows/NewCharacter" method="hide"]
+[connection signal="file_selected" from="Windows/LoadCharacter" to="." method="_load_character_file"]
 [connection signal="close_requested" from="Windows/Character Data" to="Windows/Character Data" method="hide"]

@@ -1,0 +1,74 @@
+{
+	"is_animated": true,
+	"is_player": false,
+
+	"can_sing": true,
+
+	"sing_duration": 4.0,
+	
+	"dances": true,
+	"dance_steps": ["idle"],
+
+	"health_icon": "res://assets/images/gameplay/icons/icon-pico.png",
+	"health_icon_scale": 1.0,
+	"health_icon_filter": 0,
+	"health_icon_frames": 2,
+	"health_color": "b7d855",
+
+	"death_character": "bf-dead",
+	"death_sound": "res://assets/sounds/death/fnf_loss_sfx.ogg",
+	"death_music": "res://assets/music/gameOver.ogg",
+	"retry_sound": "res://assets/music/gameOverEnd.ogg",
+
+	"voices_path": "pico",
+	"character_script_path": "",
+	"character_script_name": "",
+
+	"flip_h": true,
+
+	"sprite_frames": [
+		"res://assets/images/gameplay/characters/pico/Pico_Basic.res"
+	],
+	"anim_data": [
+		[
+			"idle",
+			"Pico Idle Dance",
+			0,
+			0.0,
+			0.0,
+			0
+		],
+		[
+			"singDOWN",
+			"Pico Down Note",
+			0,
+			40.0,
+			84.0,
+			0
+		],
+		[
+			"singLEFT",
+			"Pico Note Right",
+			0,
+			-55.0,
+			-2.0,
+			0
+		],
+		[
+			"singRIGHT",
+			"Pico NOTE LEFT",
+			0,
+			80.0,
+			10.0,
+			0
+		],
+		[
+			"singUP",
+			"pico Up note",
+			0,
+			40.0,
+			-20.0,
+			0
+		]
+	]
+}

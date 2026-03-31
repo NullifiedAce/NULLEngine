@@ -28,12 +28,22 @@ var voices_path:String = "dad"
 var character_script_path:String = ""
 var character_script_name:String = ""
 
+var scale:float = 1.0
+var filter:int = 0
+
+var flip_h:bool = false
+var flip_v:bool = false
+
 var sprite_frames:Array = []
 var anim_data:Array = []
 
 static func load_data(character:String):
-	var json = JSON.parse_string(FileAccess.open("res://assets/data/characters/"+character+".json", FileAccess.READ).get_as_text())
-	return load_from_json(json)
+	if ResourceLoader.exists("res://assets/data/characters/"+character+".json"):
+		var json = JSON.parse_string(FileAccess.open("res://assets/data/characters/"+character+".json", FileAccess.READ).get_as_text())
+		return load_from_json(json)
+	else:
+		var json = JSON.parse_string(FileAccess.open("res://assets/data/characters/bf.json", FileAccess.READ).get_as_text())
+		return load_from_json(json)
 
 static func load_from_json(json):
 	var data = new()
@@ -81,6 +91,18 @@ static func load_from_json(json):
 		data.voices_path = json.voices_path
 	if "character_script_path" in json:
 		data.character_script_path = json.character_script_path
+	if "character_script_name" in json:
+		data.character_script_name = json.character_script_name
+
+	if "scale" in json:
+		data.scale = json.scale
+	if "filter" in json:
+		data.filter = json.filter
+
+	if "flip_h" in json:
+		data.flip_h = json.flip_h
+	if "flip_v" in json:
+		data.flip_v = json.flip_v
 
 	if "sprite_frames" in json:
 		data.sprite_frames = json.sprite_frames
