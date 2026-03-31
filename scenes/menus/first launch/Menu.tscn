@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://5gv2so4ckba1"]
+[gd_scene format=3 uid="uid://5gv2so4ckba1"]
 
 [ext_resource type="Script" uid="uid://crhccs5hhdvlf" path="res://scenes/menus/first launch/Menu.gd" id="1_cjiy5"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_jkndc"]
@@ -34,10 +34,10 @@ CheckBox/icons/checked_disabled = ExtResource("9_xq1mu")
 CheckBox/icons/unchecked = ExtResource("10_c4ct6")
 CheckBox/icons/unchecked_disabled = ExtResource("11_hl8wv")
 
-[node name="FirstLaunch" type="Node2D"]
+[node name="FirstLaunch" type="Node2D" unique_id=700607587]
 script = ExtResource("1_cjiy5")
 
-[node name="BG Sprite" parent="." instance=ExtResource("2_jkndc")]
+[node name="BG Sprite" parent="." unique_id=792217764 instance=ExtResource("2_jkndc")]
 self_modulate = Color(0.123068, 0.000208153, 0.290046, 1)
 color = Color(0.123068, 0.000208153, 0.290046, 1)
 gradiant = SubResource("GradientTexture2D_ddlc0")
@@ -47,39 +47,40 @@ metadata/_edit_lock_ = true
 z_index = 1
 texture = SubResource("GradientTexture2D_ddlc0")
 
-[node name="Logo" type="Sprite2D" parent="BG Sprite"]
+[node name="Logo" type="Sprite2D" parent="BG Sprite" unique_id=1764189131]
 position = Vector2(0, -280)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("3_1m2wd")
 metadata/_edit_lock_ = true
 
-[node name="LampL" type="Sprite2D" parent="BG Sprite"]
+[node name="LampL" type="Sprite2D" parent="BG Sprite" unique_id=575519660]
 position = Vector2(-608, -328)
 rotation = -0.287979
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_h5el2")
 metadata/_edit_lock_ = true
 
-[node name="LampR" type="Sprite2D" parent="BG Sprite"]
+[node name="LampR" type="Sprite2D" parent="BG Sprite" unique_id=1453752178]
 position = Vector2(608, -328)
 rotation = 1.34216
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_h5el2")
 metadata/_edit_lock_ = true
 
-[node name="Flash" type="ColorRect" parent="."]
+[node name="Flash" type="ColorRect" parent="." unique_id=480649517]
 modulate = Color(1, 1, 1, 0)
 z_index = 2
 offset_right = 1280.0
 offset_bottom = 720.0
 metadata/_edit_lock_ = true
 
-[node name="Page" type="RichTextLabel" parent="."]
+[node name="Page" type="RichTextLabel" parent="." unique_id=954220007]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 160.0
 offset_top = 192.0
-offset_right = 1280.0
+offset_right = 1120.0
 offset_bottom = 912.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -107,7 +108,7 @@ ENJOY :D
 
 Press \"ENTER\" to start the Engine[/center]"
 
-[node name="flashing lights" type="CheckBox" parent="."]
+[node name="flashing lights" type="CheckBox" parent="." unique_id=507498326]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

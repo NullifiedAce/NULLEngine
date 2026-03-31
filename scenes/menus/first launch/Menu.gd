@@ -1,7 +1,6 @@
 extends MusicBeatScene
 
 var flashing:bool = false
-var page:int = 0
 var enter:bool = false
 
 @onready var flash:ColorRect = $Flash
@@ -13,7 +12,7 @@ func _ready() -> void:
 	super._ready()
 	Audio.play_music("breakfast")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and !enter:
 		enter = true
 		do_flash(1.0)

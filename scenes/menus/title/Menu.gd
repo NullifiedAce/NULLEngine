@@ -91,7 +91,7 @@ func beat_hit(beat:int):
 		5:
 			create_cool_text(['You should', 'check out'])
 		7:
-			add_more_text('NOVE Engine')
+			add_more_text('NOVA Engine')
 		8:
 			delete_cool_text()
 		9:

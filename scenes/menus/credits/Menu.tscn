@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmdmp83awaosx"]
+[gd_scene format=3 uid="uid://dmdmp83awaosx"]
 
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="1_lk34i"]
 [ext_resource type="Script" uid="uid://bfcp5dn8r0tl5" path="res://scenes/menus/credits/Menu.gd" id="1_w0t65"]
@@ -28,20 +28,20 @@ expand_margin_top = 4.0
 expand_margin_right = 4.0
 expand_margin_bottom = 4.0
 
-[node name="Menu" type="Node2D"]
+[node name="Menu" type="Node2D" unique_id=938056086]
 script = ExtResource("1_w0t65")
 category = Array[String](["NULL Engine", "Nova Engine", "Addons", "Funkin' Crew"])
 metadata/_custom_type_script = "uid://dbxwmps7r1syc"
 
-[node name="BG" parent="." instance=ExtResource("1_lk34i")]
+[node name="BG" parent="." unique_id=2014807889 instance=ExtResource("1_lk34i")]
 self_modulate = Color(0.481789, 0.481789, 0.481789, 1)
 color = Color(0.481789, 0.481789, 0.481789, 1)
 gradiant = SubResource("GradientTexture2D_5j6ft")
 metadata/_edit_lock_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1496023534]
 
-[node name="CreditsItems" type="ScrollContainer" parent="CanvasLayer"]
+[node name="CreditsItems" type="ScrollContainer" parent="CanvasLayer" unique_id=2087423931]
 clip_contents = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,16 +54,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_w0t65")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CreditsItems"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CreditsItems" unique_id=1781395034]
 layout_mode = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer" unique_id=1460483901]
 position = Vector2(640, 52)
 scale = Vector2(0.55, 0.55)
 sprite_frames = ExtResource("2_5eo6d")
 animation = &"selected"
 
-[node name="Title" type="Label" parent="CanvasLayer"]
+[node name="Title" type="Label" parent="CanvasLayer" unique_id=1678760947]
 offset_left = 24.0
 offset_top = 40.0
 offset_right = 264.0

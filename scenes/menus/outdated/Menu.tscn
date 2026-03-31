@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://u4mrxnjg7g02"]
+[gd_scene format=3 uid="uid://u4mrxnjg7g02"]
 
 [ext_resource type="Script" uid="uid://mnfevo8lqkb6" path="res://scenes/menus/outdated/Menu.gd" id="1_4ld70"]
 [ext_resource type="PackedScene" uid="uid://bw7tphb8v4njj" path="res://assets/images/menus/BGSprite.tscn" id="2_qmdor"]
@@ -7,34 +7,34 @@
 [ext_resource type="FontFile" uid="uid://cf2wd6a4pa5kb" path="res://assets/fonts/funkin.ttf" id="5_ch0dd"]
 [ext_resource type="Script" uid="uid://m7g62s7y5n1y" path="res://scenes/menus/options/buttons/LinkButton.gd" id="6_bxp14"]
 
-[node name="Outdated State" type="Node2D"]
+[node name="Outdated State" type="Node2D" unique_id=604045775]
 script = ExtResource("1_4ld70")
 
-[node name="BG Sprite" parent="." instance=ExtResource("2_qmdor")]
+[node name="BG Sprite" parent="." unique_id=694683697 instance=ExtResource("2_qmdor")]
 self_modulate = Color(0.215686, 0.215686, 0.215686, 1)
 color = Color(0.215686, 0.215686, 0.215686, 1)
 metadata/_edit_lock_ = true
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1945738138]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 
-[node name="Title" parent="Control" instance=ExtResource("3_ptqga")]
-custom_minimum_size = Vector2(238, 70)
+[node name="Title" parent="Control" unique_id=229540384 instance=ExtResource("3_ptqga")]
+custom_minimum_size = Vector2(235, 70)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -119.0
 offset_top = 16.0
-offset_right = 119.0
+offset_right = 116.0
 offset_bottom = 86.0
 grow_horizontal = 2
 text = "UH oH!"
 
-[node name="text" type="Label" parent="Control"]
+[node name="text" type="Label" parent="Control" unique_id=1189731870]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -52,7 +52,7 @@ the most up-to-date version is Version <insert up-to-date version>.
 Please go to any of these sites to get the latest build!"
 horizontal_alignment = 1
 
-[node name="esc" type="Label" parent="Control"]
+[node name="esc" type="Label" parent="Control" unique_id=308161831]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -66,7 +66,7 @@ theme_override_font_sizes/font_size = 32
 text = "Press \"Escape\" to ignore."
 horizontal_alignment = 1
 
-[node name="GitHub" type="Button" parent="Control"]
+[node name="GitHub" type="Button" parent="Control" unique_id=1641753508]
 layout_mode = 0
 offset_left = 504.0
 offset_top = 464.0
@@ -75,9 +75,9 @@ offset_bottom = 504.0
 focus_mode = 0
 text = "Open GitHub Page"
 script = ExtResource("6_bxp14")
-link = "https://github.com/NULLSonic/NULLEngine/releases"
+link = "https://github.com/NullifiedAce/NULLEngine/releases"
 
-[node name="GameJolt" type="Button" parent="Control"]
+[node name="GameJolt" type="Button" parent="Control" unique_id=2088086926]
 layout_mode = 0
 offset_left = 504.0
 offset_top = 512.0
@@ -88,7 +88,7 @@ text = "Open Gamejolt Page"
 script = ExtResource("6_bxp14")
 link = "https://gamejolt.com/games/nullengine/917430"
 
-[node name="Gamebanana" type="Button" parent="Control"]
+[node name="Gamebanana" type="Button" parent="Control" unique_id=866079820]
 layout_mode = 0
 offset_left = 504.0
 offset_top = 560.0

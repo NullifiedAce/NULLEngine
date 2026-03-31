@@ -146,7 +146,7 @@ libraries/ = SubResource("AnimationLibrary_o84so")
 [node name="GF" type="AnimatedSprite2D" parent="PB/BGLayer" unique_id=1401988361]
 position = Vector2(383, 395)
 sprite_frames = ExtResource("4_hncfj")
-animation = &"GF Cheer"
+animation = &"GF Dancing Beat Left"
 
 [node name="UILayer" type="ParallaxLayer" parent="PB" unique_id=432302292]
 motion_scale = Vector2(0, 0)

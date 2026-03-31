@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjpo7po4bckhr"]
+[gd_scene format=3 uid="uid://cjpo7po4bckhr"]
 
 [ext_resource type="Script" uid="uid://ubkr0xm6c072" path="res://scenes/menus/pause/Menu.gd" id="1_g8qxe"]
 [ext_resource type="PackedScene" uid="uid://bgilym2qsrs4y" path="res://scenes/fonts/Alphabet.tscn" id="2_kylok"]
@@ -6,27 +6,27 @@
 [ext_resource type="AudioStream" uid="uid://c3pxiarfaanaa" path="res://assets/music/breakfast.ogg" id="4_6ao0p"]
 [ext_resource type="FontFile" uid="uid://coqcg7h14duny" path="res://assets/fonts/vcr.ttf" id="5_6nkco"]
 
-[node name="PauseMenu" type="CanvasLayer"]
+[node name="PauseMenu" type="CanvasLayer" unique_id=130166086]
 process_mode = 3
 layer = 128
 script = ExtResource("1_g8qxe")
 
-[node name="BG" type="ColorRect" parent="."]
+[node name="BG" type="ColorRect" parent="." unique_id=1107934678]
 modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 1)
 
-[node name="__TemplateItem__" parent="." instance=ExtResource("2_kylok")]
+[node name="__TemplateItem__" parent="." unique_id=508844725 instance=ExtResource("2_kylok")]
 script = ExtResource("3_3aljb")
 is_template = true
 
-[node name="MenuItems" type="Node2D" parent="."]
+[node name="MenuItems" type="Node2D" parent="." unique_id=1541494571]
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=422789201]
 stream = ExtResource("4_6ao0p")
 
-[node name="SongName" type="Label" parent="."]
+[node name="SongName" type="Label" parent="." unique_id=1555181150]
 offset_left = 20.0
 offset_top = 15.0
 offset_right = 21.0
@@ -34,7 +34,7 @@ offset_bottom = 44.0
 theme_override_fonts/font = ExtResource("5_6nkco")
 theme_override_font_sizes/font_size = 32
 
-[node name="Difficulty" type="Label" parent="."]
+[node name="Difficulty" type="Label" parent="." unique_id=1080629731]
 offset_left = 20.0
 offset_top = 47.0
 offset_right = 21.0
@@ -42,7 +42,7 @@ offset_bottom = 76.0
 theme_override_fonts/font = ExtResource("5_6nkco")
 theme_override_font_sizes/font_size = 32
 
-[node name="SkipTimeLabel" type="Label" parent="."]
+[node name="SkipTimeLabel" type="Label" parent="." unique_id=1556081310]
 visible = false
 offset_left = 1.0
 offset_right = 210.0
@@ -53,7 +53,7 @@ theme_override_fonts/font = ExtResource("5_6nkco")
 theme_override_font_sizes/font_size = 64
 text = "0:00 / 0:00"
 
-[node name="SkipTimeLabel2" type="Label" parent="SkipTimeLabel"]
+[node name="SkipTimeLabel2" type="Label" parent="SkipTimeLabel" unique_id=1564676236]
 layout_mode = 0
 offset_left = 82.0
 offset_top = 67.0

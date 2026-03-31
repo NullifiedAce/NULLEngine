@@ -34,6 +34,10 @@ func _ready() -> void:
 	music.play(randf_range(0.0, music.stream.get_length() * 0.5))
 	music.stream.loop = true
 
+	if not Engine.is_editor_hint():
+		options.remove_at(options.find("Skip Time"))
+		options.remove_at(options.find("Skip Intro"))
+
 	if game.skipped_intro:
 		options.remove_at(options.find("Skip Intro"))
 
