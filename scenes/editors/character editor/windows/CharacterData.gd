@@ -1,7 +1,13 @@
 extends Window
 
-@onready var char_scale: SpinBox = $ScrollContainer/VBoxContainer/CharScale
-@onready var sprite_filter: OptionButton = $ScrollContainer/VBoxContainer/SpriteFilter
+#region SpriteDataNodes
+@onready var char_scale: SpinBox = $ScrollContainer/VBoxContainer/SpriteData/VBoxContainer/CharScale
+@onready var sprite_filter: OptionButton = $ScrollContainer/VBoxContainer/SpriteData/VBoxContainer/SpriteFilter
+@onready var flip_h: CheckBox = $ScrollContainer/VBoxContainer/SpriteData/VBoxContainer/HBoxContainer/FlipH
+@onready var flip_v: CheckBox = $ScrollContainer/VBoxContainer/SpriteData/VBoxContainer/HBoxContainer/FlipV
+@onready var add_sprite_frame: Button = $ScrollContainer/VBoxContainer/SpriteData/VBoxContainer/AddSpriteFrame
+@onready var sprite_frame_group: VBoxContainer = $ScrollContainer/VBoxContainer/SpriteData/VBoxContainer/SpriteFrames/VBoxContainer
+#endregion
 
 #region AnimDataNodes
 @onready var is_animated: CheckBox = $ScrollContainer/VBoxContainer/AnimData/VBoxContainer/IsAnimated
@@ -40,10 +46,13 @@ extends Window
 @onready var char_script_name: TextEdit = $ScrollContainer/VBoxContainer/CharPathData/VBoxContainer/CharScriptName
 #endregion
 
+#region DialogWindows
+@onready var sprite_frame_dialog: FileDialog = $"../SpriteFrame"
 @onready var health_icon_dialog: FileDialog = $"../HealthIcon"
 @onready var death_sound_dialog: FileDialog = $"../DeathSoundDialog"
 @onready var death_music_dialog: FileDialog = $"../DeathMusicDialog"
 @onready var retry_sound_dialog: FileDialog = $"../RetrySoundDialog"
+#endregion
 
 @onready var character_editor: CharacterEditor = $"../.."
 
@@ -60,6 +69,10 @@ func setup_signals():
 		character_editor.character_data.filter = index
 		character_editor.character.texture_filter = index as CanvasItem.TextureFilter
 	)
+
+	add_sprite_frame.pressed.connect(sprite_frame_dialog.show)
+
+	sprite_frame_dialog.file_selected.connect(add_sprite_frame_func)
 
 	add_dance_steps.pressed.connect(add_dance_step_func)
 	add_combo_anim.pressed.connect(add_combo_anim_func)
@@ -89,6 +102,13 @@ func setup_signals():
 func load_data(character_data: CharacterData):
 	char_scale.value = character_data.scale
 	sprite_filter.select(character_data.filter)
+	flip_h.button_pressed = character_data.flip_h
+	flip_v.button_pressed = character_data.flip_v
+
+	for i in sprite_frame_group.get_children():
+		i.queue_free()
+	for i in character_data.sprite_frames:
+		add_sprite_frame_func(i)
 
 	is_animated.button_pressed = character_data.is_animated
 	is_player.button_pressed = character_data.is_player
@@ -100,6 +120,11 @@ func load_data(character_data: CharacterData):
 		i.queue_free()
 	for i in character_data.dance_steps:
 		add_dance_step_func(i)
+
+	for i in combo_anim_group.get_children():
+		i.queue_free()
+	for i in character_data.combo_anims:
+		add_combo_anim_func(int(i), character_data.combo_anims.get(str(i)))
 
 	icon_preview.texture = load(character_data.health_icon)
 	icon_scale.value = character_data.health_icon_scale
@@ -115,6 +140,32 @@ func load_data(character_data: CharacterData):
 	voices_path.text = character_data.voices_path
 	char_script_path.text = character_data.character_script_path
 	char_script_name.text = character_data.character_script_name
+
+func add_sprite_frame_func(path: String = ""):
+	var text_edit:TextEdit = TextEdit.new()
+	var delete_button:Button = Button.new()
+
+	text_edit.context_menu_enabled = false
+	text_edit.emoji_menu_enabled = false
+	text_edit.editable = false
+
+	text_edit.custom_minimum_size.y = 32
+
+	text_edit.text = path
+
+	sprite_frame_group.add_child(text_edit)
+
+	delete_button.custom_minimum_size = Vector2.ONE*32
+	delete_button.text = "x"
+
+	delete_button.pressed.connect(func():
+		text_edit.queue_free()
+	)
+
+	text_edit.add_child(delete_button)
+
+	delete_button.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	delete_button.position.x -= 16
 
 func add_dance_step_func(text: String = ""):
 	var text_edit:TextEdit = TextEdit.new()
@@ -155,6 +206,8 @@ func add_combo_anim_func(combo: int = 0, anim: String = ""):
 
 	text_edit.custom_minimum_size.x = 106
 	text_edit.text = anim
+	text_edit.context_menu_enabled = false
+	text_edit.emoji_menu_enabled = false
 	h_box.add_child(text_edit)
 
 	delete_button.custom_minimum_size = Vector2.ONE*32

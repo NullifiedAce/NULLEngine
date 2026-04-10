@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://btjmarohyves3" path="res://assets/images/material_icons/Editors/ExternalLink.svg" id="8_yx6mu"]
 [ext_resource type="Texture2D" uid="uid://bu1lcynh7qj3l" path="res://assets/images/material_icons/Editors/Play.svg" id="9_sq5tw"]
 [ext_resource type="Script" uid="uid://bh4vjq76n65me" path="res://scenes/editors/ui/AudioStreamPlayerButton.gd" id="10_hm5gv"]
+[ext_resource type="Script" uid="uid://ddcjetjfm2l1v" path="res://scenes/editors/character editor/windows/AnimationData.gd" id="11_hm5gv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_euvid"]
 bg_color = Color(0, 0, 0, 0.21568628)
@@ -131,6 +132,7 @@ oversampling_override = 1.0
 title = "Character Data"
 initial_position = 1
 size = Vector2i(256, 360)
+visible = false
 min_size = Vector2i(256, 0)
 max_size = Vector2i(256, 32768)
 script = ExtResource("5_wf8xh")
@@ -152,26 +154,34 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scroll_vertical = 211
 horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Windows/Character Data/ScrollContainer" unique_id=1145705985]
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="CharScaleLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=1179430769]
+[node name="SpriteData" type="FoldableContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=672357603]
+layout_mode = 2
+folded = true
+title = "Sprite Data"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/SpriteData" unique_id=1649622221]
+visible = false
+layout_mode = 2
+
+[node name="CharScaleLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/SpriteData/VBoxContainer" unique_id=1179430769]
 layout_mode = 2
 text = "Character Scale:"
 
-[node name="CharScale" type="SpinBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=1229341965]
+[node name="CharScale" type="SpinBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/SpriteData/VBoxContainer" unique_id=1229341965]
 layout_mode = 2
 step = 0.01
 
-[node name="TextureFilterLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=1705936339]
+[node name="TextureFilterLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/SpriteData/VBoxContainer" unique_id=1705936339]
 layout_mode = 2
 text = "Texture Filter:"
 
-[node name="SpriteFilter" type="OptionButton" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=834536765]
+[node name="SpriteFilter" type="OptionButton" parent="Windows/Character Data/ScrollContainer/VBoxContainer/SpriteData/VBoxContainer" unique_id=834536765]
 layout_mode = 2
 focus_mode = 0
 selected = 0
@@ -183,30 +193,48 @@ popup/item_1/id = 1
 popup/item_2/text = "Linear"
 popup/item_2/id = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=81791803]
+[node name="HBoxContainer" type="HBoxContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/SpriteData/VBoxContainer" unique_id=81791803]
 layout_mode = 2
 
-[node name="FlipLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=473259707]
+[node name="FlipLabel" type="Label" parent="Windows/Character Data/ScrollContainer/VBoxContainer/SpriteData/VBoxContainer/HBoxContainer" unique_id=473259707]
 layout_mode = 2
 text = "Flip: "
 
-[node name="FlipH" type="CheckBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=350551528]
+[node name="FlipH" type="CheckBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/SpriteData/VBoxContainer/HBoxContainer" unique_id=350551528]
 layout_mode = 2
 focus_mode = 0
 text = "Horizontal"
 
-[node name="FlipV" type="CheckBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=511317109]
+[node name="FlipV" type="CheckBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/SpriteData/VBoxContainer/HBoxContainer" unique_id=511317109]
 layout_mode = 2
 focus_mode = 0
 text = "Vertical"
+
+[node name="AddSpriteFrame" type="Button" parent="Windows/Character Data/ScrollContainer/VBoxContainer/SpriteData/VBoxContainer" unique_id=767536747]
+layout_mode = 2
+focus_mode = 0
+text = "Add Sprite Frame"
+icon = ExtResource("6_euvid")
+alignment = 0
+
+[node name="SpriteFrames" type="FoldableContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/SpriteData/VBoxContainer" unique_id=1556524746]
+layout_mode = 2
+folded = true
+title = "Sprite Frames"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/SpriteData/VBoxContainer/SpriteFrames" unique_id=373707319]
+visible = false
+layout_mode = 2
 
 [node name="AnimData" type="FoldableContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=1680295540]
 custom_minimum_size = Vector2(248, 0)
 layout_mode = 2
 focus_mode = 0
+folded = true
 title = "Animation Data"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData" unique_id=1474362922]
+visible = false
 layout_mode = 2
 
 [node name="IsAnimated" type="CheckBox" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer" unique_id=1958125060]
@@ -266,9 +294,11 @@ alignment = 0
 [node name="ComboAnimGroup" type="FoldableContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer" unique_id=1389928316]
 layout_mode = 2
 focus_mode = 0
+folded = true
 title = "Combo Anims"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer/AnimData/VBoxContainer/ComboAnimGroup" unique_id=1109859598]
+visible = false
 layout_mode = 2
 
 [node name="HealthIconData" type="FoldableContainer" parent="Windows/Character Data/ScrollContainer/VBoxContainer" unique_id=1097428453]
@@ -520,6 +550,132 @@ layout_mode = 2
 context_menu_enabled = false
 emoji_menu_enabled = false
 
+[node name="Animation Data" type="Window" parent="Windows" unique_id=1378893693]
+oversampling_override = 1.0
+title = "Animation Data"
+initial_position = 1
+size = Vector2i(512, 360)
+visible = false
+script = ExtResource("11_hm5gv")
+
+[node name="BG" type="ColorRect" parent="Windows/Animation Data" unique_id=1400790542]
+z_index = -10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.21568628, 0.21568628, 0.21568628, 1)
+metadata/_edit_lock_ = true
+
+[node name="AddAnim" type="Button" parent="Windows/Animation Data" unique_id=308082400]
+custom_minimum_size = Vector2(160, 0)
+offset_right = 8.0
+offset_bottom = 8.0
+focus_mode = 0
+text = "Add Animation"
+icon = ExtResource("6_euvid")
+
+[node name="Anims" type="ScrollContainer" parent="Windows/Animation Data" unique_id=1039701616]
+custom_minimum_size = Vector2(128, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 35.0
+offset_right = 160.0
+grow_vertical = 2
+
+[node name="AnimGroup" type="VBoxContainer" parent="Windows/Animation Data/Anims" unique_id=751612059]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VSeparator" type="VSeparator" parent="Windows/Animation Data" unique_id=254977063]
+offset_left = 160.0
+offset_right = 164.0
+offset_bottom = 360.0
+
+[node name="AnimData" type="VBoxContainer" parent="Windows/Animation Data" unique_id=526733881]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -347.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="AnimNameLabel" type="Label" parent="Windows/Animation Data/AnimData" unique_id=955438374]
+layout_mode = 2
+text = "Animation name:"
+
+[node name="AnimName" type="TextEdit" parent="Windows/Animation Data/AnimData" unique_id=1482774067]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+placeholder_text = "idle, singLEFT, hey..."
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="AnimDataNameLabel" type="Label" parent="Windows/Animation Data/AnimData" unique_id=2098064492]
+layout_mode = 2
+text = "Animation data name:"
+
+[node name="AnimDataName" type="TextEdit" parent="Windows/Animation Data/AnimData" unique_id=991917550]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+placeholder_text = "BF idle dance, BF NOTE LEFT, BF HEY!!..."
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="FrameLabel" type="Label" parent="Windows/Animation Data/AnimData" unique_id=482558645]
+layout_mode = 2
+text = "Frame:"
+
+[node name="Frame" type="SpinBox" parent="Windows/Animation Data/AnimData" unique_id=1961356615]
+layout_mode = 2
+max_value = inf
+
+[node name="Offsets" type="Label" parent="Windows/Animation Data/AnimData" unique_id=1983771230]
+layout_mode = 2
+text = "Offsets:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Windows/Animation Data/AnimData" unique_id=705929819]
+layout_mode = 2
+
+[node name="OffsetX" type="SpinBox" parent="Windows/Animation Data/AnimData/HBoxContainer" unique_id=587690842]
+layout_mode = 2
+allow_greater = true
+allow_lesser = true
+prefix = "X:"
+
+[node name="OffsetY" type="SpinBox" parent="Windows/Animation Data/AnimData/HBoxContainer" unique_id=1706807651]
+layout_mode = 2
+allow_greater = true
+allow_lesser = true
+prefix = "Y:"
+
+[node name="SpriteFrameLabel" type="Label" parent="Windows/Animation Data/AnimData" unique_id=134483009]
+layout_mode = 2
+text = "Sprite frame:"
+
+[node name="SpriteFrame" type="SpinBox" parent="Windows/Animation Data/AnimData" unique_id=333281154]
+layout_mode = 2
+max_value = 0.0
+allow_greater = true
+
+[node name="SpriteFrame" type="FileDialog" parent="Windows" unique_id=1564821488]
+oversampling_override = 1.0
+title = "Open a File"
+initial_position = 1
+size = Vector2i(364, 360)
+file_mode = 0
+display_mode = 1
+root_subfolder = "res://assets/images/gameplay/characters/"
+filters = PackedStringArray("*.res; Sprite Frame")
+folder_creation_enabled = false
+favorites_enabled = false
+recent_list_enabled = false
+overwrite_warning_enabled = false
+deleting_enabled = false
+
 [node name="HealthIcon" type="FileDialog" parent="Windows" unique_id=2055507678]
 oversampling_override = 1.0
 title = "Open a File"
@@ -581,3 +737,4 @@ deleting_enabled = false
 [connection signal="close_requested" from="Windows/NewCharacter" to="Windows/NewCharacter" method="hide"]
 [connection signal="file_selected" from="Windows/LoadCharacter" to="." method="_load_character_file"]
 [connection signal="close_requested" from="Windows/Character Data" to="Windows/Character Data" method="hide"]
+[connection signal="close_requested" from="Windows/Animation Data" to="Windows/Animation Data" method="hide"]
