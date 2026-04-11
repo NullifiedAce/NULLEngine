@@ -1,6 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://clxuymo1u5elo"]
+[gd_scene format=3 uid="uid://clxuymo1u5elo"]
 
 [ext_resource type="Script" uid="uid://0utfihwjnekr" path="res://autoload/scenes/Transition.gd" id="1_ojhhb"]
+[ext_resource type="Script" uid="uid://clnbb4wasxlgm" path="res://resources/StickerPack.gd" id="2_h4uus"]
+[ext_resource type="Texture2D" uid="uid://b7nuur2rf7k0f" path="res://assets/images/menus/transitionSwag/stickers-set-1/bfSticker1.png" id="3_iqant"]
+[ext_resource type="Texture2D" uid="uid://bnsldwbn87uq1" path="res://assets/images/menus/transitionSwag/stickers-set-1/bfSticker2.png" id="4_iknno"]
+[ext_resource type="Texture2D" uid="uid://def2jotn2sesi" path="res://assets/images/menus/transitionSwag/stickers-set-1/bfSticker3.png" id="5_wkxyb"]
+[ext_resource type="Texture2D" uid="uid://d0qs7yvso40gx" path="res://assets/images/menus/transitionSwag/stickers-set-1/dadSticker1.png" id="6_wkxyb"]
+[ext_resource type="Texture2D" uid="uid://c7g4wuyooq6g2" path="res://assets/images/menus/transitionSwag/stickers-set-1/dadSticker2.png" id="7_10cqn"]
+[ext_resource type="Texture2D" uid="uid://ml4xs6h327ps" path="res://assets/images/menus/transitionSwag/stickers-set-1/dadSticker3.png" id="8_oepaf"]
+[ext_resource type="Texture2D" uid="uid://beteoa25wdarh" path="res://assets/images/menus/transitionSwag/stickers-set-1/gfSticker1.png" id="9_5cmti"]
+[ext_resource type="Texture2D" uid="uid://b06cx8oqa1ag7" path="res://assets/images/menus/transitionSwag/stickers-set-1/gfSticker2.png" id="10_kftsw"]
+[ext_resource type="Texture2D" uid="uid://d3tufurauvxsj" path="res://assets/images/menus/transitionSwag/stickers-set-1/gfSticker3.png" id="11_5lyso"]
+[ext_resource type="Texture2D" uid="uid://dpgp2n01rg6p5" path="res://assets/images/menus/transitionSwag/stickers-set-1/momSticker1.png" id="12_3tmqd"]
+[ext_resource type="Texture2D" uid="uid://c0g3p0ahomcch" path="res://assets/images/menus/transitionSwag/stickers-set-1/momSticker2.png" id="13_alwtm"]
+[ext_resource type="Texture2D" uid="uid://mk3genef6rbv" path="res://assets/images/menus/transitionSwag/stickers-set-1/momSticker3.png" id="14_0nh7j"]
+[ext_resource type="Texture2D" uid="uid://cdjpox85ysr53" path="res://assets/images/menus/transitionSwag/stickers-set-1/monsterSticker1.png" id="15_wjf6w"]
+[ext_resource type="Texture2D" uid="uid://c28ystpinens" path="res://assets/images/menus/transitionSwag/stickers-set-1/monsterSticker2.png" id="16_rht50"]
+[ext_resource type="Texture2D" uid="uid://cwx02blqor50j" path="res://assets/images/menus/transitionSwag/stickers-set-1/monsterSticker3.png" id="17_ll3v1"]
+[ext_resource type="Texture2D" uid="uid://br4qsksb2ns07" path="res://assets/images/menus/transitionSwag/stickers-set-1/picoSticker1.png" id="18_r8rqa"]
+[ext_resource type="Texture2D" uid="uid://b8chasa6d4o4l" path="res://assets/images/menus/transitionSwag/stickers-set-1/picoSticker2.png" id="19_xm5ix"]
+[ext_resource type="Texture2D" uid="uid://c6v4wkao2cjet" path="res://assets/images/menus/transitionSwag/stickers-set-1/picoSticker3.png" id="20_ijmu3"]
+
+[sub_resource type="Resource" id="Resource_10cqn"]
+script = ExtResource("2_h4uus")
+id = "default"
+stickers = Array[Texture2D]([ExtResource("3_iqant"), ExtResource("4_iknno"), ExtResource("5_wkxyb")])
+metadata/_custom_type_script = "uid://clnbb4wasxlgm"
+
+[sub_resource type="Resource" id="Resource_1hi2h"]
+script = ExtResource("2_h4uus")
+id = "default-bf"
+stickers = Array[Texture2D]([ExtResource("3_iqant"), ExtResource("4_iknno"), ExtResource("5_wkxyb"), ExtResource("6_wkxyb"), ExtResource("7_10cqn"), ExtResource("8_oepaf"), ExtResource("9_5cmti"), ExtResource("10_kftsw"), ExtResource("11_5lyso"), ExtResource("12_3tmqd"), ExtResource("13_alwtm"), ExtResource("14_0nh7j"), ExtResource("15_wjf6w"), ExtResource("16_rht50"), ExtResource("17_ll3v1"), ExtResource("18_r8rqa"), ExtResource("19_xm5ix"), ExtResource("20_ijmu3")])
+metadata/_custom_type_script = "uid://clnbb4wasxlgm"
 
 [sub_resource type="Gradient" id="Gradient_m4426"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
@@ -72,18 +103,22 @@ _data = {
 &"out": SubResource("Animation_xw8xl")
 }
 
-[node name="Transition" type="CanvasLayer"]
+[node name="Transition" type="CanvasLayer" unique_id=1084051758]
 process_mode = 3
 layer = 128
 script = ExtResource("1_ojhhb")
+stickers = Dictionary[String, ExtResource("2_h4uus")]({
+"default": SubResource("Resource_10cqn"),
+"default-bf": SubResource("Resource_1hi2h")
+})
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2064510652]
 offset_top = -1440.0
 offset_right = 1280.0
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_hmev6")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
-libraries = {
-&"": SubResource("AnimationLibrary_g6a2m")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect" unique_id=910120334]
+libraries/ = SubResource("AnimationLibrary_g6a2m")
+
+[node name="Stickers" type="CanvasGroup" parent="." unique_id=1781067387]

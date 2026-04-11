@@ -88,18 +88,24 @@ func switch_scene(path:String) -> void:
 	transitioning = true
 	get_tree().paused = true
 
-	var anim_player:AnimationPlayer = Transition.anim_player
-	anim_player.play("in")
+	#var anim_player:AnimationPlayer = Transition.anim_player
+	#anim_player.play("in")
 
-	await get_tree().create_timer(anim_player.get_animation("in").length).timeout
+	#await get_tree().create_timer(anim_player.get_animation("in").length).timeout
+
+	Transition.regen_stickers(path)
+
+func finish_switch_scene(path:String):
 
 	get_tree().change_scene_to_file(path)
 
 	await get_tree().create_timer(0.05).timeout
 
-	anim_player.play("out")
+	#anim_player.play("out")
 
-	await get_tree().create_timer(anim_player.get_animation("out").length).timeout
+	#await get_tree().create_timer(anim_player.get_animation("out").length).timeout
+
+	Transition.degen_stickers()
 
 	transitioning = false
 	get_tree().paused = false

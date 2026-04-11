@@ -153,7 +153,7 @@ func _get_wacky() -> PackedStringArray:
 
 	return wacky_lines[randi_range(0, wacky_lines.size()-1)].split("--")
 
-func _on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
+func _on_request_completed(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	# Convert the body (PackedByteArray) to a String and print it
 	var content = body.get_string_from_utf8()
 	Global.new_version = content

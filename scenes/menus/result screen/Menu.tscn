@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://kcfmtjfi6jm7"]
+
+[ext_resource type="Script" uid="uid://dbxwmps7r1syc" path="res://classes/MusicBeatScene.gd" id="1_updqk"]
+
+[node name="Result Screen" type="Node2D" unique_id=1263062987]
+script = ExtResource("1_updqk")
+metadata/_custom_type_script = "uid://dbxwmps7r1syc"
