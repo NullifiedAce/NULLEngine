@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+var transitioning:bool = false
+
 var cur_sticker:StickerSprite
 
 var sticker_sounds:Array[String] = [
@@ -19,6 +21,8 @@ var sticker_sounds:Array[String] = [
 @export var stickers:Dictionary[String, StickerPack]
 
 func regen_stickers(path:String):
+	transitioning = true
+
 	if stickers_grp.get_child_count() > 0:
 		for i in stickers_grp.get_children(): i.queue_free()
 
@@ -74,6 +78,9 @@ func degen_stickers():
 			Audio.play_sound(sticker_sounds.get(randi_range(0, sticker_sounds.size()-1)))
 			
 			sticker.queue_free()
+
+			if ind == stickers_grp.get_child_count()-1:
+				transitioning = false
 		)
 
 func shuffle_stickers(node: Node):
