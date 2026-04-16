@@ -24,6 +24,11 @@ func load_data(character_data: CharacterData):
 	for i in animation_data:
 		add_animation(i)
 
+func load_anim_data(anim:String):
+	for i in animation_data:
+		if i[0] == anim:
+			print("true")
+
 func add_animation(anim_data:Array = []):
 	var anim:Button = Button.new()
 	var delete_button:Button = Button.new()
@@ -44,3 +49,5 @@ func add_animation(anim_data:Array = []):
 
 	anim.add_child(delete_button)
 	anim_group.add_child(anim)
+
+	anim.pressed.connect(load_anim_data.bind(anim.text))

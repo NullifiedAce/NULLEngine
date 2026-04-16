@@ -555,7 +555,6 @@ oversampling_override = 1.0
 title = "Animation Data"
 initial_position = 1
 size = Vector2i(512, 360)
-visible = false
 script = ExtResource("11_hm5gv")
 
 [node name="BG" type="ColorRect" parent="Windows/Animation Data" unique_id=1400790542]
