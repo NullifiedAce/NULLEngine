@@ -107,8 +107,8 @@ func finish_switch_scene(path:String):
 
 	Transition.degen_stickers()
 
-	transitioning = false
 	get_tree().paused = false
+	transitioning = false
 
 func reset_scene(from_mod_menu:bool = false) -> void:
 	transitioning = true

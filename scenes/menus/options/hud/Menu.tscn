@@ -1,7 +1,65 @@
 [gd_scene format=3 uid="uid://bqsrwpb82r34v"]
 
 [ext_resource type="Script" uid="uid://bydrrqjf2awjd" path="res://scenes/menus/options/hud/Menu.gd" id="1_028jv"]
+[ext_resource type="Texture2D" uid="uid://y8c4a1bk8wkl" path="res://assets/images/menus/menuBGDesat.png" id="2_k68oh"]
+[ext_resource type="Theme" uid="uid://dqqyiyf33vtjn" path="res://assets/styles/NULLEngine.tres" id="3_k68oh"]
 
 [node name="HUD Editor" type="Node2D" unique_id=1750916018]
 process_mode = 3
 script = ExtResource("1_028jv")
+
+[node name="BG" type="Sprite2D" parent="." unique_id=95596197]
+modulate = Color(0.09240001, 0.084, 0.12, 1)
+position = Vector2(640, 360)
+texture = ExtResource("2_k68oh")
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1862705023]
+
+[node name="MenuBar" type="MenuBar" parent="CanvasLayer" unique_id=571044733]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme = ExtResource("3_k68oh")
+prefer_global_menu = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MenuBar" unique_id=1962209285]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.21568628, 0.21568628, 0.21568628, 1)
+
+[node name="File" type="PopupMenu" parent="CanvasLayer/MenuBar" unique_id=1146618073]
+item_count = 9
+item_0/text = "New HUD"
+item_0/id = 1
+item_1/text = "Open HUD..."
+item_1/id = 2
+item_2/id = 0
+item_2/separator = true
+item_3/text = "Save HUD"
+item_3/id = 3
+item_4/text = "Save HUD As..."
+item_4/id = 4
+item_5/id = 0
+item_5/separator = true
+item_6/text = "Open Default HUD"
+item_6/id = 6
+item_7/id = 0
+item_7/separator = true
+item_8/text = "Exit"
+item_8/id = 8
+
+[node name="Edit" type="PopupMenu" parent="CanvasLayer/MenuBar" unique_id=1632525973]
+
+[node name="Windows" type="PopupMenu" parent="CanvasLayer/MenuBar" unique_id=174042509]
+
+[node name="Help" type="PopupMenu" parent="CanvasLayer/MenuBar" unique_id=2115883211]
+
+[connection signal="id_pressed" from="CanvasLayer/MenuBar/File" to="." method="_on_file_id_pressed"]

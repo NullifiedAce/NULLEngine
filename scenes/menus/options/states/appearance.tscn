@@ -1,7 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cviu5o04fauve"]
+[gd_scene format=3 uid="uid://cviu5o04fauve"]
 
 [ext_resource type="Script" uid="uid://bxj2nvglcnwtb" path="res://scripts/OptionState.gd" id="1_v0t36"]
 [ext_resource type="Script" uid="uid://b3ihnvdrdh6cu" path="res://resources/OptionItem.gd" id="2_nw7md"]
+
+[sub_resource type="Resource" id="Resource_3x6b2"]
+script = ExtResource("2_nw7md")
+option_name = "HUD Editor"
+option_description = "Opens a new menu to edit the gameplay HUD."
+metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
 
 [sub_resource type="Resource" id="Resource_v0t36"]
 script = ExtResource("2_nw7md")
@@ -49,7 +55,7 @@ option_description = "Open a sub-menu with HUD related options."
 option_variant = 4
 metadata/_custom_type_script = "uid://b3ihnvdrdh6cu"
 
-[node name="Appearance" type="Node"]
+[node name="Appearance" type="Node" unique_id=1346650917]
 script = ExtResource("1_v0t36")
 title = "Appearance"
-options = Array[ExtResource("2_nw7md")]([SubResource("Resource_v0t36"), SubResource("Resource_nw7md"), SubResource("Resource_ebxm0"), SubResource("Resource_ktoxn"), SubResource("Resource_kpgg4"), SubResource("Resource_dm63f")])
+options = Array[ExtResource("2_nw7md")]([SubResource("Resource_3x6b2"), SubResource("Resource_v0t36"), SubResource("Resource_nw7md"), SubResource("Resource_ebxm0"), SubResource("Resource_ktoxn"), SubResource("Resource_kpgg4"), SubResource("Resource_dm63f")])

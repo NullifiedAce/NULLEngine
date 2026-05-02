@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var transitioning:bool = false
+var regen:bool = false
 
 var cur_sticker:StickerSprite
 
@@ -21,10 +21,10 @@ var sticker_sounds:Array[String] = [
 @export var stickers:Dictionary[String, StickerPack]
 
 func regen_stickers(path:String):
-	transitioning = true
+	regen = true
 
-	if stickers_grp.get_child_count() > 0:
-		for i in stickers_grp.get_children(): i.queue_free()
+	for i in stickers_grp.get_children():
+		i.queue_free()
 
 	var x_pos:float = -100.0
 	var y_pos:float = -100.0
@@ -67,6 +67,7 @@ func regen_stickers(path:String):
 
 				if ind == stickers_grp.get_child_count()-1:
 					Global.finish_switch_scene(path)
+					regen = false
 			)
 		)
 
@@ -74,13 +75,13 @@ func degen_stickers():
 	for ind in stickers_grp.get_child_count():
 		var sticker:StickerSprite = stickers_grp.get_child(ind)
 		get_tree().create_timer(sticker.timing).timeout.connect(func():
-			sticker.visible = false
-			Audio.play_sound(sticker_sounds.get(randi_range(0, sticker_sounds.size()-1)))
-			
-			sticker.queue_free()
+			if is_instance_valid(sticker):
+				sticker.visible = false
+				Audio.play_sound(sticker_sounds.get(randi_range(0, sticker_sounds.size()-1)))
 
+				sticker.queue_free()
 			if ind == stickers_grp.get_child_count()-1:
-				transitioning = false
+				regen = false
 		)
 
 func shuffle_stickers(node: Node):
