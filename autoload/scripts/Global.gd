@@ -84,6 +84,9 @@ var transitioning:bool = false
 var last_scene_path:String
 
 func switch_scene(path:String) -> void:
+	if transitioning:
+		return
+
 	last_scene_path = path
 	transitioning = true
 	get_tree().paused = true
@@ -108,7 +111,6 @@ func finish_switch_scene(path:String):
 	Transition.degen_stickers()
 
 	get_tree().paused = false
-	transitioning = false
 
 func reset_scene(from_mod_menu:bool = false) -> void:
 	transitioning = true

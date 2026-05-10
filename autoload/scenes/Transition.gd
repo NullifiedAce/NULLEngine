@@ -20,6 +20,10 @@ var sticker_sounds:Array[String] = [
 
 @export var stickers:Dictionary[String, StickerPack]
 
+func _process(delta: float) -> void:
+	if stickers_grp.get_child_count() == 0:
+		Global.transitioning = false
+
 func regen_stickers(path:String):
 	regen = true
 
