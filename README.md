@@ -1,5 +1,5 @@
-# Friday Night Funkin': NULL Engine
-***DISCLAIMER: This is engine is still missing a few features from the base game. They will be added overtime. No .lua or .hxscript support will be added to this engine.***
+# Friday Night Funkin': NULL Engine [CANCELLED]
+***DISCLAIMER: This is engine is cancelled and will not receive any official updates anymore.***
 
 A fork of [Nova Engine](https://github.com/The-Coders-Den/NovaEngine-Godot-FNF) continuing where the original developers left off while adding new features.
 ## Features
