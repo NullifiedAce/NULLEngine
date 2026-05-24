@@ -32,10 +32,10 @@ func _process(delta: float) -> void:
 	title.text = "<Q " + category[selected] + " E>"
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_freeplay_left"):
+	if Input.is_action_just_pressed("funkin_switch_left"):
 		selected -= 1
 		change_page()
-	if Input.is_action_just_pressed("ui_freeplay_right"):
+	if Input.is_action_just_pressed("funkin_switch_right"):
 		selected += 1
 		change_page()
 

@@ -1,86 +1,46 @@
 extends MusicBeatScene
-class_name CharacterEditor
 
-var default_data:Dictionary = {
-	"is_animated": true,
-	"is_player": false,
+var cam_move_multiplier:int = 200
 
-	"can_sing": true,
-
-	"sing_duration": 4.0,
-	
-	"dances": true,
-	"dance_steps": ["idle"],
-
-	"combo_anims": {},
-
-	"health_icon": "",
-	"health_icon_scale": 1.0,
-	"health_icon_filter": 0,
-	"health_icon_frames": 2,
-	"health_color": "FFFFFF",
-
-	"death_character": "bf-dead",
-	"death_sound": "res://assets/sounds/death/fnf_loss_sfx.ogg",
-	"death_music": "res://assets/music/gameOver.ogg",
-	"retry_sound": "res://assets/music/gameOverEnd.ogg",
-
-	"voices_path": "dad",
-	"character_script_path": "",
-	"character_script_name": "",
-
-	"sprite_frames": [],
-	"anim_data": []
-}
-
-var character_data:CharacterData
-
-@onready var character: EditorCharacter = $Character
+@onready var camera: Camera2D = $Camera2D
 
 @onready var file_popup: PopupMenu = $CanvasLayer/MenuBar/File
-@onready var windows_popup: PopupMenu = $CanvasLayer/MenuBar/Windows
-
-@onready var windows_group: Node = $Windows
-
-@onready var load_character_dialog: FileDialog = $Windows/LoadCharacter
-
-@onready var character_data_window: Window = $"Windows/Character Data"
-@onready var animation_data_window: Window = $"Windows/Animation Data"
-
+@onready var edit_popup: PopupMenu = $CanvasLayer/MenuBar/Edit
+@onready var window_popup: PopupMenu = $CanvasLayer/MenuBar/Window
+@onready var about_popup: PopupMenu = $CanvasLayer/MenuBar/About
 
 func _ready() -> void:
-	FPS.fps_label.modulate = Color.TRANSPARENT
-	FPS.mem_label.modulate = Color.TRANSPARENT
+	FPS.fps_label.modulate = Color(1, 1, 1, 0.75)
+	FPS.fps_label.position.y = 664
 
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	file_popup.id_pressed.connect(_handle_file_popup)
 
-	RichPresence.set_text("In the editor", "Character Editor")
+func _process(delta: float) -> void:
+	var direction_x = Input.get_axis("funkin_left", "funkin_right")
+	var direction_y = Input.get_axis("funkin_up", "funkin_down")
+	var direction_cam_zoom = Input.get_axis("funkin_switch_left", "funkin_switch_right")
 
-func _process(_delta: float):
-	pass
+	if Input.is_key_pressed(KEY_SHIFT):
+		cam_move_multiplier = 800
+	else:
+		cam_move_multiplier = 200
 
-func _on_file_id_pressed(id: int) -> void:
-	var item = file_popup.get_item_text(id)
+	camera.position += Vector2((direction_x*cam_move_multiplier)*delta, (direction_y*cam_move_multiplier)*delta)
+	camera.zoom += Vector2(direction_cam_zoom*0.01, direction_cam_zoom*0.01)
+	camera.zoom = clamp(camera.zoom, Vector2(0.1, 0.1), Vector2(2.0, 2.0))
 
-	match item:
-		"Load character...":
-			load_character_dialog.show()
+	if Input.is_action_just_pressed("funkin_reset"):
+		camera.position = Global.game_size/2.0
+		camera.zoom = Vector2.ONE
 
-func _on_windows_id_pressed(id: int) -> void:
-	var window_name = windows_popup.get_item_text(id)
+	if Input.is_action_just_pressed("editor_quit"):
+		Global.switch_scene("res://scenes/menus/main menu/Menu.tscn")
 
-	for i in windows_group.get_children():
-		if i.name == window_name:
-			i.visible = not i.visible
-
-func _load_character_file(path: String) -> void:
-	character_data = CharacterData.load_from_json(JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text()))
-
-	character._setup()
-
-	character_data_window.load_data(character_data)
-	animation_data_window.load_data(character_data)
+func _handle_file_popup(id):
+	match file_popup.get_item_text(id):
+		"Quit":
+			Global.switch_scene("res://scenes/menus/main menu/Menu.tscn")
 
 func _exit_tree() -> void:
-	FPS.fps_label.modulate = Color.WHITE
-	FPS.mem_label.modulate = Color.WHITE
+	FPS.fps_label.modulate = Color(1, 1, 1, 1)
+	FPS.fps_label.position.y = 3
